@@ -20,8 +20,6 @@ public class HelloWorld {
 		String text = scan.nextLine();
 		
 		System.out.println("Hello " + text);
-		
-		scan.close();
 	}
 
 }

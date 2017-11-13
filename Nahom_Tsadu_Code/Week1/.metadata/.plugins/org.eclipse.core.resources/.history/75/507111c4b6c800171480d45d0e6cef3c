@@ -19,9 +19,7 @@ public class HelloWorld {
 		Scanner scan = new Scanner(System.in);
 		String text = scan.nextLine();
 		
-		System.out.println("Hello " + text);
-		
-		scan.close();
+		System.out.println("Hello" + text);
 	}
 
 }
