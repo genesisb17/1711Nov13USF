@@ -1,0 +1,13 @@
+package comrevaturehello;
+
+public class AboutStrings {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		String a = "hello";
+		String b = "Hello";
+		String c = new String("hello");
+		
+	}
+
+}

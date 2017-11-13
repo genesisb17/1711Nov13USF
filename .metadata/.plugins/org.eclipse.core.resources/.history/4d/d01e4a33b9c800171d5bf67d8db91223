@@ -1,0 +1,16 @@
+package comrevaturehello;
+
+public class AboutStrings {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		String a = "hello";
+		String b = "Hello";
+		String c = new String("hello");
+		
+		System.out.println("1"+a.equals(c));
+		System.out.println("2"+(a==c));
+
+	}
+
+}
