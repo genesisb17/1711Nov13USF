@@ -1,2 +1,1 @@
-# 1711Nov13USF
-Batch Repository
+Batch Repo
