@@ -1,0 +1,44 @@
+package com.revature.hello;
+
+import java.util.Scanner;
+
+public class HelloWorld {
+	
+	public static void main(String[] args) {
+		
+		String name = "Rony";
+		System.out.println(name);
+		
+		int x = 5;
+		Integer ex = new Integer(5);
+		ex = x;
+		
+		//Scanner scan = new Scanner(System.in);
+		//String text = scan.nextLine();
+		
+		//System.out.println("Hello " + text);
+		
+		System.out.println(toUpper(name));
+		System.out.println(toLower(name));
+		
+	}
+	
+	static String test(String x) {
+		return x.substring(2);
+	}
+	
+	
+	// String methods
+	public static String toUpper(String word) {
+		return word.toUpperCase();
+	}
+	
+	public static String toLower(String word) {
+		return word.toLowerCase();
+	}
+	
+	public static void empty(String word) {
+		word.isEmpty();
+	}
+	
+}
