@@ -30,6 +30,7 @@ public class SearchAndSorts {
 		}
 		
 		binarySearch(13, numArr);
+		scan.close();
 	}
 	
 	static void binarySearch(int value, int... nums) {
