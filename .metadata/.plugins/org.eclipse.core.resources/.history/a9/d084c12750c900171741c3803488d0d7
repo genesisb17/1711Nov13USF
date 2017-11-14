@@ -1,0 +1,18 @@
+package Day2;
+
+public class Control_Flow {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+/*
+ * A java statement is a complete unit of execution
+ * with a semicolon following it
+ * 
+ * A control flow statement breaks up the flow of 
+ * execution by using decision making, looping,  & branching,
+ * allowing the application to selectively execute
+ * particular segment of if
+ */
+	}
+
+}

@@ -1,0 +1,92 @@
+package Day2;
+
+import java.util.Scanner;
+
+public class Control_Flow {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+/*
+ * A java statement is a complete unit of execution
+ * with a semicolon following it
+ * 
+ * A control flow statement breaks up the flow of 
+ * execution by using decision making, looping,  & branching,
+ * allowing the application to selectively execute
+ * particular segment of if
+ */
+		
+		System.out.println("Enter a number:");
+		Scanner sc = new Scanner(System.in);
+		int x = sc.nextInt();
+		
+		if(x<10)
+		{
+			System.out.println("Hello");
+		}
+		else if(x <100)
+		{
+			System.out.println("World");
+
+		}
+		else
+		{
+			System.out.println("Goodbye");
+
+		}
+		//Ternary
+		System.out.println(x<10?"hello":"Goodbye");
+		while(x<5)
+		{
+			System.out.println(x);
+			x++;
+		}
+		do{
+			System.out.println("DO-WHILE STATEMENT: "+x);
+		}while(x<5);
+//		for(initial,conditional,update) only need conditional
+//
+		/*
+		 * some notes about the for loop:
+		 * 1. initialization statement executes
+		 * 2. if booleanexp == true
+		 * 3. execute body
+		 * 4. execute update statement
+		 * 5. return to 2
+		 */
+		int[] nums = {2,4,5,7,2,351,13,53};
+		int sum = 0;
+		for(int y:nums)
+		{
+			sum+=y;
+		}
+		System.out.print(sum);
+for(int i = 0; i <x;i++)
+{
+	System.out.println("Woooooooooo"+i);
+}
+
+//switch
+//can hold int, byte,short,char,string,enum
+//continue continues to the next iteraion
+
+switch(x)
+{
+case 1:
+	System.out.print("1");
+	break;
+case 5:
+	System.out.print("5");
+	break;
+case 10:
+	System.out.print("10");
+	break;
+default:
+	System.out.println("blah");
+	break;
+}
+Operations z = Operations.ADD;
+
+
+	}
+}

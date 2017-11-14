@@ -39,6 +39,17 @@ public class operators {
 		//shift operators  <<,>>,>>>
 		int shift = 1<<2;
 		System.out.println(shift);
-	}	
+		//relational operators <,>,<=,>=,instanceof
+		// equals ==,!=
+		// logical operator &,|,^
+		// short circuit &&,||
+		int tern = shift < 1?5:2;
 
+		System.out.println(tern);
+		//assignment operators
+		//=,+=,-=,*=,/=,%=,&=,|=,^=<<=,>>=,>>>=
+		shift >>>=5;
+		System.out.println(shift);
+		
+		}	
 }
