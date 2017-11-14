@@ -12,15 +12,14 @@ public class SearchAndSort {
 		 * merge sort
 		 * insertion sort
 		 */
-
+		
 		// Binary Search Call
 		int Arr[] = {1, 2, 4, 8, 17, 20, 21, 200, 300};
 		int x = 8;
 		int begin = 0;
 		int end = Arr.length - 1;
 		int index = BinarySearch(Arr, x, begin, end);
-		System.out.println("The index of the element is: " + index);
-		
+		System.out.println("The index of the element is: " + index);	
 		
 		// Bubble sort call
 		int Arr1[] = {1, 8, 4, 5, 20, 25, 15};
@@ -53,7 +52,7 @@ public class SearchAndSort {
 		
 		int n = Arr.length - 1;
 		for(int i = 0; i < n; i++)
-			for(int j = 0; j < n - i - 1; j++) {
+			for(int j = 0; j < n-i-1; j++) {
 				
 				if(Arr[j] > Arr[j+1]) {
 					// Swap
@@ -93,7 +92,13 @@ public class SearchAndSort {
 				System.out.println(Arr[k]);
 			}
 
+		    
+		    
+		 
+		
 	}
+	
+	
 	
 }
 
