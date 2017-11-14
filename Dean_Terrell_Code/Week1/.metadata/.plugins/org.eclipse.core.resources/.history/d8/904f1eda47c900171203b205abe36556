@@ -1,0 +1,14 @@
+package com.revature.hello;
+
+public class AboutStrings {
+
+	public static void main(String[] args) {
+		String first = "This is the first string!";
+		String second = "Second string here.";
+		System.out.println(first.concat(second));
+	}
+	
+	static String test(String x) {
+		return x.substring(2);
+	}
+}

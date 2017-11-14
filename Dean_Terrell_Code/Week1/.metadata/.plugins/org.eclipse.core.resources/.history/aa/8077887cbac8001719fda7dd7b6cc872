@@ -1,0 +1,15 @@
+package com.revature.hello;
+
+public class AboutStrings {
+
+	public static void main(String[] args) {
+		String a = "hello";
+		String b = "Hello";
+		String c = new String("hello");
+		System.out.println(test(a));
+	}
+	
+	static String test(String x) {
+		return x.substring(2)
+	}
+}
