@@ -1,0 +1,17 @@
+package Day2;
+
+public class understanding_throw_exceptions {
+	public static void main(String[] args)
+	{
+		int[] arr = new int[4];
+		arr[0]=1;
+		try
+		{
+			arr[6]=6;
+		}
+		catch(ArrayIndexOutOfBoundsException e)
+		{
+			System.out.println("passed exception");}
+		}
+	}
+}

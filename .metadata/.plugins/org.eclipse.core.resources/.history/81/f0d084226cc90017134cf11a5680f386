@@ -1,0 +1,15 @@
+package Day2;
+
+public class MergeSort 
+{
+	int righti;
+	int lefti;
+	int[] array;
+	void mergeSort(int righti,int lefti,int...array)
+	{
+		for(int i = righti;i<lefti;i++)
+		{
+			
+		}
+	}
+}

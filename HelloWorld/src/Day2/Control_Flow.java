@@ -69,7 +69,8 @@ for(int i = 0; i <x;i++)
 //switch
 //can hold int, byte,short,char,string,enum
 //continue continues to the next iteraion
-
+/*
+ */
 switch(x)
 {
 case 1:
@@ -87,6 +88,17 @@ default:
 }
 Operations op = Operations.ADD;
 System.out.println(op.calculate(10, 10));
-
+/*
+ * throwable
+ * errors
+ * exceptions
+ * 		Runtime Exception (unchecked)
+ * throw/throws
+ * 		propagatng
+ * error vs exceptions
+ * try
+ * catch
+ * finally 
+ */
 	}
 }

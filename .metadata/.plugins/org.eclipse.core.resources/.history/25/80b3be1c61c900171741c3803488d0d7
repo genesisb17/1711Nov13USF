@@ -1,0 +1,18 @@
+package Day2;
+
+public class searchandsorts 
+{
+/*Implement the following
+ * binary search
+ * breadth the first search
+ * dpth first search 
+ * bubble sort
+ * merge sort
+ * insertion sort
+ */
+	
+ void binarySearch(int... nums)
+ {
+	 
+ }
+}

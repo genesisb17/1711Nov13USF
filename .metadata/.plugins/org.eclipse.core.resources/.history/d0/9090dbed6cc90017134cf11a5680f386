@@ -1,0 +1,22 @@
+package Day2;
+
+public class MergeSort 
+{
+	int righti;
+	int lefti;
+	int[] array;
+	void mergeSort(int righti,int lefti,int...array)
+	{
+		int temp;
+	     for(int i=righti+1; i < lefti; i++){  
+	         for(int j=righti; j < i; j++){  
+	                  if(array[j-1] > array[j]){  
+	                         //swap elements  
+	                         temp = array[j-1];  
+	                         array[j-1] = array[j];  
+	                         array[j] = temp;  
+	                 }                  
+	         }  
+	 }
+	}
+}
