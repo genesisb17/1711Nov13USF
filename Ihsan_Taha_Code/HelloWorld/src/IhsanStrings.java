@@ -1,9 +1,9 @@
 public class IhsanStrings 
 {
-	public static void main(String args[])
+	public static void main(String[] args)
 	{
 		// Examples of using the String API
-		String str1 = "Str 1", str2 = "Str 2", str3 = "Str 3";
+		String str1 = "Str 1", str2 = "Str 2", str3 = "   Str 3";
 	
 		char str1FirstLetter = str1.charAt(0);
 		
@@ -13,5 +13,6 @@ public class IhsanStrings
 		
 		System.out.println("\nFirst Letter in " + str1 + " is " + str1FirstLetter);
 		System.out.println("\nThe upper case version string 1 is " + str1.toUpperCase());
+		System.out.println("\nThe trimmed version of string 3 is " + str3.trim());
 	}
 }

@@ -8,7 +8,7 @@ public class HelloWorld {
 	 */
 	
 	// main method
-	static public void main(String args[])
+	static public void main(String[] args)
 	{
 		boolean f = false;
 		String name = "Ihsan";
