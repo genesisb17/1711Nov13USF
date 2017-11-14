@@ -1,0 +1,42 @@
+package Day2;
+
+public class Constructor 
+{
+	int x,y,a,b;
+	public Constructor()
+	{
+		x = 0;
+		y =10;
+		a=b=5;
+	}
+	public Constructor(int x)
+	{
+		this.x = x; 
+		//this.x is the class variable and
+		//x is the function variable
+	}
+	public Constructor(int x, int y,int a,int b)
+	{
+		super();
+		this.x=x;
+		this.y=y;
+		this.a=a;
+		this.b=b;
+	}
+	public Constructor(int y,int a,int b)
+	{
+		super();
+		this.x=x;
+		this.y=y;
+		this.a=a;
+		this.b=b;
+	}
+	public Constructor(double x)
+	{
+		
+	}
+	public Constructor(float y)
+	{
+		
+	}
+}

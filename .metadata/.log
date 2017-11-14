@@ -3118,3 +3118,787 @@ Caused by: java.lang.ClassNotFoundException: org.jboss.tools.common.core.jandex.
 	at org.eclipse.osgi.internal.baseadaptor.DefaultClassLoader.loadClass(DefaultClassLoader.java:107)
 	at java.lang.ClassLoader.loadClass(Unknown Source)
 	... 9 more
+
+!ENTRY org.eclipse.core.resources 4 2 2017-11-14 11:52:40.204
+!MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.core.resources".
+!STACK 0
+java.lang.NoClassDefFoundError: org/jboss/tools/common/core/jandex/JandexUtil$IAnnotationCheck
+	at org.jboss.tools.cdi.core.CDICorePlugin$1.saving(CDICorePlugin.java:65)
+	at org.eclipse.core.internal.resources.SaveManager.executeLifecycle(SaveManager.java:383)
+	at org.eclipse.core.internal.resources.SaveManager$1.run(SaveManager.java:192)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.resources.SaveManager.broadcastLifecycle(SaveManager.java:195)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1130)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1109)
+	at org.eclipse.core.internal.resources.DelayedSnapshotJob.run(DelayedSnapshotJob.java:51)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+Caused by: java.lang.ClassNotFoundException: org.jboss.tools.common.core.jandex.JandexUtil$IAnnotationCheck cannot be found by org.jboss.tools.cdi.core_1.8.100.v20170801-1456
+	at org.eclipse.osgi.internal.loader.BundleLoader.findClassInternal(BundleLoader.java:501)
+	at org.eclipse.osgi.internal.loader.BundleLoader.findClass(BundleLoader.java:421)
+	at org.eclipse.osgi.internal.loader.BundleLoader.findClass(BundleLoader.java:412)
+	at org.eclipse.osgi.internal.baseadaptor.DefaultClassLoader.loadClass(DefaultClassLoader.java:107)
+	at java.lang.ClassLoader.loadClass(Unknown Source)
+	... 9 more
+
+!ENTRY org.eclipse.core.resources 2 2 2017-11-14 11:52:40.236
+!MESSAGE Save operation warnings.
+!SUBENTRY 1 org.eclipse.core.resources 2 566 2017-11-14 11:52:40.236
+!MESSAGE Problems occurred during save.
+!STACK 0
+java.lang.NoClassDefFoundError: org/jboss/tools/common/core/jandex/JandexUtil$IAnnotationCheck
+	at org.jboss.tools.cdi.core.CDICorePlugin$1.saving(CDICorePlugin.java:65)
+	at org.eclipse.core.internal.resources.SaveManager.executeLifecycle(SaveManager.java:383)
+	at org.eclipse.core.internal.resources.SaveManager$1.run(SaveManager.java:192)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.resources.SaveManager.broadcastLifecycle(SaveManager.java:195)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1130)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1109)
+	at org.eclipse.core.internal.resources.DelayedSnapshotJob.run(DelayedSnapshotJob.java:51)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+Caused by: java.lang.ClassNotFoundException: org.jboss.tools.common.core.jandex.JandexUtil$IAnnotationCheck cannot be found by org.jboss.tools.cdi.core_1.8.100.v20170801-1456
+	at org.eclipse.osgi.internal.loader.BundleLoader.findClassInternal(BundleLoader.java:501)
+	at org.eclipse.osgi.internal.loader.BundleLoader.findClass(BundleLoader.java:421)
+	at org.eclipse.osgi.internal.loader.BundleLoader.findClass(BundleLoader.java:412)
+	at org.eclipse.osgi.internal.baseadaptor.DefaultClassLoader.loadClass(DefaultClassLoader.java:107)
+	at java.lang.ClassLoader.loadClass(Unknown Source)
+	... 9 more
+
+!ENTRY org.eclipse.core.resources 4 2 2017-11-14 11:59:17.962
+!MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.core.resources".
+!STACK 0
+java.lang.NoClassDefFoundError: org/jboss/tools/common/core/jandex/JandexUtil$IAnnotationCheck
+	at org.jboss.tools.cdi.core.CDICorePlugin$1.saving(CDICorePlugin.java:65)
+	at org.eclipse.core.internal.resources.SaveManager.executeLifecycle(SaveManager.java:383)
+	at org.eclipse.core.internal.resources.SaveManager$1.run(SaveManager.java:192)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.resources.SaveManager.broadcastLifecycle(SaveManager.java:195)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1130)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1109)
+	at org.eclipse.core.internal.resources.DelayedSnapshotJob.run(DelayedSnapshotJob.java:51)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+Caused by: java.lang.ClassNotFoundException: org.jboss.tools.common.core.jandex.JandexUtil$IAnnotationCheck cannot be found by org.jboss.tools.cdi.core_1.8.100.v20170801-1456
+	at org.eclipse.osgi.internal.loader.BundleLoader.findClassInternal(BundleLoader.java:501)
+	at org.eclipse.osgi.internal.loader.BundleLoader.findClass(BundleLoader.java:421)
+	at org.eclipse.osgi.internal.loader.BundleLoader.findClass(BundleLoader.java:412)
+	at org.eclipse.osgi.internal.baseadaptor.DefaultClassLoader.loadClass(DefaultClassLoader.java:107)
+	at java.lang.ClassLoader.loadClass(Unknown Source)
+	... 9 more
+
+!ENTRY org.eclipse.core.resources 2 2 2017-11-14 11:59:18.008
+!MESSAGE Save operation warnings.
+!SUBENTRY 1 org.eclipse.core.resources 2 566 2017-11-14 11:59:18.008
+!MESSAGE Problems occurred during save.
+!STACK 0
+java.lang.NoClassDefFoundError: org/jboss/tools/common/core/jandex/JandexUtil$IAnnotationCheck
+	at org.jboss.tools.cdi.core.CDICorePlugin$1.saving(CDICorePlugin.java:65)
+	at org.eclipse.core.internal.resources.SaveManager.executeLifecycle(SaveManager.java:383)
+	at org.eclipse.core.internal.resources.SaveManager$1.run(SaveManager.java:192)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.resources.SaveManager.broadcastLifecycle(SaveManager.java:195)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1130)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1109)
+	at org.eclipse.core.internal.resources.DelayedSnapshotJob.run(DelayedSnapshotJob.java:51)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+Caused by: java.lang.ClassNotFoundException: org.jboss.tools.common.core.jandex.JandexUtil$IAnnotationCheck cannot be found by org.jboss.tools.cdi.core_1.8.100.v20170801-1456
+	at org.eclipse.osgi.internal.loader.BundleLoader.findClassInternal(BundleLoader.java:501)
+	at org.eclipse.osgi.internal.loader.BundleLoader.findClass(BundleLoader.java:421)
+	at org.eclipse.osgi.internal.loader.BundleLoader.findClass(BundleLoader.java:412)
+	at org.eclipse.osgi.internal.baseadaptor.DefaultClassLoader.loadClass(DefaultClassLoader.java:107)
+	at java.lang.ClassLoader.loadClass(Unknown Source)
+	... 9 more
+
+!ENTRY org.eclipse.ui 4 4 2017-11-14 12:04:38.267
+!MESSAGE Plug-in 'com.google.gwt.eclipse.core' contributed an invalid Menu Extension (Path: 'com.google.gdt.eclipse.suite.popupMenu.project' is invalid): com.google.gwt.eclipse.core.popupMenu.project.gwtSettings
+
+!ENTRY org.eclipse.ui 4 4 2017-11-14 12:04:38.278
+!MESSAGE Plug-in 'com.google.gwt.eclipse.core' contributed an invalid Menu Extension (Path: 'com.google.gdt.eclipse.suite.popupMenu.project' is invalid): com.google.gwt.eclipse.core.actions.GWTCompileProjectAction
+
+!ENTRY org.eclipse.ui 4 4 2017-11-14 12:04:38.289
+!MESSAGE Plug-in 'com.google.gwt.eclipse.core' contributed an invalid Menu Extension (Path: 'com.google.gdt.eclipse.suite.popupMenu.project' is invalid): com.google.gwt.eclipse.core.actions.SpeedTracerToolbarAction
+
+!ENTRY org.eclipse.core.resources 4 2 2017-11-14 12:06:51.941
+!MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.core.resources".
+!STACK 0
+java.lang.NoClassDefFoundError: org/jboss/tools/common/core/jandex/JandexUtil$IAnnotationCheck
+	at org.jboss.tools.cdi.core.CDICorePlugin$1.saving(CDICorePlugin.java:65)
+	at org.eclipse.core.internal.resources.SaveManager.executeLifecycle(SaveManager.java:383)
+	at org.eclipse.core.internal.resources.SaveManager$1.run(SaveManager.java:192)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.resources.SaveManager.broadcastLifecycle(SaveManager.java:195)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1130)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1109)
+	at org.eclipse.core.internal.resources.DelayedSnapshotJob.run(DelayedSnapshotJob.java:51)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+Caused by: java.lang.ClassNotFoundException: org.jboss.tools.common.core.jandex.JandexUtil$IAnnotationCheck cannot be found by org.jboss.tools.cdi.core_1.8.100.v20170801-1456
+	at org.eclipse.osgi.internal.loader.BundleLoader.findClassInternal(BundleLoader.java:501)
+	at org.eclipse.osgi.internal.loader.BundleLoader.findClass(BundleLoader.java:421)
+	at org.eclipse.osgi.internal.loader.BundleLoader.findClass(BundleLoader.java:412)
+	at org.eclipse.osgi.internal.baseadaptor.DefaultClassLoader.loadClass(DefaultClassLoader.java:107)
+	at java.lang.ClassLoader.loadClass(Unknown Source)
+	... 9 more
+
+!ENTRY org.eclipse.core.resources 2 2 2017-11-14 12:06:51.980
+!MESSAGE Save operation warnings.
+!SUBENTRY 1 org.eclipse.core.resources 2 566 2017-11-14 12:06:51.980
+!MESSAGE Problems occurred during save.
+!STACK 0
+java.lang.NoClassDefFoundError: org/jboss/tools/common/core/jandex/JandexUtil$IAnnotationCheck
+	at org.jboss.tools.cdi.core.CDICorePlugin$1.saving(CDICorePlugin.java:65)
+	at org.eclipse.core.internal.resources.SaveManager.executeLifecycle(SaveManager.java:383)
+	at org.eclipse.core.internal.resources.SaveManager$1.run(SaveManager.java:192)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.resources.SaveManager.broadcastLifecycle(SaveManager.java:195)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1130)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1109)
+	at org.eclipse.core.internal.resources.DelayedSnapshotJob.run(DelayedSnapshotJob.java:51)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+Caused by: java.lang.ClassNotFoundException: org.jboss.tools.common.core.jandex.JandexUtil$IAnnotationCheck cannot be found by org.jboss.tools.cdi.core_1.8.100.v20170801-1456
+	at org.eclipse.osgi.internal.loader.BundleLoader.findClassInternal(BundleLoader.java:501)
+	at org.eclipse.osgi.internal.loader.BundleLoader.findClass(BundleLoader.java:421)
+	at org.eclipse.osgi.internal.loader.BundleLoader.findClass(BundleLoader.java:412)
+	at org.eclipse.osgi.internal.baseadaptor.DefaultClassLoader.loadClass(DefaultClassLoader.java:107)
+	at java.lang.ClassLoader.loadClass(Unknown Source)
+	... 9 more
+
+!ENTRY org.eclipse.core.resources 4 2 2017-11-14 12:12:19.356
+!MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.core.resources".
+!STACK 0
+java.lang.NoClassDefFoundError: org/jboss/tools/common/core/jandex/JandexUtil$IAnnotationCheck
+	at org.jboss.tools.cdi.core.CDICorePlugin$1.saving(CDICorePlugin.java:65)
+	at org.eclipse.core.internal.resources.SaveManager.executeLifecycle(SaveManager.java:383)
+	at org.eclipse.core.internal.resources.SaveManager$1.run(SaveManager.java:192)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.resources.SaveManager.broadcastLifecycle(SaveManager.java:195)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1130)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1109)
+	at org.eclipse.core.internal.resources.DelayedSnapshotJob.run(DelayedSnapshotJob.java:51)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+Caused by: java.lang.ClassNotFoundException: org.jboss.tools.common.core.jandex.JandexUtil$IAnnotationCheck cannot be found by org.jboss.tools.cdi.core_1.8.100.v20170801-1456
+	at org.eclipse.osgi.internal.loader.BundleLoader.findClassInternal(BundleLoader.java:501)
+	at org.eclipse.osgi.internal.loader.BundleLoader.findClass(BundleLoader.java:421)
+	at org.eclipse.osgi.internal.loader.BundleLoader.findClass(BundleLoader.java:412)
+	at org.eclipse.osgi.internal.baseadaptor.DefaultClassLoader.loadClass(DefaultClassLoader.java:107)
+	at java.lang.ClassLoader.loadClass(Unknown Source)
+	... 9 more
+
+!ENTRY org.eclipse.core.resources 2 2 2017-11-14 12:12:19.414
+!MESSAGE Save operation warnings.
+!SUBENTRY 1 org.eclipse.core.resources 2 566 2017-11-14 12:12:19.414
+!MESSAGE Problems occurred during save.
+!STACK 0
+java.lang.NoClassDefFoundError: org/jboss/tools/common/core/jandex/JandexUtil$IAnnotationCheck
+	at org.jboss.tools.cdi.core.CDICorePlugin$1.saving(CDICorePlugin.java:65)
+	at org.eclipse.core.internal.resources.SaveManager.executeLifecycle(SaveManager.java:383)
+	at org.eclipse.core.internal.resources.SaveManager$1.run(SaveManager.java:192)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.resources.SaveManager.broadcastLifecycle(SaveManager.java:195)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1130)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1109)
+	at org.eclipse.core.internal.resources.DelayedSnapshotJob.run(DelayedSnapshotJob.java:51)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+Caused by: java.lang.ClassNotFoundException: org.jboss.tools.common.core.jandex.JandexUtil$IAnnotationCheck cannot be found by org.jboss.tools.cdi.core_1.8.100.v20170801-1456
+	at org.eclipse.osgi.internal.loader.BundleLoader.findClassInternal(BundleLoader.java:501)
+	at org.eclipse.osgi.internal.loader.BundleLoader.findClass(BundleLoader.java:421)
+	at org.eclipse.osgi.internal.loader.BundleLoader.findClass(BundleLoader.java:412)
+	at org.eclipse.osgi.internal.baseadaptor.DefaultClassLoader.loadClass(DefaultClassLoader.java:107)
+	at java.lang.ClassLoader.loadClass(Unknown Source)
+	... 9 more
+
+!ENTRY org.eclipse.core.resources 4 2 2017-11-14 12:17:40.527
+!MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.core.resources".
+!STACK 0
+java.lang.NoClassDefFoundError: org/jboss/tools/common/core/jandex/JandexUtil$IAnnotationCheck
+	at org.jboss.tools.cdi.core.CDICorePlugin$1.saving(CDICorePlugin.java:65)
+	at org.eclipse.core.internal.resources.SaveManager.executeLifecycle(SaveManager.java:383)
+	at org.eclipse.core.internal.resources.SaveManager$1.run(SaveManager.java:192)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.resources.SaveManager.broadcastLifecycle(SaveManager.java:195)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1130)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1109)
+	at org.eclipse.core.internal.resources.DelayedSnapshotJob.run(DelayedSnapshotJob.java:51)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+Caused by: java.lang.ClassNotFoundException: org.jboss.tools.common.core.jandex.JandexUtil$IAnnotationCheck cannot be found by org.jboss.tools.cdi.core_1.8.100.v20170801-1456
+	at org.eclipse.osgi.internal.loader.BundleLoader.findClassInternal(BundleLoader.java:501)
+	at org.eclipse.osgi.internal.loader.BundleLoader.findClass(BundleLoader.java:421)
+	at org.eclipse.osgi.internal.loader.BundleLoader.findClass(BundleLoader.java:412)
+	at org.eclipse.osgi.internal.baseadaptor.DefaultClassLoader.loadClass(DefaultClassLoader.java:107)
+	at java.lang.ClassLoader.loadClass(Unknown Source)
+	... 9 more
+
+!ENTRY org.eclipse.core.resources 2 2 2017-11-14 12:17:40.566
+!MESSAGE Save operation warnings.
+!SUBENTRY 1 org.eclipse.core.resources 2 566 2017-11-14 12:17:40.566
+!MESSAGE Problems occurred during save.
+!STACK 0
+java.lang.NoClassDefFoundError: org/jboss/tools/common/core/jandex/JandexUtil$IAnnotationCheck
+	at org.jboss.tools.cdi.core.CDICorePlugin$1.saving(CDICorePlugin.java:65)
+	at org.eclipse.core.internal.resources.SaveManager.executeLifecycle(SaveManager.java:383)
+	at org.eclipse.core.internal.resources.SaveManager$1.run(SaveManager.java:192)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.resources.SaveManager.broadcastLifecycle(SaveManager.java:195)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1130)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1109)
+	at org.eclipse.core.internal.resources.DelayedSnapshotJob.run(DelayedSnapshotJob.java:51)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+Caused by: java.lang.ClassNotFoundException: org.jboss.tools.common.core.jandex.JandexUtil$IAnnotationCheck cannot be found by org.jboss.tools.cdi.core_1.8.100.v20170801-1456
+	at org.eclipse.osgi.internal.loader.BundleLoader.findClassInternal(BundleLoader.java:501)
+	at org.eclipse.osgi.internal.loader.BundleLoader.findClass(BundleLoader.java:421)
+	at org.eclipse.osgi.internal.loader.BundleLoader.findClass(BundleLoader.java:412)
+	at org.eclipse.osgi.internal.baseadaptor.DefaultClassLoader.loadClass(DefaultClassLoader.java:107)
+	at java.lang.ClassLoader.loadClass(Unknown Source)
+	... 9 more
+
+!ENTRY org.eclipse.core.resources 4 2 2017-11-14 12:29:20.151
+!MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.core.resources".
+!STACK 0
+java.lang.NoClassDefFoundError: org/jboss/tools/common/core/jandex/JandexUtil$IAnnotationCheck
+	at org.jboss.tools.cdi.core.CDICorePlugin$1.saving(CDICorePlugin.java:65)
+	at org.eclipse.core.internal.resources.SaveManager.executeLifecycle(SaveManager.java:383)
+	at org.eclipse.core.internal.resources.SaveManager$1.run(SaveManager.java:192)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.resources.SaveManager.broadcastLifecycle(SaveManager.java:195)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1130)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1109)
+	at org.eclipse.core.internal.resources.DelayedSnapshotJob.run(DelayedSnapshotJob.java:51)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+Caused by: java.lang.ClassNotFoundException: org.jboss.tools.common.core.jandex.JandexUtil$IAnnotationCheck cannot be found by org.jboss.tools.cdi.core_1.8.100.v20170801-1456
+	at org.eclipse.osgi.internal.loader.BundleLoader.findClassInternal(BundleLoader.java:501)
+	at org.eclipse.osgi.internal.loader.BundleLoader.findClass(BundleLoader.java:421)
+	at org.eclipse.osgi.internal.loader.BundleLoader.findClass(BundleLoader.java:412)
+	at org.eclipse.osgi.internal.baseadaptor.DefaultClassLoader.loadClass(DefaultClassLoader.java:107)
+	at java.lang.ClassLoader.loadClass(Unknown Source)
+	... 9 more
+
+!ENTRY org.eclipse.core.resources 2 2 2017-11-14 12:29:20.189
+!MESSAGE Save operation warnings.
+!SUBENTRY 1 org.eclipse.core.resources 2 566 2017-11-14 12:29:20.189
+!MESSAGE Problems occurred during save.
+!STACK 0
+java.lang.NoClassDefFoundError: org/jboss/tools/common/core/jandex/JandexUtil$IAnnotationCheck
+	at org.jboss.tools.cdi.core.CDICorePlugin$1.saving(CDICorePlugin.java:65)
+	at org.eclipse.core.internal.resources.SaveManager.executeLifecycle(SaveManager.java:383)
+	at org.eclipse.core.internal.resources.SaveManager$1.run(SaveManager.java:192)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.resources.SaveManager.broadcastLifecycle(SaveManager.java:195)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1130)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1109)
+	at org.eclipse.core.internal.resources.DelayedSnapshotJob.run(DelayedSnapshotJob.java:51)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+Caused by: java.lang.ClassNotFoundException: org.jboss.tools.common.core.jandex.JandexUtil$IAnnotationCheck cannot be found by org.jboss.tools.cdi.core_1.8.100.v20170801-1456
+	at org.eclipse.osgi.internal.loader.BundleLoader.findClassInternal(BundleLoader.java:501)
+	at org.eclipse.osgi.internal.loader.BundleLoader.findClass(BundleLoader.java:421)
+	at org.eclipse.osgi.internal.loader.BundleLoader.findClass(BundleLoader.java:412)
+	at org.eclipse.osgi.internal.baseadaptor.DefaultClassLoader.loadClass(DefaultClassLoader.java:107)
+	at java.lang.ClassLoader.loadClass(Unknown Source)
+	... 9 more
+
+!ENTRY org.eclipse.core.resources 4 2 2017-11-14 12:39:40.618
+!MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.core.resources".
+!STACK 0
+java.lang.NoClassDefFoundError: org/jboss/tools/common/core/jandex/JandexUtil$IAnnotationCheck
+	at org.jboss.tools.cdi.core.CDICorePlugin$1.saving(CDICorePlugin.java:65)
+	at org.eclipse.core.internal.resources.SaveManager.executeLifecycle(SaveManager.java:383)
+	at org.eclipse.core.internal.resources.SaveManager$1.run(SaveManager.java:192)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.resources.SaveManager.broadcastLifecycle(SaveManager.java:195)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1130)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1109)
+	at org.eclipse.core.internal.resources.DelayedSnapshotJob.run(DelayedSnapshotJob.java:51)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+Caused by: java.lang.ClassNotFoundException: org.jboss.tools.common.core.jandex.JandexUtil$IAnnotationCheck cannot be found by org.jboss.tools.cdi.core_1.8.100.v20170801-1456
+	at org.eclipse.osgi.internal.loader.BundleLoader.findClassInternal(BundleLoader.java:501)
+	at org.eclipse.osgi.internal.loader.BundleLoader.findClass(BundleLoader.java:421)
+	at org.eclipse.osgi.internal.loader.BundleLoader.findClass(BundleLoader.java:412)
+	at org.eclipse.osgi.internal.baseadaptor.DefaultClassLoader.loadClass(DefaultClassLoader.java:107)
+	at java.lang.ClassLoader.loadClass(Unknown Source)
+	... 9 more
+
+!ENTRY org.eclipse.core.resources 2 2 2017-11-14 12:39:40.664
+!MESSAGE Save operation warnings.
+!SUBENTRY 1 org.eclipse.core.resources 2 566 2017-11-14 12:39:40.664
+!MESSAGE Problems occurred during save.
+!STACK 0
+java.lang.NoClassDefFoundError: org/jboss/tools/common/core/jandex/JandexUtil$IAnnotationCheck
+	at org.jboss.tools.cdi.core.CDICorePlugin$1.saving(CDICorePlugin.java:65)
+	at org.eclipse.core.internal.resources.SaveManager.executeLifecycle(SaveManager.java:383)
+	at org.eclipse.core.internal.resources.SaveManager$1.run(SaveManager.java:192)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.resources.SaveManager.broadcastLifecycle(SaveManager.java:195)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1130)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1109)
+	at org.eclipse.core.internal.resources.DelayedSnapshotJob.run(DelayedSnapshotJob.java:51)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+Caused by: java.lang.ClassNotFoundException: org.jboss.tools.common.core.jandex.JandexUtil$IAnnotationCheck cannot be found by org.jboss.tools.cdi.core_1.8.100.v20170801-1456
+	at org.eclipse.osgi.internal.loader.BundleLoader.findClassInternal(BundleLoader.java:501)
+	at org.eclipse.osgi.internal.loader.BundleLoader.findClass(BundleLoader.java:421)
+	at org.eclipse.osgi.internal.loader.BundleLoader.findClass(BundleLoader.java:412)
+	at org.eclipse.osgi.internal.baseadaptor.DefaultClassLoader.loadClass(DefaultClassLoader.java:107)
+	at java.lang.ClassLoader.loadClass(Unknown Source)
+	... 9 more
+
+!ENTRY org.eclipse.core.resources 4 2 2017-11-14 12:48:31.059
+!MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.core.resources".
+!STACK 0
+java.lang.NoClassDefFoundError: org/jboss/tools/common/core/jandex/JandexUtil$IAnnotationCheck
+	at org.jboss.tools.cdi.core.CDICorePlugin$1.saving(CDICorePlugin.java:65)
+	at org.eclipse.core.internal.resources.SaveManager.executeLifecycle(SaveManager.java:383)
+	at org.eclipse.core.internal.resources.SaveManager$1.run(SaveManager.java:192)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.resources.SaveManager.broadcastLifecycle(SaveManager.java:195)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1130)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1109)
+	at org.eclipse.core.internal.resources.DelayedSnapshotJob.run(DelayedSnapshotJob.java:51)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+Caused by: java.lang.ClassNotFoundException: org.jboss.tools.common.core.jandex.JandexUtil$IAnnotationCheck cannot be found by org.jboss.tools.cdi.core_1.8.100.v20170801-1456
+	at org.eclipse.osgi.internal.loader.BundleLoader.findClassInternal(BundleLoader.java:501)
+	at org.eclipse.osgi.internal.loader.BundleLoader.findClass(BundleLoader.java:421)
+	at org.eclipse.osgi.internal.loader.BundleLoader.findClass(BundleLoader.java:412)
+	at org.eclipse.osgi.internal.baseadaptor.DefaultClassLoader.loadClass(DefaultClassLoader.java:107)
+	at java.lang.ClassLoader.loadClass(Unknown Source)
+	... 9 more
+
+!ENTRY org.eclipse.core.resources 2 2 2017-11-14 12:48:31.106
+!MESSAGE Save operation warnings.
+!SUBENTRY 1 org.eclipse.core.resources 2 566 2017-11-14 12:48:31.106
+!MESSAGE Problems occurred during save.
+!STACK 0
+java.lang.NoClassDefFoundError: org/jboss/tools/common/core/jandex/JandexUtil$IAnnotationCheck
+	at org.jboss.tools.cdi.core.CDICorePlugin$1.saving(CDICorePlugin.java:65)
+	at org.eclipse.core.internal.resources.SaveManager.executeLifecycle(SaveManager.java:383)
+	at org.eclipse.core.internal.resources.SaveManager$1.run(SaveManager.java:192)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.resources.SaveManager.broadcastLifecycle(SaveManager.java:195)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1130)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1109)
+	at org.eclipse.core.internal.resources.DelayedSnapshotJob.run(DelayedSnapshotJob.java:51)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+Caused by: java.lang.ClassNotFoundException: org.jboss.tools.common.core.jandex.JandexUtil$IAnnotationCheck cannot be found by org.jboss.tools.cdi.core_1.8.100.v20170801-1456
+	at org.eclipse.osgi.internal.loader.BundleLoader.findClassInternal(BundleLoader.java:501)
+	at org.eclipse.osgi.internal.loader.BundleLoader.findClass(BundleLoader.java:421)
+	at org.eclipse.osgi.internal.loader.BundleLoader.findClass(BundleLoader.java:412)
+	at org.eclipse.osgi.internal.baseadaptor.DefaultClassLoader.loadClass(DefaultClassLoader.java:107)
+	at java.lang.ClassLoader.loadClass(Unknown Source)
+	... 9 more
+
+!ENTRY org.eclipse.core.resources 4 2 2017-11-14 12:55:37.645
+!MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.core.resources".
+!STACK 0
+java.lang.NoClassDefFoundError: org/jboss/tools/common/core/jandex/JandexUtil$IAnnotationCheck
+	at org.jboss.tools.cdi.core.CDICorePlugin$1.saving(CDICorePlugin.java:65)
+	at org.eclipse.core.internal.resources.SaveManager.executeLifecycle(SaveManager.java:383)
+	at org.eclipse.core.internal.resources.SaveManager$1.run(SaveManager.java:192)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.resources.SaveManager.broadcastLifecycle(SaveManager.java:195)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1130)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1109)
+	at org.eclipse.core.internal.resources.DelayedSnapshotJob.run(DelayedSnapshotJob.java:51)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+Caused by: java.lang.ClassNotFoundException: org.jboss.tools.common.core.jandex.JandexUtil$IAnnotationCheck cannot be found by org.jboss.tools.cdi.core_1.8.100.v20170801-1456
+	at org.eclipse.osgi.internal.loader.BundleLoader.findClassInternal(BundleLoader.java:501)
+	at org.eclipse.osgi.internal.loader.BundleLoader.findClass(BundleLoader.java:421)
+	at org.eclipse.osgi.internal.loader.BundleLoader.findClass(BundleLoader.java:412)
+	at org.eclipse.osgi.internal.baseadaptor.DefaultClassLoader.loadClass(DefaultClassLoader.java:107)
+	at java.lang.ClassLoader.loadClass(Unknown Source)
+	... 9 more
+
+!ENTRY org.eclipse.core.resources 2 2 2017-11-14 12:55:37.708
+!MESSAGE Save operation warnings.
+!SUBENTRY 1 org.eclipse.core.resources 2 566 2017-11-14 12:55:37.708
+!MESSAGE Problems occurred during save.
+!STACK 0
+java.lang.NoClassDefFoundError: org/jboss/tools/common/core/jandex/JandexUtil$IAnnotationCheck
+	at org.jboss.tools.cdi.core.CDICorePlugin$1.saving(CDICorePlugin.java:65)
+	at org.eclipse.core.internal.resources.SaveManager.executeLifecycle(SaveManager.java:383)
+	at org.eclipse.core.internal.resources.SaveManager$1.run(SaveManager.java:192)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.resources.SaveManager.broadcastLifecycle(SaveManager.java:195)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1130)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1109)
+	at org.eclipse.core.internal.resources.DelayedSnapshotJob.run(DelayedSnapshotJob.java:51)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+Caused by: java.lang.ClassNotFoundException: org.jboss.tools.common.core.jandex.JandexUtil$IAnnotationCheck cannot be found by org.jboss.tools.cdi.core_1.8.100.v20170801-1456
+	at org.eclipse.osgi.internal.loader.BundleLoader.findClassInternal(BundleLoader.java:501)
+	at org.eclipse.osgi.internal.loader.BundleLoader.findClass(BundleLoader.java:421)
+	at org.eclipse.osgi.internal.loader.BundleLoader.findClass(BundleLoader.java:412)
+	at org.eclipse.osgi.internal.baseadaptor.DefaultClassLoader.loadClass(DefaultClassLoader.java:107)
+	at java.lang.ClassLoader.loadClass(Unknown Source)
+	... 9 more
+
+!ENTRY org.eclipse.core.resources 4 2 2017-11-14 12:55:40.835
+!MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.core.resources".
+!STACK 0
+java.lang.NoClassDefFoundError: org/jboss/tools/common/core/jandex/JandexUtil$IAnnotationCheck
+	at org.jboss.tools.cdi.core.CDICorePlugin$1.saving(CDICorePlugin.java:65)
+	at org.eclipse.core.internal.resources.SaveManager.executeLifecycle(SaveManager.java:383)
+	at org.eclipse.core.internal.resources.SaveManager$1.run(SaveManager.java:192)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.resources.SaveManager.broadcastLifecycle(SaveManager.java:195)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1130)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1109)
+	at org.eclipse.core.internal.resources.DelayedSnapshotJob.run(DelayedSnapshotJob.java:51)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+Caused by: java.lang.ClassNotFoundException: org.jboss.tools.common.core.jandex.JandexUtil$IAnnotationCheck cannot be found by org.jboss.tools.cdi.core_1.8.100.v20170801-1456
+	at org.eclipse.osgi.internal.loader.BundleLoader.findClassInternal(BundleLoader.java:501)
+	at org.eclipse.osgi.internal.loader.BundleLoader.findClass(BundleLoader.java:421)
+	at org.eclipse.osgi.internal.loader.BundleLoader.findClass(BundleLoader.java:412)
+	at org.eclipse.osgi.internal.baseadaptor.DefaultClassLoader.loadClass(DefaultClassLoader.java:107)
+	at java.lang.ClassLoader.loadClass(Unknown Source)
+	... 9 more
+
+!ENTRY org.eclipse.core.resources 2 2 2017-11-14 12:55:40.884
+!MESSAGE Save operation warnings.
+!SUBENTRY 1 org.eclipse.core.resources 2 566 2017-11-14 12:55:40.884
+!MESSAGE Problems occurred during save.
+!STACK 0
+java.lang.NoClassDefFoundError: org/jboss/tools/common/core/jandex/JandexUtil$IAnnotationCheck
+	at org.jboss.tools.cdi.core.CDICorePlugin$1.saving(CDICorePlugin.java:65)
+	at org.eclipse.core.internal.resources.SaveManager.executeLifecycle(SaveManager.java:383)
+	at org.eclipse.core.internal.resources.SaveManager$1.run(SaveManager.java:192)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.resources.SaveManager.broadcastLifecycle(SaveManager.java:195)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1130)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1109)
+	at org.eclipse.core.internal.resources.DelayedSnapshotJob.run(DelayedSnapshotJob.java:51)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+Caused by: java.lang.ClassNotFoundException: org.jboss.tools.common.core.jandex.JandexUtil$IAnnotationCheck cannot be found by org.jboss.tools.cdi.core_1.8.100.v20170801-1456
+	at org.eclipse.osgi.internal.loader.BundleLoader.findClassInternal(BundleLoader.java:501)
+	at org.eclipse.osgi.internal.loader.BundleLoader.findClass(BundleLoader.java:421)
+	at org.eclipse.osgi.internal.loader.BundleLoader.findClass(BundleLoader.java:412)
+	at org.eclipse.osgi.internal.baseadaptor.DefaultClassLoader.loadClass(DefaultClassLoader.java:107)
+	at java.lang.ClassLoader.loadClass(Unknown Source)
+	... 9 more
+
+!ENTRY org.eclipse.core.resources 4 2 2017-11-14 13:00:32.549
+!MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.core.resources".
+!STACK 0
+java.lang.NoClassDefFoundError: org/jboss/tools/common/core/jandex/JandexUtil$IAnnotationCheck
+	at org.jboss.tools.cdi.core.CDICorePlugin$1.saving(CDICorePlugin.java:65)
+	at org.eclipse.core.internal.resources.SaveManager.executeLifecycle(SaveManager.java:383)
+	at org.eclipse.core.internal.resources.SaveManager$1.run(SaveManager.java:192)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.resources.SaveManager.broadcastLifecycle(SaveManager.java:195)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1130)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1109)
+	at org.eclipse.core.internal.resources.DelayedSnapshotJob.run(DelayedSnapshotJob.java:51)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+Caused by: java.lang.ClassNotFoundException: org.jboss.tools.common.core.jandex.JandexUtil$IAnnotationCheck cannot be found by org.jboss.tools.cdi.core_1.8.100.v20170801-1456
+	at org.eclipse.osgi.internal.loader.BundleLoader.findClassInternal(BundleLoader.java:501)
+	at org.eclipse.osgi.internal.loader.BundleLoader.findClass(BundleLoader.java:421)
+	at org.eclipse.osgi.internal.loader.BundleLoader.findClass(BundleLoader.java:412)
+	at org.eclipse.osgi.internal.baseadaptor.DefaultClassLoader.loadClass(DefaultClassLoader.java:107)
+	at java.lang.ClassLoader.loadClass(Unknown Source)
+	... 9 more
+
+!ENTRY org.eclipse.core.resources 2 2 2017-11-14 13:00:32.596
+!MESSAGE Save operation warnings.
+!SUBENTRY 1 org.eclipse.core.resources 2 566 2017-11-14 13:00:32.596
+!MESSAGE Problems occurred during save.
+!STACK 0
+java.lang.NoClassDefFoundError: org/jboss/tools/common/core/jandex/JandexUtil$IAnnotationCheck
+	at org.jboss.tools.cdi.core.CDICorePlugin$1.saving(CDICorePlugin.java:65)
+	at org.eclipse.core.internal.resources.SaveManager.executeLifecycle(SaveManager.java:383)
+	at org.eclipse.core.internal.resources.SaveManager$1.run(SaveManager.java:192)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.resources.SaveManager.broadcastLifecycle(SaveManager.java:195)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1130)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1109)
+	at org.eclipse.core.internal.resources.DelayedSnapshotJob.run(DelayedSnapshotJob.java:51)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+Caused by: java.lang.ClassNotFoundException: org.jboss.tools.common.core.jandex.JandexUtil$IAnnotationCheck cannot be found by org.jboss.tools.cdi.core_1.8.100.v20170801-1456
+	at org.eclipse.osgi.internal.loader.BundleLoader.findClassInternal(BundleLoader.java:501)
+	at org.eclipse.osgi.internal.loader.BundleLoader.findClass(BundleLoader.java:421)
+	at org.eclipse.osgi.internal.loader.BundleLoader.findClass(BundleLoader.java:412)
+	at org.eclipse.osgi.internal.baseadaptor.DefaultClassLoader.loadClass(DefaultClassLoader.java:107)
+	at java.lang.ClassLoader.loadClass(Unknown Source)
+	... 9 more
+
+!ENTRY org.eclipse.core.resources 4 2 2017-11-14 13:06:01.061
+!MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.core.resources".
+!STACK 0
+java.lang.NoClassDefFoundError: org/jboss/tools/common/core/jandex/JandexUtil$IAnnotationCheck
+	at org.jboss.tools.cdi.core.CDICorePlugin$1.saving(CDICorePlugin.java:65)
+	at org.eclipse.core.internal.resources.SaveManager.executeLifecycle(SaveManager.java:383)
+	at org.eclipse.core.internal.resources.SaveManager$1.run(SaveManager.java:192)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.resources.SaveManager.broadcastLifecycle(SaveManager.java:195)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1130)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1109)
+	at org.eclipse.core.internal.resources.DelayedSnapshotJob.run(DelayedSnapshotJob.java:51)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+Caused by: java.lang.ClassNotFoundException: org.jboss.tools.common.core.jandex.JandexUtil$IAnnotationCheck cannot be found by org.jboss.tools.cdi.core_1.8.100.v20170801-1456
+	at org.eclipse.osgi.internal.loader.BundleLoader.findClassInternal(BundleLoader.java:501)
+	at org.eclipse.osgi.internal.loader.BundleLoader.findClass(BundleLoader.java:421)
+	at org.eclipse.osgi.internal.loader.BundleLoader.findClass(BundleLoader.java:412)
+	at org.eclipse.osgi.internal.baseadaptor.DefaultClassLoader.loadClass(DefaultClassLoader.java:107)
+	at java.lang.ClassLoader.loadClass(Unknown Source)
+	... 9 more
+
+!ENTRY org.eclipse.core.resources 2 2 2017-11-14 13:06:01.109
+!MESSAGE Save operation warnings.
+!SUBENTRY 1 org.eclipse.core.resources 2 566 2017-11-14 13:06:01.109
+!MESSAGE Problems occurred during save.
+!STACK 0
+java.lang.NoClassDefFoundError: org/jboss/tools/common/core/jandex/JandexUtil$IAnnotationCheck
+	at org.jboss.tools.cdi.core.CDICorePlugin$1.saving(CDICorePlugin.java:65)
+	at org.eclipse.core.internal.resources.SaveManager.executeLifecycle(SaveManager.java:383)
+	at org.eclipse.core.internal.resources.SaveManager$1.run(SaveManager.java:192)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.resources.SaveManager.broadcastLifecycle(SaveManager.java:195)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1130)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1109)
+	at org.eclipse.core.internal.resources.DelayedSnapshotJob.run(DelayedSnapshotJob.java:51)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+Caused by: java.lang.ClassNotFoundException: org.jboss.tools.common.core.jandex.JandexUtil$IAnnotationCheck cannot be found by org.jboss.tools.cdi.core_1.8.100.v20170801-1456
+	at org.eclipse.osgi.internal.loader.BundleLoader.findClassInternal(BundleLoader.java:501)
+	at org.eclipse.osgi.internal.loader.BundleLoader.findClass(BundleLoader.java:421)
+	at org.eclipse.osgi.internal.loader.BundleLoader.findClass(BundleLoader.java:412)
+	at org.eclipse.osgi.internal.baseadaptor.DefaultClassLoader.loadClass(DefaultClassLoader.java:107)
+	at java.lang.ClassLoader.loadClass(Unknown Source)
+	... 9 more
+
+!ENTRY org.eclipse.ui 4 4 2017-11-14 13:07:51.758
+!MESSAGE Plug-in 'com.google.gwt.eclipse.core' contributed an invalid Menu Extension (Path: 'com.google.gdt.eclipse.suite.popupMenu.project' is invalid): com.google.gwt.eclipse.core.popupMenu.project.gwtSettings
+
+!ENTRY org.eclipse.ui 4 4 2017-11-14 13:07:51.766
+!MESSAGE Plug-in 'com.google.gwt.eclipse.core' contributed an invalid Menu Extension (Path: 'com.google.gdt.eclipse.suite.popupMenu.project' is invalid): com.google.gwt.eclipse.core.actions.GWTCompileProjectAction
+
+!ENTRY org.eclipse.ui 4 4 2017-11-14 13:07:51.774
+!MESSAGE Plug-in 'com.google.gwt.eclipse.core' contributed an invalid Menu Extension (Path: 'com.google.gdt.eclipse.suite.popupMenu.project' is invalid): com.google.gwt.eclipse.core.actions.SpeedTracerToolbarAction
+
+!ENTRY org.eclipse.core.resources 4 2 2017-11-14 13:11:52.836
+!MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.core.resources".
+!STACK 0
+java.lang.NoClassDefFoundError: org/jboss/tools/common/core/jandex/JandexUtil$IAnnotationCheck
+	at org.jboss.tools.cdi.core.CDICorePlugin$1.saving(CDICorePlugin.java:65)
+	at org.eclipse.core.internal.resources.SaveManager.executeLifecycle(SaveManager.java:383)
+	at org.eclipse.core.internal.resources.SaveManager$1.run(SaveManager.java:192)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.resources.SaveManager.broadcastLifecycle(SaveManager.java:195)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1130)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1109)
+	at org.eclipse.core.internal.resources.DelayedSnapshotJob.run(DelayedSnapshotJob.java:51)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+Caused by: java.lang.ClassNotFoundException: org.jboss.tools.common.core.jandex.JandexUtil$IAnnotationCheck cannot be found by org.jboss.tools.cdi.core_1.8.100.v20170801-1456
+	at org.eclipse.osgi.internal.loader.BundleLoader.findClassInternal(BundleLoader.java:501)
+	at org.eclipse.osgi.internal.loader.BundleLoader.findClass(BundleLoader.java:421)
+	at org.eclipse.osgi.internal.loader.BundleLoader.findClass(BundleLoader.java:412)
+	at org.eclipse.osgi.internal.baseadaptor.DefaultClassLoader.loadClass(DefaultClassLoader.java:107)
+	at java.lang.ClassLoader.loadClass(Unknown Source)
+	... 9 more
+
+!ENTRY org.eclipse.core.resources 2 2 2017-11-14 13:11:52.884
+!MESSAGE Save operation warnings.
+!SUBENTRY 1 org.eclipse.core.resources 2 566 2017-11-14 13:11:52.884
+!MESSAGE Problems occurred during save.
+!STACK 0
+java.lang.NoClassDefFoundError: org/jboss/tools/common/core/jandex/JandexUtil$IAnnotationCheck
+	at org.jboss.tools.cdi.core.CDICorePlugin$1.saving(CDICorePlugin.java:65)
+	at org.eclipse.core.internal.resources.SaveManager.executeLifecycle(SaveManager.java:383)
+	at org.eclipse.core.internal.resources.SaveManager$1.run(SaveManager.java:192)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.resources.SaveManager.broadcastLifecycle(SaveManager.java:195)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1130)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1109)
+	at org.eclipse.core.internal.resources.DelayedSnapshotJob.run(DelayedSnapshotJob.java:51)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+Caused by: java.lang.ClassNotFoundException: org.jboss.tools.common.core.jandex.JandexUtil$IAnnotationCheck cannot be found by org.jboss.tools.cdi.core_1.8.100.v20170801-1456
+	at org.eclipse.osgi.internal.loader.BundleLoader.findClassInternal(BundleLoader.java:501)
+	at org.eclipse.osgi.internal.loader.BundleLoader.findClass(BundleLoader.java:421)
+	at org.eclipse.osgi.internal.loader.BundleLoader.findClass(BundleLoader.java:412)
+	at org.eclipse.osgi.internal.baseadaptor.DefaultClassLoader.loadClass(DefaultClassLoader.java:107)
+	at java.lang.ClassLoader.loadClass(Unknown Source)
+	... 9 more
+
+!ENTRY org.eclipse.core.resources 4 2 2017-11-14 13:20:39.573
+!MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.core.resources".
+!STACK 0
+java.lang.NoClassDefFoundError: org/jboss/tools/common/core/jandex/JandexUtil$IAnnotationCheck
+	at org.jboss.tools.cdi.core.CDICorePlugin$1.saving(CDICorePlugin.java:65)
+	at org.eclipse.core.internal.resources.SaveManager.executeLifecycle(SaveManager.java:383)
+	at org.eclipse.core.internal.resources.SaveManager$1.run(SaveManager.java:192)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.resources.SaveManager.broadcastLifecycle(SaveManager.java:195)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1130)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1109)
+	at org.eclipse.core.internal.resources.DelayedSnapshotJob.run(DelayedSnapshotJob.java:51)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+Caused by: java.lang.ClassNotFoundException: org.jboss.tools.common.core.jandex.JandexUtil$IAnnotationCheck cannot be found by org.jboss.tools.cdi.core_1.8.100.v20170801-1456
+	at org.eclipse.osgi.internal.loader.BundleLoader.findClassInternal(BundleLoader.java:501)
+	at org.eclipse.osgi.internal.loader.BundleLoader.findClass(BundleLoader.java:421)
+	at org.eclipse.osgi.internal.loader.BundleLoader.findClass(BundleLoader.java:412)
+	at org.eclipse.osgi.internal.baseadaptor.DefaultClassLoader.loadClass(DefaultClassLoader.java:107)
+	at java.lang.ClassLoader.loadClass(Unknown Source)
+	... 9 more
+
+!ENTRY org.eclipse.core.resources 2 2 2017-11-14 13:20:39.622
+!MESSAGE Save operation warnings.
+!SUBENTRY 1 org.eclipse.core.resources 2 566 2017-11-14 13:20:39.622
+!MESSAGE Problems occurred during save.
+!STACK 0
+java.lang.NoClassDefFoundError: org/jboss/tools/common/core/jandex/JandexUtil$IAnnotationCheck
+	at org.jboss.tools.cdi.core.CDICorePlugin$1.saving(CDICorePlugin.java:65)
+	at org.eclipse.core.internal.resources.SaveManager.executeLifecycle(SaveManager.java:383)
+	at org.eclipse.core.internal.resources.SaveManager$1.run(SaveManager.java:192)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.resources.SaveManager.broadcastLifecycle(SaveManager.java:195)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1130)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1109)
+	at org.eclipse.core.internal.resources.DelayedSnapshotJob.run(DelayedSnapshotJob.java:51)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+Caused by: java.lang.ClassNotFoundException: org.jboss.tools.common.core.jandex.JandexUtil$IAnnotationCheck cannot be found by org.jboss.tools.cdi.core_1.8.100.v20170801-1456
+	at org.eclipse.osgi.internal.loader.BundleLoader.findClassInternal(BundleLoader.java:501)
+	at org.eclipse.osgi.internal.loader.BundleLoader.findClass(BundleLoader.java:421)
+	at org.eclipse.osgi.internal.loader.BundleLoader.findClass(BundleLoader.java:412)
+	at org.eclipse.osgi.internal.baseadaptor.DefaultClassLoader.loadClass(DefaultClassLoader.java:107)
+	at java.lang.ClassLoader.loadClass(Unknown Source)
+	... 9 more
+
+!ENTRY org.eclipse.ui 4 4 2017-11-14 13:20:41.411
+!MESSAGE Plug-in 'com.google.gwt.eclipse.core' contributed an invalid Menu Extension (Path: 'com.google.gdt.eclipse.suite.popupMenu.file' is invalid): com.google.gwt.eclipse.core.actions.AddResourcesToClientBundleAction
+
+!ENTRY org.eclipse.ui 4 4 2017-11-14 13:21:14.682
+!MESSAGE Plug-in 'com.google.gwt.eclipse.core' contributed an invalid Menu Extension (Path: 'com.google.gdt.eclipse.suite.popupMenu.file' is invalid): com.google.gwt.eclipse.core.actions.AddResourcesToClientBundleAction
+
+!ENTRY org.eclipse.ui 4 4 2017-11-14 13:22:23.403
+!MESSAGE Plug-in 'com.google.gwt.eclipse.core' contributed an invalid Menu Extension (Path: 'com.google.gdt.eclipse.suite.popupMenu.file' is invalid): com.google.gwt.eclipse.core.actions.AddResourcesToClientBundleAction
+
+!ENTRY org.eclipse.ui 4 4 2017-11-14 13:22:42.199
+!MESSAGE Plug-in 'com.google.gwt.eclipse.core' contributed an invalid Menu Extension (Path: 'com.google.gdt.eclipse.suite.popupMenu.file' is invalid): com.google.gwt.eclipse.core.actions.AddResourcesToClientBundleAction
+
+!ENTRY org.eclipse.core.resources 4 2 2017-11-14 13:25:48.392
+!MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.core.resources".
+!STACK 0
+java.lang.NoClassDefFoundError: org/jboss/tools/common/core/jandex/JandexUtil$IAnnotationCheck
+	at org.jboss.tools.cdi.core.CDICorePlugin$1.saving(CDICorePlugin.java:65)
+	at org.eclipse.core.internal.resources.SaveManager.executeLifecycle(SaveManager.java:383)
+	at org.eclipse.core.internal.resources.SaveManager$1.run(SaveManager.java:192)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.resources.SaveManager.broadcastLifecycle(SaveManager.java:195)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1130)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1109)
+	at org.eclipse.core.internal.resources.DelayedSnapshotJob.run(DelayedSnapshotJob.java:51)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+Caused by: java.lang.ClassNotFoundException: org.jboss.tools.common.core.jandex.JandexUtil$IAnnotationCheck cannot be found by org.jboss.tools.cdi.core_1.8.100.v20170801-1456
+	at org.eclipse.osgi.internal.loader.BundleLoader.findClassInternal(BundleLoader.java:501)
+	at org.eclipse.osgi.internal.loader.BundleLoader.findClass(BundleLoader.java:421)
+	at org.eclipse.osgi.internal.loader.BundleLoader.findClass(BundleLoader.java:412)
+	at org.eclipse.osgi.internal.baseadaptor.DefaultClassLoader.loadClass(DefaultClassLoader.java:107)
+	at java.lang.ClassLoader.loadClass(Unknown Source)
+	... 9 more
+
+!ENTRY org.eclipse.core.resources 2 2 2017-11-14 13:25:48.445
+!MESSAGE Save operation warnings.
+!SUBENTRY 1 org.eclipse.core.resources 2 566 2017-11-14 13:25:48.445
+!MESSAGE Problems occurred during save.
+!STACK 0
+java.lang.NoClassDefFoundError: org/jboss/tools/common/core/jandex/JandexUtil$IAnnotationCheck
+	at org.jboss.tools.cdi.core.CDICorePlugin$1.saving(CDICorePlugin.java:65)
+	at org.eclipse.core.internal.resources.SaveManager.executeLifecycle(SaveManager.java:383)
+	at org.eclipse.core.internal.resources.SaveManager$1.run(SaveManager.java:192)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.resources.SaveManager.broadcastLifecycle(SaveManager.java:195)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1130)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1109)
+	at org.eclipse.core.internal.resources.DelayedSnapshotJob.run(DelayedSnapshotJob.java:51)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+Caused by: java.lang.ClassNotFoundException: org.jboss.tools.common.core.jandex.JandexUtil$IAnnotationCheck cannot be found by org.jboss.tools.cdi.core_1.8.100.v20170801-1456
+	at org.eclipse.osgi.internal.loader.BundleLoader.findClassInternal(BundleLoader.java:501)
+	at org.eclipse.osgi.internal.loader.BundleLoader.findClass(BundleLoader.java:421)
+	at org.eclipse.osgi.internal.loader.BundleLoader.findClass(BundleLoader.java:412)
+	at org.eclipse.osgi.internal.baseadaptor.DefaultClassLoader.loadClass(DefaultClassLoader.java:107)
+	at java.lang.ClassLoader.loadClass(Unknown Source)
+	... 9 more
+
+!ENTRY org.eclipse.ui 4 4 2017-11-14 13:27:20.323
+!MESSAGE Plug-in 'com.google.gwt.eclipse.core' contributed an invalid Menu Extension (Path: 'com.google.gdt.eclipse.suite.popupMenu.file' is invalid): com.google.gwt.eclipse.core.actions.AddResourcesToClientBundleAction
+
+!ENTRY org.eclipse.ui 4 4 2017-11-14 13:27:25.740
+!MESSAGE Plug-in 'com.google.gwt.eclipse.core' contributed an invalid Menu Extension (Path: 'com.google.gdt.eclipse.suite.popupMenu.file' is invalid): com.google.gwt.eclipse.core.actions.AddResourcesToClientBundleAction
+
+!ENTRY org.eclipse.core.resources 4 2 2017-11-14 13:31:40.116
+!MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.core.resources".
+!STACK 0
+java.lang.NoClassDefFoundError: org/jboss/tools/common/core/jandex/JandexUtil$IAnnotationCheck
+	at org.jboss.tools.cdi.core.CDICorePlugin$1.saving(CDICorePlugin.java:65)
+	at org.eclipse.core.internal.resources.SaveManager.executeLifecycle(SaveManager.java:383)
+	at org.eclipse.core.internal.resources.SaveManager$1.run(SaveManager.java:192)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.resources.SaveManager.broadcastLifecycle(SaveManager.java:195)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1130)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1109)
+	at org.eclipse.core.internal.resources.DelayedSnapshotJob.run(DelayedSnapshotJob.java:51)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+Caused by: java.lang.ClassNotFoundException: org.jboss.tools.common.core.jandex.JandexUtil$IAnnotationCheck cannot be found by org.jboss.tools.cdi.core_1.8.100.v20170801-1456
+	at org.eclipse.osgi.internal.loader.BundleLoader.findClassInternal(BundleLoader.java:501)
+	at org.eclipse.osgi.internal.loader.BundleLoader.findClass(BundleLoader.java:421)
+	at org.eclipse.osgi.internal.loader.BundleLoader.findClass(BundleLoader.java:412)
+	at org.eclipse.osgi.internal.baseadaptor.DefaultClassLoader.loadClass(DefaultClassLoader.java:107)
+	at java.lang.ClassLoader.loadClass(Unknown Source)
+	... 9 more
+
+!ENTRY org.eclipse.core.resources 2 2 2017-11-14 13:31:40.167
+!MESSAGE Save operation warnings.
+!SUBENTRY 1 org.eclipse.core.resources 2 566 2017-11-14 13:31:40.167
+!MESSAGE Problems occurred during save.
+!STACK 0
+java.lang.NoClassDefFoundError: org/jboss/tools/common/core/jandex/JandexUtil$IAnnotationCheck
+	at org.jboss.tools.cdi.core.CDICorePlugin$1.saving(CDICorePlugin.java:65)
+	at org.eclipse.core.internal.resources.SaveManager.executeLifecycle(SaveManager.java:383)
+	at org.eclipse.core.internal.resources.SaveManager$1.run(SaveManager.java:192)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.resources.SaveManager.broadcastLifecycle(SaveManager.java:195)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1130)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1109)
+	at org.eclipse.core.internal.resources.DelayedSnapshotJob.run(DelayedSnapshotJob.java:51)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+Caused by: java.lang.ClassNotFoundException: org.jboss.tools.common.core.jandex.JandexUtil$IAnnotationCheck cannot be found by org.jboss.tools.cdi.core_1.8.100.v20170801-1456
+	at org.eclipse.osgi.internal.loader.BundleLoader.findClassInternal(BundleLoader.java:501)
+	at org.eclipse.osgi.internal.loader.BundleLoader.findClass(BundleLoader.java:421)
+	at org.eclipse.osgi.internal.loader.BundleLoader.findClass(BundleLoader.java:412)
+	at org.eclipse.osgi.internal.baseadaptor.DefaultClassLoader.loadClass(DefaultClassLoader.java:107)
+	at java.lang.ClassLoader.loadClass(Unknown Source)
+	... 9 more
+
+!ENTRY org.eclipse.core.resources 4 2 2017-11-14 13:41:00.914
+!MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.core.resources".
+!STACK 0
+java.lang.NoClassDefFoundError: org/jboss/tools/common/core/jandex/JandexUtil$IAnnotationCheck
+	at org.jboss.tools.cdi.core.CDICorePlugin$1.saving(CDICorePlugin.java:65)
+	at org.eclipse.core.internal.resources.SaveManager.executeLifecycle(SaveManager.java:383)
+	at org.eclipse.core.internal.resources.SaveManager$1.run(SaveManager.java:192)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.resources.SaveManager.broadcastLifecycle(SaveManager.java:195)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1130)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1109)
+	at org.eclipse.core.internal.resources.DelayedSnapshotJob.run(DelayedSnapshotJob.java:51)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+Caused by: java.lang.ClassNotFoundException: org.jboss.tools.common.core.jandex.JandexUtil$IAnnotationCheck cannot be found by org.jboss.tools.cdi.core_1.8.100.v20170801-1456
+	at org.eclipse.osgi.internal.loader.BundleLoader.findClassInternal(BundleLoader.java:501)
+	at org.eclipse.osgi.internal.loader.BundleLoader.findClass(BundleLoader.java:421)
+	at org.eclipse.osgi.internal.loader.BundleLoader.findClass(BundleLoader.java:412)
+	at org.eclipse.osgi.internal.baseadaptor.DefaultClassLoader.loadClass(DefaultClassLoader.java:107)
+	at java.lang.ClassLoader.loadClass(Unknown Source)
+	... 9 more
+
+!ENTRY org.eclipse.core.resources 2 2 2017-11-14 13:41:00.971
+!MESSAGE Save operation warnings.
+!SUBENTRY 1 org.eclipse.core.resources 2 566 2017-11-14 13:41:00.971
+!MESSAGE Problems occurred during save.
+!STACK 0
+java.lang.NoClassDefFoundError: org/jboss/tools/common/core/jandex/JandexUtil$IAnnotationCheck
+	at org.jboss.tools.cdi.core.CDICorePlugin$1.saving(CDICorePlugin.java:65)
+	at org.eclipse.core.internal.resources.SaveManager.executeLifecycle(SaveManager.java:383)
+	at org.eclipse.core.internal.resources.SaveManager$1.run(SaveManager.java:192)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.resources.SaveManager.broadcastLifecycle(SaveManager.java:195)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1130)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1109)
+	at org.eclipse.core.internal.resources.DelayedSnapshotJob.run(DelayedSnapshotJob.java:51)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+Caused by: java.lang.ClassNotFoundException: org.jboss.tools.common.core.jandex.JandexUtil$IAnnotationCheck cannot be found by org.jboss.tools.cdi.core_1.8.100.v20170801-1456
+	at org.eclipse.osgi.internal.loader.BundleLoader.findClassInternal(BundleLoader.java:501)
+	at org.eclipse.osgi.internal.loader.BundleLoader.findClass(BundleLoader.java:421)
+	at org.eclipse.osgi.internal.loader.BundleLoader.findClass(BundleLoader.java:412)
+	at org.eclipse.osgi.internal.baseadaptor.DefaultClassLoader.loadClass(DefaultClassLoader.java:107)
+	at java.lang.ClassLoader.loadClass(Unknown Source)
+	... 9 more
