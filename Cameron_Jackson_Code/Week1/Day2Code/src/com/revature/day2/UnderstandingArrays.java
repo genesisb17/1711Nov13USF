@@ -1,4 +1,4 @@
-package com.revature.hello;
+package com.revature.day2;
 
 import java.util.Arrays;
 import java.util.Scanner;
@@ -17,8 +17,10 @@ public class UnderstandingArrays {
 		String[] numStrings = nums.split(" ");
 		int[] numArr = new int[numStrings.length];
 		for(int i=0; i < numStrings.length; i++) {
+			// numStrings[i] = numStrings[i].trim();
 			numArr[i] = Integer.parseInt(numStrings[i]);
 		}
+		System.out.println(sum(numArr));
 	}
 
 	static int sum(int... nums) {
