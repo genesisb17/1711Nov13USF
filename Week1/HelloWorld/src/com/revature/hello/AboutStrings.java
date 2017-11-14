@@ -17,8 +17,9 @@ public class AboutStrings {
 		System.out.println("5 " + a.equalsIgnoreCase(b));*/
 
 		test(a);
-		//a = test(a);
+		//a = test( a);
 		System.out.println(a);
+		
 	}
 	
 	
