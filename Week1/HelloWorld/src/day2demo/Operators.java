@@ -45,7 +45,7 @@ public class Operators {
 		// shift operators <<, >>, >>>
 		int shift = 1 << 5;
 		int shift3 = 100 >>> 2;
-		System.out.println(shift3);
+		System.out.println("shift 100 >>> 2: " +shift3);
 		
 		// relational operators <, >, <=, >=, instanceof
 		
@@ -57,13 +57,13 @@ public class Operators {
 		
 		// ternary operator = [expression] ? [if yes] : [if no]
 		int tern = shift < 1 ? 5 : 2;
-		System.out.println(tern);
+		System.out.println("ternary 5 if true 2 if false: " + tern);
 		
 		// assignment operators:
 		// =, +=, -=, *=, /=, %=, &=, ^=, |=, <<=, >>=, >>>=
 		
 		shift3 >>>= 5; 
-		System.out.println(shift);
+		System.out.println("shift3 >>>= 5: "+shift);
 		
 	}
 }
