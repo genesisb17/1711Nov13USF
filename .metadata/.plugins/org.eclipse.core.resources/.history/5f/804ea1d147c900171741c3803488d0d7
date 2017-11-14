@@ -1,0 +1,15 @@
+package comrevaturehello;
+
+import java.util.Scanner;
+
+public class stringExamples {
+	public static void main(String[] args)
+	{
+		String name = "hello ";
+		String trent = "trent";
+		name = name.concat(trent);
+		name = name.substring(3);
+		boolean var = name.endsWith(trent);
+		System.out.println(name);
+	}
+}
