@@ -1,12 +1,18 @@
 package com.revature.hello;
 
+// import statements tell Java which packages to look in for classes
 import java.util.Scanner;
 
 public class HelloWorld {
 	//this is a comment
 	
 	
-	//Below is a main method
+	/*
+	 * Every java program begins execution with its main method.
+	 * A main() method is the gateway between the startup of a Java
+	 * process, which is managed by the JVM, and the beginning of 
+	 * the developer's code. 
+	 */
 	public static void main(String[] args) {
 		String name = "Genesis Bonds";
 		name.charAt(1);
