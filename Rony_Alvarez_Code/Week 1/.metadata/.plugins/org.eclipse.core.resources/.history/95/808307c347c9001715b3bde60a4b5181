@@ -1,0 +1,16 @@
+package com.revature.hello;
+
+public class String {
+
+	public static void main(java.lang.String[] args) {
+		// TODO Auto-generated method stub
+
+		
+		
+	}
+	
+	public static void length(String string) {
+		length(string);
+	}
+
+}

@@ -10,8 +10,8 @@ public class HelloWorld {
 		System.out.println(name);
 		
 		int x = 5;
-		Integer ex = new Integer(5);
-		ex = x;
+		//Integer ex = new Integer(5);
+		//ex = x;
 		
 		//Scanner scan = new Scanner(System.in);
 		//String text = scan.nextLine();
@@ -21,7 +21,18 @@ public class HelloWorld {
 		System.out.println(toUpper(name));
 		System.out.println(toLower(name));
 		
+		
+		//pre and post unary operators
+		++x; //same as x = x + 1
+		x++; //same as x = x - 1
+		
+		// other unary operators ~, +, -, !
+		
+		
+		
+		
 	}
+	
 	
 	static String test(String x) {
 		return x.substring(2);
