@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class StringStuff {
 	
 	
-public static void main(StringStuff[] args) {
+public static void main(String[] args) {
 	
 	System.out.println("Please enter a string: ");
 	
@@ -18,7 +18,7 @@ public static void main(StringStuff[] args) {
 	
 	System.out.println("The first character of the string is " + myString.charAt(0) + ".");
 	
-	System.out.println("Is the string you typed cat?, " + myString.equals("cat"));
+	System.out.println("Is the string you typed 'cat'?: " + myString.equals("cat"));
 }
 
 	
