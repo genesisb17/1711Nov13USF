@@ -6,9 +6,6 @@ public class AboutStrings {
 		String b = "Hello";
 		String f = "World!";
 		
-		System.out.println("WELCOME TO THE STRING CLASS");
-		System.out.println("------------------------------------------------------------");
-		System.out.println();
 		System.out.println("String 1: " + b);
 		System.out.println("String 2: " + f);
 		System.out.println();
