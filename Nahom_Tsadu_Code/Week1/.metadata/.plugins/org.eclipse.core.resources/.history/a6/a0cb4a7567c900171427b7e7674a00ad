@@ -1,0 +1,58 @@
+package com.revature.hello;
+
+import java.util.Arrays;
+
+public class SearchAndSorts {
+	/*
+	 * 1. Binary Search
+	 * 2. Breadth First Search
+	 * 3. Depth First Search
+	 * 4. Bubble Sort
+	 * 5. Merge Sort
+	 * 6. Insertion Sort
+	 */
+	
+	public static void main(String[] args) {
+		
+		
+		
+		int[] numArray = {1, 4, 7, 8, 9, 20, 34, 67, 88};
+		System.out.println(binarySearch(4, numArray));
+		
+	}
+	
+	public static int binarySearch(int n, int[] arr){
+		
+		boolean found = false;
+		int midpoint = 0;
+		int num = 0;
+		
+		while(!found){
+			
+			midpoint = (arr.length-1) / 2;
+			System.out.println("midpoint: " + midpoint);
+			Arrays.stream(arr).forEach(i -> System.out.print(i + ", "));
+			System.out.println();
+			
+			if(n > arr[midpoint]){
+				arr = Arrays.copyOfRange(arr, (midpoint + 1), (arr.length));
+				Arrays.stream(arr).forEach(i -> System.out.print(i + ", "));
+				System.out.println("GREATER");
+				System.out.println();
+				
+			}else if(n < arr[midpoint]){
+				arr = Arrays.copyOfRange(arr, 0, (midpoint));
+				Arrays.stream(arr).forEach(i -> System.out.print(i + ", "));
+				System.out.println("LESSER");
+				System.out.println();
+				
+			}else if(n == arr[midpoint]){
+				num = arr[midpoint];
+				found = true;
+			}
+		}
+		
+		return num;
+	}
+
+}
