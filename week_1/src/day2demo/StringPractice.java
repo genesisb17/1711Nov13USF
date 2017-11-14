@@ -1,10 +1,10 @@
-package com.revature.hello;
+package day2demo;
 
 import java.util.Scanner;
 
 public class StringPractice {
 
-	public static void main(String args[]) {
+	public static void main(String[] args) {
 		
 		String a = "Welcome to Java Programming!";
 		String b = "This will be fun";
