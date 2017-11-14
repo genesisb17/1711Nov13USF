@@ -1,0 +1,23 @@
+package com.revature.hello;
+
+public class AboutStrings {
+	public static void main(String[] args) {
+
+		String b = "Hello";
+		String f = "World!";
+		
+		b = b.concat(" " + f);
+		System.out.println(b.length());
+		System.out.println();
+		
+		for(int i = 0; i < b.length(); i++){
+			System.out.println(b.charAt(i));
+		}
+		
+	}
+	
+	public static String test(String x){
+		
+		return x.substring(2);
+	}
+}
