@@ -27,7 +27,7 @@ public class SearchAndSorts {
 		//Merge Sort
 		//System.out.println(ops.mergeSort(numArray));
 		//Arrays.stream(ops.mergeSort(numArray)).forEach(n -> System.out.print(n + ", "));
-		SearchAndSortOps.runMergeSort(numArray);
+		SearchAndSortOps.mergeSort(numArray);
 		
 		//Binary Search
 		//SearchAndSortOps.binarySearch(SearchAndSortOps.getRandomElement(numArray), numArray);
@@ -105,19 +105,6 @@ public class SearchAndSorts {
 			return arr;
 		}
 		
-		public static int[] runMergeSort(int[] arr){
-			
-			int[] sortedList = mergeSort(arr);
-			
-			System.out.println("Merge Sort Completed!");
-			System.out.print("Sorted List: ");
-			Arrays.stream(arr).forEach(n -> System.out.print(n + ", "));
-			System.out.println();
-			System.out.println();
-			
-			return sortedList;
-		}
-		
 		public static int[] mergeSort(int[] arr){
 			
 			if(arr.length == 1){
@@ -132,7 +119,8 @@ public class SearchAndSorts {
 				int[] arrR = Arrays.copyOfRange(arr, ((arr.length) / 2), arr.length);
 				mergeSort(arrR);
 				
-				//Sort Code
+				
+				//merge code
 				int i = 0, j = 0, k = 0;
 				int leftLength = arrL.length;
 				int rightLength = arrR.length;
@@ -161,6 +149,29 @@ public class SearchAndSorts {
 		            k++;
 		            j++;
 		        }
+
+//				int[] tempArr = new int[arr.length];
+//				int l = 0;
+//				int m = arr.length/2;
+//				
+//				for(int i = 0; i < arr.length; i++){
+//					if (l == m) tempArr[i] = arr[m++];
+//		            else if (m == arr.length) tempArr[i] = arr[l];
+//		            else if (arr[m]<arr[l]) tempArr[i] = arr[m++];
+//		            else tempArr[i] = arr[l++];
+//				}
+//				
+//				for(int i = 0; i < arr.length; i++)
+//					arr[i] = tempArr[i];
+				
+				System.out.println();
+				Arrays.stream(arr).forEach(n -> System.out.print(n + ", "));
+				System.out.println();
+				Arrays.stream(arrL).forEach(n -> System.out.print(n + ", "));
+				System.out.println();
+				Arrays.stream(arrR).forEach(n -> System.out.print(n + ", "));
+				System.out.println();
+				
 			}
 			
 			return arr;

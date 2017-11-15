@@ -1,7 +1,6 @@
 package com.revature.hello;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.Random;
 
 public class SearchAndSorts {
@@ -16,7 +15,6 @@ public class SearchAndSorts {
 	public static void main(String[] args) {
 		
 		int[] numArray = {2, 16, 99, 89, 45, 22, 106, 299, 12, 34, 24, 56, 3, 10};
-		//System.out.println(Collections.min(Arrays.asList(numArray)));
 		
 		//Start Search..
 		SearchAndSortOps.start(numArray);
@@ -27,7 +25,7 @@ public class SearchAndSorts {
 		//Merge Sort
 		//System.out.println(ops.mergeSort(numArray));
 		//Arrays.stream(ops.mergeSort(numArray)).forEach(n -> System.out.print(n + ", "));
-		SearchAndSortOps.runMergeSort(numArray);
+		SearchAndSortOps.mergeSort(numArray);
 		
 		//Binary Search
 		//SearchAndSortOps.binarySearch(SearchAndSortOps.getRandomElement(numArray), numArray);
@@ -105,19 +103,6 @@ public class SearchAndSorts {
 			return arr;
 		}
 		
-		public static int[] runMergeSort(int[] arr){
-			
-			int[] sortedList = mergeSort(arr);
-			
-			System.out.println("Merge Sort Completed!");
-			System.out.print("Sorted List: ");
-			Arrays.stream(arr).forEach(n -> System.out.print(n + ", "));
-			System.out.println();
-			System.out.println();
-			
-			return sortedList;
-		}
-		
 		public static int[] mergeSort(int[] arr){
 			
 			if(arr.length == 1){
@@ -132,35 +117,14 @@ public class SearchAndSorts {
 				int[] arrR = Arrays.copyOfRange(arr, ((arr.length) / 2), arr.length);
 				mergeSort(arrR);
 				
-				//Sort Code
-				int i = 0, j = 0, k = 0;
-				int leftLength = arrL.length;
-				int rightLength = arrR.length;
-				int fullLength = arr.length;
+				System.out.println(arr);
+				Arrays.stream(arr).forEach(n -> System.out.print(n + ", "));
+				System.out.println();
+				Arrays.stream(arrL).forEach(n -> System.out.print(n + ", "));
+				System.out.println();
+				Arrays.stream(arrR).forEach(n -> System.out.print(n + ", "));
+				System.out.println();
 				
-				while(i < leftLength && j < rightLength){
-					if( arrL[i] < arrR[j]) {
-		                arr[k] = arrL[i] ;
-		                i++;
-		            }else{
-		                arr[k] = arrR[j];
-		                j++;
-		            }
-					
-		            k++;
-				}
-				
-				while ( i < leftLength ) {
-		            arr[k] = arrL[i];
-		            k++;
-		            i++;
-		        }
-				
-		        while ( j < rightLength ) {
-		            arr[k] = arrR[j];
-		            k++;
-		            j++;
-		        }
 			}
 			
 			return arr;

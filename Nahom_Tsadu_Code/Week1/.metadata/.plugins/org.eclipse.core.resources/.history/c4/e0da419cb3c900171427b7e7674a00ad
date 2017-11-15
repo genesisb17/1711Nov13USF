@@ -109,7 +109,7 @@ public class SearchAndSorts {
 			
 			int[] sortedList = mergeSort(arr);
 			
-			System.out.println("Merge Sort Completed!");
+			System.out.println("Merge Sort Completed in!");
 			System.out.print("Sorted List: ");
 			Arrays.stream(arr).forEach(n -> System.out.print(n + ", "));
 			System.out.println();

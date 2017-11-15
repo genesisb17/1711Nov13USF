@@ -27,7 +27,7 @@ public class SearchAndSorts {
 		//Merge Sort
 		//System.out.println(ops.mergeSort(numArray));
 		//Arrays.stream(ops.mergeSort(numArray)).forEach(n -> System.out.print(n + ", "));
-		SearchAndSortOps.runMergeSort(numArray);
+		SearchAndSortOps.mergeSort(numArray);
 		
 		//Binary Search
 		//SearchAndSortOps.binarySearch(SearchAndSortOps.getRandomElement(numArray), numArray);
@@ -105,19 +105,6 @@ public class SearchAndSorts {
 			return arr;
 		}
 		
-		public static int[] runMergeSort(int[] arr){
-			
-			int[] sortedList = mergeSort(arr);
-			
-			System.out.println("Merge Sort Completed!");
-			System.out.print("Sorted List: ");
-			Arrays.stream(arr).forEach(n -> System.out.print(n + ", "));
-			System.out.println();
-			System.out.println();
-			
-			return sortedList;
-		}
-		
 		public static int[] mergeSort(int[] arr){
 			
 			if(arr.length == 1){
@@ -162,6 +149,12 @@ public class SearchAndSorts {
 		            j++;
 		        }
 			}
+			
+			System.out.println("Merge Sort Completed in!");
+			System.out.print("Sorted List: ");
+			Arrays.stream(arr).forEach(n -> System.out.print(n + ", "));
+			System.out.println();
+			System.out.println();
 			
 			return arr;
 		}
