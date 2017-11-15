@@ -28,9 +28,9 @@ public class Operators {
 		// other unary operators ~, + , -, !
 		int y = -x;
 		y = +x;
-		int z = ~4;
+		int z = ~23;
 		// https://www.joezimjs.com/javascript/great-mystery-of-the-tilde/
-		System.out.println(z);
+		System.out.println("tilde~ "+ z);
 		
 		
 		//first order of binary operators from left to right --> *, /, %

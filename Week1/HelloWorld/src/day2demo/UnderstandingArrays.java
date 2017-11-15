@@ -12,7 +12,6 @@ public class UnderstandingArrays {
 	 */
 	
 	
-	
 	public static void main(String[] args) {
 		System.out.println("Enter numbers to add separated by space:");
 		
