@@ -25,12 +25,11 @@ public class WriteXML {
 			Document doc = dBuilder.newDocument();
 			
 			//add elements:
-			
-			//root elements:
+			//*root elements:
 			Element root = doc.createElement("cars");
 			doc.appendChild(root);
 			
-			//other elements:
+			//*other elements:
 			Element lux = doc.createElement("luxury");
 			root.appendChild(lux);
 			
@@ -38,7 +37,13 @@ public class WriteXML {
 			attr.setValue("Ferrari");
 			lux.setAttributeNode(attr);
 			
-			//write theh content to xml
+			Element sed = doc.createElement("sedan");
+			root.appendChild(sed);
+			Attr attr2 = doc.createAttribute("company");
+			attr2.setValue("Nissan");
+			sed.setAttributeNode(attr2);
+			
+			//write the content to xml
 			TransformerFactory tf = TransformerFactory.newInstance();
 			Transformer tr = tf.newTransformer();
 			DOMSource source = new DOMSource(doc);
