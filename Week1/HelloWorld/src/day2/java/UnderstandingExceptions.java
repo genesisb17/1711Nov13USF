@@ -1,4 +1,4 @@
-package day2demo;
+package day2.java;
 
 import java.io.IOException;
 

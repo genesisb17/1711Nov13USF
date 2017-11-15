@@ -1,4 +1,4 @@
-package day2demo;
+package day2.java;
 
 /*
  * outer classes can only be public or package level access. 

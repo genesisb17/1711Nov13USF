@@ -1,4 +1,4 @@
-package com.revature.hello;
+package day2.java;
 
 import java.util.Scanner;
 
