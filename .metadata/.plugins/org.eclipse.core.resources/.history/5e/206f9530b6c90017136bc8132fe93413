@@ -7,7 +7,7 @@ public class breadthfirst {
 		Node n1 = new Node();
 		Node n2 = new Node();
 		Node n3 = new Node();
-		int key = 2;
+		int key = 10;
 		n1.right =0;
 		n1.left = 2;
 		n1.arr = arr;
