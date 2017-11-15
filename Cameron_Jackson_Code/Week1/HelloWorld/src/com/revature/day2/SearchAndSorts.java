@@ -148,39 +148,44 @@ public class SearchAndSorts {
 	 * sorted
 	 * Depends on Merge() function as helper
 	 */
-	static int[] MergeSort(int[] sortedarr, int beg, int end) {
-		
-		if (beg < end) {
-			int mid = (beg+end)/2;
+	static int[] MergeSort(int[] arr, int beg, int end) {
+		int[] larr, rarr;
+		if (arr.length > 1) {
+			int mid = (beg + end)/2;
+			larr = new int[mid - beg + 1];
 			
-			MergeSort(sortedarr, beg, mid); // sort first half
-			MergeSort(sortedarr, mid+1, end); // sort second half
+			// copy data from first half of array into larr
+			for (int i = 0; i < larr.length; ++i) {
+				larr[i] = arr[beg + i];
+			}
+			rarr = new int[end - mid];
+			// copy data from second half of array into rarr
+			for (int i = 0; i < rarr.length; ++i) {
+				rarr[i] = arr[mid + 1 + i];
+			}
+			MergeSort(larr, beg, mid); // sort first half
+			MergeSort(rarr, mid+1, end); // sort second half
 			
-			Merge(sortedarr, beg, mid, end); // merge halves
+			return Merge(larr, rarr, beg, mid, end); // merge halves
+		} else {
+			return arr;
 		}
-		return sortedarr;
 	}
 	
 	/*
 	 * Merge()
 	 * Merges two halves of array in sorted order
+	 * TODO: REPLACE TEMP ARRAYS WITH LARR AND RARR. CREATE NEW ARRAY AND MERGE
+	 * LARR AND RARR INTO NEW ARRAY THEN RETURN
 	 */
-	static void Merge(int[] arr, int beg, int mid, int end) {
+	static int[] Merge(int[] larr, int[] rarr, int beg, int mid, int end) {
 		// Get lengths of both halves of arrays
-		int len1 = mid - beg + 1;
-		int len2 = end - mid;
+		int len1 = larr.length;
+		int len2 = rarr.length;
 		
 		int[] temparr1 = new int[len1]; // temp for first half
 		int[] temparr2 = new int[len2]; // temp for second half
 		
-		// copy data from first half of array into temparr1
-		for (int i = 0; i < len1; ++i) {
-			temparr1[i] = arr[beg + i];
-		}
-		// copy data from second half of array into temparr2
-		for (int j = 0; j < len2; ++j) {
-			temparr2[j] = arr[mid + 1 + j];
-		}
 			
 		// merge the arrays
 		int x = 0; // index of first half
