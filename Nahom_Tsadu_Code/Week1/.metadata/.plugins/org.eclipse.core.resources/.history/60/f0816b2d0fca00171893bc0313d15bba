@@ -22,15 +22,14 @@ public class SearchAndSorts {
 		SearchAndSortOps.start(numArray);
 		
 		//Bubble Sort
-		SearchAndSortOps.bubbleSort(numArray);
+		//numArray = SearchAndSortOps.bubbleSort(numArray);
 		
-		SearchAndSortOps.shuffle(numArray);
 		//Merge Sort
 		//System.out.println(ops.mergeSort(numArray));
 		//Arrays.stream(ops.mergeSort(numArray)).forEach(n -> System.out.print(n + ", "));
 		SearchAndSortOps.runMergeSort(numArray);
 		//Arrays.stream(SearchAndSortOps.shuffle(numArray)).forEach(n -> System.out.print(n + ", "));
-		SearchAndSortOps.shuffle(numArray);
+		/SearchAndSortOps.shuffle(numArray);
 		
 		//Binary Search
 		//SearchAndSortOps.binarySearch(SearchAndSortOps.getRandomElement(numArray), numArray);
@@ -132,8 +131,6 @@ public class SearchAndSorts {
 		}
 		
 		public static int[] runMergeSort(int[] arr){
-			
-			System.out.println("Running Merge Sort...");
 			
 			int[] sortedList = mergeSort(arr);
 			

@@ -133,8 +133,6 @@ public class SearchAndSorts {
 		
 		public static int[] runMergeSort(int[] arr){
 			
-			System.out.println("Running Merge Sort...");
-			
 			int[] sortedList = mergeSort(arr);
 			
 			System.out.println("Merge Sort Completed!");

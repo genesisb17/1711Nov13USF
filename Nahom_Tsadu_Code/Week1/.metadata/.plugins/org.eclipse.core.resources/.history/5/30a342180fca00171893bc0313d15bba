@@ -22,15 +22,14 @@ public class SearchAndSorts {
 		SearchAndSortOps.start(numArray);
 		
 		//Bubble Sort
-		SearchAndSortOps.bubbleSort(numArray);
+		//numArray = SearchAndSortOps.bubbleSort(numArray);
 		
-		SearchAndSortOps.shuffle(numArray);
 		//Merge Sort
 		//System.out.println(ops.mergeSort(numArray));
 		//Arrays.stream(ops.mergeSort(numArray)).forEach(n -> System.out.print(n + ", "));
-		SearchAndSortOps.runMergeSort(numArray);
-		//Arrays.stream(SearchAndSortOps.shuffle(numArray)).forEach(n -> System.out.print(n + ", "));
-		SearchAndSortOps.shuffle(numArray);
+		//SearchAndSortOps.runMergeSort(numArray);
+		Arrays.stream(SearchAndSortOps.shuffle(numArray)).forEach(n -> System.out.print(n + ", "));
+		
 		
 		//Binary Search
 		//SearchAndSortOps.binarySearch(SearchAndSortOps.getRandomElement(numArray), numArray);
@@ -60,20 +59,12 @@ public class SearchAndSorts {
 			int temp;
 			int tempIndex;
 			
-			System.out.println("Shuffling the list...");
-			
 			for(int i = 0; i < arr.length; i++){
 				tempIndex = gen.nextInt(arr.length);
 				temp = arr[tempIndex];
 				arr[tempIndex] = arr[i];
 				arr[i] = temp;
 			}
-			
-			System.out.println("Shuffle complete!");
-			System.out.print("Unsorted List: ");
-			Arrays.stream(arr).forEach(n -> System.out.print(n + ", "));
-			System.out.println();
-			System.out.println();
 			
 			return arr;
 		}
@@ -132,8 +123,6 @@ public class SearchAndSorts {
 		}
 		
 		public static int[] runMergeSort(int[] arr){
-			
-			System.out.println("Running Merge Sort...");
 			
 			int[] sortedList = mergeSort(arr);
 			
