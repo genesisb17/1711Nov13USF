@@ -51,5 +51,13 @@ public class CodingChallengesTest {
 		assertNotEquals(1, actual);
 		System.out.println("has failed");
 	}
+	
+	@Test
+	public void testReverseString() {
+		System.out.println("in test reverse string method");
+		String actual = c.reverseString("hello");
+		String expected = "olleh";
+		assertEquals(expected, actual);
+	}
 
 }

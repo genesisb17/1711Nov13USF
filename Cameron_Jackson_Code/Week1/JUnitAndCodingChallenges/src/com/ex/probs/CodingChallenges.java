@@ -13,4 +13,20 @@ public class CodingChallenges {
 			return 1;
 		}
 	}
+	
+	public String reverseString(String str) {
+		int i = 0, j = str.length() - 1;
+		char[] ch_arr = str.toCharArray();
+		char temp;
+		while (j > 0) {
+			if (i != j) {
+				temp = ch_arr[i];
+				ch_arr[i] = ch_arr[j];
+				ch_arr[j] = temp;
+				++i;
+				--j;
+			}
+		}
+		return new String(ch_arr);
+	}
 }
