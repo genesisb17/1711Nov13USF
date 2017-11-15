@@ -1,0 +1,22 @@
+package com.demo;
+import java.util.*;
+
+public class QueueDemo {
+
+	public static void main(String[] args) {
+		PriorityQueue<String> q = new PriorityQueue<String>();
+		
+		q.offer("firstElement");
+		q.offer("secondElement");
+		q.offer("thirdElement");
+		
+		System.out.printf("%s ", q);
+		System.out.println();
+		System.out.printf("%s ", q.peek());
+		System.out.println();
+		q.poll();
+		
+		System.out.printf("%s", q);
+	}
+
+}
