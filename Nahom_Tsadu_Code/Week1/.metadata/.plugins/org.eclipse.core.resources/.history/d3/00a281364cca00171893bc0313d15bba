@@ -192,9 +192,9 @@ public class SearchAndSorts {
 			}else{
 				
 				int[] arrL = Arrays.copyOfRange(arr, 0, ((arr.length) / 2));
-				int[] arrR = Arrays.copyOfRange(arr, ((arr.length) / 2), arr.length);
-				
 				mergeSort(arrL);
+				
+				int[] arrR = Arrays.copyOfRange(arr, ((arr.length) / 2), arr.length);
 				mergeSort(arrR);
 				
 				//Sort Code
