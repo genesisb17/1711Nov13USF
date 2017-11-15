@@ -17,12 +17,12 @@ public class StudentIO {
 		//Student student = new Student("Randy Savage", 36);
 		//writeStudent(student);
 		
-		System.out.println("Students: ");
+		System.out.println("Students");
 		ArrayList<Student> students = readStudents();
 		students.stream().forEach(s -> System.out.println(s.getName() + ": " + s.getAge()));
 		
 		System.out.println();
-		System.out.println("Deserialized Students: ");
+		System.out.println("Deserialized Students");
 		SerializeEx serial = new SerializeEx();
 		//serial.writeStream(students);
 		ArrayList<Student> deserializedObject = (ArrayList<Student>)serial.readObject();

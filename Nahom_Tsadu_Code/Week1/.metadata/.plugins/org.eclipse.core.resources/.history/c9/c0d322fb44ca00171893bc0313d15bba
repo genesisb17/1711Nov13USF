@@ -4,14 +4,6 @@ import java.io.Serializable;
 
 public class Student implements Serializable{
 	
-	/**
-	 * The serialVersionUID is used as a version control in a 
-	 * Serializable class. If you do not explicitly declare one,
-	 * the JVM will do it for you based on various aspects of your
-	 * Serializable class (You don't have to do this, just an example)
-	 */
-	private static final long serialVersionUID = -1706602523015578910L;
-	
 	private String name;
 	private int age;
 	
