@@ -1,5 +1,5 @@
 package my_first_java_project;
-//a
+
 public abstract class Animals implements livable
 {
 	 void consume(String eat, String breathe)

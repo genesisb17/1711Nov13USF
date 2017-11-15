@@ -1,17 +1,20 @@
 package Day2;
 
 public class Node {
-Node left;
-Node right;
-String data;
-public Node(String data)
+int left;
+int right;
+int key;
+int[] arr;
+boolean b;
+public void search(int[]arr,int left,int right,int key)
 {
-	this.data = data;
+	for(int i = right;i<left;i++)
+	{
+		if (arr[i]==key)
+		{
+			System.out.println("found");
+		}
+	}
 }
-public Node(String data,Node left,Node right)
-{
-	this.data = data;
-	this.left=left;
-	this.right = right;
-}
+
 }
