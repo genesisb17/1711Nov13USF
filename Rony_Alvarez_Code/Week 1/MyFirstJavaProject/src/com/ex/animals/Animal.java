@@ -4,7 +4,7 @@ import com.ex.alive.Livable;
 
 public abstract class Animal implements Livable {
 
-	void consume(String... substance) {
+	public void consume(String... substance) {
 		System.out.println("All animals eat and breathe");
 		System.out.println("This eats " + substance[0]);
 		System.out.println("This breathes by " + substance[1]);
