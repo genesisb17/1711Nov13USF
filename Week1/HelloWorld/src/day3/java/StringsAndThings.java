@@ -28,6 +28,7 @@ public class StringsAndThings {
 		System.gc();
 		testBuild(build.toString());
 		Runtime.getRuntime().gc();
+		
 	}
 	
 	static String testBuild(String sb) {
