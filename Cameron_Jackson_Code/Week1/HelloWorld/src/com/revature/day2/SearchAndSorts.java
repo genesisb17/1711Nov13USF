@@ -151,8 +151,11 @@ public class SearchAndSorts {
 	static int[] MergeSort(int[] arr, int beg, int end) {
 		int[] larr;
 		int[] rarr;
+		int mid = 0;
 		if (arr.length > 1) {
-			int mid = (beg + end)/2;
+			if (end > beg) {
+				mid = (beg + end)/2;
+			}
 			larr = new int[mid - beg + 1];
 			
 			// copy data from first half of array into larr
@@ -164,11 +167,9 @@ public class SearchAndSorts {
 			rarr = new int[end - mid];
 			System.out.println("rarr:");
 			// copy data from second half of array into rarr
-			if (arr.length > 0) {
-				for (int j = 0; j < rarr.length; ++j) {
-					rarr[j] = arr[mid + 1 + j];
-					System.out.println(rarr[j]);
-				}
+			for (int j = 0; j < rarr.length; ++j) {
+				rarr[j] = arr[mid + 1 + j];
+				System.out.println(rarr[j]);
 			}
 			MergeSort(larr, beg, mid); // sort first half
 			MergeSort(rarr, mid+1, end); // sort second half
