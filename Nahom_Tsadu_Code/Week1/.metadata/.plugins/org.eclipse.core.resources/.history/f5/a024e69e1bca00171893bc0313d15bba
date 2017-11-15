@@ -1,0 +1,30 @@
+package com.ex.probs;
+
+public class CodingChallenges {
+	
+	public int factorial(int n){
+		
+		if(n == 0){return 0;}
+		else{
+			System.out.println(n);
+			return n*factorial(n-1);
+		}
+	}
+	
+	public String reverse(String s){
+		
+		char[] cArr = new char[s.length()];
+		
+		System.out.println("HELLO");
+		
+		for(int i = s.length(); i >= 0; i--){
+			System.out.println(s.charAt(i));
+			
+			cArr[s.length()-i] = s.charAt(i);
+			System.out.println(cArr[s.length()-i] + " " + s.charAt(i));
+		}
+		System.out.println(new String(cArr));
+		return new String(cArr);
+	}
+
+}

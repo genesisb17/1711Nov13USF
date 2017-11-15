@@ -1,0 +1,10 @@
+package com.ex.probs;
+
+public class CodingChallenges {
+	
+	public int factorial(int n){
+		
+		return 0;
+	}
+
+}

@@ -1,0 +1,16 @@
+package com.ex.probs;
+
+public class CodingChallenges {
+	
+	public int factorial(int n){
+		
+		int fact = n;
+		
+		for(int i = 0; i < n; i++)
+			fact = fact*i;
+		
+		System.out.println(fact);
+		return fact;
+	}
+
+}

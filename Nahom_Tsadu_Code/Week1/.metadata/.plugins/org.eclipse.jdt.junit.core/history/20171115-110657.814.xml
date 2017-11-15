@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="CodingChallengesTest" project="JUnitCodingChallenges" tests="3" started="3" failures="0" errors="0" ignored="0">
+  <testsuite name="com.ex.probs.CodingChallengesTest" time="0.0">
+    <testcase name="testFactorialZero" classname="com.ex.probs.CodingChallengesTest" time="0.0"/>
+    <testcase name="testReverseString" classname="com.ex.probs.CodingChallengesTest" time="0.0"/>
+    <testcase name="testFactorial" classname="com.ex.probs.CodingChallengesTest" time="0.0"/>
+  </testsuite>
+</testrun>

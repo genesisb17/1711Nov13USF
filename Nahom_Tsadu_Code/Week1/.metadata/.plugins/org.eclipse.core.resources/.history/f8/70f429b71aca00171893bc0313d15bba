@@ -1,0 +1,16 @@
+package com.ex.probs;
+
+public class CodingChallenges {
+	
+	public int factorial(int n){
+		
+		if(n == 0){return 0;}
+		else{
+			System.out.println(n);
+			return n*factorial(n-1);
+		}
+	}
+	
+	//public String
+
+}
