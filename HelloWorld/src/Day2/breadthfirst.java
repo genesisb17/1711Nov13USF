@@ -1,5 +1,5 @@
 package Day2;
-
+//breadthfirst search add more nodes with more connectivity.
 public class breadthfirst {
 	public static void main(String args[])
 	{

@@ -17,7 +17,7 @@ public class searchandsorts
 		
 		m2.array = m2.mergeSort(0,2,arr);
 	    m1.array = m1.mergeSort(3,5,arr);
-	   m1.combine(m1.array, m2.array);
+	    m1.combine(m1.array, m2.array);
 		bubbleSort(arr);
 		insertionSort(arr);
 		int temp;

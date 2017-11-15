@@ -1,0 +1,25 @@
+package unity;
+public class CodeChallenges 
+{
+	//Q4
+	public int factorial(int n)
+	{
+		if (n==1)
+		{
+			return 1;
+		}
+	else{
+		return n*factorial(n-1);}
+	}
+	public char s1(String s,int i)
+	{
+	if(i>=0)
+	{
+			return s1(s,i-1);
+	}
+	else
+	{
+		return ' ';
+	}
+	}
+}

@@ -1,0 +1,15 @@
+package day3;
+
+import java.util.StringTokenizer;
+
+public class day3strassignment {
+
+	public static void main(String[] args) 
+	{
+		String str = "pickles:ketchup:mustard:onion";
+		// TODO Auto-generated method stub
+		StringTokenizer t = new StringTokenizer(str,":");
+		StringBuilder st =new StringBuilder("Trent");
+	}
+
+}

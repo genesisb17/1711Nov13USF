@@ -1,0 +1,12 @@
+package day3;
+
+public class day3strassignment {
+
+	public static void main(String[] args) 
+	{
+		String str = "pickles:ketchup:mustard:onion";
+		// TODO Auto-generated method stub
+		StringBuilder st =new StringBuilder("Trent");
+	}
+
+}
