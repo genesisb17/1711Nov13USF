@@ -19,8 +19,7 @@ public class SearchAndSorts {
 	public static void main(String[] args) {
 	
 		// binary search setup and execution
-		int[] intArr = binarySearchSetup();
-		binarySearch(13, intArr);
+		binarySearch(13, binarySearchSetup());
 		
 		// breadth first search setup and execution
 		
