@@ -19,10 +19,16 @@ public class UnderstandingExceptions {
 		finally{
 			System.out.println("\n" + arr[3]);
 			System.out.println("passed exception");
+			
+			try {
+				exampleException(6);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 	
-	void exampleException(int num) throws IOException{
+	static void exampleException(int num) throws IOException{
 		System.out.println("we are in example exception method");
 		throw new IOException();
 	}
