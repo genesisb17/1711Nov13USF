@@ -12,9 +12,9 @@ public class UnderstandingExceptions {
 			arr[6] = 6;
 		}catch(RuntimeException re) {
 			re.printStackTrace();
-		}catch(ArrayIndexOutOfBoundsException x) {
+		}/*catch(ArrayIndexOutOfBoundsException x) {
 			x.printStackTrace();
-		}
+		}*/
 		System.out.println("passed exception");
 		
 		
@@ -22,7 +22,7 @@ public class UnderstandingExceptions {
 	
 	
 	/*
-	 * Implement the following
+	 * Implement the following:
 	 * binary search
 	 * breadth first search
 	 * depth first search
