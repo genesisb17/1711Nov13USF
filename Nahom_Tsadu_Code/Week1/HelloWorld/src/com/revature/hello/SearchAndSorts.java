@@ -1,8 +1,12 @@
 package com.revature.hello;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.Random;
+import java.util.Scanner;
+import java.util.function.Supplier;
 
 public class SearchAndSorts {
 	/*
@@ -15,27 +19,63 @@ public class SearchAndSorts {
 	 */
 	public static void main(String[] args) {
 		
-		int[] numArray = {2, 16, 99, 89, 45, 22, 106, 299, 12, 34, 24, 56, 3, 10};
-		//System.out.println(Collections.min(Arrays.asList(numArray)));
+		int num, searchType, sortType;
+		String nums;
+		int[] numArray; //= {2, 16, 99, 89, 45, 22, 106, 299, 12, 34, 24, 56, 3, 10};
+		Scanner scan = new Scanner(System.in);
+		ArrayList<Integer> numInts = new ArrayList<Integer>();
+		HashMap<Integer, Supplier<int[]>> sortOps = new HashMap<Integer, Supplier<int[]>>();
+		HashMap<Integer, Supplier<Integer>> searchOps = new HashMap<Integer, Supplier<Integer>>();
+
 		
-		//Start Search..
-		SearchAndSortOps.start(numArray);
+		System.out.println("Please enter the numbers below: ");
 		
-		//Bubble Sort
-		SearchAndSortOps.bubbleSort(numArray);
+		nums = scan.nextLine();
 		
-		SearchAndSortOps.shuffle(numArray);
-		//Merge Sort
-		//System.out.println(ops.mergeSort(numArray));
-		//Arrays.stream(ops.mergeSort(numArray)).forEach(n -> System.out.print(n + ", "));
-		SearchAndSortOps.runMergeSort(numArray);
-		//Arrays.stream(SearchAndSortOps.shuffle(numArray)).forEach(n -> System.out.print(n + ", "));
-		SearchAndSortOps.shuffle(numArray);
+		Arrays.stream(nums.split(" "))
+		  	  .forEach(n -> numInts.add(Integer.parseInt(n)));
 		
-		//Binary Search
-		//SearchAndSortOps.binarySearch(SearchAndSortOps.getRandomElement(numArray), numArray);
+		numArray = new int[numInts.size()];
+		for(int i = 0; i < numArray.length; i++) numArray[i] = numInts.get(i);
+		
+		sortOps.put(1, ()-> SearchAndSortOps.bubbleSort(numArray));
+		sortOps.put(2, ()-> SearchAndSortOps.runMergeSort(numArray));
 		
 		
+		System.out.println();
+		System.out.println("What type of sort would you like us to perform?");
+		System.out.println("1. Bubble Sort");
+		System.out.println("2. Merge Sort");
+		
+		sortType = scan.nextInt();
+		scan.nextLine();
+		
+		System.out.println();
+		sortOps.get(sortType).get();
+		
+		
+		System.out.println("What number would you like us to search for??");
+		
+		num = scan.nextInt();
+		scan.nextLine();
+		
+		searchOps.put(1, ()-> SearchAndSortOps.binarySearch(num, numArray));
+		
+		System.out.println();
+		System.out.println("What type of search would you like us to perform?");
+		System.out.println("1. Binary Search");
+		
+		searchType = scan.nextInt();
+		scan.nextLine();
+		
+		try{
+			System.out.println();
+			searchOps.get(searchType).get();
+			System.out.println();
+			System.out.println("Search and Sorts Complete!");
+		}catch(ArrayIndexOutOfBoundsException e){
+			System.out.println("We're sorry. Something went wrong...");
+		}
 	}
 	
 	public static class SearchAndSortOps{
