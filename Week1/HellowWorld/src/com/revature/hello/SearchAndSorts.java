@@ -19,9 +19,6 @@ public class SearchAndSorts {
 		printArray(insertSorter);
 		insertionSort(insertSorter);
 		printArray(insertSorter);
-		
-		
-		
 	}
 	
 	static void insertionSort(int[] inputArray) {
