@@ -1,0 +1,23 @@
+package day2demo;
+
+public class UnderstandingConstructors {
+	public UnderstandingConstructors(){
+		
+	}
+	
+	public UnderstandingConstructors(int x){
+		
+	}
+	
+	public UnderstandingConstructors(int x, int y){
+		
+	}
+	
+	public UnderstandingConstructors(String str,int x){
+		
+	}
+	
+	public UnderstandingConstructors(int x, String str){
+		
+	}
+}

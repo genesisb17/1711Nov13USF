@@ -1,0 +1,13 @@
+package day2demo;
+
+public class UnderstandingExceptions {
+	
+	public static void main(String[] args){
+		
+		int[] arr = new int[4];
+		arr[0]=1;
+		arr[6]=6;
+		System.out.println("passed exception");
+		
+	}
+}
