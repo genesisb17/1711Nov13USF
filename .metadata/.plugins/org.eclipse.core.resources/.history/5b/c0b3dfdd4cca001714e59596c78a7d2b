@@ -1,0 +1,7 @@
+package com.revature.io;
+
+public class WriteXML 
+{
+	static String filename = "src/logs/samplexml";
+	
+}
