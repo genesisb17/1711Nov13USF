@@ -15,6 +15,7 @@ public class SearchAndSorts {
 	public static void main(String[] args) {
 		
 		int[] numArray = {2, 16, 99, 89, 45, 22, 106, 299, 12, 34, 24, 56, 3, 10};
+		//SearchAndSortOps ops = new SearchAndSorts().new SearchAndSortOps();
 		
 		//Start Search..
 		SearchAndSortOps.start(numArray);
@@ -24,7 +25,7 @@ public class SearchAndSorts {
 		
 		//Merge Sort
 		//System.out.println(ops.mergeSort(numArray));
-		//Arrays.stream(ops.mergeSort(numArray)).forEach(n -> System.out.print(n + ", "));
+//		Arrays.stream(ops.mergeSort(numArray)).forEach(n -> System.out.print(n + ", "));
 		
 		//Binary Search
 		SearchAndSortOps.binarySearch(SearchAndSortOps.getRandomElement(numArray), numArray);
@@ -36,6 +37,10 @@ public class SearchAndSorts {
 		
 		private static Random gen = new Random();
 		
+//		public SearchAndSortOps(){
+//			gen = new Random();
+//		}
+//		
 		public static void start(int[] arr){
 			System.out.println("Running Searches...");
 			System.out.println();

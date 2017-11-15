@@ -15,28 +15,33 @@ public class SearchAndSorts {
 	public static void main(String[] args) {
 		
 		int[] numArray = {2, 16, 99, 89, 45, 22, 106, 299, 12, 34, 24, 56, 3, 10};
+		SearchAndSortOps ops = new SearchAndSorts().new SearchAndSortOps();
 		
 		//Start Search..
-		SearchAndSortOps.start(numArray);
+		ops.start(numArray);
 		
 		//Bubble Sort
-		numArray = SearchAndSortOps.bubbleSort(numArray);
+		numArray = ops.bubbleSort(numArray);
 		
 		//Merge Sort
 		//System.out.println(ops.mergeSort(numArray));
-		//Arrays.stream(ops.mergeSort(numArray)).forEach(n -> System.out.print(n + ", "));
+//		Arrays.stream(ops.mergeSort(numArray)).forEach(n -> System.out.print(n + ", "));
 		
 		//Binary Search
-		SearchAndSortOps.binarySearch(SearchAndSortOps.getRandomElement(numArray), numArray);
+		ops.binarySearch(ops.getRandomElement(numArray), numArray);
 		
 		
 	}
 	
-	public static class SearchAndSortOps{
+	public class SearchAndSortOps{
 		
-		private static Random gen = new Random();
+		private Random gen;
 		
-		public static void start(int[] arr){
+		public SearchAndSortOps(){
+			gen = new Random();
+		}
+		
+		public void start(int[] arr){
 			System.out.println("Running Searches...");
 			System.out.println();
 			System.out.print("Unsorted List: ");
@@ -45,12 +50,12 @@ public class SearchAndSorts {
 			System.out.println();
 		}
 		
-		public static int getRandomElement(int[] arr){
+		public int getRandomElement(int[] arr){
 			return arr[gen.nextInt(arr.length)];
 		}
 		
 		//Runs in O(n^2)
-		public static int[] bubbleSort(int[] arr){
+		public int[] bubbleSort(int[] arr){
 			
 			boolean sorted = true;
 			int swapCount = 0;
@@ -102,7 +107,7 @@ public class SearchAndSorts {
 			return arr;
 		}
 		
-		public static int[] mergeSort(int[] arr, int x, int y){
+		public int[] mergeSort(int[] arr, int x, int y){
 			
 			if(x < y){
 				
@@ -115,7 +120,7 @@ public class SearchAndSorts {
 			return arr;
 		}
 
-		public static int binarySearch(int n, int[] arr){
+		public int binarySearch(int n, int[] arr){
 			
 			boolean found = false;
 			int midpoint = 0;
