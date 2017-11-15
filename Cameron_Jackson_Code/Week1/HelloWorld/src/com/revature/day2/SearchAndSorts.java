@@ -164,15 +164,16 @@ public class SearchAndSorts {
 			rarr = new int[end - mid];
 			System.out.println("rarr:");
 			// copy data from second half of array into rarr
-			for (int j = 0; j < rarr.length; ++j) {
-				rarr[j] = arr[j + mid + 1];
-				System.out.println(rarr[j]);
+			if (arr.length > 0) {
+				for (int j = 0; j < rarr.length; ++j) {
+					rarr[j] = arr[mid + 1 + j];
+					System.out.println(rarr[j]);
+				}
 			}
-//			MergeSort(larr, beg, mid); // sort first half
-//			MergeSort(rarr, mid+1, end); // sort second half
-//			
-//			return Merge(larr, rarr, beg, mid, end); // merge halves
-			return arr;
+			MergeSort(larr, beg, mid); // sort first half
+			MergeSort(rarr, mid+1, end); // sort second half
+			
+			return Merge(larr, rarr, beg, mid, end); // merge halves
 		} else {
 			return arr;
 		}
