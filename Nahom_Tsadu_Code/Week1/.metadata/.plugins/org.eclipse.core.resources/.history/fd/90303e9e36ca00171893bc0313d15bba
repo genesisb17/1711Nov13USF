@@ -1,0 +1,60 @@
+package com.demo.collection;
+
+import java.util.*;
+
+public class SetDemo {
+	
+	public static void main(String[] args) {
+		
+		Random gen = new Random();
+		
+		//Declare and set our HashSet
+		Set<Integer> hashSet = new HashSet<Integer>();
+
+		set.add(new Integer(5));
+		set.add(new Integer(23));
+		set.add(new Integer(12));
+		set.add(new Integer(1));
+		set.add(new Integer(35));
+		
+		//Declare and set our TreeSet
+		Set<Integer> treeSet = new TreeSet<Integer>(hashSet);
+		
+		//Declare and set our LinkedHashSet
+		Set<Integer> linkedSet = new LinkedHashSet<Integer>();
+		
+		System.out.println("The Set: ");
+		SetOps.printSet(hashSet);
+		
+		System.out.println("The TreeSet: ");
+		treeSet.stream().forEach(i -> System.out.print(i + ", "));
+		System.out.println();
+		System.out.println();
+		
+		System.out.println("The Size of the Set: ");
+		System.out.print(hashSet.size());
+		System.out.println();
+		System.out.println();
+		
+		set.remove(23);
+		System.out.println("The Set after removing 23: ");
+		set.stream().forEach(i -> System.out.print(i + ", "));
+		System.out.println();
+		
+		boolean contains5=hashSet.contains(5);
+		boolean contains117=hashSet.contains(117);
+		System.out.println();
+		System.out.println("The Set contains 5: "+ contains5);
+		System.out.println("The Set contains 117: "+contains117);
+		
+	}
+	
+	public static class SetOps{
+		
+		static void printSet(Set<Integer> s){
+			s.stream().forEach(i -> System.out.print(i + ", "));
+			System.out.println();
+			System.out.println();
+		}
+	}
+}

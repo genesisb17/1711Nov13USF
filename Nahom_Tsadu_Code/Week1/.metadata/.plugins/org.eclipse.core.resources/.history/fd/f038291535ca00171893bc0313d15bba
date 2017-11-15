@@ -1,0 +1,46 @@
+package com.demo.collection;
+
+import java.util.*;
+
+public class SetDemo {
+	
+	public static void main(String[] args) {
+		Set<Integer> set = new HashSet<Integer>();
+		
+		Random gen = new Random();
+		
+		set.add(new Integer(5));
+		set.add(new Integer(23));
+		set.add(new Integer(12));
+		set.add(new Integer(1));
+		set.add(new Integer(35));
+		
+		Set<Integer> sortedSet = new TreeSet<Integer>(set);
+		
+		System.out.println("The Set: ");
+		set.stream().forEach(i -> System.out.print(i + ", "));
+		System.out.println();
+		System.out.println();
+		
+		System.out.println("The TreeSet: ");
+		sortedSet.stream().forEach(i -> System.out.print(i + ", "));
+		
+		System.out.println("The Size of the Set: ");
+		System.out.print(set.size());
+		System.out.println();
+		System.out.println();
+		
+		set.remove(23);
+		System.out.println("The Set after removing 23: ");
+		set.stream().forEach(i -> System.out.print(i + ", "));
+		System.out.println();
+		
+		boolean contains5=set.contains(5);
+		boolean contains117=set.contains(117);
+		System.out.println();
+		System.out.println("The Set contains 5: "+ contains5);
+		System.out.println("The Set contains 117: "+contains117);
+		
+	}
+	
+}

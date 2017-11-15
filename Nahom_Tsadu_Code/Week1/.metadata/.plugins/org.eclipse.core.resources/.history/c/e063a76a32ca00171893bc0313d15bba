@@ -1,0 +1,16 @@
+package com.demo.collection;
+
+import java.util.*;
+
+public class SetDemo {
+	
+	public static void main(String[] args) {
+		Set<Integer> set = new HashSet<Integer>();
+		Random gen = new Random();
+		
+		for(int i = 0; i < 10; i++) set.add(new Integer(gen. nextInt(100)));
+		
+		set.stream().forEach(i -> System.out.print(i + ", "));
+	}
+	
+}
