@@ -17,7 +17,16 @@ public class SearchAndSorts {
 	 */
 	
 	public static void main(String[] args) {
+	
+		// binary search setup and execution
+		int[] intArr = binarySearchSetup();
+		binarySearch(13, intArr);
 		
+		// breadth first search setup and execution
+		
+	}
+	
+	static int[] binarySearchSetup() {
 		System.out.println("Please enter a list of integers, separated by a space.");
 		Scanner scan = new Scanner(System.in);
 		String userInput = scan.nextLine();
@@ -29,9 +38,10 @@ public class SearchAndSorts {
 			intArr[i] = Integer.parseInt(userArr[i]);
 		}
 		
-		binarySearch(13, intArr);
 		scan.close();
+		return intArr;
 	}
+	
 	
 	static void binarySearch(int value, int... intArr) {
 		
@@ -89,6 +99,11 @@ public class SearchAndSorts {
 			 */
 			else if (intArr[midpoint] < value) {
 				p = midpoint + 1;
+			}
+			
+			// the value is not present in the given array
+			else {
+				System.out.println("\nThe value, " + value + " is not present in the given array.");
 			}
 		}
 		
