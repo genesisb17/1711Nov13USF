@@ -156,12 +156,12 @@ public class SearchAndSorts {
 			
 			// copy data from first half of array into larr
 			for (int i = 0; i < larr.length; ++i) {
-				larr[i] = arr[beg + i];
+				larr[i] = arr[i];
 			}
 			rarr = new int[end - mid];
 			// copy data from second half of array into rarr
-			for (int i = 0; i < rarr.length; ++i) {
-				rarr[i] = arr[mid + 1 + i];
+			for (int j = mid+1; j < rarr.length; ++j) {
+				rarr[j] = arr[j];
 			}
 			MergeSort(larr, beg, mid); // sort first half
 			MergeSort(rarr, mid+1, end); // sort second half
@@ -183,20 +183,18 @@ public class SearchAndSorts {
 		int len1 = larr.length;
 		int len2 = rarr.length;
 		
-		int[] temparr1 = new int[len1]; // temp for first half
-		int[] temparr2 = new int[len2]; // temp for second half
+		int[] arr = new int[len1+len2];
 		
-			
 		// merge the arrays
 		int x = 0; // index of first half
 		int y = 0; // index of second half
-		int z = 1; // merged main array index
+		int z = 0; // merged main array index
 		while ((x < len1) && (y < len2)) {
-			if (temparr1[x] <= temparr2[y]) {
-				arr[z] = temparr1[x];
+			if (larr[x] <= rarr[y]) {
+				arr[z] = larr[x];
 				++x;
 			} else {
-				arr[z] = temparr2[y];
+				arr[z] = rarr[y];
 				++y;
 			}
 			++z;
@@ -204,16 +202,17 @@ public class SearchAndSorts {
 		
 		// there will be leftover values in one of the arrays
 		while (x < len1) {
-			arr[z] = temparr1[x];
+			arr[z] = larr[x];
 			++x;
 			++z;
 		}
 		while (y < len2) {
-			arr[z] = temparr2[y];
+			arr[z] = rarr[y];
 			++y;
 			++z;
 		}
 		
+		return arr;
 	}
 		
 	/* 

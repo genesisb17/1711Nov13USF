@@ -10,5 +10,8 @@ public class GarbageCollection {
 		b = null;
 		
 		System.out.println(a + "\n" + b + "\n" + c + "\n" + d);
+		
+		// finalize
+		//
 	}
 }
