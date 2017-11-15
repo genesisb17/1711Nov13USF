@@ -1,0 +1,26 @@
+package com.revature.io;
+
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+
+public class StudentIO 
+{
+	String filename = "src/logs/students.txt";
+	public void main(String args[])
+	{
+		Student s = new Student("Genesis Bonds",100);
+		writeStudent(s);
+	}
+	 void writeStudent(Student student)
+	{
+		try(BufferedWriter bw = new BufferedWriter(new FileWriter(filename,true)))
+		{
+			bw.write(student.toString());
+		}
+		catch(IOException e)
+		{
+			e.printStackTrace();
+		}
+	}
+}

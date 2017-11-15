@@ -1,0 +1,23 @@
+package com.revature.io;
+
+import java.io.IOException;
+
+public class StudentIO 
+{
+	String filename = "src/logs/students.txt";
+	public static void main(String args[])
+	{
+		
+	}
+	static void writeStudent(String filename)
+	{
+		try(BufferedWriter bw = new BufferedWriter(new FileWriter(filename,true)))
+		{
+			
+		}
+		catch(IOException e)
+		{
+			e.printStackTrace();
+		}
+	}
+}

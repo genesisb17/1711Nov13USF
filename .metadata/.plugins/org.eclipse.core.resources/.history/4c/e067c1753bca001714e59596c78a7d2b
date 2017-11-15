@@ -1,0 +1,7 @@
+package com.revature.io;
+//POJO - plain old java object
+public class Student 
+{
+	String name;
+	
+}
