@@ -1,7 +1,11 @@
 package com.revature.io;
 
+import java.io.Serializable;
+
 //POJO = Plain Ol' Java Object
-public class Student {
+public class Student implements Serializable {
+
+	
 	private String name;
 	private int age;
 	

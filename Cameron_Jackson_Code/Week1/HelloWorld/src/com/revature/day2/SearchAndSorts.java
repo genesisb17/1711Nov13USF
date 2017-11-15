@@ -149,24 +149,30 @@ public class SearchAndSorts {
 	 * Depends on Merge() function as helper
 	 */
 	static int[] MergeSort(int[] arr, int beg, int end) {
-		int[] larr, rarr;
+		int[] larr;
+		int[] rarr;
 		if (arr.length > 1) {
 			int mid = (beg + end)/2;
 			larr = new int[mid - beg + 1];
 			
 			// copy data from first half of array into larr
+			System.out.println("larr:");
 			for (int i = 0; i < larr.length; ++i) {
 				larr[i] = arr[i];
+				System.out.println(larr[i]);
 			}
 			rarr = new int[end - mid];
+			System.out.println("rarr:");
 			// copy data from second half of array into rarr
-			for (int j = mid+1; j < rarr.length; ++j) {
-				rarr[j] = arr[j];
+			for (int j = 0; j < rarr.length; ++j) {
+				rarr[j] = arr[j + mid + 1];
+				System.out.println(rarr[j]);
 			}
-			MergeSort(larr, beg, mid); // sort first half
-			MergeSort(rarr, mid+1, end); // sort second half
-			
-			return Merge(larr, rarr, beg, mid, end); // merge halves
+//			MergeSort(larr, beg, mid); // sort first half
+//			MergeSort(rarr, mid+1, end); // sort second half
+//			
+//			return Merge(larr, rarr, beg, mid, end); // merge halves
+			return arr;
 		} else {
 			return arr;
 		}
