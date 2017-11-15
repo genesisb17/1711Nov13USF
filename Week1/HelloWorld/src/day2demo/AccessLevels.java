@@ -28,7 +28,7 @@ public class AccessLevels {
 }
 
 
-class ProtectedClass{
+class PackageClass{
 		
 }
 
