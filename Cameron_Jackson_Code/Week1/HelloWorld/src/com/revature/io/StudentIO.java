@@ -16,7 +16,13 @@ public class StudentIO {
 //		writeStudent(s);
 		ArrayList<Student> studs = new ArrayList<Student>();
 		studs = readStudents();
-		System.out.println(studs);
+		
+		SerializeEx serial = new SerializeEx();
+//		serial.writeStream(studs);
+		@SuppressWarnings("unchecked")
+		ArrayList<Student> deserialized = (ArrayList<Student>)serial.readObject();
+		System.out.println(deserialized);
+//		System.out.println(studs);
 	}
 	
 	static void writeStudent(Student student) {

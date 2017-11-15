@@ -5,6 +5,16 @@ import java.io.Serializable;
 //POJO = Plain Ol' Java Object
 public class Student implements Serializable {
 
+	/**
+	 * The serialVersionUID is used as a version control in a 
+	 * Serializable class. If you do not explicitly declare one,
+	 * the JVM will do it for you based on various aspects of
+	 * your Serializable class.
+	 * If declared 'transient' the member will not serialize with
+	 * rest of the object. When de-serialized the transient member
+	 * will be restored to default value.
+	 */
+	private static final long serialVersionUID = -1706602523015578910L;
 	
 	private String name;
 	private int age;
