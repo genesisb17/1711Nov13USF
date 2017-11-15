@@ -17,7 +17,12 @@ public class StudentIO {
 		
 		ArrayList<Student> studs = new ArrayList<Student>();
 		studs = readStudents();
-		System.out.println(studs);	
+		
+		SerializeEx serial = new SerializeEx();
+		//serial.writeStream(studs);
+		@SuppressWarnings("unchecked")
+		ArrayList<Student> deserialized = (ArrayList<Student>) serial.readObject();
+		System.out.println(deserialized);	
 	}
 	
 	static void writeStudent(Student student){
@@ -30,7 +35,7 @@ public class StudentIO {
 	}
 	
 	static ArrayList<Student> readStudents(){
-		ArrayList<Student> students = new ArrayList<Student>();
+		ArrayList<Student> students = new ArrayList<>();
 		try(BufferedReader br = new BufferedReader(new FileReader(filename));){
 			String line = null;
 			while((line=br.readLine())!=null){
