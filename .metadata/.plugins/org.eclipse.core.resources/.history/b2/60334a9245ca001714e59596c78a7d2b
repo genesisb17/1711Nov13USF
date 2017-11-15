@@ -1,0 +1,23 @@
+package com.revature.io;
+
+import java.io.ObjectOutputStream;
+
+public class SerializeEX 
+{
+/*
+ * To serialize an object means to convert its state to a 
+ * byte stream so that the byte stream can be reverted back into 
+ * a copy of the object. A Java object is serializable if its class or any 
+ * of its superclasses impliemnets either serializable or its subinterface
+ * Externalizable
+ */
+	static String filename = "src/logs/byteStream.txt";
+	
+	void writeStream(Object o)
+	{
+		try(ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(filename)))
+		{
+			
+		}
+	}
+}

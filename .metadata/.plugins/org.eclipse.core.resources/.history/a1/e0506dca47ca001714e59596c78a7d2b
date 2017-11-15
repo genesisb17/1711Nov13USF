@@ -22,7 +22,7 @@ public class StudentIO
 		SerializeEX serial = new SerializeEX();
 //		serial.writeStream(studs);		
 //		System.out.println(studs);
-	//@SuppressWarnings("unchecked");
+	@SuppressWarnings("unchecked");
 	ArrayList<Student> deserialized = (ArrayList<Student>) serial.readObject();
 	
 	}

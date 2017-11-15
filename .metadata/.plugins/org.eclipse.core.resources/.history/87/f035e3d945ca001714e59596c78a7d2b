@@ -18,13 +18,7 @@ public class StudentIO
 		
 		ArrayList<Student> studs = new ArrayList<Student>();
 		studs = readStudents();
-		
-		SerializeEX serial = new SerializeEX();
-//		serial.writeStream(studs);		
-//		System.out.println(studs);
-	//@SuppressWarnings("unchecked");
-	ArrayList<Student> deserialized = (ArrayList<Student>) serial.readObject();
-	
+		System.out.println(studs);
 	}
 	static void writeStudent(Student student)
 	{
