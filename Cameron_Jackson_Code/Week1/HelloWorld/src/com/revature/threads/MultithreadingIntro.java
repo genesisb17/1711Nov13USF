@@ -52,11 +52,11 @@ public class MultithreadingIntro {
 		};
 		Thread lambdaThread = new Thread(lambda);
 
+		anonThread.setPriority(Thread.MAX_PRIORITY);
+		et.setPriority(Thread.MIN_PRIORITY);
 		System.out.println("STATE: " + et.getState());		
 		isThread.start();
 		et.start();
-		System.out.println("STATE: " + et.getState());
-		et.sleep(100);
 		System.out.println("STATE: " + et.getState());
 		anonThread.start();
 		lambdaThread.start();
