@@ -1,0 +1,23 @@
+package com.revature.io;
+
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+
+public class StudentIO {
+	
+	static String filename="src/logs/student.txt";
+	public static void main(String[] args) {
+		Student s=new Student("Optimus Prime", 10000);
+		writeStudent(s);
+	}
+	
+	static void writeStudent(Student student){
+		//Try-with-resources
+		try(BufferedWriter bw=new BufferedWriter(new FileWriter(filename,true))){
+			bw.write(student.toString());
+		} catch (IOException e){
+			e.printStackTrace();
+		}
+	}
+}

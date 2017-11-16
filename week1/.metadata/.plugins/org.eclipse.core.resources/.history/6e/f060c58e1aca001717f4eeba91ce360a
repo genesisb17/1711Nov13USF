@@ -1,0 +1,13 @@
+package com.ex.probs;
+
+public class CodingChallenges {
+
+	public int factorial(int n){
+		int multiplied=n;
+		if(n>1){
+			multiplied*=factorial(n-1);
+		}
+		return multiplied;
+	}
+	
+}
