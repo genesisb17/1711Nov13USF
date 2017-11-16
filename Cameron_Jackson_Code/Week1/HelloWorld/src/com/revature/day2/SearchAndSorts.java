@@ -55,7 +55,7 @@ public class SearchAndSorts {
 		}
 		System.out.printf("\n");
 		System.out.println("Sorted array: ");
-		int[] numssorted = MergeSort(nums, 0, nums.length-1);
+		MergeSort(nums, 0, nums.length-1);
 		for (int x: nums) {
 			System.out.printf("%d ", x);
 		}
@@ -79,7 +79,7 @@ public class SearchAndSorts {
 		
 		// BINARY SEARCH
 		System.out.println("**Binary Search**");
-		System.out.println(BinarySearch(numssorted));
+		System.out.println(BinarySearch(nums));
 		// END BINARY SEARCH
 		
 		scan.close();
@@ -148,80 +148,81 @@ public class SearchAndSorts {
 	 * sorted
 	 * Depends on Merge() function as helper
 	 */
-	static int[] MergeSort(int[] arr, int beg, int end) {
-		int[] larr;
-		int[] rarr;
-		int mid = 0;
-		if (arr.length > 1) {
-			if (end > beg) {
-				mid = (beg + end)/2;
-			}
-			larr = new int[mid - beg + 1];
-			
-			// copy data from first half of array into larr
-			System.out.println("larr:");
-			for (int i = 0; i < larr.length; ++i) {
-				larr[i] = arr[i];
-				System.out.println(larr[i]);
-			}
-			rarr = new int[end - mid];
-			System.out.println("rarr:");
-			// copy data from second half of array into rarr
-			for (int j = 0; j < rarr.length; ++j) {
-				rarr[j] = arr[mid + 1 + j];
-				System.out.println(rarr[j]);
-			}
-			MergeSort(larr, beg, mid); // sort first half
-			MergeSort(rarr, mid+1, end); // sort second half
-			
-			return Merge(larr, rarr, beg, mid, end); // merge halves
-		} else {
-			return arr;
-		}
-	}
+    static void MergeSort(int arr[], int beg, int end)
+    {
+        if (beg < end)
+        {
+            // Find the middle point
+            int mid = (beg + end)/2;
+ 
+            // Sort first and second halves
+            MergeSort(arr, beg, mid);
+            MergeSort(arr , mid + 1, end);
+ 
+            // Merge the sorted halves
+            Merge(arr, beg, mid, end);
+        }
+    }
 	
 	/*
 	 * Merge()
 	 * Merges two halves of array in sorted order
-	 * TODO: REPLACE TEMP ARRAYS WITH LARR AND RARR. CREATE NEW ARRAY AND MERGE
-	 * LARR AND RARR INTO NEW ARRAY THEN RETURN
 	 */
-	static int[] Merge(int[] larr, int[] rarr, int beg, int mid, int end) {
-		// Get lengths of both halves of arrays
-		int len1 = larr.length;
-		int len2 = rarr.length;
-		
-		int[] arr = new int[len1+len2];
-		
-		// merge the arrays
-		int x = 0; // index of first half
-		int y = 0; // index of second half
-		int z = 0; // merged main array index
-		while ((x < len1) && (y < len2)) {
-			if (larr[x] <= rarr[y]) {
-				arr[z] = larr[x];
-				++x;
-			} else {
-				arr[z] = rarr[y];
-				++y;
-			}
-			++z;
-		}
-		
-		// there will be leftover values in one of the arrays
-		while (x < len1) {
-			arr[z] = larr[x];
-			++x;
-			++z;
-		}
-		while (y < len2) {
-			arr[z] = rarr[y];
-			++y;
-			++z;
-		}
-		
-		return arr;
-	}
+	static void Merge(int arr[], int beg, int mid, int end)
+    {
+        // Find sizes of two subarrays to be merged
+        int n1 = mid - beg + 1;
+        int n2 = end - mid;
+ 
+        /* Create temp arrays */
+        int L[] = new int [n1];
+        int R[] = new int [n2];
+ 
+        /*Copy data to temp arrays*/
+        for (int i=0; i<n1; ++i)
+            L[i] = arr[beg + i];
+        for (int j=0; j<n2; ++j)
+            R[j] = arr[mid + 1+ j];
+ 
+ 
+        /* Merge the temp arrays */
+ 
+        // Initial indexes of first and second subarrays
+        int i = 0, j = 0;
+ 
+        // Initial index of merged subarry array
+        int k = beg;
+        while (i < n1 && j < n2)
+        {
+            if (L[i] <= R[j])
+            {
+                arr[k] = L[i];
+                i++;
+            }
+            else
+            {
+                arr[k] = R[j];
+                j++;
+            }
+            k++;
+        }
+ 
+        /* Copy remaining elements of L[] if any */
+        while (i < n1)
+        {
+            arr[k] = L[i];
+            i++;
+            k++;
+        }
+ 
+        /* Copy remaining elements of R[] if any */
+        while (j < n2)
+        {
+            arr[k] = R[j];
+            j++;
+            k++;
+        }
+    }
 		
 	/* 
 	 * InsertionSort()
