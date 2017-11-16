@@ -23,7 +23,8 @@ public class SAX {
 	
 	static String filename = "src/com/revature/xml/people.xml";
 	
-	public static void main(String[] args) throws ParserConfigurationException, SAXException, IOException {
+	public static void main(String[] args) 
+			throws ParserConfigurationException, SAXException, IOException {
 		
 		
 			SAXParserFactory spf = SAXParserFactory.newInstance();
@@ -45,7 +46,7 @@ public class SAX {
 				
 				public void endElement(String uri, String localName, String qName)
 				throws SAXException {
-					System.out.println("End Element" + qName);
+					System.out.println("End Element:" + qName);
 				}
 				
 				public void characters(char[] ch, int start, int length) throws SAXException{
