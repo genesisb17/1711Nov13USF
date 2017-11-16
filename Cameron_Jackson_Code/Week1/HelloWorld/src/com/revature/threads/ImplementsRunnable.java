@@ -5,7 +5,7 @@ public class ImplementsRunnable implements Runnable{
 	// runnable only has one abstract method - run - making it a functional interface
 	@Override
 	public void run() {
-		System.out.println(" In ImplementsRunnable");
+		System.out.println("In ImplementsRunnable");
 		for (int i = 0; i < 10; ++i) {
 			System.out.println(i + " In ImplementsRunnable");
 		}

@@ -15,7 +15,8 @@ public class MultithreadingIntro {
 		Thread isThread = new Thread(ir); // ImplementsRunnable doesn't have start method
 										  // must be attached to thread
 		
-		Runnable anonRun = new Runnable() { // inner class to extend runnable
+		//anonymous class to extend run()
+		Runnable anonRun = new Runnable() { 
 			@Override
 			public void run() {
 				System.out.println("In anonymous class implementation");
@@ -26,9 +27,23 @@ public class MultithreadingIntro {
 		};
 		Thread anonThread = new Thread(anonRun);
 		
+		Thread exThread = new Thread() {
+			// implement() run here
+		};
+		
+		//LAMBDA EXPRESSION TO IMPLEMENT RUNNABLE
+		Runnable lambda = () -> {
+			System.out.println("in lambda");
+			for (int i = 0; i < 10; ++i) {
+				System.out.println(i + " in lambda");
+			}
+		};
+		Thread lambdaThread = new Thread(lambda);
+		
 		isThread.start();
 		et.start();
 		anonThread.start();
+		lambdaThread.start();
 	}
 
 }

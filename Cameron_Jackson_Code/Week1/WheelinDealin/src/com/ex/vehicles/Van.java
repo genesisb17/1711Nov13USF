@@ -2,7 +2,7 @@ package com.ex.vehicles;
 
 public class Van extends Vehicle {
 
-	static class Box {
+	class Box {
 		private int length;
 		private int width;
 		private int height;
