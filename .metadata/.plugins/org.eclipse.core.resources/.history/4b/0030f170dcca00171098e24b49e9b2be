@@ -1,0 +1,9 @@
+package day4;
+
+public class Even_checker 
+{
+	boolean test()
+	{
+		return true;
+	}
+}
