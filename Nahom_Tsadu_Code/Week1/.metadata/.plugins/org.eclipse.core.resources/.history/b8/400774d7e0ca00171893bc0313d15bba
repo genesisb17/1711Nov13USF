@@ -1,0 +1,57 @@
+package com.revature.hello;
+
+import java.util.ArrayList;
+
+public class Lab1 {
+	
+	public static void main(String[] args) {
+		
+		
+		isEven(5);
+		System.out.println();
+		
+		ArrayList<Integer> numList = new ArrayList<Integer>();
+		printPrimeElements(numList);
+		System.out.println();
+		
+		isGreater(3, 8);
+		System.out.println();
+	}
+	
+    public static boolean isPrime(int x){
+        for(int i = 2; i < x; i++){
+            if(x%i == 0) return false;}
+        return true;
+    }
+	
+	public static boolean isEven(double x){
+		boolean isEven = false;
+		System.out.println("Checking number without using modulus..");
+		if(x > 0){
+			double num = x/2;
+			int intNum = (int) Math.floor(num);
+			double remainder = num - intNum;
+			if(remainder == 0) isEven = true;
+		}else{
+			System.out.println("Please enter a number greater than zero");
+		}
+		System.out.println("The number " + (int)x + " is" + (!isEven ? " not " : " ") + "even" );
+		return isEven;
+	}
+	
+	public static void printPrimeElements(ArrayList<Integer> n){
+		System.out.println("Printing all prime numbers from 1 to 100..");
+		for(int i = 1; i <= 100; i++){
+			n.add(i);
+			if(isPrime(i)) System.out.print(i + ", ");
+		}
+	}
+	
+	public static int isGreater(int x, int y){
+		int z;
+		System.out.println("Finding greater number..");
+		z = (x > y) ? x : y;
+		System.out.println("The number " + z + " is greater than " + ((z == x)?y:x));
+		return z;
+	}
+}

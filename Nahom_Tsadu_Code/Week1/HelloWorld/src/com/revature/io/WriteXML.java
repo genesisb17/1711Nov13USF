@@ -14,6 +14,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
 public class WriteXML {
+	
 	static String filename = "src/logs/samplexml.xml";
 	
 	public static void main(String[] args) {

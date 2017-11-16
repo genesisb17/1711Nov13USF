@@ -16,7 +16,7 @@ public class SearchAndSorts {
 	 * 5. Merge Sort (COMPLETE)
 	 * 6. Insertion Sort
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args){
 		
 		int num, searchType, sortType;
 		String nums;
