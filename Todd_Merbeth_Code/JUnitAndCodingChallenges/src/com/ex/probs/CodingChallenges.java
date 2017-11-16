@@ -15,6 +15,9 @@ public class CodingChallenges {
 	}
 	
 	public String reverseString(String str) {
+		if(str.length() == 0 || str.length() == 1) {
+			return str;
+		}
 		char c;
 		char[] chars = new char[str.length()];
 		for(int i = 0; i < str.length(); i++) {

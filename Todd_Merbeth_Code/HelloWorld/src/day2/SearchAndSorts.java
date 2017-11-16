@@ -74,4 +74,7 @@ public class SearchAndSorts {
             }
         }
 	}
+	static void MergeSort(int... arr) {
+		
+	}
 }

@@ -6,11 +6,9 @@ public class Primitives {
 	
 	
 	public static void main(String[] args) {
-<<<<<<< HEAD
+
 		System.out.println(Integer.MAX_VALUE); // 2
-=======
-		System.out.println(Integer.MAX_VALUE);
->>>>>>> master
+
 		System.out.println(Integer.MIN_VALUE);
 		
 		//cannot use commas for separation of digits but can use _
@@ -28,7 +26,7 @@ public class Primitives {
 		 * int, so we get a compiler error when trying to declare
 		 * it without the L signifier. 
 		 */
-<<<<<<< HEAD
+
 		//long wronglong = 98323559823; // does not compile
 		long rightlong = 98323559823L;
 		
@@ -50,34 +48,7 @@ public class Primitives {
 		System.out.println(bin);
 		System.out.println(bin2);
 		
-=======
-		//long wronglong = 98_323_559_823; // does not compile
-		long rightlong = 98323559823L;
-		
-		long okToCast = 13415;  //automatically casted to long
-		System.out.println(Long.MAX_VALUE);
-		System.out.println(Long.MIN_VALUE);
-		
-		//octal numbers(digits 0-7)
-		int oct = 017;
-		System.out.println(oct);
-		//hex(0-9,A-F)
-		int hex = 0xFF;
-		int hex2 = 0X6A;
-		
-		//binary(0-1)
-		int bin = 0b10010011;
-		int bin2 = 0B1010101110;
->>>>>>> master
-		
-		
-		
-		
 		
 	}
 
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> master
