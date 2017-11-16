@@ -21,7 +21,7 @@ public class Warmup {
 			.filter(i -> {
 				if(i == 1) return false;
 				boolean prime = true;
-				for(int p = 2; p < Math.sqrt(i); p++) {
+				for(int p = 2; p <= Math.sqrt(i); p++) {
 					if(i % p == 0) {
 						prime = false;
 						break;
@@ -68,11 +68,11 @@ public class Warmup {
 	
 	public static void main(String[] args) {
 		Warmup w = new Warmup();
-		System.out.println(w.min(2, 4));
-		System.out.println(w.min(6, 3));
+//		System.out.println(w.min(2, 4));
+//		System.out.println(w.min(6, 3));
 		w.printPrimesTo100();
-		w.printTextContents();
-		w.doSwitch(0);
-		w.doSwitch(1);
+//		w.printTextContents();
+//		w.doSwitch(0);
+//		w.doSwitch(1);
 	}
 }
