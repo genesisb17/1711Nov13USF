@@ -6,15 +6,9 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.Serializable;
 import java.util.ArrayList;
 
-public class StudentIO implements Serializable{
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+public class StudentIO {
 
 	static String filename = "src/logs/students.txt";
 	public static void main(String[] args) {
@@ -22,9 +16,20 @@ public class StudentIO implements Serializable{
 //		Student s2 = new Student("Rick James", 65);
 //		writeStudent(s2);
 		
-		ArrayList<Student> stus = new ArrayList<Student>();
+		ArrayList<Student> stus = new ArrayList<>();
 		stus = readStudents();
-		System.out.println(stus);
+//		System.out.println(stus);
+		
+		SerializeEx serial = new SerializeEx();
+//		serial.writeStream(stus);
+
+		ArrayList<Student> deSerialized = (ArrayList<Student>) serial.readObject();
+		System.out.println(deSerialized);
+//		for(Student s : stus) {
+//			
+//			System.out.println(s);
+//		}
+		
 		
 		
 	}

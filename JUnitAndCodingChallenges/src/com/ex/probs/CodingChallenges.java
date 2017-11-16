@@ -1,9 +1,10 @@
 package com.ex.probs;
 
 public class CodingChallenges {
-	
-	public int factorial(int n) {
-		return (n == 0) ? 1 : (n * factorial(n - 1));
+	static Object obj;
+	int as;
+	public static int factorial(int n) {
+		return (n == 1) ? 1 : (n * factorial(n - 1));
 		
 	}
 	
@@ -23,11 +24,9 @@ public class CodingChallenges {
 		return a;
 		
 	}
-	
-//public static void main(String[] args) {
-//	
-//	String k = "token";
-//	System.out.println(reverseString(k));
-//
-//}
+
+public static void main(String[] args) throws Error {
+	int x = factorial(5);
+	System.out.println(x);
+}
 }

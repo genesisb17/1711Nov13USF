@@ -22,7 +22,11 @@ public class UnderstandingArrays {
 		String[] numStrings = nums.split(" ");
 		
 		int[] numArr = new int[numStrings.length];
+		int sss = 0;
+		switch(sss) {
 		
+		
+		}
 		for(int i=0;i<numStrings.length;i++){
 			//numStrings[i] = numStrings[i].trim();
 			numArr[i] = Integer.parseInt(numStrings[i]);
