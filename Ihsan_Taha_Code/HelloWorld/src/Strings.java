@@ -1,9 +1,13 @@
+import java.util.StringTokenizer;
+
 /*
  * This program demonstrates the use of string methods
  */
 public class Strings {
 	public static void main(String[] args)
 	{
+		// CODE 1 FOR ASSIGNMENT - String method examples
+		System.out.println("CODE 1: Displays the results of strings from string methods");
 		String s1 = "str1", s2 = "str2", s3 = "str3";
 		
 		// 1. Returns the char at the given index
@@ -24,12 +28,13 @@ public class Strings {
 		char[] cArray = {'c','h','a','r',' ','a','r','r','a','y'};
 		String s7 = String.copyValueOf(cArray);
 		
+		
 		// Prints the results of all given methods
 		printString(1, s1);
 		printString(2, s2);
 		printString(3, s3);
 		
-		System.out.println("\n");
+		System.out.println();
 		
 		printString(i, s1, c);
 		printString(4, s4);
@@ -37,6 +42,34 @@ public class Strings {
 		printString(s1, s5, t);
 		printString(s1, s2, s6);
 		printString(cArray, s7);
+		
+		
+		
+		// CODE 2 FOR ASSIGNMENT - Parses a string with delimeters and displays them line by line
+		String categories = "health:mana:strength:defense:weapons:armor:accessories";
+
+		System.out.print("\n\nCODE 2: Parses a string with delimeters and displays them line by line" +
+		"\nInitial String:\n" + categories + "\n\nTokenized Values:\n");
+		
+		StringTokenizer st = new StringTokenizer(categories, ":");
+		while (st.hasMoreTokens())
+		{
+			System.out.print(st.nextToken() + "   ");
+		}
+		
+		System.out.println();
+		
+		
+		
+		// CODE 3 FOR ASSIGNMENT - Adds two numbers from string objects
+		String number1 = "15", number2 = "5";
+		System.out.println("\n\nCODE 3: Adds two numbers from string objects and stores the result into " +
+		"a string object\n" + number1 + " + " + number2 + " = " + addStringNumbers(number1, number2));
+		
+		
+		
+		// CODE 5 FOR ASSIGNMENT - Create Runtime Object
+		
 	}
 	
 	
@@ -76,5 +109,18 @@ public class Strings {
 		}
 		
 		return s;
+	}
+	
+	
+	
+	// Adds two strings with number values (assumes valid input and subject to update)
+	public static String addStringNumbers(String num1, String num2)
+	{
+		String result = Integer.toString(Integer.parseInt(num1) + Integer.parseInt(num2));
+		
+		// CODE 4 FOR ASSIGNMENT - Enforced Garbage Collector
+		System.gc();
+		
+		return result;
 	}
 }
