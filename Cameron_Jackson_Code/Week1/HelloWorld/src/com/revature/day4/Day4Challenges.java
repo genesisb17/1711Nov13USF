@@ -67,8 +67,23 @@ public class Day4Challenges {
 	 * prints arraylist of integers
 	 */
 	public static void PrintArrayList(ArrayList<Integer> nums) {
-		for (int i : nums) {
-			System.out.println(i);
+		boolean prime = true;
+		Integer m1, m2;
+		System.out.println(nums.get(1)); // 2 is prime
+		for (int i = 2; i < nums.size(); ++i) { // start at 3 (index 2)
+			m1 = nums.get(i) % 2;
+			if (m1 == 0) { // even numbers
+				prime = false;
+			} else {
+				for (int j = i-1; j >=2; --j) {
+					m2 = nums.get(i) % nums.get(j);
+					if (m2 == 0) {
+						prime = false;
+					}
+				}
+			}
+			if (prime) System.out.println(nums.get(i));
+			prime = true;
 		}
 	}
 	
