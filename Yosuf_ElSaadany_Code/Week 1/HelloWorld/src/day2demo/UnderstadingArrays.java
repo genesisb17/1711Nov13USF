@@ -29,7 +29,7 @@ public class UnderstadingArrays {
 		}
 		// Call function and print sum
 		System.out.println(sum(numArr));
-	
+		
 	}
 	// Variable arguments
 	static int sum(int... nums) {
@@ -39,6 +39,11 @@ public class UnderstadingArrays {
 			s = s + i;
 		
 		return s;
+	}
+	
+	public void c (int x, char c) {
+		
+		System.out.println(x);
 	}
 
 }

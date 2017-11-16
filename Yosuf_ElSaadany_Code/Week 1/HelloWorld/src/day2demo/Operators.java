@@ -59,7 +59,7 @@ public class Operators {
 		
 		shift3 >>>= 5;
 		System.out.println(shift);
-					
+		
+		
+		}
 	}
-
-}

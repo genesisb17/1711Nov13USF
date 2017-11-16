@@ -1,7 +1,5 @@
 package day2demo;
 
-import java.util.Scanner;
-
 public class ControlFlow {
 
 	/* breaks the flow of execution by decision making
@@ -9,7 +7,7 @@ public class ControlFlow {
 	
 	public static void main(String[] args) {
 	
-		System.out.println("Enter a number:");
+/*		System.out.println("Enter a number:");
 		Scanner scan = new Scanner(System.in);
 		int x = scan.nextInt();
 		
@@ -41,13 +39,13 @@ public class ControlFlow {
 			System.out.println("WOOOOOO " + i);
 		}
 		
-		/*
+		
 		 * 1. initialization statement executes
 		 * 2. if booleanexp == true, else exit loop
 		 * 3. execute body
 		 * 4. execute update statement
 		 * 5. return to 2
-		 */
+		 
 		
 		// FOR-EACH AKA  ENHANCED FOR LOOP
 		int[] nums = {2,4,5,7,2,251,53,13};
@@ -59,9 +57,9 @@ public class ControlFlow {
 		
 		
 		// SWITCH
-		/*
+		
 		 * can hold int, byte, short, char, String, enum
-		 */
+		 
 		switch(x) {
 			case 1:
 				System.out.println("x is 1");
@@ -82,7 +80,10 @@ public class ControlFlow {
 		
 		Operations op1 = Operations.MULTIPLY;
 		System.out.println(op1.calculate(2, 2));
+		*/
 		
+		String s = null;
+		System.out.println(s);
 	
 	}
 

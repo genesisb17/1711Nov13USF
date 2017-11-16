@@ -6,7 +6,8 @@ public class StringsandThings {
 
 	public static void main(String[] args) {
 		
-/*		String str = "hello";
+		//--------------------------In Class---------------------------//
+		String str = "hello";
 		StringBuffer buff = new StringBuffer("hello");
 		StringBuilder build = new StringBuilder("hello");
 		
@@ -16,7 +17,8 @@ public class StringsandThings {
 		
 		System.out.println(str + " " + buff + " " + build);
 		
-*/
+		//-------------------------Assignment-------------------------//
+		
 		// StringBuilder Object
 		StringBuilder B = new StringBuilder("Hello");
 		
@@ -30,17 +32,26 @@ public class StringsandThings {
 		System.out.println(B.subSequence(3, B.length()));
 		
 		// Tokenizer
-		
-		String str = "pickles:ketchup:mustard:onion";
-		
-		StringTokenizer Tokenizer = new StringTokenizer(str,":");
-		
-		for(int i = 0; i < Tokenizer.countTokens();i++) {
+		String str1 = "pickles:ketchup:mustard:onion";
+		StringTokenizer Tokenizer = new StringTokenizer(str1,":");		
+		while(Tokenizer.hasMoreTokens()) {
 			System.out.println(Tokenizer.nextToken());
 		}
 		
+		// String objects with number values
+		String a = "20";
+		String b = "10";
+		
+		int z = addStrings(a,b);
+		System.out.println(z);
 		
 	}
-	
-	
+
+	// Method to add strings with number values
+	static int addStrings(String x, String y) {
+		int value = Integer.parseInt(x) + Integer.parseInt(y);
+		// Requesting Garbage Collection in Method
+		System.gc();
+		return value;
+	}
 }

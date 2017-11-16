@@ -2,9 +2,7 @@ package com.ex.probs;
 
 public class CodingChallenges {
 	
-	
-	
-	
+	// Factorial using recursion
 	public int factorial(int n) {
 	
 		if(n > 1) {
@@ -14,6 +12,7 @@ public class CodingChallenges {
 		return 1;	
 	}	
 	
+	// Reverse String without using a temp string
 	public String ReverseString(String S) {
 		
 		for(int i = 0; i < S.length(); i++) {
@@ -24,17 +23,5 @@ public class CodingChallenges {
 		}
 		return S;
 	}
-	
-	/*
-	public String ReverseString(String S) {
-		
-		char[] X = new char[S.length()];
-		
-		for(int i = 0; i < S.length() - 1; i++) {
-			X[i] = S[S.length() - i];
-		}
-	}
-	*/
-	
 	
 }

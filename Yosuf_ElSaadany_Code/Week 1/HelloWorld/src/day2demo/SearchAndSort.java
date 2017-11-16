@@ -14,7 +14,7 @@ public class SearchAndSort {
 		 */
 		
 		// Binary Search Call
-		/*int Arr[] = {1, 2, 4, 8, 17, 20, 21, 200, 300};
+		int Arr[] = {1, 2, 4, 8, 17, 20, 21, 200, 300};
 		int x = 8;
 		int begin = 0;
 		int end = Arr.length - 1;
@@ -26,13 +26,7 @@ public class SearchAndSort {
 		BubbleSort(Arr1);
 		
 		// Insertion Sort call
-		InsertionSort(Arr1);*/
-		
-		String x = "Hello";
-		
-		String y = x.substring(4, 1);
-		
-		System.out.println(y);
+		InsertionSort(Arr1);
 	}
 
 	static int BinarySearch(int[] Arr, int x, int begin, int end) {
@@ -96,12 +90,7 @@ public class SearchAndSort {
 			System.out.println("Insertion Sort Results:");
 		    for(int k = 0; k < n; k++) {
 				System.out.println(Arr[k]);
-			}
-
-		    
-		    
-		 
-		
+			}	
 	}
 	
 	

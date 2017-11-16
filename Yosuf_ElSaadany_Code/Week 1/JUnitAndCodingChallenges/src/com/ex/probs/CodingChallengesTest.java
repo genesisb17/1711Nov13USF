@@ -15,12 +15,12 @@ public class CodingChallengesTest {
 	
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		//System.out.println("before class");
+		System.out.println("before class");
 	}
 
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
-		//System.out.println("after class");
+		System.out.println("after class");
 	}
 
 	@Before
@@ -28,19 +28,19 @@ public class CodingChallengesTest {
 		// Instantiation
 		c = new CodingChallenges();
 		s = new CodingChallenges();
-		//System.out.println("before method");
+		System.out.println("before method");
 	}
 
 	@After
 	public void tearDown() throws Exception {
 		c = null;
-		//System.out.println("after method");
+		System.out.println("after method");
 	}
 
 	@Test
 	public void testFactorial() {
 		
-		//System.out.println("in test fact method");
+		System.out.println("in test fact method");
 		int expected = 120;
 		int actual = c.factorial(5);
 		assertEquals(expected,actual);
@@ -51,7 +51,7 @@ public class CodingChallengesTest {
 	@Test
 	public void testFactorialZero() {
 		
-		//System.out.println("in test not zero method");
+		System.out.println("in test not zero method");
 		assertNotEquals(0,c.factorial(5));
 		assertNotEquals(1,c.factorial(5));
 	}
