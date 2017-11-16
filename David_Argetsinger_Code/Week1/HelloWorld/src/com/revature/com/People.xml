@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<people>
+	<person id="1">
+		<firstname>David</firstname>
+		<lastname>Argetsinger</lastname>
+		<age>222</age>
+	</person>
+	<person id="2">
+		<firstname>Eid</firstname>
+		<lastname>Etsinger</lastname>
+		<age>42</age>
+	</person>
+</people>
+
+<!--ctrl i formats ctrl shift i  --> 
