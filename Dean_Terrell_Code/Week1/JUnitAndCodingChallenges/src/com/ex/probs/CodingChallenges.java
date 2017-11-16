@@ -17,4 +17,10 @@ public class CodingChallenges {
 		}
 		return output;
 	}
+	
+	public boolean isEven(int i) {
+		if((i - (i / 2) * 2) > 0)
+			return false;
+		return true;
+	}
 }

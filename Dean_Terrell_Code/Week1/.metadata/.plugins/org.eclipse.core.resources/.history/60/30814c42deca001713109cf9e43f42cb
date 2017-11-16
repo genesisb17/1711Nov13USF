@@ -1,0 +1,35 @@
+package com.ex.probs;
+
+import java.util.ArrayList;
+
+public class Warmup {
+
+	public static void main(String[] args) {
+		ArrayList<Integer> primes = new ArrayList<Integer>();
+		
+		for(int i = 1; i <= 100; i++)
+			primes.add(i);
+		
+		for(int i: primes) {
+			if(isPrime(i))
+				System.out.println(i);
+		}
+		
+		System.out.println(5, 3);
+
+	}
+	
+	public static boolean isPrime(int num) {
+		if (num < 2) return false;
+		if (num == 2) return true;
+		if (num % 2 == 0) return false;
+		for (int i = 3; i * i <= num; i+= 2)
+			if (num % i == 0) return false;
+		return true;
+	}
+	
+	public static int minNum(int i, int k) {
+		return (i < k) ? i : k;
+	}
+
+}

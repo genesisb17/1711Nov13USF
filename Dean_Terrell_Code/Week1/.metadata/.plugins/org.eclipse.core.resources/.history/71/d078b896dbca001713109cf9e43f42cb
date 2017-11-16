@@ -1,0 +1,19 @@
+package com.ex.probs;
+
+import java.util.ArrayList;
+
+public class Warmup {
+
+	public static void main(String[] args) {
+		ArrayList<Integer> primes = new ArrayList<Integer>();
+
+	}
+
+	public static boolean isEven(int i) {
+		if((i - (i / 2) * 2) > 0)
+			return false;
+		return true;
+	}
+
+
+}

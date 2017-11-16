@@ -53,4 +53,10 @@ public class CodingChallengesTest {
 		String output = "daorliar";
 		assertEquals(output, c.reverseString(input));
 	}
+	
+	@Test
+	public void testIsEven() {
+		assertEquals(true, c.isEven(2));
+		assertEquals (false, c.isEven(3));
+	}
 }
