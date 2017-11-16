@@ -25,11 +25,7 @@ public class SerializeEx{
 		Object obj = null;
 		try(ObjectInputStream ois = new ObjectInputStream(new FileInputStream(filename))){
 			obj = ois.readObject();
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (ClassNotFoundException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return obj;

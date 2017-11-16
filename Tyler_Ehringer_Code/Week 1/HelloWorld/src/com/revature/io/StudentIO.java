@@ -7,6 +7,8 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class StudentIO {
 
@@ -34,19 +36,14 @@ public class StudentIO {
 	}
 	
 	static ArrayList<Student> readStudents() {
-		ArrayList<Student> students = new ArrayList<>();
+		List<Student> students = new ArrayList<Student>();
 		try(BufferedReader br = new BufferedReader(new FileReader(filename))){
-			br.lines().forEach(s -> {
-				String[] data = s.split(":");
-				students.add(new Student(data[0], Integer.parseInt(data[1])));
-			});
+			students = br.lines().map(s -> new Student(s.split(":")[0], Integer.parseInt(s.split(":")[1]))).collect(Collectors.toList());
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
-			
 			e.printStackTrace();
 		}
-		return students;
+		return (ArrayList<Student>) students;
 	}
-	
 }

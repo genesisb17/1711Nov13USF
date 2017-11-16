@@ -10,11 +10,18 @@ public class CodingChallenges {
 		return n <= 1 ? 1 : n * factorial(n - 1);
 	}
 
-	public String reverseString(String s) {
-		return s.length() <= 1 ? s : s.charAt(s.length() - 1) + reverseString(s.substring(0, s.length() - 1));
+	public static String reverseString(String s) {
+		return s.length() < 1 ? s : s.charAt(s.length() - 1) + reverseString(s.substring(0, s.length() - 1));
 	}
 	
-	public static void main(String[] args) {
+	public static int addStrings(String... strings){
+		return Arrays.stream(strings).map(Integer::parseInt).reduce(0, Integer::sum);
+		
+	}
+	
+	public static void main(String[] args){
+		
+		
 		StringBuilder sb = new StringBuilder("Hello");
 		sb.append(" goodBye");
 		sb.deleteCharAt(3);
@@ -28,6 +35,8 @@ public class CodingChallenges {
 		String s2 = "478";
 		System.out.println(addStrings(s1, s2));
 		
+	
+		
 		System.gc();
 		
 		Runtime run = Runtime.getRuntime();
@@ -36,7 +45,5 @@ public class CodingChallenges {
 		run.gc();
 	}
 	
-	public static int addStrings(String... strings) {
-		return Arrays.stream(strings).map(Integer::parseInt).reduce(0, Integer::sum);
-	}
+	
 }

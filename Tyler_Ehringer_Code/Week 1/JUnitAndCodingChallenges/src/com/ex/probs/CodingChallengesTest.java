@@ -38,7 +38,7 @@ public class CodingChallengesTest {
 	public void testReverse() {
 		String test = "can you reverse this?";
 		String expected = "?siht esrever uoy nac";
-		assertEquals(expected, c.reverseString(test));
+		assertEquals(expected, CodingChallenges.reverseString(test));
 	}
 
 	@Test

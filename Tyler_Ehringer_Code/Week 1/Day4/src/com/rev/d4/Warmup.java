@@ -1,9 +1,7 @@
 package com.rev.d4;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -17,18 +15,12 @@ public class Warmup {
 	}
 	
 	public void printPrimesTo100() {
-		IntStream.rangeClosed(1, 100)
+		IntStream.rangeClosed(1, 100).parallel()
 			.filter(i -> {
 				if(i == 1) return false;
-				boolean prime = true;
-				for(int p = 2; p <= Math.sqrt(i); p++) {
-					if(i % p == 0) {
-						prime = false;
-						break;
-					}
-				}
-				return prime;
-			}).forEach(System.out::println);
+				for(int p = 2; p <= Math.sqrt(i); p++) if(i % p == 0) return false;
+				return true;
+			}).forEach(System.out::println);	
 	}
 	
 	public void doSwitch(int n) {
@@ -63,7 +55,7 @@ public class Warmup {
 	}
 	
 	public int min(int a, int b) {
-		return a < b ? a : b;		
+		return a < b ? a : b;
 	}
 	
 	public static void main(String[] args) {

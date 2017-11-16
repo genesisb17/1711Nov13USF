@@ -18,9 +18,7 @@ public class WriteXML {
 	
 	public static void main(String[] args) {
 		try{
-			DocumentBuilderFactory dbfact = DocumentBuilderFactory.newInstance();
-			DocumentBuilder dbuilder = dbfact.newDocumentBuilder();
-			Document doc = dbuilder.newDocument();
+			Document doc = DocumentBuilderFactory.newInstance().newDocumentBuilder().newDocument();
 			
 			Element root = doc.createElement("cars");
 			doc.appendChild(root);
@@ -32,16 +30,14 @@ public class WriteXML {
 			cl.setAttribute("Company", "Datsun");
 			root.appendChild(cl);
 			
-			
-			TransformerFactory tf = TransformerFactory.newInstance();
-			Transformer tr = tf.newTransformer();
+			Transformer tr = TransformerFactory.newInstance().newTransformer();
 			
 			DOMSource source = new DOMSource(doc);
 			StreamResult result = new StreamResult(new File(filename));
 			tr.transform(source, result);
 			tr.transform(source, new StreamResult(System.out));
 		}catch(Exception e) {
-			
+			e.printStackTrace();
 		}
 	}
 	
