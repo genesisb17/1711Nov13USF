@@ -1,0 +1,8 @@
+package day4;
+
+public class People 
+{
+	String name;
+	int age;
+	String place;
+}

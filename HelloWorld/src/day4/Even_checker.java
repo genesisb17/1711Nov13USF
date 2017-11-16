@@ -1,10 +1,19 @@
 package day4;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 
+import com.revature.io.Student;
 public class Even_checker 
 {
-	
 	boolean test(int num)
 	{
 		String s;
@@ -68,5 +77,73 @@ public class Even_checker
 			//}
 		}
 		return j;
+	}
+	
+	//problem 4
+	void Switching(int x,int n)
+	{
+		switch(x)
+		{
+		case 1:
+			System.out.println(Math.sqrt(n));
+			break;
+		case 2:
+			DateFormat df = new SimpleDateFormat("dd/MM/yy HH:mm:ss");
+			Calendar calobj = Calendar.getInstance();
+			System.out.println(df.format(calobj.getTime()));
+			break;
+		case 3:
+			String s ="I am learning Core Java";
+			String[]s1=s.split(" ");
+			System.out.println(s1[0]);
+			break;
+		}
+		
+		}
+	People m = new People("Mickey Mouse",50,"Arizona");
+	People h = new People("Hulk Hogan",50,"Virgina");
+	People r = new People("Roger Rabbit",22,"Califonia");
+	People w = new People("Wonder Woman",18,"Montana");
+	
+
+	void WritetoFile(People p)
+	{
+		String filename = "src/logs/Data.txt";
+		try(BufferedWriter bw = new BufferedWriter(new FileWriter(filename,true)))
+		{
+			bw.write(p.toString());
+		}
+		catch(IOException e)
+		{
+			e.printStackTrace();
+		}
+	}
+	
+	static ArrayList<People> readPeople()
+	{
+		String filename = "src/logs/Data.txt";
+		ArrayList<People> students = new ArrayList<People>();
+		try(BufferedReader br = new BufferedReader(new FileReader(filename)))
+		{
+			String line = null;
+			while((line = br.readLine())!=null)
+			{
+				String[] about = line.split(":");
+				People p = new People();
+				p.setName(about[0]);
+				p.setAge(Integer.parseInt(about[1]));
+				students.add(p);
+				System.out.println(about[0]+" "+about[1]+" "+about[2]);
+			}
+		}
+		catch(FileNotFoundException e)
+		{
+			e.printStackTrace();
+		}
+		catch(IOException e)
+		{
+			e.printStackTrace();
+		}
+		return students;
 	}
 }
