@@ -14,7 +14,7 @@ public class SearchAndSorts {
 	 * 3. Depth First Search
 	 * 4. Bubble Sort (COMPLETE)
 	 * 5. Merge Sort (COMPLETE)
-	 * 6. Insertion Sort (COMPLETE)
+	 * 6. Insertion Sort
 	 */
 	public static void main(String[] args){
 		
@@ -38,13 +38,11 @@ public class SearchAndSorts {
 		
 		sortOps.put(1, ()-> SearchAndSortOps.bubbleSort(numArray));
 		sortOps.put(2, ()-> SearchAndSortOps.runMergeSort(numArray));
-		sortOps.put(3, ()-> SearchAndSortOps.insertionSort(numArray));
 		
 		System.out.println();
 		System.out.println("What type of sort would you like us to perform?");
 		System.out.println("1. Bubble Sort");
 		System.out.println("2. Merge Sort");
-		System.out.println("3. Insertion Sort");
 		
 		sortType = scan.nextInt();
 		scan.nextLine();
@@ -119,28 +117,15 @@ public class SearchAndSorts {
 		}
 		
 		public static int[] insertionSort(int[] arr){
-			
-			System.out.println("Running Insertion Sort...");
-			
 			for(int i = 1; i < arr.length; i++){
-				
-				int val = arr[i];
-				int j = i - 1;
-				
-				while(j >= 0 && val < arr[j]){
-					arr[j+1] = arr[j];
-					j = j - 1;
+				for(int j = 0; j < i; j++){
+					if(arr[i] < arr[j]){
+						int temp = arr[j];
+						arr[j] = arr[i];
+						arr[i] = temp;
+					}
 				}
-					
-				arr[j + 1] = val;
 			}
-			
-			System.out.println("Insertion Sort Completed!");
-			System.out.print("Sorted List: ");
-			Arrays.stream(arr).forEach(n -> System.out.print(n + ", "));
-			System.out.println();
-			System.out.println();
-			
 			return arr;
 		}
 		
@@ -159,6 +144,7 @@ public class SearchAndSorts {
 				for(int i = 0; i < arr.length; i++){
 					
 					if(i < arr.length - 1){
+						
 						if(arr[i] > arr[i + 1]){
 							int temp = arr[i + 1];
 							arr[i + 1] = arr[i];
