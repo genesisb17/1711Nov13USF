@@ -1,0 +1,7 @@
+package com.revature.designpatterns;
+
+public class ToolFactory {
+	public Tool work(String toolType){
+		return null;
+	}
+}
