@@ -20,7 +20,7 @@ public class Strings {
 		System.out.println("length of string 2: " + input2.length());
 		System.out.println("string 1 and string 2 are the same:"+input1.equals(input2));
 		
-		while(!input1.equals("")&&!input2.equals("")){
+		while(!input1.equals("")){
 			System.out.println("Input string 1. If done, just press enter.");
 			input1=sc.nextLine();
 			System.out.println("Input string 2. If done, just press enter.");

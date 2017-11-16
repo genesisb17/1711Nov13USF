@@ -29,10 +29,6 @@ public class StringsandThings {
 		strB.delete(2, 4);
 		System.out.println(strB);
 		
-		//replacing a substring with another string
-		strB.replace(0,3,"REPLACED");
-		System.out.println(strB);
-		
 	}
 	
 	static String testBuild(String sb){
