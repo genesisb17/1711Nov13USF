@@ -52,6 +52,10 @@ public class CodingChallengesTest {
 	public void testStringReversal() {
 		System.out.println("In stringReversal method");
 		assertEquals("gnirts", c.reverseString("string"));
+		assertEquals("a", c.reverseString("a"));
+		assertEquals("", c.reverseString(""));
+		assertEquals("ba", c.reverseString("ab"));
+		assertEquals("SPAC", c.reverseString("CAPS"));
 		assertNotEquals("string", c.reverseString("string"));
 	}
 
