@@ -56,5 +56,14 @@ public class CodingChallengesTest {
 		System.out.println(c.fact(5));
 		
 	}
+	
+	@Test
+	public void testReverseString() {
+		System.out.println("in test reverse string");
+		String expected = "ABC";
+		String actual = c.reverseString("CBA");
+		assertEquals(expected, actual);
+		System.out.println("Expected: " + expected + "\nActual: " + actual);
+	}
 
 }
