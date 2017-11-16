@@ -32,7 +32,7 @@ public abstract class Vehicle {
 		return this.passengerCapacity_;
 	}
 	
-	float loadCapacity() {
+	double loadCapacity() {
 		return 0;
 	}
 	
