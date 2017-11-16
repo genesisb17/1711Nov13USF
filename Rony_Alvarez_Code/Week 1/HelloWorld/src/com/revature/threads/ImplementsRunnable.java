@@ -1,0 +1,16 @@
+package com.revature.threads;
+
+public class ImplementsRunnable implements Runnable {
+
+	// 2 out of 2 ways to make a thread
+	// Runnable has only one abstract method
+	@Override
+	public void run() {
+		System.out.println("In Implements Runnable");
+		for(int i = 0; i <10; i++) {
+			System.out.println(i + "in ImplementsRunnable");
+		}
+		
+	}
+
+}

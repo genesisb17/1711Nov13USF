@@ -1,11 +1,20 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
 <fullyQualifiedTypeName name="com.revature.hello.UnderstandingConstructors"/>
-<fullyQualifiedTypeName name="java.util.Arrays"/>
 <fullyQualifiedTypeName name="java.io.FileReader"/>
 <fullyQualifiedTypeName name="java.io.Serializable"/>
 <fullyQualifiedTypeName name="java.io.FileOutputStream"/>
-<fullyQualifiedTypeName name="org.w3c.dom.Document"/>
 <fullyQualifiedTypeName name="org.w3c.dom.Element"/>
 <fullyQualifiedTypeName name="org.w3c.dom.Attr"/>
+<fullyQualifiedTypeName name="java.util.ArrayList"/>
+<fullyQualifiedTypeName name="java.util.stream.Collectors"/>
+<fullyQualifiedTypeName name="java.util.List"/>
+<fullyQualifiedTypeName name="com.revature.io.User"/>
+<fullyQualifiedTypeName name="java.util.Arrays"/>
+<fullyQualifiedTypeName name="javax.xml.parsers.DocumentBuilderFactory"/>
+<fullyQualifiedTypeName name="org.w3c.dom.Document"/>
+<fullyQualifiedTypeName name="org.w3c.dom.Node"/>
+<fullyQualifiedTypeName name="org.xml.sax.Parser"/>
+<fullyQualifiedTypeName name="org.xml.sax.Attributes"/>
+<fullyQualifiedTypeName name="java.util.Scanner"/>
 </qualifiedTypeNameHistroy>
