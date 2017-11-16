@@ -103,6 +103,7 @@ public class Lab1 {
 	}
 	
 	public static void readFile(){
+		ArrayList<Student> students = new ArrayList<Student>();
 		String filename = "src/logs/data.txt";
 		try(BufferedReader br = 
 			new BufferedReader(
