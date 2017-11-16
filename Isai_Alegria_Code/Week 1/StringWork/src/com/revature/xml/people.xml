@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<people>
+	<person id ="1">
+		<firstname>Isai</firstname>
+		<lastname>Alegria</lastname>
+		<age>24</age>
+	</person>
+	<person id = "2">
+		<firstname>Barry</firstname>
+		<lastname>Sanders</lastname>
+		<age>40</age>
+	</person>
+</people>
