@@ -16,23 +16,28 @@ public class Student implements Serializable {
 	 */
 	private static final long serialVersionUID = -1706602523015578910L;
 	
-	private String name;
+	private String firstname;
+	private String lastname;
 	private int age;
+	private String state;
 	
 	public Student() {}
 	
-	public Student(String name, int age) {
+	public Student(String fname, String lname, int age, String state) {
 		super();
-		this.name = name;
+		this.firstname = fname;
+		this.lastname = lname;
 		this.age = age;
+		this.state = state;
 	}
 
 	public String getName() {
-		return name;
+		return this.firstname.concat(" " + this.lastname);
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setName(String fname, String lname) {
+		this.firstname = fname;
+		this.lastname = lname;
 	}
 
 	public int getAge() {
@@ -42,10 +47,24 @@ public class Student implements Serializable {
 	public void setAge(int age) {
 		this.age = age;
 	}
+	
+	public String getState() {
+		return this.state;
+	}
+	
+	public void setState(String state) {
+		this.state = state;
+	}
+	
+	public void formattedPrint() {
+		System.out.println("Name: " + this.getName());
+		System.out.println("Age: " + this.getAge() + " years");
+		System.out.println("State: " + this.getState() + " state\n");
+	}
 
 	@Override
 	public String toString() {
-		return name + ":" + age + "\n";
+		return this.getName() + ":" + this.getAge() + ":" +  this.getState() + "\n";
 	}
 	
 }

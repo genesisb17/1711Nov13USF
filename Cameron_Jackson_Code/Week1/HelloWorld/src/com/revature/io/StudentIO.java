@@ -43,7 +43,7 @@ public class StudentIO {
 			while ((line = br.readLine()) != null) {
 				String[] member = line.split(":");
 				Student temp = new Student();
-				temp.setName(member[0]);
+				temp.setName(member[0], member[1]);
 				temp.setAge(Integer.parseInt(member[1]));
 				students.add(temp);
 			}
