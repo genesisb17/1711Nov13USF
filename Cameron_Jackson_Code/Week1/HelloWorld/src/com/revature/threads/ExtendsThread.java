@@ -5,8 +5,8 @@ public class ExtendsThread extends Thread {
 	
 	public void run() {
 		System.out.println("In ExtendsThread");
-		for (int i = 0; i < 10; ++i) {
-			System.out.println(i + " In ExtendsThread");
+		for (int i = 0; i < 1000; ++i) {
+			if (i%1000 == 0) System.out.println(i + " in ExtendsThread");
 		}
 	}
 }
