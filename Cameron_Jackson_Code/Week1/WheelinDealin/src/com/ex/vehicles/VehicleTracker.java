@@ -58,7 +58,7 @@ public class VehicleTracker {
 	}
 	
 	static int maxSegmentSize = 100;
-	static String BSN = "BAD SERIAL";
+	
 	
 	static String filename = "src/logs/segment2.txt";
 	/*
@@ -113,7 +113,7 @@ public class VehicleTracker {
 				// Create a vehicle of the appropriate type using the data read in the previous steps
 //				System.out.println("i - offSet: " + (i-offSet));
 //				System.out.println("VehicleArray size: " + vehicleArray.length);
-				CreateVehicle(vehicleArray, info, i-offSet);
+				AddVehicle(vehicleArray, info, i-offSet);
 				
 				// increase lineNum
 				++lineNum; // should be the same is i
@@ -159,49 +159,9 @@ public class VehicleTracker {
 		return dataArray;
 	}
 	
-	static void CreateVehicle(Vehicle[] vArr, VehicleInfo info, int index) {
-		Vehicle vObj;
-//		System.out.println("SN: " + info.sn);
-		// Check to see what the vehicleType is
-		switch (info.vt) {
-		case VEHICLE:
-			vObj = new Vehicle(info.sn, info.pc);
-			++info.unkNum;
-			info.totalToll += vObj.toll();
-			break;
-		case CAR:
-			vObj = new Car(info.sn, info.pc);
-			++info.carNum;
-			info.totalToll += vObj.toll();
-			break;
-		case TRUCK:
-			vObj = new Truck(info.sn, info.pc, info.dl);
-			++info.trkNum;
-			info.totalToll += vObj.toll();
-			break;
-		case VAN:
-			vObj = new Van(info.sn, info.pc, info.dl, info.length, info.width, info.height);
-			++info.vanNum;
-			info.tons += vObj.loadCapacity();
-			info.totalToll += vObj.toll();
-			break;
-		case TANKER:
-			vObj = new Tanker(info.sn, info.pc, info.dl, info.length, info.radius);
-			++info.tnkNum;
-			info.tons += vObj.loadCapacity();
-			info.totalToll += vObj.toll();
-			break;
-		case FLATBED:
-			vObj = new Flatbed(info.sn, info.pc, info.dl, info.length, info.width);
-			++info.fltNum;
-			info.tons += vObj.loadCapacity();
-			info.totalToll += vObj.toll();
-			break;
-		default:
-			vObj = new Vehicle(BSN, 0);
-			++info.badSNum;
-		}
-		vArr[index] = vObj;
+	static void AddVehicle(Vehicle[] vArr, VehicleInfo info, int index) {
+		VehicleFactory vf = new VehicleFactory();
+		vArr[index] = vf.CreateVehicle(info);
 	}
 
 	public static void Summary(Vehicle[] vArr, VehicleInfo info) {
@@ -232,7 +192,7 @@ public class VehicleTracker {
 		System.out.println("===============");
 		for (int i = 0; i < vArr.length; ++i) {
 			System.out.print(vArr[i].shortName() + "  " +
-					df.format(vArr[i].toll()) + "  " + vArr[i].passengerCapacity() + 
+					df.format(vArr[i].toll()) + "  " + vArr[i].passengerCapacity() + "  " +
 					df.format(vArr[i].loadCapacity()) + "  ");
 			switch (Vehicle.SnDecode(vArr[i].serialNumber())) {
 			case BADSN:
