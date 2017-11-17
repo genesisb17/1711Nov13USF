@@ -1,4 +1,4 @@
-package Day4Lab;
+package Q14;
 
 import java.util.Date;
 import java.util.Scanner;
