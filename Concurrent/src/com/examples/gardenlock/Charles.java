@@ -3,10 +3,6 @@ package com.examples.gardenlock;
 
 import java.util.Random;
 
-/**
- *
- * @author Tim
- */
 public class Charles implements Runnable{
     
     Garden garden;
