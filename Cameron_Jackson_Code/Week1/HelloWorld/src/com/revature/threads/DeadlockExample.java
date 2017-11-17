@@ -7,9 +7,8 @@ import com.revature.designpatterns.Singleton;
 public class DeadlockExample {
 	/*
 	 * Item managed will be a Singleton object
-	 * since only one Singleton object can exist, 
-	 * multiple threads accessing object could have 
-	 * deadlock issues
+	 * THIS CLASS IS NOT THREADSAFE
+	 * 
 	 */
 	public static void main(String[] args) {
 		Singleton itemHolder = Singleton.getInstance();
