@@ -21,6 +21,8 @@ public class DeadlockExample {
 		
 		// Start threads
 		// ** They have to be stopped manually, there's no termination condition
+		producerThread.start();
+		consumerThread.start();
 	}
 	
 	/*
@@ -30,20 +32,45 @@ public class DeadlockExample {
 	 */
 	static void Producer(Singleton s) {
 		Random rand = new Random();
-		int item;
-		while (true) {
-			item = rand.nextInt(100) + 1; // generate random number from 1 to 100
-			
+		Integer item;
+		synchronized(s) { // synchronize the item object to promote thread safety
+			while (true) {
+				if (s.getCount() == s.getMaxCount()) { // getCount and getMaxCount return primitive int
+					try {
+						s.wait();
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+				item = rand.nextInt(100) + 1; // generate random number from 1 to 100
+				s.produceItem(item);
+				System.out.println("Produced: " + item + ", Items: " + s.getCount());
+				if (s.getCount() == 1) s.notify();
+			}
 		}
 	}
 	
 	/*
 	 * Consumer()
-	 * will use the Singleton object to consume an item and remvoe it 
+	 * will use the Singleton object to consume an item and remove it 
 	 * from the list
 	 */
 	static void Consumer(Singleton s) {
-		
+		synchronized(s) {
+			while (true) {
+				if (s.getCount() == 0) {
+					try {
+						s.wait();
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+				System.out.println("Consumed: " + s.consumeItem());
+				if (s.getCount() < s.getMaxCount()) s.notify();
+			}
+		}
 	}
 }
 
