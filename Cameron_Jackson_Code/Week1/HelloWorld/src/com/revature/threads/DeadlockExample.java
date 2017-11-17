@@ -1,5 +1,7 @@
 package com.revature.threads;
 
+import java.util.Random;
+
 import com.revature.designpatterns.Singleton;
 
 public class DeadlockExample {
@@ -16,6 +18,9 @@ public class DeadlockExample {
 		
 		// Anonymous class for Consumer to implement run
 		Thread consumerThread = new Thread(() -> Consumer(itemHolder));
+		
+		// Start threads
+		// ** They have to be stopped manually, there's no termination condition
 	}
 	
 	/*
@@ -24,7 +29,12 @@ public class DeadlockExample {
 	 * to list
 	 */
 	static void Producer(Singleton s) {
-		
+		Random rand = new Random();
+		int item;
+		while (true) {
+			item = rand.nextInt(100) + 1; // generate random number from 1 to 100
+			
+		}
 	}
 	
 	/*
