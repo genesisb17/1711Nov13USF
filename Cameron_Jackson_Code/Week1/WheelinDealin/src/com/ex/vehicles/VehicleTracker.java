@@ -61,6 +61,9 @@ public class VehicleTracker {
 	static String BSN = "BAD SERIAL";
 	
 	static String filename = "src/logs/segment2.txt";
+	/*
+	 * MAIN METHOD
+	 */
 	public static void main(String[] args) throws NumberFormatException, IOException {
 		Vehicle[] vehicleArray;
 		VehicleInfo info = VehicleInfo.getInstance();
@@ -130,6 +133,7 @@ public class VehicleTracker {
 		} // END WHILE
 		System.out.println("Tracking Complete.");
 	}
+	// END MAIN METHOD
 
 	static ArrayList<String[]> SafeRead(BufferedReader br) throws IOException {
 		String line = null;
