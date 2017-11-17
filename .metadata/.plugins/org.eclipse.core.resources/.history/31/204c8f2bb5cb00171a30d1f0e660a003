@@ -1,0 +1,21 @@
+package day5.LabAssignment;
+
+import java.util.ArrayList;
+
+public class Problem2 {
+public static void main(String[]args)
+{
+ArrayList<Integer> a = new ArrayList<Integer>();
+int[] b = new int[25];
+b[0]=0;
+b[1]=1;
+System.out.println(a.get(0));
+System.out.print(a.get(1));
+int temp; 
+	for(int i =2;i<25;i++)
+	{
+		b[i]=b[i-1]+b[i-2];
+		System.out.println(b[i]);
+	}
+}
+}

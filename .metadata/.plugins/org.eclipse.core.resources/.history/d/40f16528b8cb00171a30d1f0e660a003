@@ -1,0 +1,20 @@
+package day5.LabAssignment;
+
+import static org.junit.Assert.*;
+
+public class Test {
+
+	@org.junit.Test
+	public void test() {
+		Problem p = new Problem();
+		//p.Problem2();
+		p.Problem1(p.b);
+		p.Problem2();
+		p.Problem3("tnert");
+		System.out.println("Problem 4");
+		System.out.println(p.Problem4(4));
+		System.out.println("Problem 5");
+		p.Problem5("good job", 5);
+		p.Problem6(4);
+	}
+}

@@ -1,0 +1,44 @@
+package day5.LabAssignment;
+
+import java.util.ArrayList;
+
+public class Problem 
+{
+
+	int[] b = {1,0,5,6,3,2,3,7,9,8,4};
+	void bubblesort(int[] b)
+	{
+		int temp;
+	for(int i=0;i<b.length;i++)
+	{
+		for(int j=1; j < b.length;j++)
+		{
+		     if(b[j-1] > b[j]){  
+                 //swap elements  
+                 temp = b[j-1];  
+                 b[j-1] = b[j];  
+                 b[j] = temp;  
+         }    
+		}
+	}
+	for(int i=0;i<b.length;i++)
+	{
+		System.out.println(b[i]);
+	}
+	}
+	
+	void Problem2() {
+		ArrayList<Integer> a = new ArrayList<Integer>();
+		int[] b = new int[25];
+		b[0]=0;
+		b[1]=1;
+		System.out.println(a.get(0));
+		System.out.print(a.get(1)); 
+			for(int i =2;i<25;i++)
+			{
+				b[i]=b[i-1]+b[i-2];
+				System.out.println(b[i]);
+			}
+			}
+
+}

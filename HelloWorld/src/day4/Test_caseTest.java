@@ -8,7 +8,7 @@ import org.junit.Test;
 
 public class Test_caseTest 
 {
-	Even_checker e;
+	Assignments e;
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 	//System.out.println("BEfore Class");
@@ -20,7 +20,7 @@ public class Test_caseTest
 	}
 	@Before
 	public void setUp() throws Exception {
-	e = new Even_checker();
+	e = new Assignments();
 	}
 
 	@After
