@@ -12,6 +12,9 @@ import java.util.ArrayList;
  * Sunpass Tracker.
  * project idea taken from:
  * https://www.cs.fsu.edu/~lacher/courses/COP3330/spring15/assigns/proj1.html
+ * 
+ * Demonstrates polymorphism by creating objects of various different vehicle types
+ * at runtime and managing them with a single main Vehicle typed array.
  */
 public class VehicleTracker {
 
