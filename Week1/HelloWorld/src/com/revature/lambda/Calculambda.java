@@ -7,28 +7,23 @@ public class Calculambda {
 		
 		
 
-		Calculable add = (a, b) -> {
-			if(a < 0){
-				throw new Exception();
-			}
-			else{
-				return a + b;
-			}
+//		Calculable add = (a, b) -> {
+//				return a + b;
+//		};
+
+		
+		Calculable divide = (a, b) ->{
+			//if (b < 0) throw new NumberFormatException();
+			//else
+				return a/b;
 		};
-
-		try {
-			System.out.println(add.calculate(3,  4));
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-
-
+		
+		divide.calculate(5, 2);
 	}
 
 }
 
 @FunctionalInterface
 interface Calculable {
-	double calculate(int a, int b) throws Exception;
+	double calculate(int a, int b) throws NumberFormatException;
 }
