@@ -1,7 +1,10 @@
 package com.revature.designpatterns;
 
+import java.util.Deque;
+
 public class Singleton {
-	int count = 0;
+	private static int count = 0; // number of "items"
+	private static Deque<Integer> stack; // just something to threads to manipulate
 	private static Singleton singleton = new Singleton(); // this is the only instance that will ever exist
 	
 	/*
@@ -15,7 +18,17 @@ public class Singleton {
 		return singleton;
 	}
 	
-	public void helllo() {
+	public void hello() {
 		System.out.println("he singleton!");
+	}
+	
+	public void produceItem(Integer item) { // add "item" to list
+		++count;
+		stack.push(item);
+	}
+	
+	public Integer consumeItem() {
+		--count;
+		return stack.pop();
 	}
 }
