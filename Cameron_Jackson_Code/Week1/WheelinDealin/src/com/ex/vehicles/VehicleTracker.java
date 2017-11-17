@@ -241,16 +241,10 @@ public class VehicleTracker {
 				System.out.print("(N/A)  ");
 				break;
 			case FLATBED:
-				System.out.print(((Flatbed)vArr[i]).DOTLicense() + "  ");
-				break;
 			case TANKER:
-				System.out.print(((Tanker)vArr[i]).DOTLicense() + "  ");
-				break;
+			case VAN:
 			case TRUCK:
 				System.out.print(((Truck)vArr[i]).DOTLicense() + "  ");
-				break;
-			case VAN:
-				System.out.print(((Van)vArr[i]).DOTLicense() + "  ");
 				break;
 			default:
 				break;
