@@ -21,6 +21,7 @@ public class Assignment5_3380 {
 		for(int i = 0; i < customernum; i++){
                     id = i;
                     //executes the threads
+                    System.out.println("Starting thread #" + i);
                     Runnable cis = new Customer(id, barberShop);
                     executor.execute(cis);
                     
