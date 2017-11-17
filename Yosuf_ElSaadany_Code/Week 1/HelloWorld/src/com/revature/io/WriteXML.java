@@ -43,13 +43,14 @@ public class WriteXML {
 			attr.setValue("Ferrari");
 			lux.setAttributeNode(attr);
 			
-			
+			/*
 			//Attribute 2
 			Element Model = doc.createElement("Model");
 			lux.appendChild(Model);
-			/*
+			
 			Attr attr2 = doc.createAttribute("California");
-			attr2.setValue("California");*/
+			attr2.setValue("California");
+			*/
 			
 			// Element 2
 			Element Eco = doc.createElement("Economy");

@@ -5,7 +5,6 @@ import java.io.Serializable;
 // POJO: Plain Ol' Java Object
 public class Student implements Serializable {
 
-
 	/*
 	 * the serialversionUID is used as a version control in a 
 	 * Serializable class. If you do not explicitly declare one,
