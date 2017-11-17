@@ -39,6 +39,9 @@ public class WriteXML {
 			Element econ = doc.createElement("economy");
 			root.appendChild(econ);
 			
+			Element toy = doc.createElement("toy");
+			root.appendChild(toy);
+			
 			Attr attr = doc.createAttribute("company");
 			attr.setValue("Ferrari");
 			lux.setAttributeNode(attr);
@@ -46,6 +49,10 @@ public class WriteXML {
 			Attr attr2 = doc.createAttribute("company");
 			attr2.setValue("Toyota");
 			econ.setAttributeNode(attr2);
+			
+			Attr attr3 = doc.createAttribute("company");
+			attr3.setValue("HotWheels");
+			toy.setAttributeNode(attr3);
 			
 			
 			//write content to xml
