@@ -1,10 +1,8 @@
 package com.ex.vehicles;
 
-import com.ex.vehicles.VehicleTracker.VehicleInfo;
-
 public class VehicleFactory {
 	static String BSN = "BAD SERIAL";
-	public Vehicle CreateVehicle(VehicleInfo info) {
+	public Vehicle CreateVehicle(Vehicle.VehicleInfo info) {
 		Vehicle vObj;
 //		System.out.println("SN: " + info.sn);
 		// Check to see what the vehicleType is

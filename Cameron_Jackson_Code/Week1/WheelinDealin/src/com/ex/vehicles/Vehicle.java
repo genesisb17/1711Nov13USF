@@ -10,6 +10,45 @@ package com.ex.vehicles;
  */
 public class Vehicle {
 
+	/*
+	 * VehicleInfo only holds general information pertaining
+	 * to vehicles to help with object creation
+	 */
+	static class VehicleInfo { 
+		VehicleType vt;
+		int vps; // number of vehicles per segment
+		int carNum, trkNum, vanNum, 
+			fltNum, tnkNum, unkNum, badSNum;
+		int length, width, height, radius;
+		int pc; // passenger capacity
+		double tons;
+		double totalToll;
+		String sn; // Serial Number
+		String dl; // DOTLicense
+		private static VehicleInfo vinfo = new VehicleInfo();
+		
+		private VehicleInfo() {}
+		
+		public static VehicleInfo getInstance() {
+			return vinfo;
+		}
+		
+		public void resetFields() {
+			carNum = trkNum = vanNum = fltNum = 
+					tnkNum = unkNum = badSNum = 0;
+			tons = 0;
+			totalToll = 0;
+			
+			// the following are not really necessary as the variables are just overwritten 
+			// as opposed to being incremented
+			vps = 0;
+			length = width = height = radius = 0;
+			pc = 0; 
+			sn = null;
+			dl = null;
+		}
+	}
+	
 	// instances
 	private String serialNumber_;
 	private int passengerCapacity_;

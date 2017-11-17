@@ -18,44 +18,44 @@ import java.util.ArrayList;
  */
 public class VehicleTracker {
 
-	/*
-	 * VehicleInfo only holds general information pertaining
-	 * to vehicles to help with object creation
-	 */
-	static class VehicleInfo { 
-		VehicleType vt;
-		int vps; // number of vehicles per segment
-		int carNum, trkNum, vanNum, 
-			fltNum, tnkNum, unkNum, badSNum;
-		int length, width, height, radius;
-		int pc; // passenger capacity
-		double tons;
-		double totalToll;
-		String sn; // Serial Number
-		String dl; // DOTLicense
-		private static VehicleInfo vinfo = new VehicleInfo();
-		
-		private VehicleInfo() {}
-		
-		public static VehicleInfo getInstance() {
-			return vinfo;
-		}
-		
-		public void resetFields() {
-			carNum = trkNum = vanNum = fltNum = 
-					tnkNum = unkNum = badSNum = 0;
-			tons = 0;
-			totalToll = 0;
-			
-			// the following are not really necessary as the variables are just overwritten 
-			// as opposed to being incremented
-			vps = 0;
-			length = width = height = radius = 0;
-			pc = 0; 
-			sn = null;
-			dl = null;
-		}
-	}
+//	/*
+//	 * VehicleInfo only holds general information pertaining
+//	 * to vehicles to help with object creation
+//	 */
+//	static class VehicleInfo { 
+//		VehicleType vt;
+//		int vps; // number of vehicles per segment
+//		int carNum, trkNum, vanNum, 
+//			fltNum, tnkNum, unkNum, badSNum;
+//		int length, width, height, radius;
+//		int pc; // passenger capacity
+//		double tons;
+//		double totalToll;
+//		String sn; // Serial Number
+//		String dl; // DOTLicense
+//		private static VehicleInfo vinfo = new VehicleInfo();
+//		
+//		private VehicleInfo() {}
+//		
+//		public static VehicleInfo getInstance() {
+//			return vinfo;
+//		}
+//		
+//		public void resetFields() {
+//			carNum = trkNum = vanNum = fltNum = 
+//					tnkNum = unkNum = badSNum = 0;
+//			tons = 0;
+//			totalToll = 0;
+//			
+//			// the following are not really necessary as the variables are just overwritten 
+//			// as opposed to being incremented
+//			vps = 0;
+//			length = width = height = radius = 0;
+//			pc = 0; 
+//			sn = null;
+//			dl = null;
+//		}
+//	}
 	
 	static int maxSegmentSize = 100;
 	
@@ -66,7 +66,7 @@ public class VehicleTracker {
 	 */
 	public static void main(String[] args) throws NumberFormatException, IOException {
 		Vehicle[] vehicleArray;
-		VehicleInfo info = VehicleInfo.getInstance();
+		Vehicle.VehicleInfo info = Vehicle.VehicleInfo.getInstance();
 		BufferedReader br = new BufferedReader(new FileReader(filename));
 		
 		// anonymous method to read number of cars in segment
@@ -159,12 +159,12 @@ public class VehicleTracker {
 		return dataArray;
 	}
 	
-	static void AddVehicle(Vehicle[] vArr, VehicleInfo info, int index) {
+	static void AddVehicle(Vehicle[] vArr, Vehicle.VehicleInfo info, int index) {
 		VehicleFactory vf = new VehicleFactory();
 		vArr[index] = vf.CreateVehicle(info);
 	}
 
-	public static void Summary(Vehicle[] vArr, VehicleInfo info) {
+	public static void Summary(Vehicle[] vArr, Vehicle.VehicleInfo info) {
 		DecimalFormat df = new DecimalFormat(".##");
 		System.out.println("Segment Summary");
 		System.out.println("===============");
