@@ -1,0 +1,8 @@
+package com.revature.threads;
+
+public class Producer implements Runnable {
+	@Override
+	public void run{
+		
+	}
+}

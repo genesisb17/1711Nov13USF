@@ -1,0 +1,10 @@
+package com.revature.threads;
+
+public class Blue implements Runnable {
+
+	@Override
+	public void run() {
+		System.out.println("Blue rules.");
+	}
+
+}

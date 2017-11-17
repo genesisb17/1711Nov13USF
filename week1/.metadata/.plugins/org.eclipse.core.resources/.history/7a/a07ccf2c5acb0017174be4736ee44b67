@@ -1,0 +1,31 @@
+package com.revature.threads;
+
+
+
+public class RedvsBlueDeadlock {
+	
+	static boolean lock1=false;
+	static boolean lock2=false;
+	
+	public static void main(String[] args) {
+		Red r = new Red();
+		Blue b = new Blue();
+		
+		Thread red= new Thread(r);
+		Thread blue= new Thread(b);
+		
+		red.start();
+		blue.start();
+		
+		if(red.isAlive()) {
+			blue.wait();
+		}
+		
+		if(blue.isAlive()) {
+			red.wait();
+		}
+		
+		if(red.)
+
+	}
+}

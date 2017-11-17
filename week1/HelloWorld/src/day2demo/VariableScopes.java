@@ -1,6 +1,12 @@
 package day2demo;
 
 public class VariableScopes {
+
+	
+	//class vars aka static
+	static int counter;
+	static boolean isActive;
+	
 	/*
 	 * instance variables have default values
 	 */
@@ -15,11 +21,8 @@ public class VariableScopes {
 	char charInst;
 	Object objInst;
 	
-	//class vars aka static
-	static int counter;
-	static boolean isActive;
-	
 	public static void main(String[] args){
+		
 		System.out.println("int instance var default = "+ intInst);
 		System.out.println("int static var default = "+ counter);
 	}

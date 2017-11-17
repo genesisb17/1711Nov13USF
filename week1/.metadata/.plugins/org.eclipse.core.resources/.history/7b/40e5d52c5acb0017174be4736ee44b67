@@ -1,0 +1,14 @@
+package com.revature.threads;
+
+public class Red implements Runnable {
+
+	@Override
+	public void run() {
+		while(true) {
+				System.out.println("Red rules.");
+		}
+	}
+
+
+
+}

@@ -1,0 +1,8 @@
+package com.revature.threads;
+
+public class MultithreadingIntro {
+	public static void main(String[] args) {
+		ExtendsTrhead et=new ExtendsThread();
+		et.run();
+	}
+}

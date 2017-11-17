@@ -1,0 +1,20 @@
+package day4demo;
+
+import java.util.ArrayList;
+
+public class warmup {
+	public static void main(String[] args) {
+		ArrayList<Integer> nums=new ArrayList<>();
+		for(int i=1;i<=100;i++){
+			nums.add(i);
+		}
+		System.out.println(nums);
+	} 
+	
+	boolean isEven(int num){
+		int divide=num/2;
+		return divide*2==num;
+	}
+	
+	
+}
