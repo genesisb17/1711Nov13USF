@@ -2,16 +2,17 @@ package com.ex.vehicles;
 
 /*
  * Vehicle class
+ * Subclasses: Car, Truck, Van, Tanker, Flatbed
  * Only deals with things that don't fly
  * Also doesn't include trains
  * Project idea taken from: 
  * https://www.cs.fsu.edu/~lacher/courses/COP3330/spring15/assigns/proj1.html
  */
-public abstract class Vehicle {
+public class Vehicle {
 
 	// instances
-	String serialNumber_;
-	int passengerCapacity_;
+	private String serialNumber_;
+	private int passengerCapacity_;
 
 	// methods
 	public Vehicle() { 
@@ -62,6 +63,4 @@ public abstract class Vehicle {
 			return VehicleType.BADSN;
 		}
 	}
-	
-
 }

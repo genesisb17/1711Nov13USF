@@ -1,9 +1,13 @@
 package com.ex.vehicles;
 
+/*
+ * Truck Class
+ * Extends from Vehicle
+ */
 public class Truck extends Vehicle {
 
 	// instances
-	String DOTLicense_;
+	private String DOTLicense_;
 	
 	// methods
 	public Truck() {

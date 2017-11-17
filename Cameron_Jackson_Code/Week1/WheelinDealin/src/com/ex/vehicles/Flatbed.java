@@ -1,5 +1,11 @@
 package com.ex.vehicles;
 
+/*
+ * Flatbed Class
+ * Extends from Vehicle
+ * Uses Plane helper class to store and calulate
+ * dimensions of vehicle
+ */
 public class Flatbed extends Vehicle {
 	
 	class Plane {

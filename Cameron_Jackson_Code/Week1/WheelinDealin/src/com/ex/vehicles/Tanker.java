@@ -1,5 +1,11 @@
 package com.ex.vehicles;
 
+/*
+ * Tanker Class
+ * Extends Vehicle
+ * Uses Cylinder helper class to store and calculate
+ * dimensions of vehicle
+ */
 public class Tanker extends Vehicle {
 
 	class Cylinder {
@@ -13,7 +19,8 @@ public class Tanker extends Vehicle {
 		}
 		
 		double Volume() {
-			return this.length*this.radius;
+			double vol = 2 * Math.PI * radius * length; 
+			return vol;
 		}
 	}
 	

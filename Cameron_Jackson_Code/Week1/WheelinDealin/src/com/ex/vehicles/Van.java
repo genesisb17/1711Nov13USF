@@ -1,5 +1,11 @@
 package com.ex.vehicles;
 
+/*
+ * Van Class
+ * Extends Vehicle class
+ * Uses Box helper class to store and calculate 
+ * dimensions of vehicle
+ */
 public class Van extends Vehicle {
 
 	class Box {

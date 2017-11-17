@@ -1,5 +1,9 @@
 package com.ex.vehicles;
 
+/*
+ * Car Class
+ * Extends from Vehicle
+ */
 public class Car extends Vehicle {
 	
 	// methods
