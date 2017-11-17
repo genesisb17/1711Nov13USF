@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<people>
+
+	<person id="1">
+		<firstname>Wezley</firstname>
+		<lastname>Singleton</lastname>
+		<age>27</age>
+	</person>
+	
+	<person id="2">
+		<firstname>Satoshi</firstname>
+		<lastname>Nakamoto</lastname>
+		<age>99</age>
+	</person>
+	
+	
+</people>
+
+<!-- this is an XML comment -->
