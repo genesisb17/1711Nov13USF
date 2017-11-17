@@ -8,20 +8,20 @@ public class MainClass {
 		/*
 		 * SINGLETON
 		 * must use the getInstance() method to 
-		 * instanctiate singleton class
+		 * instantiate singleton class
 		 */
-		Singleton single = Singleton.getInstance();
-		single.helllo();
-		System.out.println(single.count);
-		
-		Singleton another = Singleton.getInstance();
-		another.count++;
-		System.out.println(single.count);
+//		Singleton single = Singleton.getInstance();
+//		single.hello();
+//		System.out.println(single.count);
+//		
+//		Singleton another = Singleton.getInstance();
+//		another.count++;
+//		System.out.println(single.count);
 		
 		/*
 		 * FACTORY DESIGN PATTERN
-		 * Here, we create an object witout exposing
-		 * creation logic to the client. We refre to the 
+		 * Here, we create an object without exposing
+		 * creation logic to the client. We refer to the 
 		 * newly created object using a common interface
 		 */
 		

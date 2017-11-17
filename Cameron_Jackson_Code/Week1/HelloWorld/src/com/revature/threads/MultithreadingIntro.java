@@ -27,7 +27,7 @@ public class MultithreadingIntro {
 		Thread isThread = new Thread(ir); // ImplementsRunnable doesn't have start method
 										  // must be attached to thread
 		
-		//anonymous class to extend run()
+		//anonymous class to implement run()
 		Runnable anonRun = new Runnable() { 
 			@Override
 			public void run() {

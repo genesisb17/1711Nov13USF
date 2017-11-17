@@ -10,7 +10,7 @@ public class Singleton {
 	/*
 	 * create private constructor
 	 * this prevents any other class from calling it
-	 * and instanctiating an object of the class
+	 * and instantiating an object of the class
 	 */
 	private Singleton() {}
 	
@@ -27,7 +27,7 @@ public class Singleton {
 		stack.push(item);
 	}
 	
-	public Integer consumeItem() {
+	public Integer consumeItem() { // remove "item from list
 		--count;
 		return stack.pop();
 	}
