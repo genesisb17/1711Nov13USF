@@ -28,7 +28,7 @@ public class Truck extends Vehicle {
 		return 10.00; // toll for trucks
 	}
 	
-	String DOTLicense() {
+	public String DOTLicense() {
 		return this.DOTLicense_;
 	}
 	

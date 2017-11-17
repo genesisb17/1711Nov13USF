@@ -6,7 +6,7 @@ package com.ex.vehicles;
  * Uses Cylinder helper class to store and calculate
  * dimensions of vehicle
  */
-public class Tanker extends Vehicle {
+public class Tanker extends Truck {
 
 	class Cylinder {
 		private int length;
@@ -27,12 +27,13 @@ public class Tanker extends Vehicle {
 	private Cylinder cylinder;
 	
 	public Tanker() {
-		super("5", 0);
+		super("5", 0, null);
 		cylinder = new Cylinder(0,0);
 	}
 
-	public Tanker(String serialNumber_, int passengerCapacity_, int l, int r) {
-		super(serialNumber_, passengerCapacity_);
+	public Tanker(String serialNumber_, int passengerCapacity_, 
+			String DOTLicense, int l, int r) {
+		super(serialNumber_, passengerCapacity_, DOTLicense);
 		cylinder = new Cylinder(l,r);
 	}
 	
@@ -43,4 +44,9 @@ public class Tanker extends Vehicle {
 	public String shortName() {
 		return "TNK";
 	}
+	
+	double toll() {
+		return 10.00; // toll for trucks
+	}
+
 }
