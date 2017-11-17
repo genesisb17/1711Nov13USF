@@ -1,0 +1,12 @@
+package ThreadAssignment;
+
+import java.util.Deque;
+
+//consumer
+public class ExtendThrea extends Thread 
+{
+@Override 
+public void run()
+{
+}
+}

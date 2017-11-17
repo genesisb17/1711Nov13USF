@@ -40,11 +40,12 @@ public class SAX
 						
 					}
 			};
-		
+			
 			public void endElement(String uri, String localName, String qname)throws SAXException
 			{
 				System.out.println("end element"+qname);
 			}
+			
 			public void characters(char ch[],int start,int length) throws SAXException
 			{
 				if(fn)

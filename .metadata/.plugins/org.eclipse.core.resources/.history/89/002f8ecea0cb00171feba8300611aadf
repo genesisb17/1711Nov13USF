@@ -1,0 +1,14 @@
+package Practice;
+
+import java.util.ArrayDeque;
+import java.util.Queue;
+
+public class threadma 
+{
+	static Queue <String> q = new ArrayDeque(10);
+	public static void main(String[] args)
+	{
+		
+	}
+
+}

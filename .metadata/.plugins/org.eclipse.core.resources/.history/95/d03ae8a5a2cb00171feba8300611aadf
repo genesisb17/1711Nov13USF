@@ -1,0 +1,16 @@
+package Practice;
+
+import java.util.ArrayDeque;
+import java.util.Queue;
+
+public class Prod implements Runnable
+{
+	static Queue <String> q = new ArrayDeque(10);
+
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

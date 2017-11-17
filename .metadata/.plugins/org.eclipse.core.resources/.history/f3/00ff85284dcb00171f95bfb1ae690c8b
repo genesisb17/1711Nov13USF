@@ -1,0 +1,25 @@
+package ThreadAssignment;
+
+import java.util.ArrayList;
+import java.util.Deque;
+
+//consumer
+public class ExtendThrea extends Thread 
+{
+@Override 
+public void run()
+{
+}
+
+public ArrayList<Integer> retrieve(Deque<Integer> q)
+{
+	int z;
+	ArrayList<Integer> a= new ArrayList<Integer>();
+	while(q.getFirst()!=0) 
+	{
+		a.add(q.getFirst());
+	}
+	
+	return a;
+}
+}

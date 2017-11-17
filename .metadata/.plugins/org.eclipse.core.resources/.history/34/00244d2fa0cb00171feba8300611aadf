@@ -1,0 +1,10 @@
+package Practice;
+
+import java.util.ArrayDeque;
+import java.util.Queue;
+
+public class consu 
+{
+	static Queue <String> q = new ArrayDeque(10);
+
+}

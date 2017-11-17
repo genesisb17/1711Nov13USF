@@ -1,0 +1,11 @@
+package ThreadAssignment;
+//consumer
+public class ExtendThrea extends Thread 
+{
+@Override 
+public void run(Deque <Integer> q)
+
+{
+	
+}
+}

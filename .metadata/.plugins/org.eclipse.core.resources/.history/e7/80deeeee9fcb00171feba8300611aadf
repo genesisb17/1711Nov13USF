@@ -1,0 +1,5 @@
+package Practice;
+static Queue <String> q = new ArrayDeque(10);
+public class threadma {
+
+}

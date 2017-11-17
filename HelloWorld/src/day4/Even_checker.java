@@ -11,7 +11,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-import com.revature.io.Student;
 public class Even_checker 
 {
 	boolean test(int num)
