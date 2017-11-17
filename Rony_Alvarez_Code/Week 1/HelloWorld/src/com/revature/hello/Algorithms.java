@@ -23,7 +23,7 @@ public class Algorithms {
 	}
 
 	
-	// Binary Search Algorithms
+	// BINARY SEARCH
 	public static int binarySearch(int arr[], int x) {
         int l = 0, r = arr.length - 1;
         while (l <= r)
@@ -47,7 +47,7 @@ public class Algorithms {
         return -1;
     }
 	
-	// Bubble Sort
+	// BUBBLE SORT
 	public static void bubbleSort(int arr[])
     {
         int n = arr.length;
@@ -62,6 +62,8 @@ public class Algorithms {
                 }
     }
 	
+	
+	// INSERTION SORT
 	public static void insertionSort(int arr[])
     {
         int n = arr.length;
@@ -82,6 +84,8 @@ public class Algorithms {
         }
     }
 	
+	
+	// MERGE SORT
 	public static void merge(int arr[], int l, int m, int r)
     {
         // Find sizes of two subarrays to be merged

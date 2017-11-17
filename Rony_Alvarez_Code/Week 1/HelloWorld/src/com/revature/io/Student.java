@@ -47,7 +47,7 @@ public class Student implements Serializable {
 	
 	@Override
 	public String toString() {
-		return name + ":" + age + "\n";
+		return name + ":" + age + " \n";
 	}
 	
 	

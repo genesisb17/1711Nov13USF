@@ -123,7 +123,7 @@ public class DayFourAssignment {
 
 		}
 		
-		System.out.println("Name: " + users.get(0).toString() + " " + users.get(1).toString());
+		System.out.println(users.toString());
 		
 	}
 	

@@ -2,8 +2,8 @@ package com.revature.io;
 
 public class User {
 
-	String name;
-	String password;
+	private String name;
+	private String password;
 	
 	public User () {
 		
@@ -29,7 +29,7 @@ public class User {
 
 	@Override
 	public String toString() {
-		return "name " + name + ", password " + password;
+		return "name: " + name + ", password: " + password + "\n";
 	}
 	
 	
