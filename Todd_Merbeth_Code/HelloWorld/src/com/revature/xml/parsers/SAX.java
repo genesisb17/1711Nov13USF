@@ -14,7 +14,7 @@ public class SAX {
 	/*
 	 * SAX XML Parser in Java SAX stands for Simple API for XML Parsing This is an
 	 * event based XML parser and it parses the XML file step by step. It is much
-	 * more suitable for larger XML files. SAX XML parser fires and event when it
+	 * more suitable for larger XML files. SAX XML parser fires an event when it
 	 * encounters an opening tag, element, or attribute, and parses accordingly.
 	 */
 	static String filename = "src/com/revature/xml/people.xml";

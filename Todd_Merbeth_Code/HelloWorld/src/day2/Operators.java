@@ -28,7 +28,7 @@ public class Operators {
 	System.out.println(y);
 	y = +y;
 	System.out.println(y);
-	int z = ~4;
+	int z = ~4;		//  ~~ can convert a string to an int
 	// www.joezimjs.com/javascript/great-mystery-of-the-tilde/
 	System.out.println(z);
 	

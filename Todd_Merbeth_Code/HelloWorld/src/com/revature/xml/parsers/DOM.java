@@ -15,7 +15,7 @@ import org.xml.sax.SAXException;
 
 public class DOM {
 	/*
-	 * DOM XML Parser in JavaL DOM stands for DOcment OBject MOdel and it represents
+	 * DOM XML Parser in JavaL DOM stands for Document Object Model and it represents
 	 * XML in a tree format, where every element represents a tree branch. A DOM
 	 * parser creates an in-memory tree representation of the XML file, then parses
 	 * it. SO it requires more memory. DOM parsing is fast for a small XML file but
