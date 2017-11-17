@@ -1,0 +1,25 @@
+package com.revature.xml.parsers;
+
+public class MultithreadingIntro {
+
+	public static void main(String[] args) {
+		
+		/*Pros
+		 * Runnable allows you to extend other classes
+		 * 
+		 * Cons
+		 * Runnable requires you to create a Thread object in order to use start()
+		 * 
+		 */
+		ExtendsThread et = new ExtendsThread();
+		ImplementsRunnable ir = new ImplementsRunnable();
+		Thread thread = new Thread(ir);
+		
+		Runnable lambda = () -> {
+			
+		};
+		//et.start();
+		//thread.start();
+	}
+
+}

@@ -1,0 +1,13 @@
+package com.revature.xml.parsers;
+
+public class MultithreadingIntro {
+
+	public static void main(String[] args) {
+		
+		ExtendsThread et = new ExtendsThread();
+		et.run();
+		ImplementsRunnable ir = new ImplementsRunnable();
+		ir.run();
+	}
+
+}

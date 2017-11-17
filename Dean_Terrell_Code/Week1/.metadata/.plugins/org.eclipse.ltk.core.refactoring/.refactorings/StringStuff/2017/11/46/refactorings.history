@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Move element &apos;DoinStrings.java&apos; to &apos;StringStuff/src/com.strings&apos;&#x0D;&#x0A;- Original project: &apos;StringStuff&apos;&#x0D;&#x0A;- Destination element: &apos;StringStuff/src/com.strings&apos;&#x0D;&#x0A;- Original element: &apos;DoinStrings.java&apos;&#x0D;&#x0A;- Update references to refactored element" description="Move compilation unit" destination="/src&lt;com.strings" element1="/src&lt;{DoinStrings.java" files="0" flags="589830" folders="0" id="org.eclipse.jdt.ui.move" policy="org.eclipse.jdt.ui.moveResources" qualified="false" references="true" stamp="1510887245949" units="1" version="1.0"/>
+</session>

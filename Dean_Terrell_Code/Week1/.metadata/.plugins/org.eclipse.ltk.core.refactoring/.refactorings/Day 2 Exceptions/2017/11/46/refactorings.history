@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Move 2 elements to &apos;Day 2 Exceptions/src/com.algs&apos;&#x0D;&#x0A;- Original project: &apos;Day 2 Exceptions&apos;&#x0D;&#x0A;- Destination element: &apos;Day 2 Exceptions/src/com.algs&apos;&#x0D;&#x0A;- Original elements:&#x0D;&#x0A;     Constructors.java&#x0D;&#x0A;     SearchAndSorts.java&#x0D;&#x0A;- Update references to refactored element" description="Move compilation units" destination="/src&lt;com.algs" element1="/src&lt;{Constructors.java" element2="/src&lt;{SearchAndSorts.java" files="0" flags="589830" folders="0" id="org.eclipse.jdt.ui.move" policy="org.eclipse.jdt.ui.moveResources" qualified="false" references="true" stamp="1510887200952" units="2" version="1.0"/>
+</session>
