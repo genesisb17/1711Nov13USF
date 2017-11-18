@@ -6,4 +6,5 @@ public interface DAO {
 	
 	User addUser(User u);
 	User getUser(String username);
+	int numUsers();
 }
