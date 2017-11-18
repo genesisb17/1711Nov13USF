@@ -20,7 +20,7 @@ public class SAX {
 	 *  the xml file step by step. it is much more suitable 
 	 *  for larger xml files. SAX XML parser fires an event
 	 *  when it encounters an openeing tag, element, or attribute,
-	 *   and parses accordingly
+	 *  and parses accordingly
 	 */
 	
 	static String filename = "src/com/revature/xml/people.xml";

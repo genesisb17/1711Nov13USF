@@ -13,55 +13,52 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 public class DOM {
-
 	/*
 	 * DOM XML Parser in Java:
-	 * DOM stands for Document Object Model and it represents
-	 * XML in a tree format, where every element represents a tree
+	 * DOM stands for Document Object Model and it represents 
+	 * XML in a tree format, where every element represents a tree 
 	 * branch. A DOM parser creates an in-memory tree representation
-	 * of the XML file, then parses to it. So it requires more memory.
-	 * DOM parsing is fast for a small XML file bit is slow or may not 
-	 * even load to larger XML files because it requires 
-	 * a lot of memory to create an XML DOM tree
+	 * of the XML file, then parses it. So it requires more memory.
+	 * DOM parsing is fast for a small XML file but is slow or 
+	 * may not even load larger XML files because it requires 
+	 * a lot of memory to create an XML DOM tree.
 	 */
-	
+
 	static String filename = "src/com/revature/xml/people.xml";
 	public static void main(String[] args) {
+		//Document represents our XML tree
 		
-		// Document represents our XML tree
 		try {
 			DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
 			DocumentBuilder db = dbf.newDocumentBuilder();
 			Document doc = db.parse(new File(filename));
-			doc.normalize();
+			doc.normalize(); // optional but recommended
 			
-			// get root node
+			//get root node
 			String root = doc.getDocumentElement().getNodeName();
 			
-			// get persons node
+			//get persons nodes
 			NodeList persons = doc.getElementsByTagName("person");
-			for(int i = 0; i < persons.getLength(); i++) {
+			
+			for(int i=0; i<persons.getLength(); i++){
 				//** get "leaves" **//
 				NodeList leaves = persons.item(i).getChildNodes();
-				for(int x = 0; x < leaves.getLength(); i++) {
-					if(leaves.item(x).getNodeType() == Node.ELEMENT_NODE) {
+				for(int x = 0; x <leaves.getLength(); x++){
+					if(leaves.item(x).getNodeType() == Node.ELEMENT_NODE){
 						System.out.println(leaves.item(x).getTextContent());
 					}
 				}
-				System.out.println("--");	
-			}	
-		}
-		catch (ParserConfigurationException e) {
+				System.out.println("--");
+			}
+		} catch (ParserConfigurationException e) {
 			e.printStackTrace();
 		} catch (SAXException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 	
-	//public static InputStream getFileInClasspath(String )
+	
 
 }

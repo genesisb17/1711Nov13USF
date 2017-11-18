@@ -10,14 +10,11 @@ import com.revature.io.Student;
 public class ReadFile {
 
 	public static void main(String[] args) {
-
 		readEmployees();
-		
 	}
 
 	static void readEmployees() {
 		try(BufferedReader br = new BufferedReader(new FileReader("src/logs/Data.txt"))){
-			
 			String line = null;
 			while((line = br.readLine()) != null) {
 				String[] about = line.split(":");
@@ -32,8 +29,6 @@ public class ReadFile {
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
-		
+		}	
 	}
-	
 }
