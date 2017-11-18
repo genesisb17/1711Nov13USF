@@ -21,23 +21,35 @@ public class RunBank {
 		String input = scan.nextLine();
 		switch (input) {
 		case "1":
+			login(getUserInfo());
+			break;
 		case "2": 
-			createAccount();
-			
+			createAccount(getNewUserInfo());
 			break;
 		default: run();
 		}
 		scan.close();
 	}
 	
-	static User login() {
-		return null;
+	static User getUserInfo() {
+		User u = new User();
+		String uName, pass;
+	
+		Scanner scan = new Scanner(System.in);
+		
+		System.out.println("Enter your desired username: ");
+		uName = scan.nextLine();
+		System.out.println("Enter your desired password: ");
+		pass = scan.nextLine();
+		
+		u.setUsername(uName);
+		u.setPassword(pass);
+		
+		scan.close();
+		return u;
 	}
 	
-	static void createAccount() { // if flag = true, there was an error in previous attempt
-//		if (flag) {
-//			System.out.println("");
-//		}
+	static User getNewUserInfo() {
 		User u = new User();
 		String fName, lName, uName, pass;
 	
@@ -56,13 +68,31 @@ public class RunBank {
 		u.setLastname(lName);
 		u.setUsername(uName);
 		u.setPassword(pass);
-		// new users haven't deposited any money yet
+		
+		scan.close();
+		return u;
+	}
+	
+	static User login(User u) {
+		if ()
+		return null;
+	}
+	
+	static void createAccount(User u) { // if flag = true, there was an error in previous attempt
+//		if (flag) {
+//			System.out.println("");
+//		}
+		String uName;
+	
+		Scanner scan = new Scanner(System.in);
+		
 		u.setBalance(0);
 		while (service.addUser(u) == null) {
 			System.out.println("Username is taken. Please try another: ");
 			uName = scan.nextLine();
 			u.setUsername(uName);
 		}
+		service.addUser(u);
 		scan.close();
 	}
 	
