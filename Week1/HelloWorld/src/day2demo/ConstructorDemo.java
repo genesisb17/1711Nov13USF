@@ -1,6 +1,6 @@
 package day2demo;
 
-public class ConstructorDemo {
+public class ConstructorDemo{
 	
 	int x;
 	int y;
@@ -10,13 +10,13 @@ public class ConstructorDemo {
 		System.out.println("in no-args constructor");
 	}
 	
-	public ConstructorDemo(int x){
+	public ConstructorDemo(int x) throws Exception{
 		this();
 		this.x = x;
 		System.out.println("in x constructor");
 	}
 	
-	public ConstructorDemo(int y, int a, int b){
+	public ConstructorDemo(int y, int a, int b) throws Exception{
 		this(10);
 		this.y = y; 
 		this.a = a;
