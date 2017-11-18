@@ -49,7 +49,8 @@ public class coreJava {
 	// "refer", "billy", "did"
 	
 	static void palinStore() {
-		String[] nameArray = {"karan", "madam", "tom", "civic", "radar", "sexes", "jimmy", "kayak", "john",  "refer", "billy", "did"};
+		String[] nameArray = {"karan", "madam", "tom", "civic", "radar", 
+				"sexes", "jimmy", "kayak", "john",  "refer", "billy", "did"};
 		ArrayList names = new ArrayList();
 		ArrayList pals = new ArrayList();
 		for (int i = 0; i < nameArray.length; i++) {
