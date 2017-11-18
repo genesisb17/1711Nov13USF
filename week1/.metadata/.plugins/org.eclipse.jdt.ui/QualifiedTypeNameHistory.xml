@@ -23,6 +23,13 @@
 <fullyQualifiedTypeName name="javax.xml.parsers.SAXParserFactory"/>
 <fullyQualifiedTypeName name="javax.xml.parsers.SAXParser"/>
 <fullyQualifiedTypeName name="org.xml.sax.Attributes"/>
-<fullyQualifiedTypeName name="java.io.IOException"/>
 <fullyQualifiedTypeName name="java.util.StringTokenizer"/>
+<fullyQualifiedTypeName name="com.revature.threads.ProducerConsumer"/>
+<fullyQualifiedTypeName name="java.io.BufferedWriter"/>
+<fullyQualifiedTypeName name="java.io.FileWriter"/>
+<fullyQualifiedTypeName name="java.io.IOException"/>
+<fullyQualifiedTypeName name="com.rev.dao.FileDAO"/>
+<fullyQualifiedTypeName name="com.rev.dao.DAO"/>
+<fullyQualifiedTypeName name="com.rev.pojos.User"/>
+<fullyQualifiedTypeName name="com.rev.service.Service"/>
 </qualifiedTypeNameHistroy>

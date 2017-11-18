@@ -16,13 +16,42 @@ public class Human extends Animal {
 		this.age=age;
 	}
 	
-	public void getHairColor(){
+	public String getHairColor(){
 		return haircolor;
 	}
 	
 	public void setHairColor(String haircolor){
 		this.haircolor=haircolor;
 	}
-	
-	public double 
+
+	@Override
+	public int reproduce(int partiesInvolved) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public void consume(String... substance) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public int perish(double timeToLive) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public String waste() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String move() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+ 
 }

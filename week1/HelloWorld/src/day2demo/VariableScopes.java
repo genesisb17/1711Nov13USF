@@ -14,7 +14,7 @@ public class VariableScopes {
 	boolean boolInst;
 	byte byteInst;
 	short shortInst;
-	int intInst;
+	static int intInst;
 	long longInst;
 	float floatInst;
 	double doubleInst;
@@ -34,7 +34,7 @@ public class VariableScopes {
 			System.out.println("i is a local aka block var");
 		}
 		System.out.println(floatInst);
-		System.out.println(anothermethodscopeint);
+		//System.out.println(anothermethodscopeint);
 		
 		
 		//i=8; //WRONG
