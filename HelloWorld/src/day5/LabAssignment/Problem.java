@@ -11,6 +11,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Scanner;
 
 import day4.People;
 
@@ -94,7 +95,7 @@ public class Problem
 			System.out.print(str.charAt(i));
 		}
 	}
-	void Problem6(int num)
+	boolean Problem6(int num)
 	{
 		String s;
 		String[] s1;
@@ -107,12 +108,12 @@ public class Problem
 			
 			if(s1[s1.length-1].equals(s2[i]))
 			{
-				System.out.println("even");
+				return true;
 			}
 		}
-		System.out.println("odd");
+		return false;
 	}
-	/*void Problem8()
+	void Problem8()
 	{
 		ArrayList<String> pali=new ArrayList<String>();
 		ArrayList<String> non=new ArrayList<String>();
@@ -121,7 +122,8 @@ public class Problem
 		for(int i=0;i<s.length;i++)
 		{
 			int k=0;
-			for(int j = s[i].length()-1 ;j>=0;i--)
+			
+			for(int j = s[i].length()-1 ;j>=0;j--)
 			{
 				sb.insert(k,s[i].charAt(j));
 				k++;
@@ -129,7 +131,7 @@ public class Problem
 			System.out.println(sb);
 		}
 		
-	}*/
+	}
 	ArrayList<Integer> Problem9()
 	{
 		ArrayList j = new ArrayList();
@@ -170,6 +172,31 @@ public class Problem
 			return n2;
 		}
 	}
+	void Problem13()
+	{
+		int count;
+		count =1;
+		int p=0;
+		for(int i =0;i<4;i++)
+		{
+			for(int j =0;j<count;j++)
+			{
+				if(p==0)
+				{
+					System.out.print("0 ");
+					p=1;
+				}
+				else
+				{
+					System.out.print("1 ");
+					p=0;
+
+				}
+			}
+			count++;
+			System.out.println("\n");
+		}
+	}
 	void Problem14(int x,int n)
 	{
 
@@ -192,12 +219,47 @@ public class Problem
 			
 			
 	}
+	
+	void Problem17()
+	{
+		Scanner sc = new Scanner(System.in);
+		System.out.println("pricipal");
+		int p =sc.nextInt();
+		System.out.println("rate");
+		int r = sc.nextInt();
+		System.out.println("time(years)");
+		int t = sc.nextInt();
+		int i = p*r*t;
+		System.out.println("interest");
+		System.out.println(i);
+	}
 	People m = new People("Mickey Mouse",50,"Arizona");
 	People h = new People("Hulk Hogan",50,"Virgina");
 	People r = new People("Roger Rabbit",22,"Califonia");
 	People w = new People("Wonder Woman",18,"Montana");
-	
-
+	//work on 19
+	void Problem19()
+	{
+		ArrayList<Integer> a = new ArrayList<Integer>();
+		int e = 0;
+		int o = 0;
+		for(int i =1;i<11;i++)
+		{
+			a.add(i);
+		}
+		System.out.println(a);
+		for(int j =0;j<a.size();j++)
+		{
+			if(Problem6(a.get(j)))
+			{
+				
+				e=e+a.get(j);
+			}
+			else 
+			{
+				o=o+a.get(j);			}
+			}
+	}
 	void P20WritetoFile(People p)
 	{
 		String filename = "src/logs/Data.txt";

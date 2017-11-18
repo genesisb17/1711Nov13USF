@@ -12,9 +12,9 @@ public class Service
 		dao.addUser(u);
 		return u;
 	}
-	public static newUser getUser(String username)
+	public static newUser getUser(String username, String pass)
 	{
-		return dao.getUser(username);
+		return dao.getUser(username,pass);
 	}
 	
 }

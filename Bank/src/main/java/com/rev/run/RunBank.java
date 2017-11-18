@@ -27,6 +27,8 @@ public class RunBank
 		case "2":
 			createAccount();
 			break;
+		case "3":
+			break;
 		default:
 			run();
 			break;
@@ -36,6 +38,14 @@ public class RunBank
 	static newUser login()
 	{
 		return null;
+	}
+	static void update()
+	{
+		Scanner sc = new Scanner(System.in);
+		System.out.println("string you want updated");
+		System.out.println("string you want to change to");
+		String s = sc.nextLine();
+		
 	}
 	static newUser createAccount()
 	{
@@ -72,8 +82,9 @@ public class RunBank
 		newUser u = new newUser();
 		Scanner sc = new Scanner(System.in);
 		String s = sc.nextLine();
-		
-		u = service.getUser(s);
+		System.out.println("what is your password??");
+		String pass = sc.nextLine();
+		u = service.getUser(s,pass);
 		System.out.println("Hello "+u.getFirstname());
 		System.out.println("what do you want to look for? 1-balance");
 		int x = sc.nextInt();
