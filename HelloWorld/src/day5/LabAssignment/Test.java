@@ -19,8 +19,8 @@ public class Test {
 		p.Problem5("good job", 5);
 		System.out.println("\n");
 		p.Problem6(4);
-/*		System.out.println("Problem 8");
-		p.Problem8();*/
+		System.out.println("Problem 8");
+//		p.Problem8();
 		System.out.println("Problem 9");
 		System.out.println(p.Problem9());
 		System.out.println("Problem 10");

@@ -21,6 +21,7 @@ public class Prod implements Runnable
 				q.add(r.nextInt(100));
 				System.out.println(q.poll());
 				q.notifyAll();
+
 			}
 			else
 				//

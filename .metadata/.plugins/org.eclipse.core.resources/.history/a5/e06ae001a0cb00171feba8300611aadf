@@ -1,6 +1,0 @@
-package Practice;
-public class threadma 
-{
-	static Queue <String> q = new ArrayDeque(10);
-
-}

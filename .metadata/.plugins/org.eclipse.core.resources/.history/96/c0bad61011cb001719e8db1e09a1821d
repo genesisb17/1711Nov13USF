@@ -1,7 +1,0 @@
-package com.revature.DesignPattern;
-
-public class Singleton 
-{
-	int count = 0;
-	
-}

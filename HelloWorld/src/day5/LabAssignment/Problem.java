@@ -102,7 +102,6 @@ public class Problem
 		s = Integer.toString(num);
 		s1 = s.split("");
 		System.out.println("Problem 6");
-		System.out.println(s1[s1.length-1]);
 		for(int i = 0;i<s1.length;i++)
 		{
 			
@@ -113,15 +112,24 @@ public class Problem
 		}
 		System.out.println("odd");
 	}
-	void Problem8()
+	/*void Problem8()
 	{
 		ArrayList<String> pali=new ArrayList<String>();
 		ArrayList<String> non=new ArrayList<String>();
 		String[] s= {"karan", "madam","tom", "civic", "radar", "sexes", "jimmy", "kayak", "john",  "refer", "billy", "did"};
+		StringBuilder sb = new StringBuilder();
 		for(int i=0;i<s.length;i++)
 		{
+			int k=0;
+			for(int j = s[i].length()-1 ;j>=0;i--)
+			{
+				sb.insert(k,s[i].charAt(j));
+				k++;
+			}
+			System.out.println(sb);
 		}
-	}
+		
+	}*/
 	ArrayList<Integer> Problem9()
 	{
 		ArrayList j = new ArrayList();
