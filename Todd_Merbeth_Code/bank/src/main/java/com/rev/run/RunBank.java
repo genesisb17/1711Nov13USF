@@ -31,7 +31,7 @@ public class RunBank {
 
 	static User createAccount() {
 		System.out.println("Awesome! Welcome! Please Enter you first name");
-		Scanner scan = new Scanner(System.in);
+//		Scanner scan = new Scanner(System.in);
 		User u = new User();
 		u.setFirstname("Todd");
 		u.setLastname("Merbeth");

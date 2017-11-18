@@ -4,7 +4,7 @@ import com.rev.pojos.User;
 
 public interface DAO {
 	
-	User addUser(User u);
+	void addUser(User u);
 	User getUser(String username);
 	
 }

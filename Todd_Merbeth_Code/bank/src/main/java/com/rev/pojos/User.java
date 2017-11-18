@@ -70,7 +70,7 @@ public class User {
 		this.balance = balance;
 	}
 
-	public String toFile() {
+	public String toString() {
 		return id + ":" + firstname + ":" + lastname + ":" + username
 				+ ":" + password + ":" + balance;
 	}
