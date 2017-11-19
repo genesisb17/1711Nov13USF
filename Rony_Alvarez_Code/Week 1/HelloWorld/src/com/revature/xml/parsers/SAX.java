@@ -10,7 +10,7 @@ import org.xml.sax.helpers.DefaultHandler;
 
 public class SAX {
 	
-	String filename = "src/com/revature/xml/people.xml":
+	String filename = "src/com/revature/xml/people.xml";
 	
 	/*
 	 * SAX XML Parser in Java
