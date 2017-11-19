@@ -64,7 +64,7 @@ public class User {
 	}
 
 	public double getBalance() {
-		return balance;
+		return (double)balance;
 	}
 
 	public void setBalance(double balance) {

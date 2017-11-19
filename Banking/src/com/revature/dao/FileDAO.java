@@ -35,13 +35,11 @@ public class FileDAO implements DAO{
 		// TODO Auto-generated method stub
 		String iine = null;
 		ArrayList<String> userKey = new ArrayList<>();
-//		HashMap<String, String[]> userMap = new HashMap<>();
+
 		try(BufferedReader br = new BufferedReader(new FileReader(filename))){
 			while((iine = br.readLine()) != null) {
 			String[] temp = iine.split(":");
-//			vals.append(temp[1] + "" temp[2] + temp[3] + temp[4]);
-//			
-//			userMap.put(temp[0],vals);
+
 			userKey.add(temp[2]);
 			}
 		} catch (FileNotFoundException e) {
@@ -64,17 +62,9 @@ public class FileDAO implements DAO{
 				
 			String[] izer = token.split(":");
 			
-//			System.out.println("u User: " + u);
-//
-//			System.out.println("uPass user: " + uPass.get(2));
-//			
-//			System.out.println("p Pw: " + p);
-//			System.out.println("uPass pw: " + uPass.get(3));
 			if((izer[2].equals(u)) && izer[3].equals(p)) {
 				
-//				System.out.println("Username/password invalid or mismatched.");
-//				mat = false;
-				
+
 				uPass.add(0, izer[0]);
 				uPass.add(1, izer[1]);
 				uPass.add(2, izer[2]);
@@ -97,10 +87,13 @@ public class FileDAO implements DAO{
 			e.printStackTrace();
 		}
 		
-		return null;
-				
+		return null;				
 	
+	}
 	
+	public void makeTransac(double amount) {
+		
+		
 	}
 
 

@@ -58,7 +58,7 @@ public class BankDriver {
 		ul.setPassword(in.nextLine());
 		
 		service.logIn(ul);
-		return null;
+		return ul;
 		
 	}
 	
@@ -66,23 +66,22 @@ public class BankDriver {
 	static User createAccount(){
 
 		User u = new User();
-		HashMap<String, String[]> mass = new HashMap<>();
 		Scanner in = new Scanner(System.in);
-		String[] tmp = new String[3];
-		System.out.println("Please enter your username name:");
-		String uKey = in.nextLine();
-		u.setUsername(uKey);
+		System.out.println("Please enter your user name:");
+		u.setUsername(in.nextLine());
 		System.out.println("Please enter your first name:");
-		tmp[0] = in.nextLine();
-		u.setFirstname(tmp[0]);
+
+
+		u.setFirstname(in.nextLine());
 		System.out.println("Please enter your last name:");
-		tmp[1] = in.nextLine();
-		u.setLastname(tmp[1]);
+
+
+		u.setLastname(in.nextLine());
 		System.out.println("Please enter your password:");
-		tmp[2] = in.nextLine();
-		u.setPassword(tmp[2]);
-		mass.put(uKey, tmp);
-		u.setBalance((double)1000.97);
+
+
+		u.setPassword(in.nextLine());
+		u.setBalance((double)0.00);
 		service.addUser(u);	
 		
 		return u;
