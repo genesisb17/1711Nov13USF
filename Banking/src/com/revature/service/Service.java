@@ -69,10 +69,10 @@ public class Service {
 			break;
 		case "2":
 			depo(u, arr);
-
+			break;
 		case "3":
 			with(u, arr);
-
+			break;
 		case "4":
 			double bal = Double.parseDouble(arr.get(4));
 			System.out.println("Balance: $" + bal);
