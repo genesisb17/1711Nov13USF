@@ -34,7 +34,7 @@ public class RunBank {
 		scan.close();
 	}
 	
-	static void printMenu(User u) {
+	static void printMainMenu(User u) {
 		System.out.println("The Bank");
 		System.out.println("========");
 		System.out.println("User " + (1+u.getId()) + ": " + u.getFirstname() + " " + u.getLastname());
@@ -46,7 +46,7 @@ public class RunBank {
 	}
 
 	static void mainMenu(User u, Scanner scan) {
-		printMenu(u);
+		printMainMenu(u);
 
 		String op;
 		do {
@@ -149,15 +149,17 @@ public class RunBank {
 		DecimalFormat df = new DecimalFormat(".##");
 		double depAmt;
 
-		System.out.println("Enter the deposit amount: ");
-		String strDepAmt = scan.nextLine();
+
 
 		try {
-			depAmt = Double.parseDouble(strDepAmt);
-			if (depAmt <= 0) {
-				System.out.println("Invalid amount***\n");
-				depositFunds(u, scan);
-			}
+			do {
+				System.out.println("Enter the deposit amount: ");
+				String strDepAmt = scan.nextLine();
+				depAmt = Double.parseDouble(strDepAmt);
+				if (depAmt <= 0) {
+					System.out.println("Invalid amount***\n");
+				}
+			} while (depAmt <= 0);
 			System.out.println("Deposit " + df.format(depAmt) + "?");
 			System.out.println("yes/no:");
 			boolean goodInput = false;
@@ -173,11 +175,12 @@ public class RunBank {
 						System.out.println("Funds successfully deposited.\n");
 					else 
 						System.out.println("We a apologize but there's been an error depositing your funds.\n");
-					printMenu(u);
+					printMainMenu(u);
 					break;
 				case "no":
 					System.out.println("Funds not deposited. Returning to Main Menu.\n");
 					goodInput = true;
+					break;
 				default:
 					System.out.println("Please enter yes or no.");
 				}
@@ -193,18 +196,17 @@ public class RunBank {
 		DecimalFormat df = new DecimalFormat(".##");
 		double wdrwAmt;
 
-		System.out.println("Enter the withdrawal amount: ");
-		String strWdrwAmt = scan.nextLine();
-
 		try {
-			wdrwAmt = Double.parseDouble(strWdrwAmt);
-			if (wdrwAmt <= 0) {
-				System.out.println("Invalid amount***\n");
-				withdrawFunds(u, scan);
-			} else if (wdrwAmt > u.getBalance()) {
-				System.out.println("There are not enough funds in your account for this operation***\n");
-				withdrawFunds(u, scan);
-			}
+			do {
+				System.out.println("Enter the withdrawal amount: ");
+				String strWdrwAmt = scan.nextLine();
+				wdrwAmt = Double.parseDouble(strWdrwAmt);
+				if (wdrwAmt <= 0) {
+					System.out.println("Invalid amount***\n");
+				} else if (wdrwAmt > u.getBalance()) {
+					System.out.println("There are not enough funds in your account for this operation***\n");
+				}
+			} while ((wdrwAmt <= 0) || (wdrwAmt > u.getBalance()));
 			System.out.println("Withdraw " + df.format(wdrwAmt) + "?");
 			System.out.println("yes/no:");
 			boolean goodInput = false;
@@ -220,11 +222,12 @@ public class RunBank {
 						System.out.println(wdrwAmt + " withdrawn.\n");
 					else 
 						System.out.println("We a apologize but there's been an error withdrawing your funds.\n");
-					printMenu(u);
+					printMainMenu(u);
 					break;
 				case "no":
 					System.out.println("Funds not withdrawn. Returning to Main Menu.\n");
 					goodInput = true;
+					break;
 				default:
 					System.out.println("Please enter yes or no.");
 				}
