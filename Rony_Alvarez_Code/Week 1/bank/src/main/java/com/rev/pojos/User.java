@@ -72,15 +72,9 @@ public class User {
 		this.balance = balance;
 	}
 
-	@Override
-	public String toString() {
-		return id + ":" + firstname + ":" + lastname + ":" + username
-				+ ":" + password + ":" + balance;
-	}
-
-	public char[] toFile() {
-		// TODO Auto-generated method stub
-		return null;
+	public String toFile() {
+		return  id + ":" + firstname + ":" + lastname + ":" + username
+				+ ":" + password + ":" + balance + "\n";
 	}
 	
 	

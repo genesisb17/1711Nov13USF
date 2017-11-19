@@ -4,7 +4,9 @@ import com.rev.pojos.User;
 
 public interface DAO {
 
-	void addUser(User u);
-	User getUser(String username);
+	User addUser(User u);
+	User getUser(String username, String password);
+	User addMoney(double amount);
+	User getBalance(String username, String password);
 	
 }

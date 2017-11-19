@@ -3,13 +3,12 @@ package com.rev.run;
 import java.util.Scanner;
 
 import com.rev.pojos.User;
-
-import come.rev.service.Service;
+import com.rev.service.Service;
 
 public class RunBank {
 
 	static Service service = new Service();
-		
+	
 	public static void main(String[] args) {
 		
 		run();
@@ -17,33 +16,70 @@ public class RunBank {
 	}
 	
 	static void run() {
-		System.out.println("Welcome to BondsBank\n Would you like to Log in(1) or Create an Account(2)?");
+		System.out.println("Welcome to Alvarez Bank!\n Would you like to Log in(1) or Create an Account(2)?");
 		
+		@SuppressWarnings("resource")
 		Scanner scan = new Scanner(System.in);
 		String op = scan.nextLine();
 		switch(op) {
-		case 1: login();
-		case 2: createAccount(); break;
+		case "1": login();  break;
+		case "2": createAccount(); break;
 			default: run();
 		}
+		
+		
 		
 	}
 	
 	static User login() {
+		
+		System.out.println("Welcome back! Please enter your username:");
+		Scanner scan = new Scanner(System.in);
+		String username = scan.nextLine();
+		
+		System.out.println("Enter your password: ");
+		String password = scan.nextLine();
+		
+		service.getUser(username, password);
+		
+		System.out.println("How can we help you today?");
+		System.out.println("View Balance(1), Deposit Money(2) or Withdraw Money(3)");
+		String op = scan.nextLine();
+		switch(op) {
+			case "1": viewBalance(username, password); break;
+			case "2": addMoney(); break;
+			case "3":  
+			default: run(); 
+		}
+		
+		
 		return null;
 	}
 	
 	static User createAccount() {
-		System.out.println("Awesome! Welcome!. Please enter your first name: ");
+		//System.out.println("Awesome! Welcome!. Please enter your first name: ");
 		User u = new User();
-		u.setFirstname("Gen");
-		u.setLastname("Bonds");
-		u.setUsername("username");
-		u.setPassword("pass");
-		// deposit $$
-		u.setBalance(100000000.0+"");
+		u.setFirstname("Ronyy");
+		u.setLastname("Alvarezzzz");
+		u.setUsername("usernameee");
+		u.setPassword("passssss");
+		u.setBalance(1000000000000.0);
+		
+		
+		System.out.println("Account was created successfully!");
+		
 		service.addUser(u);
 		return null;
+	}
+	
+	public static void addMoney() {
+		
+	}
+	
+	public static void viewBalance(String username, String password) {
+		
+		service.viewBalance(username, password);
+		
 	}
 	
 
