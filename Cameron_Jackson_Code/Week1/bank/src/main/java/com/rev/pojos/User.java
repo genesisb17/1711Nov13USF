@@ -71,7 +71,7 @@ public class User {
 
 	public String toFile() {
 		return id + ":" + firstname + ":" + lastname + ":" + username
-				+ ":" + password + ":" + balance;
+				+ ":" + password + ":" + balance + "\n";
 	}
 
 	@Override

@@ -38,6 +38,32 @@ public class FileDAO implements DAO {
 	}
 	
 	/*
+	 * Updates the user info
+	 */
+	/*
+	 * Write entire list of users to file
+	 */
+	public void overwriteUsers(User u) {
+		ArrayList<User> users = userList();
+		ArrayList<User> updatedUsers = new ArrayList<User>();
+		for (User notUpdatedUser: users)
+			if (notUpdatedUser.getUsername().equals(u.getUsername()))
+				updatedUsers.add(u);
+			else 
+				updatedUsers.add(notUpdatedUser);
+		
+		try (BufferedWriter bw = new BufferedWriter(new FileWriter(filename, false))) {
+			bw.write("");
+			for (User upUser : updatedUsers) {
+				bw.write(upUser.toFile());
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	
+	/*
 	 * Return the current number of users
 	 * used for setting correct user ID
 	 */
@@ -72,4 +98,5 @@ public class FileDAO implements DAO {
 		}
 		return users;
 	}
+
 }

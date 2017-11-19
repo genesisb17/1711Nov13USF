@@ -6,5 +6,6 @@ public interface DAO {
 	
 	User addUser(User u);
 	User getUser(String username);
+	void overwriteUsers(User cUser);
 	int numUsers();
 }
