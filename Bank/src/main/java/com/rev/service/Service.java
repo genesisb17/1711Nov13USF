@@ -16,5 +16,9 @@ public class Service
 	{
 		return dao.getUser(username,pass);
 	}
+	public void change(String username,int o) 
+	{
+		dao.change(username, o);
+	}
 	
 }

@@ -42,10 +42,12 @@ public class RunBank
 	static void update()
 	{
 		Scanner sc = new Scanner(System.in);
-		System.out.println("string you want updated");
-		System.out.println("string you want to change to");
+		System.out.println("How much do you want to Deposit??");
+		int u = sc.nextInt();
+		System.out.println("");
 		String s = sc.nextLine();
 		
+		service.change(s, u);
 	}
 	static newUser createAccount()
 	{
@@ -70,6 +72,8 @@ public class RunBank
 		name = sc.nextLine();
 		u.setPassword(name);
 		
+		
+		System.out.println("What is your amount you have?");
 		int x;
 		x = sc.nextInt();
 		u.setBalance(x);
@@ -85,15 +89,23 @@ public class RunBank
 		System.out.println("what is your password??");
 		String pass = sc.nextLine();
 		u = service.getUser(s,pass);
+		if(u.getFirstname()==null)
+		{
+			run();
+		}
 		System.out.println("Hello "+u.getFirstname());
-		System.out.println("what do you want to look for? 1-balance");
+		System.out.println("what do you want to look for? 1-balance 2-Deposit? 3-Withdraw");
 		int x = sc.nextInt();
 		switch(x)
 		{
 		case 1:
 			System.out.println("Your balance is "+u.getBalance());
 			break;
+		case 2:
+			update();
+			break;
 		}
+		lookup();
 		return u;
 		
 	}

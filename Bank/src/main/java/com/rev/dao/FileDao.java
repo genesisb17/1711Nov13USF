@@ -56,8 +56,6 @@ public class FileDao implements DAO
 						return u;
 					}
 				}
-
-				
 			}
 		}
 		catch(FileNotFoundException e)
@@ -72,7 +70,7 @@ public class FileDao implements DAO
 	}
 
 	@Override
-	public void change(String username,int o,String update) 
+	public void change(String username,int o) 
 	{
 		// TODO Auto-generated method stub
 		newUser u = new newUser();
@@ -85,33 +83,43 @@ public class FileDao implements DAO
 				//newUser v = new newUser();
 				String[] about = line.split(":");
 				int j;
-				for(j=3;j<about.length;j++) 
+				int temp;
+				for(j=3;j<about.length;j++)
 				{
 					if(about[j].equalsIgnoreCase(username))
 					{
-						about[j]=update;
+						temp=o+Integer.parseInt(about[j+2]);
+						about[j+2]=Integer.toString(temp);
+
 					}
+					
 				}
+
 				//delete file and replace it
-				f.delete();
+/*				f.delete();
 				f.createNewFile();
+*/			
 				//write old file info
+				//error is here
+
 				try(BufferedWriter bw = new BufferedWriter(new FileWriter(filename,true)))//true appending not rewriting
 				{
 					//should not be able to add users with a username that already exists
 					//add logic to validate
 					StringBuilder strBuilder = new StringBuilder();
-					for (int i = 0; i < about.length; i++) {
-					   strBuilder.append(about[i]);
+					for (int i = 0; i < about.length; i++) 
+					{
+					   strBuilder.append(":"+about[i]);
 					}
 					String newString = strBuilder.toString();
 					bw.write(newString);
 				}
-				catch (IOException e) {
+				catch (IOException e) 
+				{
 					// TODO Auto-generated catch block
+					System.out.println(about[0]);
 					e.printStackTrace();
 				}
-				
 			}
 		}
 		catch(FileNotFoundException e)
