@@ -74,6 +74,9 @@ public class User {
 				+ ", password=" + password + ", balance=" + balance + "]";
 	}
 
+	/*
+	 * Returns a String of the users data suitable for writing to a file.
+	 */
 	public String toFileString() {
 		DecimalFormat df = new DecimalFormat("0.00");
 		return id + ":" + firstName + ":" + lastName + ":" + email + ":" + password + ":" + df.format(balance);

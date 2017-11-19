@@ -24,7 +24,7 @@ public class ConsoleHandler {
 	public int promptInt(String s) {
 		int result = 0;
 		boolean tryAgain;
-		do {
+		do { // keep trying if the user inputs an invalid int
 			tryAgain = false;
 			try {
 				result = Integer.parseInt(promptString(s));
@@ -42,7 +42,7 @@ public class ConsoleHandler {
 	public double promptDouble(String s) {
 		double result = 0;
 		boolean tryAgain;
-		do {
+		do { // keep trying if the user inputs an invalid double
 			tryAgain = false;
 			try {
 				result = Double.parseDouble(promptString(s));

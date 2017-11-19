@@ -16,12 +16,19 @@ public class RunBank implements Runnable{
 		ser = new Service();
 	}
 	
+	/*
+	 * (non-Javadoc)
+	 * @see java.lang.Runnable#run()
+	 * 
+	 * Starts the banking program at the main screen offering login and create user options.  Loops forever.
+	 * 
+	 */
 	@Override
 	public void run() {
-		while(true) {
+		while(true) { // loop the bank app forever
 			boolean repeat;
 			System.out.println("Welcome to the bank!");
-			do {
+			do { // repeat getting input until its a valid selection
 				repeat = false;
 				int response =  con.promptInt("Please make a selection:\n" + 
 						"Login          - 1\n" + 
@@ -42,15 +49,18 @@ public class RunBank implements Runnable{
 		}
 	}
 	
+	/*
+	 * Allows the user to login
+	 */
 	private void login() {
 		String email, password;
-		while(true) {
+		while(true) { // repeat until they input an existing email
 			email = con.promptString("Please enter your username/email:");
 			if(ser.hasUser(email)) break;
 			System.out.println("That did not match a valid usernam/email.");
 		}
 		User u = ser.getUser(email);
-		while(true) {
+		while(true) { // repeat until they enter the correct password
 			password = con.promptString("Please enter your password:");
 			if(password.equals(u.getPassword())) break;
 			System.out.println("Your password did not match.");
@@ -58,9 +68,12 @@ public class RunBank implements Runnable{
 		bankingOptions(u);
 	}
 	
+	/*
+	 * Offers the main banking options
+	 */
 	private void bankingOptions(User u) {
 		boolean repeat;
-		do {
+		do { // repeat the banking options on incorrect input and until they select exit
 			repeat = true;
 			int response =  con.promptInt("What would you like to do?\n" + 
 					"Make a deposit    - 1\n" + 
@@ -87,9 +100,12 @@ public class RunBank implements Runnable{
 		}while(repeat);
 	}
 	
+	/*
+	 * Allows the user to make a deposit
+	 */
 	private User deposit(User u) {
 		double deposit;
-		while(true) {
+		while(true) { // repeat until they select a valid amount to deposit (no negative deposits)
 			viewBalance(u);
 			deposit = con.promptDouble("How much would you like to deposit?");
 			if(deposit >= 0.0f) break;
@@ -101,12 +117,15 @@ public class RunBank implements Runnable{
 		return u;
 	}
 	
+	/*
+	 * Allows the user to make a withdrawal
+	 */
 	private User withdraw(User u) {
 		double withdrawal;
-		while(true) {
+		while(true) { // repeat until they select a valid amount to withdraw (no negative withdrawals or withdrawing more than their balance
 			viewBalance(u);
 			withdrawal = con.promptDouble("How much would you like to withdraw?");
-			if(withdrawal <= u.getBalance()) break;
+			if(withdrawal <= u.getBalance() && withdrawal >= 0.0f) break;
 			System.out.println("That is more than your current balance.");
 		}
 		System.out.printf("You have withdrawn $%.2f.\n", withdrawal);
@@ -115,18 +134,24 @@ public class RunBank implements Runnable{
 		return u;
 	}
 	
+	/*
+	 * Displays the user's balance
+	 */
 	private void viewBalance(User u) {
 		System.out.printf("Your current balance is $%.2f.\n", u.getBalance());
 	}
 	
+	/*
+	 * Allows for the creation of a new user
+	 */
 	private void createUser() {
 		String email, password, firstName, lastName;
-		while(true) {
-			email = con.promptString("Please enter your desired username:");
+		while(true) { // repeat until they enter an unused email
+			email = con.promptString("Please enter your email:");
 			if(!ser.hasUser(email)) break;
 			System.out.println("That username is already taken.");
 		}
-		while(true){
+		while(true){ // repeat until they correctly confirm their password
 			password = con.promptString("Please enter your password:");
 			if(password.equals(con.promptString("Please confirm your password:"))) break;
 			System.out.println("Your passwords did not match");
@@ -136,6 +161,9 @@ public class RunBank implements Runnable{
 		bankingOptions(ser.addNewUser(email, password, firstName, lastName));
 	}
 	
+	/*
+	 * Entry point
+	 */
 	public static void main(String[] args) {
 		new RunBank().run();
 	}
