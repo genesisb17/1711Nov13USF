@@ -10,11 +10,17 @@ public class ConsoleHandler {
 		this.sc = sc;
 	}
 
+	/*
+	 * Outputs the provided String and returns the user's response as a String
+	 */
 	public String promptString(String s) {
 		System.out.println(s);
 		return sc.nextLine();
 	}
 
+	/*
+	 * Outputs the provided String and returns the users response as an int
+	 */
 	public int promptInt(String s) {
 		int result = 0;
 		boolean tryAgain;
@@ -30,6 +36,9 @@ public class ConsoleHandler {
 		return result;
 	}
 
+	/*
+	 * Outputs the provided String and returns the users response as a double
+	 */
 	public double promptDouble(String s) {
 		double result = 0;
 		boolean tryAgain;
