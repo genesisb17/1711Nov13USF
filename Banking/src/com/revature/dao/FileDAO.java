@@ -56,14 +56,26 @@ public class FileDAO implements DAO{
 		return userKey;
 	}
 	
-	public HashMap<String, String> logOn(String u, String p) {
+	public ArrayList<String> logOn(String u, String p) {
 		
 		String token = null;
-		HashMap<String, String> uPass = new HashMap<>();
+		ArrayList<String> uPass = new ArrayList<>();
 		try(BufferedReader br = new BufferedReader(new FileReader(filename))){
 			while((token = br.readLine()) != null) {
 			String[] izer = token.split(":");
-			uPass.put(izer[2], izer[3]);
+			if((izer[2] == u) && (izer[3] == p)) {
+				System.out.println("Username found!");
+				uPass.add(0, izer[0]);
+				uPass.add(1, izer[1]);
+				uPass.add(2, izer[2]);
+				uPass.add(3, izer[3]);
+				uPass.add(4, izer[4]);
+				return uPass;
+			}
+			else {
+				System.out.println("Invalid username/password. System exiting...");
+				return null;
+			}
 			}
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block

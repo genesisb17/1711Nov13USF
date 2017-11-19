@@ -34,6 +34,15 @@ public class Service {
 			return null;
 		}
 		
+		if(dao.logOn(u.getUsername(), u.getPassword()) == null) {
+			System.out.println("Username/Password mismatch. Please try again.");
+			System.out.println("--------------------------------------------");
+			reset.run();
+			return null;
+		}
+		System.out.println();
+		System.out.println("Your Account:");
+		System.out.println(dao.logOn(u.getUsername(), u.getPassword()));
 		return u;
 	}
 
