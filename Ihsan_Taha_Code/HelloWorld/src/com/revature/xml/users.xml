@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<accounts>
+	<users>
+		<firstname>
+			Ihsan
+		</firstname>
+		<lastname>
+			Taha
+		</lastname>
+		<username>
+			jack_morris
+		</username>
+		<password>
+			n1ofurbiz!
+		</password>
+		<balance>
+			100
+		</balance>
+	</users>
+	<users>
+		<firstname>
+			Sally
+		</firstname>
+		<lastname>
+			Jefferson
+		</lastname>
+		<username>
+			salty_sal
+		</username>
+		<password>
+			urSoNozee!
+		</password>
+		<balance>
+			250
+		</balance>
+	</users>
+</accounts>

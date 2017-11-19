@@ -6,13 +6,13 @@ public class MultithreadingIntro {
 	 * New - thread
 	 * Runnable - when ready to run (may be running or simply ready to run at any instance)
 	 * Blocked - (aka waiting state) - when a thread is temporarily inactive it is either
-	 * blocked or waiting. A thread is in the blocked styate when it tries to access a
+	 * blocked or waiting. A thread is in the blocked state when it tries to access a
 	 * protected section that's currently locked in some other thread.
 	 * Waiting - threads can be made to wait for other actions or:
 	 * Timed Waiting - can call a timed wait method in threads
 	 * Terminated - a thread terminates because either it finishes its thread of execution
 	 *  naturally or because some unusual or exceptional event occurs. ie segmentation 
-	 *  fault non-handled exception
+	 *  fault non-handled exception.
 	 */
 	
 	

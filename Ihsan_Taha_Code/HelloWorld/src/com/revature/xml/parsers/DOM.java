@@ -16,10 +16,10 @@ public class DOM {
 	/*
 	 * DOM XML Parser in Java: DOM stands for Document Object Model and it
 	 * represents XML in a tree format, where every element represents a tree
-	 * branch. A DOM parser creates an in-memory tree representation of the XML, the
-	 * parses it. So it requires memory. DOM parsing is fast for a small XML file
-	 * but is slow or may not even load larger XML files because it requires a lot
-	 * of memory to create an XML DOM tree.
+	 * branch. A DOM parser creates an in-memory tree representation of the XML,
+	 * then parses it. So it requires memory. DOM parsing is fast for a small XML
+	 * file but is slow or may not even load larger XML files because it requires a
+	 * lot of memory to create an XML DOM tree.
 	 */
 
 	static String fileName = "src/com/revature/xml/people.xml";

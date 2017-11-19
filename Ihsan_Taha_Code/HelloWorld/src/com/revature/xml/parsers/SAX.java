@@ -12,7 +12,7 @@ import org.xml.sax.helpers.DefaultHandler;
 
 public class SAX {
 	/*
-	 * SAX XML Parse in Java: SAX stands for Simple API for XML Parsing This is an
+	 * SAX XML Parser in Java: SAX stands for Simple API for XML Parsing. This is an
 	 * event based XML parser and it parses the XML file step by step. It is much
 	 * more suitable for larger XML files. SAX XML parser fires an event when it
 	 * encounters an opening tag, element, or attribute, and parses accordingly.
@@ -21,12 +21,20 @@ public class SAX {
 	static String fileName = "src/com/revature/xml/people.xml";
 	
 	public static void main(String[] args) throws ParserConfigurationException, SAXException, IOException {
+		
+		// 1. Obtain and configure a SAX based parser
 		SAXParserFactory spf = SAXParserFactory.newInstance();
+		
+		// 2. Obtain an object for the SAX parser
 		SAXParser sax = spf.newSAXParser();
 
+		// 3. Implement a default handler for the SAX handler class
 		DefaultHandler handler = new DefaultHandler() {
+			
+			// The following are for the elements in the XML file
 			boolean fn = false, ln = false, age = false;
 
+			// A. This method is called every time the parser finds an open tag '<' and identifies which tag by assigning an open flag
 			public void startElement(String uri, String location, String name, Attributes attributes) {
 				System.out.println("Start Element: " + name);
 				if (name.equalsIgnoreCase("FIRSTNAME"))
@@ -37,10 +45,12 @@ public class SAX {
 					age = true;
 			}
 
+			// B. 
 			public void endElement(String uri, String localName, String qName) throws SAXException {
-				System.out.println("End Element" + qName);
+				System.out.println("End Element " + qName);
 			}
 
+			// C. Print data stored in between '<' and '>' tags
 			public void characters(char ch[], int start, int length) throws SAXException {
 				if (fn) {
 					System.out.println("Firstname " + new String(ch, start, length));
