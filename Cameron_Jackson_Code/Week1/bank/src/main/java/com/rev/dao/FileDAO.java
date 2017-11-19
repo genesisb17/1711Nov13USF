@@ -38,9 +38,6 @@ public class FileDAO implements DAO {
 	}
 	
 	/*
-	 * Updates the user info
-	 */
-	/*
 	 * Write entire list of users to file
 	 */
 	public void overwriteUsers(User u) {
