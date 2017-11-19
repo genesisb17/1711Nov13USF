@@ -27,6 +27,7 @@ public class RunBank {
 			System.out.println("Login");
 			System.out.println("=====");
 			currentUser = login(getUserInfo(scan), scan);
+			System.out.println("Login successful.\n");
 			mainMenu(currentUser, scan);
 			break;
 		default: run();
@@ -42,7 +43,8 @@ public class RunBank {
 		System.out.println("View Balance(1)");
 		System.out.println("Make Depsosit(2)");
 		System.out.println("Make Withdrawal(3)");
-		System.out.println("Logout and Exit(4)");
+		System.out.println("Update Password(4)");
+		System.out.println("Logout and Exit(5)");
 	}
 
 	static void mainMenu(User u, Scanner scan) {
@@ -70,16 +72,23 @@ public class RunBank {
 				System.out.println("Withdrawals");
 				System.out.println("===========");
 				withdrawFunds(u, scan);
+				break;
 			case "4":
+				// update password
+				System.out.println("Password Update");
+				System.out.println("===============");
+				updatePass(scan);
+				break;
+			case "5":
 				// exit
 				break;
 			default:
 				System.out.println("Not a valid option please enter another");
 			} // END SWITCH
-		} while (!op.equals("4")); // END WHILE
+		} while (!op.equals("5")); // END WHILE
 		System.out.println("Thank you for using The Bank. Have a nice day.");
 	}
-
+	
 	static User getUserInfo(Scanner scan) {
 		User u = new User();
 		String uName, pass;
@@ -122,7 +131,6 @@ public class RunBank {
 			System.out.println("Incorrect username or password. Please try again.");
 			cUser = login(getUserInfo(scan), scan);
 		}
-		System.out.println("Login successful.\n");
 		return cUser; // object referring to current user
 	}
 
@@ -148,8 +156,6 @@ public class RunBank {
 	static void depositFunds(User u, Scanner scan) { 
 		DecimalFormat df = new DecimalFormat(".##");
 		double depAmt;
-
-
 
 		try {
 			do {
@@ -230,12 +236,37 @@ public class RunBank {
 					break;
 				default:
 					System.out.println("Please enter yes or no.");
-				}
+				} // END SWITCH
 			} while (goodInput == false);
 
 		} catch (NumberFormatException e) {
 			System.out.println("Invalid entry***\n");
 			withdrawFunds(u, scan);
 		}
+	}
+	
+	/*
+	 * Doesn't take user object because that information will
+	 * be reverified for security purposes
+	 */
+	static void updatePass(Scanner scan) {
+		System.out.println("For security purposes please sign in again before updating password.");
+		User u = login(getUserInfo(scan), scan);
+		System.out.println("Enter new password: ");
+		String newpass1 = scan.nextLine();
+		System.out.println("Confirm new password: ");
+		String newpass2 = scan.nextLine();
+		
+		while (!newpass1.equals(newpass2)) {
+			System.out.println("New password and confirm password do not match.");
+			System.out.println("Enter new password: ");
+			newpass1 = scan.nextLine();
+			System.out.println("Confirm new password: ");
+			newpass2 = scan.nextLine();
+		}
+		
+		u.setPassword(newpass1);
+		service.updateUser(u);
+		printMainMenu(u);
 	}
 }
