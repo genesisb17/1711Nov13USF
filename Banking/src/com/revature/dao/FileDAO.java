@@ -35,7 +35,6 @@ public class FileDAO implements DAO{
 		// TODO Auto-generated method stub
 		String iine = null;
 		ArrayList<String> userKey = new ArrayList<>();
-		StringBuilder vals = new StringBuilder();
 //		HashMap<String, String[]> userMap = new HashMap<>();
 		try(BufferedReader br = new BufferedReader(new FileReader(filename))){
 			while((iine = br.readLine()) != null) {
@@ -57,25 +56,38 @@ public class FileDAO implements DAO{
 	}
 	
 	public ArrayList<String> logOn(String u, String p) {
-		
 		String token = null;
+		boolean mat = false;
 		ArrayList<String> uPass = new ArrayList<>();
 		try(BufferedReader br = new BufferedReader(new FileReader(filename))){
 			while((token = br.readLine()) != null) {
+				
 			String[] izer = token.split(":");
-			if((izer[2] == u) && (izer[3] == p)) {
-				System.out.println("Username found!");
+			
+//			System.out.println("u User: " + u);
+//
+//			System.out.println("uPass user: " + uPass.get(2));
+//			
+//			System.out.println("p Pw: " + p);
+//			System.out.println("uPass pw: " + uPass.get(3));
+			if((izer[2].equals(u)) && izer[3].equals(p)) {
+				
+//				System.out.println("Username/password invalid or mismatched.");
+//				mat = false;
+				
 				uPass.add(0, izer[0]);
 				uPass.add(1, izer[1]);
 				uPass.add(2, izer[2]);
 				uPass.add(3, izer[3]);
 				uPass.add(4, izer[4]);
+				System.out.println("Username/Password match!");
+				System.out.println("Username: " + u + " has password "
+						+ p + ".");
+				mat = true; 
 				return uPass;
-			}
-			else {
-				System.out.println("Invalid username/password. System exiting...");
-				return null;
-			}
+				}
+
+
 			}
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -85,9 +97,9 @@ public class FileDAO implements DAO{
 			e.printStackTrace();
 		}
 		
-		
 		return null;
-		
+				
+	
 	
 	}
 

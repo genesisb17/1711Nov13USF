@@ -1,5 +1,6 @@
 package com.revature.service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import com.revature.dao.DAO;
@@ -27,22 +28,29 @@ public class Service {
 	
 	
 	public User logIn(User u) {
+		
+		ArrayList<String> result = new ArrayList<>();
+		result = dao.logOn(u.getUsername(), u.getPassword());
 		if(!(dao.getUser().contains(u.getUsername()))) {
 			System.out.println("Username does not exist! Please try again.");
 			System.out.println("--------------------------------------------");
 			reset.run();
 			return null;
 		}
-		
-		if(dao.logOn(u.getUsername(), u.getPassword()) == null) {
+
+		if(result == null) {
 			System.out.println("Username/Password mismatch. Please try again.");
 			System.out.println("--------------------------------------------");
 			reset.run();
 			return null;
 		}
+		
 		System.out.println();
-		System.out.println("Your Account:");
-		System.out.println(dao.logOn(u.getUsername(), u.getPassword()));
+		System.out.println("Your Account Balance:");
+		//System.out.println(result);
+		double bal = Double.parseDouble(result.get(4));
+
+		System.out.println(bal);
 		return u;
 	}
 

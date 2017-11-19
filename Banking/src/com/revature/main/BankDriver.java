@@ -85,6 +85,6 @@ public class BankDriver {
 		u.setBalance((double)1000.97);
 		service.addUser(u);	
 		
-		return null;
+		return u;
 	}
 }
