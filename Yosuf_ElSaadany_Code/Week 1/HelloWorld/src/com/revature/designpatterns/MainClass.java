@@ -3,18 +3,14 @@ package com.revature.designpatterns;
 import java.util.Scanner;
 
 public class MainClass {
-
+	
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
-		/*
-		 * SINGLETON
-		 * must use the getInstance() method to 
-		 * instantiate singleton class
-		 * 
-		 * only one instance with multiple references
-		 */
-		
+	
+	/*
+	 * SINGLETON
+	 * must use the getInstance() method to 
+	 * instantiate singleton class
+	 */
 		Singleton single = Singleton.getInstance();
 		single.hello();
 		System.out.println(single.count);
@@ -24,9 +20,9 @@ public class MainClass {
 		System.out.println(single.count);
 		
 		/*
-		 * Factory Design Pattern
-		 * Here, we create an object without exposing
-		 * creation logic to the client. we refer to the
+		 * FACTORY DESIGN PATTERN
+		 * Here, we create an object without exposing 
+		 * creation logic to the client. We refer to the 
 		 * newly created object using a common interface
 		 */
 		
@@ -37,7 +33,5 @@ public class MainClass {
 		
 		Tool t = factory.workWithTool(tool);
 		System.out.println(t.work());
-		
 	}
-
 }

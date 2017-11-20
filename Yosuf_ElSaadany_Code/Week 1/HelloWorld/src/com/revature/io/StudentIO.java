@@ -22,6 +22,9 @@ public class StudentIO {
 		// Read Students into arraylist
 		ArrayList<Student> studs = new ArrayList<Student>();
 		studs = readStudents();
+		for(int i = 0; i < studs.size(); i++) {
+			System.out.println(studs.get(i).getName());
+		}
 		
 		// 
 		SerializeEx serial = new SerializeEx();

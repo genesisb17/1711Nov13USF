@@ -68,16 +68,9 @@ public class User {
 	public void setBalance(double balance) {
 		this.balance = balance;
 	}
-
 	
 	public String toFile() {
-		return id + ":" + firstname + ":" + lastname + ":" + username
-				+ ":" + password + ":" + balance;
-	}
-	
-	
-	
-	
-	
-
+		return (id + ":" + firstname + ":" + lastname + ":" + username
+				+ ":" + password + ":" + balance + "\n");
+	}	
 }
