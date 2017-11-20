@@ -12,11 +12,9 @@ public class ArrayTricks {
 		System.out.println(list.stream().filter(i -> i % 2 == 0).reduce(0, Integer::sum)); // print sum of even elements
 		System.out.println(list.stream().filter(i -> i % 2 == 1).reduce(0, Integer::sum)); // print sum of odd elements
 		list = list.stream().filter(a -> {
-			if(a == 1) return false;
-			for(int i = 2; i <= Math.sqrt(a); i++) {
-				if(a % i == 0) return false;
-			}
-			return true;
+			if(a == 1) return true;
+			for(int i = 2; i <= Math.sqrt(a); i++) if(a % i == 0) return true;
+			return false;
 		}).collect(Collectors.toCollection(ArrayList::new)); // remove prime elements
 		list.stream().forEach(System.out::println); // print list
 	}
