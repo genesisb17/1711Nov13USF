@@ -1,0 +1,104 @@
+package com.rev.main;
+
+import java.util.HashMap;
+import java.util.Scanner;
+import java.util.function.Supplier;
+
+import com.rev.dao.DAO;
+import com.rev.main.interfaces.BankOperations;
+import com.rev.pojos.User;
+
+public class BankOps implements BankOperations, Runnable{
+
+	private Scanner scan;
+	private static BankOps bankOpsObject = null;
+	private BankOpsValidator validator = BankOpsValidator.getInstance();
+	private HashMap<Integer, Supplier<User>> userOps = new HashMap<Integer, Supplier<User>>();
+	private HashMap<Integer, Supplier<User>> bankOps = new HashMap<Integer, Supplier<User>>();
+	
+	private BankOps(Scanner s){
+		this.scan = s;
+	}
+	
+	public static BankOps getInstance(Scanner s){
+		if(bankOpsObject == null){
+			bankOpsObject = new BankOps(s);
+			return bankOpsObject;
+		}else{
+			return bankOpsObject;
+		}
+	}
+	
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		System.out.println("Welcome to the Bank App!");
+		System.out.println("Please select one option (Enter choice number): ");
+		System.out.println("1. Login");
+		System.out.println("2. Create Account");
+		
+		int op = scan.nextInt();
+		scan.nextLine();
+		
+		//switch statement here
+		//default: run();
+		switch(op){
+			case 2: System.out.println("You've chosen to creat a new account!"); 
+					userOps.get(op).get();
+					break;
+			
+			default: run();
+					 break;
+		}
+	}
+	
+	@Override
+	public User login() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public User createAccount() {
+		String fname, lname, username, password;
+		boolean firstName = false, lastName = false, userName = false, passWord = false;
+		
+		do{
+			System.out.println("Please enter your first name: ");
+			fname = scan.nextLine();
+			if(validator.isFirstNameValid(fname)){
+				firstName = true;
+			}else{
+				System.out.println("Sorry this name is invalid please try again...");
+			}
+		}while(!firstName);
+		
+		do{
+			System.out.println("Please enter your last name: ");
+			lname = scan.nextLine();
+			if(validator.isLastNameValid(lname)){
+				firstName = true;
+			}else{
+				System.out.println("Sorry this name is invalid please try again...");
+			}
+		}while(!lastName);
+		
+		System.out.println("2. Create Account");
+		System.out.println("2. Create Account");
+		System.out.println("2. Create Account");
+		
+		return null;
+	}
+
+	@Override
+	public User makeDeposit() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public User makeWithdrawal() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+}

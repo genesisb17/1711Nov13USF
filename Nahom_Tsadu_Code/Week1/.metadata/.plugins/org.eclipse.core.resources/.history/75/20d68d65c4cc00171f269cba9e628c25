@@ -1,0 +1,11 @@
+package com.rev.main.interfaces;
+
+import com.rev.pojos.User;
+
+public interface BankOperations {
+	User login();
+	User createAccount();
+	User makeDeposit();
+	User makeWithdrawal();
+	User checkBalance();
+}

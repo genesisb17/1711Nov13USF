@@ -1,0 +1,31 @@
+package com.rev.dao;
+
+import java.io.BufferedWriter;
+
+import com.rev.pojos.User;
+
+public class FileDAO implements DAO{
+
+	public void addUser(User u) {
+		// TODO Auto-generated method stub
+		try(BufferedWriter bw = new BufferedWriter(new FileWriter(filename, true))){
+			
+		}
+	}
+
+	public User getUser(String username) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public void deposit(double amount) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public double withdraw(double amount) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+}

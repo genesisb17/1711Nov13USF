@@ -1,0 +1,41 @@
+package com.rev.main;
+
+import com.rev.main.interfaces.BankOperationValidator;
+
+public class BankOpsValidator implements BankOperationValidator, Runnable{
+	
+	private static BankOpsValidator validator = new BankOpsValidator();
+	
+	private BankOpsValidator(){
+		
+	}
+	
+	public static BankOpsValidator getInstance(){
+		return validator;
+	}
+	
+	@Override
+	public boolean isFirstNameValid(String s) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean isLastNameValid(String s) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean isUserNameValid(String s) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean isPasswordValid(String s) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+}

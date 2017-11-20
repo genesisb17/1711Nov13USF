@@ -1,0 +1,54 @@
+package com.rev.main;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Scanner;
+import java.util.function.Supplier;
+
+import com.rev.pojos.User;
+
+public class RunBankApp {
+	
+	public static void main(String[] args) {
+		
+		Scanner scan = new Scanner(System.in);
+		HashMap<Integer, Supplier<User>> bankOps = new HashMap<Integer, Supplier<User>>();
+		bankOps.put(1, () -> login());
+	}
+	
+	static void run(Scanner scan){
+		
+		System.out.println("Welcome to the Bank App!");
+		System.out.println("Please select one option (Enter choice number): ");
+		System.out.println("1. Login");
+		System.out.println("2. Create Account");
+		
+		int op = scan.nextInt();
+		scan.nextLine();
+		
+		//switch statement here
+		//default: run();
+		switch(op){
+			case 1: break;
+		}
+	}
+	
+	static User login(){
+		return null;
+	}
+	
+	static User createAccount(Scanner scan){
+		
+		String fname, lname, username, password;
+		boolean firstName = false, lastName = false, userName = false, passWord = false;
+		
+		System.out.println("You've chosen to creat a new account!");
+		System.out.println("Please enter your first name: ");
+		fname = scan.nextLine();
+		System.out.println("2. Create Account");
+		System.out.println("2. Create Account");
+		System.out.println("2. Create Account");
+		
+		return null;
+	}
+}

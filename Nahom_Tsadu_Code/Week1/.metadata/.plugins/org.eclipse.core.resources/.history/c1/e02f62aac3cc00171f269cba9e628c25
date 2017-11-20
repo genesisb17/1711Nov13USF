@@ -1,0 +1,194 @@
+package com.rev.main;
+
+import java.util.HashMap;
+import java.util.Scanner;
+import java.util.function.Supplier;
+
+import com.rev.main.interfaces.BankOperations;
+import com.rev.pojos.User;
+import com.rev.service.Service;
+
+public class BankOps implements BankOperations, Runnable{
+
+	private Scanner scan;
+	private static BankOps bankOpsObject = null;
+	private BankOpsValidator validator;
+	private Service service;
+	private HashMap<Integer, Supplier<User>> userOps;
+	private HashMap<Integer, Supplier<User>> bankOps;
+	
+	private BankOps(Scanner s){
+		this.scan = s;
+		this.validator = BankOpsValidator.getInstance();
+		this.service = new Service();
+		this.userOps = this.initializeUserOps(userOps);
+		this.bankOps = this.initializeBankOps(bankOps);
+	}
+	
+	public static BankOps getInstance(Scanner s){
+		if(bankOpsObject == null){
+			bankOpsObject = new BankOps(s);
+			return bankOpsObject;
+		}else{
+			return bankOpsObject;
+		}
+	}
+	
+	public HashMap<Integer, Supplier<User>> initializeUserOps(HashMap<Integer, Supplier<User>> ops){
+		ops = new HashMap<Integer, Supplier<User>>();
+		ops.put(1, () -> this.login());
+		ops.put(2, () -> this.createAccount());
+		return ops;
+	}
+	
+	public HashMap<Integer, Supplier<User>> initializeBankOps(HashMap<Integer, Supplier<User>> ops){
+		ops = new HashMap<Integer, Supplier<User>>();
+		return ops;
+	}
+	
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		System.out.println("Welcome to the Bank App!");
+		System.out.println("Please select one option (Enter choice number): ");
+		System.out.println("1. Login");
+		System.out.println("2. Create Account");
+		
+		int op = scan.nextInt();
+		scan.nextLine();
+		
+		switch(op){
+		     case 1: System.out.println("You've chosen to Login!"); 
+		     		 runBankOps(userOps.get(op).get());
+		             break;
+		
+			 case 2: System.out.println("You've chosen to create a new account!"); 
+					 service.addUser(userOps.get(op).get());
+					 break;
+					
+			default: run();
+					 break;
+		}
+	}
+	
+	public void runBankOps(User u){
+		System.out.println("Hello " + u.getFname() + "!"); 
+		System.out.println("Please select one option (Enter choice number): ");
+		System.out.println("1. Deposit");
+		System.out.println("2. Withdrawal");
+		System.out.println("3. Check Balance");
+	}
+	
+	public boolean authorize(String pw1, String pw2){
+		if(pw1.equals(pw2)) return true;
+		else return false;
+	}
+	
+	@Override
+	public User login() {
+		// TODO Auto-generated method stub
+		String username, password;
+		boolean userFound = false, userAuth = false;
+		User user;
+		
+		do{ 
+			System.out.println("Please enter your username: ");
+			username = scan.nextLine();
+			user = service.getUser(username);
+			if(user == null){
+				System.out.println("Sorry there is no User associated with that username. Please try again...");
+			}else{userFound = true;}
+		}while(userFound == false);
+
+		do{ 
+			System.out.println("Please enter your password: ");
+			password = scan.nextLine();
+			if(!authorize(user.getPassword(), password)){
+				System.out.println("Authorization failed. Please try again...");
+			}else{userAuth = true;}
+		}while(userAuth == false);
+		
+		
+		return user;
+	}
+
+	@Override
+	public User createAccount() {
+		String fname, lname, username, password;
+		boolean firstName = false, lastName = false, userName = false, passWord = false;
+		int nextOption;
+		User newUser = null;
+		
+		do{
+			System.out.println("Please enter your first name: ");
+			fname = scan.nextLine();
+			if(validator.isFirstNameValid(fname)){
+				firstName = true;
+			}else{
+				System.out.println("Sorry this name is invalid please try again...");
+			}
+		}while(!firstName);
+		
+		do{
+			System.out.println("Please enter your last name: ");
+			lname = scan.nextLine();
+			if(validator.isLastNameValid(lname)){
+				lastName = true;
+			}else{
+				System.out.println("Sorry this name is invalid please try again...");
+			}
+		}while(!lastName);
+		
+		do{
+			System.out.println("Please enter a username: ");
+			username = scan.nextLine();
+			Object validation = validator.isUsernameValid(username);
+			if(!(validation instanceof String) && ((Boolean)validation) == true){
+				userName = true;
+			}else{
+				System.out.println(validation.toString());
+			}
+		}while(!userName);
+		
+		do{
+			System.out.println("Please enter a password: ");
+			password = scan.nextLine();
+			if(validator.isPasswordValid(password)){
+				passWord = true;
+			}else{
+				System.out.println("Sorry this password is invalid please try again...");
+			}
+		}while(!passWord);
+		
+		System.out.println("Please verify your information (Enter 1 to Continue or 2 to Re-Do): ");
+		System.out.println("First Name: " + fname);
+		System.out.println("Last Name: " + lname);
+		System.out.println("Username: " + username);
+		
+		nextOption = scan.nextInt();
+		scan.nextLine();
+		
+		if(nextOption == 2) createAccount();
+		else newUser = new User(fname, lname, username, password);
+		
+		return newUser;
+	}
+
+	@Override
+	public User makeDeposit() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public User makeWithdrawal() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public double checkBalance() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+}
