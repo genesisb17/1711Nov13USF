@@ -77,7 +77,9 @@ public class FileDAO implements DAO {
 
 				for (int i = 0; i < fileHold.size(); i++) {
 					for (int j = 0; j < 6; j++) {
-						bw.write((fileHold.get(i)[j]) + ":");
+						bw.write((fileHold.get(i)[j]));
+						if(j<5)
+						bw.write(":");
 					}
 					bw.write("\n");
 				}
