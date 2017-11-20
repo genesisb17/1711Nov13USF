@@ -85,7 +85,7 @@ public class Service {
 	}
 
 
-	private static void with(User u, ArrayList<String> userInfo) {
+	static void with(User u, ArrayList<String> userInfo) {
 		// TODO Auto-generated method stub
 		System.out.println("How much money would you like to withdraw?");
 		double dew = Double.parseDouble(userInfo.get(4));
@@ -106,9 +106,13 @@ public class Service {
 	}
 
 
-	private static void depo(User u, ArrayList<String> uInfo) {
-		// TODO Auto-generated method stub
-		
+	static void depo(User u, ArrayList<String> uInfo) {
+		System.out.println("How much money would you like to deposit?");
+		double dew = Double.parseDouble(uInfo.get(4));
+		Scanner c = new Scanner(System.in);
+		double dep = c.nextDouble();
+		System.out.println("Balance: " + dew);
+		System.out.println("Amount Deposited: " + dep);
 	}
 
 }

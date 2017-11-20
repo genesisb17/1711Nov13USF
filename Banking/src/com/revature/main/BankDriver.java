@@ -70,16 +70,10 @@ public class BankDriver {
 		System.out.println("Please enter your user name:");
 		u.setUsername(in.nextLine());
 		System.out.println("Please enter your first name:");
-
-
 		u.setFirstname(in.nextLine());
 		System.out.println("Please enter your last name:");
-
-
 		u.setLastname(in.nextLine());
 		System.out.println("Please enter your password:");
-
-
 		u.setPassword(in.nextLine());
 		u.setBalance((double)100.00);
 		service.addUser(u);	
