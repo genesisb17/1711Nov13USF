@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Scanner;
 
+import Problems.Problem11;
 import day4.People;
 
 public class Problem 
@@ -26,12 +27,13 @@ public class Problem
 	{
 		for(int j=1; j < b.length;j++)
 		{
-		     if(b[j-1] > b[j]){  
+		     if(b[j-1] > b[j])
+		     {  
                  //swap elements  
                  temp = b[j-1];  
                  b[j-1] = b[j];  
                  b[j] = temp;  
-         }    
+		     }    
 		}
 	}
 	System.out.println("Promblem 1");
@@ -102,7 +104,6 @@ public class Problem
 		String[] s2 = {"2","4","6","8","0"};
 		s = Integer.toString(num);
 		s1 = s.split("");
-		System.out.println("Problem 6");
 		for(int i = 0;i<s1.length;i++)
 		{
 			
@@ -172,6 +173,33 @@ public class Problem
 			return n2;
 		}
 	}
+	void Problem11()
+	{
+		Problem11 n = new Problem11();
+		System.out.println("Problem 11");
+		System.out.println(n.getA());
+		System.out.println(n.getB());
+	}
+	void Problem12()
+	{
+		int i;
+		ArrayList<Integer> a= new ArrayList<Integer>();
+		for(i = 1;i<101;i++)
+		{
+			a.add(i);	
+		}
+		for (int j : a) {
+			if(a.get(j)==0)
+			{
+				System.out.print(a.get(j)+" ");
+			}
+			if(j==100)
+			{
+				break;
+			}
+		}
+		System.out.println("");
+	}
 	void Problem13()
 	{
 		int count;
@@ -219,7 +247,15 @@ public class Problem
 			
 			
 	}
-	
+	void Problem15(int a,int b)
+	{
+		Problem15b c = new Problem15b();
+		System.out.println(c.ADD(a, b));
+		System.out.println(c.SUBTRACT(a, b));
+		System.out.println(c.MULTIPY(a, b));
+		System.out.println(c.DIVIDE(a, b));
+
+	}
 	void Problem17()
 	{
 		Scanner sc = new Scanner(System.in);

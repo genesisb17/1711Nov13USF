@@ -138,8 +138,6 @@ public class FileDao implements DAO
 			e.printStackTrace();
 		}
 	}
-
-	
 	
 	public void change(String username,int deposit) 
 	{

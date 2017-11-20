@@ -84,7 +84,6 @@ public class RunBank
 		name = sc.nextLine();
 		u.setPassword(name);
 		
-		
 		System.out.println("What is your amount you have?");
 		int x;
 		x = sc.nextInt();
@@ -113,7 +112,7 @@ public class RunBank
 			case 1:
 				System.out.println("Name: "+u.getFirstname()+" "+u.getLastname());
 				System.out.println("username: "+u.getUsername());
-				System.out.println("Your balance is "+u.getPassword());
+				System.out.println("Your password is "+u.getPassword());
 				System.out.println("Your balance is "+u.getBalance());
 				break;
 			case 2:
@@ -125,6 +124,5 @@ public class RunBank
 		}
 		lookup();
 		return u;
-		
 	}
 }
