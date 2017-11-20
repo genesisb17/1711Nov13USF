@@ -28,13 +28,13 @@ public class Service {
 			}
 		}
 		
+		// if username is available
 		System.out.println("Username, " + u.getUserName() + " is available!");
-		
-		// assuming that username does not exist
 		dao.addUser(u);
 		return u;
 	}
 	
+	// returns an ArrayList containing all users from the data store
 	public ArrayList<User> getAllUsers() {
 
 		ArrayList<User> users = new ArrayList<User>();
@@ -70,6 +70,7 @@ public class Service {
 		
 	}
 
+	// prints all users from the data store to the console (ADMIN USE ONLY)
 	public void printAllUsers() {
 		
 		for(User user : getAllUsers()) {
@@ -83,6 +84,10 @@ public class Service {
 		
 	}
 	
+	/*
+	 *  determines the proper ID number for a new user, by iterating over the list and incrementing the last ID num
+	 *  in the data store by one
+	 */
 	public int determineIdNumForNewUser() {
 		int id = 0;
 		
@@ -93,6 +98,8 @@ public class Service {
 		return ++id;
 	}
 	
+	
+	// prints the given user's balance to the screen
 	public void viewUserBalance(User u) {
 		System.out.println("\nBalance: $" + u.getBalance() + "\n");
 	}
