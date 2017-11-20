@@ -11,5 +11,6 @@ public interface DAO {
 	User addUser(User u);
 	ArrayList<String> getUser();
 	ArrayList<String> logOn(String us, String pa);
-	User makeTransac(double amou, double bala);
+	User withTransac(double amou, double bala);
+	User depTransac(double amoun, double balan);
 }

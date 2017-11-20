@@ -3,6 +3,7 @@ package com.revature.dao;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -89,62 +90,84 @@ public class FileDAO implements DAO{
 	
 	}
 	
-	public User makeTransac(double amount, double curBal) {
+	public User withTransac(double amount, double curBal) {
 		String cheese = null;
 		String cheese2 = null;
+		StringBuilder line = new StringBuilder();
 		User so = new User();
 		double match;
 		Double newBalance;
 		try(BufferedReader br = new BufferedReader(new FileReader(filename))){
 
-				while((cheese = br.readLine()) != null) {
-					String[] wine = cheese.split(":");
-							try(BufferedWriter bw = new BufferedWriter(new FileWriter(filename, false))){
-								match = Double.parseDouble(wine[4]);
-								so.setUsername(wine[2]);
-								so.setFirstname(wine[0]);
-								so.setLastname(wine[1]);
-								so.setPassword(wine[3]);
-	
-								if(match == curBal) {
-							
-									newBalance = match - amount;
-									so.setBalance(newBalance);
-									System.out.println("New Balance: " + newBalance);
+			while((cheese = br.readLine()) != null) {
+				String[] wine = cheese.split(":");
+						try(BufferedWriter bw = new BufferedWriter(new FileWriter(filename, false))){
+							match = Double.parseDouble(wine[4]);
+							so.setUsername(wine[2]);
+							so.setFirstname(wine[0]);
+							so.setLastname(wine[1]);
+							so.setPassword(wine[3]);
 
-								}
+							if(match == curBal) {
 						
-								else {	
-									so.setBalance(match);
+								newBalance = match - amount;
+								so.setBalance(newBalance);
+								System.out.println("New Balance: " + newBalance);
 
-								}
-								bw.write(so.toFile());
-								return so;
 							}
-				}
-//				} catch (IOException e) {
-//					// TODO Auto-generated catch block
-//					e.printStackTrace();
-//				}
+					
+							else {	
+								so.setBalance(match);
 
-//				try(BufferedWriter bw = new BufferedWriter(new FileWriter(filename, true))){
-//					try(BufferedReader read = new BufferedReader(new FileReader(filename))){
-//						while((cheese2 = read.readLine()) != null) {
-//							String[] wine2 = cheese2.split(":");
-//							if() {
-//								
-//							}
-//						}
-//						
-//					}
-//
-//							
-//
-//					}
-//				catch (IOException e) {
-//					// TODO Auto-generated catch block
-//					e.printStackTrace();
-//				}
+							}
+							bw.write(so.toFile());
+							return so;
+						}
+			}
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return so;
+
+		}
+	public User depTransac(double amount, double curBal) {
+		String cheese = null;
+		String cheese2 = null;
+		StringBuilder line = new StringBuilder();
+		User so = new User();
+		double match;
+		Double newBalance;
+		try(BufferedReader br = new BufferedReader(new FileReader(filename))){
+
+			while((cheese = br.readLine()) != null) {
+				String[] wine = cheese.split(":");
+						try(BufferedWriter bw = new BufferedWriter(new FileWriter(filename, false))){
+							match = Double.parseDouble(wine[4]);
+							so.setUsername(wine[2]);
+							so.setFirstname(wine[0]);
+							so.setLastname(wine[1]);
+							so.setPassword(wine[3]);
+
+							if(match == curBal) {
+						
+								newBalance = match + amount;
+								so.setBalance(newBalance);
+								System.out.println("New Balance: " + newBalance);
+
+							}
+					
+							else {	
+								so.setBalance(match);
+
+							}
+							bw.write(so.toFile());
+							return so;
+						}
+			}
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

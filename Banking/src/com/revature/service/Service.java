@@ -98,7 +98,7 @@ public class Service {
 		}
 		System.out.println("Balance: " + dew);
 		System.out.println("Amount taken: " + wit);
-		dao.makeTransac(wit, dew);
+		dao.withTransac(wit, dew);
 		
 		System.out.println("Successfully withdrawn money.");
 		c.close();
@@ -113,6 +113,12 @@ public class Service {
 		double dep = c.nextDouble();
 		System.out.println("Balance: " + dew);
 		System.out.println("Amount Deposited: " + dep);
+		System.out.println("Balance: " + dew);
+		System.out.println("Amount taken: " + dep);
+		dao.depTransac(dep, dew);
+		
+		System.out.println("Successfully deposited money.");
+		c.close();	
 	}
 
 }
