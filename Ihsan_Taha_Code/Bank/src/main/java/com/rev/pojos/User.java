@@ -69,7 +69,5 @@ public class User {
 	public String toFile() {
 		return this.getFirstName() + "," + this.getLastName() + "," + this.getUserName() + "," + this.getPassWord() + "," + this.getBalance() + "\n";
 	}
-	
-	
 
 }

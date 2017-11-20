@@ -15,8 +15,8 @@ public class FileDAO implements DAO {
 
 	String fileName = "src/main/resources/bank.txt";
 
+	// Create user only if the username does not exist in the file
 	public boolean addUser(User user) {
-
 		if (checkIfUserExists(user))
 			return true;
 
@@ -29,8 +29,8 @@ public class FileDAO implements DAO {
 		return false;
 	}
 
+	// Read user data from file
 	public User getUser(User u) {
-
 		boolean userFound = false;
 
 		ArrayList<User> users = new ArrayList<>();
@@ -53,6 +53,7 @@ public class FileDAO implements DAO {
 			return null;
 	}
 
+	// Update user balance and call updateFile()
 	public void updateUser(User user) {
 		ArrayList<User> users = new ArrayList<>();
 		users = getAllUsers();
@@ -67,8 +68,8 @@ public class FileDAO implements DAO {
 		}
 	}
 
+	// Delete user and update file
 	public void deleteUser(User user) {
-
 		ArrayList<User> users = new ArrayList<>();
 		users = getAllUsers();
 
@@ -79,9 +80,8 @@ public class FileDAO implements DAO {
 
 		StringBuffer inputBuffer = new StringBuffer();
 
-		for (int i = 0; i < users.size(); i++) {
+		for (int i = 0; i < users.size(); i++)
 			inputBuffer.append(users.get(i).toString());
-		}
 
 		String inputStr = inputBuffer.toString();
 		
@@ -94,6 +94,7 @@ public class FileDAO implements DAO {
 		}
 	}
 
+	// Get all users from file to accommodate CRUD operations
 	public ArrayList<User> getAllUsers() {
 		ArrayList<User> usersOnFile = new ArrayList<>();
 
@@ -118,8 +119,8 @@ public class FileDAO implements DAO {
 		return usersOnFile;
 	}
 
+	// Check if user exists on file
 	public boolean checkIfUserExists(User user) {
-
 		ArrayList<User> users = new ArrayList<>();
 		users = getAllUsers();
 
@@ -131,6 +132,7 @@ public class FileDAO implements DAO {
 		return false;
 	}
 
+	// Replace oldUser on file with newUser
 	public void updateFile(User oldUser, User newUser) {
 		try {
 			BufferedReader file = new BufferedReader(new FileReader(fileName));
@@ -150,10 +152,9 @@ public class FileDAO implements DAO {
 			fileOut.write(inputStr.getBytes());
 			fileOut.close();
 
-		} catch (Exception e) {
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
 	}
 
 }

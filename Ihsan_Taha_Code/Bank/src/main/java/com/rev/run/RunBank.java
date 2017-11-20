@@ -1,5 +1,6 @@
 package com.rev.run;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import com.rev.pojos.User;
@@ -26,7 +27,6 @@ public class RunBank {
 		default:
 			run();
 		}
-
 	}
 
 	static User login() {
@@ -101,7 +101,11 @@ public class RunBank {
 		case "4":
 			run();
 		case "5":
-			service.deleteUser(user);
+			service.deleteUser(user); // For admin only
+		default:
+			System.out.println("You have entered an invalid answer. Please try again.");
+			accessAccount(user);
+
 		}
 	}
 
@@ -109,16 +113,23 @@ public class RunBank {
 		double amount = 0.0d;
 
 		do {
+			// for all but the first iteration, check amount
 			if (amount > user.getBalance())
 				System.out.println("You do not have sufficient funds");
 
 			System.out.println("How much money would you like to withdraw? ");
 			Scanner scanWithdraw = new Scanner(System.in);
-			amount = scanWithdraw.nextDouble();
+			try {
+				amount = scanWithdraw.nextDouble();
+			} catch (InputMismatchException e) {
+				System.out.println("You have entered an invalid answer. Please Try again.");
+				withdrawMoney(user);
+			}
+
 		} while (amount > user.getBalance());
 
 		user.setBalance(user.getBalance() - amount);
-		service.updateUser(user);	
+		service.updateUser(user);
 		accessAccount(user);
 	}
 
@@ -126,19 +137,25 @@ public class RunBank {
 		double amount = 0.0d;
 
 		do {
+			// for all but the first iteration, check amount
 			if (amount < 0)
 				System.out.println("You have entered an invalid amount");
 
 			System.out.println("How much money would you like to deposit? ");
 			Scanner scanDeposit = new Scanner(System.in);
-			amount = scanDeposit.nextDouble();
+			try {
+				amount = scanDeposit.nextDouble();
+			} catch (InputMismatchException e) {
+				System.out.println("You have entered an invalid answer. Please Try again.");
+				continue;
+			}
+
 		} while (amount <= 0);
 
 		user.setBalance(amount + user.getBalance());
-
 		service.updateUser(user);
 		accessAccount(user);
-	}		
+	}
 
 	static void viewBalance(User user) {
 		System.out.println("Current Balance: " + user.getBalance());
