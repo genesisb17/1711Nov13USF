@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Move element &apos;DAO.java&apos; to &apos;BankProject/src/projects.bank&apos;&#x0D;&#x0A;- Original project: &apos;BankProject&apos;&#x0D;&#x0A;- Destination element: &apos;BankProject/src/projects.bank&apos;&#x0D;&#x0A;- Original element: &apos;DAO.java&apos;&#x0D;&#x0A;- Update references to refactored element" description="Move compilation unit" destination="/src&lt;projects.bank" element1="/src&lt;{DAO.java" files="0" flags="589830" folders="0" id="org.eclipse.jdt.ui.move" policy="org.eclipse.jdt.ui.moveResources" qualified="false" references="true" stamp="1510951767423" units="1" version="1.0"/>
+</session>

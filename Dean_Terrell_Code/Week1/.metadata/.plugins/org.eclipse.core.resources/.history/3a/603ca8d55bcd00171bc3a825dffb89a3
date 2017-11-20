@@ -1,0 +1,48 @@
+package com.rev.run;
+
+import java.util.Scanner;
+
+import com.rev.pojos.User;
+import com.rev.service.Service;
+
+public class bankDriver {
+
+	static Service service = new Service(); 
+	public static void main(String[] args) {
+		
+		run();
+	}
+	
+	static void run() {
+		
+		System.out.println("Welcome to Dean Bank! Would you "
+				+ "like to:\nLog in(1) or\nCreate Account(2)");
+		
+		Scanner scan = new Scanner(System.in);
+		String op = scan.nextLine();
+		switch(op) {
+		case "1": login();
+			break;
+		case "2": createAccount();
+			break;
+		default: run();
+		}
+	}
+	
+	static User login() {
+		return null;
+	}
+	
+	static User createAccount() {
+		System.out.println("Welcome! Please enter your first name: ");
+		User u = new User();
+		u.setfName("Deanboi");
+		u.setlName("Turrell");
+		u.setuName("deant");
+		u.setPassword("password");
+		u.setBalance(10000.00);
+		service.addUser(u);
+		return null;
+	}
+
+}

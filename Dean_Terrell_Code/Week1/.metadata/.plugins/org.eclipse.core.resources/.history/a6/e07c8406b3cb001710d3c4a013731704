@@ -1,0 +1,14 @@
+package hw.q5;
+
+public class Substring {
+	public static void main(String[] args) {
+		String str = "This is a string";
+		System.out.println(subString(str, 5));
+	}
+	
+	public static String subString(String str, int idx) {
+		for(int i = 0; i < idx-1; i++)
+			str.concat(String.valueOf(str.charAt(i)));
+		return str;
+	}
+}
