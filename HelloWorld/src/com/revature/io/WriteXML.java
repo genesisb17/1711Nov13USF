@@ -13,12 +13,15 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
 
-public class WriteXML {
+public class WriteXML 
+{
 	
 	static String filename = "src/logs/samplexml.xml";
 	
-	public static void main(String[] args) {
-		try{
+	public static void main(String[] args) 
+	{
+		try
+		{
 			//create XML doc
 			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();

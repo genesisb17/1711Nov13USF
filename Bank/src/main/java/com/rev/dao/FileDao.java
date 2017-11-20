@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -13,7 +14,7 @@ import com.rev.pojo.newUser;
 
 public class FileDao implements DAO 
 {
-	String filename ="src/main/resources/bank.txt";
+	final String filename ="src/main/resources/bank.txt";
 	File f = new File(filename);
 	public void addUser(newUser u) {
 		// TODO Auto-generated method stub
@@ -43,7 +44,7 @@ public class FileDao implements DAO
 			{	
 				String[] about = line.split(":");
 				int j;
-				for(j=3;j<about.length;j++) 
+				for(j=0;j<about.length;j++) 
 				{
 					if(about[j].equalsIgnoreCase(username))
 					{
@@ -70,10 +71,13 @@ public class FileDao implements DAO
 	}
 
 	@Override
-	public void change(String username,int o) 
+	public void change1(String old,String n) 
 	{
+		String[] about = null;
 		// TODO Auto-generated method stub
-		newUser u = new newUser();
+		int a=0;
+		final String filename ="src/main/resources/bank.txt";
+		File f1 = new File(filename);
 		try(BufferedReader br = new BufferedReader(new FileReader(filename)))
 		{
 			
@@ -81,31 +85,34 @@ public class FileDao implements DAO
 			while((line = br.readLine())!=null)
 			{
 				//newUser v = new newUser();
-				String[] about = line.split(":");
+				about = line.split(":");
 				int j;
-				int temp;
-				for(j=3;j<about.length;j++)
+				for(j=0;j<about.length-2;j++) //*
 				{
-					if(about[j].equalsIgnoreCase(username))
-					{
-						temp=o+Integer.parseInt(about[j+2]);
-						about[j+2]=Integer.toString(temp);
-
-					}
+					if(about[j].equalsIgnoreCase(old))
 					
+					{		
+						a = 1;
+						about[j]=n;
+						//write old file info
+						//error is here
+						break;
+					}
 				}
-
+			}
 				//delete file and replace it
-/*				f.delete();
-				f.createNewFile();
-*/			
-				//write old file info
-				//error is here
-
+			
+			if(a==1)
+			{
+				br.close();
+				f1.delete();
+				f1.createNewFile();
+				
 				try(BufferedWriter bw = new BufferedWriter(new FileWriter(filename,true)))//true appending not rewriting
 				{
 					//should not be able to add users with a username that already exists
 					//add logic to validate
+				
 					StringBuilder strBuilder = new StringBuilder();
 					for (int i = 0; i < about.length; i++) 
 					{
@@ -117,13 +124,13 @@ public class FileDao implements DAO
 				catch (IOException e) 
 				{
 					// TODO Auto-generated catch block
-					System.out.println(about[0]);
 					e.printStackTrace();
-				}
+			}
 			}
 		}
 		catch(FileNotFoundException e)
 		{
+			
 			e.printStackTrace();
 		}
 		catch(IOException e)
@@ -132,10 +139,81 @@ public class FileDao implements DAO
 		}
 	}
 
-	@Override
-	public void Delete(String username, ArrayList<String> a, String update) 
-	{
-		// TODO Auto-generated method stub	
 	
+	
+	public void change(String username,int deposit) 
+	{
+		String[] about = null;
+		// TODO Auto-generated method stub
+		int a=0;
+		final String filename ="src/main/resources/bank.txt";
+		File f1 = new File(filename);
+		try(BufferedReader br = new BufferedReader(new FileReader(filename)))
+		{
+			
+			String line = null;
+			while((line = br.readLine())!=null)
+			{
+				//newUser v = new newUser();
+				about = line.split(":");
+				int j;
+				double temp;
+				
+				for(j=0;j<about.length-2;j++) //*
+				{
+					if(about[j].equalsIgnoreCase(username))
+					
+					{
+						temp=Double.parseDouble(about[j+2])+(double)deposit;
+						about[j+2]=Double.toString(temp);
+		
+						a = 1;
+
+						//write old file info
+						//error is here
+
+				
+						break;
+					}
+				}
+			}
+				//delete file and replace it
+			
+			if(a==1)
+			{
+				br.close();
+				f1.delete();
+				f1.createNewFile();
+				
+				try(BufferedWriter bw = new BufferedWriter(new FileWriter(filename,true)))//true appending not rewriting
+				{
+					//should not be able to add users with a username that already exists
+					//add logic to validate
+				
+					StringBuilder strBuilder = new StringBuilder();
+					for (int i = 0; i < about.length; i++) 
+					{
+					   strBuilder.append(":"+about[i]);
+					}
+					String newString = strBuilder.toString();
+					bw.write(newString);
+				}
+				catch (IOException e) 
+				{
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+			}
+			}
+		}
+		catch(FileNotFoundException e)
+		{
+			
+			e.printStackTrace();
+		}
+		catch(IOException e)
+		{
+			e.printStackTrace();
+		}
 	}
+
 }

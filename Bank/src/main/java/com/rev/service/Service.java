@@ -20,5 +20,9 @@ public class Service
 	{
 		dao.change(username, o);
 	}
+	public void change1(String old,String n) 
+	{
+		dao.change1(old, n);
+	}
 	
 }

@@ -8,14 +8,14 @@ public class newUser
 	private String username;
 	private String password;
 	private double balance;
-	
+	private int a;
 	
 	public newUser() 
 	{
 
 	}
 
-	public newUser(int id, String firstname, String lastname, String username, String password, double balance) 
+	public newUser(int id, String firstname, String lastname, String username, String password, double balance,int a) 
 	{
 		super();
 		this.id = id;
@@ -24,6 +24,7 @@ public class newUser
 		this.username = username;
 		this.password = password;
 		this.balance = balance;
+		this.a =a;
 	}
 
 	/**
@@ -32,7 +33,12 @@ public class newUser
 	public int getId() {
 		return id;
 	}
-
+	public int geta() {
+		return a;
+	}
+	public void seta(int a) {
+		this.a = a;
+	}
 	/**
 	 * @param id the id to set
 	 */

@@ -12,7 +12,6 @@ public class RunBank
 	{
 		// TODO Auto-generated method stub
 		run();
-		
 	}
 	static void run()
 	{
@@ -22,31 +21,44 @@ public class RunBank
 		newUser u = new newUser();
 		switch(op)
 		{
-		case "1":
-			lookup();
-		case "2":
-			createAccount();
-			break;
-		case "3":
-			break;
-		default:
-			run();
-			break;
+			case "1":
+				lookup();
+			case "2":
+				createAccount();
+				break;
+			case "3":
+				break;
+			default:
+				run();
+				break;
 		}
-		
+		run();
 	}
 	static newUser login()
 	{
 		return null;
 	}
+	static void up(newUser u)
+	{
+		String old;
+		String n;
+		Scanner sc= new Scanner(System.in);
+		System.out.println("what is the old string to replace??");
+		old = sc.nextLine();
+		System.out.println("what is then new String???");
+		n = sc.nextLine();
+		if(u.getFirstname().equals(old)||u.getLastname().equals(old)||u.getUsername().equals(old)||u.getPassword().equals(old))
+		{
+			service.change1(old, n);
+		}
+	}
 	static void update()
 	{
 		Scanner sc = new Scanner(System.in);
+		System.out.println("username??");
+		String s = sc.nextLine();
 		System.out.println("How much do you want to Deposit??");
 		int u = sc.nextInt();
-		System.out.println("");
-		String s = sc.nextLine();
-		
 		service.change(s, u);
 	}
 	static newUser createAccount()
@@ -94,16 +106,22 @@ public class RunBank
 			run();
 		}
 		System.out.println("Hello "+u.getFirstname());
-		System.out.println("what do you want to look for? 1-balance 2-Deposit? 3-Withdraw");
+		System.out.println("what do you want to look for? 1-balance 2-Deposit (Use - for withdraw) 3-change info");
 		int x = sc.nextInt();
 		switch(x)
 		{
-		case 1:
-			System.out.println("Your balance is "+u.getBalance());
-			break;
-		case 2:
-			update();
-			break;
+			case 1:
+				System.out.println("Name: "+u.getFirstname()+" "+u.getLastname());
+				System.out.println("username: "+u.getUsername());
+				System.out.println("Your balance is "+u.getPassword());
+				System.out.println("Your balance is "+u.getBalance());
+				break;
+			case 2:
+				update();
+				break;
+			case 3:
+				up(u);
+				break;
 		}
 		lookup();
 		return u;
