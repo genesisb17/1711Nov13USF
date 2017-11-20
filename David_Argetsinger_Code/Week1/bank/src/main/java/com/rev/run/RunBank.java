@@ -12,7 +12,8 @@ import com.rev.service.Service;
 public class RunBank {
 	static Service service = new Service();
  public static void main(String[] args) {
-	run();
+	while(true)
+	 run();
 }
  static void run(){
 	 System.out.println("Welcome to bankware \nWould you like to log in (1) or create account(2)");
@@ -23,15 +24,15 @@ public class RunBank {
 		switch(op){
 		case"1": login(); 
 		break;
-		case"2":u=createAccount();
-				userMenu(u);
+		case"2":createAccount();
 		break;
 		default: run();
 		};
  	}
+ 
  static void userMenu(User u){
 
-	 System.out.println("Welcome "+ u.getFirstName() +" \nWould you like to Check balance (1) \n Deposit(2)\n Withdraw(3) \n Logout (4) ");
+	 System.out.println("Welcome "+ u.getFirstName() +" \nWould you like to Check balance (1) \n Deposit(2)\n Withdraw(3) \n Log out(4)");
 		Scanner scan = new Scanner(System.in);
 		String op= scan.nextLine();
 		double hold=0;
@@ -54,6 +55,10 @@ public class RunBank {
 		}
 		u=service.update(u.getUsername(), u.getBalance()-hold);
 		userMenu(u);
+			break;
+		case"4":
+			System.out.println("Thank you for banking with us, have a good day!");
+			System.exit(0);
 			break;
 		default: userMenu(u);
 		};
@@ -133,7 +138,7 @@ public class RunBank {
             	idCheck=Integer.parseInt(limited[0]);
             }
     		u.setUsername(userAttempt);
-    		u.setId(idCheck++);
+    		u.setId(++idCheck);
     		br.close();
     		}catch(FileNotFoundException  ex)
     		{
