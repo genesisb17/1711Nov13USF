@@ -11,4 +11,5 @@ public interface DAO {
 	User addUser(User u);
 	ArrayList<String> getUser();
 	ArrayList<String> logOn(String us, String pa);
+	void makeTransac(double amou, double bala);
 }

@@ -84,10 +84,5 @@ public class User {
 	+ username + ":" + password + ":" + balance + "\n";
 	}
 
-	public String backTo() {
-		
-		return firstname + ":" + lastname + ":" + password + ":" + balance + "\n";
-	}
-	
 	
 }

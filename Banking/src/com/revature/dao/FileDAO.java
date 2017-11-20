@@ -55,7 +55,6 @@ public class FileDAO implements DAO{
 	
 	public ArrayList<String> logOn(String u, String p) {
 		String token = null;
-		boolean mat = false;
 		ArrayList<String> uPass = new ArrayList<>();
 		try(BufferedReader br = new BufferedReader(new FileReader(filename))){
 			while((token = br.readLine()) != null) {
@@ -73,7 +72,6 @@ public class FileDAO implements DAO{
 				System.out.println("Username/Password match!");
 				System.out.println("Username: " + u + " has password "
 						+ p + ".");
-				mat = true; 
 				return uPass;
 				}
 
@@ -91,10 +89,58 @@ public class FileDAO implements DAO{
 	
 	}
 	
-	public void makeTransac(double amount) {
-		
-		
+	public void makeTransac(double amount, double curBal) {
+		String cheese = null;
+		User so = new User();
+		double match;
+		Double newBalance;
+		try(BufferedReader br = new BufferedReader(new FileReader(filename))){
+			while((cheese = br.readLine()) != null) {
+			String[] wine = cheese.split(":");
+			try(BufferedWriter bw = new BufferedWriter(new FileWriter(filename))){
+					match = Double.parseDouble(wine[4]);
+					so.setUsername(wine[2]);
+					so.setFirstname(wine[0]);
+					so.setLastname(wine[1]);
+					so.setPassword(wine[3]);
+					so.setBalance(match);
+					if(match == curBal) {
+						
+							newBalance = match - amount;
+							so.setBalance(newBalance);
+							System.out.println("New Balance: " + newBalance);
+					
+					}
+					bw.append(so.toFile());
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 	}
+	
+//	public User updateBal(Double xx) {
+//		// TODO Auto-generated method stub
+//		try(BufferedWriter bw = new BufferedWriter(new FileWriter(filename, true))){
+//
+//			bw.write(arg0);;
+//			//bw.write(u.toString());
+//			return u;
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		return null;
+//	} 
 
 
 }

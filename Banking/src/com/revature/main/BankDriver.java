@@ -45,7 +45,7 @@ public class BankDriver {
 			run();
 		
 		}
-		
+		sc.close();
 	}
 	
 	static User login() {
@@ -58,8 +58,8 @@ public class BankDriver {
 		ul.setPassword(in.nextLine());
 		
 		service.logIn(ul);
+		in.close();
 		return ul;
-		
 	}
 	
 
@@ -81,9 +81,9 @@ public class BankDriver {
 
 
 		u.setPassword(in.nextLine());
-		u.setBalance((double)0.00);
+		u.setBalance((double)100.00);
 		service.addUser(u);	
-		
+		in.close();
 		return u;
 	}
 }

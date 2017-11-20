@@ -12,14 +12,14 @@ import com.revature.pojo.User;
 public class Service {
 	
 	static DAO dao = new FileDAO();
-	BankDriver reset = new BankDriver();
+
 	public User addUser(User u){
 		//validate that username does not exist 
 		// assuming that it DNE:
 		if(dao.getUser().contains(u.getUsername())) {
 			System.out.println("Username is already taken. Please try again.");
 			System.out.println("--------------------------------------------");
-			reset.run();
+			BankDriver.run();
 			return null;
 		}
 		
@@ -38,27 +38,27 @@ public class Service {
 		if(!(dao.getUser().contains(u.getUsername()))) {
 			System.out.println("Username does not exist! Please try again.");
 			System.out.println("--------------------------------------------");
-			reset.run();
+			BankDriver.run();
 			return null;
 		}
 
 		if(result == null) {
 			System.out.println("Username/Password mismatch. Please try again.");
 			System.out.println("--------------------------------------------");
-			reset.run();
+			BankDriver.run();
 			return null;
 		}
 		
 		System.out.println();
 		System.out.println("Login Success!");
 		System.out.println();
+		System.out.println("WELCOME " + result.get(0) + "!");
 		transac(u, result);
 		return u;
 	}
 	
-	public User transac(User u, ArrayList<String> arr) {
+	public static User transac(User u, ArrayList<String> arr) {
 		Scanner scan = new Scanner(System.in);
-		System.out.println("Welcome " + arr.get(0) + "!");
 		System.out.println();
 		System.out.println("Do you want to EXIT(1), DEPOSIT(2), WITHDRAW(3) or VIEW BALANCE(4)?");
 		System.out.println();
@@ -79,19 +79,34 @@ public class Service {
 		default:
 			transac(u, arr);
 		}
-		
+		scan.close();
 		return u;
 		
 	}
 
 
-	private void with(User u, ArrayList<String> userInfo) {
+	private static void with(User u, ArrayList<String> userInfo) {
 		// TODO Auto-generated method stub
+		System.out.println("How much money would you like to withdraw?");
+		double dew = Double.parseDouble(userInfo.get(4));
+		Scanner c = new Scanner(System.in);
+		double wit = c.nextDouble();
+		if(wit > dew) {
+			
+			System.out.println("Cannot withdraw more than current balance.");
+			transac(u, userInfo);
+		}
+		System.out.println("Balance: " + dew);
+		System.out.println("Amount taken: " + wit);
+		dao.makeTransac(wit, dew);
+		
+		System.out.println("Successfully withdrawn money.");
+		c.close();
 		
 	}
 
 
-	private void depo(User u, ArrayList<String> uInfo) {
+	private static void depo(User u, ArrayList<String> uInfo) {
 		// TODO Auto-generated method stub
 		
 	}
