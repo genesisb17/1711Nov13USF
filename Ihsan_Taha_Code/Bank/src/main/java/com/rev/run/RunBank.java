@@ -1,0 +1,147 @@
+package com.rev.run;
+
+import java.util.Scanner;
+
+import com.rev.pojos.User;
+import com.rev.service.Service;
+
+public class RunBank {
+
+	static Service service = new Service();
+
+	public static void main(String[] args) {
+		run();
+	}
+
+	static void run() {
+		System.out.println("Welcome to the Bank: Press 1 to login or 2 to create an account");
+
+		Scanner scan = new Scanner(System.in);
+		String option = scan.nextLine();
+		switch (option) {
+		case "1":
+			login();
+		case "2":
+			createAccount();
+		default:
+			run();
+		}
+
+	}
+
+	static User login() {
+		User user = new User();
+		System.out.println("Please enter your username: ");
+		Scanner scan = new Scanner(System.in);
+		String option = scan.nextLine();
+		user.setUserName(option);
+
+		System.out.println("Please enter your password: ");
+		scan = new Scanner(System.in);
+		option = scan.nextLine();
+		user.setPassWord(option);
+
+		if (service.getUser(user) != null)
+			accessAccount(user);
+		else {
+			System.out.println("Sorry, you have entered an invalid user account");
+			run();
+		}
+
+		return null;
+	}
+
+	static User createAccount() {
+		User user = new User();
+		System.out.println("Welcome to Bank of USF!\nPlease enter your first name:");
+		Scanner scan = new Scanner(System.in);
+		String option = scan.nextLine();
+		user.setFirstName(option);
+
+		System.out.println("Please enter your last name:");
+		scan = new Scanner(System.in);
+		option = scan.nextLine();
+		user.setLastName(option);
+
+		System.out.println("Please enter your username:");
+		scan = new Scanner(System.in);
+		option = scan.nextLine();
+		user.setUserName(option);
+
+		System.out.println("Please enter your password:");
+		scan = new Scanner(System.in);
+		option = scan.nextLine();
+		user.setPassWord(option);
+
+		user.setBalance(0.0d);
+
+		boolean existsAlready = true;
+		if (service.addUser(user) != existsAlready)
+			accessAccount(user);
+		else {
+			System.out.println("Sorry, the username you entered already exists.\nPlease enter a different username.");
+		}
+
+		return null;
+	}
+
+	static void accessAccount(User user) {
+		System.out.println("Hello " + user.getFirstName() + ", what would you like to do?\n"
+				+ "Press 1 to withdraw money, 2 to deposit money, 3 to view balance, or 4 to logout");
+
+		Scanner scan = new Scanner(System.in);
+		String option = scan.nextLine();
+		switch (option) {
+		case "1":
+			withdrawMoney(user);
+		case "2":
+			depositMoney(user);
+		case "3":
+			viewBalance(user);
+		case "4":
+			run();
+		case "5":
+			service.deleteUser(user);
+		}
+	}
+
+	static void withdrawMoney(User user) {
+		double amount = 0.0d;
+
+		do {
+			if (amount > user.getBalance())
+				System.out.println("You do not have sufficient funds");
+
+			System.out.println("How much money would you like to withdraw? ");
+			Scanner scanWithdraw = new Scanner(System.in);
+			amount = scanWithdraw.nextDouble();
+		} while (amount > user.getBalance());
+
+		user.setBalance(user.getBalance() - amount);
+		service.updateUser(user);	
+		accessAccount(user);
+	}
+
+	static void depositMoney(User user) {
+		double amount = 0.0d;
+
+		do {
+			if (amount < 0)
+				System.out.println("You have entered an invalid amount");
+
+			System.out.println("How much money would you like to deposit? ");
+			Scanner scanDeposit = new Scanner(System.in);
+			amount = scanDeposit.nextDouble();
+		} while (amount <= 0);
+
+		user.setBalance(amount + user.getBalance());
+
+		service.updateUser(user);
+		accessAccount(user);
+	}		
+
+	static void viewBalance(User user) {
+		System.out.println("Current Balance: " + user.getBalance());
+		accessAccount(user);
+	}
+}
