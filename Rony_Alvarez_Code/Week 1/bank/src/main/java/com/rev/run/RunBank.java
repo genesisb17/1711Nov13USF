@@ -45,10 +45,17 @@ public class RunBank {
 		System.out.println("How can we help you today?");
 		System.out.println("View Balance(1), Deposit Money(2) or Withdraw Money(3)");
 		String op = scan.nextLine();
+		
 		switch(op) {
 			case "1": viewBalance(username, password); break;
-			case "2": addMoney(); break;
+			case "2": 
+				System.out.println("How much money would you like to deposit?");
+				String amount = scan.nextLine();
+				addMoney(username, password, amount); break;
 			case "3":  
+				System.out.println("How much money would you like to withdraw?");
+				String wAmount = scan.nextLine();
+				withdrawMoney(username, password, wAmount); break;
 			default: run(); 
 		}
 		
@@ -72,13 +79,21 @@ public class RunBank {
 		return null;
 	}
 	
-	public static void addMoney() {
+	public static void addMoney(String username, String password, String amount) {
+		
+		service.AddMoney(username, password, amount);
 		
 	}
 	
 	public static void viewBalance(String username, String password) {
 		
 		service.viewBalance(username, password);
+		
+	}
+	
+	public static void withdrawMoney(String username, String password, String amount) {
+		
+		service.withdrawMoney(username, password, amount);
 		
 	}
 	

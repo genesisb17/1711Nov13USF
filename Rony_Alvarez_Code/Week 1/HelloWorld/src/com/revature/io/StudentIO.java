@@ -2,6 +2,7 @@ package com.revature.io;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -22,16 +23,18 @@ public class StudentIO {
 		//writeStudent(s2);
 		//writeStudent(s3);
 		
-		ArrayList<Student> studs = new ArrayList<Student>();
-		studs = readStudents();
+		modifyFile(filename, "Cristiano Ronaldo", "Rony Alvarez");
 		
-		SerializeEx serial = new SerializeEx();
+		//ArrayList<Student> studs = new ArrayList<Student>();
+		//studs = readStudents();
+		
+		//SerializeEx serial = new SerializeEx();
 		//serial.writeStream(studs);
 		
-		@SuppressWarnings("unchecked")
-		ArrayList<Student> deserialized = (ArrayList<Student>) serial.readObject();
+		//@SuppressWarnings("unchecked")
+		//ArrayList<Student> deserialized = (ArrayList<Student>) serial.readObject();
 		
-		System.out.println(deserialized);
+		//System.out.println(deserialized);
 
 	}
 	
@@ -82,6 +85,64 @@ public class StudentIO {
 	}
 	
 	
+	
+	
+	
+	static void modifyFile(String filePath, String oldString, String newString)
+	{
+		File fileToBeModified = new File(filePath);
+		
+		String oldContent = "";
+		
+		BufferedReader reader = null;
+		
+		FileWriter writer = null;
+		
+		try 
+		{
+			reader = new BufferedReader(new FileReader(fileToBeModified));
+			
+			//Reading all the lines of input text file into oldContent
+			
+			String line = reader.readLine();
+			
+			while (line != null) 
+			{
+				oldContent = oldContent + line + System.lineSeparator();
+				
+				line = reader.readLine();
+			}
+			
+			//Replacing oldString with newString in the oldContent
+			
+			String newContent = oldContent.replaceFirst(oldString, newString);
+			
+			//Rewriting the input text file with newContent
+			
+			writer = new FileWriter(fileToBeModified);
+			
+			writer.write(newContent);
+		}
+		catch (IOException e)
+		{
+			e.printStackTrace();
+		}
+		finally
+		{
+			try 
+			{
+				//Closing the resources
+				
+				reader.close();
+				
+				writer.close();
+			} 
+			catch (IOException e) 
+			{
+				e.printStackTrace();
+			}
+		}
+	}
 	
 
 }

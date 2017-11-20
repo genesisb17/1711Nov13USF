@@ -16,18 +16,26 @@ public class Service {
 	}
 	
 	public static void getUser(String username, String password) {
+		
 		dao.getUser(username, password);
+		
 	}
 	
-	public static void AddMoney(double amount) {
+	public static void AddMoney(String username, String password, String amount) {
 		
-		dao.addMoney(amount);
+		dao.addMoney(username, password, amount);
 		
 	}
 	
 	public static void viewBalance(String username, String password) {
 		
 		dao.getBalance(username, password);
+		
+	}
+	
+	public static void withdrawMoney(String username, String password, String amount) {
+		
+		dao.withdrawMoney(username, password, amount);
 		
 	}
 	
