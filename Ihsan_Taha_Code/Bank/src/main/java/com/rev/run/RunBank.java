@@ -6,14 +6,25 @@ import java.util.Scanner;
 import com.rev.pojos.User;
 import com.rev.service.Service;
 
+/**
+ * 
+ * @author Ihsan Taha
+ * 
+ *         The following program allows users to create a bank account or login
+ *         to an existing account and update their balance. The program does not
+ *         allow duplicate user names nor invalid user input at any point.
+ *
+ */
 public class RunBank {
 
+	// Create a service to manage user data
 	static Service service = new Service();
 
 	public static void main(String[] args) {
 		run();
 	}
 
+	// Create an account or login to an existing one
 	static void run() {
 		System.out.println("Welcome to the Bank: Press 1 to login or 2 to create an account");
 
@@ -29,6 +40,7 @@ public class RunBank {
 		}
 	}
 
+	// Login to account with a valid username and associated password
 	static User login() {
 		User user = new User();
 		System.out.println("Please enter your username: ");
@@ -51,6 +63,7 @@ public class RunBank {
 		return null;
 	}
 
+	// Create a new account with a unique username, otherwise return to main menu
 	static User createAccount() {
 		User user = new User();
 		System.out.println("Welcome to Bank of USF!\nPlease enter your first name:");
@@ -85,6 +98,7 @@ public class RunBank {
 		return null;
 	}
 
+	// Withdraw, deposit, or view balance and update accordingly to file
 	static void accessAccount(User user) {
 		System.out.println("Hello " + user.getFirstName() + ", what would you like to do?\n"
 				+ "Press 1 to withdraw money, 2 to deposit money, 3 to view balance, or 4 to logout");
@@ -109,6 +123,7 @@ public class RunBank {
 		}
 	}
 
+	// Withdraw money equal or less to the current balance
 	static void withdrawMoney(User user) {
 		double amount = 0.0d;
 
@@ -133,6 +148,7 @@ public class RunBank {
 		accessAccount(user);
 	}
 
+	// Deposit money into current balance
 	static void depositMoney(User user) {
 		double amount = 0.0d;
 
@@ -157,6 +173,7 @@ public class RunBank {
 		accessAccount(user);
 	}
 
+	// View current balance
 	static void viewBalance(User user) {
 		System.out.println("Current Balance: " + user.getBalance());
 		accessAccount(user);
