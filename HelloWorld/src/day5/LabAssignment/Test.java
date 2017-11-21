@@ -1,15 +1,12 @@
 package day5.LabAssignment;
 
 import static org.junit.Assert.*;
-
 import java.util.Scanner;
-
 public class Test {
 
 	@org.junit.Test
 	public void test() {
 		Problem p = new Problem();
-		//p.Problem2();
 		p.Problem1(p.b);
 		p.Problem2();
 		p.Problem3("tnert");
@@ -20,8 +17,8 @@ public class Test {
 		System.out.println("\n");
 		System.out.println("Problem 6");
 		System.out.println(p.Problem6(4));
-		//System.out.println("Problem 8");
-		//p.Problem8();
+		System.out.println("Problem 8");
+		p.Problem8();
 		System.out.println("Problem 9");
 		System.out.println(p.Problem9());
 		System.out.println("Problem 10");
@@ -35,9 +32,12 @@ public class Test {
 		p.Problem14(1,4 );
 		p.Problem14(2,4 );
 		p.Problem14(3,4 );
-		//p.Problem17();
+
 		System.out.println("Problem 15");
 		p.Problem15(10, 5);
+		System.out.println("Problem 17");
+
+		p.Problem17();
 		System.out.println("Problem 19");
 		p.Problem19();
 		System.out.println("Problem 20");

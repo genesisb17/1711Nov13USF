@@ -189,16 +189,12 @@ public class Problem
 			a.add(i);	
 		}
 		for (int j : a) {
-			if(a.get(j)==0)
+			if(a.get(j)%2==0)
 			{
 				System.out.print(a.get(j)+" ");
 			}
-			if(j==100)
-			{
-				break;
-			}
 		}
-		System.out.println("");
+		
 	}
 	void Problem13()
 	{
@@ -260,12 +256,12 @@ public class Problem
 	{
 		Scanner sc = new Scanner(System.in);
 		System.out.println("pricipal");
-		int p =sc.nextInt();
+		double p =sc.nextDouble();
 		System.out.println("rate");
-		int r = sc.nextInt();
+		double r = sc.nextDouble();
 		System.out.println("time(years)");
-		int t = sc.nextInt();
-		int i = p*r*t;
+		double t = sc.nextDouble();
+		double i = p*r*t;
 		System.out.println("interest");
 		System.out.println(i);
 	}
