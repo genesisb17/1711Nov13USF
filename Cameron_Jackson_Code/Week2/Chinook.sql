@@ -65,9 +65,25 @@ ALTER TABLE Invoiceline DROP CONSTRAINT FK_InvoicelineInvoiceID;
 ALTER TABLE Invoiceline ADD CONSTRAINT FK_InvoicelineInvoiceID 
 FOREIGN KEY (InvoiceID) REFERENCES Invoice(InvoiceID)
 ON DELETE CASCADE;
+-- Delete the Customer
 DELETE FROM Customer
 WHERE Firstname = 'Robert' AND Lastname = 'Walker';
 SELECT * FROM Invoice
 WHERE CustomerID=32;
 SELECT * FROM Customer
 WHERE CustomerID=32;
+
+-- 3.1 SYSTEM DEFINED FUNCTIONS
+SET SERVEROUTPUT ON;
+CREATE OR REPLACE FUNCTION GET_TIME
+RETURN DATE IS
+BEGIN
+  RETURN SYSDATE;
+END;
+
+DECLARE
+  my_date DATE;
+BEGIN
+  my_date := GET_TIME();
+  SYS.DBMS_OUTPUT.PUT_LINE('Date: '||my_date);
+END;
