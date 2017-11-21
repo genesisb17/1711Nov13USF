@@ -22,7 +22,7 @@ public class UsingSearchers {
 		}
 		
 		catch (NumberFormatException nfe) {
-			System.out.println("You have entered an invalid value. PLease try again...");
+			System.out.println("You have entered an invalid value. Please try again...");
 			useBinarySearcher();
 		}
 	}
