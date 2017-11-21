@@ -125,7 +125,7 @@ public class SearchAndSorts {
 	 * Passes through array and swaps values that are out of order
 	 * makes passes until there are no more swaps to make
 	 */
-	static int[] BubbleSort(int[] nums) {
+	public static int[] BubbleSort(int[] nums) {
 		boolean swapped; // this gets set to true if a swap was made this pass
 		int[] sortedarr = nums;
 		do {
@@ -148,7 +148,7 @@ public class SearchAndSorts {
 	 * sorted
 	 * Depends on Merge() function as helper
 	 */
-    static void MergeSort(int arr[], int beg, int end)
+    public static void MergeSort(int arr[], int beg, int end)
     {
         if (beg < end)
         {
@@ -168,7 +168,7 @@ public class SearchAndSorts {
 	 * Merge()
 	 * Merges two halves of array in sorted order
 	 */
-	static void Merge(int arr[], int beg, int mid, int end)
+	public static void Merge(int arr[], int beg, int mid, int end)
     {
         // Find sizes of two subarrays to be merged
         int n1 = mid - beg + 1;
@@ -233,7 +233,7 @@ public class SearchAndSorts {
 	 * -- work backwards from this position while swapping until the current value is
 	 * -- in sorted position
 	 */
-	static int[] InsertionSort(int[] nums) {
+	public static int[] InsertionSort(int[] nums) {
 		int[] sortedarr = nums;
 		int len = sortedarr.length;
 		int j;
