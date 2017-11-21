@@ -87,3 +87,14 @@ BEGIN
   my_date := GET_TIME();
   SYS.DBMS_OUTPUT.PUT_LINE('Date: '||my_date);
 END;
+
+CREATE OR REPLACE FUNCTION MEDIA_LENGTH(idx INT)
+RETURN INT IS
+BEGIN
+  SELECT Name INTO media_type_name
+  FROM Mediatype
+  WHERE MediatypeID = idx;
+  RETURN CHAR_LENGTH(media_type_name);
+END;
+
+SELECT MEDIA_LENGTH(4) FROM dual;
