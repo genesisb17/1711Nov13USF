@@ -26,9 +26,7 @@ public class RunBank {
 		case "2": createAccount(); break;
 			default: run();
 		}
-		
-		
-		
+				
 	}
 	
 	static User login() {
@@ -64,16 +62,32 @@ public class RunBank {
 	}
 	
 	static User createAccount() {
-		//System.out.println("Awesome! Welcome!. Please enter your first name: ");
+		
 		User u = new User();
-		u.setFirstname("Ronyy");
-		u.setLastname("Alvarezzzz");
-		u.setUsername("usernameee");
-		u.setPassword("passssss");
-		u.setBalance(1000000000000.0);
+		Scanner scan = new Scanner(System.in);
+		System.out.println("Please enter your first name: ");
+		String firstname = scan.nextLine();
+		u.setFirstname(firstname);
+		
+		System.out.println("Please enter your last name: ");
+		String lastname = scan.nextLine();
+		u.setLastname(lastname);
+		
+		System.out.println("Please enter your username: ");
+		String username = scan.nextLine();
+		u.setUsername(username);
+		
+		System.out.println("Please enter your password: ");
+		String password = scan.nextLine();
+		u.setPassword(password);
+		
+		System.out.println("Please enter your initial balance: ");
+		double balance = Double.parseDouble(scan.nextLine());
+		u.setBalance(balance);
 		
 		
 		System.out.println("Account was created successfully!");
+				
 		
 		service.addUser(u);
 		return null;

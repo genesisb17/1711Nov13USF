@@ -49,10 +49,13 @@ public class FileDAO implements DAO {
 					
 					break;
 					
+				} else if(!tempUser.equals(username) || !tempPass.equals(password))  {
+					
+									
 				} else {
 					
 					System.out.println("We couldn't find your username :( Are your sure the information is correct?");
-				
+					
 				}
 
 			}
@@ -66,7 +69,7 @@ public class FileDAO implements DAO {
 			e.printStackTrace();
 
 		}
-		
+				
 		return null;
 	}
 
@@ -214,7 +217,6 @@ public class FileDAO implements DAO {
 		}
 	}
 
-	
 	@Override
 	public User withdrawMoney(String username, String password, String amount) {
 		
