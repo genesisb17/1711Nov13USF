@@ -38,6 +38,7 @@ inner join artist art on art.ARTISTID = al.ARTISTID
 inner join track tr on tr.ALBUMID = al.ALBUMID;
 
 -- IN CLASS ASSIGNMENT
+create view my_library as
 select al.title as ALBUM, art.name AS "ARTIST NAME", tr.name as "TRACK NAME",
 gen.name as GENRE, mt.name as MEDIA, pl.name as PLAYLIST, il.unitprice as PRICE,
 (c.firstname||' '||c.lastname) as "PURCHASER",
@@ -54,3 +55,14 @@ inner join invoice iv on iv.invoiceid = il.invoiceid
 inner join customer c on c.customerid = iv.customerid
 inner join employee e on e.employeeid = c.supportrepid
 order by al.title asc;
+
+-- display playlist id and display number of songs for each playlist
+select PLAYLISTID as "PLAYLIST ID", count(TRACKID) as "NUM TRACKS" 
+from playlisttrack group by PLAYLISTID order by PLAYLISTID asc;
+
+select name, count(plt.trackID) as "Number of Tracks" from PLAYLIST
+join PLAYLISTTRACK plt on plt.PLAYLISTID = PLAYLIST.PLAYLISTID
+group by name;
+--inner join playlisttrack plt on plt.PLAYLISTID = pl.PLAYLISTID
+--inner join track tr on tr.TRACKID = plt.TRACKID;
+
