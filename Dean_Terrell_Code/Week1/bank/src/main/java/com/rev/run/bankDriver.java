@@ -13,21 +13,23 @@ public class bankDriver {
 	}
 	
 	static void run() {
-		System.out.println("Welcome to Dean Bank! Would you "
-				+ "like to:\nLog in(1)\nCreate Account(2)\nExit(3)");
 		
 		Scanner scan = new Scanner(System.in);
-		String op = scan.nextLine();
-		switch(op) {
-		case "1": login();
-			break;
-		case "2": createAccount();
-			break;
-		case "3": System.out.println("Goodbye!");
-			break;
-		default: System.out.println("Invalid option.\n");
-			run();
-		}
+		String op;
+		do {
+			System.out.println("Welcome to Dean Bank! Would you "
+					+ "like to:\nLog in(1)\nCreate Account(2)\nExit(3)");
+			op = scan.nextLine();
+			switch(op) {
+			case "1": login();
+				break;
+			case "2": createAccount();
+				break;
+			case "3": System.out.println("Goodbye!");
+				break;
+			default: System.out.println("Invalid option.\n");
+			}
+		} while(!op.equals("3"));
 		scan.close();
 	}
 	
@@ -62,35 +64,29 @@ public class bankDriver {
 		} while(flag);
 	
 		do {
-			System.out.printf("Welcome %s! Would you like to:\nView your balance(1)\nDeposit(2)\nWithdraw(3)\nLog out(4)", u.getfName());
+			System.out.printf("\n\nWelcome %s! Would you like to:\nView your balance(1)\nDeposit(2)\nWithdraw(3)\nLog out(4)", u.getfName());
 			op = scan.nextLine();
 			switch(op) {
-			case "1": System.out.printf("\nYour balance is $%.2f\n\n", u.getBalance());
+			case "1": System.out.printf("\nYour balance is $%.2f", u.getBalance());
 				break;
-			case "2": System.out.println("Plese enter the amount you wish to deposit: ");
+			case "2": System.out.println("Please enter the amount you wish to deposit: ");
 				op = scan.nextLine();
 				double d = Double.parseDouble(op);
+				service.updateBalance(u.getBalance(), u.getBalance() + d);
 				u.setBalance(d + u.getBalance());
-				System.out.printf("\n$%.2f added to your account.\n", d);
-				d += u.getBalance();
-				service.updateBalance(u.getBalance(), d);
+				System.out.printf("\n$%.2f added to your account.", d);
 				break;
 			case "3": System.out.println("Plese enter the amount you wish to withdraw: ");
 				op = scan.nextLine();
 				double g = Double.parseDouble(op);
+				service.updateBalance(u.getBalance(), u.getBalance() - g);
 				u.setBalance(u.getBalance() - g);
-				System.out.printf("\n$%.2f withdrawn from account.\n", g);
-				g = u.getBalance() - g;
-				service.updateBalance(u.getBalance(), g);
+				System.out.printf("\n$%.2f withdrawn from account.", g);
 				break;
-			case "4": break;
-			default: System.out.println("Invalid option.\n");
-			run();
+			case "4": System.out.println(); break;
+			default: System.out.println("Invalid option.");
 			}
 		} while(!op.equals("4"));
-		
-		scan.close();
-
 		
 		return null;
 	}
@@ -118,9 +114,6 @@ public class bankDriver {
 		
 		u.setBalance(0.00);
 		service.addUser(u);
-		
-		sc.close();
-		
 		return null;
 	}
 
