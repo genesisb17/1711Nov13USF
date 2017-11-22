@@ -8,7 +8,7 @@ import com.rev.service.Service;
 public class RunBank 
 {
 	static Service service = new Service();
-	public static void main(String[] args)
+	public static void main(String[] args) 
 	{
 		// TODO Auto-generated method stub
 		run();
