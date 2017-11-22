@@ -60,6 +60,7 @@ public class DAOImpl implements DAO {
 
 		Artist art = new Artist();		
 		try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
+			conn.setAutoCommit(false);
 			String sql = "insert into artist (name) values (?)";
 			String[] key = new String[1];
 			key[0] = "artistid";
@@ -74,6 +75,7 @@ public class DAOImpl implements DAO {
 					art.setId(pk.getInt(1));
 				}
 				art.setName(name);
+				conn.commit();
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -84,16 +86,11 @@ public class DAOImpl implements DAO {
 	@Override
 	public Artist updateArtist(int id, String name) {	
 		try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
-			conn.setAutoCommit(false);
 			String sql = "update artist set name = ? where artistid = ?";
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setInt(2, id);
 			ps.setString(1, name);
-			int rows = ps.executeUpdate();
-			if (rows == 0) 
-				return null;
-
-			conn.commit();
+			ps.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
