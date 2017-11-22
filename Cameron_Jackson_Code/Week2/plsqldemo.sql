@@ -25,3 +25,9 @@ BEGIN
   SELECT ART_SEQ.NEXTVAL INTO :NEW.ARTISTID FROM DUAL;
 END;
 /
+
+update artist
+set name = 'Bloopers'
+where artistid = 501;
+
+select * from artist;

@@ -10,13 +10,20 @@ public class MainTest {
 	public static void main(String[] args) {
 		DAO dao = new DAOImpl();
 		
-//		ArrayList<Artist> artists = dao.getArtists();
-//		
-//		for (Artist art : artists) {
-//			System.out.println(art);
-//		}
+
 		
-		Artist art = dao.getArtistById(6);
-		System.out.println(art);
+//		Artist art = dao.getArtistById(6);
+//		System.out.println(art);
+		
+//		System.out.println(dao.addArtist("Vic Mensa"));
+		
+//		Artist art = dao.updateArtist(117, "The Ohio Players");
+//		System.out.println(art);
+		
+		ArrayList<Artist> artists = dao.getArtists();
+		
+		for (Artist art : artists) {
+			System.out.println(art);
+		}
 	}
 }
