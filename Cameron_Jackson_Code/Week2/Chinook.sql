@@ -142,6 +142,54 @@ END;
 
 SELECT AVG_INVOICELINE(87) FROM dual;
 /
-
+--DECLARE
+--   TYPE SalTabTyp IS TABLE OF emp.sal%TYPE
+--      INDEX BY BINARY_INTEGER;
+--   salary REAL;
+--   FUNCTION new_sals (max_sal REAL) RETURN SalTabTyp IS
+--      sal_tab SalTabTyp;
+--   BEGIN 
+--      ...
+--      RETURN sal_tab;  -- return PL/SQL table
+--   END;
+--BEGIN
+--   salary := new_sals(5000)(3);  -- call function
+--   ...
+--END;
+--DECLARE
+--  TYPE empl_table IS TABLE OF Employee.employeeid%TYPE
+--    INDEX BY INTEGER;
 -- 3.4 USER DEFINED TABLED VALUED FUNCTIONS
+CREATE OR REPLACE FUNCTION FIND_EMP_BDAY
+RETURN Employee%ROWTYPE
+IS emp_id Employee%ROWTYPE;
+BEGIN
+  SELECT employeeid INTO emp_id
+  FROM Employee
+  WHERE birthdate > TO_DATE('1968', 'YYYY');
+  return emp_id;
+END;
+/
 
+SELECT FIND_EMP_BDAY() FROM dual;
+/
+
+-- 4.1 BASIC STORED PROCEDURE
+-- 4.2 STORED PROCEDURE INPUT PARAMETERS
+-- 4.3 STORED PROCEDURE OUTPUT PARAMETERS
+
+-- 5 TRANSACTIONS
+
+-- 6.1 TRIGGERS
+CREATE SEQUENCE EMP_SEQ
+START WITH 11
+INCREMENT BY 1;
+
+CREATE OR REPLACE TRIGGER EMP_TRIGGER
+AFTER INSERT ON Employee
+FOR EACH ROW
+BEGIN
+  SELECT EMP_SEQ.NEXTVAL INTO :NEW.employeeid
+  FROM Employee;
+END;
+/
