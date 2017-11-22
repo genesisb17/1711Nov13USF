@@ -60,7 +60,6 @@ public class DAOImpl implements DAO {
 
 		Artist art = new Artist();		
 		try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
-			conn.setAutoCommit(false);
 			String sql = "insert into artist (name) values (?)";
 			String[] key = new String[1];
 			key[0] = "artistid";
@@ -75,7 +74,6 @@ public class DAOImpl implements DAO {
 					art.setId(pk.getInt(1));
 				}
 				art.setName(name);
-				conn.commit();
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
