@@ -77,7 +77,153 @@ END;
 select CURRENT_TIME() from dual;
 
 
-select * from mediatype;
+
+
+
+/*
+3.2 System Defined Aggregate Functions
+Task – Create a function that returns the average total of all invoices
+Task – Create a function that returns the most expensive track
+*/
+CREATE OR REPLACE FUNCTION returnAverage 
+RETURN INT AS
+average int;
+BEGIN
+  select AVG(TOTAL) into average from INVOICE;
+
+  RETURN average;
+  
+END;
+
+select returnAverage() from dual;
+
+
+CREATE OR REPLACE FUNCTION mostExpensive
+RETURN INT AS
+mostexp int;
+BEGIN
+
+  select MAX(UNITPRICE) INTO mostexp from TRACK;
+
+  RETURN mostexp; 
+
+END;
+
+select MOSTEXPENSIVE from dual;
+
+
+/* 
+3.3 User Defined Scalar Functions
+Task – Create a function that returns the average price of invoiceline items in the invoiceline table
+*/
+CREATE OR REPLACE FUNCTION averageprice
+return number is
+average number;
+begin
+
+  select AVG(UNITPRICE) into average from INVOICELINE;
+  
+  return average;
+  
+end;
+
+select averageprice() from dual;
+
+
+
+/************************************************************************************
+3.4 User Defined Table Valued Functions
+Task – Create a function that returns all employees who are born after 1968.
+*/************************************************************************************
+create or replace function allemployees
+return table as
+allemployees table;
+begin
+
+  select * into allemployees from EMPLOYEE;
+
+  return allemployees;
+
+end;
+
+
+
+
+/*
+4.1 Basic Stored Procedure
+Task – Create a stored procedure that selects the first and last names of all the employees.
+*/
+CREATE OR REPLACE 
+PROCEDURE PROCE
+AS
+  TYPE FIRST_NAME IS TABLE OF EMPLOYEE.FIRSTNAME%TYPE;
+  TYPE LAST_NAME IS TABLE OF EMPLOYEE.LASTNAME%TYPE;
+  FIRST_NAMES FIRST_NAME;
+  LAST_NAMES LAST_NAME;
+BEGIN
+  SELECT FIRSTNAME, LASTNAME BULK COLLECT INTO FIRST_NAMES, LAST_NAMES FROM EMPLOYEE;
+END;
+/
+
+--DROP PROCEDURE PROCE
+--EXECUTE PROCE();
+--SET SERVEROUTPUT ON;
+
+
+/*
+4.2 Stored Procedure Input Parameters
+Task – Create a stored procedure that updates the personal information of an employee.
+Task – Create a stored procedure that returns the managers of an employee.
+*/
+CREATE OR REPLACE PROCEDURE UPDATE_INFO
+AS
+BEGIN
+  UPDATE EMPLOYEE SET CITY = 'Tampa' WHERE EMPLOYEEID = 9;
+END;
+/
+
+--EXECUTE UPDATE_INFO;
+
+
+CREATE OR REPLACE PROCEDURE RETURN_MANAGERS(REPORTS_TO IN NUMBER)
+AS
+R_T NUMBER;
+BEGIN
+  SELECT REPORTSTO INTO R_T FROM EMPLOYEE WHERE EMPLOYEEID = REPORTS_TO;
+  DBMS_OUTPUT.PUT_LINE( R_T );
+END;
+/
+
+--EXEC RETURN_MANAGERS(3);
+
+
+
+/*
+4.3 Stored Procedure Output Parameters
+Task – Create a stored procedure that returns the name and company of a customer.
+*/
+CREATE OR REPLACE PROCEDURE NAME_COMPANY(CUST_ID IN NUMBER, CUST_NAME OUT CUSTOMER.FIRSTNAME%TYPE, CUST_COMPANY OUT CUSTOMER.COMPANY%TYPE)
+AS
+BEGIN
+  SELECT FIRSTNAME, COMPANY INTO CUST_NAME, CUST_COMPANY FROM CUSTOMER WHERE CUSTOMERID = CUST_ID;
+END;
+
+-- TESTING
+DECLARE
+CUSTU_NAME CUSTOMER.FIRSTNAME%TYPE;
+CUSTU_COMPANY CUSTOMER.COMPANY%TYPE;
+BEGIN
+  NAME_COMPANY(5,CUSTU_NAME,CUSTU_COMPANY);
+  DBMS_OUTPUT.PUT_LINE('THE CUSTOMER NAME IS -> '||CUSTU_NAME||' AND THE COMPANY IS -> '||CUSTU_COMPANY);
+END;
+/
+
+
+
+
+
+
+
 
 
 
