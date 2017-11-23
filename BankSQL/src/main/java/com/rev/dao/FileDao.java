@@ -33,7 +33,6 @@ public class FileDao implements DAO
 			ps.executeUpdate();
 			conn.commit();
 			conn.close();
-			
 		} 
 		catch (SQLException e) 
 		{
@@ -43,10 +42,6 @@ public class FileDao implements DAO
 		addUsera(u);
 	}
 
-	
-	
-	
-	
 	public void addUsera(newUser u) 
 	{
 		// TODO Auto-generated method stub

@@ -27,6 +27,9 @@ SELECT * FROM CHINOOK WHERE ADDRESS LIKE 'T%';
 --2.7
 alter table CHINOOK.INVOICE DROP CONSTRAINT FK_INVOICECUSTOMERID;
 DELETE CHINOOK.CUSTOMER WHERE FIRSTNAME = 'Robert' AND LASTNAME = 'Walter';
+--3.0
+--3.1
+
 --4.1
 CREATE OR REPLACE PROCEDURE B_B0
 AS
@@ -45,4 +48,73 @@ AS
 BEGIN
   SELECT FIRSTNAME,LASTNAME INTO FROM EMPLOYEE WHERE TITLE LIKE '%Manager';
 END;
+
+
 --4.3
+--6.1
+create or replace TRIGGER sixoneatrigger
+AFTER INSERT ON employee
+FOR EACH ROW
+BEGIN
+    DBMS_OUTPUT.PUT_LINE('INSERT ON ABLUM');
+END;
+
+create or replace TRIGGER sixonebtrigger
+AFTER INSERT ON album
+FOR EACH ROW
+BEGIN
+    DBMS_OUTPUT.PUT_LINE('INSERT ON ABLUM');
+END;
+
+create or replace TRIGGER sixonectrigger
+AFTER delete ON CUSTOMER
+FOR EACH ROW
+BEGIN
+    DBMS_OUTPUT.PUT_LINE('DELETE ON CUSTOMER');
+END;
+--7.0
+--7.1
+SELECT invoiceid from invoice;
+
+
+--1.0
+--1.2
+create user officesupply identified by t3326434;
+--2.1
+CREATE TABLE officesupply.employee
+(
+   EmployeeID number Primary Key not null,
+   USERNAME VARCHAR(20) NOT NULL,
+   PASSWORD VARCHAR(20) NOT NULL,
+   NAME VARCHAR(25) NOT NULL,
+   DEPARTMENT VARCHAR(2) NOT NULL,
+   MANAGER NUMBER NOT NULL
+)
+
+CREATE TABLE officesupply.Orders
+(
+   OrderID number Primary Key not null,
+   OrderDate date not null,
+   Status char not null,
+FOREIGN KEY (OrderID) REFERENCES Employee (EmployeeId)
+)
+
+CREATE TABLE OrderItem
+(
+  FOREIGN KEY (OrderID) REFERENCES officesupply.employee (EmployeeId),
+  FOREIGN KEY (ProductID) REFERENCES officesupply.Orders (OrderID),
+  Quanity NUMBER NOT NULL
+)
+
+CREATE TABLE Category
+(
+  CATID PRIMARY KEY NOT NULL,
+  NAME VARCHAR(80) NULL,
+  DESCRIPT VARCHAR(255) NULL
+)
+
+CREATE TABLE PRODUCT
+(
+PRODUCTID PRIMARY KEY NOT NULL
+FOREIGN KEY (CATID)REFERENCES CATEGORY
+)
