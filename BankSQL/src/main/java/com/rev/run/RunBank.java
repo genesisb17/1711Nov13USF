@@ -85,8 +85,8 @@ public class RunBank
 		u.setPassword(name);
 		
 		System.out.println("What is your amount you have?");
-		int x;
-		x = sc.nextInt();
+		double x;
+		x = sc.nextDouble();
 		u.setBalance(x);
 		service.addUser(u);
 		return u;

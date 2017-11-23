@@ -24,14 +24,15 @@ public class FileDao implements DAO
 		try(Connection conn = ConnectionFactory.getInstance().getConnection())
 		{
 			String sql = "insert into USERS(FIRSTNAME,LASTNAME,USERNAME,PASSWORD) values(?,?,?,?)";
-			
+			System.out.println(u.getBalance());
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setString(1, u.getFirstname());
 			ps.setString(2, u.getLastname());
 			ps.setString(3, u.getUsername());
 			ps.setString(4, u.getPassword());
-			//addUsera(u);
 			ps.executeUpdate();
+			conn.commit();
+			conn.close();
 			
 		} 
 		catch (SQLException e) 
@@ -39,6 +40,7 @@ public class FileDao implements DAO
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		addUsera(u);
 	}
 
 	
@@ -48,17 +50,17 @@ public class FileDao implements DAO
 	public void addUsera(newUser u) 
 	{
 		// TODO Auto-generated method stub
-	
+		newUser u1 = new newUser();
 		try(Connection conn = ConnectionFactory.getInstance().getConnection())
 		{
-			conn.setAutoCommit(false);
+			//conn.setAutoCommit(false);
 			String sql1 = "insert into ACCOUNTS(USER_ID,BALANCE) values(?,?)";
-			
+			u1 = getUser(u.getUsername(),u.getPassword());
 			PreparedStatement ps = conn.prepareStatement(sql1);
-			ps.setInt(1, u.getId());
+			ps.setInt(1, u1.getId());
 			ps.setDouble(2, u.getBalance());
 			ps.executeUpdate();
-			
+			conn.commit();
 			
 		} 
 		catch (SQLException e) 
