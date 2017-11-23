@@ -34,7 +34,7 @@ public class FileDAO implements DAO{
 				usersList.add(u);
 			}
 		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+			// Don't do anything
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
