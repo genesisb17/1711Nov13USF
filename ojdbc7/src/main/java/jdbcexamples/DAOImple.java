@@ -28,7 +28,9 @@ public class DAOImple implements DAO
 				temp.setName(rs.getString(2));
 				artists.add(temp);
 			}
-		} catch (SQLException e) {
+		} 
+		catch (SQLException e) 
+		{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -37,7 +39,8 @@ public class DAOImple implements DAO
 	}
 	
 	@Override
-	public Artist getArtbyid(int id) {
+	public Artist getArtbyid(int id) 
+	{
 		// TODO Auto-generated method stub
 		Artist art = new Artist();
 		try(Connection conn = ConnectionFactory.getInstance().getConnection())
@@ -78,6 +81,7 @@ public class DAOImple implements DAO
 			int rows = ps.executeUpdate();
 			int id = 0;
 			ResultSet pk = ps.getGeneratedKeys();
+			
 			if(rows!=0) {
 			while(pk.next())
 			{
@@ -121,6 +125,27 @@ public class DAOImple implements DAO
 		return art;
 		// TODO Auto-generated method stub
 
+	}
+
+	@Override
+	public Artist updateArtist(int id, String name) {
+		// TODO Auto-generated method stub
+		Artist art = null;
+		try(Connection conn = ConnectionFactory.getInstance().getConnection())
+		{
+			String sql = "update artist set name = ? where artistid = ?";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setString(1, name);
+			ps.setInt(2, id);
+			ps.executeUpdate();
+			art = getArtbyid(id);
+		} 
+		catch (SQLException e) 
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return art;
 	}
 
 }

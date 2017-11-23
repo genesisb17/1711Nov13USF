@@ -20,8 +20,8 @@ public class MainTest {
 		
 		/*Artist art =dao.getArtbyid(4);
 		System.out.println(art);*/
-		//System.out.println(dao.addArtist("Trent"));
-		System.out.println(dao.UpdateArtist("Bill Gates", 503));
+		System.out.println(dao.addArtist("bob"));
+		//System.out.println(dao.UpdateArtist("Bill Gates", 503));
 		//commit often
 	}
 }

@@ -8,4 +8,5 @@ public interface DAO
 	public Artist getArtbyid(int id);
 	public Artist addArtist(String name);
 	public Artist UpdateArtist(String name,int name2);
+	public Artist updateArtist(int id,String name);
 }
