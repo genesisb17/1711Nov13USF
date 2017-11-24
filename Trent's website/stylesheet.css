@@ -1,0 +1,22 @@
+#home {
+    height: 50px;
+    width: 50px;
+
+}
+head
+{
+	color: orange;
+}
+#welcome
+{
+    color:blue;
+    background:black;
+    height: 100px;
+    width: 100px;
+}#name
+{
+ background: red 
+}
+*{
+	background: blue;
+}

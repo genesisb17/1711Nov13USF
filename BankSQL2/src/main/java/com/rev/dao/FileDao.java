@@ -25,7 +25,6 @@ public class FileDao implements DAO
 		{
 			String sql = "insert into USERS(FIRSTNAME,LASTNAME,USERNAME,PASSWORD) values(?,?,?,?)";
 			System.out.println(u.getBalance());
-
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setString(1, u.getFirstname());
 			ps.setString(2, u.getLastname());
@@ -34,7 +33,8 @@ public class FileDao implements DAO
 			ps.executeUpdate();
 			conn.commit();
 			conn.close();
-		
+
+			
 		} 
 		catch (SQLException e) 
 		{

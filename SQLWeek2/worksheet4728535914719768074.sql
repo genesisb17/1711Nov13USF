@@ -106,15 +106,24 @@ CREATE TABLE OrderItem
   Quanity NUMBER NOT NULL
 )
 
-CREATE TABLE Category
+CREATE TABLE officesupply.Category
 (
   CATID PRIMARY KEY NOT NULL,
   NAME VARCHAR(80) NULL,
   DESCRIPT VARCHAR(255) NULL
 )
-
 CREATE TABLE PRODUCT
 (
-PRODUCTID PRIMARY KEY NOT NULL
-FOREIGN KEY (CATID)REFERENCES CATEGORY
+PRODUCTID PRIMARY KEY NOT NULL,
+FOREIGN KEY (ProductID)REFERENCES CATID,
+name varchar(80) null,
+Descript varchar(255) null,
+UnitCost number null,
+Foreign key (Supportid) references suppid
+)
+
+create table officesupply.supplier
+(
+suppid primary key not null,
+name varchar(80)
 )
