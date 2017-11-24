@@ -11,8 +11,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Scanner;
-
 import com.rev.pojo.newUser;
+
 public class FileDao implements DAO 
 {
 	final String filename ="src/main/resources/bank.txt";
@@ -20,7 +20,8 @@ public class FileDao implements DAO
 	public void addUser(newUser u) 
 	{
 		// TODO Auto-generated method stub
-	
+		
+		
 		try(Connection conn = ConnectionFactory.getInstance().getConnection())
 		{
 			String sql = "insert into USERS(FIRSTNAME,LASTNAME,USERNAME,PASSWORD) values(?,?,?,?)";
@@ -31,8 +32,7 @@ public class FileDao implements DAO
 			ps.setString(3, u.getUsername());
 			ps.setString(4, u.getPassword());
 			ps.executeUpdate();
-			conn.commit();
-			conn.close();
+
 
 			
 		} 
