@@ -11,19 +11,19 @@ public class Service {
 	public User addUser(User u){
 		//validate that username does not exist 
 		// assuming that it DNE:
-		dao.addUser(u);
+		dao.registerUser(u);
 		return u;
 	}
 	
 	public static void getUser(String username, String password) {
 		
-		dao.getUser(username, password);
+		dao.login(username, password);
 		
 	}
 	
-	public static void AddMoney(String username, String password, String amount) {
+/*	public static void AddMoney(String username, String password, String amount) {
 		
-		dao.addMoney(username, password, amount);
+		dao.depositMoney(username, password, amount);
 		
 	}
 	
@@ -37,7 +37,7 @@ public class Service {
 		
 		dao.withdrawMoney(username, password, amount);
 		
-	}
+	}*/
 	
 	
 }

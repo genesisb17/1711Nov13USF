@@ -1,119 +1,122 @@
 package com.rev.dao;
 
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 
+import com.rev.connection.ConnectionFactory;
 import com.rev.pojos.User;
 
 public class FileDAO implements DAO {
 
 	String filename = "src/main/resources/bank.txt";
 
-	public User addUser(User u) {
+	public User registerUser(User u) {
+			
+		try(Connection conn = ConnectionFactory.getInstance().getConnection()) {
+			
+			conn.setAutoCommit(false);
+			
+			String sql = "INSERT INTO USERS (FIRSTNAME, LASTNAME, USERNAME, PASSWORD) VALUES (?, ?, ?, ?)";
+			
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setString(1, u.getFirstname());
+			ps.setString(2, u.getLastname());
+			ps.setString(3, u.getUsername());
+			ps.setString(4, u.getPassword());
+			
+			int rows = ps.executeUpdate();
+			
+			if(rows >= 1) {
+				
+				System.out.println("Account created successfully!");
+						
+			} else {
+				
+				System.out.println("There was a problem creating the new account. Please try again later.");
+				
+			}
+						
+			conn.commit();
+			
+		} catch (SQLException e) {
+			
+			System.out.println("There was a problem creating the new account. Please try again later.");
 
-		try (BufferedWriter bw = new BufferedWriter(new FileWriter(filename, true))) {
-			// should not be able to add users with a username that already exists
-			// add logic to validate inside of service AKA business layer
-			bw.write(u.toFile());
-			return u;
-		} catch (IOException e) {
-			e.printStackTrace();
 		}
+		
 		return null;
 	}
 
-	public User getUser(String username, String password) {
-		
-		try (BufferedReader br = new BufferedReader(new FileReader(filename))) {
+	public User login(String username, String password) {
 
-			String line = null;
+		User user = new User();
+
+		try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
 			
-			while ((line = br.readLine()) != null) {
+			String sql = "SELECT U_ID, FIRSTNAME FROM USERS WHERE USERNAME = LOWER(?) AND PASSWORD = ?";
+			
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setString(1, username);
+			ps.setString(2, password);
+			ResultSet info = ps.executeQuery();
 
-				String[] lineData = line.split(":");
-				String[] temp = {lineData[3], lineData[4], lineData[5]};
-
-				String tempUser = temp[0];
-				String tempPass = temp[1];
+			while(info.next()) {
 				
-				if(tempUser.equals(username) && tempPass.equals(password)) {
-					
-					double balance = Double.parseDouble(temp[2]);
-					
-					System.out.println("Welcome " + username + "! Your current balance is: " + balance);
-					
-					break;
-					
-				} else if(!tempUser.equals(username) || !tempPass.equals(password))  {
-					
-									
-				} else {
-					
-					System.out.println("We couldn't find your username :( Are your sure the information is correct?");
-					
-				}
+				user.setId(info.getInt("U_ID"));
+				user.setFirstname(info.getString("FIRSTNAME"));
+			
+			}		
 
-			}
-
-		} catch (FileNotFoundException e) {
-
+		} catch (SQLException e) {
+			
 			e.printStackTrace();
-
-		} catch (IOException e) {
-
-			e.printStackTrace();
-
+		
 		}
-				
-		return null;
+
+		return user;
 	}
 
 	@Override
-	public User addMoney(String username, String password, String amount) {
+	public User depositMoney(int accountId, double balance, double deposit) {
 
-		try (BufferedReader br = new BufferedReader(new FileReader(filename))) {
+		try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
 
-			String line = null;
+			conn.setAutoCommit(false);
+
+			double newBalance = balance + deposit;
 			
-			while ((line = br.readLine()) != null) {
+			String sql = "UPDATE ACCOUNTS SET BALANCE = ? WHERE ACC_ID = ?";
 
-				String[] lineData = line.split(":");
-				String[] temp = {lineData[3], lineData[4], lineData[5]};
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setDouble(1, newBalance);
+			ps.setInt(2, accountId);
 
-				String tempUser = temp[0];
-				String tempPass = temp[1];
-				
-				if(tempUser.equals(username) && tempPass.equals(password)) {
-					
-					double balance = Double.parseDouble(temp[2]);
-					double newAmount = Double.parseDouble(amount);
-					double finalBalance = balance + newAmount;
-					
-					String finalBalanceString = finalBalance + "";
-					String balanceString = balance + "";
-					
-					modifyFile(filename, balanceString, finalBalanceString);
-					
-					System.out.println("The money has been added to your account. Thank you for being a loyal customer!");
-					
-					break;
-					
-				}
+			int rows = ps.executeUpdate();
+			
+			if (rows >= 1) {
+
+				System.out.println("The money was added to your account successfully! Your new balance is: " + newBalance + "\nThank you for being a loyal customer!\n");
+
+			} else {
+
+				System.out.println("There was a problem adding the money to the account. Please try again later.");
 
 			}
 
-		} catch (FileNotFoundException e) {
+			conn.commit();
 
-			e.printStackTrace();
+		} catch (SQLException e) {
 
-		} catch (IOException e) {
-
-			e.printStackTrace();
+			System.out.println("There was a problem adding the money to your account. Please try again later.");
 
 		}
 
@@ -121,148 +124,240 @@ public class FileDAO implements DAO {
 	}
 
 	@Override
-	public User getBalance(String username, String password) {
+	public ArrayList<User> getBalance(int userId) {
+
+		ArrayList<User> accounts = new ArrayList<>(); 
 		
-		try (BufferedReader br = new BufferedReader(new FileReader(filename))) {
+		try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
 
-			String line = null;
+			conn.setAutoCommit(false);
+
+			String sql = "SELECT ACC_ID, BALANCE FROM ACCOUNTS WHERE USER_ID = ?";
+
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setInt(1, userId);
+
+			ResultSet rs = ps.executeQuery();
 			
-			while ((line = br.readLine()) != null) {
-
-				String[] lineData = line.split(":");
-				String[] temp = {lineData[3], lineData[4], lineData[5]};
-
-				String tempUser = temp[0];
-				String tempPass = temp[1];
+			while(rs.next()) {
 				
-				if(tempUser.equals(username) && tempPass.equals(password)) {
-					
-					double balance = Double.parseDouble(temp[2]);
-					
-					System.out.println("Your current balance is: " + balance);
-					
-					break;
-					
-				}
-
+				User temp = new User();
+				temp.setId(rs.getInt("ACC_ID"));
+				temp.setBalance(Double.parseDouble(rs.getString("BALANCE")));
+				accounts.add(temp);
+			}
+			
+			if(accounts.get(0) == null) {};
+			
+			for(User account: accounts) {
+				
+				System.out.println("Account Id: " + account.getId() + ", Balance: " + account.getBalance());
+				
 			}
 
-		} catch (FileNotFoundException e) {
+			conn.commit();
 
-			e.printStackTrace();
+		} catch (SQLException e) {
 
-		} catch (IOException e) {
+			System.out.println("There was a problem getting your balance. Please try again later.\n");
 
-			e.printStackTrace();
-
+		} catch (IndexOutOfBoundsException o) {
+			
+			System.out.println("There are no accounts associated with this user.\n");
+			
 		}
-		
-		return null;
-		
+
+		return accounts;
+
 	}
 
-	static void modifyFile(String filePath, String oldString, String newString)
-	{
+	static void modifyFile(String filePath, String oldString, String newString) {
+		
 		File fileToBeModified = new File(filePath);
-		
+
 		String oldContent = "";
-		
+
 		BufferedReader reader = null;
-		
+
 		FileWriter writer = null;
-		
-		try 
-		{
+
+		try {
+			
 			reader = new BufferedReader(new FileReader(fileToBeModified));
-			
-			//Reading all the lines of input text file into oldContent
-			
+
+			// Reading all the lines of input text file into oldContent
+
 			String line = reader.readLine();
-			
-			while (line != null) 
-			{
+
+			while (line != null) {
+				
 				oldContent = oldContent + line + System.lineSeparator();
-				
+
 				line = reader.readLine();
+			
 			}
-			
-			//Replacing oldString with newString in the oldContent
-			
+
+			// Replacing oldString with newString in the oldContent
+
 			String newContent = oldContent.replaceFirst(oldString, newString);
-			
-			//Rewriting the input text file with newContent
-			
+
+			// Rewriting the input text file with newContent
+
 			writer = new FileWriter(fileToBeModified);
-			
+
 			writer.write(newContent);
-		}
-		catch (IOException e)
-		{
+		
+		} catch (IOException e) {
+		
 			e.printStackTrace();
-		}
-		finally
-		{
-			try 
-			{
-				//Closing the resources
+		
+		} finally {
+			
+			try {
 				
+				// Closing the resources
 				reader.close();
-				
 				writer.close();
-			} 
-			catch (IOException e) 
-			{
+			
+			} catch (IOException e) {
+				
 				e.printStackTrace();
+			
 			}
 		}
 	}
 
 	@Override
-	public User withdrawMoney(String username, String password, String amount) {
-		
-		try (BufferedReader br = new BufferedReader(new FileReader(filename))) {
+	public User withdrawMoney(int accountId, double balance, double deposit) {
 
-			String line = null;
+		try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
+
+			conn.setAutoCommit(false);
+
+			double newBalance = balance - deposit;
 			
-			while ((line = br.readLine()) != null) {
+			String sql = "UPDATE ACCOUNTS SET BALANCE = ? WHERE ACC_ID = ?";
 
-				String[] lineData = line.split(":");
-				String[] temp = {lineData[3], lineData[4], lineData[5]};
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setDouble(1, newBalance);
+			ps.setInt(2, accountId);
 
-				String tempUser = temp[0];
-				String tempPass = temp[1];
-				
-				if(tempUser.equals(username) && tempPass.equals(password)) {
-					
-					double balance = Double.parseDouble(temp[2]);
-					double newAmount = Double.parseDouble(amount);
-					double finalBalance = balance - newAmount;
-					
-					String finalBalanceString = finalBalance + "";
-					String balanceString = balance + "";
-					
-					modifyFile(filename, balanceString, finalBalanceString);
-					
-					System.out.println("The money has been removed from your account. Thank you for being a loyal customer!");
-					
-					break;
-					
-				}
+			int rows = ps.executeUpdate();
+			
+			if (rows >= 1) {
+
+				System.out.println("The money was removed from your account successfully! Your new balance is: " + newBalance + "\nThank you for being a loyal customer!\n");
+
+			} else {
+
+				System.out.println("There was a problem removing the money from the account. Please try again later.");
 
 			}
 
-		} catch (FileNotFoundException e) {
+			conn.commit();
 
-			e.printStackTrace();
+		} catch (SQLException e) {
 
-		} catch (IOException e) {
-
-			e.printStackTrace();
+			System.out.println("There was a problem removing the money from your account. Please try again later.");
 
 		}
-		
+
 		return null;
 	}
-	
-	
+
+	@Override
+	public User getUserById(int id) {
+		
+		User user = new User();
+
+		try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
+			
+			String sql = "select * from users where u_id = ?";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setInt(1, id);
+			ResultSet info = ps.executeQuery();
+
+			while (info.next()) {
+				
+				user.setId(info.getInt(1));
+				user.setFirstname(info.getString(2));
+				user.setLastname(info.getString("lastname"));
+				user.setUsername(info.getString("username"));
+				user.setPassword(info.getString("password"));
+			
+			}
+
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		
+		}
+
+		return user;
+	}
+
+	public User createAccount(int userId, double initialBalance) {
+
+		try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
+
+			conn.setAutoCommit(false);
+
+			String sql = "INSERT INTO ACCOUNTS (ACCOUNTS.USER_ID, BALANCE) VALUES (?, ?)";
+
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setInt(1, userId);
+			ps.setDouble(2, initialBalance);
+
+			int rows = ps.executeUpdate();
+
+			if (rows >= 1) {
+
+				System.out.println("Account created successfully!\n");
+
+			} else {
+
+				System.out.println("There was a problem creating the new account. Please try again later.");
+
+			}
+
+			conn.commit();
+
+		} catch (SQLException e) {
+
+			System.out.println("There was a problem creating the new account. Please try again later.\n");
+
+		}
+
+		return null;
+	}
+
+	@Override
+	public User getBalanceById(int id) {
+		
+		User user = new User();
+
+		try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
+			
+			String sql = "SELECT BALANCE FROM ACCOUNTS WHERE ACC_ID = ?";
+			
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setInt(1, id);
+			ResultSet info = ps.executeQuery();
+
+			while (info.next()) {
+				
+				user.setBalance(info.getInt(1));
+			
+			}
+
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		
+		}
+
+		return user;
+		
+	}
+
 }
