@@ -71,7 +71,7 @@ public class FileDAO implements DAO{
 				uPass.add(3, izer[3]);
 				uPass.add(4, izer[4]);
 				System.out.println("Username/Password match!");
-				System.out.println("Username: " + u + " has password "
+				System.out.println("Username: " + u + " has password: "
 						+ p + ".");
 				return uPass;
 				}
@@ -152,18 +152,10 @@ public class FileDAO implements DAO{
 							so.setLastname(wine[1]);
 							so.setPassword(wine[3]);
 
-							if(match == curBal) {
-						
-								newBalance = match + amount;
-								so.setBalance(newBalance);
-								System.out.println("New Balance: " + newBalance);
+							newBalance = match + amount;
+							so.setBalance(newBalance);
+							System.out.println("New Balance: " + newBalance);
 
-							}
-					
-							else {	
-								so.setBalance(match);
-
-							}
 							bw.write(so.toFile());
 							return so;
 						}

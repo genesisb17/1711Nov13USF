@@ -62,18 +62,17 @@ public class BankDriver {
 		return ul;
 	}
 	
-
 	static User createAccount(){
 
 		User u = new User();
 		Scanner in = new Scanner(System.in);
-		System.out.println("Please enter your user name:");
+		System.out.println("Please enter your USERNAME:");
 		u.setUsername(in.nextLine());
-		System.out.println("Please enter your first name:");
+		System.out.println("Please enter your FIRST NAME:");
 		u.setFirstname(in.nextLine());
-		System.out.println("Please enter your last name:");
+		System.out.println("Please enter your LAST NAME:");
 		u.setLastname(in.nextLine());
-		System.out.println("Please enter your password:");
+		System.out.println("Please enter your PASSWORD:");
 		u.setPassword(in.nextLine());
 		u.setBalance((double)100.00);
 		service.addUser(u);	

@@ -2,6 +2,7 @@ package com.revature.service;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 import com.revature.dao.DAO;
@@ -27,11 +28,12 @@ public class Service {
 		
 		System.out.println("Congratulations! You created an account.");
 		System.out.println("Your initial balance is $" + u.getBalance() + ".");
+		BankDriver.run();
 		return u;
 	}
 	
 	
-	public User logIn(User u) {
+	public static User logIn(User u) {
 		
 		ArrayList<String> result = new ArrayList<>();
 		result = dao.logOn(u.getUsername(), u.getPassword());
@@ -57,10 +59,10 @@ public class Service {
 		return u;
 	}
 	
-	public static User transac(User u, ArrayList<String> arr) {
+	public static User transac(User u, ArrayList<String> arr) throws NoSuchElementException{
 		Scanner scan = new Scanner(System.in);
 		System.out.println();
-		System.out.println("Do you want to EXIT(1), DEPOSIT(2), WITHDRAW(3) or VIEW BALANCE(4)?");
+		System.out.println("Do you want to EXIT(1), DEPOSIT(2) or WITHDRAW(3)?");
 		System.out.println();
 		String lo = scan.nextLine();
 		switch(lo) {
@@ -73,9 +75,6 @@ public class Service {
 		case "3":
 			with(u, arr);
 			break;
-		case "4":
-			double bal = Double.parseDouble(arr.get(4));
-			System.out.println("Balance: $" + bal);
 		default:
 			transac(u, arr);
 		}
@@ -96,29 +95,29 @@ public class Service {
 			System.out.println("Cannot withdraw more than current balance.");
 			transac(u, userInfo);
 		}
-		System.out.println("Balance: " + dew);
-		System.out.println("Amount taken: " + wit);
 		dao.withTransac(wit, dew);
 		
 		System.out.println("Successfully withdrawn money.");
+
+		System.out.println("Amount taken: " + wit);
+		transac(u, userInfo);
 		c.close();
-		
 	}
 
 
 	static void depo(User u, ArrayList<String> uInfo) {
 		System.out.println("How much money would you like to deposit?");
-		double dew = Double.parseDouble(uInfo.get(4));
+		double cur = Double.parseDouble(uInfo.get(4));
 		Scanner c = new Scanner(System.in);
 		double dep = c.nextDouble();
-		System.out.println("Balance: " + dew);
-		System.out.println("Amount Deposited: " + dep);
-		System.out.println("Balance: " + dew);
-		System.out.println("Amount taken: " + dep);
-		dao.depTransac(dep, dew);
+		dao.depTransac(dep, cur);
 		
 		System.out.println("Successfully deposited money.");
-		c.close();	
+
+		System.out.println("Amount Deposited: " + dep);
+		transac(u, uInfo);
+		c.close();
+
 	}
 
 }
