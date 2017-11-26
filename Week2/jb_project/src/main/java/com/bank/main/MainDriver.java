@@ -17,7 +17,7 @@ public class MainDriver {
 		// TODO Auto-generated method stub
 		System.out.println("Welcome to DE Bank!");
 		System.out.println("Would you like to CREATE(1) an account, LOGIN(2) or \n"
-				+ "EXIT(3)");
+				+ "EXIT(3)?");
 		Services serv = new Services();
 		Scanner in = new Scanner(System.in);
 		String op = in.nextLine();

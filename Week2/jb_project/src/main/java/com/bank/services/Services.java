@@ -7,11 +7,12 @@ import org.apache.commons.lang3.StringUtils;
 
 import com.bank.dao.DAO;
 import com.bank.dao.DAOimpl;
+import com.bank.pojos.Accounts;
 import com.bank.pojos.Users;
 
 public class Services {
 	Scanner scan = new Scanner(System.in);
-	
+	DAO dao = new DAOimpl();
 	public String inputChk() {
 		String input = scan.nextLine();
 		if((!input.isEmpty()) && StringUtils.isAlphanumeric(input)) {
@@ -32,8 +33,9 @@ public class Services {
 				+ "Please try again.");
 		return isAlpha();
 	}
+	
 	public Users addaUser() {
-		DAO dao = new DAOimpl();
+		//DAO dao = new DAOimpl();
 		Users u = new Users();
 		ArrayList<String> info = new ArrayList<>();
 		System.out.println("Please enter a first name:");
@@ -56,26 +58,60 @@ public class Services {
 	}
 	
 	public Users logIn() {
-		DAO dao = new DAOimpl();
-		Integer veri = new Integer(1);
+		Users x = new Users();
+//		Integer veri = new Integer(1);
 		System.out.println("Please enter your username (not case-sensitive):");
 		String una = inputChk();
 		System.out.println("Please enter your password:");
 		String pw = inputChk();
-		veri = dao.logOn(una, pw);
-		
-		if(veri == null) {
+		x = dao.logOn(una, pw);
+		System.out.println(x.toFile());
+//		System.out.println(veri);
+		if(x.getId() == null) {
+			System.out.println("Wrong log-in information."
+					+ "\nPlease try again.");
 			return logIn();
 		}
 			
-		System.out.println(veri);
+		transac(x);
 		return null;
 	}
-	
-	
-	public void transac(Integer veri) {
-		// TODO Auto-generated method stub
-		System.out.println("You are now in transac.");
+	public Integer acAuth(ArrayList<Integer> lis) {
+		System.out.println("Please enter a valid account number.");
+		Integer aut = scan.nextInt();
+		if(lis.contains(aut)) {
+			
+			return aut;
+		}
+		System.out.println("Not valid sorry.");
+		return acAuth(lis);
 	}
 	
+	public Users transac(Users u) {
+		// TODO Auto-generated method stub
+		ArrayList<Integer> acid = new ArrayList<>();
+		Integer fin = new Integer(1);
+		System.out.println("Hello! What would you like to do today?");
+		System.out.println("CREATE(1) a bank account, VIEW(2) user account number details or LOGOUT(3)?");
+		String tk = scan.nextLine();
+		switch(tk) {
+		case "1":
+			dao.addAccount(u.getId());
+			transac(u);
+			break;
+		case "2" :
+			acid = dao.acctDetails(u.getId());
+			fin = acAuth(acid);
+			dao.dOw(dao.makeTransac(fin).getAcctId(), dao.makeTransac(fin).getBalance());
+			break;
+		case "3" :
+			System.out.println("You have successfully logged out.");
+			break;
+		default:
+			transac(u);
+		}
+		return u;
+
+	}
+
 }

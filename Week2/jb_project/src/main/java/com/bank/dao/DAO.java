@@ -8,5 +8,10 @@ public interface DAO {
 	
 	public Users addUser(ArrayList<String> input);
 	public Accounts addAccount(Integer uid);
-	public Integer logOn(String un, String pwd);
+	public Users logOn(String un, String pwd);
+	public ArrayList<Integer> acctDetails(Integer cred);
+	public Accounts makeTransac(Integer aid);
+	public Accounts deposit(Integer aid, Double curBal);
+	public Accounts withdraw(Integer aid, Double curBal);
+	public void dOw(Integer accid, Double balance);
 }

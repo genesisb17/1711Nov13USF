@@ -3,13 +3,13 @@ package com.bank.pojos;
 public class Accounts {
 	private Integer uId;
 	private Integer acctId;
-	private Integer balance;
+	private Double balance;
 	
 	public Accounts() {
 
 	}
 	
-	public Accounts(Integer uId, Integer balance) {
+	public Accounts(Integer uId, Double balance) {
 		super();
 		this.uId = uId;
 		this.balance = balance;
@@ -31,11 +31,11 @@ public class Accounts {
 		this.acctId = acctId;
 	}
 
-	public Integer getBalance() {
+	public Double getBalance() {
 		return balance;
 	}
 
-	public void setBalance(Integer balance) {
+	public void setBalance(Double balance) {
 		this.balance = balance;
 	}
 	public String toFile() {
