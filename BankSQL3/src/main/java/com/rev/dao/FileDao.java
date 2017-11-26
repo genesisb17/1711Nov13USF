@@ -40,7 +40,6 @@ public class FileDao implements DAO
 		catch (SQLException e) 
 		{
 			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
 		addUsera(u);
 	}
@@ -51,7 +50,7 @@ public class FileDao implements DAO
 		newUser u1 = new newUser();
 		try(Connection conn = ConnectionFactory.getInstance().getConnection())
 		{
-			//conn.setAutoCommit(false);
+			conn.setAutoCommit(false);
 			String sql1 = "insert into ACCOUNTS(USER_ID,BALANCE) values(?,?)";
 			u1 = getUser(u.getUsername(),u.getPassword());
 			PreparedStatement ps = conn.prepareStatement(sql1);
@@ -64,8 +63,8 @@ public class FileDao implements DAO
 		catch (SQLException e) 
 		{
 			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
+	
 	}
 	
 	
@@ -76,6 +75,7 @@ public class FileDao implements DAO
 	{
 		// TODO Auto-generated method stub
 		newUser u = new newUser();
+		
 		try(Connection conn = ConnectionFactory.getInstance().getConnection())
 		{
 			String sql = "select * from USERS where USERNAME = ? AND PASSWORD = ?";
@@ -203,5 +203,30 @@ public class FileDao implements DAO
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+
+	@Override
+	public void delete(String u, String p) 
+	{
+		// TODO Auto-generated method stub
+		try(Connection conn = ConnectionFactory.getInstance().getConnection())
+		{
+			newUser u1 =new newUser();
+			String sql = "DELETE USERS WHERE U_ID=?";
+			u1 = getUser(u,p); 
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setInt(1, u1.getId());
+			ps.executeUpdate();
+			
+			String sql1 = "DELETE ACCOUNTS WHERE USER_ID=?";
+			PreparedStatement p1 = conn.prepareStatement(sql);
+			p1.setInt(1, u1.getId());
+			p1.executeUpdate();
+			conn.commit();
+			conn.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
 	}
 }

@@ -14,7 +14,7 @@ public class RunBank
 	}
 	static void run()
 	{
-		System.out.println("Welcome to BondsBank Would you like to Log in(1) or Create Account(2)or to sell your soul go to the nearest representative you can find them in any lawyers office");
+		System.out.println("Welcome to BondsBank\nWould you like to Log in(1) or Create Account(2)");
 		Scanner scan = new Scanner(System.in);
 		String op = scan.nextLine();
 		newUser u = new newUser();
@@ -23,19 +23,12 @@ public class RunBank
 			case "1":
 				lookup();
 			case "2":
-				try
-				{
 				createAccount();
-				}
-				catch(Exception e)
-				{
-					createAccount();
-				}
 				break;
 			case "3":
 				break;
 			default:
-				
+				run();
 				break;
 		}
 		run();
@@ -117,9 +110,8 @@ public class RunBank
 		{
 			run();
 		}
-		System.out.println("you are in just like the mafia.");
 		System.out.println("Hello "+u.getFirstname());
-		System.out.println("what do you want to look for? 1-balance 2-Deposit (Use - for withdraw) 3-take over the world");
+		System.out.println("what do you want to look for? 1-balance 2-Deposit (Use - for withdraw)");
 		int x = sc.nextInt();
 		switch(x)
 		{
@@ -133,7 +125,7 @@ public class RunBank
 				update();
 				break;
 			case 3:
-				System.out.println("I can't do that I am in a program dummy :p.");
+				service.delete(s, pass);
 				break;
 		}
 		lookup();
