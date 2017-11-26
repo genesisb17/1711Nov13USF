@@ -29,6 +29,46 @@ alter table CHINOOK.INVOICE DROP CONSTRAINT FK_INVOICECUSTOMERID;
 DELETE CHINOOK.CUSTOMER WHERE FIRSTNAME = 'Robert' AND LASTNAME = 'Walter';
 --3.0
 --3.1
+create or replace function threeone
+  return time;
+begin
+  return time;
+end;
+
+create or replace function threeoneb
+  return length;
+begin
+  select mediatype from mediatype;
+  return length(mediatype);
+end;
+--3.2
+create or replace function threetwo
+  return INTEGER;
+begin
+  select mediatype from mediatype;
+  return AVG(INVOICE.INVOICEID);
+end;
+
+create or replace function threetwo
+  return INTEGER;
+begin
+  select mediatype from mediatype;
+  return MAX(salary);
+end;
+--3.3
+create or replace function threetwo
+  return INTEGER;
+begin
+  select mediatype from mediatype;
+  return AVG(INVOICEline.unitprice);
+end;
+--3.4
+create or replace function threetwo
+  return INTEGER;
+begin
+  select mediatype from mediatype;
+  return employee.BIRTHDATE >1968;
+end;
 --4.1
 CREATE OR REPLACE PROCEDURE B_B0
 AS
