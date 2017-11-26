@@ -9,10 +9,9 @@ public class Accounts {
 
 	}
 	
-	public Accounts(Integer uId, Integer acctId, Integer balance) {
+	public Accounts(Integer uId, Integer balance) {
 		super();
 		this.uId = uId;
-		this.acctId = acctId;
 		this.balance = balance;
 	}
 
@@ -38,5 +37,9 @@ public class Accounts {
 
 	public void setBalance(Integer balance) {
 		this.balance = balance;
+	}
+	public String toFile() {
+		return "[" + uId + ", " + acctId + ", " + balance + "]";
+		
 	}
 }

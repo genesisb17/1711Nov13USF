@@ -55,11 +55,27 @@ public class Services {
 		return u;
 	}
 	
-//	public Users logIn() {
-//		DAO dao = new DAOimpl();
-//		System.out.println("Please enter your username (not case-sensitive):");
-//		System.out.println("Please enter your password:");
-//		return null;
-//	}
+	public Users logIn() {
+		DAO dao = new DAOimpl();
+		Integer veri = new Integer(1);
+		System.out.println("Please enter your username (not case-sensitive):");
+		String una = inputChk();
+		System.out.println("Please enter your password:");
+		String pw = inputChk();
+		veri = dao.logOn(una, pw);
+		
+		if(veri == null) {
+			return logIn();
+		}
+			
+		System.out.println(veri);
+		return null;
+	}
+	
+	
+	public void transac(Integer veri) {
+		// TODO Auto-generated method stub
+		System.out.println("You are now in transac.");
+	}
 	
 }
