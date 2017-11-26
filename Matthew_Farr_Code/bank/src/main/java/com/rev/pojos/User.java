@@ -4,76 +4,62 @@ import java.math.BigDecimal;
 
 public class User {
 	
-	private String firstname;
-	private String lastname;
-	private String username;
-	private String password;
+	private int id;
+	private String firstName, lastName, username, password;
 	private BigDecimal balance;
 	
-	public User(){}
-	
-	public User( String firstname, String lastname, String username, String password, BigDecimal balance) {
+	public User() {super();}
+
+	public User(int id, String firstName, String lastName, String username, String password, BigDecimal balance) {
 		super();
-		this.firstname = firstname;
-		this.lastname = lastname;
+		this.id = id;
+		this.firstName = firstName;
+		this.lastName = lastName;
 		this.username = username;
 		this.password = password;
 		this.balance = balance;
-	}
-
-	public String getFirstname() {
-		return firstname;
-	}
-
-	public void setFirstname(String firstname) {
-		this.firstname = firstname;
-	}
-
-	public String getLastname() {
-		return lastname;
-	}
-
-	public void setLastname(String lastname) {
-		this.lastname = lastname;
-	}
-
-	public String getUsername() {
-		return username;
-	}
-
-	public void setUsername(String username) {
-		this.username = username;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-	public BigDecimal getBalance() {
-		return balance;
-	}
-
-	public void setBalance(BigDecimal balance) {
-		this.balance = balance;
-	}
-
-	public String toFile() {
-		return  firstname + ":" + lastname + ":" + username
-				+ ":" + password + ":" + balance;
-	}
-	
-	public String toConsole() {
-		return "\nUsername: " + username + "\nFirst Name: " + firstname + "\nLast Name: " + lastname + "\n";
 	}
 
 	@Override
+	/**
+	 * Eclipse provided default implementation for toString(). Used for printing User objects to the console for
+	 * testing
+	 */
 	public String toString() {
-		return "User [firstname=" + firstname + ", lastname=" + lastname + ", username=" + username + ", password="
-				+ password + ", balance=" + balance + "]";
+		return "User [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", username=" + username
+				+ ", password=" + password + ", balance=" + balance + "]";
+	}
+	
+	/**
+	 * @return String representation used for writing to text file storage
+	 */
+	public String toFileString() {
+		return id + ":" + firstName + ":" + lastName + ":" + username + ":" + password + ":" + balance;
 	}
 
+	/* Getters and setters for private fields 
+	 */
+	public int getId() {return id;}
+
+	public void setId(int id) {this.id = id;}
+
+	public String getFirstName() {return firstName;}
+
+	public void setFirstName(String firstName) {this.firstName = firstName;}
+
+	public String getLastName() {return lastName;}
+
+	public void setLastName(String lastName) {this.lastName = lastName;}
+
+	public String getUsername() {return username;}
+
+	public void setUsername(String username) {this.username = username;}
+
+	public String getPassword() {return password;}
+
+	public void setPassword(String password) {this.password = password;}
+
+	public BigDecimal getBalance() {return balance;}
+
+	public void setBalance(BigDecimal balance) {this.balance = balance;}
 }
