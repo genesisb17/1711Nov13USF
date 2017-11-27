@@ -105,6 +105,7 @@ public class Services {
 			fin = acAuth(acid);
 			ac = dao.makeTransac(fin);
 			dao.dOw(ac.getAcctId(), ac.getBalance());
+			transac(u);
 			break;
 		case "3" :
 			System.out.println("You have successfully logged out.");
