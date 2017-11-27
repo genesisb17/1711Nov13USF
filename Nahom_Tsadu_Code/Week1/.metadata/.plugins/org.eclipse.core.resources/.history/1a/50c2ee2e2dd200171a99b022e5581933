@@ -1,0 +1,61 @@
+package com.rev.dao;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+public class OracleConfiguration {
+	
+	private static OracleConfiguration oc = null;
+	private final String hostname = "jdbc:oracle:thin:@localhost:1521:xe";
+	private final String username = "awsuser";
+	private final String password = "awspw";
+	private static boolean build = true;
+	private Connection connection;
+	
+	private OracleConfiguration(){
+		getConnection();
+		build = false;
+	}
+	
+	public static synchronized OracleConfiguration getInstance(){
+		if(build == true) oc = new OracleConfiguration();
+		return oc;
+	}
+	
+	public void getConnection(){
+		try{
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+		}catch(ClassNotFoundException e){
+			System.out.println("Oracle JDBC Driver not Found");
+			e.printStackTrace();
+			return;
+		}
+		connection = null;
+		try{
+			connection = DriverManager.getConnection(hostname, username, password);
+		}catch(SQLException e){
+			System.out.println("Connection Failed");
+			e.printStackTrace();
+			return;
+		}
+		if(connection != null) System.out.println("User " + username + " is connected to " + hostname);
+		else System.out.println("Connection Failed" );
+	}
+	
+	public ResultSet query(String q) throws SQLException{
+	    Statement stmt = null;
+	    String query = q;
+	    try{
+	        stmt = connection.createStatement();
+	        ResultSet rs = stmt.executeQuery(query);
+	        System.out.println(rs.toString());
+	        return rs;
+	    }catch (SQLException e) {
+	        e.printStackTrace();
+	    } 
+	 return null;
+	}
+}

@@ -1,0 +1,7 @@
+package com.rev.pojos;
+
+public class Account {
+	private int accountId;
+	private int userId;
+	private double balance;
+}

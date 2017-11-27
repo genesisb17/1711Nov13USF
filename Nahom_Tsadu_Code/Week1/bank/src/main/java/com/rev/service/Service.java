@@ -2,12 +2,12 @@ package com.rev.service;
 
 import java.util.ArrayList;
 
-import com.rev.dao.DAO;
 import com.rev.dao.FileDAO;
+import com.rev.pojos.Account;
 import com.rev.pojos.User;
 
 public class Service {
-	static DAO dao = new FileDAO();
+	static FileDAO dao = new FileDAO();
 	
 	public User addUser(User u){
 //		System.out.println(u.toString());
@@ -27,13 +27,21 @@ public class Service {
 		return dao.getUser(uname);
 	}
 	
-	public User deposit(User u, double amount){
-		u.setBalance(Math.round((u.getBalance() + amount)*100)/100.0);
-		return dao.deposit(u);
+	public Account deposit(Account account, double amount){
+		account.setBalance(Math.round((account.getBalance() + amount)*100)/100.0);
+		return dao.deposit(account);
 	}
 	
-	public User withdraw(User u, double amount){
-		u.setBalance(Math.round((u.getBalance() - amount)*100)/100.0);
-		return dao.withdraw(u);
+	public Account withdraw(Account account, double amount){
+		account.setBalance(Math.round((account.getBalance() - amount)*100)/100.0);
+		return dao.withdraw(account);
+	}
+	
+	public ArrayList<Account> getAccounts(User u){
+		return dao.getAccountsByUserID(u.getId());
+	}
+	
+	public Account createAccount(User u){
+		return dao.createAccount(u.getId());
 	}
 }

@@ -1,11 +1,13 @@
 package com.rev.main;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.util.function.Supplier;
 
 import com.rev.main.interfaces.BankOperations;
+import com.rev.pojos.Account;
 import com.rev.pojos.User;
 import com.rev.service.Service;
 
@@ -18,6 +20,7 @@ public class BankOps implements BankOperations{
 	private HashMap<Integer, Supplier<User>> userOps;
 	private HashMap<Integer, Runnable> bankOps;
 	private User currentUser;
+	private Account currentAccount;
 	
 	private BankOps(Scanner s){
 		this.scan = s;
@@ -48,6 +51,7 @@ public class BankOps implements BankOperations{
 		ops.put(1, () -> this.makeDeposit());
 		ops.put(2, () -> this.makeWithdrawal());
 		ops.put(3, () -> this.checkBalance());
+		ops.put(4, () -> this.openNewAccount());
 		return ops;
 	}
 	
@@ -79,10 +83,10 @@ public class BankOps implements BankOperations{
 		int op = runOptions("Login", "Create Account");
 		switch(op){
 		     case 1: System.out.println("You've chosen to Login!"); 
-		     		 currentUser = userOps.get(op).get();
+		     		 userOps.get(op).get();
 		     		 System.out.println(); 
-		     		 System.out.println("Hello " + currentUser.getFname() + "!"); 
-		     		 runBankOps();
+		     		  
+		     		 //runBankOps();
 		             break;
 			 case 2: System.out.println("You've chosen to create a new account!"); 
 			 		 try{
@@ -100,7 +104,8 @@ public class BankOps implements BankOperations{
 	}
 	
 	public void runBankOps(){
-		int op = runOptions("Deposit", "Withdrawal", "Check Balance");
+		System.out.println("Hello " + currentUser.getFname() + "!");
+		int op = runOptions("Deposit", "Withdrawal", "Check Balance", "Open New Account");
 		switch(op){
 		     case 1: System.out.println("You've chosen to make a deposit!"); 
 		     		 bankOps.get(op).run();
@@ -111,9 +116,32 @@ public class BankOps implements BankOperations{
 			 case 3: System.out.println("You've chosen to check your balance!"); 
 			 		 bankOps.get(op).run();
 					 break;
+			 case 4: System.out.println("You've chosen to open a new account!"); 
+	 		 		 bankOps.get(op).run();
+	 		 		 break;
 			default: run();
 					 break;
 		}
+	}
+	
+	public int runAccountOps(ArrayList<Account> accounts){
+		int op = 0;
+		boolean operation = false;
+		do{
+			try{
+				System.out.println();
+				System.out.println("Please select an account (Enter choice number): ");
+				for(int i = 0; i < accounts.size(); i++) System.out.println((i+1) + ". " + accounts.get(i).toString());
+				op = scan.nextInt();
+				scan.nextLine();
+				operation = true;
+			}catch(InputMismatchException e){
+				System.out.println("Please enter a valid choice number.");
+				scan.nextLine();
+				operation = false;
+			}
+		}while(!operation);
+		return op;
 	}
 	
 	public boolean authorize(String pw1, String pw2){
@@ -132,7 +160,9 @@ public class BankOps implements BankOperations{
 			user = service.getUser(username);
 			if(user == null){
 				System.out.println("No User found. Please try again...");
-			}else{userFound = true;}
+			}else{
+				currentUser = user; 
+				userFound = true;}
 		}while(userFound == false);
 		do{ 
 			System.out.println("Please enter your password: ");
@@ -141,7 +171,25 @@ public class BankOps implements BankOperations{
 				System.out.println("Authorization failed. Please try again...");
 			}else{userAuth = true;}
 		}while(userAuth == false);
+		do{ 
+			getAccount();
+		}while(userAuth == false);
 		return user;
+	}
+	
+	public void getAccount(){
+		boolean account = false;
+		do{ 
+			currentAccount = null;
+			ArrayList<Account> accounts = service.getAccounts(currentUser);
+			currentAccount = accounts.get(runAccountOps(accounts) - 1);
+			if(currentAccount != null){
+				account = true;
+				System.out.println("You've selected: " + currentAccount.toString());
+				runBankOps();
+			}
+		}while(account == false);
+		
 	}
 
 	@Override
@@ -208,13 +256,13 @@ public class BankOps implements BankOperations{
 				System.out.println("Sorry this is an invalid amount...");
 			}
 		}while(amountOK == false);
-	    currentUser = service.deposit(currentUser, amount);
+	    currentAccount = service.deposit(currentAccount, amount);
 	    System.out.println("Deposit successful: ");
-	    System.out.println("Your new balance is: " + currentUser.getBalance());
+	    System.out.println("Your new balance is: " + currentAccount.getBalance());
 		sleep(1000);
 	    int next = continueOrExit();
 	    if(next == 1) exit();
-	    else if(next == 2) runBankOps();
+	    else if(next == 2) getAccount();
 	}
 
 	@Override
@@ -222,10 +270,10 @@ public class BankOps implements BankOperations{
 		double amount = 0;
 		boolean amountOK = false;
 		do{
-			System.out.println("Please enter an amount (Current Balance is " + currentUser.getBalance() + ": ");
+			System.out.println("Please enter an amount (Current Balance is " + currentAccount.getBalance() + ": ");
 			try{
 				amount = Double.parseDouble(scan.nextLine());
-				if(amount > currentUser.getBalance()){
+				if(amount > currentAccount.getBalance()){
 					System.out.println("Sorry this amount is more than your current balance..."); 
 					amountOK = false;
 				}else amountOK = true; 
@@ -234,21 +282,32 @@ public class BankOps implements BankOperations{
 				System.out.println("Sorry this is an invalid amount...");
 			}
 		}while(amountOK == false);
-	    currentUser = service.withdraw(currentUser, amount);
+	    currentAccount = service.withdraw(currentAccount, amount);
 	    System.out.println("Withdrawal successful: ");
-	    System.out.println("Your new balance is: " + currentUser.getBalance());
+	    System.out.println("Your new balance is: " + currentAccount.getBalance());
 		sleep(1000);
 	    int next = continueOrExit();
 	    if(next == 1) exit();
-	    else if(next == 2) runBankOps();
+	    else if(next == 2) getAccount();
 	}
 
 	public void checkBalance() {
-		System.out.println("Your current balance is: " + currentUser.getBalance());
+		System.out.println("Your current balance is: " + currentAccount.getBalance());
 		sleep(1000);
 	    int next = continueOrExit();
 	    if(next == 1) exit();
-	    else if(next == 2) runBankOps();
+	    else if(next == 2) getAccount();
+	}
+	
+	public void openNewAccount() {
+		Account newAccount;
+	    newAccount = service.createAccount(currentUser);
+	    System.out.println("Open new account successful: ");
+	    System.out.println("Your new account is " + newAccount.toString());
+		sleep(1000);
+	    int next = continueOrExit();
+	    if(next == 1) exit();
+	    else if(next == 2) getAccount();
 	}
 	
 	public int continueOrExit(){

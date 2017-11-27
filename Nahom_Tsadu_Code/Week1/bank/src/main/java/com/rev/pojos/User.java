@@ -29,6 +29,19 @@ public class User {
 		this.balance = balance;
 	}
 
+	public User(int id, String fname, String lname, String username, String password) {
+		this.id = id;
+		this.fname = fname;
+		this.lname = lname;
+		this.username = username;
+		this.password = password;
+		this.balance = 0;
+	}
+
+	public User() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public int getId() {
 		return id;
 	}

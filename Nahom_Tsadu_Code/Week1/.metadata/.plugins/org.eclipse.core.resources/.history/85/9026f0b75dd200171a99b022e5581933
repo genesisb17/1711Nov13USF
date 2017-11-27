@@ -1,0 +1,35 @@
+package com.rev.main;
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+import com.rev.dao.DAO;
+import com.rev.dao.FileDAO;
+import com.rev.pojos.Account;
+import com.rev.pojos.User;
+
+public class RunBankApp {
+	
+	public static void main(String[] args) {
+//		Scanner scan = new Scanner(System.in);
+//		BankOps ops = BankOps.getInstance(scan);
+//		ops.run();
+		FileDAO fileDAO = new FileDAO();
+		ArrayList<User> userList = fileDAO.getAllUsers();
+		
+		for(User u: userList){
+			System.out.println(u.toString());
+		}
+		
+		Account a = fileDAO.createAccount(2);
+		
+		System.out.println(a.toString());
+		
+		System.out.println(fileDAO.getUser("kb24").toString());
+		
+		ArrayList<Account> accounts = fileDAO.getAccountsByUserID(2);
+		for(Account acc : accounts){System.out.println(acc.toString());}
+//		System.out.println(fileDAO.getUser("kb24").toString());
+		
+	}
+}
