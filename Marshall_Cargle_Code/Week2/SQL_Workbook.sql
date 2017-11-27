@@ -130,19 +130,16 @@ return theEmployees;
 end employeesAfter;
 /
 select employeesAfter from dual;
+/
 
 --4.0 Stored Procedures 4
 --4.1 Basic Stored Procedure
 --Task – Create a stored procedure that selects the first and last names of all the employees.
-CREATE OR REPLACE PROCEDURE firstlast
-(
-  FIRSTNAME out varchar2
-, LASTNAME out varchar2
-)
-AS 
-BEGIN
-  select firstname,lastname into firstname,lastname from employee;
-END firstlast;
+CREATE OR REPLACE PROCEDURE firstlast(firstname out varchar2, lastname OUT varchar2)
+IS
+BEGIN 
+select firstname,lastname into firstname,lastname from employee;
+END;
 /
 Execute firstlast;
 

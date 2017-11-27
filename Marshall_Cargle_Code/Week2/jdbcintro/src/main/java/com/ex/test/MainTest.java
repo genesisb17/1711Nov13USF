@@ -18,8 +18,10 @@ public class MainTest {
 		/*Artist art = dao.getArtistById(500);
 		System.out.println(art);*/
 		
-		System.out.println(dao.addArtist("Marshall Cargle4"));
+		//System.out.println(dao.addArtist("Marshall Cargle4"));
 		
 		//System.out.println(dao.updateArtist(500, "AC/DC"));
+		
+		System.out.println(dao.getArtistById(1));
 	}
 }
