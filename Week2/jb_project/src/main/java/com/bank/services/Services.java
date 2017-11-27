@@ -72,7 +72,8 @@ public class Services {
 					+ "\nPlease try again.");
 			return logIn();
 		}
-			
+		System.out.println("Hello! What would you like to do today?");
+		System.out.println("CREATE(1) a bank account, VIEW(2) user account number details or LOGOUT(3)?");
 		transac(x);
 		return null;
 	}
@@ -92,12 +93,12 @@ public class Services {
 		Accounts ac = new Accounts();
 		ArrayList<Integer> acid = new ArrayList<>();
 		Integer fin = new Integer(1);
-		System.out.println("Hello! What would you like to do today?");
-		System.out.println("CREATE(1) a bank account, VIEW(2) user account number details or LOGOUT(3)?");
 		String tk = scan.nextLine();
 		switch(tk) {
 		case "1":
 			dao.addAccount(u.getId());
+			System.out.println("Hello! What would you like to do today?");
+			System.out.println("CREATE(1) a bank account, VIEW(2) user account number details or LOGOUT(3)?");
 			transac(u);
 			break;
 		case "2" :
@@ -105,6 +106,8 @@ public class Services {
 			fin = acAuth(acid);
 			ac = dao.makeTransac(fin);
 			dao.dOw(ac.getAcctId(), ac.getBalance());
+			System.out.println("Hello! What would you like to do today?");
+			System.out.println("CREATE(1) a bank account, VIEW(2) user account number details or LOGOUT(3)?");
 			transac(u);
 			break;
 		case "3" :
