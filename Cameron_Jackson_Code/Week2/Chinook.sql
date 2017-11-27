@@ -175,7 +175,43 @@ SELECT FIND_EMP_BDAY() FROM dual;
 /
 
 -- 4.1 BASIC STORED PROCEDURE
+CREATE OR REPLACE PROCEDURE EMP_NAME
+IS emp_name Employee%ROWTYPE;
+BEGIN
+SELECT firstname, lastname into f_name, l_name
+FROM Employee;
+END;
+/
 -- 4.2 STORED PROCEDURE INPUT PARAMETERS
+CREATE OR REPLACE PROCEDURE EMP_PERSONAL_UPDATE(
+  EMP_ID IN EMPLOYEE.EMPLOYEEID%TYPE,
+  EMP_ADDR IN EMPLOYEE.ADDRESS%TYPE,
+  EMP_CITY IN EMPLOYEE.CITY%TYPE,
+  EMP_STATE IN EMPLOYEE.STATE%TYPE,
+  EMP_COUNTRY IN EMPLOYEE.COUNTRY%TYPE,
+  EMP_POSTALCODE IN EMPLOYEE.POSTALCODE%TYPE,
+  EMP_PHONE IN EMPLOYEE.PHONE%TYPE,
+  EMP_FAX IN EMPLOYEE.FAX%TYPE,
+  EMP_EMAIL IN EMPLOYEE.EMAIL%TYPE
+)
+AS
+BEGIN
+UPDATE Employee 
+SET 
+Employee.address = EMP_addr,
+Employee.city = EMP_city,
+Employee.state = EMP_state,
+Employee.country = EMP_country,
+Employee.postalcode = EMP_postalcode,
+Employee.phone = EMP_phone,
+Employee.fax = EMP_fax,
+Employee.email = EMP_email
+WHERE Employee.employeeid = EMP_ID;
+END;
+/
+
+execute EMP_PERSONAL_UPDATE(10, '10 Flap Lane', 'Tallahassee', 'FL', 'USA', '32300', '+ (123) 456-7890', '000-000-0000', 'emailme@emailme.com');
+select * from employee where employeeid = 10;
 -- 4.3 STORED PROCEDURE OUTPUT PARAMETERS
 
 -- 5 TRANSACTIONS
@@ -206,6 +242,11 @@ AFTER INSERT ON Employee
 FOR EACH ROW
 BEGIN
   INSERT INTO Logs(emp_id, stamp) 
-  VALUES(NEW.EMPLOYEEID, SYSDATE);  
+  VALUES(:NEW.EMPLOYEEID, SYSDATE);  
 END;
 /
+
+insert into employee(employeeid, lastname, firstname, title) 
+values (11, 'Finkle', 'Brinkle', 'Store Guy');
+/
+

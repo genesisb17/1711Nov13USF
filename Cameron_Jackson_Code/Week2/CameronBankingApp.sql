@@ -11,5 +11,7 @@ values ('Tommy', 'Hilfiger', 'tommyhil', 'hilfiger');
 
 select * from accounts where user_id = 1;
 
-update users set firstname = 'Bob' where username = 'bob';
+update users set pass = 'bjobs' where username = 'bob';
+
+commit;
 
