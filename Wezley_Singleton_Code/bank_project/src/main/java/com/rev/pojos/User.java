@@ -5,11 +5,11 @@ public class User {
 	private int id;
 	private String firstName;
 	private String lastName;
-	private String userName;
+	private String emailAddress;
+	private String username;
 	private String password;
-	private double balance;
 
-	/*---------------Constructors---------------*/
+	
 	
 	public User() { }
 	
@@ -17,22 +17,18 @@ public class User {
 	 * @param id
 	 * @param firstName
 	 * @param lastName
-	 * @param userName
+	 * @param username
 	 * @param password
-	 * @param balance
 	 */
-	public User(int id, String firstName, String lastName, String userName, String password, double balance) {
+	public User(int id, String firstName, String lastName, String emailAddress, String username, String password) {
 		super();
 		this.id = id;
 		this.firstName = firstName;
 		this.lastName = lastName;
-		this.userName = userName;
+		this.emailAddress = emailAddress;
+		this.username = username;
 		this.password = password;
-		this.balance = balance;
 	}
-
-
-	/*---------------Methods---------------*/
 	
 	/**
 	 * @return the id
@@ -77,17 +73,31 @@ public class User {
 	}
 	
 	/**
-	 * @return the userName
+	 * @return the emailAddress
 	 */
-	public String getUserName() {
-		return userName;
+	public String getEmailAddress() {
+		return this.emailAddress;
 	}
 	
 	/**
-	 * @param userName the userName to set
+	 * @param emailAddress the emailAddress to set
 	 */
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public void setEmailAddress(String emailAddress) {
+		this.emailAddress = emailAddress;
+	}
+	
+	/**
+	 * @return the username
+	 */
+	public String getUsername() {
+		return username;
+	}
+	
+	/**
+	 * @param username the username to set
+	 */
+	public void setUsername(String username) {
+		this.username = username;
 	}
 	
 	/**
@@ -104,22 +114,15 @@ public class User {
 		this.password = password;
 	}
 	
-	/**
-	 * @return the balance
-	 */
-	public double getBalance() {
-		return balance;
+	@Override
+	public String toString() {
+		
+		return "+--------------------------------------------------+" + 
+				"\nId: " + this.id + "\nFirst name: " + this.firstName + "\nLast name: " + this.lastName + 
+				"\nEmail address: " + this.emailAddress + "\nUsername: " + this.username + "\nPassword: " + this.password +
+				"\n+--------------------------------------------------+";
+		
 	}
 	
-	/**
-	 * @param balance the balance to set
-	 */
-	public void setBalance(double balance) {
-		this.balance = balance;
-	}
-	
-	public String toFile() {
-		return id + ":" + firstName + ":" + lastName + ":" + userName + ":" + password + ":" + balance;
-	}
 }
 
