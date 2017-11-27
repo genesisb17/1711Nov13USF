@@ -1,10 +1,12 @@
 package com.ex.dao;
 
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Types;
 import java.util.ArrayList;
 
 import com.ex.pojos.Artist;
@@ -122,6 +124,27 @@ public class DAOimpl implements DAO {
 			e.printStackTrace();
 		}
 		return arg;
+	}
+
+	@Override
+	public Artist getNameById(int id) {
+		// TODO Auto-generated method stub
+		Artist artist = new Artist();
+		try(Connection con = ConnectionFactory.getInstance().getConnection()){
+			
+			String sql = "{ ? = call get_artist_by_id(?)}";
+			CallableStatement cs = con.prepareCall(sql);
+			cs.registerOutParameter(1, Types.VARCHAR);
+			cs.setInt(2, id);
+			cs.execute();
+			artist.setName(cs.getString(1));
+			artist.setId(id);
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 	

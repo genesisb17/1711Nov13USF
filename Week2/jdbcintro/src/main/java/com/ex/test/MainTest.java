@@ -18,12 +18,13 @@ public static void main(String[] args) {
 		
 //	}
 	
-	Artist art = dao.getArtistById(4);
-	System.out.println(art);
+//	Artist art = dao.getArtistById(4);
+//	System.out.println(art);
 	
 //	System.out.println(dao.addArtist("Beyonce"));
 	
 //	System.out.println(dao.updateArtist(500, "Chance the Rapper"));
-	
+
+	System.out.println(dao.getArtistById(4));
 }
 }

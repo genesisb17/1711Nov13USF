@@ -173,6 +173,7 @@ public class DAOimpl implements DAO{
 		// TODO Auto-generated method stub
 		Accounts acc = new Accounts();
 		try(Connection conn = ConnectionFactory.getInstance().getConnection()){
+			conn.setAutoCommit(false);
 			String sql = "SELECT * FROM ACCOUNTS WHERE ACC_ID = (?)";
 			PreparedStatement xk = conn.prepareStatement(sql);
 			xk.setInt(1, aid);
@@ -184,30 +185,36 @@ public class DAOimpl implements DAO{
 				acc.setuId(rs.getInt(2));
 				acc.setBalance(rs.getDouble(3));
 			}
-			
+			xk.closeOnCompletion();
+			conn.commit();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
-System.out.println(acc.toFile());
+//System.out.println(acc.toFile());
 
 		return acc;
 	}
 	public void dOw(Integer accid, Double balance) {
 		Scanner g = new Scanner(System.in);
+		Accounts aaa = new Accounts();
 		System.out.println("\nWould you like to make a DEPOSIT(1), make a WITHDRAWAL(2) or FINISH(3) transaction?");
 
 				String g1 = g.nextLine();
-
+				
 				switch(g1) {
 				case "1":
 					deposit(accid, balance);
-					MainDriver.run();
+					aaa = makeTransac(accid);
+					System.out.println("New Balance for Bank Account #" + aaa.getAcctId() + " is $" + aaa.getBalance());
+					dOw(aaa.getAcctId(), aaa.getBalance());
 					break;
 				case "2":
 					withdraw(accid, balance);
-					MainDriver.run();
+					aaa = makeTransac(accid);
+					System.out.println("New Balance for Bank Account #" + aaa.getAcctId() + " is $" + aaa.getBalance());
+					dOw(aaa.getAcctId(), aaa.getBalance());
 					break;
 				case "3":
 					System.out.println("\nExiting Bank Account Transactions menu.");
@@ -219,7 +226,7 @@ System.out.println(acc.toFile());
 	@Override
 	public Accounts deposit(Integer aid, Double curBal) {
 		// TODO Auto-generated method stub
-
+		Accounts a = new Accounts();
 		System.out.println("Please type an amount to deposit:");
 		Double mon = negChk();
 		Double newBal = curBal + mon;
@@ -231,38 +238,38 @@ System.out.println(acc.toFile());
 			ps.setDouble(1, newBal);
 			ps.setInt(2, aid);
 			ps.executeUpdate();
-			System.out.println("New Balance is " + newBal + ".");
+//			System.out.println("New Balance is " + newBal + ".");
 			con.commit();
-
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		System.out.println("Returning to Main Menu.");
+		System.out.println("\nTransaction finished successfully.\n");
 		return null;
 	}
 
 	@Override
 	public Accounts withdraw(Integer aid, Double curBals) {
 		// TODO Auto-generated method stub
+		Accounts a = new Accounts();
 		System.out.println("Current balance from withdraw is " + curBals);
 		System.out.println("Please type an amount to withdraw:");
-		Double mon = negChk();
+		Double mon = overDraw(curBals);
 		Double newBal = curBals - mon;
 		try(Connection con = ConnectionFactory.getInstance().getConnection()){
 
 			con.setAutoCommit(false);
 			String sql = "UPDATE ACCOUNTS SET BALANCE = (?) WHERE ACC_ID = (?)";
 			PreparedStatement ps = con.prepareStatement(sql);
+
 			ps.setDouble(1, newBal);
 			ps.setInt(2, aid);
 			ps.executeUpdate();
-			System.out.println("New Balance is " + newBal + ".");
+//			System.out.println("New Balance is " + newBal + ".");
 			con.commit();
-
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		System.out.println("Returning to Main Menu.");
+		System.out.println("\nTransaction finished successfully.\n");
 		return null;
 		
 	}

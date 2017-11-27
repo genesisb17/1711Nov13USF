@@ -10,5 +10,6 @@ public interface DAO {
 	public Artist getArtistById(int id);
 	public Artist addArtist(String name);
 	public Artist updateArtist(int id, String name);
+	public Artist getNameById(int id);
 	
 }

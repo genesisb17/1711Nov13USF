@@ -65,7 +65,7 @@ public class Services {
 		System.out.println("Please enter your password:");
 		String pw = inputChk();
 		x = dao.logOn(una, pw);
-		System.out.println(x.toFile());
+//		System.out.println(x.toFile());
 //		System.out.println(veri);
 		if(x.getId() == null) {
 			System.out.println("Wrong log-in information."
@@ -89,6 +89,7 @@ public class Services {
 	
 	public Users transac(Users u) {
 		// TODO Auto-generated method stub
+		Accounts ac = new Accounts();
 		ArrayList<Integer> acid = new ArrayList<>();
 		Integer fin = new Integer(1);
 		System.out.println("Hello! What would you like to do today?");
@@ -102,7 +103,8 @@ public class Services {
 		case "2" :
 			acid = dao.acctDetails(u.getId());
 			fin = acAuth(acid);
-			dao.dOw(dao.makeTransac(fin).getAcctId(), dao.makeTransac(fin).getBalance());
+			ac = dao.makeTransac(fin);
+			dao.dOw(ac.getAcctId(), ac.getBalance());
 			break;
 		case "3" :
 			System.out.println("You have successfully logged out.");
