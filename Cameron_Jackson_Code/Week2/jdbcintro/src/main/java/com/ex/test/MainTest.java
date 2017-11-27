@@ -17,7 +17,7 @@ public class MainTest {
 		
 //		System.out.println(dao.addArtist("Vic Mensa"));
 		
-//		Artist art = dao.updateArtist(117, "The Ohio Players");
+//		Artist art = dao.updateArtist(118, "Kem");
 //		System.out.println(art);
 		
 		ArrayList<Artist> artists = dao.getArtists();

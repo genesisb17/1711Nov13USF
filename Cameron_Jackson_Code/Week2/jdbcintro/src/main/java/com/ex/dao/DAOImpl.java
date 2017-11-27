@@ -57,8 +57,8 @@ public class DAOImpl implements DAO {
 
 	@Override
 	public Artist addArtist(String name) {
-
 		Artist art = new Artist();		
+		
 		try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
 			conn.setAutoCommit(false);
 			String sql = "insert into artist (name) values (?)";

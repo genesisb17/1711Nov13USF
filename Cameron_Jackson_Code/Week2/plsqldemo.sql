@@ -26,8 +26,6 @@ BEGIN
 END;
 /
 
-update artist
-set name = 'Bloopers'
-where artistid = 501;
-
-select * from artist;
+update artist set name = 'Bloopers' where artistid = 501;
+commit;
+select name from artist where artistid=501;
