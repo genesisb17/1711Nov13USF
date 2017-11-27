@@ -1,0 +1,72 @@
+create view artistdemo as
+select * from artist
+where name like 'A%';
+
+select count(*) from artistdemo;
+
+create view albumdemo as
+select * from album where albumid <=26;
+
+select * from albumdemo;
+
+
+--left join with middle
+select  al.Title, art.name
+from albumdemo al
+left join ARTISTDEMO art
+on art.ARTISTID = al.ARTISTID;
+
+--left join without middle
+select  al.Title, art.name
+from albumdemo al
+left join ARTISTDEMO art
+on art.ARTISTID = al.ARTISTID
+where art.artistid is null;
+
+--inner join, includes all in the middle
+--can be join or inner join for inner join
+select  al.Title, art.name
+from albumdemo al
+join ARTISTDEMO art
+on art.ARTISTID = al.ARTISTID;
+
+--right join with middle
+select  al.Title, art.name
+from albumdemo al
+right join ARTISTDEMO art
+on art.ARTISTID = al.ARTISTID;
+
+select * from albumdemo;
+
+--inner joining 3 tables
+select  al.Title, art.name, tr.name
+from album al
+inner join ARTIST art on art.ARTISTID = al.ARTISTID
+inner join track tr on tr.ALBUMID = al.ALBUMID;
+
+--changing the names of the columns using allias in the select statement
+select  al.Title as Album, art.name as "Artist Name", tr.name as "Track Name"
+from album al
+inner join ARTIST art on art.ARTISTID = al.ARTISTID
+inner join track tr on tr.ALBUMID = al.ALBUMID;
+
+--join all 11 tables
+select  al.Title, art.name, tr.name, gen.name, med.name, playtrack.trackid, playlist.playlistid, inv.unitprice, invoice.invoiceid, cus.customerid, emp.state
+from album al
+inner join ARTIST art on art.ARTISTID = al.ARTISTID
+inner join track tr on tr.ALBUMID = al.ALBUMID
+inner join genre gen on tr.genreid = gen.genreid
+inner join mediatype med on med.MEDIATYPEID = tr.mediatypeid
+inner join playlisttrack playtrack on playtrack.trackid = tr.trackid
+inner join playlist playlist on playlist.playlistid = playtrack.PLAYLISTID
+inner join invoiceline inv on inv.unitprice=tr.unitprice
+inner join invoice invoice on invoice.invoiceid=inv.invoiceid
+inner join customer cus on cus.customerid=invoice.customerid
+inner join employee emp on emp.state=cus.state;
+
+--found out how many songs are in each playlist
+select playlistid, count(trackid) from playlisttrack group by PLAYLISTID;
+
+select name, count(play.trackid) as "Number of Tracks" from Playlist
+join playlisttrack play on play.playlistid=playlist.playlistid
+group by name;
