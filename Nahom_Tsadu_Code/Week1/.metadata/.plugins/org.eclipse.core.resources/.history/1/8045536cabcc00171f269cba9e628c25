@@ -1,8 +1,0 @@
-package com.rev.main.interfaces;
-
-public interface BankOperationValidator {
-	boolean isFirstNameValid(String s);
-	boolean isLastNameValid(String s);
-	boolean isUserNameValid(String s);
-	boolean isPasswordValid(String s);
-}
