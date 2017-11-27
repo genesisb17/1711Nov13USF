@@ -40,7 +40,6 @@ public class FileDAO implements DAO {
 			while((str = br.readLine()) != null) {
 				strArr.add(str.split(":"));
 			}
-			System.out.println(strArr.size());
 			BufferedWriter bw = new BufferedWriter(new FileWriter(filename, false));
 			for(int i = 0; i < strArr.size(); i++) {
 				if(strArr.get(i)[3].equals(u.getUsername())) {
@@ -53,10 +52,11 @@ public class FileDAO implements DAO {
 			for(int i = 0; i < strArr.size(); i++)
 			{
 				for (int j = 0; j < 6 ; j++) {
-					System.out.println(strArr.get(i)[j] + ":");
 					bw.write(strArr.get(i)[j] + ":");
 				}
+				bw.write("\n");
 			}
+			bw.close();
 			return u;
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

@@ -20,6 +20,7 @@ public class RunBank {
 		while(true) {
 			run();
 		}
+		
 	}
 
 	// place this in method in case of error, the program does not exit
@@ -88,22 +89,27 @@ public class RunBank {
 			String bal = "0.0";
 			bal = scan1.nextLine();
 			if(user.getBalance() > Double.parseDouble(bal)) {
-				User use = new User();
 				user.setBalance(user.getBalance() - Double.parseDouble(bal));
 				service.callUpdate(user);
+				userMenu(user);
 				
 			}else {
 				System.out.println("You do not have enough in your account.");
-			}
 				userMenu(user);
+			}
+				
 		break;
 		case"3": System.out.println("How much would you like to deposit?");
 			Scanner scan11 = new Scanner(System.in);
 			bal = "0.0";
 			bal = scan11.nextLine();
 			user.setBalance(user.getBalance() + Double.parseDouble(bal));
+//			User newinfo = new User();
+//			newinfo = service.callUpdate(newinfo);
+//			userMenu(newinfo);
 			service.callUpdate(user);
 			userMenu(user);
+		
 		}
 		
 	}
