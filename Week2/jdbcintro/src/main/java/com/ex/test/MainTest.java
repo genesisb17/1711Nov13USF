@@ -11,22 +11,24 @@ public class MainTest {
 
 	public static void main(String[] args) {
 		DAO dao = new DAOImpl();
-//		
-//		ArrayList<Artist> artists = dao.getArtists();
-//	
-//		for(Artist art : artists){
-//			System.out.println(art);		}
-//			Artist art = dao.getArtistById(4);
-//		System.out.println(art);
-		
-//	System.out.println(dao.addArtist("Genesis Bonds"));
-	//dao.updateArtist(1, "TESTING");
-//	System.out.println("done");
-	
-	List<Artist> artists = dao.getArtists();
-	for(Artist a : artists){
-		System.out.println(a);
-	}
-	}
+		//		
+		//		ArrayList<Artist> artists = dao.getArtists();
+		//	
+		//		for(Artist art : artists){
+		//			System.out.println(art);		}
+		//			Artist art = dao.getArtistById(4);
+		//		System.out.println(art);
 
+		//	System.out.println(dao.addArtist("Genesis Bonds"));
+		//dao.updateArtist(1, "TESTING");
+		//	System.out.println("done");
+
+		//	List<Artist> artists = dao.getArtists();
+		//	for(Artist a : artists){
+		//		System.out.println(a);
+		//	}
+		//	}
+		
+		System.out.println(dao.getArtistById(505));	
+	}
 }
