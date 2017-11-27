@@ -15,10 +15,10 @@ public interface BankDAO {
 	// Get all users
 	public ArrayList<User> getAllUsers();
 	// Add user
-	public User addUser(String firstname, String lastname, String username, String password);
+	public User addUser(User u);
 	// Update user
-	public User updateFirstName(String newVal, int id);
-	public User updateLastName(String newVal, int id);
+	public User updateFirstname(String newVal, int id);
+	public User updateLastname(String newVal, int id);
 	public User updateUsername(String newVal, int id);
 	public User updatePassword(String newVal, int id);
 	
@@ -27,9 +27,11 @@ public interface BankDAO {
 	public Account getAccount(int id);
 	// Get all accounts
 	public ArrayList<Account> getAllAccounts();
+	// Get all accounts for a specific user
+	public ArrayList<Account> getUserAccounts(User u);
 	// Add account
-	public Account addAccount(AccountType at, int user_id, double balance);
+	public Account addAccount(Account acc);
 	// Update account
-	public Account updateAccountBalance(double bal, int id);
+	public Account updateAccountBalance(double balance, int id);
 	
 }

@@ -22,8 +22,8 @@ public class TestDAO {
 		//			System.out.println(u);
 		//		}
 
-		//		User u = dao.getUserById(2);
-		//		System.out.println(u);
+		User u = dao.getUserById(1);
+		System.out.println(u);
 
 		//		User u = dao.getUserByUname("cpj");
 		//		System.out.println(u);
@@ -36,8 +36,18 @@ public class TestDAO {
 		//			System.out.println(acc);
 		//		}
 
-		//		Account acc = dao.addAccount(AccountType.SAVINGS, 15, 0);
-		//		System.out.println(acc);
+
+		ArrayList<Account> accounts = dao.getUserAccounts(u);
+		for (Account acc : accounts) {
+			System.out.println(acc);
+		}
+
+		//				Account acc = new Account();
+		//				acc.setUserId(25);
+		//				acc.setAccountType(AccountType.SAVINGS);
+		//				
+		//				acc = dao.addAccount(acc);
+		//				System.out.println(acc);
 
 		//		Account acc = dao.updateAccountBalance(12.00, 123407);
 		//		System.out.println(acc);

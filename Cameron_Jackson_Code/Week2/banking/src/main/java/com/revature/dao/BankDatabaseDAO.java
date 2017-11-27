@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.SQLIntegrityConstraintViolationException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
@@ -25,8 +24,8 @@ public class BankDatabaseDAO implements BankDAO {
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
 				u.setUserId(rs.getInt("USER_ID"));
-				u.setFirstName(rs.getString("FIRSTNAME"));
-				u.setLastName(rs.getString("LASTNAME"));
+				u.setFirstname(rs.getString("FIRSTNAME"));
+				u.setLastname(rs.getString("LASTNAME"));
 				u.setUsername(rs.getString("USERNAME"));
 				u.setPassword(rs.getString("PASS"));
 			}
@@ -46,8 +45,8 @@ public class BankDatabaseDAO implements BankDAO {
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
 				u.setUserId(rs.getInt("USER_ID"));
-				u.setFirstName(rs.getString("FIRSTNAME"));
-				u.setLastName(rs.getString("LASTNAME"));
+				u.setFirstname(rs.getString("FIRSTNAME"));
+				u.setLastname(rs.getString("LASTNAME"));
 				u.setUsername(rs.getString("USERNAME"));
 				u.setPassword(rs.getString("PASS"));
 			}
@@ -81,7 +80,7 @@ public class BankDatabaseDAO implements BankDAO {
 	}
 	
 	@Override
-	public User updateFirstName(String newVal, int id) { 
+	public User updateFirstname(String newVal, int id) { 
 		try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
 			String sql = "update USERS set FIRSTNAME = ? where USER_ID = ?";
 			PreparedStatement ps = conn.prepareStatement(sql);
@@ -97,7 +96,7 @@ public class BankDatabaseDAO implements BankDAO {
 	}
 	
 	@Override
-	public User updateLastName(String newVal, int id) { 
+	public User updateLastname(String newVal, int id) { 
 		try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
 			String sql = "update USERS set LASTNAME = ? where USER_ID = ?";
 			PreparedStatement ps = conn.prepareStatement(sql);
@@ -187,20 +186,43 @@ public class BankDatabaseDAO implements BankDAO {
 		}
 		return accounts;
 	}
+	
+	@Override
+	public ArrayList<Account> getUserAccounts(User u) {
+		ArrayList<Account> accounts = new ArrayList<>();
+		try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
+			String sql = "select * from ACCOUNTS where USER_ID = ?";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setInt(1, u.getUserId());
+			ResultSet rs = ps.executeQuery();
+			
+			while (rs.next()) {
+				Account temp = new Account(
+						rs.getInt("ACC_ID"),
+						Account.accountTypeFromStr(rs.getString("ACC_TYPE")),
+						rs.getInt("USER_ID"),
+						rs.getDouble("BALANCE")
+						);
+				accounts.add(temp);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return accounts;
+	}
 
 	@Override
-	public User addUser(String firstname, String lastname, String username, String password) {
-		User u = new User();
+	public User addUser(User u) {
 		try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
 			conn.setAutoCommit(false);
 			String sql = "insert into users (firstname, lastname, username, pass)\r\n" + 
 					"values (?, ?, ?, ?)";
 			String[] keys = new String[]{"USER_ID"};
 			PreparedStatement ps = conn.prepareStatement(sql, keys);
-			ps.setString(1, firstname);
-			ps.setString(2, lastname);
-			ps.setString(3, username);
-			ps.setString(4, password);
+			ps.setString(1, u.getFirstname());
+			ps.setString(2, u.getLastname());
+			ps.setString(3, u.getUsername());
+			ps.setString(4, u.getPassword());
 
 			
 			int row = ps.executeUpdate();
@@ -209,10 +231,6 @@ public class BankDatabaseDAO implements BankDAO {
 				while (pk.next()) {
 					u.setUserId(pk.getInt(1));
 				}
-				u.setFirstName(firstname);
-				u.setLastName(lastname);
-				u.setUsername(username);
-				u.setPassword(password);
 				conn.commit();
 			}
 		} catch (SQLException e) {
@@ -222,17 +240,16 @@ public class BankDatabaseDAO implements BankDAO {
 	}
 
 	@Override
-	public Account addAccount(AccountType at, int user_id, double balance) {
-		Account acc = new Account();
+	public Account addAccount(Account acc) {
 		try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
 			conn.setAutoCommit(false);
 			String sql = "insert into ACCOUNTS (ACC_TYPE, USER_ID, BALANCE) " +
 					"values (?,?,?)";
 			String[] keys = {"ACC_ID"};
 			PreparedStatement ps = conn.prepareStatement(sql, keys);
-			ps.setString(1, Account.accountTypeFromEnum(at));
-			ps.setInt(2, user_id);
-			ps.setDouble(3, balance);
+			ps.setString(1, Account.accountTypeFromEnum(acc.getAccountType()));
+			ps.setInt(2, acc.getUserId());
+			ps.setDouble(3, acc.getBalance());
 			
 			int row = ps.executeUpdate();
 			if (row != 0) {
@@ -240,9 +257,6 @@ public class BankDatabaseDAO implements BankDAO {
 				while (pk.next()) {
 					acc.setAccountId(pk.getInt(1));
 				}
-				acc.setAccountType(at);
-				acc.setUserId(user_id);
-				acc.setBalance(balance);
 				conn.commit();
 			}
 		} catch (SQLException e) {

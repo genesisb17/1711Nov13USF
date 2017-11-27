@@ -9,5 +9,7 @@ update users set firstname = 'Can', lastname = 'Jack', username = 'jpc', pass = 
 insert into users (firstname, lastname, username, pass)
 values ('Tommy', 'Hilfiger', 'tommyhil', 'hilfiger');
 
+select * from accounts where user_id = 1;
 
+update users set firstname = 'Bob' where username = 'bob';
 
