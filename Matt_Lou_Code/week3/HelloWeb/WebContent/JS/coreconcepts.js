@@ -145,3 +145,38 @@ var g = [0,2,4,6,8];
 var h = null;
 var i;
 console.log(typepf(a));
+
+
+/*
+ * Inheritance and classes
+ * Prior to ES6, JS did not support OO design. Inheritance was
+ * prototypal, but now classes and constructors exist, 
+ */
+
+//First, what this looked like in ES6:
+function vehicle(name, type){
+	this.name = name;
+	this.type = type;
+}
+vehicle.prototype.getName = function getName(){
+	return this.name;
+}
+vehicle.prototype.getType = function getType(){
+	return this.type;
+}
+var car = new vehicle('Tesla', 'car');
+console.log(car.getName()); // prints Tesla
+console.log(car.getType()); // prints car
+
+//Now, in ES6:
+class Vehicle{
+	constructor(name, type){
+		this.name = name;
+		this.type = type;
+	}
+	getName(){return this.name;}
+	getType(){return this.type;}
+}
+
+let car = new Vehicle('BMW', 'car');
+console.log()

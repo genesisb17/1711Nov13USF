@@ -59,6 +59,7 @@ document.getElementById("inner").addEventListener("click", function(){
 	alert("INNER!");
 }, true);
 
+/*****************************************************************/
 
 function bubbleSort(numArray){
 	var swapped;
@@ -75,12 +76,23 @@ function bubbleSort(numArray){
     } while (swapped);
 }
 
+/**********************************************************/
+
 function reverseStr(someStr){
-	return s.split("").reverse().join("");
+	return someStr.split("").reverse().join("");
 }
 
+function doReverse(){
+	var display = document.getElementById("revDisplay");
+	var n = document.getElementById("reverse").value;
+	display.innerHTML = reverseStr(n);
+}
+
+document.getElementById("doReverse").addEventListener("click", doReverse);
+
+/*********************************************************/
 function factorial(someNum){
-	if(someNum == 1) {
+	if(someNum <= 1) {
 		return 1;
 	}
 	else{
@@ -88,6 +100,15 @@ function factorial(someNum){
 	}
 }
 
+function doFactorial(){
+	var number = document.getElementById("factorial").value;
+	var display = document.getElementById("factDisplay");
+	display.innerHTML = factorial(number);
+}
+
+document.getElementById("doFactorial").addEventListener("click", doFactorial);
+
+/*********************************************************/
 function substring(someStr, length, offset){
 	var string = someStr.substr(offset - 1, (offset+length));
 	if(someStr.length + offset < someStr.length){
@@ -96,12 +117,23 @@ function substring(someStr, length, offset){
 	return string;
 }
 
+/***********************************************************/
 function isEven(someNum){
 	if(someNum & 1)
 		return false;
 	else
 		return true;
 }
+
+function evenOdd(){
+	var value = document.getElementById("evenOdd").value;
+	var display = document.getElementById("displayEvenOdd");
+	display.innerHTML = isEven(value);
+}
+document.getElementById("evenlistener").addEventListener("click", evenOdd);
+
+
+/************************************************************/
 
 
 
