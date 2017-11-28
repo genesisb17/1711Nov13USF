@@ -1,0 +1,42 @@
+28-Nov-2017 09:36:53.558 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Server version:        Apache Tomcat/8.5.23
+28-Nov-2017 09:36:53.623 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Server built:          Sep 28 2017 10:30:11 UTC
+28-Nov-2017 09:36:53.624 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Server number:         8.5.23.0
+28-Nov-2017 09:36:53.624 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log OS Name:               Windows 10
+28-Nov-2017 09:36:53.624 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log OS Version:            10.0
+28-Nov-2017 09:36:53.624 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Architecture:          amd64
+28-Nov-2017 09:36:53.624 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Java Home:             C:\Program Files\Java\jdk1.8.0_144\jre
+28-Nov-2017 09:36:53.624 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log JVM Version:           1.8.0_144-b01
+28-Nov-2017 09:36:53.625 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log JVM Vendor:            Oracle Corporation
+28-Nov-2017 09:36:53.625 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log CATALINA_BASE:         C:\Users\Bruce Wayne\my_git_repos\1711Nov13USF\Trent\tomcat\apache-tomcat-8.5.23
+28-Nov-2017 09:36:53.625 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log CATALINA_HOME:         C:\Users\Bruce Wayne\my_git_repos\1711Nov13USF\Trent\tomcat\apache-tomcat-8.5.23
+28-Nov-2017 09:36:53.625 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.util.logging.config.file=C:\Users\Bruce Wayne\my_git_repos\1711Nov13USF\Trent\tomcat\apache-tomcat-8.5.23\conf\logging.properties
+28-Nov-2017 09:36:53.625 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager
+28-Nov-2017 09:36:53.626 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djdk.tls.ephemeralDHKeySize=2048
+28-Nov-2017 09:36:53.626 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.protocol.handler.pkgs=org.apache.catalina.webresources
+28-Nov-2017 09:36:53.626 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dcatalina.base=C:\Users\Bruce Wayne\my_git_repos\1711Nov13USF\Trent\tomcat\apache-tomcat-8.5.23
+28-Nov-2017 09:36:53.626 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dcatalina.home=C:\Users\Bruce Wayne\my_git_repos\1711Nov13USF\Trent\tomcat\apache-tomcat-8.5.23
+28-Nov-2017 09:36:53.627 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.io.tmpdir=C:\Users\Bruce Wayne\my_git_repos\1711Nov13USF\Trent\tomcat\apache-tomcat-8.5.23\temp
+28-Nov-2017 09:36:53.628 INFO [main] org.apache.catalina.core.AprLifecycleListener.lifecycleEvent Loaded APR based Apache Tomcat Native library [1.2.14] using APR version [1.6.2].
+28-Nov-2017 09:36:53.628 INFO [main] org.apache.catalina.core.AprLifecycleListener.lifecycleEvent APR capabilities: IPv6 [true], sendfile [true], accept filters [false], random [true].
+28-Nov-2017 09:36:53.629 INFO [main] org.apache.catalina.core.AprLifecycleListener.lifecycleEvent APR/OpenSSL configuration: useAprConnector [false], useOpenSSL [true]
+28-Nov-2017 09:36:54.290 INFO [main] org.apache.catalina.core.AprLifecycleListener.initializeSSL OpenSSL successfully initialized [OpenSSL 1.0.2l  25 May 2017]
+28-Nov-2017 09:36:55.579 INFO [main] org.apache.coyote.AbstractProtocol.init Initializing ProtocolHandler ["http-nio-1024"]
+28-Nov-2017 09:36:56.255 INFO [main] org.apache.tomcat.util.net.NioSelectorPool.getSharedSelector Using a shared selector for servlet write/read
+28-Nov-2017 09:36:56.259 INFO [main] org.apache.coyote.AbstractProtocol.init Initializing ProtocolHandler ["ajp-nio-8009"]
+28-Nov-2017 09:36:56.262 INFO [main] org.apache.tomcat.util.net.NioSelectorPool.getSharedSelector Using a shared selector for servlet write/read
+28-Nov-2017 09:36:56.262 INFO [main] org.apache.catalina.startup.Catalina.load Initialization processed in 4044 ms
+28-Nov-2017 09:36:56.515 INFO [main] org.apache.catalina.core.StandardService.startInternal Starting service [Catalina]
+28-Nov-2017 09:36:56.518 INFO [main] org.apache.catalina.core.StandardEngine.startInternal Starting Servlet Engine: Apache Tomcat/8.5.23
+28-Nov-2017 09:36:56.549 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [C:\Users\Bruce Wayne\my_git_repos\1711Nov13USF\Trent\tomcat\apache-tomcat-8.5.23\webapps\docs]
+28-Nov-2017 09:36:57.433 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [C:\Users\Bruce Wayne\my_git_repos\1711Nov13USF\Trent\tomcat\apache-tomcat-8.5.23\webapps\docs] has finished in [859] ms
+28-Nov-2017 09:36:57.433 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [C:\Users\Bruce Wayne\my_git_repos\1711Nov13USF\Trent\tomcat\apache-tomcat-8.5.23\webapps\examples]
+28-Nov-2017 09:37:01.050 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [C:\Users\Bruce Wayne\my_git_repos\1711Nov13USF\Trent\tomcat\apache-tomcat-8.5.23\webapps\examples] has finished in [3,617] ms
+28-Nov-2017 09:37:01.051 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [C:\Users\Bruce Wayne\my_git_repos\1711Nov13USF\Trent\tomcat\apache-tomcat-8.5.23\webapps\host-manager]
+28-Nov-2017 09:37:01.127 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [C:\Users\Bruce Wayne\my_git_repos\1711Nov13USF\Trent\tomcat\apache-tomcat-8.5.23\webapps\host-manager] has finished in [76] ms
+28-Nov-2017 09:37:01.128 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [C:\Users\Bruce Wayne\my_git_repos\1711Nov13USF\Trent\tomcat\apache-tomcat-8.5.23\webapps\manager]
+28-Nov-2017 09:37:01.212 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [C:\Users\Bruce Wayne\my_git_repos\1711Nov13USF\Trent\tomcat\apache-tomcat-8.5.23\webapps\manager] has finished in [85] ms
+28-Nov-2017 09:37:01.213 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [C:\Users\Bruce Wayne\my_git_repos\1711Nov13USF\Trent\tomcat\apache-tomcat-8.5.23\webapps\ROOT]
+28-Nov-2017 09:37:01.279 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [C:\Users\Bruce Wayne\my_git_repos\1711Nov13USF\Trent\tomcat\apache-tomcat-8.5.23\webapps\ROOT] has finished in [66] ms
+28-Nov-2017 09:37:01.284 INFO [main] org.apache.coyote.AbstractProtocol.start Starting ProtocolHandler ["http-nio-1024"]
+28-Nov-2017 09:37:01.295 INFO [main] org.apache.coyote.AbstractProtocol.start Starting ProtocolHandler ["ajp-nio-8009"]
+28-Nov-2017 09:37:01.299 INFO [main] org.apache.catalina.startup.Catalina.start Server startup in 5036 ms
