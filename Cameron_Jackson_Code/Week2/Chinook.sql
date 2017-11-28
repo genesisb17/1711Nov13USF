@@ -150,6 +150,7 @@ emp_name SYS_REFCURSOR;
 BEGIN
   OPEN emp_name FOR
   SELECT * FROM Employee WHERE birthdate > DATE '1968-01-01';
+  CLOSE emp_name;
   RETURN emp_name;
 END;
 /
@@ -161,10 +162,25 @@ SELECT FIND_EMP_BDAY() FROM dual;
 CREATE OR REPLACE PROCEDURE EMP_NAME (names OUT SYS_REFCURSOR)
 IS 
 BEGIN
-SELECT firstname, lastname INTO names FROM Employee;
+OPEN names FOR
+SELECT firstname, lastname FROM Employee;
+CLOSE names;
 END;
 /
 
+DECLARE
+  c_names SYS_REFCURSOR;
+  f_name Employee.firstname%TYPE;
+  l_name Employee.lastname%TYPE;
+BEGIN
+  emp_name(names => c_names);
+  LOOP
+  FETCH c_names INTO f_name, l_name;
+  DBMS_OUTPUT.PUT_LINE(f_name || ' | ' || l_name);
+  EXIT WHEN c_names%NOTFOUND;
+  END LOOP;
+END;
+/
 -- 4.2 STORED PROCEDURE INPUT PARAMETERS
 CREATE OR REPLACE PROCEDURE EMP_PERSONAL_UPDATE(
   EMP_ID IN EMPLOYEE.EMPLOYEEID%TYPE,
@@ -195,10 +211,60 @@ END;
 
 execute EMP_PERSONAL_UPDATE(10, '10 Flap Lane', 'Tallahassee', 'FL', 'USA', '32300', '+ (123) 456-7890', '000-000-0000', 'emailme@emailme.com');
 select * from employee where employeeid = 10;
+/
+
+CREATE OR REPLACE PROCEDURE 
+GET_MANAGERS(emp_id IN Employee.employeeid%TYPE, 
+             emp_managers OUT SYS_REFCURSOR)
+AS
+BEGIN
+OPEN emp_managers FOR
+SELECT firstname, lastname FROM Employee WHERE employeeid = 
+(SELECT reportsto FROM Employee WHERE employeeid=emp_id);
+CLOSE emp_managers;
+END;
+/
+
+declare
+  c_managers SYS_REFCURSOR;
+begin
+  get_managers(emp_id => 7, emp_managers => c_managers);
+end;
+/
+
+select firstname, lastname from employee where employeeid=
+(SELECT reportsto from employee where employeeid=6);
 
 -- 4.3 STORED PROCEDURE OUTPUT PARAMETERS
+CREATE OR REPLACE PROCEDURE 
+GET_CUST_INFO(cust_id IN Customer.customerid%TYPE,
+              cust_name OUT Customer.firstname%TYPE,
+              cust_comp OUT Customer.company%TYPE)
+AS
+f_name Customer.firstname%TYPE;
+l_name Customer.lastname%TYPE;
+BEGIN
+select firstname, lastname into f_name, l_name from
+Customer where customerid=cust_id;
+cust_name:=f_name || ' ' || l_name;
+select company into cust_comp from Customer
+where customerid=cust_id;
+END;
+/
 
-
+SET SERVEROUTPUT ON;
+declare
+c_id Customer.customerid%TYPE;
+c_name Customer.firstname%TYPE;
+c_comp Customer.company%TYPE;
+begin
+c_id:=12;
+get_cust_info(cust_id => c_id,
+              cust_name => c_name,
+              cust_comp => c_comp);
+DBMS_OUTPUT.PUT_LINE(c_name || ' | ' || c_comp);
+end;
+/
 -- 5 TRANSACTIONS
 -- Delete Invoice from invoiceid
 DECLARE
@@ -213,10 +279,25 @@ END;
 select * from Invoice where invoiceid = 63;
 
 -- Insert into customer from stored procedure
---CREATE OR REPLACE PROCEDURE INSERT_CUSTOMER(
---  cust_rec Customer%ROWTYPE
---)
+CREATE OR REPLACE PROCEDURE INSERT_CUSTOMER(
+  cust_rec IN Customer%ROWTYPE
+)
+AS
+BEGIN
+  INSERT INTO Customer Values cust_rec;
+END;
+/
 
+declare
+  new_cust Customer%ROWTYPE;
+begin
+  new_cust:=(59, 'Rosham', 'Bojangles', 'Best Company',
+             '222 An Address', 'ACITY', 'ST', 'CN', '232432', 
+             '+ (123) 234-2341', '+ (123) 234-2341', 'email@email.com',
+             12);
+  insert_customer(cust_rec => new_cust);
+end;
+/
 -- 6.1 TRIGGERS
 CREATE TABLE LOGS (
   LOG_ID NUMBER PRIMARY KEY,
