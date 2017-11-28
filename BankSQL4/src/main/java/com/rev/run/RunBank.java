@@ -99,7 +99,7 @@ public class RunBank
 	}
 	static newUser lookup()
 	{
-		System.out.println("What is username??");
+		System.out.println("Welcome Please enter username for the account you want to look up??");
 		newUser u = new newUser();
 		Scanner sc = new Scanner(System.in);
 		String s = sc.nextLine();

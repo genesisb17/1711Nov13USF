@@ -13,15 +13,15 @@ public class MainTest {
 		// TODO Auto-generated method stub
 		DAO dao = new DAOImple();
 		ArrayList<Artist> artists = dao.getArtists();
-		/*for(Artist art:artists)
+		for(Artist art:artists)
 		{
 			System.out.println(art.toString());
-		}*/
-		
-		/*Artist art =dao.getArtbyid(4);
-		System.out.println(art);*/
-		System.out.println(dao.addArtist("bob"));
+		}
+		//Artist art =dao.getArtbyid(4);
+		//System.out.println(art);
+		//System.out.println(dao.addArtist("bob"));
 		//System.out.println(dao.UpdateArtist("Bill Gates", 503));
 		//commit often
+		System.out.println(dao.getArtbyid(505));
 	}
 }
