@@ -79,7 +79,7 @@ public class Service {
 		if(!u.getUsername().equals("")) {
 			if(!u.getPassword().equals(pass)) {
 				System.out.println("Wrong password.");
-				u=new User();
+				dao.addBackUser(u);;
 				RunBank.run();
 			}
 		} else {

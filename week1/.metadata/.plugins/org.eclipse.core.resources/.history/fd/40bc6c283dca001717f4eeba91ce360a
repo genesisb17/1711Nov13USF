@@ -1,8 +1,0 @@
-package com.revature.io;
-
-public class StudentIO {
-	
-	public static void main(String[] args) {
-		String filename="src/logs/student.txt";
-	}
-}
