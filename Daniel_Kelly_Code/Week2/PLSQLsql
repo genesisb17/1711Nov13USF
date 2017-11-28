@@ -12,7 +12,7 @@ execute helloWorld;
 select * from artist
 WHERE artistid = 4;
 
-CREATE SEQUENCE ART_SEQ
+CREATE SEQUENCE ACC_SEQ
 START WITH 500
 INCREMENT BY 1;
 /
@@ -28,3 +28,5 @@ COMMIT;
 insert into artist (Name) values ('Beyonce');
 
 select * from artist;
+
+UPDATE artist SET name = 'bob' WHERE ARTISTID = 1;
