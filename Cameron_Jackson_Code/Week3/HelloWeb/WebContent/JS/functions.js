@@ -85,3 +85,10 @@ function mySubstring(someStr, length, offset) {
 //Define function: isEven(someNum)
 //Return true if even, false if odd.
 //Do not use % operator.
+function isEven(someNum) {
+	if (typeof(someNum) != "number")
+		alert("Parameter 'length' should be 'number' but is " + typeof(someNum));
+	
+	if ((someNum & 1) == 1) return false;
+	return true;
+}
