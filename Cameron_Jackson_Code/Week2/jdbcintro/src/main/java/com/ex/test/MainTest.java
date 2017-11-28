@@ -1,6 +1,6 @@
 package com.ex.test;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import com.ex.dao.DAO;
 import com.ex.dao.DAOImpl;
@@ -20,10 +20,17 @@ public class MainTest {
 //		Artist art = dao.updateArtist(118, "Kem");
 //		System.out.println(art);
 		
-		ArrayList<Artist> artists = dao.getArtists();
+//		ArrayList<Artist> artists = dao.getArtists();
+//		
+//		for (Artist art : artists) {
+//			System.out.println(art);
+//		}
 		
-		for (Artist art : artists) {
-			System.out.println(art);
+//		System.out.println(dao.getArtistById(1));
+		
+		List<Artist> artists = dao.getArtistsStoredProc();
+		for (Artist a : artists) {
+			System.out.println(a);
 		}
 	}
 }

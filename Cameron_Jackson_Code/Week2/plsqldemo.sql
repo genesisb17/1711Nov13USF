@@ -29,3 +29,23 @@ END;
 update artist set name = 'Bloopers' where artistid = 501;
 commit;
 select name from artist where artistid=501;
+/
+
+CREATE OR REPLACE PROCEDURE get_artist_by_id(art_id IN NUMBER, art_name OUT VARCHAR2)
+IS
+BEGIN 
+select name into art_name from artist where artistid = art_id;
+END;
+/
+
+CREATE OR REPLACE PROCEDURE get_all_artists(
+  cursorParam OUT SYS_REFCURSOR)
+IS
+BEGIN
+  OPEN cursorParam FOR SELECT * FROM artist;
+  CLOSE cursorParam;
+END;
+/
+
+CREATE INDEX artist_name
+ON artist(name);
