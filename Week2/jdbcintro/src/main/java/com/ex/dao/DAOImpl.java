@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Types;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -118,8 +119,7 @@ public class DAOImpl implements DAO{
 			CallableStatement cs = connect.prepareCall(sql);
 			cs.registerOutParameter(1, OracleTypes.CURSOR);
 			
-			int numRows = cs.executeUpdate();
-			System.out.println(numRows + " rows affected");
+			cs.execute();
 			
 			ResultSet rs = (ResultSet) cs.getObject(1);
 			while(rs.next()){
@@ -127,7 +127,6 @@ public class DAOImpl implements DAO{
 			}
 			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return artists;
@@ -135,8 +134,22 @@ public class DAOImpl implements DAO{
 
 	@Override
 	public Artist getNameById(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		Artist artist = new Artist();
+		try(Connection conn = ConnectionFactory.getInstance().getConnection()){
+			
+			String sql = "{ ? = call get_artist_by_id(?) }";
+			CallableStatement cs = conn.prepareCall(sql);
+			cs.registerOutParameter(1, Types.VARCHAR);
+			cs.setInt(2, id);
+			cs.execute();
+			artist.setName(cs.getString(1));
+			artist.setId(id);
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return artist;
 	}
 	
 	
