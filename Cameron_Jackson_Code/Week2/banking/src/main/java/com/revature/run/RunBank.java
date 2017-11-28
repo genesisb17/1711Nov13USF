@@ -241,10 +241,7 @@ public class RunBank {
 					double newbal = currBal + depAmt;
 					acc = service.updateBalance(newbal, acc.getAccountId());
 					goodInput = true;
-					if (acc.getBalance() == newbal)
-						System.out.println("Funds successfully deposited.\n");
-					else 
-						System.out.println("We a apologize but there's been an error depositing your funds.\n");
+					System.out.println("Funds successfully deposited.\n");
 					printMainMenu(u);
 					break;
 				case "no":
@@ -299,10 +296,7 @@ public class RunBank {
 					double newbal = currBal + depAmt;
 					service.updateBalance(newbal, acc.getAccountId());
 					goodInput = true;
-					if (acc.getBalance() == newbal)
-						System.out.println("Funds successfully deposited.\n");
-					else 
-						System.out.println("We a apologize but there's been an error depositing your funds.\n");
+					System.out.println("Funds successfully deposited.\n");
 					printMainMenu(u);
 					break;
 				case "no":
@@ -360,10 +354,7 @@ public class RunBank {
 					double newbal = currBal - wdrwAmt;
 					service.updateBalance(newbal, acc.getAccountId());
 					goodInput = true;
-					if (acc.getBalance() == (currBal - wdrwAmt))
-						System.out.println(wdrwAmt + " withdrawn.\n");
-					else 
-						System.out.println("We a apologize but there's been an error withdrawing your funds.\n");
+					System.out.println(wdrwAmt + " withdrawn.\n");
 					printMainMenu(u);
 					break;
 				case "no":
@@ -407,10 +398,7 @@ public class RunBank {
 					double newbal = currBal - wdrwAmt;
 					service.updateBalance(newbal, acc.getAccountId());
 					goodInput = true;
-					if (acc.getBalance() == (currBal - wdrwAmt))
-						System.out.println(wdrwAmt + " withdrawn.\n");
-					else 
-						System.out.println("We a apologize but there's been an error withdrawing your funds.\n");
+					System.out.println(wdrwAmt + " withdrawn.\n");
 					printMainMenu(u);
 					break;
 				case "no":
