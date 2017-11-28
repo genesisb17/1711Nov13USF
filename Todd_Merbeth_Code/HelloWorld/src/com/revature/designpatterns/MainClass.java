@@ -21,7 +21,7 @@ public class MainClass {
 											// to same one. 
 	
 	/*
-	 * FACTORY DESIN PATEN
+	 * FACTORY DESIGN PATTERN
 	 * Here, we create an object without exposing
 	 * creation logic to the client. We refer to the
 	 * newly created object using a common interface

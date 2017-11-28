@@ -1,0 +1,107 @@
+--2.1
+SELECT * FROM EMPOLYEE;
+
+SELECT * FROM EMPLOYEE WHERE LASTNAME = 'King';
+
+SELECT * FROM EMPLOYEE WHERE FIRSTNAME = 'Andrew' AND REPORTSTO IS NULL;
+
+--2.2
+SELECT * FROM ALBUM ORDER BY TITLE DESC;
+
+SELECT FIRSTNAME FROM CUSTOMER ORDER BY CITY;
+--2.3
+INSERT INTO GENRE VALUES (26, 'House');
+
+INSERT INTO GENRE VALUES ('27', 'Trap'); -- Can do number in '' or not
+
+insert into employee values('9', 'Mot', 'Tom', 'IT Staff', '1', '22-APR-70', '25-APR-04', '111 One Ave', 'Calgary', 'AB', 'Canada', 'T2P 5L3', '+1 (111) 111-1111', '+1 (222) 222-2222', 'tommot@chinookcorp.com');
+
+insert into employee values('10', 'Rob', 'Bob', 'IT Staff', '6', '10-JUN-72', '10-May-04', '222 Two St', 'Calgary', 'AB', 'Canada', 'T2P 4L2', '+1 (111) 111-1112', '+1 (222) 222-2223', 'bobrob@chinookcorp.com');
+
+INSERT INTO CUSTOMER VALUES('60', 'Jimmy', 'John', 'Jimmy Johns', '123 JJ Rd', 'Tampa', 'FL', 'United States', '12345', '+1(123)456-7890', null, 'jimmyjohn@gmail.com', '5');
+
+INSERT INTO CUSTOMER VALUES('61', 'Papa', 'John', 'Papa Johns', '123 PJ Rd', 'Tampa', 'FL', 'United States', '12345', '+1(123)789-0456', null, 'papajohn@gmail.com', '5');
+--2.4
+UPDATE CUSTOMER SET FIRSTNAME = 'Robert', LASTNAME = 'Walter' WHERE FIRSTNAME = 'Aaron' AND LASTNAME = 'Mitchell';
+
+UPDATE ARTIST SET NAME = 'CCR' WHERE NAME = 'Creedence Clearwater Revival';
+--2.5
+SELECT * FROM INVOICE WHERE BILLINGADDRESS LIKE 'T%';
+--2.6
+SELECT * FROM INVOICE WHERE TOTAL BETWEEN 15 AND 50;
+
+SELECT * FROM EMPLOYEE WHERE HIREDATE BETWEEN '1-JUN-03' AND '1-MAR-04';
+--2.7
+ALTER TABLE INVOICE DROP CONSTRAINT FK_INVOICECUSTOMERID;
+
+ALTER TABLE INVOICE ADD CONSTRAINT FK_INVOICECUSTOMERID FOREIGN KEY (CUSTOMERID)
+REFERENCES CUSTOMER (CUSTOMERID) ON DELETE CASCADE;
+
+ALTER TABLE INVOICELINE DROP CONSTRAINT FK_INVOICELINEINVOICEID;
+
+ALTER TABLE INVOICELINE ADD CONSTRAINT FK_INVOICELINEINVOICEID FOREIGN KEY (INVOICEID)
+REFERENCES INVOICE (INVOICEID) ON DELETE CASCADE;
+
+DELETE FROM CUSTOMER WHERE FIRSTNAME = 'Robert' AND LASTNAME = 'Walter';
+--3.1
+/
+CREATE OR REPLACE FUNCTION getTime
+return TIMESTAMP
+IS currTime TIMESTAMP;
+BEGIN
+currTime := LOCALTIMESTAMP;
+dbms_output.put_line(currTime);
+return currTime;
+END;
+/
+--skipping this one wording doesn't make sense
+--3.2
+CREATE OR REPLACE FUNCTION invoiceAvg
+RETURN NUMBER
+IS average NUMBER;
+BEGIN
+SELECT AVG(TOTAL) INTO average FROM INVOICE;
+dbms_output.put_line(average);
+RETURN average;
+END;
+/
+CREATE OR REPLACE FUNCTION mostExpensiveTrack
+RETURN NUMBER
+IS met NUMBER;
+BEGIN
+SELECT MAX(UNITPRICE) INTO met FROM TRACK;
+dbms_output.put_line(met);
+RETURN met;
+END;
+/
+--3.3
+CREATE OR REPLACE FUNCTION avgInvoiceItem
+RETURN NUMBER
+IS average NUMBER;
+BEGIN
+SELECT AVG(UNITPRICE) INTO average FROM INVOICELINE;
+dbms_output.put_line(average);
+RETURN average;
+END;
+/
+--3.4
+CREATE OR REPLACE FUNCTION bornAfter
+RETURN SYS_REFCURSOR
+IS bafter SYS_REFCURSOR;
+BEGIN
+  OPEN bafter FOR
+    SELECT * FROM EMPLOYEE WHERE BIRTHDATE >= '01-JAN-68';
+  RETURN bafter;
+END;
+/
+--select bornAfter from dual;
+
+--4.1
+CREATE OR REPLACE PROCEDURE firstAndLast(
+      fAndL OUT SYS_REFCURSOR)
+  IS
+  BEGIN
+    OPEN fANDL FOR SELECT firstname, lastname FROM employee;
+  END;
+/
+select firstandlast from dual;
