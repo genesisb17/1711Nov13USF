@@ -17,7 +17,7 @@ public class RunBank
 	}
 	static void run()
 	{
-		System.out.println("Welcome to BondsBank\nWould you like to Log in(1) or Create Account(2)");
+		System.out.println("Welcome to BondsBank\nWould you like to Log in(1) or Create User(2)");
 		Scanner scan = new Scanner(System.in);
 		String op = scan.nextLine();
 		newUser u = new newUser();
@@ -112,7 +112,7 @@ public class RunBank
 	
 		u = service.getUser(s,pass,id);
 		service.getArtbyid(u);
-		System.out.println("what is the acc_id you want to use?? Note to create an account choose one it will be the next step.");
+		System.out.println("what is the acc_id you want to use?? Note to create an ac");
 		id =sc.nextInt();
 		
 		if(u.getFirstname()==null)
@@ -126,6 +126,7 @@ public class RunBank
 		switch(x)
 		{
 			case 1:
+				u = service.getUser(s,pass,id);
 				System.out.println("Name: "+u.getFirstname()+" "+u.getLastname());
 				System.out.println("username: "+u.getUsername());
 				System.out.println("Your password is "+u.getPassword());

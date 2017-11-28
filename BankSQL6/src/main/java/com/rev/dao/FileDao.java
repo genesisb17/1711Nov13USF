@@ -118,7 +118,10 @@ public class FileDao implements DAO
 		System.out.println("what is the pass transfer you want??(password)");
 		String p2 =sc.nextLine();
 		newUser u3 = new newUser();
-		u3 = getUser(u2,p2,j);
+		int k;
+		System.out.println("what is the id of the user");
+		k = sc.nextInt();
+		u3 = getUser(u2,p2,k);
 		System.out.println("how much do you want??");
 		double deposit = sc.nextDouble();
 		try
