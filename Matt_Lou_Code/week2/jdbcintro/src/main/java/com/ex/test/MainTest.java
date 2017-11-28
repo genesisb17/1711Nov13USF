@@ -16,14 +16,15 @@ public class MainTest {
 //		for(Artist art: artists) {
 //			System.out.println(art);
 //		}
-		Artist art = dao.getArtistById(7);
-		System.out.println(art);
+		//Artist art = dao.getArtistById(7);
+		//System.out.println(art);
 		
 		/*
 		 * appends data on the Artist in the chinook database
 		 */
 //		System.out.println(dao.addArtist("vic mensa"));
 //		System.out.println(dao.updateArtist(1, "genesis"));
+		System.out.println(dao.getNameById(2));
 	}
 
 }
