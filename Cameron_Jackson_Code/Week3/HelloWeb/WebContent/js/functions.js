@@ -4,10 +4,48 @@
  * Return the nth number in the fibonacci sequence
  */
 function fib(n) {
-	if (n<1) return 1;
+	if (n<3) return 1;
 	return fib(n-1)+fib(n-2);
 }
 
+function runFib() {
+	// alert("WAZZUP");
+	var display = document.getElementById("fibDisplay");
+	var n = document.getElementById("fib").value;
+	display.innerHTML = fib(n);
+}
+
+var counter = 0;
+
+function count() {
+	counter = counter + 1;
+	document.getElementById("count").innerHTML = counter;
+}
+
+document.getElementById("count").addEventListener("mouseover", count)
+
+document.getElementById("doFib").addEventListener("click", runFib);
+
+document.getElementById("outer").addEventListener(
+		"click", 
+		function(){
+			alert("IN OUTER");
+		}, 
+		false);
+
+document.getElementById("middle").addEventListener(
+		"click", 
+		function(){
+			alert("IN MIDDLE");
+		}, 
+		false);
+
+document.getElementById("inner").addEventListener(
+		"click", 
+		function(){
+			alert("IN INNER");
+		}, 
+		false);
 
 //2. Bubble Sort
 //Define function: bubbleSort(numArray)
@@ -17,7 +55,7 @@ function bubbleSort(numArray) {
 	var swapped;
 	if (typeof(numArray) != "object") 
 		return null;
-	
+
 	do {
 		swapped = false;
 		for (x = 0; x < numArray.length-1; ++x) {
@@ -70,7 +108,7 @@ function mySubstring(someStr, length, offset) {
 		alert("Parameter 'offset' should be 'number' but is " + typeof(offset));
 	if ((length < 0) || (offset < 0))
 		alert("Can't accept negative values for length or offset");
-	
+
 	var sub = [];
 	var temp = someStr.split("");
 	var y = 0;
@@ -88,7 +126,7 @@ function mySubstring(someStr, length, offset) {
 function isEven(someNum) {
 	if (typeof(someNum) != "number")
 		alert("Parameter 'length' should be 'number' but is " + typeof(someNum));
-	
+
 	if ((someNum & 1) == 1) return false;
 	return true;
 }

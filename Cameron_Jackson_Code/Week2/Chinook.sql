@@ -142,33 +142,18 @@ END;
 
 SELECT AVG_INVOICELINE(87) FROM dual;
 /
---DECLARE
---   TYPE SalTabTyp IS TABLE OF emp.sal%TYPE
---      INDEX BY BINARY_INTEGER;
---   salary REAL;
---   FUNCTION new_sals (max_sal REAL) RETURN SalTabTyp IS
---      sal_tab SalTabTyp;
---   BEGIN 
---      ...
---      RETURN sal_tab;  -- return PL/SQL table
---   END;
---BEGIN
---   salary := new_sals(5000)(3);  -- call function
---   ...
---END;
---DECLARE
---  TYPE empl_table IS TABLE OF Employee.employeeid%TYPE
---    INDEX BY INTEGER;
+
 -- 3.4 USER DEFINED TABLED VALUED FUNCTIONS
 CREATE OR REPLACE FUNCTION FIND_EMP_BDAY RETURN SYS_REFCURSOR
 IS 
-sys_refcursor emp_id is select * from employee;
+emp_name SYS_REFCURSOR;
 BEGIN
-  RETURN emp_id;
+  OPEN emp_name FOR
+  SELECT * FROM Employee WHERE birthdate > DATE '1968-01-01';
+  RETURN emp_name;
 END;
 /
 
-SELECT * from Employee where birthdate > TO_DATE('01-01-1968', 'DD-MM-YYYY');
 SELECT FIND_EMP_BDAY() FROM dual;
 /
 
@@ -229,7 +214,7 @@ select * from Invoice where invoiceid = 63;
 
 -- Insert into customer from stored procedure
 --CREATE OR REPLACE PROCEDURE INSERT_CUSTOMER(
---  cust_rec %ROWTYPE
+--  cust_rec Customer%ROWTYPE
 --)
 
 -- 6.1 TRIGGERS
