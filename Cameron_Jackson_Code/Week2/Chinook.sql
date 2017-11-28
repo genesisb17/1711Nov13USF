@@ -160,17 +160,15 @@ SELECT AVG_INVOICELINE(87) FROM dual;
 --  TYPE empl_table IS TABLE OF Employee.employeeid%TYPE
 --    INDEX BY INTEGER;
 -- 3.4 USER DEFINED TABLED VALUED FUNCTIONS
-CREATE OR REPLACE FUNCTION FIND_EMP_BDAY
-RETURN SYS_REFCURSOR
-IS emp_id SYS_REFCURSOR;
+CREATE OR REPLACE FUNCTION FIND_EMP_BDAY RETURN SYS_REFCURSOR
+IS 
+sys_refcursor emp_id is select * from employee;
 BEGIN
-  SELECT INTO emp_id
-  FROM Employee
-  WHERE birthdate > TO_DATE('1968', 'YYYY');
-  return emp_id;
+  RETURN emp_id;
 END;
 /
 
+SELECT * from Employee where birthdate > TO_DATE('01-01-1968', 'DD-MM-YYYY');
 SELECT FIND_EMP_BDAY() FROM dual;
 /
 
@@ -178,9 +176,7 @@ SELECT FIND_EMP_BDAY() FROM dual;
 CREATE OR REPLACE PROCEDURE EMP_NAME (names OUT SYS_REFCURSOR)
 IS 
 BEGIN
-OPEN names FOR
-SELECT firstname, lastname FROM Employee;
-CLOSE names;
+SELECT firstname, lastname INTO names FROM Employee;
 END;
 /
 
@@ -219,6 +215,22 @@ select * from employee where employeeid = 10;
 
 
 -- 5 TRANSACTIONS
+-- Delete Invoice from invoiceid
+DECLARE
+  invc_id Invoiceline.invoiceid%TYPE;
+BEGIN
+invc_id := 63;
+DELETE FROM Invoiceline WHERE invoiceid = invc_id;
+DELETE FROM Invoice WHERE invoiceid = invc_id;
+END;
+/
+
+select * from Invoice where invoiceid = 63;
+
+-- Insert into customer from stored procedure
+--CREATE OR REPLACE PROCEDURE INSERT_CUSTOMER(
+--  cust_rec %ROWTYPE
+--)
 
 -- 6.1 TRIGGERS
 CREATE TABLE LOGS (
