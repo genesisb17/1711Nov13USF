@@ -462,3 +462,150 @@ alter table product modify productid varchar(10);
 
 
 
+
+
+
+
+
+
+
+
+/*
+7.1 AFTER/FOR Triggers
+Task - Create an after insert trigger on the categories table fired after a new record is inserted into the table.
+*/
+CREATE OR REPLACE TRIGGER insrt_cat
+after insert on categories
+for each row
+begin 
+dbms_output.put_line('categories has been updated');
+end;
+/
+
+/*
+Task – Create an after update trigger on the categories table that fires after a row is inserted in the table
+*/
+CREATE OR REPLACE TRIGGER update_cat
+after update on categories
+for each row
+begin 
+dbms_output.put_line('categories has been updated');
+end;
+/
+
+/*
+Task – Create an after delete trigger on the categories table that fires after a row is deleted from the table.
+*/
+CREATE OR REPLACE TRIGGER delete_cat
+after delete on categories
+for each row
+begin 
+dbms_output.put_line('categories has been updated');
+end;
+/
+
+
+/*
+8.1 INNER JOIN
+Task – Perform an inner join on tables product and category
+Task – Perform an inner join on tables employee and orders
+*/
+select product.name, category.descript
+from product inner join category on product.catid = category.catid;
+
+select employees.name, orders.employeeid
+from employees inner join orders on employees.employeeid = orders.employeeid;
+/
+
+/*
+8.2 OUTER JOIN
+Task – Perform an outer join on tables products and orderitems
+Task – Perform an outer join on tables employee and orders
+*/
+select product.name, orderitem.orderid
+from product outer join orderitem on product.productid = orderitem.productid;
+
+select employees.name, orders.orderid
+from employees outer join orders on employees.employeeid = orders.employeeid;
+/
+
+/*
+8.3 RIGHT JOIN
+Task – Perform a right join on tables orders and orderitems
+Task – Perform a left join on tables product and orderitems
+*/
+select orders.orderid, orderitems.quantity
+from orders right join orderitems on orders.orderid = orderitems.orderid;
+
+select product.name, orderitem.orderid
+from product right join orderitem on product.productid = orderitem.productid;
+/
+
+/*
+8.4 LEFT JOIN
+Task – Perform a left join on tables product and category
+Task – Perform a left join on tables employees and orders
+*/
+select product.name, category.name
+from product left join category on product.catid = category.catid;
+
+select employees.name, orders.orderid
+from employees left join orders on employees.employeeid = orders.employeeid;
+/
+
+/*
+8.5 CROSS JOIN
+Task – Perform a cross join on tables product and category
+*/
+select product.name, category.name
+from product cross join category on product.catid = category.catid;
+/
+
+/*
+8.6 SELF-JOIN
+Task – using the employees table perform a self-join. You can break up the table as needed.
+*/
+select product.name, products.name
+from product, products where product.catid = product.catid;
+/
+
+
+/*
+Create a view that displays all columns
+*/
+create view all_employees
+as 
+select * from employees;
+/
+
+/*
+Task – Create a view on the products table that only displays only the name of the product and the description.
+*/
+create view name_descript
+as
+select name, descript from product;
+/
+
+
+/*
+10.1 Clustered Indexes
+Task – Create a clustered index on of table of your choice
+*/
+CREATE CLUSTER employees
+   (department NUMBER(4))
+SIZE 512 
+STORAGE (initial 100K next 50K);
+
+CREATE INDEX idx_personnel ON CLUSTER employees;
+
+
+
+
+
+
+
+
+
+
+
+
