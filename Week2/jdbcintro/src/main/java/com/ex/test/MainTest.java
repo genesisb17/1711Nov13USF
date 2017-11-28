@@ -23,12 +23,12 @@ public class MainTest {
 		//dao.updateArtist(1, "TESTING");
 		//	System.out.println("done");
 
-		//	List<Artist> artists = dao.getArtists();
-		//	for(Artist a : artists){
-		//		System.out.println(a);
-		//	}
-		//	}
+			List<Artist> artists = dao.getArtistsStoredProc();
+			for(Artist a : artists){
+				System.out.println(a);
+			}
+			}
 		
-		System.out.println(dao.getArtistById(505));	
-	}
+	//	System.out.println(dao.getArtistById(505));	
+	
 }
