@@ -50,7 +50,10 @@ function reverseStr(someStr) {
 //4. Factorial
 //Define function: factorial(someNum)
 //Use recursion to compute and return the factorial of someNum.
-
+function factorial(someNum) {
+	if (someNum == 1) return someNum;
+	return factorial(someNum-1) * someNum;
+}
 
 //5. Substring
 //Define function substring(someStr, length, offset)
