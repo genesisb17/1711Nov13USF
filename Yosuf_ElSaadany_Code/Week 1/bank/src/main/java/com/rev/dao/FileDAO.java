@@ -20,6 +20,7 @@ public class FileDAO implements DAO{
 		
 		try(BufferedWriter bw = new BufferedWriter(new FileWriter(filename,true))){
 			// Set id based on number of users in the file.
+			
 			int NumUsers = getAllUsers().size() + 1;
 			u.setId(NumUsers);
 			bw.write(u.toFile());
