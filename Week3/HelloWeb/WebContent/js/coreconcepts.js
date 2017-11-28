@@ -19,7 +19,7 @@ var g = [0 , 2, 4, 6, 8];
 var h = null;
 var i;
 console.log(typeof(a));
-
+var interpol = `Hi ${e.name}`;
 
 
 /*
@@ -39,7 +39,24 @@ console.log(typeof(a));
  * - instead of returning true or false, it returns the 
  * 		value of the appropriate operand 
  */
+var isLoggedIn = true;
+var username = "user";
 
+var getUser = function(){
+	return isLoggedIn && username;
+}
+
+/*
+ * Default Operator - || 
+ * 	if the first operand is truthy, return the first operand
+ * 		otherwise, return the second operand
+ */
+
+var getsCommission = 500;
+var getRegSalary = 50;
+var getsPaid = function(){
+	return getsCommission || getsRegSalary;
+}
 
 
 /*
@@ -60,7 +77,7 @@ console.log(typeof(a));
 
 /*
  * Objects
- * 	-can contain data and methods 
+ * 	-can contain data and functions 
  *  -can inherit from other objects 
  *  -object literal {}
  *  -objects can contain an unordered collection of name/value pairs
@@ -110,12 +127,10 @@ function getValue(condition){
 	}
 	//value exists with a value of undefined 
 }
-/*
- * Looking at the above code, you might expect value to
+/* Looking at the above code, you might expect value to
  * only be created if condition evaluates to true. In fact, 
  * value is created regardless. Behind the scene, the JS
- * engine changes the getValue function to look like:
- */
+ * engine changes the getValue function to look like: */
 
 function getValue(condition){
 	var value;
@@ -134,8 +149,7 @@ function getValue(condition){
  */
 
 // Understanding the LET keyword
-/* limits the var to block scope. cannot use let to
- *  declare a variable w the same name 
+/* limits the variable to block scope
 */
 function getValue(condition){
 	if(condition){
