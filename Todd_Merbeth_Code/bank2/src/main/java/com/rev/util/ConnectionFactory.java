@@ -33,7 +33,7 @@ public class ConnectionFactory {
 		
 		Properties prop = new Properties();
 		try {
-			prop.load(new FileReader("C:/Users/toddm_000/git/1711Nov13USF/bank2/src/main/resources/application.properties"));
+			prop.load(new FileReader("C:/Users/toddm_000/git/1711Nov13USF/Todd_Merbeth_Code/bank2/src/main/resources/application.properties"));
 			
 				Class.forName(prop.getProperty("driver"));
 				conn = DriverManager.getConnection(
