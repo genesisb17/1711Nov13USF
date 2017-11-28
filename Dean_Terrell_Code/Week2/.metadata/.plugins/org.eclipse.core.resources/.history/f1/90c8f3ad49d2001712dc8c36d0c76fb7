@@ -1,0 +1,12 @@
+package com.real.dao;
+
+import com.real.pojos.User;
+
+public interface DAO {
+
+	User createUser(User u);
+	void updateBalance(double oldB, double newB);
+	User addUser(User u);
+	User getUser(String uName);
+	
+}

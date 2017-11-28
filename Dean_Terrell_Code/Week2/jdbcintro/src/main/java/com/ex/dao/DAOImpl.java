@@ -1,11 +1,18 @@
 package com.ex.dao;
 
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Types;
 import java.util.ArrayList;
+import java.util.List;
+
+
+
+import oracle.jdbc.OracleTypes;
 
 import com.ex.pojos.Artist;
 import com.ex.util.ConnectionFactory;
@@ -107,6 +114,48 @@ public class DAOImpl implements DAO {
 		}
 		
 		return art;
+	}
+
+	@Override
+	public Artist getNameById(int id) {
+		Artist artist = new Artist();
+		try(Connection conn = ConnectionFactory.getInstance().getConnection()) {
+			
+			String sql = "{? = call get_artist_by_id(?)}";
+			CallableStatement cs = conn.prepareCall(sql);
+			cs.registerOutParameter(1, Types.VARCHAR);
+			cs.setInt(2, id);
+			cs.execute();
+			String name = cs.getString(1);
+			artist.setId(id);
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return artist;
+	}
+
+	@Override
+	public List<Artist> getArtistsStoredProc() {
+		List<Artist> artists = new ArrayList<>();
+		try(Connection connect = ConnectionFactory.getInstance().getConnection()) {
+			String sql = "{call get_all_artists(?)}";
+			
+			CallableStatement cs = connect.prepareCall(sql);
+			cs.registerOutParameter(1, OracleTypes.CURSOR);
+			
+			cs.execute();
+			
+			ResultSet rs = (ResultSet) cs.getObject(1);
+			while(rs.next()) {
+				artists.add(new Artist(rs.getInt(1), rs.getString(2)));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return artists;
 	}
 
 }

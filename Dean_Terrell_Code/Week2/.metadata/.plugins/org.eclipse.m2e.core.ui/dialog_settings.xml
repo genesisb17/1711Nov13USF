@@ -2,12 +2,17 @@
 <section name="Workbench">
 	<section name="MavenProjectWizardArtifactPage">
 		<list key="groupId">
+			<item value="jdbc"/>
+			<item value="jdbcBank"/>
 			<item value="com.ex"/>
 		</list>
 		<list key="name">
+			<item value="bankingPt2"/>
 			<item value="ChinookJDBC"/>
 		</list>
 		<list key="artifactId">
+			<item value="jdbcBank"/>
+			<item value="bank"/>
 			<item value="jdbcintro"/>
 		</list>
 		<list key="projectNameTemplate">
@@ -33,6 +38,12 @@
 		<list key="issueManagementUrl">
 		</list>
 	</section>
+	<section name="org.eclipse.m2e.core.ui.internal.dialogs.MavenRepositorySearchDialog">
+		<item value="480" key="width"/>
+		<item value="720" key="x"/>
+		<item value="226" key="y"/>
+		<item value="472" key="height"/>
+	</section>
 	<section name="MavenProjectWizardArchetypePage">
 		<item value="All Catalogs" key="catalog"/>
 		<list key="projectNameTemplate">
@@ -45,6 +56,7 @@
 	</section>
 	<section name="MavenProjectWizardLocationPage">
 		<list key="location">
+			<item value="C:\Users\Dean\my_git_repos\1711Nov13USF\Dean_Terrell_Code\Week2\jdbcintro"/>
 		</list>
 		<list key="projectNameTemplate">
 			<item value="[artifactId]"/>

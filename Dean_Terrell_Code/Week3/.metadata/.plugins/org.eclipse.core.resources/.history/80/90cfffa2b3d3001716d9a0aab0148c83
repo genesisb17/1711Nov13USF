@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+div{
+background-color:green;
+}
+</style>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<!--  THIS IS A COMMENT -->
+	<h1>Hello</h1>
+	<h4>
+		<b><i>Hello again...</i></b>
+	</h4>
+	
+	<div id="first">inside</div>
+</body>
+</html>
