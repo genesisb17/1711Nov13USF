@@ -38,16 +38,23 @@ public class DAOimpl implements DAO{
 			con.commit();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			System.out.println("Username must be unique.\n"
-					+ "Try again.");
+			System.out.println("\nUsername must be unique.\n"
+					+ "Try again.\n");
 			u = null;
+			System.out.println("Welcome to DE Bank!");
+			System.out.println("Would you like to CREATE(1) an account, LOGIN(2) or \n"
+					+ "EXIT(3)?");
 			MainDriver.run();
 
 		}
+		
+		if(!(u == null)) {
+			a.setuId(u.getId());
+		
 		//setting the initial balance
 		try(Connection conn = ConnectionFactory.getInstance().getConnection()){
 			//setting account table user id to user table user id
-			a.setuId(u.getId());
+
 			conn.setAutoCommit(false);
 			String sql2 = "INSERT INTO ACCOUNTS (USER_ID, BALANCE) VALUES (?, ?)";
 			String[] a_key = new String[1];
@@ -66,6 +73,7 @@ public class DAOimpl implements DAO{
 			e.printStackTrace();
 		}
 		System.out.println("Congratulations. Successfully created a new user.");
+		}
 		return u;
 	}
 
