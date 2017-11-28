@@ -47,6 +47,24 @@ console.log(typeof (a));
  * 			value of the appropriate operand
  */
 
+var isLoggedIn=true;
+var username="user";
+var getUser = function(){
+	return isLoggedIn && username;
+}
+
+/*
+ * Default Operator - ||
+ * if the first operand is truthy, return the first operand
+ * 		otherwise, return the second operand
+ */
+
+var getsCommission=500;
+var getsRegSalary =50;
+var getsPaid = function (){
+	return getsCommission || getsRegSalary;
+}
+
 /**
  * Objects
  *  -can contain data and methods
