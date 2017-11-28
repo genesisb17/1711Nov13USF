@@ -1,0 +1,4 @@
+--3.1
+CREATE OR REPLACE FUNCTION getTime
+RETURN varchar
+IS time varchar;
