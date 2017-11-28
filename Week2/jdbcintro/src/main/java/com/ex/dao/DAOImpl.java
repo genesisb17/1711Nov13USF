@@ -119,8 +119,7 @@ public class DAOImpl implements DAO{
 			CallableStatement cs = connect.prepareCall(sql);
 			cs.registerOutParameter(1, OracleTypes.CURSOR);
 			
-			int numRows = cs.executeUpdate();
-			System.out.println(numRows + " rows affected");
+			cs.execute();
 			
 			ResultSet rs = (ResultSet) cs.getObject(1);
 			while(rs.next()){
