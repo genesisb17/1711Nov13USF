@@ -36,6 +36,7 @@ function bubbleSort(numArray) {
 //Define function: reverseStr(someStr)
 //Reverse and return the String.
 function reverseStr(someStr) {
+	if (typeof(someStr) != "string") return null;
 	var x = 0;
 	var temp;
 	var charArr = someStr.split("");
@@ -51,6 +52,7 @@ function reverseStr(someStr) {
 //Define function: factorial(someNum)
 //Use recursion to compute and return the factorial of someNum.
 function factorial(someNum) {
+	if (typeof(someNum) != "number") return null;
 	if (someNum == 1) return someNum;
 	return factorial(someNum-1) * someNum;
 }
@@ -59,7 +61,25 @@ function factorial(someNum) {
 //Define function substring(someStr, length, offset)
 //Return the substring contained between offset and (offset + length) inclusively.
 //If incorrect input is entered, use the alert function and describe why the input was incorrect.
-
+function mySubstring(someStr, length, offset) {
+	if (typeof(someStr) != "string")
+		alert("Parameter 'someStr' should be 'string' but is " + typeof(someStr));
+	if (typeof(length) != "number")
+		alert("Parameter 'length' should be 'number' but is " + typeof(length));
+	if (typeof(offset) != "number")
+		alert("Parameter 'offset' should be 'number' but is " + typeof(offset));
+	if ((length < 0) || (offset < 0))
+		alert("Can't accept negative values for length or offset");
+	
+	var sub = [];
+	var temp = someStr.split("");
+	var y = 0;
+	for (x = offset; x < (offset+length); ++x) {
+		sub[y] = temp[x];
+		++y;
+	}
+	return sub.join("");
+}
 
 //6. Even Number
 //Define function: isEven(someNum)
