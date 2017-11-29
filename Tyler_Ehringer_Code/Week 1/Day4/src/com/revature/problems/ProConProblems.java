@@ -6,7 +6,7 @@ import java.util.stream.IntStream;
 
 public class ProConProblems {
 	
-	void createDeadlock() {
+	static void createDeadlock() {
 		
 		String s1 = "Resource 1", s2 = "Resource 2";
 		
@@ -45,14 +45,16 @@ public class ProConProblems {
 		t2.start();
 	}
 	
-	
-	
 	public static String randomString(int minSize, int maxSize) {
+		String charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLNMOPQRSTUVWXYZ";
 		Random r = new Random();
 		StringBuilder sb = new StringBuilder();
-		IntStream.rangeClosed(0, r.nextInt(maxSize - minSize) + minSize).forEach(i -> sb.append((char)(r.nextInt(26) + 'a')));
+		IntStream.rangeClosed(0, r.nextInt(maxSize - minSize) + minSize)
+			.map(i -> charset.charAt(r.nextInt(charset.length())))
+			.forEach(i -> sb.append((char)i));
 		return sb.toString();
 	}
+	
 	
 	public static void producerConsumer() {
 		LinkedBlockingQueue<String> lbq = new LinkedBlockingQueue<>(32);
@@ -75,14 +77,14 @@ public class ProConProblems {
 				}
 			});
 		});
+		
 		producer.start();
-		consumer.start();
-		
-		
+		consumer.start();	
 	}
 
 	public static void main(String[] args) {
 		producerConsumer();
+		
 	}
 	
 }

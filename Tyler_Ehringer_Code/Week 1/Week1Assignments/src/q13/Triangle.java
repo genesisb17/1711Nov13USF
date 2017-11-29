@@ -6,7 +6,7 @@ import java.util.stream.Stream;
 public class Triangle {
 
 	public static void main(String[] args) {
-		printTriangle(4);
+		printTriangle(20);
 	}
 
 	public static void printTriangle(int rows) {

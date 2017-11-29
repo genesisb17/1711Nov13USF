@@ -23,7 +23,6 @@ public class RunBank implements Runnable{
 	 * Starts the banking program at the main screen offering login and create user options.  Loops forever.
 	 * 
 	 */
-	@Override
 	public void run() {
 		while(true) { // loop the bank app forever
 			boolean repeat;
@@ -149,7 +148,7 @@ public class RunBank implements Runnable{
 		while(true) { // repeat until they enter an unused email
 			email = con.promptString("Please enter your email:");
 			if(!ser.hasUser(email)) break;
-			System.out.println("That username is already taken.");
+			System.out.println("That email is already taken.");
 		}
 		while(true){ // repeat until they correctly confirm their password
 			password = con.promptString("Please enter your password:");
