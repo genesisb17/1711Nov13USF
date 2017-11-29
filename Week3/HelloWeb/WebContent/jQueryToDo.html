@@ -35,9 +35,9 @@
 				<h3>To Buy:</h3>
 				<br>
 				<ul id="toBuy">
-					<li id="one">ribs</li>
-					<li id="two">fruits</li>
-					<li id="three">wine</li>
+					<li id="one" class="test">ribs</li>
+					<li id="two" class="test">fruits</li>
+					<li id="three" class="test">wine</li>
 				</ul>
 			</div>
 
@@ -51,16 +51,31 @@
 	</div>
 	<script>
 	
-		$('li').on('click', function() {
+	/* 	$('li').on('click', function() {
 			$(this).remove();
-		});
+		}); */
 	
+		$('li.test').on('click', function(){
+			$('#bought').append($(this));
+			$(this).attr("class", "no");
+		});
+		
+		
 		$('#add').on('click', function() {
 			var temp = document.createElement('li');
+			temp.setAttribute("class", "test");
 			temp.innerHTML = $('#newItem').val();
 			$('#toBuy').append(temp);
 			$('#newItem').val('');
 	
+
+			$('li.test').on('click', function(){
+				
+				$('#bought').append($(this));
+				$(this).attr("class", "no");
+				
+			});
+			
 		});
 	</script>
 
