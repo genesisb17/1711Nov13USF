@@ -1,0 +1,53 @@
+package com.ex.dao;
+
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+
+import com.ex.pojos.Artist;
+import com.ex.util.ConnectionFactory;
+
+public class DAOImpl implements DAO {
+
+	public ArrayList<Artist> getArtists() {
+		ArrayList<Artist> artists = new ArrayList<>();
+		try(Connection conn = ConnectionFactory.getInstance().getConnection();) {
+			String sql = "SELECT * FROM ARTIST";
+			Statement stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(sql);
+			
+			while(rs.next()) {
+				Artist temp = new Artist();
+				temp.setId(rs.getInt(1));
+				temp.setName(rs.getString(2));
+				artists.add(temp);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	@Override
+	public Artist getArtistById(int id) {
+
+		Artist art = new Artist();
+		
+		try(Connection conn = ConnectionFactory.getInstance().getConnection();) {
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+
+	@Override
+	public Artist addArtist(String name) {
+
+		return null;
+	}
+	
+}

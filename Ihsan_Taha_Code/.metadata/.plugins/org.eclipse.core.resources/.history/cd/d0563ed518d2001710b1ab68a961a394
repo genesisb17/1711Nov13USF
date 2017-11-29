@@ -1,0 +1,19 @@
+package com.bank.dao;
+
+import java.util.ArrayList;
+
+import com.bank.pojos.User;
+
+public interface UserDAO {
+	
+	public ArrayList<User> getAllUsers();
+
+	public boolean addUser(User user);
+
+	public User getUser(User user);
+
+	public void updateUser(User user);
+
+	public void deleteUser(User user);
+
+}
