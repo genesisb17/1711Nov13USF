@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<session version="1.0">
-<refactoring comment="Move element &apos;Animal.java&apos; to &apos;RuntimeProject/src/com.runtimeproject&apos;&#x0D;&#x0A;- Original project: &apos;RuntimeProject&apos;&#x0D;&#x0A;- Destination element: &apos;RuntimeProject/src/com.runtimeproject&apos;&#x0D;&#x0A;- Original element: &apos;com.runtimeproject.test.Animal.java&apos;&#x0D;&#x0A;- Update references to refactored element" description="Move compilation unit" destination="/src&lt;com.runtimeproject" element1="/src&lt;com.runtimeproject.test{Animal.java" files="0" flags="589830" folders="0" id="org.eclipse.jdt.ui.move" patterns="*" policy="org.eclipse.jdt.ui.moveResources" qualified="false" references="true" stamp="1510805268096" units="1" version="1.0"/>
-</session>
