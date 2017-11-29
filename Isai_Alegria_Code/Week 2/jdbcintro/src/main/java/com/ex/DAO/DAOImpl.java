@@ -1,14 +1,20 @@
 package com.ex.DAO;
 
+import java.sql.CallableStatement;
 import java.sql.Connection;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Types;
 import java.util.ArrayList;
+import java.util.List;
 
 import com.ex.pjos.Artist;
 import com.ex.util.ConnectionFactory;
+
+import oracle.jdbc.OracleTypes;
 
 public class DAOImpl implements DAO{
 
@@ -123,4 +129,52 @@ public class DAOImpl implements DAO{
 		return getArtistsById(id);
 	}
 
+	public Artist getNameById(int id) {
+		
+		Artist artist = new Artist();
+		try(Connection conn = ConnectionFactory.getInstance().getConnection();){
+
+			String sql = "{? = get_artist_by_id(?)}";
+			CallableStatement cs = conn.prepareCall(sql);
+			cs.registerOutParameter(1, Types.VARCHAR); // for the variable holing return value
+			cs.setInt(2, id); // for the id we are going to search the database for
+			cs.execute();
+			
+			artist.setName(cs.getString(1));
+			artist.setId(cs.getInt(2));
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		
+		return artist;
+		
+	}
+	
+	public List<Artist> getArtistsStoredProc() {
+		
+		List<Artist> artists = new ArrayList<>();
+		try(Connection conn = ConnectionFactory.getInstance().getConnection();){
+			
+			String sql = "{call get_all_artists(?)}";
+			CallableStatement cs = conn.prepareCall(sql);
+			cs.registerOutParameter(1, OracleTypes.CURSOR);
+			
+			int numRows = cs.executeUpdate();
+			System.out.println("number of row affected " + numRows);
+			ResultSet rs = (ResultSet) cs.getObject(1);
+			while(rs.next()) {
+				artists.add(new Artist(rs.getInt(1),rs.getString(2)));
+			}
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return artists;
+	}
+	
+	
 }

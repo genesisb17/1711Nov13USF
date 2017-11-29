@@ -34,7 +34,6 @@ public class RunBank {
 			
 		default: run();
 		
-		
 		}
 
 	} 
@@ -68,6 +67,8 @@ public class RunBank {
 
 	static void login() {
 		
+		User u = new User();
+		
 		System.out.print("Enter your username: ");
 		Scanner scan = new Scanner(System.in);		
 		String user = scan.nextLine();
@@ -76,6 +77,7 @@ public class RunBank {
 		boolean check;
 		check = service.getUser(user, password);
 		//scan.close();
+		u = service.getUser(user);
 		
 		if(check == false) {
 			System.out.println("Login failed. Make sure all information was entered correctly.\n");
@@ -86,23 +88,26 @@ public class RunBank {
 
 			System.out.println("Log in successsful!");
 			
+			
 			boolean stop = false;
 			while(stop != true) {
 				
 				System.out.println("What would you like to do? (1) to deposit, (2) to withdraw, or (3) to view your balance,"
-						+ "or (4) to exit:");
+						+ ", (4) create another account or (5) to exit:");
 				Scanner scan2 = new Scanner(System.in);		
 				String read = scan2.nextLine();
 				
 				switch(read) {
 				
-				case "1": deposit(user); break;
+				case "1": deposit(u); break;
 							
-				case "2": withdraw(user); break;
+				case "2": withdraw(u); break;
 				
-				case "3": viewBalance(user); break;
+				case "3": viewBalance(u); break;
 				
-				case "4": 
+				case "4":createOtherAccount(u); break;
+				
+				case "5": 
 					stop = true;
 					System.out.println("Goodbye!"); break;
 					
@@ -126,32 +131,49 @@ public class RunBank {
 
 
 
-	static void viewBalance(String user) {
-	
-		System.out.println("Here is your current balanace: ");
-		service.viewBalance(user);
+	static void createOtherAccount(User u) {
+		
+		//int id = -99;
+		// function to get id of user
+		//id = service.lookUpID(u);
+		service.createAnotherAccount(u);
 		
 	}
 
 
 
-	static void withdraw(String user) {
+	static void viewBalance(User u) {
+	
+		System.out.println("Here is your current balanace: ");
+		service.viewBalance(u);
+		
+	}
+
+
+
+	static void withdraw(User u) {
 		
 		System.out.print("Enter how much you want to withdraw (in $x.xx format): ");
 		Scanner sc=new Scanner(System.in);
 		double amount=sc.nextDouble();
-		service.withdraw(user,amount);
+		System.out.print("Which account do you want to withdraw from? ");
+		System.out.println("(View balance to see accounts for your username) ");
+		int acc = sc.nextInt();
+		service.withdraw(u,amount,acc);
 		
 	}
 
 
 
-	static void deposit(String user) {
+	static void deposit(User u) {
 		
 		System.out.print("Enter how much you want to deposit (in $x.xx format): ");
 		Scanner sc=new Scanner(System.in);
 		double amount=sc.nextDouble();
-		service.deposit(user,amount);
+		System.out.print("Which account do you want to deposit to? ");
+		System.out.println("(View balance to see accounts for your username) ");
+		int acc = sc.nextInt();
+		service.deposit(u,amount,acc);
 		
 	}
 

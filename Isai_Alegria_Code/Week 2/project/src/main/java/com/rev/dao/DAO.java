@@ -8,9 +8,10 @@ public interface DAO {
 	boolean findUser(String username);
 	boolean getUser(String username, String password);
 	User getUser(String username);
-	void viewBalance(String user);
+	void viewBalance(User u);
 	void setAccount(User u);
-	void deposit(String user, double amount);
-	void withdraw(String user, double amount);
+	void deposit(User u, double amount,int acc);
+	void withdraw(User u, double amount,int acc);
+	void createAnotherAccount(User u);
 	
 }

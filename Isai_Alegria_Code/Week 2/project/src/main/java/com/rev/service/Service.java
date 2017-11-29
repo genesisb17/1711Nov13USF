@@ -44,26 +44,31 @@ public class Service {
 		return dao.getUser(username);
 	}
 	
-	public void viewBalance(String user) {
+	public void viewBalance(User u) {
 		
-		dao.viewBalance(user);
+		dao.viewBalance(u);
 	}
 	
+	//function for creating account for the first time a username is created
 	public void setAccount(User u) {
 		
 		dao.setAccount(u);
 	}
 	
-	public void deposit(String user, double amount) {
+	public void deposit(User u,double amount,int acc) {
 		
-		dao.deposit(user,amount);
+		dao.deposit(u,amount,acc);
 	}
 
-	public void withdraw(String user,double amount) {
+	public void withdraw(User u,double amount,int acc) {
 
-		dao.withdraw(user,amount);
+		dao.withdraw(u,amount,acc);
 		
 	}
 	
-
+	public void createAnotherAccount(User u) {
+		
+		dao.createAnotherAccount(u);
+	}
+	
 }

@@ -105,28 +105,30 @@ public class ImplDAO implements DAO{
 		return u;
 	}
 
-	public void viewBalance(String user) {
+	public void viewBalance(User u) {
 
 		try(Connection conn = ConnectionFactory.getInstance().getConnection();){
 			
 			//find the user id from the username from users table
 			conn.setAutoCommit(false);
-			String sql = "select u_id from users where username = ?";
-			PreparedStatement ps = conn.prepareStatement(sql);
-			ps.setString(1,user);
-			ResultSet info = ps.executeQuery();
-			info.next();
-			int retID = info.getInt(1);
+//			String sql = "select u_id from users where username = ?";
+//			PreparedStatement ps = conn.prepareStatement(sql);
+//			ps.setString(1,user);
+//			ResultSet info = ps.executeQuery();
+//			info.next();
+//			int retID = info.getInt(1);
+			int id = u.getId();
 			
 			//now search accounts table with user id to retrieve balance
-			String sql2 = "select balance from accounts where user_id = ?";
+			String sql2 = "select balance, acc_id from accounts where user_id = ?";
 			PreparedStatement ps2 = conn.prepareStatement(sql2);
-			ps2.setInt(1, retID);
+			ps2.setInt(1, id);
 			ResultSet info2 = ps2.executeQuery();
-			info2.next();
-			int balance = info2.getInt(1);
-			System.out.println(balance);
-			
+			while(info2.next()) {
+				int balance = info2.getInt(1);
+				int account = info2.getInt(2);
+				System.out.println("Account " + account +": $" + balance);
+			}
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -156,36 +158,39 @@ public class ImplDAO implements DAO{
 		
 	}
 
-	public void deposit(String user, double amount) {
+	public void deposit(User u, double amount,int acc) {
 			
 		try(Connection conn = ConnectionFactory.getInstance().getConnection();){
 			
 			//find the user id from the username from users table
 			conn.setAutoCommit(false);
-			String sql = "select u_id from users where username = ?";
-			PreparedStatement ps = conn.prepareStatement(sql);
-			ps.setString(1,user);
-			ResultSet info = ps.executeQuery();
-			info.next();
-			int retID = info.getInt(1);
+//			String sql = "select u_id from users where username = ?";
+//			PreparedStatement ps = conn.prepareStatement(sql);
+//			ps.setString(1,user);
+//			ResultSet info = ps.executeQuery();
+//			info.next();
+//			int retID = info.getInt(1);
+			int id = u.getId();
 			
 			//have to retrieve current balance with the retrieved user id
-			String sql2 = "select balance from accounts where user_id = ?";
+			String sql2 = "select balance from accounts where user_id = ? and acc_id = ?";
 			PreparedStatement ps2 = conn.prepareStatement(sql2);
-			ps2.setInt(1, retID);
+			ps2.setInt(1, id);
+			ps2.setInt(2, acc);
 			ResultSet info2 = ps2.executeQuery();
 			info2.next();
-			double initialBalance = info.getInt(1);
+			double initialBalance = info2.getInt(1);
 			double newBalance = amount + initialBalance;
 			
 			//update balance for user in accounts table with new balance
 			String sql3 = "update accounts set balance  = ? where user_id = ?";
 			PreparedStatement ps3 = conn.prepareStatement(sql3);
 			ps3.setDouble(1, newBalance);
-			ps3.setInt(2, retID);
+			ps3.setInt(2, id);
+			//ps3.setInt(3, acc);
 			ps3.executeUpdate();
 			conn.commit();	
-			System.out.println("Your new balance is: " + newBalance);
+			System.out.println("Your new balance for account " + acc + " is: " + newBalance);
 			
 			
 			
@@ -195,26 +200,29 @@ public class ImplDAO implements DAO{
 		
 	}
 
-	public void withdraw(String user, double amount) {
+	public void withdraw(User u, double amount,int acc) {
 		
 		try(Connection conn = ConnectionFactory.getInstance().getConnection();){
 			
+			conn.setAutoCommit(false);			
 			//find the user id from the username from users table
-			conn.setAutoCommit(false);
-			String sql = "select u_id from users where username = ?";
-			PreparedStatement ps = conn.prepareStatement(sql);
-			ps.setString(1,user);
-			ResultSet info = ps.executeQuery();
-			info.next();
-			int retID = info.getInt(1);
+//			conn.setAutoCommit(false);
+//			String sql = "select u_id from users where username = ?";
+//			PreparedStatement ps = conn.prepareStatement(sql);
+//			ps.setString(1,user);
+//			ResultSet info = ps.executeQuery();
+//			info.next();
+//			int retID = info.getInt(1);
+			int id = u.getId();
 			
 			//have to retrieve current balance with the retrieved user id
-			String sql2 = "select balance from accounts where user_id = ?";
+			String sql2 = "select balance from accounts where user_id = ? and acc_id = ?";
 			PreparedStatement ps2 = conn.prepareStatement(sql2);
-			ps2.setInt(1, retID);
+			ps2.setInt(1, id);
+			ps2.setInt(2, acc);
 			ResultSet info2 = ps2.executeQuery();
 			info2.next();
-			double initialBalance = info.getInt(1);
+			double initialBalance = info2.getInt(1);
 			double newBalance = initialBalance - amount;
 			
 			//check for overdraft. $10 fee for overdrafting
@@ -226,13 +234,14 @@ public class ImplDAO implements DAO{
 			}
 			
 			//update balance for user in accounts table with new balance
-			String sql3 = "update accounts set balance  = ? where user_id = ?";
+			String sql3 = "update accounts set balance  = ? where user_id = ? and acc_id = ?";
 			PreparedStatement ps3 = conn.prepareStatement(sql3);
 			ps3.setDouble(1, newBalance);
-			ps3.setInt(2, retID);
+			ps3.setInt(2, id);
+			ps3.setInt(3, acc);
 			ps3.executeUpdate();
 			conn.commit();	
-			System.out.println("Your new balance is: " + newBalance);
+			System.out.println("Your new balance for account " + acc + " is: " + newBalance);
 			
 			
 			
@@ -244,7 +253,38 @@ public class ImplDAO implements DAO{
 		
 	}
 
-	
+	//function to create another account for an existing user
+	public void createAnotherAccount(User u) {
+			
+		
+		try(Connection conn = ConnectionFactory.getInstance().getConnection();){
+			conn.setAutoCommit(false);
+			//check if user has more than 2 accounts
+			String sql = "select count(user_id) from accounts where user_id = (?)";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setInt(1, u.getId());
+			ResultSet info = ps.executeQuery();
+			info.next();
+			int accCount = info.getInt(1);
+			if(accCount >= 2)
+			{
+				System.out.println("Sorry, but you cannot create more than 2 accounts.");
+				return;
+			}
+			
+			else {
+				
+				//if user has less than two accounts, then create another one
+				setAccount(u);
+				
+			}
+			
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 	
 
 }
