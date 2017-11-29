@@ -1,4 +1,4 @@
-/*
+d/*
  * JavaScript is a scripting language for client-side operations 
  * JS!-Java JS is to java as ham is to hamster
  * C-like syntax
@@ -69,4 +69,51 @@ function fib(n)
 		return 1;
 	return fib(n-1)+fib(n-2);
 }
+var isLoggedIn = true;
+var username = "user";
+var getUser = function()
+{ return isLoggedIn && username;
+}
 
+/*
+ * Default Operator - ||
+ * If the first operand is truthy, return the first operand otherwise return the second operand
+ */
+var getCommission = 500;
+var getRegSalary = 50;
+var getsPaid = function()
+{
+	return getsCommission|getsRegSalary;
+}
+
+/*
+ * hoisting
+ * variable declarations using var are treated as if they are at the top of the function (or global scope, if declared outside of a function
+ var outside of block.
+ */
+function getValue(condition)
+{
+	var value;
+	if(condition)
+		{
+	 value = "blue";
+	return value;
+		}
+	else
+		{
+		return null;
+		}
+}
+/*understanding the let keyword limits the variable to block scope
+*/
+function getValue(condition)
+{
+	if(condition)
+		{
+		let value = "blue";
+		return value;
+		}
+	else {
+		return null;
+	}
+	}

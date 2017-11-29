@@ -109,7 +109,7 @@ public class RunBank
 		String s = sc.nextLine();
 		System.out.println("what is your password??");
 		String pass = sc.nextLine();
-	
+		
 		u = service.getUser(s,pass,id);
 		service.getArtbyid(u);
 		System.out.println("what is the acc_id you want to use?? Note to create an ac");

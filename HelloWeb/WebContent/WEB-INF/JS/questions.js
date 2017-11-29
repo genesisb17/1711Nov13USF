@@ -3,11 +3,28 @@
  */
 function fi(n)
 {
-	if (n<2) return 1;
+	if (n<=1) return n;
 	else
 		return fib(n-1)+fib(n-2);
 }
-fi(5);
+
+function runFib()
+{
+	var display = document.getElementById("fibDisplay");
+	var n = document.getElementById("fib").value;
+	display.innerHTML = fib(n);
+}
+document.getElementById("doFib").addEventListener("click", runFib)
+document.getElementById("outer").addEventListener("click",function(){alert("In outer");},true)
+document.getElementById("middle").addEventListener("click",function(){alert("In middle");},true)
+document.getElementById("inner").addEventListener("click",function(){alert("In inner");},true)
+//event propagation is where elements are 
+
+function count()
+{
+	counter = counter+1;
+	document.getElementById("count").innerHTML=counter;
+}
 function bs(a)
 {
 	var i =0;
