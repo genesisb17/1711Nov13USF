@@ -92,3 +92,62 @@ function add(a, b){
 	return a+b;
 }
 
+/**
+ * Hoisting
+ * Variable declarations using var are treated as
+ * if they are at the top of the function (or 
+ * global scope, if declared outside of a function)
+ * regardless of where the actual declaration occurs;
+ * this is called hoisting.
+ */
+
+function getValue(condition){
+	if(condition){
+		var value = "blue";
+		return value;
+	} else{
+		//value exists here with a value of undefined
+		return null;
+	}
+	//value exists with a value of undefined
+}
+
+/**
+ *Looking at the above code, you might expect value to
+ *only be created if condition evaluates to true. In fact,
+ *value is created regardless. Behind the scene, the JS
+ *engine changes the getValue function to look like:
+ */
+
+function getValue(condition){
+	var value;
+	if(condition){
+		value="blue";
+		return value;
+	} else{
+		return null;
+	}
+}
+/**
+ * The declaration of the value si hoisted to the top
+ * while the initialization remains in the same spot. That
+ * means that the variable value is still accessible elsewhere
+ * in the function; it just has a value of undefined.
+ */
+
+//Understanding the LET keyword
+/*
+ * limits the variable to block scope. cannot use let to
+ * declare a variable w the same name
+ */
+
+function getValue(condition){
+	if(condition){
+		let value="blue";
+		return value;
+	}else{
+		//value doesnt exist here
+		return null;
+	}
+	//value doesnt exist here
+}
