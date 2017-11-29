@@ -15,6 +15,5 @@ public class RunBank
 	}
 	static void run()
 	{
-		service.connect();
 	}
 }
