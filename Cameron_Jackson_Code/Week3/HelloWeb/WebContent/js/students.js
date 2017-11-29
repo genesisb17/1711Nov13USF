@@ -1,9 +1,10 @@
 /**
  * Students js functions
  */
+var id = 50;
 function add() {
 	// get element values
-	var id = document.getElementById("id").value;
+	id++;
 	var name = document.getElementById("name").value;
 	var major = document.getElementById("major").value;
 	
