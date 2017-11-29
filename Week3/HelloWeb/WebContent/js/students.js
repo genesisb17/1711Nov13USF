@@ -1,6 +1,8 @@
+
+var count = 1000;
 function add(){
 	//get input values
-	var id = document.getElementById("id").value;
+	//var id = document.getElementById("id").value;
 	var name = document.getElementById("name").value;
 	var major = document.getElementById("major").value;
 	
@@ -18,7 +20,7 @@ function add(){
 	row.appendChild(cell3);
 	
 	//add info to cells
-	cell1.innerHTML = id;
+	cell1.innerHTML = count++;
 	cell2.innerHTML = name;
 	cell3.innerHTML = major;
 	
