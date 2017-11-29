@@ -1,0 +1,79 @@
+package com.bank.util;
+
+import java.util.ArrayList;
+
+import com.bank.dao.AccountDAO;
+import com.bank.dao.AccountDAOImp;
+import com.bank.dao.UserDAO;
+import com.bank.dao.UserDAOImp;
+import com.bank.pojos.Account;
+import com.bank.pojos.User;
+
+public class Service
+{
+
+	// ------------------------------------------------------------
+	// UserDAO Service
+	// ------------------------------------------------------------
+	public UserDAO userDao = new UserDAOImp();
+	public AccountDAO accountDao = new AccountDAOImp();
+
+	public ArrayList<User> getAllUsers()
+	{
+		return userDao.getAllUsers();
+	}
+
+	public boolean addUser(User user)
+	{
+		return userDao.addUser(user);
+	}
+
+	public User getUser(User user)
+	{
+		return userDao.getUser(user);
+	}
+
+	public void updateUser(User user)
+	{
+		userDao.updateUser(user);
+	}
+
+	public void deleteUser(User user)
+	{
+		userDao.deleteUser(user);
+	}
+
+	// ------------------------------------------------------------
+	// AccountDAO Service
+	// ------------------------------------------------------------
+	public ArrayList<Account> getAllAccounts()
+	{
+		return accountDao.getAllAccounts();
+	}
+
+	public ArrayList<Account> getAccountsByUserId(User user)
+	{
+		return accountDao.getAccountsByUserId(user);
+	}
+
+	public boolean addAccount(User user, Account account)
+	{
+		return accountDao.addAccount(user, account);
+	}
+
+	public Account getAccount(Account account)
+	{
+		return accountDao.getAccount(account);
+	}
+
+	public void updateAccount(Account account)
+	{
+		accountDao.updateAccount(account);
+	}
+
+	public void deleteAccount(Account account)
+	{
+		accountDao.deleteAccount(account);
+	}
+
+}

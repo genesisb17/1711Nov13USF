@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Event Handling Intro</title>
+</head>
+<body>
+
+	<h1>JS Function Viewer</h1>
+	<br />
+	<h3>Problem 1: Fibonacci</h3>
+	<br />
+	<input type="number" id="fib" placeholder="Enter n" />
+	<button id="doFib">Fibonacc'ed!</button>
+	=
+	<strong><p id="fibDisplay"></p></strong>
+	
+	<div id="outer">
+		<div id="middle">
+			<div id="inner">
+			</div>
+		</div>
+	</div>
+
+	<script type="text/javascript" src="js/functions.js"></script>
+</body>
+</html>

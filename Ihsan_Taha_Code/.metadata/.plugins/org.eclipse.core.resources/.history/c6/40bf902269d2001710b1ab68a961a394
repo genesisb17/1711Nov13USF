@@ -1,0 +1,66 @@
+package com.bank.dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+
+import com.bank.pojos.User;
+import com.bank.util.ConnectionFactory;
+
+public class UserDAOImp implements UserDAO
+{
+
+	@Override
+	public ArrayList<User> getAllUsers()
+	{
+
+		return null;
+	}
+
+	@Override
+	public boolean addUser(User user)
+	{
+
+		return false;
+	}
+
+	@Override
+	public User getUser(User user)
+	{
+		//User u = new User();
+
+		try (Connection conn = ConnectionFactory.getInstance().getConnection();) {
+			String sql = "SELECT * FROM USERS WHERE USERNAME = ?";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setString(1, user.getUserName());
+			ResultSet info = ps.executeQuery();
+
+			while (info.next()) {
+				user.setUserId(info.getInt(0));
+				user.setFirstName(info.getString(1));
+				user.setLastName(info.getString(2));
+				user.setUserName(info.getString(3));
+				user.setPassWord(info.getString(4));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return user;
+	}
+
+	@Override
+	public void updateUser(User user)
+	{
+
+	}
+
+	@Override
+	public void deleteUser(User user)
+	{
+
+	}
+
+}

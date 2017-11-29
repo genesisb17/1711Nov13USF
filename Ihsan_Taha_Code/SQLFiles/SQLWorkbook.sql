@@ -1,0 +1,550 @@
+--SELECT * FROM ARTIST WHERE LOWER(NAME) LIKE '%THE%'--
+
+--2.1 SELECT
+--SELECT * FROM EMPLOYEE;
+--SELECT * FROM EMPLOYEE WHERE LASTNAME = 'King';
+--SELECT * FROM EMPLOYEE WHERE FIRSTNAME = 'Andrew' AND REPORTSTO IS null;
+
+--2.2 ORDER BY
+--SELECT * FROM ALBUM ORDER BY TITLE DESC;
+--SELECT FIRSTNAME FROM CUSTOMER ORDER BY CITY ASC;
+
+--2.3 INSERT INTO
+--INSERT INTO GENRE(GENREID, NAME) VALUES ('26', 'EMO');
+/*INSERT ALL 
+  INTO GENRE ("GENREID", "NAME") VALUES ('27', 'Arabic') 
+  INTO GENRE (GENREID, NAME) VALUES (28,'Depressing')
+SELECT * FROM dual;*/
+--INSERT INTO EMPLOYEE VALUES ('9','Jack','Morris','IT Manager',2,'20-SEP-00','10-DEC-2016','1234 5th Ave','Chitown','CA','USA','94150','+1 (415) 514-4321', null,'jack_morris@gmail.com');
+--INSERT INTO EMPLOYEE VALUES ('10','Taha','Ihsan','Game Developer',5,'3-MAY-87','3-MAY-2020','1234 5th Ave','Chitown','CA','USA','94150','+1 (415) 514-1551', null,'ihsan_taha@yahoo.com');
+
+--2.4 UPDATE
+--UPDATE CUSTOMER SET FIRSTNAME = 'Robert', LASTNAME = 'Walter' WHERE FIRSTNAME = 'Aaron';
+--UPDATE ARTIST SET NAME = 'CCR' WHERE ARTISTID = 76;
+
+--2.5 LIKE
+--SELECT * FROM INVOICE WHERE BILLINGADDRESS LIKE 'T%';
+
+--2.6 BETWEEN
+--SELECT * FROM INVOICE WHERE TOTAL BETWEEN 15 AND 50;
+--SELECT * FROM EMPLOYEE WHERE HIREDATE BETWEEN '01-JUN-03' AND '01-MAR-04';
+
+--2.7 DELETE
+--ALTER TABLE INVOICE DROP CONSTRAINT FK_INVOICECUSTOMERID;
+--DELETE FROM CUSTOMER WHERE FIRSTNAME = 'Robert' AND LASTNAME='Walter';
+--SELECT FIRSTNAME FROM CUSTOMER WHERE FIRSTNAME='Robert' AND LASTNAME='Walter';
+--ALTER TABLE INVOICE DISABLE CONSTRAINT FK_INVOICECUSTOMERID;
+--DELETE FROM CUSTOMER WHERE LASTNAME='Walter' AND FIRSTNAME='Robert';
+
+
+
+--3.1A Create a function that returns the time
+/*
+CREATE OR REPLACE FUNCTION GET_THE_TIME
+RETURN TIMESTAMP IS mytime TIMESTAMP;
+BEGIN
+ SELECT SYSTIMESTAMP INTO mytime FROM DUAL;
+ RETURN mytime;
+END;
+/
+SELECT GET_THE_TIME() FROM DUAL;
+*/
+
+
+
+--3.1B Create a function that returns the length of mediatype
+--SELECT * FROM MEDIATYPE WHERE MEDIATYPEID = 5;
+/*
+CREATE OR REPLACE FUNCTION GET_MEDIATYPE_LENGTH (param1 IN NUMBER)
+RETURN NUMBER IS medialength NUMBER;
+BEGIN
+  SELECT (SELECT LENGTH(NAME) FROM MEDIATYPE WHERE MEDIATYPEID = param1) INTO medialength FROM DUAL;
+  RETURN mediaLength;
+END;
+/
+SELECT GET_MEDIATYPE_LENGTH(5) FROM DUAL;
+*/
+--SELECT (SELECT LENGTH(NAME) FROM MEDIATYPE WHERE MEDIATYPEID = 5) FROM DUAL;
+
+
+
+--3.2A Create an aggregate function that returns the average total of all invoices
+/*
+CREATE OR REPLACE FUNCTION AVG_TOTAL_INVOICES
+RETURN NUMBER IS total_invoices NUMBER;
+BEGIN
+  SELECT (SELECT AVG(TOTAL) FROM INVOICE) INTO total_invoices FROM DUAL;
+  RETURN total_invoices;
+END;
+/
+SELECT AVG_TOTAL_INVOICES() FROM DUAL;
+*/
+
+
+--3.2B Create a function that returns the most expensive track
+/*
+CREATE OR REPLACE FUNCTION MOST_EXPENSIVE_TRACK
+RETURN NUMBER IS most_exp_track NUMBER;
+BEGIN
+  SELECT (SELECT MAX(UNITPRICE) FROM TRACK) INTO most_exp_track FROM DUAL;
+  RETURN most_exp_track;
+END;
+/
+SELECT MOST_EXPENSIVE_TRACK() FROM DUAL;
+*/
+
+
+
+--3.3 Create a function that returns the average price of invoiceline items
+/*
+CREATE OR REPLACE FUNCTION AVG_INVOICELINE_PRICE
+RETURN NUMBER IS avg_invoiceline_price NUMBER;
+BEGIN
+  SELECT (SELECT AVG(UNITPRICE) FROM INVOICELINE) INTO avg_invoiceline_price FROM DUAL;
+  RETURN avg_invoiceline_price;
+END;
+/
+SELECT AVG_INVOICELINE_PRICE() FROM DUAL;
+*/
+
+
+
+--3.4 Create a function that returns all employees who are born after 1968
+/*
+CREATE OR REPLACE TYPE emp_after_1968 IS OBJECT
+(
+  EMPLOYEEID NUMBER,
+  LASTNAME VARCHAR2(20),
+  FIRSTNAME VARCHAR2(20),
+  TITLE VARCHAR2(30),
+  REPORTSTO NUMBER,
+  BIRTHDATE DATE,
+  HIREDATE DATE,
+  ADDRESS VARCHAR2(70),
+  CITY VARCHAR2(40),
+  STATE VARCHAR2(40),
+  COUNTRY VARCHAR2(40),
+  POSTALCODE VARCHAR2(10),
+  PHONE VARCHAR2(24),
+  FAX VARCHAR2(24),
+  EMAIL VARCHAR2(60)
+);
+/
+CREATE OR REPLACE TYPE after_1968_table AS TABLE OF emp_after_1968;
+/
+CREATE OR REPLACE FUNCTION GET_EMP_AFTER_1968
+RETURN after_1968_table
+AS
+v_test_tabtype after_1968_table;
+BEGIN
+  SELECT emp_after_1968
+  (
+    A.EMPLOYEEID,
+    A.LASTNAME,
+    A.FIRSTNAME,
+    A.TITLE,
+    A.REPORTSTO,
+    A.BIRTHDATE,
+    A.HIREDATE,
+    A.ADDRESS,
+    A.CITY,
+    A.STATE,
+    A.COUNTRY,
+    A.POSTALCODE,
+    A.PHONE,
+    A.FAX,
+    A.EMAIL
+  )
+  BULK COLLECT INTO v_test_tabtype
+  FROM
+  (SELECT * FROM EMPLOYEE WHERE BIRTHDATE > '01-JAN-1968') A;
+  RETURN v_test_tabtype;
+  
+  EXCEPTION
+  WHEN OTHERS THEN
+  v_Test_TabType.DELETE;
+  RETURN v_Test_TabType;
+END;
+/
+SELECT * FROM TABLE(GET_EMP_AFTER_1968);
+*/
+
+
+
+--4.1 Create a stored procedure that selects the first and last names of all the employees
+/*
+CREATE OR REPLACE PROCEDURE GET_FIRSTLAST_NAMESOFEMP(prcdr OUT SYS_REFCURSOR)
+AS
+BEGIN
+  OPEN prcdr FOR SELECT FIRSTNAME, LASTNAME FROM EMPLOYEE;
+END;
+/
+VARIABLE RC REFCURSOR;
+EXEC GET_FIRSTLAST_NAMESOFEMP( :RC );
+PRINT RC;
+*/
+
+
+
+--4.2 Create a procedure that updates an employee's personal information
+/*
+CREATE OR REPLACE PROCEDURE UPDATE_EMPLOYEE
+(
+  v_id IN EMPLOYEE.EMPLOYEEID%TYPE,
+  v_title IN EMPLOYEE.TITLE%TYPE,
+  v_city IN EMPLOYEE.CITY%TYPE,
+  v_state IN EMPLOYEE.STATE%TYPE
+)
+IS
+BEGIN
+  UPDATE EMPLOYEE
+  SET TITLE = V_TITLE, CITY = V_CITY, STATE = V_STATE
+  WHERE EMPLOYEEID = v_id;
+END;
+/
+BEGIN
+  UPDATE_EMPLOYEE(5,'Full Stack Developer', 'Austin','TX');
+END;
+/
+SELECT * FROM EMPLOYEE ORDER BY EMPLOYEEID ASC;
+*/
+
+
+
+--4.3 Create a procedure that returns the name and company of a customer
+/*
+CREATE OR REPLACE PROCEDURE NAME_AND_COMP(X IN NUMBER, prcdr OUT SYS_REFCURSOR)
+AS
+BEGIN
+  OPEN prcdr FOR SELECT FIRSTNAME, COMPANY FROM CUSTOMER
+  WHERE CUSTOMERID = X;
+END;
+/
+VARIABLE RC REFCURSOR;
+EXEC NAME_AND_COMP(10, :RC );
+PRINT RC;
+*/
+
+
+
+--5.1 Create a transaction that given an invoiceId will 
+--    delete that invoice (There may be constraints that 
+--    rely on this, find out how to resolve them).
+/*
+SAVEPOINT P_1;
+DELETE FROM INVOICE WHERE INVOICEID = 150;
+SELECT * FROM INVOICE WHERE INVOICEID BETWEEN 149 AND 151;
+ROLLBACK TO P_1;
+--COMMIT;
+*/
+
+
+
+--5.2 Create a transaction nested within a stored procedure 
+--    that inserts a new record in the Customer table.
+/*
+CREATE OR REPLACE PROCEDURE INSERT_CUST_REC
+(
+  o_supp   IN CUSTOMER.SUPPORTREPID%TYPE,
+  o_custid IN CUSTOMER.CUSTOMERID%TYPE,
+  o_fname  IN CUSTOMER.FIRSTNAME%TYPE,
+  o_lname  IN CUSTOMER.LASTNAME%TYPE,
+  o_email  IN CUSTOMER.EMAIL%TYPE
+)
+IS
+BEGIN
+  INSERT INTO CUSTOMER
+  (
+    SUPPORTREPID, CUSTOMERID,FIRSTNAME,LASTNAME,EMAIL
+  )
+  VALUES
+  (
+    o_supp, o_custid, o_fname, o_lname, o_email
+  );
+END;
+/
+SAVEPOINT SP1;
+EXEC INSERT_CUST_REC(1, 61,'Janice','Cobwell','janice@gmail.com');
+SELECT * FROM CUSTOMER;
+ROLLBACK TO SP1;
+--COMMIT;
+*/
+
+
+
+--6.1 Create an after insert trigger on the employee table
+--    fired after a new record is inserted into the table.
+/*
+CREATE TABLE EMP_BACKUP
+(
+  EMPLOYEEID NUMBER,
+  FIRSTNAME VARCHAR2(20)
+);
+
+CREATE OR REPLACE TRIGGER EMP_TRIGGER
+AFTER INSERT ON EMPLOYEE
+FOR EACH ROW
+DECLARE
+BEGIN
+  INSERT INTO EMP_BACKUP VALUES (:NEW.EMPLOYEEID, :NEW.FIRSTNAME);
+  dbms_output.put_line('Inserted backup info to EMP_BACKUP');
+END;
+/
+COMMIT;
+
+SELECT * FROM EMP_BACKUP;
+
+INSERT INTO EMPLOYEE (EMPLOYEEID, FIRSTNAME, LASTNAME, REPORTSTO)
+VALUES (11, 'Chris', 'Woodstone', 1);
+*/
+
+
+--6.2 Create an after update trigger on the album table that fires
+--    after a row is inserted in the table.
+/*
+CREATE OR REPLACE TRIGGER AFTER_UPDATE_EMP_TRIGGER
+AFTER UPDATE ON EMPLOYEE
+FOR EACH ROW
+DECLARE
+BEGIN
+  UPDATE EMP_BACKUP SET 
+    FIRSTNAME = :NEW.FIRSTNAME WHERE EMPLOYEEID = :NEW.EMPLOYEEID;
+  dbms_output.put_line('Updated backup info to EMP_BACKUP');
+END;
+/
+COMMIT;
+
+SELECT * FROM EMP_BACKUP;
+
+UPDATE EMPLOYEE SET FIRSTNAME = 'Genesis' WHERE EMPLOYEEID = 12;
+*/
+
+
+
+--6.3 Create an after delete trigger on the customer table that fires 
+--    after a row is deleted from the table.
+/*
+CREATE OR REPLACE TRIGGER AFTER_DELETE_EMP_TRIGGER
+AFTER DELETE ON EMPLOYEE
+FOR EACH ROW
+DECLARE
+BEGIN
+  dbms_output.put_line('Deleted row saved in backup table');
+END;
+/
+COMMIT;
+
+SELECT * FROM EMP_BACKUP;
+
+SAVEPOINT DP1;
+
+DELETE FROM EMPLOYEE WHERE employeeID = 12;
+
+ROLLBACK TO DP1;
+*/
+
+
+
+--7.1 Create an inner join that joins customers and 
+--    orders and specifies the name of the customer 
+--    and the invoiceId.
+/*
+SELECT C.FIRSTNAME, I.INVOICEID
+FROM CUSTOMER C
+INNER JOIN INVOICE I ON C.CUSTOMERID = I.CUSTOMERID;
+*/
+
+
+
+--7.2 Create an outer join that joins the customer 
+--    and invoice table, specifying the CustomerId, 
+--    firstname, lastname, invoiceId, and total.
+/*
+SELECT C.FIRSTNAME, C.LASTNAME, I.INVOICEID, I.TOTAL
+FROM CUSTOMER C
+FULL OUTER JOIN INVOICE I ON C.CUSTOMERID = I.CUSTOMERID;
+*/
+
+
+
+--7.3 Create a right join that joins album and 
+--    artist specifying artist name and title.
+/*
+SELECT A.TITLE, ART.NAME
+FROM ALBUM A
+RIGHT OUTER JOIN ARTIST ART ON A.ARTISTID = ART.ARTISTID;
+*/
+
+
+
+--7.4 Create a cross join that joins album and artist
+--    and sorts by artist name in ascending order.
+/*
+SELECT TITLE, NAME
+FROM ALBUM
+CROSS JOIN ARTIST
+ORDER BY NAME ASC;
+*/
+
+
+
+--7.5 Perform a self-join on the employee table, 
+--    joining on the reportsto column.
+/*
+SELECT A.FIRSTNAME, A.REPORTSTO, B.FIRSTNAME, B.REPORTSTO
+FROM EMPLOYEE A, EMPLOYEE B
+WHERE A.REPORTSTO = B.REPORTSTO;
+*/
+--------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+--------------------------------------------------
+--Class Work
+--------------------------------------------------
+--CREATE VIEW ARTISTDEMO AS SELECT * FROM ARTIST WHERE NAME LIKE 'A%';
+--SELECT * FROM ARTISTDEMO;
+--SELECT COUNT (*) FROM ARTISTDEMO;
+--CREATE VIEW ALBUMDEMO AS SELECT * FROM ALBUM WHERE ALBUMID >= 20;
+--SELECT * FROM ALBUMDEMO;
+
+/*SELECT a1.TITLE, art.NAME as "ARTIST NAME"
+FROM ALBUMDEMO a1 
+INNER JOIN ARTISTDEMO art ON art.ARTISTID = a1.ARTISTID
+INNER JOIN TRACK tr ON tr.ALBUMID = a1.ALBUMID;*/
+
+/*SELECT al.TITLE, art.NAME, cus.COUNTRY, emp.EMPLOYEEID, gen.GENREID, inv.INVOICEID, invl.TRACKID, plt.PLAYLISTID, med.NAME, pl.NAME, tr.NAME
+FROM ALBUM al INNER JOIN ARTIST art ON al.ARTISTID = art.ARTISTID
+INNER JOIN Customer cus ON art.ARTISTID = cus.CUSTOMERID
+INNER JOIN EMPLOYEE emp ON cus.COUNTRY = emp.COUNTRY
+INNER JOIN GENRE gen ON emp.EMPLOYEEID = gen.GENREID
+INNER JOIN INVOICE inv ON gen.GENREID = inv.INVOICEID
+INNER JOIN INVOICELINE invl ON inv.INVOICEID = invl.TRACKID
+INNER JOIN PLAYLISTTRACK plt ON invl.TRACKID = plt.PLAYLISTID
+INNER JOIN MEDIATYPE med ON plt.PLAYLISTID = med.MEDIATYPEID
+INNER JOIN PLAYLIST pl ON med.MEDIATYPEID = pl.PLAYLISTID
+INNER JOIN TRACK tr ON pl.PLAYLISTID = tr.TRACKID;*/
+
+--SELECT PLAYLISTID, COUNT(TRACKID) FROM PLAYLISTTRACK--
+--INNER JOIN PLAYLIST ON  PLAYLIST.PLAYLISTID = PLAYLISTTRACK.PLAYLISTID;--
+
+--SELECT PLAYLISTID, COUNT(TRACKID) as TRACKS FROM PLAYLISTTRACK  GROUP BY PLAYLISTID;
+
+/*CREATE OR REPLACE FUNCTION return_a_1
+RETURN NUMBER
+AS
+BEGIN
+  RETURN 1;
+END;
+*/
+
+/*CREATE OR REPLACE FUNCTION get_date
+RETURN DATE
+AS
+BEGIN
+  RETURN SYSDATE;
+END;*/
+
+
+
+/*CREATE OR REPLACE PROCEDURE helloworld
+AS
+BEGIN
+  dbms_output.put_line('Hello World!');
+END;
+/
+execute helloworld;*/
+
+
+/*CREATE SEQUENCE ART_SEQ
+START WITH 500
+INCREMENT BY 1;
+/
+CREATE OR REPLACE TRIGGER ART_TRIGGER
+BEFORE INSERT ON ARTIST
+FOR EACH ROW
+BEGIN
+SELECT ART_SEQ.NEXTVAL INTO :NEW.ARTISTID FROM DUAL;
+END;
+/
+
+COMMIT;*/
+
+--SELECT NAME, ARTISTID FROM ARTIST WHERE NAME = 'Vic Vaness';
+--UPDATE ARTIST SET NAME = 'Jack' WHERE ARTISTID = 500;
+--SELECT NAME, ARTISTID FROM ARTIST WHERE ARTISTID = 1;
+--SELECT COUNT(*) FROM ARTIST;
+--SELECT * FROM ARTIST;
+
+/*
+CREATE OR REPLACE FUNCTION get_max_id
+RETURN NUMBER
+IS
+  max_id NUMBER;
+BEGIN
+  SELECT MAX(artistid) INTO max_id FROM artist;
+  RETURN max_id;
+END;
+/
+
+DECLARE
+  max_id NUMBER;
+BEGIN
+  max_id := get_max_id();
+  dbms_output.put_line('max id is: ' || max_id);
+END;
+/
+
+SELECT get_max_id() FROM DUAL;
+
+
+CREATE OR REPLACE PROCEDURE get_artist_by_id
+(
+  art_id IN NUMBER,
+  art_name OUT VARCHAR2
+)
+IS
+BEGIN
+  SELECT name INTO art_name FROM artist WHERE artistid = art_id;
+END;
+/
+
+CREATE OR REPLACE PROCEDURE GET_ALL_ARTISTS
+(
+  cursorParam OUT SYS_REFCURSOR
+)
+IS 
+BEGIN
+  OPEN cursorParam FOR SELECT * FROM artist;
+END;
+/
+
+-- An index is a performance-tuning method of allowing faster retrieval of records.
+-- An index creates an entry for each value that appears in the indexed columns.
+CREATE INDEX ARTIST_NAME ON ARTIST(NAME);
+*/
