@@ -34,7 +34,7 @@ var h = null;
 var i;
 var j = 1, k = 'hey', l = null;
 var b; //if you redeclare a JS variable, it will not lose its value
-console.log(typeof(a)); //returns the tyoe of variable or expression
+console.log(typeof(a)); //returns the type of variable or expression
 var interpol = `Hi ${e.name}`;
 // further reading: http://es6-features.org/#StringInterpolation
 // 					https://codeburst.io/javascript-template-literals-tag-functions-for-beginners-758a041160e1
