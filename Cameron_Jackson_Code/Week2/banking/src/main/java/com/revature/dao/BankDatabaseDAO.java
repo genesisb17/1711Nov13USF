@@ -158,6 +158,7 @@ public class BankDatabaseDAO implements BankDAO {
 				acc.setUserId(rs.getInt("USER_ID"));
 				acc.setBalance(rs.getDouble("BALANCE"));
 			}
+//			System.out.println("In dao.getAccount: " + acc.getBalance());
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -189,6 +190,10 @@ public class BankDatabaseDAO implements BankDAO {
 	
 	@Override
 	public ArrayList<Account> getUserAccounts(User u) {
+		/* 
+		 * Misnamed function, but it returns all of the BANK accounts
+		 * associated with a user
+		 */
 		ArrayList<Account> accounts = new ArrayList<>();
 		try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
 			String sql = "select * from ACCOUNTS where USER_ID = ?";
@@ -267,6 +272,7 @@ public class BankDatabaseDAO implements BankDAO {
 
 	@Override
 	public Account updateAccountBalance(double bal, int id) {
+		Account acc = new Account();
 		try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
 			String sql = "update ACCOUNTS set BALANCE = ? where ACC_ID = ?";
 			PreparedStatement ps = conn.prepareStatement(sql);
@@ -277,10 +283,12 @@ public class BankDatabaseDAO implements BankDAO {
 			if (rows == 0) 
 				return null;
 			
+			acc = getAccount(id);
+//			System.out.println("In dao.updateAccountBalance: "+acc.getBalance());
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return getAccount(id);
+		return acc;
 	}
 	
 }

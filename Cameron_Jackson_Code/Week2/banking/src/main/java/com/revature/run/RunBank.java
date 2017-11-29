@@ -221,6 +221,7 @@ public class RunBank {
 		DecimalFormat df = new DecimalFormat(".##");
 		double depAmt;
 		
+		System.out.println("Current balance: $" + df.format(acc.getBalance()));
 		try {
 			do {
 				System.out.println("Enter the deposit amount: ");
@@ -239,9 +240,13 @@ public class RunBank {
 				case "yes":
 					double currBal = acc.getBalance();
 					double newbal = currBal + depAmt;
-					acc = service.updateBalance(newbal, acc.getAccountId());
+					Account updAcc = new Account();
+					updAcc = service.updateBalance(newbal, acc.getAccountId());
 					goodInput = true;
-					System.out.println("Funds successfully deposited.\n");
+					if (updAcc.getBalance() == newbal)
+						System.out.println("Funds successfully deposited.\n");
+					else
+						System.out.println("There was an error processing your deposit\n");
 					printMainMenu(u);
 					break;
 				case "no":
@@ -258,6 +263,14 @@ public class RunBank {
 		}
 	}
 	
+	static boolean correctAccount(ArrayList<Account> accounts, int acc_id) {
+		for (Account acc : accounts) {
+			if (acc.getAccountId() == acc_id)
+				return true;
+		}
+		return false;
+	}
+	
 	static void depositFunds(User u, Scanner scan) { 
 		DecimalFormat df = new DecimalFormat(".##");
 		double depAmt;
@@ -265,17 +278,20 @@ public class RunBank {
 		
 		try {
 			ArrayList<Account> accounts = service.getUserAccounts(u);
-			System.out.println("Select an account to make deposit: ");
-			printAccountIds(u, accounts);
-			
-			String s = scan.nextLine();
-			int acc_id = Integer.parseInt(s);
+			int acc_id;
+			do {
+				System.out.println("Select an account to make deposit: ");
+				printAccountIds(u, accounts);
+
+				String s = scan.nextLine();
+				acc_id = Integer.parseInt(s);
+			} while (!correctAccount(accounts, acc_id));
 			acc = service.getAccount(acc_id);
 		} catch (NumberFormatException e) {
 			System.out.println("Invalid account selected.");
 			depositFunds(u, scan);
 		}
-		
+		System.out.println("Current balance: $" + df.format(acc.getBalance()));
 		try {
 			do {
 				System.out.println("Enter the deposit amount: ");
@@ -294,9 +310,13 @@ public class RunBank {
 				case "yes":
 					double currBal = acc.getBalance();
 					double newbal = currBal + depAmt;
-					service.updateBalance(newbal, acc.getAccountId());
+					Account updAcc = new Account();
+					updAcc = service.updateBalance(newbal, acc.getAccountId());
 					goodInput = true;
-					System.out.println("Funds successfully deposited.\n");
+					if (updAcc.getBalance() == newbal)
+						System.out.println("Funds successfully deposited.\n");
+					else
+						System.out.println("There was an error processing your deposit\n");
 					printMainMenu(u);
 					break;
 				case "no":
@@ -321,17 +341,20 @@ public class RunBank {
 		
 		try {
 			ArrayList<Account> accounts = service.getUserAccounts(u);
-			System.out.println("Select an account to make withdrawal: ");
-			printAccountIds(u, accounts);
-			
-			String s = scan.nextLine();
-			int acc_id = Integer.parseInt(s);
+			int acc_id;
+			do {
+				System.out.println("Select an account to make withdrawal: ");
+				printAccountIds(u, accounts);
+
+				String s = scan.nextLine();
+				acc_id = Integer.parseInt(s);
+			} while (!correctAccount(accounts, acc_id));
 			acc = service.getAccount(acc_id);
 		} catch (NumberFormatException e) {
 			System.out.println("Invalid account selected.");
 			withdrawFunds(u, scan);
 		}
-		
+		System.out.println("Current balance: $" + df.format(acc.getBalance()));
 		try {
 			do {
 				System.out.println("Enter the withdrawal amount: ");
@@ -352,9 +375,13 @@ public class RunBank {
 				case "yes":
 					double currBal = acc.getBalance();
 					double newbal = currBal - wdrwAmt;
-					service.updateBalance(newbal, acc.getAccountId());
+					Account updAcc = new Account();
+					updAcc = service.updateBalance(newbal, acc.getAccountId());
 					goodInput = true;
-					System.out.println(wdrwAmt + " withdrawn.\n");
+					if (updAcc.getBalance() == newbal)
+						System.out.println(wdrwAmt + " withdrawn.\n");
+					else
+						System.out.println("There was an error with your request\n");
 					printMainMenu(u);
 					break;
 				case "no":
@@ -375,7 +402,7 @@ public class RunBank {
 	static void withdrawFunds(User u, Account acc, Scanner scan) {
 		DecimalFormat df = new DecimalFormat(".##");
 		double wdrwAmt;
-
+		System.out.println("Current balance: $" + df.format(acc.getBalance()));
 		try {
 			do {
 				System.out.println("Enter the withdrawal amount: ");
@@ -396,9 +423,13 @@ public class RunBank {
 				case "yes":
 					double currBal = acc.getBalance();
 					double newbal = currBal - wdrwAmt;
-					service.updateBalance(newbal, acc.getAccountId());
+					Account updAcc = new Account();
+					updAcc = service.updateBalance(newbal, acc.getAccountId());
 					goodInput = true;
-					System.out.println(wdrwAmt + " withdrawn.\n");
+					if (updAcc.getBalance() == newbal)
+						System.out.println(wdrwAmt + " withdrawn.\n");
+					else
+						System.out.println("There was an error with your request\n");
 					printMainMenu(u);
 					break;
 				case "no":

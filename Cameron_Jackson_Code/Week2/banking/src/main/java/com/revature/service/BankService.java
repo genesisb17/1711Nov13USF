@@ -90,7 +90,10 @@ public class BankService {
 	}
 
 	public Account updateBalance(double balance, int acc_id) {
-		return dao.updateAccountBalance(balance, acc_id);
+		Account acc = new Account();
+		acc = dao.updateAccountBalance(balance, acc_id);
+//		System.out.println("In service.updateBalance: " + acc.getBalance());
+		return acc;
 	}
 
 }
