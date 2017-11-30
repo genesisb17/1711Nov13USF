@@ -1,0 +1,55 @@
+
+.card {
+  position: relative;
+  float: left;
+  padding-bottom: 25%;
+  width: 33%;
+  text-align: center;
+}
+.card__front,
+.card__back {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.card__front,
+.card__back {
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+  -webkit-transition: -webkit-transform 0.3s;
+          transition: transform 0.3s;
+}
+.card__front {
+  background-color: #eee;
+}
+.card__back {
+  background-color: #eee;
+  -webkit-transform: rotateY(-180deg);
+          transform: rotateY(-180deg);
+}
+.card__text {
+  display: inline-block;
+  position: top;
+  padding-top: 25%;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  height: 20px;
+  color: black;
+  font-family: "Roboto Slab", serif;
+  line-height: 20px;
+}
+.card.effect__hover:hover .card__front {
+  -webkit-transform: rotateY(-180deg);
+          transform: rotateY(-180deg);
+}
+
+.card.effect__hover:hover .card__back {
+  -webkit-transform: rotateY(0);
+          transform: rotateY(0);
+}
+background-color: teal;
