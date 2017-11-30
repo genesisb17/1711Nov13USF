@@ -166,11 +166,13 @@ function printShape(shape, height, character) {
 	}
 }
 
-
 //9. Object literal
 //Define function traverseObject(someObj)
 //Print every property and it's value.
-//
+function traverseObject(someObj) {
+	
+}
+
 //10. Delete Element
 //Define function deleteElement(someArr)
 //Print length
