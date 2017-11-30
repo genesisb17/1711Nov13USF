@@ -1,0 +1,9 @@
+function add() {
+	// Get input values
+	var id = document.getElementById("id").value;
+	var name = document.getElementById("name").value;
+	var major = document.getElementById("major").value;
+
+}
+
+document.getElementById("add").addEventListener("click", add, false);

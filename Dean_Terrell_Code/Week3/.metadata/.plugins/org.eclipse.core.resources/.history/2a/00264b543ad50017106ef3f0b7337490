@@ -1,0 +1,12 @@
+/**
+ * Understanding AJAX
+ */
+
+function getPokemon() {
+	var id = document.getElementById("id").value;
+	console.log('Sending Poke no. ${id}');
+}
+
+window.onload = function() {
+	document.getElementById("submit").addEventListener("click", getPokemon);
+};

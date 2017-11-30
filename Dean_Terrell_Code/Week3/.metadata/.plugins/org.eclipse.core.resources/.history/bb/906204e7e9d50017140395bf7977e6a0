@@ -1,0 +1,7 @@
+package com.real.servlets;
+
+import javax.servlet.GenericServlet;
+
+public class HelloServlet extends GenericServlet {
+
+}

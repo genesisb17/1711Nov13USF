@@ -1,0 +1,12 @@
+window.onload = function() {
+	$('#login').on('click', login);
+	$('#register').on('click', register);
+}
+
+function login() {
+	alert("in login");
+}
+
+function register() {
+	alert("registering");
+}

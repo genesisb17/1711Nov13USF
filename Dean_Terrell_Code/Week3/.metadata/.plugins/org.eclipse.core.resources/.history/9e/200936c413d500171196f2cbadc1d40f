@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+body,html {
+	height: 100%;
+}
+
+.bg {
+	background-image:
+		url("https://mdbootstrap.com/img/Photos/Horizontal/Nature/full page/img(20).jpg");
+	height: 100%;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+</style>
+<meta charset="ISO-8859-1">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
+	integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb"
+	crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+	integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+	crossorigin="anonymous"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"
+	integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh"
+	crossorigin="anonymous"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"
+	integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
+	crossorigin="anonymous"></script>
+<title>Event Handling Intro</title>
+</head>
+<body>
+<div class="bg"></div>
+	<h1>JS Function Viewer</h1>
+	<br>
+	<h3>Problem 1: Fibonacci</h3>
+	<br>
+	<input type="number" id="fib" placeholder="Enter n" />
+	<button id="doFib" type="button" class="btn btn-dark">Fibonacc'ed!</button>
+	=
+	<b>
+		<p id="fibDisplay"></p>
+	</b>
+	<br>
+	<br>
+
+	<h3>Problem 2: Bubblesort</h3>
+	<br>
+	<input type="number" id="bub" placeholder="Enter number" />
+	<button id="addBub" type="button" class="btn btn-dark">Add to
+		array</button>
+	<button id="doBub" type="button" class="btn btn-dark">Display
+		sorted array</button>
+	=
+	<br>
+	<b>
+		<p id="bubDisplay"></p>
+	</b>
+	<br>
+	<br>
+
+	<h3>Problem 3: Reverse String</h3>
+	<br>
+	<input type="text" id="str" placeholder="Enter string" />
+	<button id="revStr" type="button" class="btn btn-dark">Reverse
+		String</button>
+	=
+	<br>
+	<b>
+		<p id="strDisplay"></p>
+	</b>
+	<br>
+	<br>
+
+	<h3>Problem 4: Factorial</h3>
+	<br>
+	<input type="number" id="fac" placeholder="Enter number" />
+	<button id="fact" type="button" class="btn btn-dark">Compute
+		Factorial</button>
+	=
+	<br>
+	<b>
+		<p id="facDisplay"></p>
+	</b>
+	<br>
+	<br>
+
+
+	<h3>Problem 5: IsEven</h3>
+	<br>
+	<input type="number" id="ev" placeholder="Enter number" />
+	<button id="isEven" type="button" class="btn btn-dark">Determine
+		parity</button>
+	=
+	<br>
+	<b>
+		<p id="evenDisplay"></p>
+	</b>
+	<br>
+	<br>
+
+
+	<h1>Event Propagation Demo</h1>
+	<div id="outer" style="background-color: red">
+		<br> OUTER <br>
+		<div id="middle" style="background-color: blue">
+			<br> MIDDLE <br>
+			<div id="inner" style="background-color: green">
+				<br> INNER <br>
+			</div>
+		</div>
+	</div>
+	<br>
+	<br>
+
+	<h3 id="count">COUNT</h3>
+	<script type="text/javascript" src="js/functions.js"></script>
+</body>
+</html>
