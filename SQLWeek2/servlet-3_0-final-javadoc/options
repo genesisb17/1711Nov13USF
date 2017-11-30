@@ -1,0 +1,16 @@
+-classpath '/export/home/rajiv/Workspaces/v3/web/javax.servlet/target/classes' -protected
+-sourcepath
+'/export/home/rajiv/Workspaces/v3/web/javax.servlet/src/main/java'
+-author
+-bottom
+'Copyright &copy; 2009 <a href="https://glassfish.dev.java.net">GlassFish Community</a>. All Rights Reserved.'
+-charset
+'ISO-8859-1'
+-d
+'/export/home/rajiv/Workspaces/v3/web/javax.servlet/target/apidocs'
+-doctitle
+'javax.servlet API v.3.0 3.0-SNAPSHOT API'
+-use
+-version
+-windowtitle
+'javax.servlet API v.3.0 3.0-SNAPSHOT API'

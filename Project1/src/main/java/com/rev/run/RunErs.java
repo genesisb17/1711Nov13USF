@@ -10,7 +10,6 @@ public class RunErs
 	public static void main(String[] args) 
 	{
 		// TODO Auto-generated method stub
-
 		run();
 	}
 	static void run()
@@ -24,9 +23,10 @@ public class RunErs
 		if(x==1)
 		{
 			System.out.println("Please enter username");
-			String user =sc.nextLine();
-			System.out.println("Please enter password");
-			String pass = sc.nextLine();
+			String user = "p";
+			System.out.println("Please enter password\n");
+			String pass ="p";
+			System.out.println(user +" ");
 			int u_id = service.geters_users(user, pass);
 			if(u_id!=0)
 			{

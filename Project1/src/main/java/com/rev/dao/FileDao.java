@@ -158,9 +158,29 @@ public class FileDao implements DAO
 
 	return 0;
 	}
+	
+	//QC
 	@Override
 	public String geters_user_roles(int i) {
 		// TODO Auto-generated method stub
+		
+		try(Connection conn = ConnectionFactory.getInstance().getConnection())
+		{
+			String sql = "select USER_ROLE from ers_users where ERS_USER_ROLE_ID =?";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setInt(1, i);
+			ResultSet info = ps.executeQuery();
+			while(info.next())
+			{
+				return info.getString(1);
+
+			}
+		} 
+		catch (SQLException e) 
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return null;
 	}
 }
