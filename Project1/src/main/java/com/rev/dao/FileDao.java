@@ -121,4 +121,46 @@ public class FileDao implements DAO
 		}
 		return r;
 	}
+	@Override
+	public String getRtype(int i) 
+	{
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public String getRStatus(int i) 
+	{
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public int geters_users(String user, String pass) {
+		// TODO Auto-generated method stub
+		try(Connection conn = ConnectionFactory.getInstance().getConnection())
+		{
+			String sql = "select U_ID from ers_users where USERNAME =? and password =?";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setString(1, user);
+			ps.setString(2, pass);
+			ResultSet info = ps.executeQuery();
+			while(info.next())
+			{
+				return info.getInt(1);
+
+			}
+		} 
+		catch (SQLException e) 
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+
+	return 0;
+	}
+	@Override
+	public String geters_user_roles(int i) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

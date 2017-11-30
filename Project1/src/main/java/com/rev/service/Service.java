@@ -8,11 +8,11 @@ public class Service
 {
 	static DAO dao = new FileDao();
 	
-	void addRStatus(String s)
+	public void addRStatus(String s)
 	{
 		dao.addRStatus(s);
 	}
-	void adders_users(String user, String pass, String first, String last, String email)
+	public void adders_users(String user, String pass, String first, String last, String email)
 	{
 		dao.adders_users(user, pass, first, last, email);
 	}
@@ -20,8 +20,12 @@ public class Service
 	{
 		dao.addRStatus(s);
 	}
-	void adders_user_roles(String s)
+	public void adders_user_roles(String s)
 	{
 		dao.adders_user_roles(s);
+	}
+	public int geters_users(String user, String pass)
+	{
+		return dao.geters_users(user, pass);
 	}
 }

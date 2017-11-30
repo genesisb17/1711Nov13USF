@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+
+
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
+	integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb"
+	crossorigin="anonymous">
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+	integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+	crossorigin="anonymous"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"
+	integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh"
+	crossorigin="anonymous"></script>
+	<div class="jumbotron">
+		<div class="row">
+			<input type ="text" id="newItem" class = "form-control" placeholder="new item ..."/>
+			<br>
+			<button id = "add" class="btn btn-primary"> Add item</button>
+			
+			<br>
+			<div class = 'col' id="old">
+			<ul id="toBuy">
+				<li id="one" class = "test">ribs</li>
+				<li id="two">fruits</li>
+				<li id="three">wine</li>
+			</ul> 
+			</div>
+		</div>
+<div class = "col" id ="bought">
+for you to figure out
+</div>
+	</div>
+	<script>
+	
+	
+	$('ul#toBuy li').on('click',function()
+			{
+				$('#bought').append($(this));
+				$(this).attr()
+			});
+		$('#add').on('click',function()
+				{
+					var temp = document.createElement('li');
+					temp.innerHTML =$('#newItem').val();
+					temp.setAttribute("class", "test")
+					$('#toBuy').append(temp);
+					$('#newItem').val();
+					
+				});
+
+		$('#toBuy:li').on('click',function()
+				{
+					$('#bought').append($(this));
+					$(this).attr("class","no");
+				});
+		
+		
+			</script>
+<body>
+</body>
+</html>

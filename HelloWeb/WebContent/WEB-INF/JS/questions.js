@@ -1,32 +1,55 @@
 /**
  * 
  */
-function fi(n)
+/*1. Fibonacci
+Define function: fib(n) 
+Return the nth number in the fibonacci sequence.*/
+
+function fib(n)
 {
-	if (n<=1) return n;
-	else
-		return fib(n-1)+fib(n-2);
+	if(n<=1) return n;
+	else return (fib(n-1) + fib(n-2));
 }
 
 function runFib()
 {
+	//alert("HELLO!");
 	var display = document.getElementById("fibDisplay");
 	var n = document.getElementById("fib").value;
 	display.innerHTML = fib(n);
 }
-document.getElementById("doFib").addEventListener("click", runFib)
-document.getElementById("outer").addEventListener("click",function(){alert("In outer");},true)
-document.getElementById("middle").addEventListener("click",function(){alert("In middle");},true)
-document.getElementById("inner").addEventListener("click",function(){alert("In inner");},true)
-//event propagation is where elements are 
+
+var counter = 0;
 
 function count()
 {
-	counter = counter+1;
-	document.getElementById("count").innerHTML=counter;
+	counter = counter + 1;
+	document.getElementById("count").innerHTML = counter;
 }
-function bs(a)
+
+document.getElementById("count").addEventListener("mouseover",count);
+
+document.getElementById("doFib").addEventListener("click", runFib);
+
+document.getElementById("outer").addEventListener("click", 
+		function(){	alert("IN OUTER!");}, true);
+		
+document.getElementById("middle").addEventListener("click", 
+		function() {alert("MIDDLE!");}, false);
+
+document.getElementById("inner").addEventListener("click", function() {
+	alert("INNER");}, true);
+
+function runbs()
 {
+	var display = document.getElementById("bs");
+	var n=document.getElementById("bubble").value;
+	display.innerHTML = bs(n);
+}
+
+function bs()
+{
+	a = [2,1,3,4,7,5];
 	var i =0;
 	var j;
 	var temp;
@@ -45,6 +68,10 @@ function bs(a)
 		}
 	return a;
 }
+
+
+document.getElementById("dobs").addEventListener("click", runbs);
+
 function r(s)
 {
 	var i;
@@ -56,6 +83,18 @@ function r(s)
 	}
 	return s1
 }
+function runr()
+{
+	var display = document.getElementById("br");
+	var n=document.getElementById("reverse").value;
+	display.innerHTML = r(n);
+}
+document.getElementById("dor").addEventListener("click", runr);
+
+/*
+ * 
+ */
+
 function f(n)
 {
 	if(n==1||n==0)
@@ -63,8 +102,17 @@ function f(n)
 	else
 		return n*f(n-1);
 }
-f(5);
 
+
+function runf()
+{
+	var display = document.getElementById("bf");
+	var n=document.getElementById("fact").value;
+	display.innerHTML = r(n);
+}
+document.getElementById("dof").addEventListener("click", runf);
+
+/*
 function ss(s,l,o)
 {
 	var s1="";
