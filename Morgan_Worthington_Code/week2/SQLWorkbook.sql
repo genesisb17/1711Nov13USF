@@ -153,13 +153,151 @@ SELECT AVERAGE_ALL_LINES FROM DUAL;
 -- -Create a function that returns all employees who are born after 1968.
 CREATE OR REPLACE FUNCTION BORN_AFTER_68
 RETURN sys_refcursor IS emps sys_refcursor;
+cutoff DATE;
 BEGIN
-OPEN emps for 'SELECT * FROM EMPLOYEE WHERE BIRTHDATE>1968';
+SELECT TO_DATE('1968/01/01','yyyy/mm/dd') INTO cutoff FROM DUAL;
+OPEN emps FOR SELECT * FROM EMPLOYEE WHERE BIRTHDATE>=cutoff;
 RETURN emps;
 END;
 /
-SHOW ERRORS FUNCTION BORN_AFTER_68;
 
+--output
+DECLARE
+  emps SYS_REFCURSOR;
+  temp EMPLOYEE%ROWTYPE;
+BEGIN
+  --records are assign to cursor 'c_dbuser'
+  SELECT BORN_AFTER_68 INTO emps FROM DUAL;
+  
+  LOOP
+        --fetch cursor 'c_dbuser' into dbuser table type 'temp_dbuser'
+	FETCH emps INTO temp;
+
+        --exit if no more records
+        EXIT WHEN emps%NOTFOUND;
+
+        --print the matched username
+        dbms_output.put_line(temp.FIRSTNAME);
+        dbms_output.put_line(temp.LASTNAME);
+  END LOOP;
+  
+  CLOSE emps;
+END;
+/
+
+--4.1
+-- -Create a stored procedure that selects the first and last names of all the employees.
+
+CREATE OR REPLACE PROCEDURE EMP_NAMES
+AS
+BEGIN
+SELECT FIRSTNAME, LASTNAME FROM EMPLOYEE;
+END;
+/
+
+--4.2
+-- -Create a stored procedure that updates the personal information of an employee.
+CREATE OR REPLACE PROCEDURE UPDATE_INFO(EMPID IN NUMBER, addr IN VARCHAR2, cit IN VARCHAR2, st IN VARCHAR2, nat IN VARCHAR2, post IN VARCHAR2, ph IN VARCHAR2, fa IN VARCHAR2, ema IN VARCHAR@)
+AS
+BEGIN
+UPDATE EMPLOYEE
+SET ADDRES=ADDR,
+    CITY=CIT,
+    STATE=ST,
+    COUNTRY=NAT,
+    POSTALCODE=POSE,
+    PHONE=PH,
+    FAX=FA,
+    EMAIL=EMA
+WHERE EMPLOYEEID=EMPID;
+END;
+/
+
+--4.3
+-- -Create a stored procedure that returns the name and company of a customer.
+CREATE OR REPLACE PROCEDURE CUST_INFO (CUSTID IN NUMBER)
+AS
+BEGIN
+SELECT FIRSTNAME, LASTNAME, COMPANY FROM CUSTOMER WHERE CUSTOMERID=CUSTID;
+END;
+/
+
+
+--5.0
+-- -Create a transaction that given a invoiceId will delete that invoice 
+--(There may be constraints that rely on this, find out how to resolve them).
+COMMIT;
+DELETE FROM INVOICE WHERE INVOICEID=5;
+ROLLBACK;
+
+-- -Create a transaction nested within a stored procedure that inserts a new record in the Customer table
+CREATE OR REPLACE PROCEDURE STOR_PROC
+AS
+BEGIN
+COMMIT;
+INSERT INTO CUSTOMER (FIRSTNAME,LASTNAME)
+VALUES (Bruce, Wayne);
+COMMIT;
+END;
+/
+
+--6.1
+-- -Create an after insert trigger on the employee table fired after a new record is inserted into the table.
+CREATE OR REPLACE TRIGGER INSERT_EMPLOYEE
+AFTER INSERT ON EMPLOYEE
+DECLARE
+BEGIN
+dbms_output.put_line('Employee inserted.');
+END;
+/
+
+-- -Create an after update trigger on the album table that fires after a row is inserted in the table
+CREATE OR REPLACE TRIGGER UPDATE_ALBUM
+AFTER UPDATE ON ALBUM
+DECLARE
+BEGIN
+dbms_output.put_line('Row inserted into Albums.');
+END;
+/
+
+-- -Create an after delete trigger on the customer table that fires after a row is deleted from the table.
+CREATE OR REPLACE TRIGGER DELETE_CUSTOMER
+AFTER DELETE ON CUSTOMER
+DECLARE
+BEGIN
+dbms_output.put_line('Customer deleted.');
+END;
+/
+
+--7.1
+-- -Create an inner join that joins customers and orders and specifies the name of the customer and the invoiceId.
+SELECT FIRSTNAME, LASTNAME, INVOICEID
+FROM CUSTOMER
+INNER JOIN INVOICE ON CUSTOMER.CUSTOMERID=INVOICE.CUSTOMERID;
+
+--7.2
+-- -Create an outer join that joins the customer and invoice table, specifying the CustomerId, firstname, lastname, invoiceId, and total.
+SELECT CUSTOMERID, FIRSTNAME, LASTNAME, INVOICEID, TOTAL
+FROM CUSTOMER
+FULL OUTER JOIN INVOICE ON CUSTOMER.SUPPORTREPID=INVOICE.INVOICEID;
+
+--7.3
+-- -Create a right join that joins album and artist specifying artist name and title.
+SELECT NAME, TITLE
+FROM ALBUM
+RIGHT JOIN ARTIST ON ALBUM.ARTISTID=ARTIST.ARTISTID;
+
+--7.4
+-- -Create a cross join that joins album and artist and sorts by artist name in ascending order.
+SELECT *
+FROM ALBUM
+CROSS JOIN ARTIST ON ALBUM.ARTISTID=ARTIST.ARTISTID;
+
+--7.5
+-- -Perform a self-join on the employee table, joining on the reportsto column.
+SELECT FIRSTNAME, LASTNAME
+FROM EMPLOYEE e1, EMPLOYEE e2
+WHERE e1.EMPLOYEEID=e2.REPORTSTO;
 
 -- in class demo
 --create view employeeshort as
