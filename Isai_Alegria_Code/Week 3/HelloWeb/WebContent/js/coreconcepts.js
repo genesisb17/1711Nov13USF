@@ -116,3 +116,7 @@ function getValue(condition){
 	}
 	
 }
+
+
+
+
