@@ -12,24 +12,25 @@ function login(){
 //	alert("logging in");
 	var username = $('#username').val();
 	var password = $('#pass').val();
-	var json = [username, password];
-//	var user = {
-//			name: username, 
-//			password: password
-//	};
 	
-	json = JSON.stringify(json);
+	var toSend = [username, password];
+
+	
+	var json = JSON.stringify(toSend);
 	console.log(json);
 	
 	var xhr = new XMLHttpRequest();
-	xhr.onreadystatechange = function(){
-		if(xhr.readyState == 4 && xhr.status==200){
-			
-		}
-	};
+	
 	xhr.open("POST","login", true);
 	xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 	xhr.send(json);
+	
+	xhr.onreadystatechange = function(){
+		console.log("ready state: " + xhr.readyState);
+		if(xhr.readyState == 4 && xhr.status==200){
+			console.log("in xhr callback");
+		}
+	};
 }
 
 function register(){
