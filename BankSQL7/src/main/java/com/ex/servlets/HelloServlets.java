@@ -18,7 +18,8 @@ public class HelloServlets extends GenericServlet
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
 		out.println("<h1>hello I am your new ruler of the world</h1>"+"<br><br>"+"<ul><li>this is a list item</li></ul>");
-	}	
+		
+	}
 }
 
 
