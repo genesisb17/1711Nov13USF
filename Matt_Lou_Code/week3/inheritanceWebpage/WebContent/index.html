@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+
+<title>Inheritance</title>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="#">Inheritance</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          
+        </div>
+      </div>
+    </nav>
+
+    <header>
+      <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+          <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+          <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+          <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+        </ol>
+        <div class="carousel-inner" role="listbox">
+          <!-- Slide One - Set the background image for this slide in the line below -->
+          <div class="carousel-item active" style="background-image: url('http://placehold.it/1900x1080')">
+            <div class="carousel-caption d-none d-md-block">
+              <h3>First Slide</h3>
+              <p>This is a description for the first slide.</p>
+            </div>
+          </div>
+          <!-- Slide Two - Set the background image for this slide in the line below -->
+          <div class="carousel-item" style="background-image: url('http://placehold.it/1900x1080')">
+            <div class="carousel-caption d-none d-md-block">
+              <h3>Second Slide</h3>
+              <p>This is a description for the second slide.</p>
+            </div>
+          </div>
+          <!-- Slide Three - Set the background image for this slide in the line below -->
+          <div class="carousel-item" style="background-image: url('http://placehold.it/1900x1080')">
+            <div class="carousel-caption d-none d-md-block">
+              <h3>Third Slide</h3>
+              <p>This is a description for the third slide.</p>
+            </div>
+          </div>
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+      </div>
+    </header>
+
+    <!-- Page Content -->
+    <section class="py-5">
+      <div class="container">
+        <h1 class="display-3">Inheritance</h1>
+  <div class="dropdown">
+  <button class="btn btn-secondary dropdown-toggle justify-content-end" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    NAVIGATE
+  </button>
+  <br><br>
+  Multiple inheritance of implementation is the ability to inherit method definitions from multiple classes. Problems arise with this type of multiple inheritance, such as name conflicts and ambiguity. When compilers of programming languages that support this type of multiple inheritance encounter superclasses that contain methods with the same name, they sometimes cannot determine which member or method to access or invoke. In addition, a programmer can unwittingly introduce a name conflict by adding a new method to a superclass. Default methods introduce one form of multiple inheritance of implementation. A class can implement more than one interface, which can contain default methods that have the same name. The Java compiler provides some rules to determine which default method a particular class uses.
+
+The Java programming language supports multiple inheritance of type, which is the ability of a <b>class to implement more than one interface.</b> An object can have multiple types: the type of its own class and the types of all the interfaces that the class implements. This means that if a variable is declared to be the type of an interface, then its value can reference any object that is instantiated from any class that implements the interface. This is discussed in the section <b>Using an Interface as a Type.</b>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+    <a href="thingsToNote.html"><button class="dropdown-item" type="button">Things to Note</button></a>
+    <button class="dropdown-item" type="button"> <a href="sample.html">Examples</a></button>
+    <button class="dropdown-item" type="button">Something else here</button>
+  </div>
+</div>
+  <img src="https://www.tutorialspoint.com/java/images/types_of_inheritance.jpg"
+alt="inheritance chart">
+  <p class="lead">A class that is derived from another class is called a subclass (also a derived class, extended class, or child class). The class from which the subclass is derived is called a superclass (also a base class or a parent class).</p>
+  <hr class="my-4">
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-5 bg-dark">
+      <div class="container">
+        <p class="m-0 text-center text-white">Copyright &copy; Your Website 2017</p>
+      </div>
+      <!-- /.container -->
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

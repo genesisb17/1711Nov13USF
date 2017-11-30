@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Sample Code</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="#">Inheritance Questions</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          
+        </div>
+      </div>
+    </nav>
+
+    <header>
+      <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+          <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+          <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+          <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+        </ol>
+        <div class="carousel-inner" role="listbox">
+          <!-- Slide One - Set the background image for this slide in the line below -->
+          <div class="carousel-item active" style="background-image: url('http://placehold.it/1900x1080')">
+            <div class="carousel-caption d-none d-md-block">
+              <h3>First Slide</h3>
+              <p>This is a description for the first slide.</p>
+            </div>
+          </div>
+          <!-- Slide Two - Set the background image for this slide in the line below -->
+          <div class="carousel-item" style="background-image: url('http://placehold.it/1900x1080')">
+            <div class="carousel-caption d-none d-md-block">
+              <h3>Second Slide</h3>
+              <p>This is a description for the second slide.</p>
+            </div>
+          </div>
+          <!-- Slide Three - Set the background image for this slide in the line below -->
+          <div class="carousel-item" style="background-image: url('http://placehold.it/1900x1080')">
+            <div class="carousel-caption d-none d-md-block">
+              <h3>Third Slide</h3>
+              <p>This is a description for the third slide.</p>
+            </div>
+          </div>
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+      </div>
+    </header>
+
+    <!-- Page Content -->
+    <div class="container">
+	<div class="row">
+		<div class="col">
+<h6>
+Consider an interface that you have developed called DoIt:
+<br><br>
+<pre>
+<br><br>
+public interface DoIt {
+   void doSomething(int i, double x);
+   int doSomethingElse(String s);
+}
+
+public interface DoIt {
+
+   void doSomething(int i, double x);
+   int doSomethingElse(String s);
+   boolean didItWork(int i, double x, String s);
+   
+}
+</pre>
+
+</h6>
+</div>
+<br>
+<h6>
+<pre>
+public interface DoItPlus extends DoIt {
+
+   boolean didItWork(int i, double x, String s);
+   
+}
+</pre>
+</h6>
+</div>
+-----------------------------------------------------------
+<h6>
+<pre>
+2) What will be the output of this program?
+class A
+{
+    int i = 10;
+}
+ 
+class B extends A
+{
+    int i = 20;
+}
+ 
+public class MainClass
+{
+    public static void main(String[] args)
+    {
+        A a = new B();
+ 
+        System.out.println(a.i);
+    }
+}
+
+</pre>
+</h6>
+---------------------------------------------------------
+<h6>
+<pre>
+class M
+{
+    static
+    {
+        System.out.println('A');
+    }
+ 
+    {
+        System.out.println('B');
+    }
+ 
+    public M()
+    {
+        System.out.println('C');
+    }
+}
+ 
+class N extends M
+{
+    static
+    {
+        System.out.println('D');
+    }
+ 
+    {
+        System.out.println('E');
+    }
+ 
+    public N()
+    {
+        System.out.println('F');
+    }
+}
+ 
+public class MainClass
+{
+    public static void main(String[] args)
+    {
+        N n = new N();
+    }
+}
+</pre>
+</h6>
+------------------------------------------------------
+<h6>
+<pre>
+class M
+{
+    int i;
+ 
+    public M(int i)
+    {
+        this.i = i--;
+    }
+}
+ 
+class N extends M
+{
+    public N(int i)
+    {
+        super(++i);
+ 
+        System.out.println(i);
+    }
+}
+ 
+public class MainClass
+{
+    public static void main(String[] args)
+    {
+        N n = new N(26);
+    }
+}
+</pre>
+</h6>
+<h3>For more Information: <a href="http://javaconceptoftheday.com/java-inheritance-practice-coding-questions/">Good Study Questions for OCA</a></h3>
+</div>
+
+    <section class="py-5">
+      
+</div>
+  <hr class="my-4">
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-5 bg-dark">
+      <div class="container">
+        <p class="m-0 text-center text-white">Copyright &copy; Your Website 2017</p>
+      </div>
+      <!-- /.container -->
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

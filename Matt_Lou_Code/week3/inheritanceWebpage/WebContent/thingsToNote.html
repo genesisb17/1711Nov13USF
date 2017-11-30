@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Things to Note</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+</head>
+<body>
+<div class="dropdown">
+  <button class="btn btn-secondary dropdown-toggle justify-content-end" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    OCA on Inheritance
+  </button>
+  
+  <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+    <a href="#"><button class="dropdown-item" type="button">Things to Note</button></a>
+    <button class="dropdown-item" type="button">Examples</button>
+    <button class="dropdown-item" type="button">Something else here</button>
+  </div>
+</div>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="#">Start Bootstrap</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+        </div>
+      </div>
+    </nav>
+
+    <header>
+      <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+          <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+          <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+          <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+        </ol>
+        <div class="carousel-inner" role="listbox">
+          <!-- Slide One - Set the background image for this slide in the line below -->
+          <div class="carousel-item active" style="background-image: url('http://placehold.it/1900x1080')">
+            <div class="carousel-caption d-none d-md-block">
+              <h3>First Slide</h3>
+              <p>This is a description for the first slide.</p>
+            </div>
+          </div>
+          <!-- Slide Two - Set the background image for this slide in the line below -->
+          <div class="carousel-item" style="background-image: url('http://placehold.it/1900x1080')">
+            <div class="carousel-caption d-none d-md-block">
+              <h3>Second Slide</h3>
+              <p>This is a description for the second slide.</p>
+            </div>
+          </div>
+          <!-- Slide Three - Set the background image for this slide in the line below -->
+          <div class="carousel-item" style="background-image: url('http://placehold.it/1900x1080')">
+            <div class="carousel-caption d-none d-md-block">
+              <h3>Third Slide</h3>
+              <p>This is a description for the third slide.</p>
+            </div>
+          </div>
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+      </div>
+    </header>
+
+    <!-- Page Content -->
+    <section class="py-5">
+      <div class="container">
+      <img class="float" alt="inheritance" src="http://javaconceptoftheday.com/wp-content/uploads/2014/11/Inheritance2.png" />
+     <p> Inheritance is an important pillar of OOP(Object Oriented Programming). It is the mechanism in java by which one class is allow to inherit the features(fields and methods) of another class.
+Important terminology:
+
+Super Class: The class whose features are inherited is known as super class(or a base class or a paren class).
+Sub Class: The class that inherits the other class is known as sub class(or a derived class, extended class, or child class). The subclass can add its own fields and methods in addition to the superclass fields and methods.
+Reusability: Inheritance supports the concept of reusability, i.e. when we want to create a new class and there is already a class that includes some of the code that we want, we can derive our new class from the existing class. By doing this, we are reusing the fields and methods of the existing class.</p>
+		
+      	<p>A Java class can only extend one parent class. Multiple inheritance ( extends ) is not allowed. Interfaces are not classes, however, and a class can implement more than one interface. The parent interfaces are declared in a comma-separated list, after the implements keyword.<p>
+        
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <br><br><br><br><br><br><br><br>
+    <footer class="py-5 bg-dark">
+      <div class="container">
+        <p class="m-0 text-center text-white">Copyright &copy; Your Website 2017</p>
+      </div>
+      <!-- /.container -->
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+
+</body>
+</html>
