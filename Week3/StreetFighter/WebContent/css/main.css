@@ -1,0 +1,82 @@
+/** 
+	 /* 
+ 	rem -Root Element,
+ 	 Equal to computed value of the font-size on the root
+ 	element. When specified, the rem unit refer to the property's 
+ 	initial value.
+ 	ie
+ 		10px = 0.625rem
+ 		12px = 0.75rem
+ 		14px = 0.875rem
+ 		16px = 1rem
+*/
+
+body {
+	background-color: orangered;
+}
+.main {
+	background-color: whitesmoke;
+	margin-top: 6.875rem;
+	padding-left: 6.25rem;
+	min-width: 75rem;
+	height: 31.25rem;
+}
+.ryu {
+	float: left;
+}
+.hadouken {
+	background-image: url('../img/hadouken.gif');
+	width: 9.75rem;
+	height: 5.625rem;
+/*	margin-top: 10.5rem;
+	margin-left: -9.75rem;*/
+	display: none;
+	float: left;
+	position: relative;
+	top: 10.5rem;
+	left: -10rem;
+}
+.hadouken,
+.ryu-ready,
+.ryu-still,
+.ryu-throwing,
+.ryu-cool {
+	background-repeat: no-repeat;
+}
+.ryu-ready,
+.ryu-still,
+.ryu-throwing,
+.ryu-cool {
+	width: 41.188rem;
+	height: 30.875rem;
+}
+.ryu-ready,
+.ryu-throwing,
+.ryu-cool {
+	display: none;
+}
+.ryu-ready {
+	background-image: url('../img/ryu-ready-position.gif');
+}
+.ryu-still {
+	background-image: url('../img/ryu-standing-still.png');
+}
+.ryu-throwing {
+	background-image: url('../img/ryu-throwing-hadouken.png');
+}
+.ryu-cool {
+	background-image: url('../img/ryu-cool.gif');
+}
+.instructions {
+	height: 30.875rem;
+	width: 18rem;
+	position: absolute;
+	left: 38rem;
+	top: 6.875rem;
+	font-family: 'Architects Daughter', cursive;
+	font-size: 2.8rem;
+}
+.instructions p + p {
+	position: absolute;
+	bottom: 0;
+}
