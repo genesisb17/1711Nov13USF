@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="ISO-8859-1">
+
+	<title>Revature - JavaScript Workbook</title>
+	
+	<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
+	integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb"
+	crossorigin="anonymous">
+
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+	integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+	crossorigin="anonymous"></script>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"
+	integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh"
+	crossorigin="anonymous"></script>
+
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"
+	integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
+	crossorigin="anonymous"></script>
+	
+	<style>
+		h1 {
+			background: #000000;
+			color: white;
+		}
+		
+		h3 {
+			background: #AAB7B8;
+			border-radius: 5px;
+		}
+		
+		.result {
+			background: white;
+			border-radius: 5px;
+		}
+		
+		.row {
+			background: #CCD1D1;
+			border-radius: 25px;
+		}
+	</style>
+
+</head>
+
+<body style="background: url('images/background.jpg')">
+	<h1 style="text-align: center">JS Function Viewer</h1> <br> <br>
+	
+	<div class="container">
+		<div class="row">
+			<div class="col-sm">
+				<h3>Problem 1: Fibonacci</h3> <br>
+				<input type="number" id="fibNum" class="form-control" placeholder="Desired Fibonacci number's index position" />
+				<button id="doFib" class="btn btn-primary">Fibonacc'ed!</button>
+				<br><br>
+				<b>
+					<div class="row">
+						<div class="col-2">
+							<p>Result:</p>
+						</div>
+						
+						<div class="col-8">
+							<p id="fibDisplay" class="result"></p>
+						</div>
+					</div>
+				</b> <br> <br>
+			</div>
+			
+			<br><br>
+			
+			<div class="col-sm">
+				<h3>Problem 2: Bubble Sort</h3> <br>
+				<input type="number" id="element" class="form-control" placeholder="Enter numerical values here" />
+				<button id="insertIntoArray" class="btn btn-primary">Insert value into array</button>
+				<button id="doBubbleSort" class="btn btn-primary">Sort</button>
+				<br><br>
+				<b>
+				<div class="row">
+					<div class="col-2">
+						<p>Result:</p>
+					</div>
+					
+					<div class="col-8">
+						<p id="bubbleSortDisplay" class="result"></p>
+					</div>
+				</div>
+				</b> <br> <br>
+			</div>
+			
+			
+			<div class="col-sm">
+				<h3>Problem 3: Reverse String</h3> <br>
+				<input type="text" id="reverseSomeStr" class="form-control" placeholder="Enter some text here" />
+				<button id="doReverseStr" class="btn btn-primary">Reverse text</button>
+				<br><br>
+				<b>
+					<p>Result:</p>
+					<p id="reverseStrDisplay" class="result"></p>
+				</b> <br> <br>
+			</div>
+		</div>
+	</div>
+	
+	
+	<div class="container">
+		<div class="row">
+			<div class="col-sm">
+				<h3>Problem 4: Factorial</h3> <br>
+				<input type="number" id="someNum" class="form-control" placeholder="Enter a positive integer" />
+				<button id="doFactorial" class="btn btn-primary">Calculate</button>
+				<br><br>
+				<b>
+					<p>Result:</p>
+					<p id="factorialDisplay" class="result"></p>
+				</b> <br> <br>
+			</div>
+			
+			
+			<div class="col-sm">
+				<h3>Problem 5: Substring</h3> <br>
+				<input type="text" id="substringSomeStr" class="form-control" placeholder="Enter some text here" />
+				<input type="number" id="length" class="form-control" placeholder="Enter string length" />
+				<input type="number" id="offset" class="form-control" placeholder="Enter the offset index position" />
+				<button id="doSubstring" class="btn btn-primary">Get Substring</button>
+				<br><br>
+				<b>
+					<p>Result:</p>
+					<p id="substringDisplay" class="result"></p>
+				</b> <br> <br>
+			</div>
+			
+			
+			<div class="col-sm">
+				<h3>Problem 6: Is Even?</h3> <br>
+				<input type="text" id="isEvenNum" class="form-control" placeholder="Enter an integer" />
+				<button id="doIsEven" class="btn btn-primary">Is it even?</button>
+				<br><br>
+				<b>
+					<p>Result:</p>
+					<p id="isEvenDisplay" class="result"></p>
+				</b> <br> <br>
+			</div>
+		</div>
+	</div>
+	
+	
+	
+	
+	<script type="text/javascript" src="js/functions.js"></script>
+</body>
+
+</html>
