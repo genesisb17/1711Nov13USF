@@ -4,19 +4,20 @@
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
 <style>
+
 div{
-background-color:green
+background-color:green;
 }
 
 #nested{
 border: 50px solid pink;
+background-color: yellow;
 }
-
 .outer{
-font: italic bold 15/px Georgia,serif;
+ font:italic bold 15px Georgia, serif;
 }
-
 </style>
+
 </head>
 <body>
 <!-- THIS IS A COMMENT -->
@@ -26,19 +27,19 @@ font: italic bold 15/px Georgia,serif;
 
 <a href="http://www.google.com">Let me google that for you</a>
 
-<!-- dividers for code -->
-<div id="first" style="background-color:red;">
+<div id="first" style="background-color:red;" class="outer">
 inside first div
-	<div id="nested" style="background-color:blue;>
-	inside nested div
-	</div>	
-still inside first div
+	<div id="nested" >
+		inside nested div
+	</div>
+	
+	still inside first div
+	<
 </div>
+<div id="alone">things are here</div>
+<div id="second" class="outer">inside second div</div>
 
-<div id="alone">thigs are here</div>
-<div id="second" class="outer">
-inside second div
-</div>
-<button>Click me!</button>
+<button>Click Me!</button>
+
 </body>
 </html>

@@ -2,24 +2,30 @@ package com.revature.hello;
 
 public class AboutStrings {
 
-	public static void main(String[] args){
-		String a="hello";
-		String b="Hello";
-		String c=new String("hello");
-		String d=a;
-		String e="hello";
+	public static void main(String[] args) {
 		
-/*		System.out.println("1 "+a.equals(c));
-		System.out.println("2 "+(a==c));
-		System.out.println("3 "+ (a.equals(e)));
-		System.out.println("4 "+(a==e));
-		System.out.println("5 "+a.equalsIgnoreCase(b));*/
+		String c = "hello";
+		String b = "Hello";
+		String a = new String("hello");
+		String d = a;
+		String e = "hello";
 		
-		//test(a);
-		//a=test(a);
-		System.out.println(test(a));
+/*		System.out.println("1 " + a.equals(c));
+		System.out.println("2 " + (a==c));
+		System.out.println("3 " + c.equals(e));
+		System.out.println("4 " + (c==e));
+		System.out.println("5 " + a.equalsIgnoreCase(b));*/
+
+		test(a);
+		//a = test( a);
+		System.out.println(a);
+		
 	}
-	static String test(String x){
-		return x.substring(2);
-	}
+	
+	
+	 static void test(String x){
+		 x.substring(2);
+	 }
+	
+
 }

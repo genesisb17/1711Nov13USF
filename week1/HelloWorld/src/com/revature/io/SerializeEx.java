@@ -12,29 +12,28 @@ public class SerializeEx {
 	 * To serialize an object means to convert its state 
 	 * to a byte stream so that the byte stream can be reverted
 	 * back into a copy of the object. A Java object is 
-	 * serializable if its class or any of its superclasses 
+	 * serializable if its class or any of its superclasses
 	 * implements either Serializable or its subinterface
-	 * Externalizable.
+	 * Externalizable
 	 */
-
+	
 	static String filename = "src/logs/bytestream.txt";
 	
 	void writeStream(Object o){
-		try(ObjectOutputStream oos=new ObjectOutputStream(new FileOutputStream(filename))){
+		try(ObjectOutputStream oos = new ObjectOutputStream(
+				new FileOutputStream(filename))){
 			oos.writeObject(o);
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		} 
 	}
 	
 	Object readObject(){
-		Object obj=null;
-		try(ObjectInputStream ois=new ObjectInputStream(new FileInputStream(filename))){
-			obj=ois.readObject();
+		Object obj = null;
+		try(ObjectInputStream ois = new ObjectInputStream(new FileInputStream(filename))){
+			obj = ois.readObject();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
@@ -42,8 +41,10 @@ public class SerializeEx {
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
-			
+		
 		return obj;
 	}
+
+	
 	
 }

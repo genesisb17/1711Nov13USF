@@ -153,13 +153,40 @@ SELECT AVERAGE_ALL_LINES FROM DUAL;
 -- -Create a function that returns all employees who are born after 1968.
 CREATE OR REPLACE FUNCTION BORN_AFTER_68
 RETURN sys_refcursor IS emps sys_refcursor;
+cutoff DATE;
 BEGIN
-OPEN emps for 'SELECT * FROM EMPLOYEE WHERE BIRTHDATE>1968';
+SELECT TO_DATE('1968/01/01','yyyy/mm/dd') INTO cutoff FROM DUAL;
+OPEN emps FOR SELECT * FROM EMPLOYEE WHERE BIRTHDATE>=cutoff;
 RETURN emps;
 END;
 /
-SHOW ERRORS FUNCTION BORN_AFTER_68;
 
+--4.1
+-- -Create a stored procedure that selects the first and last names of all the employees.
+
+--output
+DECLARE
+  emps SYS_REFCURSOR;
+  temp EMPLOYEE%ROWTYPE;
+BEGIN
+  --records are assign to cursor 'c_dbuser'
+  SELECT BORN_AFTER_68 INTO emps FROM DUAL;
+  
+  LOOP
+        --fetch cursor 'c_dbuser' into dbuser table type 'temp_dbuser'
+	FETCH emps INTO temp;
+
+        --exit if no more records
+        EXIT WHEN emps%NOTFOUND;
+
+        --print the matched username
+        dbms_output.put_line(temp.FIRSTNAME);
+        dbms_output.put_line(temp.LASTNAME);
+  END LOOP;
+  
+  CLOSE emps;
+END;
+/
 
 -- in class demo
 --create view employeeshort as

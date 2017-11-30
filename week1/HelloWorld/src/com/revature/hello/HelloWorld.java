@@ -1,39 +1,44 @@
 package com.revature.hello;
 
+// import statements tell Java which packages to look in for classes
 import java.util.Scanner;
 
 public class HelloWorld {
 	//this is a comment
 	
-	//Below is a main method
-	public static void main(String[] args) {
 	
+	/*
+	 * Every java program begins execution with its main method.
+	 * A main() method is the gateway between the startup of a Java
+	 * process, which is managed by the JVM, and the beginning of 
+	 * the developer's code. 
+	 */
+	public static void main(String[] args) {
 		String name = "Genesis Bonds";
+		name.charAt(1);
+		name.length();
 		System.out.println(name);
 		
-		//primitive type
-		int x=5;
-		//Wrapper class type
-		Integer ex=new Integer(5);
-		//autoboxing from primitive to Wrapper Object
-		ex=x;
-		//Can now call methods on ex
-		ex.byteValue();
+		int x = 5;
+		Integer ex = new Integer(5); // wrapper class
+		ex = x;  // autoboxing
 		
-		Scanner scan=new Scanner(System.in);
+		Scanner scan = new Scanner(System.in);
 		String text = scan.nextLine();
 		
-		System.out.println("Hello "+text);
+		System.out.println("Hello " + text);
+		 int y;
 		
-		int var[][]=new int[2][3];
-		var[0][2]=5;
-		var[1][1]=10;
+		int var[][] = new int[2][3];
+		var[0][2] = 5;
+		var[1][1] = 10;
 		
-		System.out.println(var[0][0]);
+		
 	}
 	
 	/*
-	 * This is a block comment aka multi-line comment
+	 * this is a block comment aka multi-line comment
 	 */
-	
+
+
 }

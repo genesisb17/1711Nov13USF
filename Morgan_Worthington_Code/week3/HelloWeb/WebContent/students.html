@@ -2,13 +2,11 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Event Handling Intro</title>
-
+<title>DOM Manipulation</title>
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
 	integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb"
 	crossorigin="anonymous">
-
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
 	integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
 	crossorigin="anonymous"></script>
@@ -20,48 +18,28 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"
 	integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
 	crossorigin="anonymous"></script>
-
-
-
 </head>
 <body>
+	<h1>Student Information</h1>
 
-	<h1>JS Function Viewer</h1>
 	<br>
-	<h3>Problem 1: Fibonacci</h3>
 	<br>
-	<input type="number" id="fib" class="form-control"
-	 placeholder="Enter n" />
-
-	<button id="doFib" class="btn btn-primary">Fibonacc'ed!</button>
-	=
-
-	<b>
-		<p id="fibDisplay"></p>
-	</b>
-
-
-<br><br>
-<h1>Event Propagation Demo</h1>
-
-<div id="outer" style="background-color: red">
-	<br> OUTER <br>
+	<h4>Name:</h4>
+	<input type="text" class="form-control" id="name" />
+	<h4>Major:</h4>
+	<input type="text" class="form-control" id="major" />
+	<br>
+	<button id="add" class="btn btn-primary">Add Student</button>
+	<br>
+	<br>
+	<table id="students" class="table">
+		<tr>
+			<th>ID</th>
+			<th>Name</th>
+			<th>Major</th>
+		</tr>
+	</table>
 	
-	<div id="middle" style="background-color: blue">
-		<br> MIDDLE <br>
-		
-		<div id ="inner" style="background-color: green">
-			<br> INNER <br>
-		</div>
-		<br><br>
-	</div>
-	<br><br>
-</div>
-<br><br>
-
-<h3 id="count">COUNT</h3>
-
-
-	<script type="text/javascript" src="js/functions.js"></script>
+	<script src="js/students.js"></script>
 </body>
 </html>

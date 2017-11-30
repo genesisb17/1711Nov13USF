@@ -6,18 +6,18 @@ import java.io.Serializable;
 public class Student implements Serializable {
 	
 	/**
-	 * The serialVersionUID is used as a version control in a
-	 * Serializable class. If you do not explicitly declare one,
-	 * the JVM will do it for you based on various aspects of
-	 * your Serializable class.
+	 * The serialVersionUID is used as a version control in a 
+	 * Serializable class. If you do not explicitly declare one, 
+	 * the JVM will do it for you based on various aspects of 
+	 * your Serializable class
 	 */
-	private static final long serialVersionUID = -1706602523015578910L;
-
-
+	//private static final long serialVersionUID = -1706602523015578910L;
+	
+	
 	private String name;
 	private int age;
 	
-	public Student(){}
+	public Student(){} 
 	
 	public Student(String name, int age) {
 		super();
@@ -48,4 +48,6 @@ public class Student implements Serializable {
 	
 	
 	
+	
+
 }

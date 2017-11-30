@@ -3,14 +3,14 @@ package com.revature.designpatterns;
 import java.util.Scanner;
 
 public class MainClass {
+	
 	public static void main(String[] args) {
-		/*
-		 * SINGLETON
-		 * must use the getInstance() method to
-		 * instantiate singleton class
-		 * s
-		 * cannot have more than one instance, but more than one reference
-		 */
+	
+	/*
+	 * SINGLETON
+	 * must use the getInstance() method to 
+	 * instantiate singleton class
+	 */
 		Singleton single = Singleton.getInstance();
 		single.hello();
 		System.out.println(single.count);
@@ -21,8 +21,8 @@ public class MainClass {
 		
 		/*
 		 * FACTORY DESIGN PATTERN
-		 * Here, we create an object without exposing
-		 * creation logic to the client. We refer to the
+		 * Here, we create an object without exposing 
+		 * creation logic to the client. We refer to the 
 		 * newly created object using a common interface
 		 */
 		

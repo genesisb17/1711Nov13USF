@@ -1,7 +1,7 @@
 package com.rev.pojos;
 
 public class User {
-	private static int idnums=0;
+	
 	private int id;
 	private String firstname;
 	private String lastname;
@@ -9,12 +9,8 @@ public class User {
 	private String password;
 	private double balance;
 	
-	public User() {
-		this.firstname="";
-		this.lastname="";
-		this.username="";
-		this.password="";
-	}
+	public User(){}
+	
 	public User(int id, String firstname, String lastname, String username, String password, double balance) {
 		super();
 		this.id = id;
@@ -23,16 +19,8 @@ public class User {
 		this.username = username;
 		this.password = password;
 		this.balance = balance;
-		
 	}
 
-	public static int getIdnums() {
-		return idnums;
-	}
-	public static void setIdnums(int idnums) {
-		User.idnums = idnums;
-	}
-	
 	public int getId() {
 		return id;
 	}
@@ -80,12 +68,16 @@ public class User {
 	public void setBalance(double balance) {
 		this.balance = balance;
 	}
-	
+
 	public String toFile() {
-		return id + ":" + firstname + ":" + lastname + ":" + username
-				+ ":" + password + ":" + balance+"\n";
+		return  id + ":" + firstname + ":" + lastname + ":" + username
+				+ ":" + password + ":" + balance;
 	}
 	
 	
 	
+	
+	
+	
+
 }

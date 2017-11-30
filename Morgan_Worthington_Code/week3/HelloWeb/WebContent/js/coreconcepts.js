@@ -93,7 +93,7 @@ function add(a,b){
 	return a+b;
 }
 
-/**
+/*
  * Hoisting
  * Variable declarations using vare are treated as
  * if they are at the top of the function (or
