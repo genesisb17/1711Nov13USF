@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+<meta name="description" content="">
+<meta name="author" content="">
+<link rel="icon" href="/favicon.ico">
+
+<title>Exceptions in Java</title>
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.3/css/bootstrap.min.css"
+	integrity="sha384-MIwDKRSSImVFAZCVLtU0LMDdON6KVCrZHyVQQj6e8wIEJkW4tvwqXrbMIya1vriY"
+	crossorigin="anonymous">
+
+<!-- Some extra styles (remove if not needed) -->
+<style>
+section {
+	padding: 70px 0;
+	border-bottom: 1px dotted #ccc;
+}
+
+/* So that we can see the grid */
+.grid-example  div[class^="col"] {
+	border: 1px solid white;
+	background: lightblue;
+	text-align: center;
+	padding-top: 8px;
+	padding-bottom: 8px;
+}
+/* Overide Jumbotron's color */
+.jumbotron {
+	background-color: lightskyblue;
+}
+</style>
+
+</head>
+<body data-spy="scroll" data-target="#navbar-example">
+
+	<nav id="topNav"
+		class="navbar navbar-full navbar-static-top navbar-dark bg-inverse">
+		<div class="container">
+			<button class="navbar-toggler hidden-md-up pull-right" type="button"
+				data-toggle="collapse" data-target="#collapsingNavbar">
+				&#9776;</button>
+			<a class="navbar-brand" href="#">Logo</a>
+			<div class="collapse navbar-toggleable-sm" id="collapsingNavbar">
+				<ul class="nav navbar-nav">
+					<li class="nav-item"><a class="nav-link" href="#grid">Grid</a>
+					</li>
+					<li class="nav-item"><a class="nav-link" href="#cards">Cards</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+	<div class="jumbotron jumbotron-fluid">
+		<div class="container">
+			<h1 class="display-3">Java Exceptions!</h1>
+			<p>The Java programming language uses exceptions to handle errors
+				and other exceptional events.</p>
+			<p>An exception is a problem that arises during the execution of
+				a program.</p>
+			<p>
+				<a class="btn btn-primary btn-lg"
+					href="https://www.tutorialspoint.com/java/java_exceptions.htm"
+					role="button">Exception Examples &raquo;</a>
+			</p>
+		</div>
+	</div>
+
+	<div class="container">
+
+		<section id="grid">
+			<h2>Exceptions Hierarchy</h2>
+
+			<p>All exception classes are subtypes of the java.lang.Exception
+				class. The exception class is a subclass of the Throwable class.
+				Other than the exception class there is another subclass called
+				Error which is derived from the Throwable class.</p>
+
+			<br />
+
+			<div class="card-columns">
+				<!-- Card 1 -->
+				<div class="card">
+					<div class="card-header">Example</div>
+					<div class="card-block">
+						<img src="exceptions1.jpg" />
+					</div>
+				</div>
+			</div>
+
+		</section>
+
+
+		<section id="grid">
+			<h2>Checked Exceptions</h2>
+
+			<p>A checked exception is an exception that occurs at the compile
+				time, these are also called as compile time exceptions. These
+				exceptions cannot simply be ignored at the time of compilation, the
+				programmer should take care of (handle) these exceptions.</p>
+
+			<br />
+
+			<div class="card-columns">
+				<!-- Card 1 -->
+				<div class="card">
+					<div class="card-header">Example</div>
+					<div class="card-block">
+						<p class="card-text">
+							import java.io.File; <br> import java.io.FileReader; <br>public
+							class FilenotFound_Demo { <br>public static void main(String
+							args[]) { <br>File file = new File("E://file.txt"); <br>FileReader
+							fr = new FileReader(file); <br>} <br>}
+						</p>
+					</div>
+				</div>
+			</div>
+
+		</section>
+
+		<section id="cards">
+			<h2>Unchecked Exceptions</h2>
+
+			<p>An unchecked exception is an exception that occurs at the time
+				of execution. These are also called as Runtime Exceptions. These
+				include programming bugs, such as logic errors or improper use of an
+				API. Runtime exceptions are ignored at the time of compilation.</p>
+
+			<div class="card-columns">
+				<!-- Card 1 -->
+				<div class="card">
+					<div class="card-header">Example</div>
+					<div class="card-block">
+						<p class="card-text">
+							public class Unchecked_Demo {<br> public static void
+							main(String args[]) {<br> int num[] = {1, 2, 3, 4};<br>
+							System.out.println(num[5]);<br> }<br> }<br>
+						</p>
+					</div>
+				</div>
+			</div>
+
+		</section>
+
+		<section id="cards">
+			<h2>Summary</h2>
+			<p>A program can catch exceptions by using a combination of the
+				try, catch, and finally blocks.</p>
+
+			<ul>
+				<li>The try block identifies a block of code in which an
+					exception can occur.</li>
+				<li>The catch block identifies a block of code, known as an
+					exception handler, that can handle a particular type of exception.</li>
+				<li>The finally block identifies a block of code that is
+					guaranteed to execute, and is the right place to close files,
+					recover resources, and otherwise clean up after the code enclosed
+					in the try block.</li>
+
+			</ul>
+
+		</section>
+
+
+
+		<footer>
+			<p>&copy; Rony Alvarez 2017</p>
+		</footer>
+	</div>
+	<!-- /container -->
+
+
+	<!-- Bootstrap core JavaScript
+    ================================================== -->
+	<!-- Placed at the end of the document so the pages load faster -->
+
+	<!-- jQuery library -->
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js"
+		integrity="sha384-THPy051/pYDQGanwU6poAc/hOdQxjnOEXzbT+OuUAFqNqFjL+4IGLBgCJC3ZOShY"
+		crossorigin="anonymous"></script>
+
+	<!-- Tether -->
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.2.0/js/tether.min.js"
+		integrity="sha384-Plbmg8JY28KFelvJVai01l8WyZzrYWG825m+cZ0eDDS1f7d/js6ikvy1+X+guPIB"
+		crossorigin="anonymous"></script>
+
+	<!-- Latest compiled JavaScript -->
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.3/js/bootstrap.min.js"
+		integrity="sha384-ux8v3A6CPtOTqOzMKiuo3d/DomGaaClxFYdCu2HPMBEkf6x2xiDyJ7gkXU0MWwaD"
+		crossorigin="anonymous"></script>
+
+	<!-- Initialize Bootstrap functionality -->
+	<script>
+		// Initialize tooltip component
+		$(function() {
+			$('[data-toggle="tooltip"]').tooltip()
+		})
+
+		// Initialize popover component
+		$(function() {
+			$('[data-toggle="popover"]').popover()
+		})
+	</script>
+
+</body>
+</html>
