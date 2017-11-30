@@ -32,10 +32,10 @@
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav mr-auto">
 				<li class="nav-item">
-					<a class="nav-link active" href="./index.html">SQL Scripting</a>
+					<a class="nav-link" href="./index.html">SQL Scripting</a>
 				</li>
 				<li class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
+					<a class="nav-link dropdown-toggle active" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
 					 aria-expanded="false">Functions/Procedures</a>
 					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 						<a class="dropdown-item" href="./procedures.html">Procedures</a>
@@ -55,80 +55,57 @@
 
 	<br>
 	<br>
-	<div class="jumbotron">
-		<div class="container" style="text-align: center">
-			<h1 id="plsql">PL/SQL</h1>
-			<p>
-				<em>(P)rocedural (L)anguange Extension of (SQL)</em>
-			</p>
-		</div>
-	</div>
+	<br>
+	<br>
 	<div class="container" style="width: 70%">
-
-		<h2 id="what-is-plsql">What is PL/SQL</h2>
-		<p>It is an extension of SQL developed by Oracle Corporation.
-			<br /> It features procedural language elements:</p>
-		<ul>
-			<li>Conditionals</li>
-			<li>Loops</li>
-			<li>Variables</li>
-			<li>Functions</li>
-		</ul>
-		<h2 id="why-use-plsql">Why use PL/SQL</h2>
-		<p>It is useful for more complex database operations and queries.
-			<br /> As an example, PL/SQL provides the functionality used to auto-increment keys in a table.</p>
-		<hr />
-		<h2 id="basics-of-sql-and-plsql">Basics of SQL and PL/SQL</h2>
-		<h3 id="types-of-functions">Types of Functions</h3>
-		<p>Scalar</p>
-		<ul>
-			<li>These functions return a value for every record that is processed</li>
-			<li>Useful built-in scalar functions:
-				<ul>
-					<li>
-						<code>uppercase()</code>: converts character(s) to uppercase</li>
-					<li>
-						<code>lowercase()</code>: converts character(s) to lowercase</li>
-					<li>
-						<code>length()</code>: returns length of text field</li>
-				</ul>
-			</li>
-		</ul>
-		<p>Aggregate</p>
-		<ul>
-			<li>Takes an aggregate of values and performs operations
-				<ul>
-					<li>Multiple records are taken together to return a more significant value</li>
-				</ul>
-			</li>
-			<li>Useful built-in aggregate functions:
-				<ul>
-					<li>
-						<code>avg()</code>: returns average of set of data</li>
-					<li>
-						<code>max()</code>: returns maximum of set of data</li>
-				</ul>
-			</li>
-		</ul>
-		<h3 id="examples-of-built-in-commands">Examples of Built-in Commands</h3>
-		<p>All SQL commands can be used in PL/SQL code. Here are some important commands:</p>
-		<p>
-			<code>SELECT</code> is used to select data from the database</p>
+		<h2 id="functions">Functions</h2>
+		<hr>
+		<p>A function is a named PL/SQL block which is similar to a procedure.</p>
+		<p>Syntax for a function:</p>
 		<pre><code>
-			SELECT * FROM Employee WHERE Lastname = &#39;King&#39;;
+			CREATE [OR REPLACE] FUNCTION function_name
+				[ (parameter [,parameter]) ]
+				RETURN return_datatype
+			IS | AS
+				[declaration_section]
+			BEGIN
+				executable_section
+			[EXCEPTION
+				exception_section]
+			END [function_name];
 		</code></pre>
 		<p>
-			<code>DELETE</code> is used to delete data from the database</p>
+			<strong>Recommend [OR REPLACE] be included always*
+				<br />
+			</strong>There is no difference between IS or AS*</p>
+		<h3 id="properties-of-functions">Properties of Functions:</h3>
+		<ul>
+			<li>Used as part of other SQL statements
+				<ul>
+					<li>
+						<em>Must</em> be called from another SQL statement</li>
+				</ul>
+			</li>
+			<li>Must return one value</li>
+			<li>Can optionally take IN/OUT parameters</li>
+		</ul>
+		<h3 id="example-function">Example function</h3>
+		<p>Here is a function that returns the average of values in a table column based on a provided index:</p>
 		<pre><code>
-			DELETE FROM Customer 
-			WHERE Firstname = &#39;Robert&#39; AND Lastname = &#39;Walker&#39;;
+			CREATE OR REPLACE FUNCTION AVG_INVOICELINE(idx NUMBER)
+			RETURN NUMBER IS line_avg NUMBER(7,2);
+			BEGIN
+			SELECT AVG(unitprice) INTO line_avg
+			FROM Invoiceline 
+			WHERE invoiceid = idx
+			GROUP BY invoiceid;
+			RETURN line_avg;
+			END;
 		</code></pre>
-		<p>
-			<code>INSERT</code> is used to insert data into the database</p>
+		<p>And this is a way to call that function:</p>
 		<pre><code>
-			INSERT INTO Genre (NAME) VALUES (&#39;Soul&#39;);
+			SELECT AVG_INVOICELINE(87) FROM dual;
 		</code></pre>
-
 	</div>
 </body>
 

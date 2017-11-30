@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="ISO-8859-1">
+	<title>SQL</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb"
+	 crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+	 crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh"
+	 crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
+	 crossorigin="anonymous"></script>
+
+	<style>
+		pre {
+			background-color: rgb(241, 230, 192);
+			border-radius: 5px;
+		}
+	</style>
+</head>
+
+<body>
+	<nav class="navbar fixed-top navbar-expand-lg navbar-light" style="background-color:rgb(122, 247, 184);">
+		<a class="navbar-brand" href="./index.html">PL/SQL</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+		 aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item">
+					<a class="nav-link" href="./index.html">SQL Scripting</a>
+				</li>
+				<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle active" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
+					 aria-expanded="false">Functions/Procedures</a>
+					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+						<a class="dropdown-item" href="./procedures.html">Procedures</a>
+						<a class="dropdown-item" href="./functions.html">Functions</a>
+					</div>
+				</li>
+			</ul>
+			<span class="navbar-text">
+				Cameron Jackson
+			</span>
+		</div>
+	</nav>
+
+	<br>
+	<br>
+	<br>
+	<br>
+	<div class="container" style="width:70%">
+		<h2 id="procedures">Procedures</h2>
+		<hr>
+		<p>A procedure is a named PL/SQL block.</p>
+		<p>Syntax for a procedure:</p>
+		<pre><code>
+			CREATE [OR REPLACE] PROCEDURE procedure_name
+				[ (parameter [,parameter]) ]
+			IS 
+				[declaration_section]
+			BEGIN
+				executable_section
+			[EXCEPTION
+				exception_section]
+			END [procedure_name];
+		</code></pre>
+		<p>
+			<strong>Recommend [OR REPLACE] be included always*
+				<br />
+			</strong>There is no difference between IS or AS*
+		</p>
+		<h3 id="properties-of-a-procedure">Properties of a procedure:</h3>
+		<ul>
+			<li>Execute directly</li>
+			<li>INSERT, UPDATE, DELETE</li>
+			<li>Multiple batches of SQL</li>
+			<li>Input parameters</li>
+			<li>Output parameters</li>
+		</ul>
+		<h3 id="example-of-stored-procedure">Example of stored procedure</h3>
+		<p>Here is a stored procedure that returns info from some columns in a table:</p>
+		<pre><code>
+			CREATE OR REPLACE PROCEDURE 
+			GET_CUST_INFO(cust_id IN Customer.customerid%TYPE,
+						cust_name OUT Customer.firstname%TYPE,
+						cust_comp OUT Customer.company%TYPE)
+			AS
+			f_name Customer.firstname%TYPE;
+			l_name Customer.lastname%TYPE;
+			BEGIN
+			select firstname, lastname into f_name, l_name from
+			Customer where customerid=cust_id;
+			cust_name:=f_name || &#39; &#39; || l_name;
+			select company into cust_comp from Customer
+			where customerid=cust_id;
+			END;
+		</code></pre>
+		<p>Here is a way to call the stored procedure:</p>
+		<pre><code>
+			SET SERVEROUTPUT ON;
+			declare
+			c_id Customer.customerid%TYPE;
+			c_name Customer.firstname%TYPE;
+			c_comp Customer.company%TYPE;
+			begin
+			c_id:=12;
+			get_cust_info(cust_id =&gt; c_id,
+						cust_name =&gt; c_name,
+						cust_comp =&gt; c_comp);
+			DBMS_OUTPUT.PUT_LINE(c_name || &#39; | &#39; || c_comp);
+			end;
+		</code></pre>
+	</div>
+</body>
+
+</html>
