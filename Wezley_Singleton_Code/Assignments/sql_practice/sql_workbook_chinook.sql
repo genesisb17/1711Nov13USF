@@ -168,3 +168,70 @@ END;
  * 'getLengthOfMediaTypeName()' function*/
 SELECT name, getLengthOfMediaTypeName(3) AS "Length of name" FROM mediatype
 WHERE mediatypeid = 3;
+
+
+-- Create a function that returns the average total of all invoices
+CREATE OR REPLACE FUNCTION getAverageInvoiceAmount
+RETURN NUMBER IS l_averageInvoiceAmount NUMBER(4,2);
+
+BEGIN
+  SELECT AVG(total) 
+  INTO l_averageInvoiceAmount
+  FROM invoice;
+  
+  RETURN l_averageInvoiceAmount;
+END;
+/
+SELECT getAverageInvoiceAmount() FROM dual;
+
+
+-- Create a function that returns the most expensive track
+CREATE OR REPLACE FUNCTION getMostExpensiveTrack
+RETURN VARCHAR2 IS l_mostExpensiveTrackCost NUMBER(3,2);
+
+BEGIN
+  SELECT MAX(unitprice) 
+  INTO l_mostExpensiveTrackCost
+  FROM track;  
+  RETURN l_mostExpensiveTrackCost;
+END;
+/
+SELECT name, unitprice FROM track
+WHERE unitprice = getMostExpensiveTrack();
+
+
+-- Create a function that returns the average price of invoiceline 
+-- items in the invoiceline table
+CREATE OR REPLACE FUNCTION getAverageUnitPrice(invoiceline_invoiceid NUMBER)
+RETURN NUMBER IS averageUnitPrice NUMBER(3,2);
+
+BEGIN
+  SELECT AVG(unitprice) 
+    INTO averageUnitPrice
+    FROM invoiceline
+    WHERE invoiceid = invoiceline_invoiceid;
+  RETURN averageUnitPrice;
+END;
+/
+SELECT invoiceid, getAverageUnitPrice(103) AS "Average Line Item Price" 
+FROM invoiceline WHERE invoicelineid = 103;
+
+
+-- Create a function that returns all employees who are born after 1968.
+CREATE OR REPLACE FUNCTION get_emp_born_after_1968
+RETURN SYS_REFCURSOR AS my_cursor SYS_REFCURSOR;
+
+BEGIN
+  OPEN my_cursor FOR 
+    SELECT employeeid, lastname, firstname, birthdate from employee
+    WHERE birthdate > '31-DEC-1968';
+    
+    RETURN my_cursor;
+END;
+/
+
+SELECT get_emp_born_after_1968 FROM dual;
+
+
+-- Create a stored procedure that selects the first and last names of 
+-- all the employees
