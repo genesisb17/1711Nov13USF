@@ -55,6 +55,12 @@ public class BankService {
 		u = dao.getUserByUname(username);
 		return u;
 	}
+	
+	public ArrayList<User> getAllUsers() {
+		ArrayList<User> users = new ArrayList<>();
+		users = dao.getAllUsers();
+		return users;
+	}
 
 	public User updatePassword(String newVal, int id) {
 		if (!userExists(id))
