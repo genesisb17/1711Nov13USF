@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en" class="full-height">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <title>Jose's Topic</title>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Material Design Bootstrap -->
+    <link href="css/mdb.min.css" rel="stylesheet">
+
+    <!-- Template styles -->
+    <style>
+        /* TEMPLATE STYLES */
+        .flex-center {
+            color: #fff;
+        }
+        
+         .elegant-color-dark {
+        
+        	background-color: #212121 !important;
+/*         	border-bottom: 0.25em solid #FFDF00 !important; */
+        	
+        }  
+        
+        
+        .hm-black-slight {
+            border-radius: 10px;
+        	background-color: rgba(33, 33, 33, 0.2) !important;
+        	box-shadow: 0px 2px 3px 2px rgba(0, 0, 0, 0.12) !important;
+        	
+        }
+/*         ::placeholder {
+        	opacity: 0.5 !important;
+        }
+         */
+        
+/*           .intro-1 {
+            background: url("http://i.imgur.com/TVkGvZR.gif")no-repeat center center;
+            background-size: cover;
+        }   */
+
+           .intro-1 {
+            background: url("https://media.giphy.com/media/l0VGXsG9Wcv3G/source.gif")no-repeat center center;
+            background-size: cover;
+        }   
+/*         .intro-1 { */
+/*             background: url("http://www.designdpi.com/blog/images/blog/subtle-animated-gif-01.gif")no-repeat center center; */
+/*             background-size: cover; */
+/*         }  */
+
+        .navbar .btn-group .dropdown-menu a:hover {
+			
+            color: #000 !important;
+        }
+
+        .navbar .btn-group .dropdown-menu a:active {
+            color: #fff !important;
+        }
+/* Style the Image Used to Trigger the Modal */
+#myImg {
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#myImg:hover {opacity: 0.7;}
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+}
+
+/* Modal Content (Image) */
+.modal-content {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 700px;
+}
+
+/* Caption of Modal Image (Image Text) - Same Width as the Image */
+#caption {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 700px;
+    text-align: center;
+    color: #ccc;
+    padding: 10px 0;
+    height: 150px;
+}
+
+/* Add Animation - Zoom in the Modal */
+.modal-content, #caption { 
+    -webkit-animation-name: zoom;
+    -webkit-animation-duration: 0.6s;
+    animation-name: zoom;
+    animation-duration: 0.6s;
+}
+
+@-webkit-keyframes zoom {
+    from {-webkit-transform:scale(0)} 
+    to {-webkit-transform:scale(1)}
+}
+
+@keyframes zoom {
+    from {transform:scale(0)} 
+    to {transform:scale(1)}
+}
+
+/* The Close Button */
+.close {
+    position: absolute;
+    bottom: 15px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.close:hover,
+.close:focus {
+    color: #bbb;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* 100% Image Width on Smaller Screens */
+@media only screen and (max-width: 700px){
+    .modal-content {
+        width: 100%;
+    }
+}
+    </style>
+
+</head>
+
+<body>
+
+    <header>
+
+        <!--Navbar-->
+        <nav class="navbar navbar-expand-lg navbar-dark elegant-color-dark fixed-top">
+            <div class="container">
+            	<a class="navbar-brand" href="#top">
+            	<img id="logo" class="img-fluid" alt="logo" src="img/logo.png" height="25%" width="25%">
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+        </nav>
+        <!--/.Navbar-->
+
+        <!--Intro Section-->
+        <section class="view intro-1 hm-black-strong">
+            <div class="full-bg-img flex-center">
+                <div class="container">
+                    <ul>
+                        <li>
+                            <h1 class="h1-responsive font-bold wow fadeInDown" data-wow-delay="0.2s">Multithreading</h1></li>
+                        <li>
+                            <p class="lead mt-4 mb-5 wow fadeInDown">In Java</p>
+                        </li>
+                        <li>
+                            <a target="_blank" href="https://docs.oracle.com/cd/E19455-01/806-5257/6je9h032e/index.html" class="btn btn-primary btn-lg wow fadeInLeft" data-wow-delay="0.2s" rel="nofollow">Oracle Doc</a>
+                            <a target="_blank" href="https://docs.oracle.com/javase/7/docs/api/java/lang/Thread.html" class="btn btn-default btn-lg wow fadeInRight" data-wow-delay="0.2s" rel="nofollow">Thread Obj</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+    </header>
+
+    <!-- Main container-->
+    <div class="container hm-black-slight">
+
+        <div id="whathead" class="divider-new pt-5">
+            <h2 class="h2-responsive wow fadeIn" data-wow-delay="0.2s">What is Multithreading?</h2>
+        
+        </div>
+
+        <!--Section: About-->
+        <section id="what" class="text-center wow fadeIn" data-wow-delay="0.2s">
+        		<div class="row pt-3">
+                <div class="col-lg-4 mb-r">
+                <h5>In Java, threads can be created by:</h5>
+        	<ul class="text-sm-left">
+        	<li>
+			Extending the Thread class
+        	</li>
+        	<li>
+        	Implementing the Runnable Interface
+        	</li>
+        	</ul>
+        	<p class="font-weight-light text-sm-left font-italic">If we extend the Thread class, our class cannot extend any other class because Java doesn’t support multiple inheritance. But, if we implement the Runnable interface, our class can still extend other base classes.</p>
+        	</div>
+        	<div class="col-lg-8 mb-r">
+            <p>
+            A <i>Thread</i> is a light-weight independent line of execution. <i>Multithreading</i> is the execution of multiple threads on runtime
+        	that handles different parts of the program side-by-side. This is known as <i>Concurrency</i> in Java which utilizes all allocated
+        	system resources for the threads.
+            </p><br>
+            <p>We use multithreading because threads share a common memory area which saves from allocating extra memory.
+            As a result of concurrent programming, the system is used more efficiently
+        	and can mean faster completion time of programs.
+            </p>
+</div>
+</div>
+        </section>
+        <!--Section: About-->
+
+        <div id="abouthead" class="divider-new pt-5">
+            <h2 class="h2-responsive wow fadeIn" data-wow-delay="0.2s">More About Threads</h2>
+        </div>
+
+        <!--Section: about-->
+        <section id="about" class="text-center wow fadeIn" data-wow-delay="0.2s">
+		<div class="row pt-3">
+        <div class="col-lg-8 mb-r">
+        <h5>Thread States:</h5>
+        <ul class="text-sm-left">
+        <li>NEW: the thread has not yet started.</li>
+        <li>RUNNABLE: the thread is executing.</li>
+        <li>WAITING: the thread is waiting indefinitely for another thread to perform a particular action.</li>
+        <li>BLOCKED: the thread is blocked waiting for a monitor lock.</li>
+        <li>TIMED_WAITING: the thread is waiting with a specified waiting time.</li>
+        <li>TERMINATED: the thread has exited.</li>
+        </ul>
+        </div>
+        <!--First columnn-->
+                <div class="col-lg-4 mb-r">
+
+                    <!--Card-->
+                    <div class="card wow fadeIn">
+
+                        <!--Card image-->
+ <!--                        <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Horizontal/Work/4-col/img%20(25).jpg" alt="Card image cap"> -->
+					<img class="img-fluid" id="myImg" src="img/lifecycle.png" alt="Fig.1 - Life Cycle of a Thread">
+					<!-- The Modal -->
+<div id="myModal" class="modal">
+
+  <!-- The Close Button -->
+  <span class="close">&times;</span>
+
+  <!-- Modal Content (The Image) -->
+  <img class="modal-content" id="img01">
+
+  <!-- Modal Caption (Image Text) -->
+  <div id="caption"></div>
+</div>
+                        <!--Card content-->
+                        <div class="card-body">
+                            <!--Title-->
+                            <h4 class="card-title text-center">Thread Life Cycle</h4>
+                            <hr>
+                            <!--Text-->
+                            <p class="card-text">A diagram showing a Java Thread Object. Multiple threads are started in multithreading.</p>
+                        </div>
+
+                    </div>
+                    <!--/.Card-->
+                </div>
+                <!--First columnn-->		
+		</div>
+        </section>
+		
+        <!--Section: Anotha-->		
+        <div id="section4header" class="divider-new pt-5">
+            <h2 class="h2-responsive wow fadeIn">Why Multithreading?</h2>
+        </div>
+
+        <!--Section: Best features-->
+        <section id="why">
+
+            <div class="row pt-3">
+
+                <!--First columnn-->
+                <div class="col-lg-4 mb-r">
+
+                    <!--Card-->
+                    <div class="card wow fadeIn">
+
+                        <!--Card image-->
+                        <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Horizontal/Work/4-col/img%20(25).jpg" alt="Quick">
+
+                        <!--Card content-->
+                        <div class="card-body">
+                            <!--Title-->
+                            <h4 class="card-title text-center">Faster Completion Times</h4>
+                            <hr>
+                            <!--Text-->
+                            <p class="card-text">
+                            Programs that take 1 second to complete takes 0.5 seconds with two threads.
+                            </p>
+                        </div>
+
+                    </div>
+                    <!--/.Card-->
+                </div>
+                <!--First columnn-->
+
+                <!--Second columnn-->
+                <div class="col-lg-4 mb-r">
+                    <!--Card-->
+                    <div class="card wow fadeIn" data-wow-delay="0.2s">
+
+                        <!--Card image-->
+                        <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Horizontal/Work/4-col/img%20(14).jpg" alt="Responsive">
+
+                        <!--Card content-->
+                        <div class="card-body">
+                            <!--Title-->
+                            <h4 class="card-title text-center">Program Responsiveness</h4>
+                            <hr>
+                            <!--Text-->
+                            <p class="card-text">Threads enable programs to listen for responses as well as execute other things.</p>
+                        </div>
+
+                    </div>
+                    <!--/.Card-->
+                </div>
+                <!--Second columnn-->
+
+                <!--Third columnn-->
+                <div class="col-lg-4 mb-r">
+                    <!--Card-->
+                    <div class="card wow fadeIn" data-wow-delay="0.4s">
+
+                        <!--Card image-->
+                        <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Horizontal/Work/4-col/img%20(21).jpg" alt="Efficiency">
+
+                        <!--Card content-->
+                        <div class="card-body">
+                            <!--Title-->
+                            <h4 class="card-title text-center">System Efficiency</h4>
+                            <hr>
+                            <!--Text-->
+                            <p class="card-text">
+                            No idle or unallocated processor(s); everything is utilized by threads.
+                            </p>
+                        </div>
+
+                    </div>
+                    <!--/.Card-->
+                </div>
+                <!--Third columnn-->
+
+
+        </section>
+        <!--/Section: Best features-->
+
+<!--         <div class="divider-new">
+            <h2 class="h2-responsive wow fadeIn">Problems with Multithreading</h2>
+        </div>
+ -->
+    </div>
+    <!--/ Main container-->
+
+
+    <!--Footer-->
+    <footer class="page-footer center-on-small-only elegant-color-dark">
+
+        <!--Copyright-->
+        <div class="footer-copyright">
+            <div class="container-fluid">
+				2017 - Jose Belloga
+            </div>
+        </div>
+        <!--/.Copyright-->
+
+    </footer>
+    <!--/.Footer-->
+
+
+    <!-- SCRIPTS -->
+<!-- 	<script>
+	function searchFun() {
+		alert("The form was submitted");
+	}
+	</script> -->
+    <!-- JQuery -->
+    <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+
+<!-- MODAL SCRIPT -->
+	<script type="text/javascript" src="js/modal.js"></script>
+	
+    <!-- Bootstrap dropdown -->
+    <script type="text/javascript" src="js/popper.min.js"></script>
+
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="js/mdb.min.js"></script>
+
+    <!-- Animations init-->
+    <script>
+        new WOW().init();
+    </script>
+
+
+</body>
+
+</html>

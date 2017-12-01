@@ -4,6 +4,7 @@
   <artifactId>jb_project</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <name>bankingprojectjb</name>
+
   <description>bank project with jdbc</description>
   
     <properties>
@@ -18,5 +19,22 @@
   		<artifactId>ojdbc7</artifactId>
   		<version>11.2.0</version>
   	</dependency>
+  	<dependency>
+  		<groupId>org.apache.commons</groupId>
+  		<artifactId>commons-lang3</artifactId>
+  		<version>3.0</version>
+  	</dependency>
+  	<dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>3.1.0</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.oracle</groupId>
+            <artifactId>ojdbc7</artifactId>
+            <version>11.2.0</version>
+        </dependency>
   </dependencies>
+  <packaging>war</packaging>
 </project>

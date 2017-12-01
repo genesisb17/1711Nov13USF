@@ -41,5 +41,6 @@ public class MainDriver {
 		default:
 			break;
 		}
+		return;
 	}
 }
