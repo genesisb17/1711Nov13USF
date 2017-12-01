@@ -20,17 +20,27 @@ function login(){
 	console.log(json);
 	
 	var xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState == 4 && xhr.status==200){
+			console.log("in xhr callback" + xhr.responseText);
+			var user = JSON.parse(xhr.responseText);
+			if(user == null){
+				console.log("user DNE");
+			}
+			else if(user.id == 0){
+				console.log("wrong pw");
+			}
+			else{
+				console.log("success!");
+			}
+		}
+	};
 	
 	xhr.open("POST","login", true);
 	xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 	xhr.send(json);
 	
-	xhr.onreadystatechange = function(){
-		console.log("ready state: " + xhr.readyState);
-		if(xhr.readyState == 4 && xhr.status==200){
-			console.log("in xhr callback");
-		}
-	};
+
 }
 
 function register(){

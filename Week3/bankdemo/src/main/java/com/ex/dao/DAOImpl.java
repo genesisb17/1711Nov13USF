@@ -195,6 +195,32 @@ public class DAOImpl implements DAO{
 			e.printStackTrace();
 		}
 		}
+
+	@Override
+	public User getUser(String username) {
+		User u = new User();
+		try(Connection conn = ConnectionFactory
+				.getInstance().getConnection();){
+			username = username.toLowerCase();
+			String sql = "select * from users where lower(email) = ?";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setString(1, username);
+			ResultSet info = ps.executeQuery();
+			
+			while(info.next()){
+				u.setId(info.getInt(1));
+				u.setFirstname(info.getString(2));
+				u.setLastname(info.getString(3));
+				u.setEmail(info.getString(4));
+				u.setPassword(info.getString(5));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return u;
+	
+	}
 	
 
 }

@@ -12,17 +12,10 @@ public class Service {
 
 	static DAO dao = new DAOImpl();
 
-	public int validateUser(String email){
-		int id = -1;
-		HashMap<Integer, String> users = dao.getEmails();
-		System.out.println("in validate user");
-		for(Integer n:users.keySet()){
-			if(users.get(n).equalsIgnoreCase(email)){
-				id = n;
-			}
-		}
-
-		return id;
+	public User validateUser(String email){
+		User user = dao.getUser(email);
+		if(user.getId()==0) return null;
+		return user;
 	}
 
 	public User login(int id, String pass){
