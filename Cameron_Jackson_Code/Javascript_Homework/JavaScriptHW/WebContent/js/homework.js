@@ -8,6 +8,14 @@ function fib(n) {
 	return fib(n-1)+fib(n-2);
 }
 
+document.getElementById("fib-input").addEventListener('click', function(e) {
+	var input = document.getElementById("fib").value;
+	input = Number.parseInt(input, 10);
+	var out = fib(input);
+	document.getElementById("fib-ans").innerHTML = out;
+	document.getElementById("fib").value = "";
+})
+
 //2. Bubble Sort
 //Define function: bubbleSort(numArray)
 //Use the bubble sort algorithm to sort the array.
@@ -17,7 +25,12 @@ function bubbleSort(numArray) {
 	var greaterThan;
 	if (typeof(numArray) != "object") 
 		return null;
-
+	
+	for (i = 0; i < numArray.length; ++i) {
+		if (typeof(numArray[i]) == "string")
+			numArray[i] = numArray[i].trim();
+		numArray[i] = Number.parseInt(numArray[i], 10);
+	}
 	do {
 		swapped = false;
 		for (x = 0; x < numArray.length-1; ++x) {
@@ -32,6 +45,17 @@ function bubbleSort(numArray) {
 	return numArray;
 }
 
+$('#bub-sort-input').on('click', function() {
+	var arr = $('#bub-sort').val();
+	var sArr = bubbleSort(arr.split(","));
+	arrStr = sArr.join(", ");
+	$('#bub-sort-ans').empty();
+	$('#bub-sort-ans').append("Ans: " + arrStr);
+	$('#bub-sort').val("");
+});
+
+
+
 //3. Reverse String
 //Define function: reverseStr(someStr)
 //Reverse and return the String.
@@ -42,6 +66,14 @@ function reverseStr(someStr) {
 	}
 	return newStr;
 }
+
+$('#rev-str-input').on('click', function() {
+	var str = $('#rev-str').val();
+	$('#rev-str-out').empty(); // clear out previous inputs
+	$('#rev-str-out').append("Reversed: " + reverseStr(str));
+	$('#rev-str').val("");
+});
+
 
 //4. Factorial
 //Define function: factorial(someNum)
