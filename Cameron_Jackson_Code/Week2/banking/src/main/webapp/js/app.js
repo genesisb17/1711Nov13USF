@@ -10,11 +10,11 @@ function login() {
 	alert("logging in");
 	var username = $('#username').val();
 	var password = $('#password').val();
-//	var user = {
-//			name: username,
-//			password: password
-//	};
-	var user = [username, password];
+	var user = {
+			username: username,
+			password: password
+	};
+//	var user = [username, password];
 	var tx = JSON.stringify(user);
 	console.log(tx);
 	
