@@ -449,27 +449,6 @@ alter table product modify productid varchar(10);
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /*
 7.1 AFTER/FOR Triggers
 Task - Create an after insert trigger on the categories table fired after a new record is inserted into the table.

@@ -20,49 +20,60 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"
 	integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
 	crossorigin="anonymous"></script>
-
-
-
 </head>
 <body>
+	<div class="bg">
+		<br>
 
-	<h1>JS Function Viewer</h1>
-	<br>
-	<h3>Problem 1: Fibonacci</h3>
-	<br>
-	<input type="number" id="fib" class="form-control"
-	 placeholder="Enter n" />
+		<h3>Fibonacci</h3>
+		<br> <input type="number" id="fib" placeholder="Enter n" />
+		<button id="doFib" type="button">Fibonacc'ed!</button> <b>
+			<p id="fibDisplay"></p>
+		</b> <br>
 
-	<button id="doFib" class="btn btn-primary">Fibonacc'ed!</button>
-	=
+		<h3>Bubblesort</h3>
+		<br> <input type="number" id="bub" placeholder="Enter number" />
+		<button id="addBub" type="button">Add</button>
+		<button id="doBub" type="button">Show Array</button><br> <b>
+			<p id="bubDisplay"></p>
+		</b> <br>
 
-	<b>
-		<p id="fibDisplay"></p>
-	</b>
+		<h3>Reverse String</h3>
+		<br> <input type="text" id="str" placeholder="Enter string" />
+		<button id="revStr" type="button">Reverse</button><br> <b>
+			<p id="strDisplay"></p>
+		</b> <br>
+
+		<h3>Factorial</h3>
+		<br> <input type="number" id="fac" placeholder="Enter number" />
+		<button id="fact" type="button">Factorial</button><br> <b>
+			<p id="facDisplay"></p>
+		</b> <br>
 
 
-<br><br>
-<h1>Event Propagation Demo</h1>
+		<h3>IsEven</h3>
+		<br> <input type="number" id="ev" placeholder="Enter number" />
+		<button id="isEven" type="button">Go!</button><br> <b>
+			<p id="evenDisplay"></p>
+		</b> <br> <br> <br>
 
-<div id="outer" style="background-color: red">
-	<br> OUTER <br>
-	
-	<div id="middle" style="background-color: blue">
-		<br> MIDDLE <br>
-		
-		<div id ="inner" style="background-color: green">
-			<br> INNER <br>
+
+
+		<h1>Event Propagation Demo</h1>
+		<div id="outer" style="background-color: red">
+			<br> OUTER <br>
+			<div id="middle" style="background-color: blue">
+				<br> MIDDLE <br>
+				<div id="inner" style="background-color: green">
+					<br> INNER <br>
+				</div>
+			</div>
 		</div>
-		<br><br>
+		<br> <br>
+
+		<h3 id="count">COUNT</h3>
+		<script type="text/javascript" src="js/functions.js"></script>
 	</div>
-	<br><br>
-</div>
-<br><br>
-
-<h3 id="count">COUNT</h3>
-
-
-	<script type="text/javascript" src="js/functions.js"></script>
 </body>
 
 </html>
