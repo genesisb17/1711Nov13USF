@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Java Streams</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb"
+        crossorigin="anonymous">
+    <link href="streams.css" rel="stylesheet">
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+            <a class="navbar-brand" href="#">Java Streams</a>
+        </nav>
+    </header>
+
+    <div class="container-fluid">
+        <div class="row">
+            <nav class="col-sm-3 col-md-2 d-none d-sm-block bg-light sidebar">
+                <ul class="nav nav-pills flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#introduction">
+                            <b>Introduction</b>></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#functional">Functional Programming</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#foundation">Foundations</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#benefits">Benefits</a>
+                    </li>
+                </ul>
+
+                <ul class="nav nav-pills flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#whatisit">
+                            <b>What is it?</b>></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#map">Map and ForEach</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#filter">Filter</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#reduce">Reduce</a>
+                    </li>
+                </ul>
+
+                <ul class="nav nav-pills flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#examples">
+                            <b>Examples</b>></a>
+                    </li>
+                </ul>
+
+                <ul class="nav nav-pills flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#otherBenefits">
+                            <b>Other benefits</b>></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#parallel">Parallelism</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#infinite">Infinite Lists</a>
+                    </li>
+                </ul>
+            </nav>
+
+            <main role="main" class="col-sm-9 ml-sm-auto col-md-10 pt-3">
+                <h1 id="introduction">Java Streams</h1>
+
+                <section class="row">
+                    <div id="functional">
+                        <h2 class="text-center">Introduction</h2>
+                        <p>
+                            Java has always been the go-to example of a purely objectoriented programming language. OOP certainly has its merits and
+                            it has been successful for a long time but there are certain benefits that other paradigms bring
+                            to the table. Namely, functional programming has seen a resurgence in the last few years and
+                            elements of it have made their way into imperitive languages like Java. Here we will take a look
+                            at one of the most usefull additions: Streams.
+                        </p>
+                    </div>
+                    <br>
+                    <div id="foundation">
+                        <h3>Functional Programming</h3>
+                        <p>
+                            Functional programming is definately different in its overall style than the more familiar procedural programming, but at
+                            its core it is very simple. It involves nothing that procedural programmers don't already use;
+                            it just uses those elemnts in different ways. While the syntax might be different, it just involves
+                            chaining together different functions and having some funstions call other functions. It also
+                            involves higher order functions: functions that either return other functions or take functions
+                            as arguments. This allows for incredible modularity and you will soon see that just a handful
+                            of higher order functions can accomplish a remarkable number of things.
+                        </p>
+                    </div>
+                    <br>
+                    <div id="benefits">
+                        <h3>Foundations</h3>
+                        <p>
+                            In order to understand the use of streams in Java one must have a decent grasp on some of its more basic concepts. First,
+                            one must have an unserstanding of collections and normal iteration as that is the baseline against
+                            which streams will be measured. Second, one must understand functional interfaces as it is the
+                            only way in which Java allows for higher order functions. Third, it is incredibly beneficial
+                            to be comfortable with lambda syntax as it makes using streams (and higher order functions in
+                            general) much easier. Method references can also be used, as we will see in some examples, but
+                            unless you are using a predefined function/method that takes a lot of extra boilerplate.
+                        </p>
+                    </div>
+                    <br>
+                    <div id="whatisit">
+                        <h3>Benefits</h3>
+                        <p>
+                            While it might not be immediately obvious and somewhat opposed to the classical OOP view of things, streams offer a number
+                            of advantages. First, although one might argue against this when they first come across it, streams
+                            make complex code much more readable. Complex operations on streams can be followed in a logical
+                            order and all of the important operations are visible at the point of use. Second, they allow
+                            for manipilation of "collections" that are othewise impossible in Java. For example, you can
+                            actually operate on infinite lists because evaluation of streams is lazy (meaning nothing is
+                            computed until a value needs to be returned). Finally, and perhaps most importantly from a technical
+                            perspective, the functional approach makes parallelization very simple. We will see later how
+                            we can parallelize a task by adding just 10 characters and improve our programs performance by
+                            2 to 8 times.
+                        </p>
+                    </div>
+                    <br>
+                </section>
+                <br>
+
+                <section class="row">
+                    <div>
+                        <h2 class="text-center">What is a Stream?</h2>
+                        <p>
+                            A stream just a sequence of values. It can be thought of as another form aof a list or array, and in fact both of these objects
+                            (as well as many others) can be readily transformed to and from streams. However, the evaluation
+                            of streams is lazy; only the immediate next element is available and for all that we know no
+                            thers might exist. What this allows for is something similar to the functionality of lists in
+                            other functional languages. To create a stream from a list is very simple:
+                        </p>
+                        <code>
+                            List&lt;Car&gt; cars = new ArrayLis&lt;&gt;();<br>
+                            .....<br>
+                            Stream&lt;Car&gt; carsStream = cars.stream();
+                        </code>
+                        <p id="map">
+                            That great, now we have a stream, but what can we do with it? Well, most anything you would do wtih a list can be accomplished
+                            with a stream using only a few basic methods that can be chained together, creating a pipeline
+                            to process the entire list efficiently.
+                        </p>
+                    </div>
+                    <br>
+                    <div>
+                        <h4>map and forEach</h4>
+                        <p>
+                            Often you will want to do something to each elemtn in a list. Sometimes that is just an action that doens't have any effece
+                            on the element itself. In those cases we can use the forEach() method. It is basically like using
+                            an enhanced for loop. Simply pass it the action to perform for each element:
+                        </p>
+                        <code>
+                            carsStream.forEach(System.out::println); // passing a method reference<br>
+                            carsStream.forEach(c -> c.honk());       // passing a lambda that takes a car and calls its honk() method
+                        </code>
+                        <p>
+                            Thats neat but its nothing we couldn't have done as simply with a for loop. But what if you want to return a value for each
+                            elemnt into a new stream? That is where the map() mehtod comes in.
+                        </p>
+                        <code>
+                            Stream&lt;String&gt; manufacturers = carsStream.map(c -> c.getManufacturer().toString());
+                        </code>
+                        <p id="filter">
+                            So here we extracted the names of all of the manufacturers into a new stream. We can pass it any function that returns something
+                            and we get a new stream from it that we can further process.
+                        </p>
+
+                    </div>
+                    <div>
+                        <h4>filter</h4>
+                        <p id="reduce">
+                            Another thing you might want to do with a list (by which i really mean a stream) is to select only certain elemnts of it.
+                            That is a job for the filter() method. We simply pass it a predicate (something that takes an
+                            element and evaluates to true of false) and it will return to us a stream comprised of only the
+                            elemnts that passed the test.
+                        </p>
+                        <code>
+                                Stream&lt;Car&gt; redCars = carStream.filter(c -> c.getColor() == "red");
+                        </code>
+                        <p>
+                            Thats a very efficient way to select only the elemnts you want.
+                        </p>
+                    </div>
+                    <div>
+                        <h4>reduce</h4>
+                        <p>
+                            What if you need to take all of the elemnts of a list and do some kind of aggregate operation that reduces all of that data
+                            into 1 value? For this we have the reduce function. It is a little more complicated; it takes
+                            a base value (or accumulator) and an operation on 2 elements and returns just 1 element. It helps
+                            to see some examples, and Cars are not the best type to use for an example here.
+                        </p>
+                        <code>
+                                    Stream&lt;Integer&gt; numbers = IntStream.range(1, 101).boxed(); // just creates a stream of Integers 1 through 100<br>
+                                    int sumOfNumbers = numbers.reduce(0, Integer::sum); // adds all of these numbers, starting with the base number 0<br>
+                        </code>
+                        <p id="examples">
+                            Again, this might not be very impressive and it might not be clear why this is useful, but we are about to get to the payoff.
+                        </p>
+                    </div>
+                    <br>
+
+
+
+                    <div>
+                        <h2 class="text-center">Examples</h2>
+                        <p>
+                            The nice thing here fromt he perspective of the programmer is that all of these methods can be chained together. That makes
+                            things very fast to write and easy to read once you become familair with the syntax. For example,
+                            lets say you wanted to find the product of all of the even valued vin numbers of your cars. You
+                            could certainly do this with a normal for loop but it would be messy. Lets see if there is a
+                            clearer way.
+                        </p>
+                        <code>
+                            int sumOfEvenVins = carStream.map(c -> c.getVin()).filter(i -> i % 2 == 0).reduce(1, (a, b) -> a * b);
+                        </code>
+                        <p>
+                            While this example is a bit contrived it is still pretty cool that we did that in just 1 line. It also makes a lot of sense
+                            because the code actually follows how you would go about this task yourself if you did it by
+                            hand. We start with the list (stream) of cars, single out their vin numbers, select only the
+                            even vin numbers, then multiply them all together. This was actaully a very simple task but this
+                            same logic applies for most operations you would do on a collection of objects and this same
+                            formula can be tuned to nearly any task by just inserting the right functions. Lets look at another
+                            more complicated example:
+                        </p>
+                        <code>
+                            BufferedReader br = ... // assume we have some users data in a text file<br>
+                            //the lines() method of the BufferedReader returns a stream of the lines of the file<br><br>
+                            User youngestWoman = br.lines().map(l -> {<br>
+                                &emsp;&emsp;String[] values = l.split(":");<br>
+                                &emsp;&emsp;return new User(Integer.parseInt(values[0]), values[1], values[2]);<br>
+                                &emsp;}).filter(u -> u.getSex() == "female").reduce(new User(500, "", ""), (a, b) -> a.getAge() &lt; b.getAge() ? a : b);
+                        </code>
+                        <br>
+                        <br>
+                        <p id="otherBenefits">
+                            This example might not be as easy to follow but it more closely matches a real example. In this short excerpt we are going
+                            directly from a collection of lines of text in a file that represent users to finding the youngest
+                            woman user. It was all done in place without having to write a bunch of boilerplate and extra
+                            methods.
+                        </p>
+                    </div>
+                    <br>
+
+                    <div id="parallel">
+                        <h2 class="text-center">Benefits</h2>
+                        <p>
+                            If streams just enabled a different way to process lists that would be one thing, but they are really a completely different
+                            way of processing data that allows for other possibilities.
+                        </p>
+                    </div>
+                    <div>
+                        <h3>Parallelism</h3>
+                        <p>
+                            One of teh best things that Streams enable is parallel processing. If you have to process a large collection and your processing
+                            functions are pure there is no reason to do them 1 at a time. With a normal collection configuring
+                            your program to process them in parallel can be confusing but streams make it as easy as adding
+                            1 word.
+                        </p>
+                        <code>
+                            Stream&lt;User&gt; users = userList.stream().<b>parallel()</b>.filter(...);
+                        </code>
+                        <p id="infinite">
+                            Just adding this parallel() method automatically means that your stream will be processed in parallel in as many threads
+                            as your machine will support. You can call any number of methods, including the map, forEach,
+                            filter, and reduce methods mentioned before as well as many other stream methods. It is easy
+                            to understate how big of a deal this is because it takes virtually no effort to speed up your
+                            program by an order fo magnitude. Just make sure that the operations on your stream are stateless
+                            and pure and it will simply work.
+                        </p>
+                    </div>
+                    <div>
+                        <h3 class="text-centered">Infinite Lists</h3>
+                        <p>
+                            Although there are many more things you can do with lists, we will leave off with one more cool feature: infinite streams.
+                            This is possible again because the evaluation of sreams is lazy. There are a few ways to create
+                            an infinite stream but we will highlight 2 here.
+                        </p>
+                        <code>
+                           IntStream naturalNumbers = IntStream.iterate(0, i -> i + 1);
+                        </code>
+                        <p>
+                            This is an infinte stream of the numbers 0 to infinity (at least if we ignore integer overflow). It can be operted on just
+                            as any other stream, although care ha to be taken to make sure that the operation will terminate
+                            (if you use it carelessly it will just process the stream forever).
+                        </p>
+                        <code>
+                            Random r = new Random();<br>
+                            IntStream randoms = IntStream.generate(() -> r.nextInt());
+                        </code>
+                        <p>
+                            Again, we get an infinite stream but this time it is of random numbers. I will leave it to you to research more about this
+                            and find out where infinite streams might be useful (they are mostly a novelty but there are
+                            some applications).
+                        </p>
+                    </div>
+                    <br>
+                </section>
+                <br>
+            </main>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script>window.jQuery || document.write('<script src="../../../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+    <script src="../../../../assets/js/vendor/popper.min.js"></script>
+    <script src="../../../../dist/js/bootstrap.min.js"></script>
+</body>
+
+</html>
