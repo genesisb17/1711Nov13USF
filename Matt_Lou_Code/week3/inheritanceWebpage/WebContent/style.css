@@ -1,5 +1,5 @@
 @charset "ISO-8859-1";
-.carousel-item {
+/* .carousel-item {
   height: 65vh;
   min-height: 300px;
   background: no-repeat center center scroll;
@@ -7,6 +7,14 @@
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+} */
+
+pre{
+    border: 2px solid #a1a1a1;
+    padding: 10px 40px; 
+    background: #dddddd;
+    border-radius: 25px;
+    width: 60%;
 }
 
 .float{

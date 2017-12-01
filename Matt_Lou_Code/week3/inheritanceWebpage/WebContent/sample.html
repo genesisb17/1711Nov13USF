@@ -1,8 +1,9 @@
-<!DOCTYPE html>
+<!DOCDOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
 <title>Sample Code</title>
+<link rel="stylesheet" href="style.css" />
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
@@ -62,16 +63,25 @@
         </a>
       </div>
     </header>
-
+<br><br>
     <!-- Page Content -->
     <div class="container">
-	<div class="row">
-		<div class="col">
+<br>
+<div class="dropdown">
+  <button class="btn btn-secondary dropdown-toggle justify-content-end" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    NAVIGATE
+  </button>
+  <br><br>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+    <a href="index.html"><button class="dropdown-item" type="button">Home</button></a>
+    <a href="thingsToNote.html"><button class="dropdown-item" type="button">Things to Notes</button></a>
+    <a href="sample.html"><button class="dropdown-item" type="button">Sample Inheritance</button></a>
+  </div>
+</div>
 <h6>
 Consider an interface that you have developed called DoIt:
-<br><br>
+<br><br><br>
 <pre>
-<br><br>
 public interface DoIt {
    void doSomething(int i, double x);
    int doSomethingElse(String s);
@@ -85,9 +95,12 @@ public interface DoIt {
    
 }
 </pre>
+If you make this change, then all classes that implement the old DoIt interface will break because they no longer implement the old interface. Programmers relying on this interface will protest loudly.
+
+Try to anticipate all uses for your interface and specify it completely from the beginning. If you want to add additional methods to an interface, you have several options. You could create a DoItPlus interface that extends DoIt:
+
 
 </h6>
-</div>
 <br>
 <h6>
 <pre>
@@ -97,9 +110,26 @@ public interface DoItPlus extends DoIt {
    
 }
 </pre>
+Now users of your code can choose to continue to use the old interface or to upgrade to the new interface.
+Alternatively, you can define your new methods as default methods. The following example defines a default method named didItWork:
+<br><br>
+<pre>
+public interface DoIt {
+
+   void doSomething(int i, double x);
+   int doSomethingElse(String s);
+   default boolean didItWork(int i, double x, String s) {
+       // Method body 
+   }
+   
+}
+</pre>
+Note that you must provide an implementation for default methods. You could also define new static methods to existing interfaces. Users who have classes that implement interfaces enhanced with new default or static methods do not have to modify or recompile them to accommodate the additional methods.
+
 </h6>
-</div>
------------------------------------------------------------
+<br>
+<a href="https://docs.oracle.com/javase/tutorial/java/IandI/nogrow.html">Source</a>
+<br><br><br><br>
 <h6>
 <pre>
 2) What will be the output of this program?
@@ -125,7 +155,7 @@ public class MainClass
 
 </pre>
 </h6>
----------------------------------------------------------
+<br>
 <h6>
 <pre>
 class M
@@ -171,7 +201,7 @@ public class MainClass
 }
 </pre>
 </h6>
-------------------------------------------------------
+<br>
 <h6>
 <pre>
 class M

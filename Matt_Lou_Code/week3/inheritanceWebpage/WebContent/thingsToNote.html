@@ -3,6 +3,7 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Things to Note</title>
+<link rel="stylesheet" href=style.css />
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
@@ -24,7 +25,7 @@
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
       <div class="container">
-        <a class="navbar-brand" href="#">Start Bootstrap</a>
+        <a class="navbar-brand" href="#">Notes</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -76,7 +77,19 @@
 
     <!-- Page Content -->
     <section class="py-5">
+    
       <div class="container">
+      	<div class="dropdown">
+  <button class="btn btn-secondary dropdown-toggle justify-content-end" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    NAVIGATE
+  </button>
+  <br><br>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+    <a href="index.html"><button class="dropdown-item" type="button">Home</button></a>
+    <a href="thingsToNote.html"><button class="dropdown-item" type="button">Things to Notes</button></a>
+    <a href="sample.html"><button class="dropdown-item" type="button">Sample Inheritance</button></a>
+  </div>
+</div>
       <img class="float" alt="inheritance" src="http://javaconceptoftheday.com/wp-content/uploads/2014/11/Inheritance2.png" />
      <p> Inheritance is an important pillar of OOP(Object Oriented Programming). It is the mechanism in java by which one class is allow to inherit the features(fields and methods) of another class.
 Important terminology:
@@ -86,8 +99,34 @@ Sub Class: The class that inherits the other class is known as sub class(or a de
 Reusability: Inheritance supports the concept of reusability, i.e. when we want to create a new class and there is already a class that includes some of the code that we want, we can derive our new class from the existing class. By doing this, we are reusing the fields and methods of the existing class.</p>
 		
       	<p>A Java class can only extend one parent class. Multiple inheritance ( extends ) is not allowed. Interfaces are not classes, however, and a class can implement more than one interface. The parent interfaces are declared in a comma-separated list, after the implements keyword.<p>
-        
+      	
+      	<h5>Some OCA questions create an interface variable and instantiate its super class's object.</h5>
+<br>
+<pre>
+interface Bozo{
+	int type = 0;
+	public void jump();
+}
+
+public class type1Bozo implements Bozo{
+	public Type1Bozo(){
+		type = 1;
+	}
+	
+	public void jump() {
+		system.out.println("jumping..." + type);
+	}
+	
+	public static void main(String[] args){
+		Bozo b = new Type1Bozo();
+		b.jump();
+	}
+}
+</pre>
+      	
+      <a href="http://www.geeksforgeeks.org/inheritance-in-java/">More Info(Geeksforgeeks)</a>
       </div>
+      
     </section>
 
     <!-- Footer -->
