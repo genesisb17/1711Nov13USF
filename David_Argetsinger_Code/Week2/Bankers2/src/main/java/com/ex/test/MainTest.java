@@ -12,8 +12,10 @@ static Scanner scan = new Scanner(System.in);
 	public static void main(String[] args) {
 		while (true)
 			run();
+		
 	}
 	static void run() {
+
 		Service service = new Service();
 		User use = new User();
 		System.out.println("Welcome to bankware \nWould you like to log in (1) or create account(2)  quit (3)");

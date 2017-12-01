@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Jquery demo</title>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
+	integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb"
+	crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+	integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+	crossorigin="anonymous"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"
+	integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh"
+	crossorigin="anonymous"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"
+	integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
+	crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+	<div class="jumbotron">
+		<div>
+			<input type="text" id="newItem" class="form-control"
+				placeholder="add Item.." /> <br>
+			<button id="add" class="btn btn-primary">Add item</button>
+			<div class="row">
+				<div class="col">
+					<br>
+					<ul id="toBuy" id= col1>
+						<li id="one" class="item">ribs</li>
+						<li id="two" class="item">fruits</li>
+						<li id="three" class="item">wine</li>
+					</ul>
+				</div>
+				<div class="col" id = col2>
+					<ul id="toBuy2">
+						<li id="one1" class="item">ribs</li>
+						<li id="two1" class="item">fruits</li>
+						<li id="three1" class="item">wine</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<script>
+		// my version 
+	//	$('li').on('click', function() {
+	//		var temp = document.createElement('li');
+	//		temp = $(this);
+	//		$('#toBuy2').append(temp);
+	//		$(this).remove(temp);
+	//		
+	//	})
+	$('li').on('click', function() {
+		$('#toBuy2').append($(this));
+	});
+		
+			$('#add').on('click', function() {
+				var temp = document.createElement('li');
+				temp.innerHTML = $('#newItem').val();
+				$('#toBuy').append(temp);
+				$('#newItem').val(' ');
+				
+				$('li').on('click', function() {
+					$('#toBuy2').append($(this));
+				});
+				//$('li').on('click', function() {
+				//	var temp = document.createElement('li');
+				//	temp = $(this);
+				//	$('#toBuy2').append(temp);
+				//	$(this).remove(temp);
+					
+				//})	
+				
+				
+		
+			})			
+
+		</script>
+</body>
+</html>

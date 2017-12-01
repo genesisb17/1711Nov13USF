@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Scopio</title>
+<link rel="stylesheet" href="ScopeStyle.css" />
+<!--  bootstrap requirements  -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
+	integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb"
+	crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+	integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+	crossorigin="anonymous"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"
+	integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh"
+	crossorigin="anonymous"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"
+	integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
+	crossorigin="anonymous"></script>
+</head>
+
+<body id="page-top">
+
+	<!-- Navigation -->
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top"
+		id="mainNav">
+		<div class="container">
+			<a class="navbar-brand js-scroll-trigger" href="#page-top">Scopes</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse"
+				data-target="#navbarResponsive" aria-controls="navbarResponsive"
+				aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarResponsive">
+				<ul class="navbar-nav ml-auto">
+					<li class="nav-item"><a class="nav-link js-scroll-trigger"
+						href="#about">Static</a></li>
+					<li class="nav-item"><a class="nav-link js-scroll-trigger"
+						href="#services">Method</a></li>
+					<li class="nav-item"><a class="nav-link js-scroll-trigger"
+						href="#contact">Instance</a></li>
+					<li class="nav-item"><a class="nav-link js-scroll-trigger"
+						href="#List">Block</a></li>
+					
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+	<header class="bg-primary text-white">
+		<div class="container text-center">
+			<h1>Scopes in Java</h1>
+			<p class="lead">
+			Scope in java relates to accessibility of variables.
+			Scopes come in four levels:
+					<ul>
+						<li>Static/Class</li>
+						<li>Instance</li>
+						<li>Method</li>
+						<li>Block</li>
+					</ul>
+					
+			 </p>
+			
+		</div>
+	</header>
+
+	<section id="about">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-8 mx-auto">
+					<h2>Static/Class</h2>
+					<p class="lead">Static scope can be declared by using the keyword Static.
+					When the Static keyword is used it makes the Static member/block belong to the class rather than a specific instance. Static variables are available without instantiating the class.
+					Static declared variables are class level variables that all instances will use the same memory location. Static can also be applied
+					to blocks {}. 
+					</p>
+					<h3>
+					Example:</h3><br>
+					<p>
+					<img src="https://i.imgur.com/2c4I7Y9.png">
+					
+				
+					</p>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section id="services" class="bg-light">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-8 mx-auto">
+					<h2>Instance</h2>
+					<p class="lead">Fields of the instance scope are available within the scope of the object. 
+					Every instance of the object will have fields that will not reference the same memory location.</p>
+				<h3>
+					Example:</h3><br>
+					<p>
+					<img src="https://i.imgur.com/rRakYgh.png"/>
+					
+				
+					</p>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section id="contact">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-8 mx-auto">
+					<h2>Method</h2>
+					<p class="lead">A field declared within a method have what is known as a method level scope.
+					A method level scope means that the field can only be accessed within the method.</p>
+				<h3>
+					Example:</h3><br>
+					<p>
+					<img src="https://i.imgur.com/NiTboKw.png"/>
+					
+				
+					</p>
+				</div>
+			</div>
+		</div>
+	</section>
+	
+	
+
+	<section id="List" class="bg-light">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-8 mx-auto">
+					<h2>Block</h2>
+					<p class="lead">Block level scope fields are the smallest scope. For loops that declare their 
+					iterator in their conditional make good use of block level scopes. </p>
+				<h3>
+					Example:</h3><br>
+					<p>
+					<img src="https://i.imgur.com/AuOpvpA.png"/>
+				
+				
+				</div>
+			</div>
+		</div>
+	</section>
+	
+
+	<!-- Footer -->
+	<footer class="py-5 bg-dark">
+		<div class="container">
+			<p class="m-0 text-center text-white">Copyright &copy; Your
+				Website 2017</p>
+		</div>
+		<!-- /.container -->
+	</footer>
+
+	<script type="text/javascript" src="ScopeJs.js"></script>
+</body>
+</html>
