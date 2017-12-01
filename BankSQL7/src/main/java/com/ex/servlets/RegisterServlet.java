@@ -57,8 +57,6 @@ public class RegisterServlet extends HttpServlet
 		service.addUser(u1,100);
 		PrintWriter out = response.getWriter();
 		out.println(name+" "+u1.getBalance());
-		
-
 	}
 	
 	//Servlet

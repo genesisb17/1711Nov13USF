@@ -1,4 +1,5 @@
 package com.rev.run;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 import com.rev.service.Service;
@@ -10,7 +11,7 @@ public class RunErs
 	public static void main(String[] args) 
 	{
 		// TODO Auto-generated method stub
-		run();
+		System.out.println(service.geters_users("e", "a"));
 	}
 	static void run()
 	{
@@ -39,6 +40,7 @@ public class RunErs
 		}
 		run();
 	}
+
 	static void createAccount()
 	{
 		String user,pass,email,first,last;

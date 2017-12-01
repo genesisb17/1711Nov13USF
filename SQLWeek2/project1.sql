@@ -127,6 +127,8 @@ BEGIN
   SELECT ERS_REIMBURSEMENT_SEQ.NEXTVAL INTO :new.REIMB_ID FROM DUAL;
 END;
 
+Select * from ers_users;
+
 
 SELECT *FROM USERS WHERE username='asdfasa';
 select * from ACCOUNTS  where user_id=83;

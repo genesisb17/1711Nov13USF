@@ -6,7 +6,7 @@ import com.rev.pojo.R;
 public interface DAO 
 {
 	
-	R getReimbursements(String username,String password);
+	ArrayList<R> getReimbursements(String username,String password);
 
 	void addRtype(String s);
 	void addRStatus(String s);

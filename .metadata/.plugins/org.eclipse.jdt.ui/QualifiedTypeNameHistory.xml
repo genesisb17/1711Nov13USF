@@ -17,7 +17,6 @@
 <fullyQualifiedTypeName name="java.io.File"/>
 <fullyQualifiedTypeName name="java.util.Queue"/>
 <fullyQualifiedTypeName name="com.sun.java_cup.internal.runtime.Scanner"/>
-<fullyQualifiedTypeName name="com.rev.service.Service"/>
 <fullyQualifiedTypeName name="java.util.Scanner"/>
 <fullyQualifiedTypeName name="java.sql.JDBCType"/>
 <fullyQualifiedTypeName name="java.sql.Connection"/>
@@ -32,4 +31,8 @@
 <fullyQualifiedTypeName name="java.util.List"/>
 <fullyQualifiedTypeName name="oracle.jdbc.OracleTypes"/>
 <fullyQualifiedTypeName name="com.rev.pojo.R"/>
+<fullyQualifiedTypeName name="javax.servlet.GenericServlet"/>
+<fullyQualifiedTypeName name="java.io.PrintWriter"/>
+<fullyQualifiedTypeName name="java.util.Enumeration"/>
+<fullyQualifiedTypeName name="com.rev.service.Service"/>
 </qualifiedTypeNameHistroy>

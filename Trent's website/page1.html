@@ -29,8 +29,12 @@
 	}
 	.pic
 	{
-		background: yellow;
-		color
+	
+	}
+	.btn
+	{
+		background-color:blue;
+		color:white;
 	}
 </style>
 </head>
@@ -42,8 +46,8 @@
 
 		  <p style= "color:brown">Java DataBase Connectivity</p>
 		  <!--<p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a></p>-->
-		  		<a href = "revaturepage.html"><button> HOME</button></a>
-		  		<a href="page1.html"><button >Structure of JDBC </button></a>
+		  		<a href = "revaturepage.html"><button class="btn"> HOME</button></a>
+		  		<a href="page2.html"><button class="btn">statement of JDBC </button></a>
 		</div>
 		<div class = "intro">
 			<div class = "pic">
@@ -51,7 +55,7 @@
 
 			<h2>Structure</h2>
 				
-					<img src="C:\Users\Bruce Wayne\my_git_repos\1711Nov13USF\Trent's website\pic2.png">
+					<img class="img-rounded" src="C:\Users\Bruce Wayne\my_git_repos\1711Nov13USF\Trent's website\pic2.png">
 				
 			<br>
 			Above is an example of a JDBC code. The order is first the string which is used to have sql instruction that will be executed. Next is the PreparedStatement which will be used to execute it's functions. Then it is the setString which sets the ? to the variable, or constants you want to use in your program. Than finally you have the update statement which will run the statement to the program and finally the commit and close statement.

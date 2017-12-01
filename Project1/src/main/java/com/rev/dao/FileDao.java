@@ -103,23 +103,41 @@ public class FileDao implements DAO
 		// TODO Auto-generated method stub
 	}
 	
-
-	
 	@Override
-	public R getReimbursements(String username,String password) 
+	public ArrayList <R> getReimbursements(String username,String password) 
 	{
 		// TODO Auto-generated method stub
 		R r =new R();
+		ArrayList <R> a = new ArrayList<R>();
+		// TODO Auto-generated method stub
 		try(Connection conn = ConnectionFactory.getInstance().getConnection())
 		{
-			
+		String sql = "select * FROM ERS_REIMBURSEMENT WHERE U_ID =?";
+		PreparedStatement p = conn.prepareStatement(sql);
+		p.setInt(1, geters_users(username, password));
+		ResultSet info1 = p.executeQuery();
+		int i =0;
+		while(info1.next())
+		{
+			r.setReimb_id(info1.getInt(1));
+			r.setReimb_Amount(info1.getDouble(2));
+			r.setSubmit(info1.getString(3));
+			r.setResolv(info1.getString(4));
+			r.setDescription(info1.getString(5));
+			r.setU_ID(info1.getInt(6));
+			r.setREIMB_STATUS_ID(info1.getInt(7));
+			r.setREIMB_TYPE_ID(info1.getInt(8));
+			r.setERS_USER_ROLE_ID(info1.getInt(9));
+			a.add(r);
+		}
+	
 		} 
 		catch (SQLException e) 
 		{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return r;
+		return a;
 	}
 	@Override
 	public String getRtype(int i) 
@@ -146,7 +164,6 @@ public class FileDao implements DAO
 			while(info.next())
 			{
 				return info.getInt(1);
-
 			}
 		} 
 		catch (SQLException e) 
@@ -158,7 +175,6 @@ public class FileDao implements DAO
 
 	return 0;
 	}
-	
 	//QC
 	@Override
 	public String geters_user_roles(int i) {
@@ -173,7 +189,6 @@ public class FileDao implements DAO
 			while(info.next())
 			{
 				return info.getString(1);
-
 			}
 		} 
 		catch (SQLException e) 

@@ -2,7 +2,6 @@ package com.rev.pojo;
 
 public class R 
 {
-
 private int reimb_id;
 private double reimb_Amount;
 private String submit;
