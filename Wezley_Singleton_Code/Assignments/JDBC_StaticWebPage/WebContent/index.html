@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<meta charset="ISO-8859-1">
+	<title>Overview of JDBC - Essential Steps</title>
+	
+	<link rel="stylesheet" href="css/styling.css">
+	
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
+	integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb"
+	crossorigin="anonymous">
+
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+	integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+	crossorigin="anonymous"></script>
+	
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"
+	integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh"
+	crossorigin="anonymous"></script>
+	
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"
+	integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
+	crossorigin="anonymous"></script>
+	
+	<style>
+		body {
+			margin-top: 25px;
+			margin-right: 250px;
+			margin-bottom: 25px;
+			margin-left: 250px;
+			background-color: grey;
+		}
+		
+		.wrapper {
+			background-color: white;
+			padding: 25px;
+		}
+		
+		.page-head {
+			float: center;
+		}
+		
+	</style>
+	
+</head>
+
+<!-------------------------------------------------BODY------------------------------------------------->
+
+<body>
+	<div class="wrapper">
+		<div class="page-head">
+			<h1>Overview of JDBC - Essential Steps</h1>
+			<p> By <a href="https://www.linkedin.com/in/wsingleton7861/">Wezley Singleton</a></p><hr>
+		</div>
+		
+		<br><br>
+		
+		<h3>What is JDBC? Why is it important?</h3>
+		<p><em>JDBC</em> is an acronym that stands for Java DataBase Connectivity, and 
+		it is an <em>API</em>, or Application Programming Interface, specification that allows 
+		Java developers to connect their applications to an external database.</p> 
+		
+		<p>The JDBC API allows Java developers the ability to create <em>SQL</em> (Structured Query 
+		Language) statements which are passed to the <em>RDBMS</em>, or Relational DataBase 
+		Management System. The results of valid SQL statements passed to the RDBMS are handed back to the
+		interfaces within the JDBC, that allow the developer access to the result set or RDBMS output.</p>
+		
+		<p>JDBC is a powerful tool for Java developers, and lays the foundation for other technology frameworks such as
+		Hibernate ORM (often referred to simply as, Hibernate) and Spring ORM (Spring for short). These technologies 
+		abstract the mechanisms for sending SQL statements to the database and add an implementation layer for interacting
+		with the JDBC - which makes it easier for developers to interact with their databases. The topics of Hibernate
+		and Spring are out of the scope of this article, but it is important to understand the role that JDBC plays in
+		supporting these technologies.</p> <br>
+		
+		<hr>
+		
+		<div class="row">
+			<div class="col-7">
+				<h3>Using the JDBC in 7 Simple Steps</h3>
+		
+				<p>In this section, I will list and detail the eight basic steps that are followed in order to connect 
+				a Java application to a database, send a query, and recieve back a result set that will be used in the 
+				application.<p>
+				
+				<ol>
+					<li>Import JDBC packages</li>
+					<li>Load and register the appropriate JDBC driver</li>
+					<li>Establish a connection to the database</li>
+					<li>Creating a Statement object to store a query</li>
+					<li>Executing the Statement object to receive a ResultSet</li>
+					<li>Processing the ResultSet</li>
+					<li>Closing resources: ResultSet, Statement, and connection</li>
+				</ol>
+			</div>
+			
+			<div class="col-3">
+				<img src="images/jdbc-overview-diagram.gif" alt="JDBC Overview Diagram"/>
+			</div>
+		</div>
+		
+		<hr><!------------------------------------------------------------------------------------------>
+	
+		<h4>Step 1: Importing JDBC Packages</h4> <br>
+		
+		<p>Before we can begin loading/registering JDBC drivers, establishing a connection, and creating the various 
+		objects needed to interact with our database, we must first import the necessary packages.</p>
+		<div class="code">
+			<span style="color: #0da003;">
+			/*<br>
+			*  Gives access to classes such as: DriverManager, Connection, Statement,<br>
+			*  PreparedStatement, CallableStatement, ResultSet, etc.<br>
+			*/</span><br>
+			import java.sql.*;<br><br>
+			
+			
+			<span style="color: #0da003;">
+			// Gives access to OracleDriver <br>
+			</span>
+			import oracle.jdbc.driver.*;<br><br>
+			
+			<span style="color: #0da003;">
+			// Gives access to Oracle-specific classes: BLOB, CLOB, BFILE, etc.<br>
+			</span>
+			import oracle.sql.*;
+		</div>
+		<br> 
+		
+		<hr><!------------------------------------------------------------------------------------------>
+		
+		<h4>Step 2: Loading and registering the appropriate JDBC driver</h4> <br>
+		
+		<div class="row">
+			<div class="col-5">
+				<p>Once we have the proper packages imported, we then need to establish a communication between our database
+				and the JDBC. Since there are multiple database providers, each have their own respective driver which will
+				need to be loaded. For this example, we will be working with an Oracle database - and therefore, will load
+				and register the Oracle driver. The diagram to the right shows a hierarchy for the JDBC Driver and the various
+				database manufacturers' drivers.</p>
+			</div>
+			
+			<div class="col-4">
+				<img src="images/jdbc-driver-diagram.png" alt="JDBC Driver diagram" width="450" height="225"/>
+			</div>
+		</div>
+		
+		<p>As with most things in Java, there is more than one way to accomplish the task of loading and registering the
+		necessary driver. The first way is by utilizing the <span style="font-family: Courier">Class.forName()</span> method of the 
+		<span style="font-family: Courier">java.lang</span> package to load the JDBC drivers directly.</p>
+		
+		<div class="code">
+			<span style="color: #0da003;">
+			// Passing in the complete package name of the OracleDriver class<br>
+			</span>
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+		</div><br>
+		
+		<p>Still using the <span style="font-family: Courier">Class.forName()</span> method, we can also pass in a driver by using
+		a Properties object (found in the <span style="font-family: Courier">java.util package</span>) - assuming that we have 
+		created an <span style="font-family: Courier">application.properties</span> file, and it has been configured with a driver 
+		property correctly.</p><br>
+		
+		<span style="margin-left: 100px">application.properties</span>
+		<div class="code">
+			driver=oracle.jdbc.driver.OracleDriver<br>
+		</div><br>
+		
+		<span style="margin-left: 100px">SomeClass.java</span>
+		<div class="code">
+			<span style="color: #0da003;">
+			/*<br>
+			*  Creating a Properties object and loading it with the data found in<br>
+			*  application.properties<br>
+			*<br>
+			*  NOTE: various exceptions will need to be handled; handling omitted<br>
+			*  here for brevity<br>
+			*/</span><br>
+			Properties prop = new Properties();<br><br>
+			prop.load(new FileReader("C:/Users/exampleUser/my_workspace/myProject" +<br>
+			&nbsp;&nbsp;&nbsp;&nbsp;"/src/main/resources/application.properties"));<br><br>
+			
+			
+			<span style="color: #0da003;">
+			/*<br>
+			*  Passing the Properties object into Class.forName() and getting the<br>
+			*  "driver" attribute. The value of this attribute is the same as the<br>
+			*  full package name of the OracleDriver class that we used in the<br>
+			*  first example.<br>
+			*/</span><br>
+			Class.forName(prop.getProperty("driver"));
+		</div><br>
+	
+		<p>The alternative to using the <span style="font-family: Courier">Class.forName()</span> is to use the 
+		<span style="font-family: Courier">DriverManager.registerDriver()</span> method, which we imported with
+		<span style="font-family: Courier">java.sql</span> package.</p><br>
+	
+		<div class="code">
+			<span style="color: #0da003;">
+			/*<br>
+			*  Creating a new instance of the OracleClass by calling its constructor,<br>
+			*  and passing it into the DriverManager.registerDriver() method.<br>
+			*/<br>
+			</span>
+			DriverManager.registerDriver(new oracle.jdbc.driver.OracleDriver());
+			
+		</div><br>
+		
+		<hr><!------------------------------------------------------------------------------------------>
+		
+		<h4>Step 3: Establish a connection to the database</h4> <br>
+		
+		<p>Text about establishing a connection to the database here</p><br>
+	
+		<div class="code">
+			<span style="color: #0da003;">
+			/*<br>
+			*  Comments here
+			*/<br>
+			</span>
+			code here
+		</div><br>
+		
+		<hr><!------------------------------------------------------------------------------------------>
+		
+		<h4>Step 4: Creating a Statement object to store a query</h4> <br>
+		
+		<p>Text about creating a Statement object to store a query here</p><br>
+	
+		<div class="code">
+			<span style="color: #0da003;">
+			/*<br>
+			*  Comments here
+			*/<br>
+			</span>
+			code here
+		</div><br>
+		
+		<hr><!------------------------------------------------------------------------------------------>
+		
+		<h4>Step 5: Executing the Statement object to receive a ResultSet</h4> <br>
+		
+		<p>Text about executing the Statement object to receive a ResultSet here</p><br>
+	
+		<div class="code">
+			<span style="color: #0da003;">
+			/*<br>
+			*  Comments here
+			*/<br>
+			</span>
+			code here
+		</div><br>
+		
+		<hr><!------------------------------------------------------------------------------------------>
+		
+		<h4>Step 6: Processing the ResultSet</h4> <br>
+		
+		<p>Text about processing the ResultSet here</p><br>
+	
+		<div class="code">
+			<span style="color: #0da003;">
+			/*<br>
+			*  Comments here
+			*/<br>
+			</span>
+			code here
+		</div><br>
+		
+		<hr><!------------------------------------------------------------------------------------------>
+		
+		<h4>Step 7: Closing resources: ResultSet, Statement, and connection</h4> <br>
+		
+		<p>Text about closing resources here</p><br>
+	
+		<div class="code">
+			<span style="color: #0da003;">
+			/*<br>
+			*  Comments here
+			*/<br>
+			</span>
+			code here
+		</div><br>
+		
+	</div>
+</body>
+</html>
