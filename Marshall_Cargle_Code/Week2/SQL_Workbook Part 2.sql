@@ -134,3 +134,25 @@ CREATE TABLE Supplier
 --Task – Create a 1:N relationship between Category(PK) and Product(FK)
 
 --3.0	Performing SQL Queries
+--3.1 SELECT
+--Task – Select all the rows from the employees table
+Select * From Employees;
+--Task – Select all the rows from the employees table where the Department is HR
+Select * From EMployees where department = 'HR';
+--Task – Select all the rows from the employees table where username is jsmith and department is HR
+Select * from employees where department ='HR' and username='jsmith';
+--Task – Select all the rows from the employees table where manager is true or department is HR
+Select * from employees where manager=true or department = 'HR';
+
+--3.2 ORDER BY
+--Task – Select name from product table and order by name in ascending order.
+select name from PRODUCT order by ASC;
+--Task – Select name from product table and order by name in descending order.
+select name from product order by DESC;
+--Task- Select all records from category table order by name.
+select * from CATEGORY order by name;
+
+--3.3 INSERT INTO
+--3.4 UPDATE
+--Task – Update unit cost in products table where name is ruler
+update product set unitcost where name='ruler'
