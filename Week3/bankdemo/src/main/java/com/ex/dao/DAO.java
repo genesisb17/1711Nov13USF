@@ -15,4 +15,5 @@ public interface DAO {
 	public ArrayList<Account> getAccountsByUser(User u);
 	public double getBalance(int id);
 	public void updateBalance(int id, double amt);
+	public User getUser(String username);
 }
