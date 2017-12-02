@@ -1,0 +1,66 @@
+var current = null;
+var previous = null;
+
+function setHome(){
+	if(home == false){
+		home = true;
+		console.log(home);
+		introduction = false;
+		overloading = false;
+		overriding = false;
+		coercion = false;
+		inclusion = false;
+		generics = false;
+	}else{
+		home = false;
+		console.log(home);
+		introduction = false;
+		overloading = false;
+		overriding = false;
+		coercion = false;
+		inclusion = false;
+		generics = false;
+	}
+}
+
+function setIntro(){
+	if(current != "introduction"){
+		previous = current;
+		current = "introduction";
+	}else{current = null;}
+}
+
+function setOverloading(){
+	if(current != "overloading"){
+		previous = current;
+		current = "overloading";
+	}else{current = null;}
+}
+
+function setOverriding(){
+	if(current != "overriding"){
+		previous = current;
+		current = "overriding";
+	}else{current = null;}
+}
+
+function setCoercion(){
+	if(current != "coercion"){
+		previous = current;
+		current = "coercion";
+	}else{current = null;}
+}
+
+function setInclusion(){
+	if(current != "inclusion"){
+		previous = current;
+		current = "inclusion";
+	}else{current = null;}
+}
+
+function setGenerics(){
+	if(current != "generics"){
+		previous = current;
+		current = "generics";
+	}else{current = null;}
+}

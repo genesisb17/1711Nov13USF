@@ -1,0 +1,46 @@
+/**
+ * 
+ */
+
+var map;
+var diagramMap;
+var diagramFormat;
+var iconMap;
+
+var mainModal;
+var modalElements = [];
+var introductionElements = [];
+var overloadingElements = [];
+var overridingElements = [];
+var coercionElements = [];
+
+$(document).ready(function(){
+
+	initialize();
+	console.log(mainModal);
+	$(mainModal).on('shown.bs.modal', function(){setModalFocus();})
+	$(stringifyElements(modalElements)).click(function(){setModalDiagram(this);});
+	$(stringifyElements(introductionElements)).click(function(){setIntroductionView();});
+	$(stringifyElements(overloadingElements)).click(function(){setOverloadingView();});
+	$(stringifyElements(overridingElements)).click(function(){setOverridingView();});
+	$(stringifyElements(coercionElements)).click(function(){setCoercionView();});
+});
+
+function initialize(){
+	initMaps();
+	initModals();
+	initElements([
+		{elements: introductionElements, attribute: attributes.introduction},
+		{elements: overloadingElements, attribute: attributes.overloading}]);
+	//initOverloadingElements();
+	initOverridingElements();
+	initCoercionElements();
+}
+
+function stringifyElements(elements){
+	return elements.toString();
+}
+
+
+
+

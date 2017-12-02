@@ -1,0 +1,252 @@
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Polymorphism</title>
+<link rel="stylesheet" href="style.css">
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+<script src="./js/core.js"></script>
+<link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.css" 
+  rel="stylesheet"  type='text/css'>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.2.1.js"
+  integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+  crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+
+</head>
+<body>
+
+<!-- Button trigger modal -->
+
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" style="margin-left: 10%; margin-top: 15vh;" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Introduction</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <img id="modal-diagram" src="" style="width: 78vw;">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light" style="position: fixed; min-width: 100vw; z-index: 3; height: 60px;">
+ <div class="container" style="width: 620px;">
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active" onclick="myFunction(1)">
+        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item" id="introductionTab" onclick="myFunction(2)">
+        <a class="nav-link" data-toggle="collapse" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">Introduction</a>
+      </li>
+      <li class="nav-item" id="overloadingTab" onclick="myFunction(3)">
+        <a class="nav-link" data-toggle="collapse" href="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">Overloading</a>
+      </li>
+      <li class="nav-item" id="overridingTab" onclick="myFunction(4)">
+        <a class="nav-link" data-toggle="collapse" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree">Overriding</a>
+      </li>
+      <li class="nav-item" id="coercionTab" onclick="myFunction(5)">
+        <a class="nav-link" data-toggle="collapse" href="#collapseFour" aria-expanded="true" aria-controls="collapseFour">Coercion</a>
+      </li>
+      <li class="nav-item" onclick="myFunction(6)">
+        <a class="nav-link" data-toggle="collapse" href="#collapseFive" aria-expanded="true" aria-controls="collapseFive">Inclusion</a>
+      </li>
+      <li class="nav-item" onclick="myFunction(7)">
+        <a class="nav-link" data-toggle="collapse" href="#collapseSix" aria-expanded="true" aria-controls="collapseSix">Generics</a>
+      </li>
+    </ul>
+    <form class="form-inline my-2 my-lg-0" style="display:none;">
+          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+  </div>
+  </div>
+</nav>
+
+
+<div class="jumbotron" style="margin-bottom: 0px; width: 100vw; padding: 86px 2px 16px 20px; letter-spacing: 4px; text-transform: uppercase; position: fixed; z-index: 1;">
+  <h1 style="font-weight: 100; font-size: 2.5rem;">Polymorphism </h1>
+</div>
+
+
+
+
+<div id="accordion" role="tablist" style="padding-top: 158px;">
+  <div class="card">
+    <div class="card-header" role="tab" id="headingOne">
+      <h5 class="mb-0" id="title">
+        <a id="introduction" onclick="myFunction(2)" data-toggle="collapse" href="#collapseOne" style="text-decoration: none;" aria-expanded="true" aria-controls="collapseOne">
+          Introduction
+        </a>
+       	  <button id="introductionModal" style="float: right; margin-top: .5vh; margin-left: 3vw; height: 35px;" type="button" class="btn btn-secondary" data-toggle="modal" data-target="#myModal">
+	  		<i class="fa fa-minus" aria-hidden="false"></i>
+	  	  </button>
+	      <button id="introductionModal" style="float: right; margin-top: .5vh; height: 35px;" type="button" class="btn btn-secondary" data-toggle="modal" data-target="#myModal">
+		  	<i class="fa fa-arrows-alt" aria-hidden="false"></i>
+		  </button>
+      </h5>
+    </div>
+
+    <div id="collapseOne" class="collapse" role="tabpanel" aria-labelledby="headingOne" data-parent="#accordion">
+      <div class="card-body">
+	<div class="container" id="about-container">
+		<div class="row" id="row-content">
+			<div class="col-lg-12" id="about">
+				Polymorphism can be described as the ability of an object to take on 
+				multiple shapes or forms, but what exactly does that mean in programming? 
+				Well for one, it's one of the Four Pillars of Object Oriented Programming. 
+				We actually need Polymorphism in order for Inheritance (another pillar) to 
+				work effectively because where Inheritance defines the similarities between 
+				our objects, Polymorphism helps us define the differences between our objects 
+				and use that in our programming logic.
+			</div>
+		</div>
+		<div class="row" id="row-content">
+		<div class="col-lg-12" id="column">
+				<img id="diagram" src="assets/polymorphism-diagram.svg">
+
+		</div>
+		</div>
+      </div>
+    </div>
+  </div>
+  </div>
+  <div class="card">
+    <div class="card-header" role="tab" id="headingTwo">
+      <h5 class="mb-0" id="title">
+        <a id="overloading" onclick="myFunction(3)" data-toggle="collapse" href="#collapseTwo" style="text-decoration: none;" aria-expanded="true" aria-controls="collapseTwo">
+          Overloading
+        </a>
+        <button id="overloadingModal" style="float: right; margin-top: .5vh; height: 35px;" type="button" class="btn btn-secondary" data-toggle="modal" data-target="#myModal">
+	  	<i class="fa fa-arrows-alt" aria-hidden="false"></i>
+	  </button>
+      </h5>
+    </div>
+    <div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo" data-parent="#accordion">
+      <div class="card-body">
+		<div class="container" id="about-container">
+		<div class="row" id="row-content">
+			<div class="col-lg-12" id="about">
+				Overloading can be demonstrated on two levels: Operator and Function (or Method). 
+				In Java, Operator overloading is built-in meaning we, as programmers, cannot
+				implement custom overloading Operators. There will be examples below. The next 
+				type is Function overloading. This is the type of overloading we are more familiar 
+				with because these can be implemented and are very common in object oriented programming.
+			</div>
+		</div>
+		<div class="row" id="row-content">
+		<div class="col-lg-12" id="column">
+			<img id="diagram" src="assets/overloading-diagram.svg">
+		</div>
+		</div>
+      </div>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header" role="tab" id="headingThree">
+      <h5 class="mb-0" id="title">
+        <a id="overriding" onclick="myFunction(4)" data-toggle="collapse" href="#collapseThree" style="text-decoration: none;" aria-expanded="true" aria-controls="collapseThree">
+          Overriding
+        </a>
+        <button id="overridingModal" style="float: right; margin-top: .5vh; height: 35px;" type="button" class="btn btn-secondary" data-toggle="modal" data-target="#myModal">
+	  	<i class="fa fa-arrows-alt" aria-hidden="false"></i>
+	  </button>
+      </h5>
+    </div>
+    <div id="collapseThree" class="collapse" role="tabpanel" aria-labelledby="headingThree" data-parent="#accordion">
+      <div class="card-body">
+		<div class="container" id="about-container">
+		<div class="row" id="row-content">
+			<div class="col-lg-12" id="about">
+				Overriding is the process of implementing methods inherited from a Parent-Class or Interface in 
+				a way that is unique to itself and all of its children. Overriding is a very important type of Polymorphism
+				and there are rules that one must follow when overriding functions. Here is an example:
+			</div>
+		</div>
+		<div class="row" id="row-content">
+		<div class="col-lg-12" id="column">
+			<img id="diagram" src="assets/overriding-diagram.svg">
+		</div>
+		</div>
+      </div>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header" role="tab" id="headingFour">
+      <h5 class="mb-0" id="title">
+        <a id="coercion" onclick="myFunction(5)" data-toggle="collapse" href="#collapseFour" style="text-decoration: none;" aria-expanded="true" aria-controls="collapseFour">
+          Coercion
+        </a>
+      <button id="coercionModal" style="float: right; margin-top: .5vh; height: 35px;" type="button" class="btn btn-secondary" data-toggle="modal" data-target="#myModal">
+	  	<i class="fa fa-arrows-alt" aria-hidden="false"></i>
+	  </button>
+      </h5>
+    </div>
+    <div id="collapseFour" class="collapse" role="tabpanel" aria-labelledby="headingFour" data-parent="#accordion">
+      <div class="card-body">
+		<div class="container" id="about-container">
+		<div class="row" id="row-content">
+			<div class="col-lg-12" id="about">
+				Coercion is another word for implicit type conversion. There are two types: 
+				Narrowing Coercion and Widening Coercion. In Java, widening type conversion can be done implicitly
+				but narrowing type conversion can only be explicitly through casting. 
+			</div>
+		</div>
+		<div class="row" id="row-content">
+		<div class="col-lg-12" id="column">
+			<img id="diagram" src="assets/coercion-diagram.svg">
+		</div>
+		</div>
+      </div>
+      </div>
+    </div>
+  </div>
+  
+    <div class="card">
+    <div class="card-header" role="tab" id="headingFive">
+      <h5 class="mb-0" id="title">
+        <a onclick="myFunction(6)" data-toggle="collapse" href="#collapseFive" style="text-decoration: none;" aria-expanded="true" aria-controls="collapseFive">
+          Inclusion
+        </a>
+      </h5>
+    </div>
+    <div id="collapseFive" class="collapse" role="tabpanel" aria-labelledby="headingFour" data-parent="#accordion">
+      <div class="card-body">
+		Inclusion information goes here...
+      </div>
+    </div>
+  </div>
+  
+  <div class="card">
+    <div class="card-header" role="tab" id="headingSix">
+      <h5 class="mb-0" id="title">
+        <a onclick="myFunction(7)" data-toggle="collapse" href="#collapseSix" style="text-decoration: none;" aria-expanded="true" aria-controls="collapseSix">
+          Generics
+        </a>
+      </h5>
+    </div>
+    <div id="collapseSix" class="collapse" role="tabpanel" aria-labelledby="headingSix" data-parent="#accordion">
+      <div class="card-body">
+		Generics information goes here...
+      </div>
+    </div>
+  </div>
+  
+</div>
+
+
+</body>
+</html>

@@ -1,0 +1,53 @@
+var accordionMap = new Object();
+var diagramMap = new Object();
+var diagramFormatMap = new Object();
+var iconMap = [];	
+
+accordionMap["introduction"] = "#collapseOne";
+accordionMap["overloading"] = "#collapseTwo";
+accordionMap["overriding"] = "#collapseThree";
+accordionMap["coercion"] = "#collapseFour";
+accordionMap["inclusion"] = "#collapseFive";
+accordionMap["generics"] = "#collapseSix";
+
+diagramMap["introductionModal"] = "assets/polymorphism-diagram.svg";
+diagramMap["overloadingModal"] = "assets/overloading-diagram.svg";
+diagramMap["overridingModal"] = "assets/overriding-diagram.svg";
+diagramMap["coercionModal"] = "assets/coercion-diagram.svg";
+diagramMap["inclusionModal"] = "assets/coercion-diagram.svg";
+diagramMap["genericsModal"] = "assets/coercion-diagram.svg";
+
+diagramFormatMap["introductionModal"] = "7vh";
+diagramFormatMap["overloadingModal"] = "7vh";
+diagramFormatMap["overridingModal"] = "0vh";
+diagramFormatMap["coercionModal"] = "7vh";
+diagramFormatMap["inclusionModal"] = "7vh";
+
+iconMap[0] = "#introduction-button-icon";
+iconMap[1] = "#overloading-button-icon";
+iconMap[2] = "#overriding-button-icon";
+iconMap[3] = "#coercion-button-icon";
+iconMap[4] = "#inclusion-button-icon";
+
+function initMaps(){
+	map = getAccordionMap();
+	diagramMap = getDiagramMap();
+	diagramFormat = getDiagramFormatMap();
+	iconMap = getIconMap();
+}
+
+function getAccordionMap(){
+	return accordionMap;
+}
+
+function getDiagramMap(){
+	return diagramMap;
+}
+
+function getDiagramFormatMap(){
+	return diagramFormatMap;
+}
+
+function getIconMap(){
+	return iconMap;
+}

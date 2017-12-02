@@ -1,0 +1,96 @@
+/**
+ * 
+ */
+
+var home = false;
+var introduction = false;
+var overloading = false;
+var overriding = false;
+var coercion = false;
+var inclusion = false;
+var generics = false;
+
+var map;
+var diagramMap;
+var diagramFormat;
+var iconMap;
+
+function myFunction(x) {
+	if(x == 1) setHome();
+	else if(x == 2) setIntro();
+	else if(x == 3) setOverloading();
+	else if(x == 4) setOverriding();
+	else if(x == 5) setCoercion();
+	else if(x == 6) setInclusion();
+	else if(x == 7) setGenerics();
+}
+
+$(document).ready(function(){
+	
+	map = getAccordionMap();
+	diagramMap = getDiagramMap();
+	diagramFormat = getDiagramFormatMap();
+	iconMap = getIconMap();
+	
+	$('#myModal').on('shown.bs.modal', function () {
+		  $('#myInput').focus()
+	})
+	
+	$("#introductionModal, #overloadingModal, #overridingModal, #coercionModal").click(function() {
+		$("#modal-diagram").attr("src", diagramMap[$(this).attr("id")]);    
+		$("#modal-diagram").css("margin-top", diagramFormat[$(this).attr("id")]);
+	});
+	
+	$("#introduction, #introductionTab, #introduction-button").click(function() {
+		if(getCurrent() == "introduction"){ 
+			setIcon("#introduction-button-icon", "fa fa-minus", "fa fa-plus");
+			if(getPrevious() == null)$('html, body').animate({scrollTop: "0px"}, 800);   
+			else $('html, body').animate({scrollTop: "0px"}, 800);   
+		}else{setIcon("#introduction-button-icon", "fa fa-plus", "fa fa-minus");}
+	});
+	
+	$("#overloading, #overloadingTab, #overloading-button").click(function() {
+		if(getCurrent() == "overloading"){ 
+			setIcon("#overloading-button-icon", "fa fa-minus", "fa fa-plus");
+			if(getPrevious() == null)$('html, body').animate({scrollTop: ($(window).height() / 10).toString() + "px"}, 800);   
+			else $('html, body').animate({scrollTop: (($(window).height() - $(map[getPrevious()]).height()) / 7.65).toString() + "px"}, 800);   
+		}else{setIcon("#overloading-button-icon", "fa fa-plus", "fa fa-minus");}
+	});
+	
+	$("#overriding, #overridingTab, #overriding-button").click(function() {
+		if(getCurrent() == "overriding"){ 
+			setIcon("#overriding-button-icon", "fa fa-minus", "fa fa-plus");
+			if(getPrevious() == null)$('html, body').animate({scrollTop: ($(window).height() / 5).toString() + "px"}, 800);   
+			else $('html, body').animate({scrollTop: (($(window).height() - $(map[getPrevious()]).height()) / 3.84).toString() + "px"}, 800);   
+		}else{setIcon("#overriding-button-icon", "fa fa-plus", "fa fa-minus");}
+	});
+	
+	$("#coercion, #coercionTab, #coercion-button").click(function() {
+		if(getCurrent() == "coercion"){ 
+			setIcon("#coercion-button-icon", "fa fa-minus", "fa fa-plus");
+			if(getPrevious() == null)$('html, body').animate({scrollTop: ($(window).height() / 3.34).toString() + "px"}, 800);   
+			else $('html, body').animate({scrollTop: (($(window).height() - $(map[getPrevious()]).height()) / 2.55).toString() + "px"}, 800);   
+		}else{setIcon("#coercion-button-icon", "fa fa-plus", "fa fa-minus");}
+	});
+});
+
+function setIcon(element, iconA, iconB){
+	console.log(element);
+	console.log(iconA);
+	console.log(iconB);
+	console.log(iconMap.length);
+	console.log(getCurrent());
+	console.log("-----------------------------------");
+	
+		if(getCurrent() == null){
+			for (i = 0; i < iconMap.length; i++) { 
+				$(iconMap[i]).attr("class", "fa fa-plus");
+			}
+		}else{
+			for (i = 0; i < iconMap.length; i++) { 
+			    if(element == iconMap[i]){
+			    	$(element).attr("class", iconA);
+			    }else{$(iconMap[i]).attr("class", iconB);}
+			}
+		}
+}

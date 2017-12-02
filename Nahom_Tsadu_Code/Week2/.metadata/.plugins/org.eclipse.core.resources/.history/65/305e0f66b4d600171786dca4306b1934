@@ -1,0 +1,23 @@
+
+
+
+function setIcon(element, iconA, iconB){
+	console.log(element);
+	console.log(iconA);
+	console.log(iconB);
+	console.log(iconMap.length);
+	console.log(getCurrent());
+	console.log("-----------------------------------");
+	
+		if(getCurrent() == null){
+			for (i = 0; i < iconMap.length; i++) { 
+				$(iconMap[i]).attr("class", "fa fa-plus");
+			}
+		}else{
+			for (i = 0; i < iconMap.length; i++) { 
+			    if(element == iconMap[i]){
+			    	$(element).attr("class", iconA);
+			    }else{$(iconMap[i]).attr("class", iconB);}
+			}
+		}
+}

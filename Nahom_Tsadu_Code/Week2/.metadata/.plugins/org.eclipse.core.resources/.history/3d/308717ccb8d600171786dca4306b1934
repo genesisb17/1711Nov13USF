@@ -1,0 +1,38 @@
+/**
+ * 
+ */
+
+var map;
+var diagramMap;
+var diagramFormat;
+var iconMap;
+	
+$(document).ready(function(){
+	
+	map = getAccordionMap();
+	diagramMap = getDiagramMap();
+	diagramFormat = getDiagramFormatMap();
+	iconMap = getIconMap();
+	
+	let modalElements = "#introductionModal, #overloadingModal, #overridingModal, #coercionModal";
+	let introductionElements = "#introduction, #introductionTab, #introduction-button";
+	let overloadingElements = "#overloading, #overloadingTab, #overloading-button";
+	let overridingElements
+	let coercionElements
+	
+	$('#myModal').on('shown.bs.modal', function () {
+		  $('#myInput').focus()
+	})
+	
+	$(modalElements).click(function(){setModalDiagram(this);});
+	
+	$(introductionsElements).click(function(){setIntroductionView();});
+	
+	$(overloadingElements).click(function(){setOverloadingView();});
+	
+	$("#overriding, #overridingTab, #overriding-button").click(function(){setOverridingView();});
+	
+	$("#coercion, #coercionTab, #coercion-button").click(function(){setCoercionView();});
+});
+
+

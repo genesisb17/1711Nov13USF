@@ -1,0 +1,68 @@
+var current = null;
+var previous = null;
+
+function myFunction(x) {
+	if(x == 1) setHome();
+	else if(x == 2) setIntro();
+	else if(x == 3) setOverloading();
+	else if(x == 4) setOverriding();
+	else if(x == 5) setCoercion();
+	else if(x == 6) setInclusion();
+	else if(x == 7) setGenerics();
+	console.log(getCurrent());
+}
+
+function getCurrent(){
+	return current;
+}
+
+function getPrevious(){
+	return previous;
+}
+
+function setHome(){
+	previous = current;
+	current = null;
+}
+
+function setIntro(){
+	if(current != "introduction"){
+		previous = current;
+		current = "introduction";
+	}else{current = null;}
+}
+
+function setOverloading(){
+	if(current != "overloading"){
+		previous = current;
+		current = "overloading";
+	}else{current = null;}
+}
+
+function setOverriding(){
+	if(current != "overriding"){
+		previous = current;
+		current = "overriding";
+	}else{current = null;}
+}
+
+function setCoercion(){
+	if(current != "coercion"){
+		previous = current;
+		current = "coercion";
+	}else{current = null;}
+}
+
+function setInclusion(){
+	if(current != "inclusion"){
+		previous = current;
+		current = "inclusion";
+	}else{current = null;}
+}
+
+function setGenerics(){
+	if(current != "generics"){
+		previous = current;
+		current = "generics";
+	}else{current = null;}
+}

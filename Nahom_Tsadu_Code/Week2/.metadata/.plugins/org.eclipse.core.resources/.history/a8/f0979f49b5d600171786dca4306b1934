@@ -1,0 +1,50 @@
+/**
+ * 
+ */
+
+var map;
+var diagramMap;
+var diagramFormat;
+var iconMap;
+
+$(document).ready(function(){
+	
+	map = getAccordionMap();
+	diagramMap = getDiagramMap();
+	diagramFormat = getDiagramFormatMap();
+	iconMap = getIconMap();
+	
+	$('#myModal').on('shown.bs.modal', function () {
+		  $('#myInput').focus()
+	})
+	
+	$("#introductionModal, #overloadingModal, #overridingModal, #coercionModal").click(function() {
+		setModalDiagram(this);
+	});
+	
+	$("#introduction, #introductionTab, #introduction-button").click(function() {
+		setIntroductionView();
+	});
+	
+	$("#overloading, #overloadingTab, #overloading-button").click(function() {
+		setOverLoadingView();
+	});
+	
+	$("#overriding, #overridingTab, #overriding-button").click(function() {
+		if(getCurrent() == "overriding"){ 
+			setIcon("#overriding-button-icon", "fa fa-minus", "fa fa-plus");
+			if(getPrevious() == null)$('html, body').animate({scrollTop: ($(window).height() / 5).toString() + "px"}, 800);   
+			else $('html, body').animate({scrollTop: (($(window).height() - $(map[getPrevious()]).height()) / 3.84).toString() + "px"}, 800);   
+		}else{setIcon("#overriding-button-icon", "fa fa-plus", "fa fa-minus");}
+	});
+	
+	$("#coercion, #coercionTab, #coercion-button").click(function() {
+		if(getCurrent() == "coercion"){ 
+			setIcon("#coercion-button-icon", "fa fa-minus", "fa fa-plus");
+			if(getPrevious() == null)$('html, body').animate({scrollTop: ($(window).height() / 3.34).toString() + "px"}, 800);   
+			else $('html, body').animate({scrollTop: (($(window).height() - $(map[getPrevious()]).height()) / 2.55).toString() + "px"}, 800);   
+		}else{setIcon("#coercion-button-icon", "fa fa-plus", "fa fa-minus");}
+	});
+});
+
+

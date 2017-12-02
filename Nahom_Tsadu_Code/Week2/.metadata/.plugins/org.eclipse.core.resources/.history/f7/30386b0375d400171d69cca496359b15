@@ -1,0 +1,49 @@
+
+.diagram-container{
+	height: 340px;
+    width: 590px;
+   	margin-top: 26px;
+    margin-left: 20px;
+    display: inline;
+}
+
+.diagram-container .diagram{
+    
+}
+
+.about-container{
+    width: 97vw !important;
+    max-width: 97vw !important;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.about-container .row-header{
+	padding-top: 35px;
+    padding-bottom: 10px;
+    padding-left: 15px;
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+}
+
+.about-container .row-content{
+	padding-top: 10px;
+    padding-bottom: 35px;
+}
+
+.about-container .row-content .about{
+    font-size: 1.3rem;
+    letter-spacing: .5px;
+}
+
+.about-container .row .page-header{
+	text-align: center;
+}
+
+.about-container .row .column{
+    text-align: center;
+}
+
+.about-container .row .column .diagram{
+    width: 95vw;
+}

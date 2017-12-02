@@ -1,0 +1,39 @@
+
+function setIntroductionView(){
+	if(getCurrent() == "introduction"){ 
+		setIcon("#introduction-button-icon", "fa fa-minus", "fa fa-plus");
+		if(getPrevious() == null)$('html, body').animate({scrollTop: "0px"}, 800);   
+		else $('html, body').animate({scrollTop: "0px"}, 800);   
+	}else{setIcon("#introduction-button-icon", "fa fa-plus", "fa fa-minus");}
+}
+
+function setOverloadingView(){
+	
+}
+
+function setOverridingView(){
+	
+}
+
+function setCoercionView(){
+	
+}
+
+function setModalDiagram(element){
+	$("#modal-diagram").attr("src", diagramMap[$(element).attr("id")]);    
+	$("#modal-diagram").css("margin-top", diagramFormat[$(element).attr("id")]);
+}
+
+function setIcon(element, iconA, iconB){
+	if(getCurrent() == null){
+		for (i = 0; i < iconMap.length; i++) { 
+			$(iconMap[i]).attr("class", "fa fa-plus");
+		}
+	}else{
+		for (i = 0; i < iconMap.length; i++) { 
+		    if(element == iconMap[i]){
+		    	$(element).attr("class", iconA);
+		    }else{$(iconMap[i]).attr("class", iconB);}
+		}
+	}
+}

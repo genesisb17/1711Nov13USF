@@ -1,0 +1,115 @@
+const attributes = {
+		introduction: "introduction", 
+	    overloading: "overloading", 
+	    overriding: "overriding", 
+	    coercion: "coercion",
+        modal: "myModal"
+};
+
+function initMaps(){
+	map = getAccordionMap();
+	diagramMap = getDiagramMap();
+	diagramFormat = getDiagramFormatMap();
+	iconMap = getIconMap();
+}
+
+function initElements(){
+	
+}
+
+function initModals(){
+	mainModal = formatAttribute(attributes.modal);
+	modalElements.push(
+			formatModalAttribute(attributes.introduction), 
+			formatModalAttribute(attributes.overloading), 
+			formatModalAttribute(attributes.overriding), 
+			formatModalAttribute(attributes.coercion));
+}
+
+function initIntroductionElements(){
+	console.log(attributes["introduction"]);
+	introductionElements.push(
+			formatAttribute(attributes.introduction), 
+			formatTabAttribute(attributes.introduction),  
+			formatButtonAttribute(attributes.introduction));
+}
+
+function initOverloadingElements(){
+	overloadingElements.push(
+			formatAttribute(attributes.overloading), 
+			formatTabAttribute(attributes.overloading), 
+			formatButtonAttribute(attributes.overloading));
+}
+
+function initOverridingElements(){
+	overridingElements.push(
+			formatAttribute(attributes.overriding), 
+			formatTabAttribute(attributes.overriding), 
+			formatButtonAttribute(attributes.overriding));
+}
+
+function initCoercionElements(){
+	coercionElements.push(
+			formatAttribute(attributes.coercion), 
+			formatTabAttribute(attributes.coercion), 
+			formatButtonAttribute(attributes.coercion));
+}
+
+function setModalFocus(){
+	$('#myInput').focus()
+}
+
+function setView(attribute){
+	if(getCurrent() == attribute){ 
+		setIcon(formatButtonIconAttribute(attribute), "fa fa-minus", "fa fa-plus");
+		if(getPrevious() == null)$('html, body').animate({scrollTop: "0px"}, 800);   
+		else $('html, body').animate({scrollTop: "0px"}, 800);   
+	}else{setIcon(formatButtonIconAttribute(attribute), "fa fa-plus", "fa fa-minus");}
+}
+
+function setIntroductionView(){
+	setView(attributes.introduction);
+}
+
+function setOverloadingView(){
+	if(getCurrent() == attributes.overloading){ 
+		setIcon("#overloading-button-icon", "fa fa-minus", "fa fa-plus");
+		if(getPrevious() == null)$('html, body').animate({scrollTop: ($(window).height() / 10).toString() + "px"}, 800);   
+		else $('html, body').animate({scrollTop: (($(window).height() - $(map[getPrevious()]).height()) / 7.65).toString() + "px"}, 800);   
+	}else{setIcon("#overloading-button-icon", "fa fa-plus", "fa fa-minus");}
+}
+
+function setOverridingView(){
+	if(getCurrent() == attributes.overriding){ 
+		setIcon("#overriding-button-icon", "fa fa-minus", "fa fa-plus");
+		if(getPrevious() == null)$('html, body').animate({scrollTop: ($(window).height() / 5).toString() + "px"}, 800);   
+		else $('html, body').animate({scrollTop: (($(window).height() - $(map[getPrevious()]).height()) / 3.84).toString() + "px"}, 800);   
+	}else{setIcon("#overriding-button-icon", "fa fa-plus", "fa fa-minus");}
+}
+
+function setCoercionView(){
+	if(getCurrent() == attributes.coercion){ 
+		setIcon("#coercion-button-icon", "fa fa-minus", "fa fa-plus");
+		if(getPrevious() == null)$('html, body').animate({scrollTop: ($(window).height() / 3.34).toString() + "px"}, 800);   
+		else $('html, body').animate({scrollTop: (($(window).height() - $(map[getPrevious()]).height()) / 2.55).toString() + "px"}, 800);   
+	}else{setIcon("#coercion-button-icon", "fa fa-plus", "fa fa-minus");}
+}
+
+function setModalDiagram(element){
+	$("#modal-diagram").attr("src", diagramMap[$(element).attr("id")]);    
+	$("#modal-diagram").css("margin-top", diagramFormat[$(element).attr("id")]);
+}
+
+function setIcon(element, iconA, iconB){
+	if(getCurrent() == null){
+		for (i = 0; i < iconMap.length; i++) { 
+			$(iconMap[i]).attr("class", "fa fa-plus");
+		}
+	}else{
+		for (i = 0; i < iconMap.length; i++) { 
+		    if(element == iconMap[i]){
+		    	$(element).attr("class", iconA);
+		    }else{$(iconMap[i]).attr("class", iconB);}
+		}
+	}
+}
