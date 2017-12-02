@@ -313,7 +313,10 @@
 		
 		<h4>Step 5: Executing the Statement object to receive a ResultSet</h4> <br>
 		
-		<p>Text about executing the Statement object to receive a ResultSet here</p><br>
+		<p>Once a Statement object has been created it needs to be executed in order to receive a result
+		set. To execute the Statement, we use the .executeQuery() method - which takes a String as an
+		argument. In Step 4, we already prepared a String containing our SQL query that will be executed
+		on the database. We will store the returned result set in a ResultSet object.</p><br>
 	
 		<div class="code">
 			<span style="color: #0da003;">
@@ -329,7 +332,11 @@
 		
 		<h4>Step 6: Processing the ResultSet</h4> <br>
 		
-		<p>Text about processing the ResultSet here</p><br>
+		<p>We have executed our SQL statement in the database, and have received the results of our query
+		and have them stored inside of a ResultSet object. Now we need actually get information from it so
+		that it can be used in our application. To do this we make use of a while loop that will help us
+		traverse through our ResultSet until we reach the end of it. We will persist the data retrieved
+		from the database in some variables or objects that will be used elsewhere in our program.</p><br>
 	
 		<div class="code">
 			<span style="color: #0da003;">
@@ -367,16 +374,22 @@
 		
 		<h4>Step 7: Closing the connection</h4> <br>
 		
-		<p>Text about closing resources here</p><br>
+		<p>When finished with our ResultSet, it is important to close all of our resources to ensure that 
+		we avoid memory management. Although, you are likely to see only the connection to our database 
+		closed, it is considered best practice to close the ResultSet and Statement as well. When doing 
+		so, take care to close them in reverse order from the manner which we created 
+		them.</p><br>
 	
 		<div class="code">
 			<span style="color: #0da003;">
 			/*<br>
-			*  Best practice requires that we close our Connection resource<br>
-			*  to ensure we avoid memory leaks.<br>
+			*  Best practice requires that we close our all of our resources<br>
+			*  to ensure we avoid memory leaks. Be sure to close them in order!<br>
 			*/<br>
 			</span>
-			conn.close();<br>
+			try { rs.close; } catch (Exception e) {}<br>
+			try { stmt.close; } catch (Exception e) {}<br>
+			try { conn.close; } catch (Exception e) {}<br>
 			
 		</div><br>
 		
