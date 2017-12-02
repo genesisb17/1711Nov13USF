@@ -3,20 +3,20 @@
 }
 
 .btn-custom {
-    background-color: #069;
-    color: #FFF;
+    background-color: #069 !important;
+    color: #FFF !important;
 }
 
 .btn-custom:hover {
-    background-color: #09C;
+    background-color: #09C !important;
 }
 
 .custom-color {
-    color: #069;
+    color: #069 !important;
 }
 
 .custom-font {
-    color: #069;
+    color: #069 !important;
 }
 
 .custom-jumbo { 
@@ -27,7 +27,7 @@
 }
 
 .section-color {
-    background-color: #E3F2FD;
+    background-color: #E3F2FD !important;
 }
 
 .section-padding {
