@@ -104,4 +104,60 @@ CREATE OR REPLACE PROCEDURE firstAndLast(
     OPEN fANDL FOR SELECT firstname, lastname FROM employee;
   END;
 /
-select firstandlast from dual;
+--4.2
+CREATE OR REPLACE PROCEDURE empUpdate(
+  eid IN EMPLOYEE.EMPLOYEEID%TYPE,
+  eaddress IN EMPLOYEE.ADDRESS%TYPE,
+  ecity IN EMPLOYEE.CITY%TYPE,
+  estate IN EMPLOYEE.STATE%TYPE,
+  ecountry IN EMPLOYEE.COUNTRY%TYPE,
+  epcode IN EMPLOYEE.POSTALCODE%TYPE,
+  ephone IN EMPLOYEE.PHONE%TYPE,
+  efax IN EMPLOYEE.FAX%TYPE,
+  eemail IN EMPLOYEE.EMAIL%TYPE
+)
+IS
+BEGIN
+  UPDATE EMPLOYEE SET ADDRESS = eaddress, CITY = ecity, STATE = estate, 
+  COUNTRY = ecountry, POSTALCODE = epcode, PHONE = ephone, FAX = efax, EMAIL = eemail
+  WHERE EMPLOYEEID = eid;
+END;
+/
+
+create or replace PROCEDURE empManagers(
+  emp IN EMPLOYEE.EMPLOYEEID%TYPE,
+  managers OUT SYS_REFCURSOR)
+AS
+BEGIN
+   OPEN managers FOR SELECT * FROM EMPLOYEE 
+   WHERE EMPLOYEEID = (SELECT REPORTSTO FROM EMPLOYEE WHERE EMPLOYEEID = emp);
+END;
+/
+--4.3
+CREATE OR REPLACE PROCEDURE nameAndCompany(
+      cust IN customer.customerid%type,
+      nandc out SYS_REFCURSOR)
+  IS
+  BEGIN
+    OPEN nandc FOR SELECT firstname, lastname, company FROM customer WHERE customerid=cust;
+  END;
+/
+--5.0
+DECLARE
+  inID INVOICE.INVOICEID%TYPE;
+BEGIN
+  inID := 123;
+  DELETE FROM INVOICE WHERE INVOICEID = inID;
+END;
+/
+
+CREATE OR REPLACE PROCEDURE newCustomer(
+    cust IN CUSTOMER%ROWTYPE)
+AS
+BEGIN
+  INSERT INTO CUSTOMER VALUES cust;
+END;
+/
+
+
+
