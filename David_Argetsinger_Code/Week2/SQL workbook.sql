@@ -157,6 +157,23 @@ select Firstname,lastname,invoiceid from customer
 inner join invoice on customer.customerid = invoice.customerid;
 
 
+--7.2 OUTER
+--Task – Create an outer join that joins the customer and invoice table, specifying the CustomerId, firstname, lastname, invoiceId, and total.
+select CUSTOMER.CUSTOMERID,CUSTOMER.FIRSTNAME,CUSTOMER.LASTNAME,invoice.INVOICEID, invoice.TOTAL from CUSTOMER
+LEFT OUTER JOIN invoice on customer.customerid = invoice.customerid;
+/
+
+--7.3 Task – Create a right join that joins album and artist specifying artist name and title.
+select ARTIST.NAME,ALBUM.TITLE from album right join ARTIST on ARTIST.ARTISTID = album.ARTISTID
+/
+--7.4 Task – Create a cross join that joins album and artist and sorts by artist name in ascending order.
+
+select * from album cross join artist order by artist.name
+/
+--7.5
+--Task – Perform a self-join on the employee table, joining on the reportsto column
+select * from employee e1 join employee e2 on (e1.REPORTSTO=e2.employeeid);
+/
 
 
 
