@@ -5,8 +5,6 @@
 	<meta charset="ISO-8859-1">
 	<title>Overview of JDBC - Essential Steps</title>
 	
-	<link rel="stylesheet" href="css/styling.css">
-	
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
 	integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb"
 	crossorigin="anonymous">
@@ -32,6 +30,17 @@
 			background-color: grey;
 		}
 		
+		.code {
+			font-family: Courier;
+			font-weight: 200;
+			margin-left: 100px;
+			margin-right: 100px;
+			border: 1px solid grey;
+			border-radius: 5px;
+			padding: 10px 10px 10px 10px;
+			background: #e9ebed;
+		}
+		
 		.wrapper {
 			background-color: white;
 			padding: 25px;
@@ -41,6 +50,9 @@
 			float: center;
 		}
 		
+		p {
+			text-align: justify;
+		}
 	</style>
 	
 </head>
@@ -67,11 +79,10 @@
 		interfaces within the JDBC, that allow the developer access to the result set or RDBMS output.</p>
 		
 		<p>JDBC is a powerful tool for Java developers, and lays the foundation for other technology frameworks such as
-		Hibernate ORM (often referred to simply as, Hibernate) and Spring ORM (Spring for short). These technologies 
-		abstract the mechanisms for sending SQL statements to the database and add an implementation layer for interacting
-		with the JDBC - which makes it easier for developers to interact with their databases. The topics of Hibernate
-		and Spring are out of the scope of this article, but it is important to understand the role that JDBC plays in
-		supporting these technologies.</p> <br>
+		Hibernate ORM (often referred to simply as, Hibernate). Hibernate abstract the mechanisms for sending SQL 
+		statements to the database and add an implementation layer for interacting with the JDBC - which makes it easier 
+		for developers to interact with their databases. The topic of Hibernate is out of the scope of this article, but 
+		it is important to understand the role that JDBC plays in supporting the technologies build upon it.</p> <br>
 		
 		<hr>
 		
@@ -104,11 +115,13 @@
 		<h4>Step 1: Importing JDBC Packages</h4> <br>
 		
 		<p>Before we can begin loading/registering JDBC drivers, establishing a connection, and creating the various 
-		objects needed to interact with our database, we must first import the necessary packages.</p>
+		objects needed to work with our database, we must first import the necessary packages.</p>
 		<div class="code">
 			<span style="color: #0da003;">
 			/*<br>
-			*  Gives access to classes such as: DriverManager, Connection, Statement,<br>
+			*  Gives access to classes such as: DriverManager and SQLException<br>
+			*<br>
+			*  Gives access to interfaces such as: Connection, Statement,<br>
 			*  PreparedStatement, CallableStatement, ResultSet, etc.<br>
 			*/</span><br>
 			import java.sql.*;<br><br>
@@ -209,30 +222,91 @@
 		
 		<h4>Step 3: Establish a connection to the database</h4> <br>
 		
-		<p>Text about establishing a connection to the database here</p><br>
+		<p>Finally, now that we have done all of the "prep" work, we can connect to our database. The packages we 
+		imported in Step 1 can be put to use. Inside of the <span style="font-family: Courier">java.sql</span> 
+		package, we are provided with the Connection interface and the DriverManager class.</p>
+		
+		<p>The DriverManager class has a private constructor, which means that the class itself cannot be directly 
+		instantiated into an object. Because of this, it is equipped with static methods for managing and getting 
+		connections. The key method we will focus at this point is the <span style="font-family: Courier">.getConnection()</span>
+		method, which as it names suggests is what we will use to establish a connection to our database. The
+		<span style="font-family: Courier">.getConnection()</span> method takes in three parameters: the URL at
+		which the database server can be found, and a username/password combination that has access to the database.</p><br>
 	
 		<div class="code">
 			<span style="color: #0da003;">
 			/*<br>
-			*  Comments here
-			*/<br>
-			</span>
-			code here
+			*  Declare a Connection variable (it is an interface so it cannot<br>
+			*  be instantiated itself, so for now we set it to null)<br>
+			*/<br></span>
+			Connection conn = null;<br><br>
+			
+		
+			try {<br>
+			
+			<span style="color: #0da003;">
+			&nbsp;&nbsp;/*<br>
+			&nbsp;&nbsp;*  This should look familiar, its the same code we used in Step 2<br>
+			&nbsp;&nbsp;*  to load and register our Oracle driver. Throws ClassNotFoundException.<br>
+			&nbsp;&nbsp;*/<br></span>
+			&nbsp;&nbsp;Class.forName(prop.getProperty("driver"));<br><br>
+			
+			<span style="color: #0da003;">
+			&nbsp;&nbsp;/*<br>
+			&nbsp;&nbsp;*  Here we are using DriverManager's static .getConnection()<br>
+			&nbsp;&nbsp;*  and passing the URL of our database (this is an example of<br>
+			&nbsp;&nbsp;*  a locally hosted database). Additionally, we are passing in<br>
+			&nbsp;&nbsp;*  the username/password combination to access a database schema.<br>
+			&nbsp;&nbsp;*  Throws SQLException.<br>
+			
+			&nbsp;&nbsp;*/<br></span>
+			&nbsp;&nbsp;conn = DriverManager.getConnection(<br>
+			&nbsp;&nbsp;&nbsp;&nbsp;"jdbc:oracle:thin:@//localhost:1521/XE",<br>
+			&nbsp;&nbsp;&nbsp;&nbsp;"username",<br>
+			&nbsp;&nbsp;&nbsp;&nbsp;"password");<br>
+			
+			}<br><br>
+		
+			catch (ClassNotFoundException cnfe) {<br>
+			&nbsp;&nbsp;cnfe.printStackTrace();<br>
+			} <br><br>
+			
+			catch (SQLException sqle) {<br>
+			&nbsp;&nbsp;sqle.printStackTrace();<br>
+			}<br>
+			
+			
 		</div><br>
 		
 		<hr><!------------------------------------------------------------------------------------------>
 		
 		<h4>Step 4: Creating a Statement object to store a query</h4> <br>
 		
-		<p>Text about creating a Statement object to store a query here</p><br>
+		<p>With the connection to the database established, our Java application is now prepared to interact
+		our Oracle database. To prepare a Statement to be sent to our database we use the, again aptly named,
+		.prepareStatement() method provided by Connection.</p>
+		
+		<p>There are three types of statements that are provided by Connection: Statement, PreparedStatement,
+		and CallableStatement. Statement is only to be used when we are executing query in which we do not
+		need any user input. The reasoning behind restricting our usage of Statement is due to its vulnerability
+		to SQL injection - SQL statements given as input from malicious end users for the purpose of either
+		destroying data or exposing sensitive data. To avoid this, we use PreparedStatement	anytime we require
+		the end user to provide input to construct a query. CallableStatement is used we will be accessing stored
+		procedures with are held within our database.</p><br>
 	
 		<div class="code">
 			<span style="color: #0da003;">
+			// A String object that will store the SQL statement<br>
+			</span>
+			String sql = "SELECT * FROM users";<br><br>
+			
+			<span style="color: #0da003;">
 			/*<br>
-			*  Comments here
+			*  Creating a statement using the .createStatement() method provided by<br>
+			*  Connection<br>
 			*/<br>
 			</span>
-			code here
+			Statement stmt = conn.createStatement();
 		</div><br>
 		
 		<hr><!------------------------------------------------------------------------------------------>
@@ -244,10 +318,11 @@
 		<div class="code">
 			<span style="color: #0da003;">
 			/*<br>
-			*  Comments here
+			*  Our Statement object provides us the .executeQuery() method which<br>
+			*  returns a ResultSet that we will store in a variable.<br>
 			*/<br>
 			</span>
-			code here
+			ResultSet rs = stmt.executeQuery(sql);<br>
 		</div><br>
 		
 		<hr><!------------------------------------------------------------------------------------------>
@@ -259,25 +334,50 @@
 		<div class="code">
 			<span style="color: #0da003;">
 			/*<br>
-			*  Comments here
+			*  Create an ArrayList to store our User objects that we will get<br>
+			*  back once the ResultSet has been processed.<br>
 			*/<br>
 			</span>
-			code here
+			ArrayList<User> users = new ArrayList<User>();<br><br>
+			
+			
+			<span style="color: #0da003;">
+			/*<br>
+			*  Using a while loop, that will execute so long as our ResultSet<br>
+			*  'rs' has a next result, we can traverse through our result set<br>
+			*  and persist the data into a User object that we add to our<br>
+			*  ArrayList.<br>
+			*/<br>
+			</span>
+			while(rs.next()) {<br><br>
+				
+			&nbsp;&nbsp;User temp = new User();<br>
+			&nbsp;&nbsp;temp.setId(rs.getInt(1));<br>
+			&nbsp;&nbsp;temp.setFirstName(rs.getString(2));<br>
+			&nbsp;&nbsp;temp.setLastName(rs.getString(3));<br>
+			&nbsp;&nbsp;temp.setEmailAddress(rs.getString(4));<br>
+			&nbsp;&nbsp;temp.setUsername(rs.getString(5));<br>
+			&nbsp;&nbsp;temp.setPassword(rs.getString(6));<br>
+			&nbsp;&nbsp;users.add(temp);<br><br>
+				
+			}<br>
 		</div><br>
 		
 		<hr><!------------------------------------------------------------------------------------------>
 		
-		<h4>Step 7: Closing resources: ResultSet, Statement, and connection</h4> <br>
+		<h4>Step 7: Closing the connection</h4> <br>
 		
 		<p>Text about closing resources here</p><br>
 	
 		<div class="code">
 			<span style="color: #0da003;">
 			/*<br>
-			*  Comments here
+			*  Best practice requires that we close our Connection resource<br>
+			*  to ensure we avoid memory leaks.<br>
 			*/<br>
 			</span>
-			code here
+			conn.close();<br>
+			
 		</div><br>
 		
 	</div>

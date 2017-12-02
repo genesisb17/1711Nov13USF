@@ -1,18 +1,29 @@
 @charset "ISO-8859-1";
 
+body {
+	margin-top: 25px;
+	margin-right: 250px;
+	margin-bottom: 25px;
+	margin-left: 250px;
+	background-color: grey;
+}
+
 .code {
-	
 	font-family: Courier;
 	font-weight: 200;
-	
 	margin-left: 100px;
 	margin-right: 100px;
-	
 	border: 1px solid grey;
 	border-radius: 5px;
-	
 	padding: 10px 10px 10px 10px;
-	
 	background: #e9ebed;
-	
+}
+
+.wrapper {
+	background-color: white;
+	padding: 25px;
+}
+
+.page-head {
+	float: center;
 }
