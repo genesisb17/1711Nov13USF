@@ -1,5 +1,7 @@
 package com.revature.pojos;
 
+import java.util.ArrayList;
+
 import com.revature.types.UserRoles;
 
 public class Users {
@@ -8,20 +10,21 @@ public class Users {
 	private String firstName;
 	private String lastName;
 	private String email;
-	private UserRoles role;
+	private int roleId;
 	
 	public Users() {}
 
-	public Users(int userId, String username, String firstName, String lastName, String email,
-			UserRoles role) {
+	
+	public Users(int userId, String username, String firstName, String lastName, String email, int roleId) {
 		super();
 		this.userId = userId;
 		this.username = username;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
-		this.role = role;
+		this.roleId = roleId;
 	}
+
 
 	public int getUserId() {
 		return userId;
@@ -63,22 +66,21 @@ public class Users {
 		this.email = email;
 	}
 
-	public UserRoles getRole() {
-		return role;
-	}
-	
-	public String getRoleStr() {
-		return role.name();
+
+	public int getRoleId() {
+		return roleId;
 	}
 
-	public void setRole(UserRoles role) {
-		this.role = role;
+
+	public void setRoleId(int roleId) {
+		this.roleId = roleId;
 	}
+
 
 	@Override
 	public String toString() {
 		return "Users [userId=" + userId + ", username=" + username + ", firstName=" + firstName + ", lastName="
-				+ lastName + ", email=" + email + ", role=" + role + "]";
+				+ lastName + ", email=" + email + ", roleId=" + roleId + "]";
 	}
 
 }

@@ -1,19 +1,19 @@
 package com.revature.dao;
 
-import java.sql.Blob;
 import java.util.ArrayList;
 
 import com.revature.pojos.Reimbursement;
 import com.revature.pojos.Users;
 import com.revature.types.ReimbursementStatus;
-import com.revature.types.ReimbursementType;
+import com.revature.types.UserRoles;
 
 public interface ERSDAO {
 	// User related functions
 	public Users getUserByUsername(String username);
 	public Users getUserById(int userId);
 	public ArrayList<Users> getAllUsers();
-	public Users addUser(Users newUser);
+	public UserRoles getRole(int roleId);
+	public Users addUser(Users newUser, String password);
 	public ArrayList<Reimbursement> getPastTickets(Users employee);
 	public String findUsername(String username);
 	public String findPassword(String username);

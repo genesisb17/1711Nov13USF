@@ -2,9 +2,6 @@ package com.revature.pojos;
 
 import java.sql.Blob;
 
-import com.revature.types.ReimbursementStatus;
-import com.revature.types.ReimbursementType;
-
 public class Reimbursement {
 	private int reimbId;
 	private double amount;
@@ -14,13 +11,13 @@ public class Reimbursement {
 	private Blob receipt;
 	private Users author;
 	private Users resolver;
-	private ReimbursementStatus status;
-	private ReimbursementType type;
+	private int statusId;
+	private int typeId;
 	
 	public Reimbursement() {}
 
 	public Reimbursement(int reimbId, double amount, String submitted, String resolved, String description,
-			Blob receipt, Users author, Users resolver, ReimbursementStatus status, ReimbursementType type) {
+			Blob receipt, Users author, Users resolver, int statusId, int typeId) {
 		super();
 		this.reimbId = reimbId;
 		this.amount = amount;
@@ -30,8 +27,8 @@ public class Reimbursement {
 		this.receipt = receipt;
 		this.author = author;
 		this.resolver = resolver;
-		this.status = status;
-		this.type = type;
+		this.statusId = statusId;
+		this.typeId = typeId;
 	}
 
 	public int getReimbId() {
@@ -98,35 +95,27 @@ public class Reimbursement {
 		this.resolver = resolver;
 	}
 
-	public ReimbursementStatus getStatus() {
-		return status;
-	}
-	
-	public String getStatusStr() {
-		return status.name();
+	public int getStatusId() {
+		return statusId;
 	}
 
-	public void setStatus(ReimbursementStatus status) {
-		this.status = status;
+	public void setStatusId(int statusId) {
+		this.statusId = statusId;
 	}
 
-	public ReimbursementType getType() {
-		return type;
-	}
-	
-	public String getTypeStr() {
-		return type.name();
+	public int getTypeId() {
+		return typeId;
 	}
 
-	public void setType(ReimbursementType type) {
-		this.type = type;
+	public void setTypeId(int typeId) {
+		this.typeId = typeId;
 	}
 
 	@Override
 	public String toString() {
 		return "Reimbursement [reimbId=" + reimbId + ", amount=" + amount + ", submitted=" + submitted + ", resolved="
 				+ resolved + ", description=" + description + ", receipt=" + receipt + ", author=" + author
-				+ ", resolver=" + resolver + ", status=" + status + ", type=" + type + "]";
+				+ ", resolver=" + resolver + ", statusId=" + statusId + ", typeId=" + typeId + "]";
 	}
 	
 }
