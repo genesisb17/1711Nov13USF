@@ -78,14 +78,7 @@ public class Users {
 	}
 	
 	public String getRoleStr() {
-		switch(role) {
-		case EMPLOYEE:
-			return "EMPLOYEE";
-		case MANAGER:
-			return "MANAGER";
-		default:
-			return null;
-		}
+		return role.name();
 	}
 
 	public void setRole(UserRoles role) {

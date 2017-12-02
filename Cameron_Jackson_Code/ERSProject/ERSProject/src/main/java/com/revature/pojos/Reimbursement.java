@@ -103,16 +103,7 @@ public class Reimbursement {
 	}
 	
 	public String getStatusStr() {
-		switch (status) {
-		case APPROVED:
-			return "APPROVED";
-		case DENIED:
-			return "DENIED";
-		case PENDING:
-			return "PENDING";
-		default:
-			return null;
-		}
+		return status.name();
 	}
 
 	public void setStatus(ReimbursementStatus status) {
@@ -124,18 +115,7 @@ public class Reimbursement {
 	}
 	
 	public String getTypeStr() {
-		switch (type) {
-		case FOOD:
-			return "FOOD";
-		case LODGING:
-			return "LODGING";
-		case OTHER:
-			return "OTHER";
-		case TRAVEL:
-			return "TRAVEL";
-		default:
-			return null;
-		}
+		return type.name();
 	}
 
 	public void setType(ReimbursementType type) {
