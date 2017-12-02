@@ -18,6 +18,10 @@ public class Service {
 	public void updateUsernames() { 
 		userList = dao.getUsers();
 	}
+	
+	public ArrayList<User> getUsers() { 
+		return dao.getUsers();
+	}
 
 	/*
 	 * For adding a new user to the list

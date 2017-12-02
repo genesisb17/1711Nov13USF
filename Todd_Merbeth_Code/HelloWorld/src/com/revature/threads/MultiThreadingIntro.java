@@ -37,8 +37,8 @@ public class MultiThreadingIntro {
 					System.out.println(i + "in anon");
 				}
 			}
-			
 		};
+		
 		Thread anonThread = new Thread(anonRun);
 		
 		Thread exThread = new Thread() {

@@ -8,7 +8,7 @@
  */
 
 /**
-* value types: string, object, boolean, null, NaN(?), undefined
+* variable types: string, object, boolean, null, NaN(?), undefined
 * null is considered an object in JS. can consider it a bug
 */
 
@@ -24,27 +24,76 @@ var i;
 console.log(typeof(a));
 
 /*
- * = sets value
- * == compares value
- * === compares value with type
+ *  var is how to declare variables
+ * 'hello' == "hello" return true
+ *  var h = "hello";
+ *  h.length returns 5
+ *  h.charAt(0) returns "h"
+ *  h.charAt(10) returns ""
+ *  h.toLocaleUpperCase() returns "HELLO"
+ *  h returns "hello" (unchanged because didnt set the uppercase value)
+ *  var interpol = 'this is a string interpolation ${h}' returns undefined
+ *  interpol returns "this is a string interpolation hello"
+ *  "this is a string " + h    returns "this is a string hello"
+ *  var obj = {name:"myName"}   returns undefined
+ *  obj.name  returns "myName
+ *  obj.age = 30   returns 30
+ *  obj    returns {name: "myName", age: 30}
+ *  obj.isAwesome = true    returns true
+ *  obj    returns {name: "myName", age: 30, isAwesome: true}
+ *  var str = '${obj.name} is ${obj.age} and it is 
+ *  	${obj.isAwesome} that they/she/he is awesome'     returns undefined
+ *  str    returns "myName is 30 and it is true that they/she/he is awesome'
+ *  obj.talk = function(){console.log('hay!');    returns {console.log('hay');
+ *  obj.talk    returns 'hay!'
+ *  
  */
+
 /*
  * Operators
  */
 
+//Arithmetic: + - * / %
+//Bitwise & | >> >>> <<
+//Comparison > < >= <= == === != !==
+
+//Logical (includes guard and default) && || ! !!
+
+// = sets value
+// == compares value
+// === compares value with type
+
 /*
  * Guard Operator &&
- * - If the first operand is truthy, return the 2nd operand 
+ * - if the first operand is truthy, return the 2nd operand 
  * 		otherwise return the first operand
  * - instead of returning true or false, it returns the 
- * 		value of the appropriate operand
+ * 		value of the appropriate operand 
  */
+var isLoggedIn = true;
+var username = "user";
+
+var getUser = function(){
+	return isLoggedIn && username;  // would return username is 
+									// isLoggedIn true, else would return isLoggedIn
+}
+/*
+ * Default Operator - ||
+ *  if the first operand is truthy, return the first operand,
+ *    otherwise return the second operand
+ */
+var getsComission = 500;
+var getRegSalary = 50;
+
+var getsPaid = function(){
+	return getsComission || getsRegSalary;  //  returns 2nd unless first is falsy
+}
 
 /*
  * Truthy and Falsy
  * Each value has an inherant boolean value
- * Falsy - null, 0, underfined,NaN, "", false
- * Truthy - everything else
+ * Falsy - null, 0, undefined, NaN, "", false
+ * Truthy - anything else
  */
 /*
  * Objects
@@ -53,6 +102,7 @@ console.log(typeof(a));
  *  - object literal {}
  *  - objects can contain an unordered collection of name/value pairs
  */
+
 /*
  * Arrays
  *  - inherit from object
@@ -63,6 +113,7 @@ console.log(typeof(a));
  *  - length number - not actual # of elements stored in the array 
  *  	but 1 longer than the last index
  */
+
 /*
  * arr.shift() removes from front of array
  * arr.pop() removes from back of array
@@ -82,21 +133,108 @@ console.log(typeof(a));
  * arr[100] = 9
  * arr.length returns 101
  * arr returns (101) [0, 10, 5, 0, empty x 96, 9]
- * 
- * 
  */
+
 /*
  * Functions
- * 
  */
 function add(a, b) {
-	return a+b
+	return a + b;
 }
 /*
  * Semicolons not needed, but semicolon injection could mess code up down 
  * 		the road, so safer to just have them
  */
+/**
+ * Hoisting 
+ * Variable declarations using var are treated as
+ *  if they are at the top of the function (or 
+ *  global scope, if declared outside of a function)
+ *  regardless of where the actual declaration occurs;
+ *  this is called hoisting. 
+ */
 
+function getValue(condition){
+	if(condition){
+		var value ="blue";
+		return value;
+	} else{
+		// value exists here with a value of undefined
+		return null;
+	}
+	//value exists with a value of undefined 
+}
+/*
+ * Looking at the above code, you might expect value to
+ * only be created if condition evaluates to true. In fact, 
+ * value is created regardless. Behind the scene, the JS
+ * engine changes the getValue function to look like:
+ */
+
+function getValue(condition){
+	var value;     // pulls declaration outside all the way to the start of the function
+	if(condition){
+		value="blue";
+		return value;
+	}else{
+		return null;
+	}
+}
+/*
+ * The declaration of value is hoisted to the top 
+ * while the initialization remains in the same spot. That
+ * means that the variable value is still accessible elsewhere
+ * in the function; it just has a value of undefined.
+ */
+
+// Understanding the LET keyword
+/* limits the variable to block scope. cannot use let to
+ *  declare a variable w the same name 
+*/
+function getValue(condition){
+	if(condition){
+		let value="blue";
+		return value;
+	} else{
+		//value doesnt exist here
+		return null;
+	}
+	//value doesnt exist here
+}
+
+/*
+ * Inheritance and classes
+ * Prior to ES6, JS did not support OO design. Inheritance was
+ * prototypal, but now classes and constructors exist, 
+ */
+
+//First, what this looked like in ES6:
+function vehicle(name, type){
+	this.name = name;
+	this.type = type;
+}
+vehicle.prototype.getName = function getName(){
+	return this.name;
+}
+vehicle.prototype.getType = function getType(){
+	return this.type;
+}
+var car = new vehicle('Tesla', 'car');
+console.log(car.getName()); // prints Tesla
+console.log(car.getType()); // prints car
+
+//Now, in ES6:
+class Vehicle{
+	constructor(name, type){
+		this.name = name;
+		this.type = type;
+	}
+	getName(){return this.name;}
+	getType(){return this.type;}
+}
+
+let car = new Vehicle('BMW', 'car');
+console.log()
 /*
  * 
  * 

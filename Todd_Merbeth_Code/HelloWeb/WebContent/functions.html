@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Event Handling Intro</title>
+</head>
+<body>
+<h1> JS Function Viewer</h1>
+<h3>Problem 1: Fibonacci</h3>
+<br>
+<input type="number" id = "fib" placeholder="Enter n" />
+<button id="doFib">Fibonacc'ed!</button> =
+<b>		<p id="fibDisplay"></p>
+</b>
+
+<input type="text" id = "rev" placeholder="Enter string" />
+<button id="doRev">Reversed!</button> =
+<b>		<p id="revDisplay"></p>
+</b>
+
+<input type="number" id = "fac" placeholder="Enter n" />
+<button id="doFac">Factorialed!</button> =
+<b>		<p id="facDisplay"></p>
+</b>
+
+<input type="text" id = "subs1" placeholder="Enter string" />
+<input type="text" id = "subs2" placeholder="Enter length" />
+<input type="text" id = "subs3" placeholder="Enter offset" />
+<button id="doSubs">Substring!</button> =
+<b>		<p id="subsDisplay"></p>
+</b>
+
+<input type="number" id = "even" placeholder="Enter n" />
+<button id="doEven">Is Even?</button> =
+<b>		<p id="evenDisplay"></p>
+</b>
+
+<input type="text" id = "palin" placeholder="Enter string" />
+<button id="doPalin">Is Palindrome?</button> =
+<b>		<p id="palinDisplay"></p>
+</b>
+
+<br><br>
+<h1>Event Propagation Demo</h1>
+
+<div id="outer" style="background-color:red">
+	<br> OUTER <br>
+	<div id="middle" style="background-color:blue">
+		<br> MIDDLE <br>
+		<div id="inner" style="background-color:green">
+			<br> INNER <br>
+		</div>
+		<br><br>
+	</div>
+	<br><br>
+</div>
+<br><br>
+<h3 id ="count">COUNT</h3>
+
+<script type = "text/javascript" src = "js/functions.js"></script>
+</body>
+</html>
