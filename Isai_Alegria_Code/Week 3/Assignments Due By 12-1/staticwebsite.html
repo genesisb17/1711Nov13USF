@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>My First Web Page</title>
+
+<style>
+div.carousel slide{
+    width: 80%; 
+    margin: auto;
+}
+
+.carousel-inner > .item > img, 
+.carousel-inner > .item > a > img{
+width: 100%; 
+margin: auto;
+}
+
+</style>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+
+<div class="container-fluid">
+  <h1>My First Web Page<small> by Isai Alegria</small></h1>
+  <p>This is a static HTML web page created in order to familiarize myself with HTML.</p>
+  <p>Below you will find information regarding my favorite topic from the training, thus far.</p>
+  <div class="row">
+	  <h3 align="center">The Four Pillars of Object Oriented Programming</h3>
+	  <div class="container">
+	  <h4>Introduction</h4>
+	  <div class="row">
+	    <div class="col-md-12">
+	      <div class="thumbnail">
+	        <a href="/w3images/lights.jpg" target="_blank">
+	          <img src="http://file.mrbool.com/mrbool/articles/AnilKuhat/OOP_Java_Programming/OOP_Java_Programming01.png" 
+	          style="width:75%" style ="height:75%">
+	        </a>
+	       		<p>Structured and object oriented programming are different in how functions are implemented. Structured 
+	       		programming applied their functions in a global scope, while OOP applies functions to their object.
+	       		Structured is associated with lower-level programming and has a linear sequence to its execution.
+	       		Object oriented programming is more versatile in its non-linear nature, making this language excellent
+	       		for application programming. </p>
+	      </div>
+	    </div>
+    </div>
+    </div>
+  <br>
+    <div class="col-md-3" style="background-color:lavender;"><h4>Abstraction</h4>
+    	<p>Abstraction is important to OOP in order to reduce complexity of code
+    	and also to improve readability. When thinking of abstraction, one could imagine a television. 
+    	The underlying electrical working isn't important, we just want to be able to know its resolution 
+    	and other useful features without knowing how the underlying electrical work to presents the image.</p> 
+    </div>
+    
+    <div class="col-md-3" style="background-color:lavenderblush;"><h4>Encapsulation</h4>
+    	<p>Somewhat related to abstraction, encapsulation also deals with information hiding
+    	but in a sense where we want to protect our hidden code. We want to restrict access 
+    	to certain modules from other parts of our code in order to prevent an sort of unwanted
+    	changes. This isn't the act of hiding the information itself but leads to this idea. This
+    	is achieved by how we declare our access modifiers.</p>
+    </div>
+    
+    <div class="col-md-3" style="background-color:lavender;"><h4>Polymorphism</h4>
+    	<p>The literal definition of polymorphism is the ability to take many shapes. This is a useful
+    	way to remember how polymorphism works in OOP, only the difference is we can implement a method
+    	differently through either changing the parameters or the implementation itself. So a child class
+    	can have a different implementation of a function that the parent class passes down. </p>
+    </div>
+    <div class="col-md-3" style="background-color:lavenderblush;"><h4>Inheritance</h4>
+    	<p>Inheritance takes on a more literal identity of its denotation. Similarly how one would inherit 
+    	possessions from a passed-on relative, a class will inherit the members of it's parent class, without
+    	the passing-on part. In short, one could think of inheritance as the ability to create a new class 
+    	from an existing class.</p>
+    </div>    
+  </div>
+</div>
+<br><br>
+
+<div class="container">
+  <p>Here we have a couple of examples of the Object Oriented Principles.</p>
+  <div class="row">
+    <div class="col-md-4">
+      <div class="thumbnail">
+        <a href="http://cunghocit.org/java/images/OOP_PolymorphismShape.png" target="_blank">
+          <img src="http://cunghocit.org/java/images/OOP_PolymorphismShape.png" style="height:25%"style="width:25%" alt="Lights" style="width:100%">
+        </a>
+		<br>
+		<p>Here is an illustration of polymorphism. WE see that the getArea and toString methods
+		can have different implementations for each class, rectangle and triangle.</p>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="thumbnail">
+        <a href="/w3images/nature.jpg" target="_blank">
+          <img src="https://image.slidesharecdn.com/introductiontoobjectorientedprogramming-141212062931-conversion-gate01/95/introduction-to-object-oriented-programming-60-638.jpg?cb=1448026569" alt="Nature" style="width:100%">
+			</a>
+			<br>
+		  <p>In this example, we show abstraction works. We see the superclass shape, doesn't have
+		  implementation, but the draw class inherits the predefined methods and give them a definition.</p>
+		</div>
+    </div>
+    <div class="col-md-4">
+      <div class="thumbnail">
+        <a href="/w3images/fjords.jpg" target="_blank">
+          <img src="https://image.slidesharecdn.com/introlecture1-160304201007/95/object-oriented-programming-in-java-lecture-1-14-638.jpg?cb=1457122355" alt="Fjords" style="width:100%">
+        </a>
+		<br>
+		<p>This image shows the difference between encapsulation and abstraction since they are
+		closely related. We see that abstraction is a higher concept thatn encapsulation. Abstraction
+		hides the underneath work and encapsulation leads to the actual hiding of the underlying implementation.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+</body>
+</html>
