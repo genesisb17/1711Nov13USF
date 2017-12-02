@@ -5,7 +5,6 @@ import com.revature.types.UserRoles;
 public class Users {
 	private int userId;
 	private String username;
-	private String password;
 	private String firstName;
 	private String lastName;
 	private String email;
@@ -13,12 +12,11 @@ public class Users {
 	
 	public Users() {}
 
-	public Users(int userId, String username, String password, String firstName, String lastName, String email,
+	public Users(int userId, String username, String firstName, String lastName, String email,
 			UserRoles role) {
 		super();
 		this.userId = userId;
 		this.username = username;
-		this.password = password;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
@@ -39,14 +37,6 @@ public class Users {
 
 	public void setUsername(String username) {
 		this.username = username;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
 	}
 
 	public String getFirstName() {
@@ -87,9 +77,8 @@ public class Users {
 
 	@Override
 	public String toString() {
-		return "Users [userId=" + userId + ", username=" + username + ", password=" + password + ", firstName="
-				+ firstName + ", lastName=" + lastName + ", email=" + email + ", role=" + role + "]";
+		return "Users [userId=" + userId + ", username=" + username + ", firstName=" + firstName + ", lastName="
+				+ lastName + ", email=" + email + ", role=" + role + "]";
 	}
-	
-	
+
 }
