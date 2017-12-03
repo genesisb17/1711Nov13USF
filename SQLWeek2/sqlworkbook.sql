@@ -190,7 +190,7 @@ create table OFFICESUPPLY.supplier
 suppid primary key not null,
 name varchar(80)
 )
-
+select * from 
 --3.1
 select * from officesupply.employee;
 select * from officesupply.employee where department = 'HR';

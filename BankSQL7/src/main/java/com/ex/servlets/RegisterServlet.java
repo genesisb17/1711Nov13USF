@@ -35,6 +35,7 @@ public class RegisterServlet extends HttpServlet
 			System.out.println(param+": "+val);
 		}
 	}
+	
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)throws ServletException,IOException
 	{

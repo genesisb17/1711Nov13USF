@@ -2,7 +2,6 @@
 <qualifiedTypeNameHistroy>
 <fullyQualifiedTypeName name="java.lang.Integer"/>
 <fullyQualifiedTypeName name="com.sun.java.util.jar.pack.Attribute.Layout.Element"/>
-<fullyQualifiedTypeName name="java.util.Date"/>
 <fullyQualifiedTypeName name="javax.swing.text.Document"/>
 <fullyQualifiedTypeName name="com.sun.java.util.jar.pack.Package.File"/>
 <fullyQualifiedTypeName name="jdk.internal.org.xml.sax.SAXException"/>
@@ -35,4 +34,6 @@
 <fullyQualifiedTypeName name="java.io.PrintWriter"/>
 <fullyQualifiedTypeName name="java.util.Enumeration"/>
 <fullyQualifiedTypeName name="com.rev.service.Service"/>
+<fullyQualifiedTypeName name="java.lang.System"/>
+<fullyQualifiedTypeName name="java.util.Date"/>
 </qualifiedTypeNameHistroy>
