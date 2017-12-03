@@ -77,7 +77,6 @@ public class OracleDAO implements DAO {
 
 	@Override
 	public ArrayList<Account> getAccounts(User user) {
-
 		ArrayList<Account> Accounts = new ArrayList<Account>();
 		try (Connection conn = ConnectionFactory.getInstance().getConnection();) {
 			String sql = "select * from accounts where user_id = ?";

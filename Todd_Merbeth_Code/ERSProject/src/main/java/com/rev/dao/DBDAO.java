@@ -1,0 +1,235 @@
+package com.rev.dao;
+
+import java.sql.CallableStatement;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.sql.Types;
+import java.util.ArrayList;
+
+import com.rev.pojos.Reimbursement;
+import com.rev.pojos.User;
+import com.rev.util.ConnectionFactory;
+
+public class DBDAO implements DAO {
+
+	@Override
+	public ArrayList<Reimbursement> getReimbursements() {
+		ArrayList<Reimbursement> reimbursements = new ArrayList<Reimbursement>();
+		try (Connection conn = ConnectionFactory.getInstance().getConnection();) {
+			String sql = "select * from REIMBURSEMENT";
+			Statement statement = conn.createStatement();
+			ResultSet rs = statement.executeQuery(sql);
+
+			while (rs.next()) {
+				Reimbursement temp = new Reimbursement();
+				temp.setId(rs.getInt(1)); // Index starts at 1
+				temp.setAmount(rs.getDouble(2));
+				temp.setSubmitted(rs.getDate(3));
+				temp.setResolved(rs.getDate(4));
+				temp.setDescription(rs.getString(5));
+				temp.setReceipt(rs.getBlob(6));
+				temp.setAuthor(rs.getInt(7));
+				temp.setResolver(rs.getInt(8));
+				temp.setStatus(rs.getInt(9));
+				temp.setType(rs.getInt(10));
+				reimbursements.add(temp);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return reimbursements;
+	}
+
+	public ArrayList<Reimbursement> getPendingReimbursements() {
+
+		ArrayList<Reimbursement> reimbursements = new ArrayList<Reimbursement>();
+		try (Connection conn = ConnectionFactory.getInstance().getConnection();) {
+			String sql = "select * from REIMBURSEMENT where r_status_id=0";
+			Statement statement = conn.createStatement();
+			ResultSet rs = statement.executeQuery(sql);
+
+			while (rs.next()) {
+				Reimbursement temp = new Reimbursement();
+				temp.setId(rs.getInt(1)); // Index starts at 1
+				temp.setAmount(rs.getDouble(2));
+				temp.setSubmitted(rs.getDate(3));
+				temp.setResolved(rs.getDate(4));
+				temp.setDescription(rs.getString(5));
+				temp.setReceipt(rs.getBlob(6));
+				temp.setAuthor(rs.getInt(7));
+				temp.setResolver(rs.getInt(8));
+				temp.setStatus(rs.getInt(9));
+				temp.setType(rs.getInt(10));
+				reimbursements.add(temp);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return reimbursements;
+	}
+
+	public Reimbursement addReimbursement(Reimbursement r) {
+		try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
+			conn.setAutoCommit(false);
+			String sql = "insert into Reimbursement (r_amount, r_description, r_author, r_type_id) values (?, ?, ?, ?)";
+			String[] key = new String[2];
+			key[0] = "r_id";
+			key[1] = "r_submitted";
+
+			PreparedStatement ps = conn.prepareStatement(sql, key);
+			ps.setDouble(1, r.getAmount());
+			ps.setString(2, r.getDescription());
+			ps.setInt(3, r.getAuthor());
+			ps.setInt(4, r.getType());
+			int rows = ps.executeUpdate(); // could set variable to track that the update happened
+			if (rows != 0) {
+				ResultSet pk = ps.getGeneratedKeys();
+				while (pk.next()) {
+					r.setId(pk.getInt(1));
+					r.setSubmitted(pk.getDate(2));
+				}
+				return r;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	public User addUser(User user) {
+		User temp = new User();
+		try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
+			conn.setAutoCommit(false); // Set to false to make sure it has properly changed
+			String sql = "insert into users (username, password, firstname, lastname, email, role_id) values (?, ?, ?, ?, ?, ?)";
+			String[] key = new String[1];
+			key[0] = "user_id";
+
+			PreparedStatement ps = conn.prepareStatement(sql, key);
+			ps.setString(1, user.getFirstname());
+			ps.setString(2, user.getLastname());
+			ps.setString(3, user.getUsername());
+			ps.setString(4, user.getPassword());
+			ps.setString(5, user.getEmail());
+			ps.setInt(6, user.getRole());
+			int rows = ps.executeUpdate(); // could set variable to track that the update happened
+			if (rows != 0) {
+				ResultSet pk = ps.getGeneratedKeys();
+				while (pk.next()) {
+					temp.setId(pk.getInt(1));
+				}
+				temp.setFirstname(user.getFirstname());
+				temp.setLastname(user.getLastname());
+				temp.setUsername(user.getUsername());
+				temp.setPassword(user.getPassword());
+				temp.setEmail(user.getEmail());
+				temp.setRole(user.getRole());
+				conn.commit();
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return temp;
+	}
+
+	public ArrayList<Reimbursement> getUserReimbursements(int id) {
+		ArrayList<Reimbursement> reimbursements = new ArrayList<Reimbursement>();
+		try (Connection conn = ConnectionFactory.getInstance().getConnection();) {
+			String sql = "select * from reimbursement where r_author = ?";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setInt(1, id);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				Reimbursement temp = new Reimbursement();
+				temp.setId(rs.getInt(1)); // Index starts at 1
+				temp.setAmount(rs.getDouble(2));
+				temp.setSubmitted(rs.getDate(3));
+				temp.setResolved(rs.getDate(4));
+				temp.setDescription(rs.getString(5));
+				temp.setReceipt(rs.getBlob(6));
+				temp.setAuthor(rs.getInt(7));
+				temp.setResolver(rs.getInt(8));
+				temp.setStatus(rs.getInt(9));
+				temp.setType(rs.getInt(10));
+				reimbursements.add(temp);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return reimbursements;
+	}
+
+	public Reimbursement getReimbursement(int r_id) {
+		Reimbursement temp = new Reimbursement();
+		try (Connection conn = ConnectionFactory.getInstance().getConnection();) {
+			String sql = "select * from REIMBURSEMENT where r_id = ?";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setInt(1, r_id);
+			ResultSet rs = ps.executeQuery();
+
+			while (rs.next()) {
+				temp.setId(rs.getInt(1)); // Index starts at 1
+				temp.setAmount(rs.getDouble(2));
+				temp.setSubmitted(rs.getDate(3));
+				temp.setResolved(rs.getDate(4));
+				temp.setDescription(rs.getString(5));
+				temp.setReceipt(rs.getBlob(6));
+				temp.setAuthor(rs.getInt(7));
+				temp.setResolver(rs.getInt(8));
+				temp.setStatus(rs.getInt(9));
+				temp.setType(rs.getInt(10));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return temp;
+	}
+
+	@Override
+	public Reimbursement updateReimbursement(int r_id, int r_res, int r_status) {
+		try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
+
+			String sql = "{call RUPDATE(?, ?, ?)}"; // First is return
+			CallableStatement cs = conn.prepareCall(sql);
+			cs.setInt(1, r_id);
+			cs.setInt(2, r_res);
+			cs.setInt(3, r_status);
+			cs.execute();
+
+			return getReimbursement(r_id);
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	@Override
+	public User getUser(String username, String password) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String getR_Status(int r_id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String getR_Type(int r_id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String getUser_Role(int u_id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+}

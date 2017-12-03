@@ -72,7 +72,7 @@ public class Service {
 	}
 	
 	/*
-	 * Spdate the balance of the user by the deposit amount
+	 * Update the balance of the user by the deposit amount
 	 */
 	public Account updateDeposit(Account account, double dep) {
 		return dao.updateDeposit(account, dep);
