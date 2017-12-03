@@ -1,6 +1,5 @@
 package com.revature.pojos;
 
-
 public class Users {
 	private Integer userId;
 	private String username;
