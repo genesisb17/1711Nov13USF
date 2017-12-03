@@ -3,21 +3,21 @@ package com.revature.pojos;
 import java.sql.Blob;
 
 public class Reimbursement {
-	private int reimbId;
+	private Integer reimbId;
 	private double amount;
 	private String submitted;
 	private String resolved;
 	private String description;
 	private Blob receipt;
-	private Users author;
-	private Users resolver;
-	private int statusId;
-	private int typeId;
+	private Integer author;
+	private Integer resolver;
+	private Integer statusId;
+	private Integer typeId;
 	
 	public Reimbursement() {}
 
-	public Reimbursement(int reimbId, double amount, String submitted, String resolved, String description,
-			Blob receipt, Users author, Users resolver, int statusId, int typeId) {
+	public Reimbursement(Integer reimbId, double amount, String submitted, String resolved, String description,
+			Blob receipt, Integer author, Integer resolver, Integer statusId, Integer typeId) {
 		super();
 		this.reimbId = reimbId;
 		this.amount = amount;
@@ -31,11 +31,11 @@ public class Reimbursement {
 		this.typeId = typeId;
 	}
 
-	public int getReimbId() {
+	public Integer getReimbId() {
 		return reimbId;
 	}
 
-	public void setReimbId(int reimbId) {
+	public void setReimbId(Integer reimbId) {
 		this.reimbId = reimbId;
 	}
 
@@ -79,35 +79,35 @@ public class Reimbursement {
 		this.receipt = receipt;
 	}
 
-	public Users getAuthor() {
+	public Integer getAuthor() {
 		return author;
 	}
 
-	public void setAuthor(Users author) {
+	public void setAuthor(Integer author) {
 		this.author = author;
 	}
 
-	public Users getResolver() {
+	public Integer getResolver() {
 		return resolver;
 	}
 
-	public void setResolver(Users resolver) {
+	public void setResolver(Integer resolver) {
 		this.resolver = resolver;
 	}
 
-	public int getStatusId() {
+	public Integer getStatusId() {
 		return statusId;
 	}
 
-	public void setStatusId(int statusId) {
+	public void setStatusId(Integer statusId) {
 		this.statusId = statusId;
 	}
 
-	public int getTypeId() {
+	public Integer getTypeId() {
 		return typeId;
 	}
 
-	public void setTypeId(int typeId) {
+	public void setTypeId(Integer typeId) {
 		this.typeId = typeId;
 	}
 

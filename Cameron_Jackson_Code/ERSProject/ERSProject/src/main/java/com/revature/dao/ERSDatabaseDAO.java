@@ -1,5 +1,6 @@
 package com.revature.dao;
 
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -10,6 +11,7 @@ import java.util.ArrayList;
 import com.revature.pojos.Reimbursement;
 import com.revature.pojos.Users;
 import com.revature.types.ReimbursementStatus;
+import com.revature.types.ReimbursementType;
 import com.revature.types.UserRoles;
 import com.revature.util.ConnectionFactory;
 
@@ -32,20 +34,20 @@ public class ERSDatabaseDAO implements ERSDAO {
 	static final String DB_KEY_AUTHOR = "REIMB_AUTHOR";
 	static final String DB_KEY_RESOLVER = "REIMB_RESOLVER";
 	static final String DB_KEY_STATUSID = "REIMB_STATUS_ID";
+	static final String DB_KEY_STATUS = "REIMB_STATUS";
 	static final String DB_KEY_TYPEID = "REIMB_TYPE_ID";
+	static final String DB_KEY_TYPE = "REIMB_TYPE";
 	static final String DB_KEY_ROLE = "USER_ROLE";
+
 
 	@Override
 	public Users getUserByUsername(String username) {
 		Users u = null;
 		try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
 			String selectUsers = "select * from ers_users where ers_username = ?";
-			String selectRole = "select * from ers_user_roles where ers_user_role_id = ?";
 			PreparedStatement su = conn.prepareStatement(selectUsers);
-			PreparedStatement sr = conn.prepareStatement(selectRole);
 			su.setString(1, username);
 			ResultSet userSet = su.executeQuery();
-			ResultSet roleSet = null;
 
 			while (userSet.next()) { // make sure result set isn't empty
 				// add to user object
@@ -69,12 +71,9 @@ public class ERSDatabaseDAO implements ERSDAO {
 		Users u = null;
 		try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
 			String selectUsers = "select * from ers_users where ers_users_id = ?";
-			String selectRole = "select * from ers_user_roles where ers_user_role_id = ?";
 			PreparedStatement su = conn.prepareStatement(selectUsers);
-			PreparedStatement sr = conn.prepareStatement(selectRole);
 			su.setInt(1, userId);
 			ResultSet userSet = su.executeQuery();
-			ResultSet roleSet = null;
 
 			while (userSet.next()) {
 				u = new Users();
@@ -156,16 +155,16 @@ public class ERSDatabaseDAO implements ERSDAO {
 				while (rs.next()) {
 					u = new Users();
 					u.setUserId(rs.getInt(1));
-					u.setUsername(newUser.getUsername());
-					u.setFirstName(newUser.getFirstName());
-					u.setLastName(newUser.getLastName());
-					u.setEmail(newUser.getEmail());
-					u.setRoleId(newUser.getRoleId());
 				}
 				conn.commit();
+				u.setUsername(newUser.getUsername());
+				u.setFirstName(newUser.getFirstName());
+				u.setLastName(newUser.getLastName());
+				u.setEmail(newUser.getEmail());
+				u.setRoleId(newUser.getRoleId());
 			}
-			
-			
+
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -173,45 +172,222 @@ public class ERSDatabaseDAO implements ERSDAO {
 	}
 
 	@Override
-	public ArrayList<Reimbursement> getPastTickets(Users employee) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public String findUsername(String username) {
-		// TODO Auto-generated method stub
-		return null;
+		String ersUsername = null;
+		try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
+			String sql = "select ers_username from ers_users where ers_username=?";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setString(1, username);
+			ResultSet rs = ps.executeQuery();
+
+			while (rs.next()) {
+				ersUsername = rs.getString(DB_KEY_USERNAME);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return ersUsername;
 	}
 
 	@Override
 	public String findPassword(String username) {
-		// TODO Auto-generated method stub
-		return null;
+		String password = null;
+		try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
+			String sql = "select ers_password from ers_users where ers_username=?";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setString(1, username);
+			ResultSet rs = ps.executeQuery();
+
+			while (rs.next()) {
+				password = rs.getString(DB_KEY_PASSWORD);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return password;
 	}
 
 	@Override
 	public Reimbursement getTicket(int reimbId) {
-		// TODO Auto-generated method stub
-		return null;
+		Reimbursement reimb = null;
+		try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
+			String sql = "select * from ers_reimbursement where reimb_id = ?";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setInt(1, reimbId);
+			ResultSet rs = ps.executeQuery();
+
+			while (rs.next()) {
+				reimb = new Reimbursement();
+				reimb.setReimbId(reimbId);
+				reimb.setAmount(rs.getDouble(DB_KEY_AMOUNT));
+				reimb.setSubmitted(rs.getString(DB_KEY_SUBMITTED));
+				reimb.setResolved(rs.getString(DB_KEY_RESOLVED));
+				reimb.setDescription(rs.getString(DB_KEY_DESCRIPTION));
+				reimb.setReceipt(rs.getBlob(DB_KEY_RECEIPT));
+				reimb.setAuthor(rs.getInt(DB_KEY_AUTHOR));
+				reimb.setResolver(rs.getInt(DB_KEY_RESOLVER));
+				reimb.setStatusId(rs.getInt(DB_KEY_STATUSID));
+				reimb.setTypeId(rs.getInt(DB_KEY_TYPEID));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return reimb;
 	}
 
 	@Override
-	public ArrayList<Reimbursement> getAllTickets(Users manager) {
-		// TODO Auto-generated method stub
-		return null;
+	public ArrayList<Reimbursement> getPastTickets(int employeeId) {
+		ArrayList<Reimbursement> tickets = new ArrayList<>();
+		try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
+			String sql = "select * from ers_reimbursement where reimb_author = ?";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setInt(1, employeeId);
+			ResultSet rs = ps.executeQuery();
+
+			while (rs.next()) {
+				Reimbursement reimb = new Reimbursement();
+				reimb = new Reimbursement();
+				reimb.setReimbId(rs.getInt(DB_KEY_REIMBID));
+				reimb.setAmount(rs.getDouble(DB_KEY_AMOUNT));
+				reimb.setSubmitted(rs.getString(DB_KEY_SUBMITTED));
+				reimb.setResolved(rs.getString(DB_KEY_RESOLVED));
+				reimb.setDescription(rs.getString(DB_KEY_DESCRIPTION));
+				reimb.setReceipt(rs.getBlob(DB_KEY_RECEIPT));
+				reimb.setAuthor(rs.getInt(DB_KEY_AUTHOR));
+				reimb.setResolver(rs.getInt(DB_KEY_RESOLVER));
+				reimb.setStatusId(rs.getInt(DB_KEY_STATUSID));
+				reimb.setTypeId(rs.getInt(DB_KEY_TYPEID));
+				tickets.add(reimb);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return tickets;
+	}
+
+	@Override
+	public ArrayList<Reimbursement> getAllTickets() {
+		ArrayList<Reimbursement> tickets = new ArrayList<>();
+		try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
+			String sql = "select * from ers_reimbursement";
+			Statement s = conn.createStatement();
+			ResultSet rs = s.executeQuery(sql);
+
+			while (rs.next()) {
+				Reimbursement reimb = new Reimbursement();
+				reimb = new Reimbursement();
+				reimb.setReimbId(rs.getInt(DB_KEY_REIMBID));
+				reimb.setAmount(rs.getDouble(DB_KEY_AMOUNT));
+				reimb.setSubmitted(rs.getString(DB_KEY_SUBMITTED));
+				reimb.setResolved(rs.getString(DB_KEY_RESOLVED));
+				reimb.setDescription(rs.getString(DB_KEY_DESCRIPTION));
+				reimb.setReceipt(rs.getBlob(DB_KEY_RECEIPT));
+				reimb.setAuthor(rs.getInt(DB_KEY_AUTHOR));
+				reimb.setResolver(rs.getInt(DB_KEY_RESOLVER));
+				reimb.setStatusId(rs.getInt(DB_KEY_STATUSID));
+				reimb.setTypeId(rs.getInt(DB_KEY_TYPEID));
+				tickets.add(reimb);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return tickets;
 	}
 
 	@Override
 	public Reimbursement addTicket(Reimbursement newTicket) {
-		// TODO Auto-generated method stub
-		return null;
+		Reimbursement reimb = null;
+		try (Connection conn = ConnectionFactory.getInstance().getConnection()){
+			conn.setAutoCommit(false);
+			String sql = "INSERT INTO ERS_REIMBURSEMENT (REIMB_AMOUNT, REIMB_DESCRIPTION, REIMB_RECEIPT,\r\n" + 
+					"REIMB_AUTHOR, REIMB_STATUS_ID, REIMB_TYPE_ID) VALUES (?,?,?,?,?,?)";
+			String[] keys = {DB_KEY_REIMBID};
+			PreparedStatement ps = conn.prepareStatement(sql, keys);
+			ps.setDouble(1, newTicket.getAmount());
+			ps.setString(2, newTicket.getDescription());
+			ps.setBlob(3, newTicket.getReceipt());
+			ps.setInt(4, newTicket.getAuthor());
+			ps.setInt(5, newTicket.getStatusId());
+			ps.setInt(6, newTicket.getTypeId());
+
+			int rows = ps.executeUpdate();
+			if (rows > 0) {
+				reimb = new Reimbursement();
+				ResultSet rs = ps.getGeneratedKeys();
+				while (rs.next()) {
+					
+					reimb.setReimbId(rs.getInt(1));
+				}
+				conn.commit();
+				reimb.setAmount(newTicket.getAmount());
+				reimb.setSubmitted(newTicket.getSubmitted());
+				reimb.setResolved(newTicket.getResolved());
+				reimb.setDescription(newTicket.getDescription());
+				reimb.setReceipt(newTicket.getReceipt());
+				reimb.setAuthor(newTicket.getAuthor());
+				reimb.setResolver(newTicket.getResolver());
+				reimb.setStatusId(newTicket.getStatusId());
+				reimb.setTypeId(newTicket.getTypeId());
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return reimb;
 	}
 
 	@Override
 	public Reimbursement resolveTicket(int reimbId, ReimbursementStatus status, int resolverId) {
-		// TODO Auto-generated method stub
-		return null;
+		try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
+			conn.setAutoCommit(false);
+			String sql = "{CALL RESOLVE_REIMBURSEMENT(?,?,?)}";
+			CallableStatement cs = conn.prepareCall(sql);
+			cs.setInt(1, reimbId);
+			cs.setInt(2, status.ordinal()+1);
+			cs.setInt(3, resolverId);
+			cs.executeUpdate();
+			conn.commit();			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return getTicket(reimbId);
+	}
+
+	@Override
+	public ReimbursementStatus getStatus(int statusId) {
+		ReimbursementStatus status = null;
+		try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
+			String sql = "select reimb_status from ers_reimbursement_status where REIMB_STATUS_ID = ?";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setInt(1, statusId);
+			ResultSet rs = ps.executeQuery();
+
+			while (rs.next()) {
+				status = ReimbursementStatus.valueOf(rs.getString(DB_KEY_STATUS));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return status;
+	}
+
+	@Override
+	public ReimbursementType getType(int typeId) {
+		ReimbursementType type = null;
+		try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
+			String sql = "select reimb_type from ers_reimbursement_type where reimb_type_id = ?";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setInt(1, typeId);
+			ResultSet rs = ps.executeQuery();
+
+			while (rs.next()) {
+				type = ReimbursementType.valueOf(rs.getString(DB_KEY_TYPE));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return type;
 	}
 
 }
