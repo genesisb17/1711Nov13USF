@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="shortcut icon" type="image/x-icon" href="Wicked_Website_Icon.png" />
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta charset="ISO-8859-1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+<title>Wicked <code>database</code></title>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light rounded">
+  <a class="navbar-brand" href="#"></a>
+  <ul class ="nav navbar-nav navbar-right">
+  	<li><img src="js/Website_WickedButton.svg" class="nav navbar-nav navbar-right"></li>
+  </ul>	
+	<div class="btn-group">
+  <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+   SQL
+  </button>
+  <div class="dropdown-menu dropdown-menu-right">
+  	<button class="dropdown-item" type="button"><a href="#SQL">What is SQL?</a></button>
+    <button class="dropdown-item" type="button"><a href="#DCL">Data Control Language</a></button>
+    <button class="dropdown-item" type="button"><a href="#DML">Data Manipulation Language</a></button>
+    <button class="dropdown-item" type="button"><a href="#DDL">Data Definition Language</a></button>
+    <button class="dropdown-item" type="button"><a href="#DQL">Data Query Language</a></button>
+    <button class="dropdown-item" type="button"><a href="#TCL">Transaction Control Language</a></button>
+  </div>
+</div>
+</nav>
+
+<div class="jumbotron rounded">
+  <h1 class="display-3">Welcome to the world of SQL</h1>
+  <p class="lead">For years, <code>database</code>s have been around storing so much information for us. <code>database</code>s ranging from employee information to <code>database</code>s with information regarding our favorite music, playlists and more. Having been around for so long, the real question isn't just WHAT it stores, but HOW can we access them and retrieve the special information they contain. </p>
+  <hr class="my-4">
+  <p>Interested in hearing some new good music? Click the link below and check out Cyph's new EP titled "Nocturnal"!</p>
+  <p class="lead">
+    <a class="btn btn-primary btn-lg" href="https://www.soundcloud.com/cyphoc/sets/nocturnal" role="button">Listen to Nocturnal!</a>
+  </p>
+</div>
+
+<br>
+<div class="row bg-light rounded ">
+	<div class="col">
+		<h1 class="text-center"> Little Bobby Tables </h1>
+		<img src="js/BobbyTables.png" class="img-fluid rounded mx-auto d-block" alt="Responsive iamge">
+	</div>
+</div>
+<br><br>
+
+
+<div class="row bg-light border border-danger" id ="SQL">
+  <div class="col">
+  	<h1 class="text-center"><u>What is <code>SQL?</code> </u></h1>
+  	<p class="text-center">In order to understand what is SQL, we must first give definition to what a <code><code>database</code></code> is.
+  	According to the Merriam-Webster dictionary, a <code><code>database</code></code> is a usually large collection
+  	of data organized especially for rapid search and retrieval. </p>
+  	<br>
+  	<p class="text-center">A <code><code>database</code></code> is composed of tables with many fields. These fields are basically pieces of data that when put together
+  	can create a plethora of information regarding an specific entry in the table. </p>
+  	<br>
+  	<p class="text-center"> The way I like seeing it, we're all walking <code><code>database</code>s</code>. We all have a lot of information that we store in our minds. We can 
+  	access that information and communicate it to others in many ways (talking, drawing it, writing it down, etc). In the same way we,
+  	as walking <code><code>database</code>s</code>, can communicate the information we have stored in our minds to others, so can <code><code>database</code>s</code>! </p>
+  	<br>
+  	<h3 class="text-center"> This is where <code>SQL</code> comes into play! </h3>
+  	<br>
+  	<p class="text-center"><strong>Structured Query Language</strong>, also known as <code>SQL</code>, is the language we use to communicate with <code><code>database</code>s</code>. We can refer to <code>SQL</code> as the language
+  	we use to speak with <code><code>database</code>s</code>. This language we use to communicate with <code><code>database</code>s</code> consists of 5 sublanguages that focus on different forms of communication. </p>
+  	<br> 
+  </div>
+ </div>
+ <div class="row bg-secondary text-white" id="DCL">
+ <div class="col">
+  	<h1 class="text-center">Data Control Language</h1>
+  	<p class="text-center"> Data Control Language, also referred to as <code>DCL</code>, is an <code>SQL</code> sublanguage that
+  	is used to control who is provided access to the <code><code>database</code></code>.</p>
+  	<p class="text-center"> There are 2 commands relevant to this sublanguage.</p>
+  	<ul class="text-center">
+  		<li class="center"><code>GRANT</code></li>
+  		<li class="center"><code>REVOKE</code></li>
+  	</ul>
+  </div>
+  </div>
+  <div class="row">
+  	<div class="col-sm-6 border border-dark rounded">
+  	<h3 class="text-center"><code>GRANT</code></h3>
+  	<br>
+  	<p class="text-center">The <code>GRANT</code> command gives permission to an specific user for access to an specific <code><code>database</code></code>. The syntax for the command is listed below.</p>
+  	<br>
+  	<p class="text-center"><b>GRANT</b> <i>privilege_name</i> <b>ON</b> <i>object_name</i>
+	</p>
+	<p class="text-center"><b>TO</b> <i>{user_name | PUBLIC | role_name}</i> [<i>with</i> <b>GRANT</b> <i>option</i>]
+  	</p>
+  	<br>
+  	<ol>
+  		<li><i>privilege_name</i></li>
+  			<ul>
+  			 	<li>is the access right or privilege granted to the user.
+  				 </li>
+  			</ul>
+  		<li><i>object_name</i></li>
+  		  	<ul>
+  			 	<li> is the name of the <code>database</code> object like table, view, etc.
+  				 </li>
+  			</ul>
+  		<li><i>user_name</i></li>
+  			<ul>
+  				<li> is the name of the user to whom an access right is being granted.
+  				</li>
+  			</ul>
+  		<li><i>With Grant option</i></li>
+  			<ul>
+  				<li>allows users to grant access rights to other users.
+  				</li>
+  			</ul>
+  	</ol>
+  	<p class="text-center"><strong><i>Public is used to grant all <code><code>database</code></code> rights to the users</i></strong></p>
+  </div>
+  <div class="col-sm-6 border border-dark rounded">
+  	  	<h3 class="text-center"><code>REVOKE</code></h3>
+  	  	<br>
+  	  	<p class="text-center">The <code>REVOKE</code> command is used to remove user access rights or privileges to the <code><code>database</code></code> objects. The syntax for the command is listed below.</p>	
+  	  	<br>
+  	  	<p class="text-center"><b>REVOKE</b> <i>privilege_name</i> <b>ON</b> <i>object_name</i> 
+  	  	</p>
+  	  	<p class="text-center"><b>FROM</b> <i>{User_name | PUBLIC | Role_name}</i>
+  		</p>
+  		<br>
+  		<ol>
+  		<li><i>privilege_name</i></li>
+  			<ul>
+  			 	<li>is the access right or privilege granted to the user.
+  				 </li>
+  			</ul>
+  		<li><i>object_name</i></li>
+  		  	<ul>
+  			 	<li> is the name of the <code>database</code> object like table, view, etc.
+  				 </li>
+  			</ul>
+  		<li><i>user_name</i></li>
+  			<ul>
+  				<li> is the name of the user to whom an access right is being granted.
+  				</li>
+  			</ul>
+  		</ol>
+  </div>
+ </div>
+  
+<div class="row bg-secondary text-white" id="DML">  
+  
+  <div class="col">
+  	<h1 class="text-center">Data Manipulation Language</h1>
+  	<p class="text-center"> Data Manipulation Language, also referred to as <code>DML</code>, is an <code>SQL</code> sublanguage that
+  	is used to manipulate and access the <code><code>database</code></code>.</p>
+  	<p class="text-center"> There are many commands relevant to this sublanguage. However, we will only be explaining the most common ones. </p>
+  	<ol class="text-center">
+  		<li><code>SELECT</code></li>
+  		<li><code>UPDATE</code></li>
+  		<li><code>INSERT</code></li>
+  		<li><code>DELETE</code></li>
+  	</ol>
+  </div>
+ </div>
+ <div class="row">
+  <div class="col-sm-6 border border-dark rounded">
+  	<h3 class="text-center"><code>SELECT</code></h3>
+  	<br>
+  	<p class="text-center"> The <code>SELECT</code> command is the basis of the <code>DML</code> language.
+  	 It indicates what columns from an specific table you will be returning. The syntax for a simple command
+  	 is listed below.</p>
+  	<br>
+  	<p class="text-center"><b>SELECT</b> <i>column_name</i> <b>FROM</b> <i>table_name</i> <b>WHERE</b> <i>condition</i></p>
+	 <br>
+	 <ol>
+  		<li><i>column_name</i></li>
+  			<ul>
+  			 	<li>refers to the name of the column to be returned from table.
+  				 </li>
+  			</ul>
+  		<li><i>table_name</i></li>
+  		  	<ul>
+  			 	<li> refers to the name of the table which the column will be chosen from
+  				 </li>
+  			</ul>
+  		<li><i>condition</i></li>
+  			<ul>
+  				<li> refers to an specific condition that needs to be met for rows to be returned from table
+  				</li>
+  			</ul>
+  	</ol>
+  </div>
+  	  	<br>
+  	<div class="col-sm-6 border border-dark rounded">
+  	<h3 class="text-center"><code>UPDATE</code></h3>
+  	<br>
+  	<p class="text-center"> The <code>UPDATE</code> command lets you control what updates are to be made to a record in a table.
+  	 It does not return any rows of information, but if you're using an IDE you should
+  	 receive a message indicating how many rows were update. The syntax for a simple <code>UPDATE</code> command
+  	 is listed below.</p>
+  	<br>
+  	<p class="text-center"><b>UPDATE</b> <i>table_name</i> </p>
+  	<p class="text-center"><b>SET</b> <i>column_name1 = value1, column_name2 = value2,... </i></p>
+  	<p class="text-center"><b>WHERE</b> <i>condition</i></p>
+	 <br>
+	 <ol>
+  		<li><i>table_name</i></li>
+  			<ul>
+  			 	<li> refers to the name of the table which the column will be chosen from
+  				 </li>
+  			</ul>
+  		<li><i>column_nameX, valueX</i></li>
+  		  	<ul>
+  			 	<li> refers to the column and specific value that will be given to the row that meets given condition.
+  				 </li>
+  			</ul>
+  		<li><i>condition</i></li>
+  			<ul>
+  				<li> refers to an specific condition that determines which row will be updated.
+  				</li>
+  			</ul>
+  	</ol>
+  </div>
+ </div>
+
+<div class="row">
+  <div class="col-sm-6 border border-dark rounded">
+  	<h3 class="text-center"><code>INSERT</code></h3>
+  	<br>
+  	<p class="text-center"> The <code>INSERT</code> command lets you insert a new entry into the table on a <code>database</code>.
+  	 It does not return any rows of information, but if you're using an IDE you should
+  	 receive a message indicating how many rows were inserted. The syntax for a simple <code>INSERT</code> command
+  	 is listed below.</p>
+  	<br>
+  	<p class="text-center"><b>INSERT INTO</b> <i>table_name(column1,column2,column3,...)</i> </p>
+  	<p class="text-center"><b>VALUES</b> <i>(value1, value2,value3,... </i></p>
+	 <br>
+	 <ol>
+  		<li><i>table_name</i></li>
+  			<ul>
+  			 	<li> refers to the name of the table which the new values will be inserted to. 
+  				 </li>
+  			</ul>
+  		<li><i>columnX, valueX</i></li>
+  		  	<ul>
+  			 	<li> refers to the column and specific value that will be given to that specific column on the new entry
+  				 </li>
+  			</ul>
+  	</ol>
+  </div>
+  <div class="col-sm-6 border border-dark rounded">
+  	<h3 class="text-center"><code>DELETE</code></h3>
+  	<br>
+  	<p class="text-center"> The <code>DELETE</code> command lets you delete existing records of a table in a <code><code>database</code></code>.
+  	 It does not return any rows of information, but if you're using an IDE you should
+  	 receive a message indicating how many rows were deleted. The syntax for a simple <code>DELETE</code> command
+  	 is listed below.</p>
+  	<br>
+  	<p class="text-center"><b>DELETE FROM</b> <i>table_name</i> </p>
+  	<p class="text-center"><b>WHERE</b> <i>condition</i></p>
+	 <br>
+	 <ol>
+  		<li><i>table_name</i></li>
+  			<ul>
+  			 	<li> refers to the name of the table which the delete command will be taking place in. 
+  				 </li>
+  			</ul>
+  		<li><i>condition</i></li>
+  		  	<ul>
+  			 	<li> refers to the condition of the specific entry/ies that will be deleted
+  				 </li>
+  			</ul>
+  	</ol>
+  </div>
+</div>
+
+<div class="row bg-secondary text-white" id ="DDL">
+	<div class="col">
+		<h1 class="text-center">Data Definition Language</h1>
+		  	<p class="text-center"> Data Definition Language, also referred to as <code>DDL</code>, is an <code>SQL</code> sublanguage that
+  	is used to create the schema of your <code><code>database</code></code>.</p>
+  	<p class="text-center"> There are many commands relevant to this sublanguage, but we will be
+  	covering 4</p>
+  	<ol class="text-center">
+  		<li><code>TRUNCATE</code></li>
+  		<li><code>ALTER</code></li>
+  		<li><code>CREATE</code></li>
+  		<li><code>DROP</code></li>
+  	</ol>
+  </div>
+ </div>
+  <div class="row">
+  <div class="col-sm-6 border border-dark rounded">
+  	<h3 class="text-center"><code>TRUNCATE</code></h3>
+  	<br>
+  	<p class="text-center">The <code>TRUNCATE</code> command deletes all of the data within the table, but not the table itself. 
+  	The syntax for executing a <code>TRUNCATE</code> command is listed below</p>
+  	<br>
+  	<p class="text-center"><b>TRUNCATE TABLE</b> <i>table_name</i> 
+	</p>
+  	<br>
+  	<ol>
+  		<li><i>table_name</i></li>
+  			<ul>
+  			 	<li>refers to the table where all the data will be deleted.
+  				 </li>
+  			</ul>
+  	</ol>
+  </div>
+  	<br>
+  	<div class="col-sm-6 border border-dark rounded">
+  		<h3 class="text-center"><code>ALTER</code></h3>
+  	<br>
+  	<p class="text-center">The <code>ALTER</code> command changes the layout of an specific table 
+  	by either adding, removing, or modifying a column or even adding or removing constraints
+  	on an existing table. The syntax for executing an <code>ALTER</code> command is listed below</p>
+  	<br>
+  	<h5 class="text-center"><u>ADD</u></h5>
+  	<p class="text-center"><b>ALTER TABLE</b> <i>table_name</i> 
+	</p>
+	<p class="text-center"><b>ADD</b> <i>column_name datatype</i>								</p>
+  	<br>
+  	<ol>
+  		<li><i>table_name</i></li>
+  			<ul>
+  			 	<li>refers to the table that will be altered.
+  				 </li>
+  			</ul>
+  		<li><i>column_name datatype</i></li>
+  			<ul>
+  				<li>refers to the name of the new column that will be inserted and the datatype that column will have.</li>
+  			</ul>
+  	</ol>
+  	<br>
+  	<h5 class="text-center"><u>DROP</u></h5>
+  	<p class="text-center"><b>ALTER TABLE</b> <i>table_name</i> 
+	</p>
+	<p class="text-center"><b>DROP</b> <i>column_name</i></p>
+  	<br>
+  	<ol>
+  		<li><i>table_name</i></li>
+  			<ul>
+  			 	<li>refers to the table that will be altered.
+  				 </li>
+  			</ul>
+  		<li><i>column_name</i></li>
+  			<ul>
+  				<li>refers to the name of the column that will be removed.</li>
+  			</ul>
+  	</ol>
+  	<br>
+  	<h5 class="text-center"><u>ALTER</u></h5>
+  	<p class="text-center"><b>ALTER TABLE</b> <i>table_name</i> 
+	</p>
+	<p class="text-center"><b>ALTER COLUMN</b> <i>column_name datatype</i>								</p>
+  	<br>
+  	<ol>
+  		<li><i>table_name</i></li>
+  			<ul>
+  			 	<li>refers to the table that will be altered.
+  				 </li>
+  			</ul>
+  		<li><i>column_name datatype</i></li>
+  			<ul>
+  				<li>refers to the name of the column who's datatype will be changed to the given datatype.</li>
+  			</ul>
+  	</ol>
+  </div>
+ </div>
+  <div class="row">
+   <div class="col-sm-6 border border-dark rounded">
+  	<h3 class="text-center"><code>CREATE</code></h3>
+  	<br>
+  	<p class="text-center">The <code>CREATE</code> command creates a new <code>database</code> or a new instance of a table in a <code>database</code>.
+  	The syntax for executing a <code>CREATE</code> command is listed below</p>
+  	<br>
+  	<h5 class="text-center"><u>CREATE <code>database</code></u></h5>
+  	<p class="text-center"><b>CREATE <code>database</code></b> <i><code>database</code>_name</i> 
+	</p>
+  	<br>
+  	<ol>
+  		<li><i><code>database</code>_name</i></li>
+  			<ul>
+  			 	<li>refers to the name of the <code>database</code> that will be created
+  				 </li>
+  			</ul>
+  	</ol>
+  	<br>
+  	<h5 class="text-center"><u>CREATE TABLE</u></h5>
+  	<p class="text-center"><b>CREATE TABLE</b> <i>table_name(</i></p>
+  	<p class="text-center"><i>column_name1 datatype1, column_name2 datatype2, column_name3 datatype3,
+  		...
+  		);
+  	</i> 
+	</p>
+  	<br>
+  	<ol>
+  		<li><i>table_name</i></li>
+  			<ul>
+  			 	<li>refers to the name of the table that will be created
+  				 </li>
+  			</ul>
+  		<li><i>column_nameX datatypeX</i></li>
+  			<ul>
+  			 	<li>refers to the name of the column that will be created and the datatype the column will have.
+  				 </li>
+  			</ul>
+  	</ol>
+  	<br>
+  </div>
+  <br>
+    <div class="col-sm-6 border border-dark rounded">
+  		<h3 class="text-center"><code>DROP</code></h3>
+  	<br>
+  	<p class="text-center">The <code>DROP</code> command deletes all of the data within the table AND the table itself. 
+  	The syntax for executing a <code>DROP</code> command is listed below</p>
+  	<br>
+  	<p class="text-center"><b>DROP TABLE</b> <i>table_name</i> 
+	</p>
+  	<br>
+  	<ol>
+  		<li><i>table_name</i></li>
+  			<ul>
+  			 	<li>refers to the table that will be removed from the <code>database</code>.
+  				 </li>
+  			</ul>
+  	</ol>
+	<p><b><i>Be careful before dropping a table. Deleting a table will result in loss of complete information stored in the table!</i></b>
+  </p>
+  </div>
+ </div>
+	<div class="row border border-dark rounded bg-secondary text-white">
+	  <div class="col" id="DQL">
+		<h1 class="text-center">Data Query Language</h1>
+	<p class="text-center"> Data Query Language, also referred to as <code>DQL</code>, 
+	is the commands that are used to retrieve data from the <code>database</code>.</p>
+  	<p class="text-center"> The only command relevant to this sublanguage is listed below</p>
+  	<br>
+  	<h3 class="text-center"><code>SELECT</code></h3>
+  	<br>
+  	<p class="text-center"> The <code>SELECT</code> command is the basis of the <code>DML</code> language.
+  	 It indicates what columns from an specific table you will be returning. The syntax for a simple command
+  	 is listed below.</p>
+  	<br>
+  	<p class="text-center"><b>SELECT</b> <i>column_name</i> <b>FROM</b> <i>table_name</i> <b>WHERE</b> <i>condition</i></p>
+	 <br>
+	 <ol>
+  		<li><i>column_name</i></li>
+  			<ul>
+  			 	<li>refers to the name of the column to be returned from table.
+  				 </li>
+  			</ul>
+  		<li><i>table_name</i></li>
+  		  	<ul>
+  			 	<li> refers to the name of the table which the column will be chosen from
+  				 </li>
+  			</ul>
+  		<li><i>condition</i></li>
+  			<ul>
+  				<li> refers to an specific condition that needs to be met for rows to be returned from table
+  				</li>
+  			</ul>
+  	</ol>
+	</div>
+</div>
+	<div class="row bg-secondary text-white" id="TCL">
+	<div class="col">
+		<h1 class="text-center">Transaction Control Language</h1>
+		<p class="text-center"> Transaction Control Language, also referred to as <code>TCL</code>, 
+	refers to the commands that are used to control
+	the transactions made against the <code>database</code>.</p>
+  	<p class="text-center"> The 3 commands relevant to this sublanguage are listed below</p>
+  	<ol class="text-center">
+  		<li><code>COMMIT</code></li>
+  		<li><code>ROLLBACK</code></li>
+  		<li><code>SAVEPOINT</code></li>
+  	</ol>
+  </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-4 border border-dark rounded">
+  	<h3 class="text-center"><code>COMMIT</code></h3>
+  	<br>
+  	<p class="text-center"> The <code>COMMIT</code> command brings an end to your current transaction
+  	and makes permanent all the changes performed in the transaction. The syntax for a commit command
+  	 is listed below.</p>
+  	<br>
+  	<p class="text-center"><b>COMMIT;</b></p>
+	 <br>
+	 </div>
+	<div class="col-sm-4 border border-dark rounded">
+	 <h3 class="text-center"><code>ROLLBACK</code></h3>
+  	<br>
+  	<p class="text-center"> The <code>ROLLBACK</code> command undoes transacations that haven't been committed to
+  	the <code>database</code>. This command can only be used to
+  	undo transactions since the last
+  	commit or rollback that was called. The syntax for a rollback command
+  	 is listed below.</p>
+  	<br>
+  	<p class="text-center"><b>ROLLBACK;</b></p>
+	 <br>
+	</div>
+	<div class="col-sm-4 border border-dark rounded">
+	 <h3 class="text-center"><code>SAVEPOINT</code></h3>
+  	<br>
+  	<p class="text-center"> The <code>SAVEPOINT</code> command creates a point in a transaction you can rollback to without
+  	rolling back the entire transaction. In other words, a checkpoint. The syntax for a savepoint creation
+  	is listed below.</p>
+  	<br>
+  	<p class="text-center"><b>SAVEPOINT savepoint_name;</b></p>
+  	<ol>
+  		<li><i>savepoint_name</i></li>
+  			<ul>
+  			 	<li>refers to the name of the savepoint that will be created.
+  				 </li>
+  			</ul>
+  	</ol>
+  	<h5 class="text-center">ROLLBACK TO SAVEPOINT</h5><br>
+  	<p class="text-center"><b>ROLLBACK TO</b> <i>savepoint_name</i></p>
+  	
+  	<ol>
+  		<li><i>savepoint_name</i></li>
+  			<ul>
+  			 	<li>refers to the name of the savepoint that will be created.
+  				 </li>
+  			</ul>
+  	</ol>
+  	
+	 <br>
+	</div>
+</div> 	 
+  	<br><br>
+</body>
+</html>

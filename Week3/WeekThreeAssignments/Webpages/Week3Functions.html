@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+<link rel="shortcut icon" type="image/x-icon" href="Wicked_Website_Icon.png" />
+<meta charset="ISO-8859-1">
+<title>Week 3 Function Assignment</title>
+</head>
+<body>
+
+<div class="jumbotron">
+  <h1 class="display-3">Welcome to the world of functions! </h1>
+  <p class="lead">As we continue learning more and more about these new technologies, we have to make sure to actually show that we in fact know how to use them! Below are some examples of the technologies we have learned!</p>
+  <hr class="my-4">
+  <p>Interested in learning more about Revature? Click the button below!</p>
+  <p class="lead">
+    <a class="btn btn-primary btn-lg" href="https://revature.com/" role="button">Learn more</a>
+  </p>
+</div>
+
+
+<div class="container">
+  <div class="row p-3 mb-2 bg-secondary text-white">
+    <div class="col-sm">
+      <h2>Fibonacci's Sequence</h2>
+      <br> <br>
+      <p> Fibonnaci's sequence is a series of numbers in which each number (Fibonacci Number) is the sum of the two preceding numbers. </p>
+      <br>
+      <p> The simplest is the series 1,1,2,3,5,8, etc. </p>
+      <br>
+      <p> We can figure out the nth number in the fibonacci sequence for you! Just input it below!</p>
+      <br>
+      <!--  below is the form for inputting the number to extract and place in funciton that will perform fibonacci sequence -->
+      	<div class="form-group">
+ 	 		<label for="function">Number</label>
+  			<input type="number" class="form-control" id="inputFib">
+		</div>
+		<!-- Below is the button that will be pressed, which the event listener will reference to in order to perform function -->
+    	<button type="button" class="btn btn-primary" id="fibButton">Fibonnacc'ed!</button>
+   		<p id ="outputFib"> </p>
+    </div>
+    <div class="col-sm">
+      <h2>Factorial   Function</h2>
+      <br> <br>
+      <p> Factorial is the product of an integer and all the integers below it.</p>
+      <br>
+      <p> Factorials are illustrated in this manner: (n!) where n is the number </p>
+      <p> Example: 4! = 4*3*2*1 = 24</p>
+      <p> We can calculate the value of any nth factorial just by clicking the button below!</p>
+      <br>
+      <!--  below is the form for inputting the number to extract and place in function that will perform fibonacci sequence -->
+      	<div class="form-group">
+ 	 		<label for="function">Number</label>
+  			<input type="number" class="form-control" id="inputFact">
+		</div>
+		<!-- Below is the button that will be pressed, which the event listener will reference to in order to perform function -->
+    	<button type="button" class="btn btn-primary" id = "factButton">Factorialized!</button>
+    	<p id="outputFactorial">  </p>
+    </div>
+    <div class="col-sm">
+      <h2>Even Number Checker</h2>
+      <br> <br>
+      <p> Even numbers are pretty self explanatory. You can determine if a number is even by dividing the number by 2. If it returns 0, it is even. If not, it is odd! </p>
+      <br>
+      <p> Even numbers are 2,4,6,8,10,12, etc </p>
+      <br>
+      <p> We can determine if a number is even for you! Just input it below!</p>
+      <br>
+      <!--  below is the form for inputting the number to extract and place in funciton that will perform fibonacci sequence -->
+      	<div class="form-group">
+ 	 		<label for="function">Number</label>
+  			<input type="number" class="form-control" id="inputEven">
+		</div>
+		<!-- Below is the button that will be pressed, which the event listener will reference to in order to perform function -->
+    	<button type="button" class="btn btn-primary" id="evenButton">Even Check!</button>
+   		<p id="outputEven"> </p>
+    </div>
+  </div>
+</div>
+
+<!--  The section belows to the lower half of the 3 functions -->
+<div class="container">
+  <div class="row p-3 mb-2 bg-secondary text-white">
+    <div class="col-sm">
+      <h2>Substring Method</h2>
+      <br> <br>
+      <p> Have you ever wrote a sentence and thought to yourself "dang, I wish I could just cut this sentence in half?"</p>
+      <br>
+      <p>Wait no more! Here we have a function that can cut your sentence short! Exactly how you want it!</p>
+      <br>
+      <p>Simply input a sentence and the index of where you would like to start the cutting process! Keep in mind, the first letter is index 0, second letter is index 2, third letter is index 3, so on and
+      so forth! Just input your sentence and watch the magic work by pressing the button!</p>
+      <br>
+      <!--  below is the form for inputting the number to extract and place in funciton that will perform bubblesort algorithm -->
+      	<div class="form-group">
+ 	 		<label for="function">Sentence</label>
+  			<input type="text" class="form-control" id="inputSub">
+		</div>
+		<div class="form-group">
+ 	 		<label for="function">Index</label>
+  			<input type="number" class="form-control" id="inputSubNum">
+		</div>
+		<!-- Below is the button that will be pressed, which the event listener will reference to in order to perform function -->
+    	<button type="button" class="btn btn-primary" id="substringButton">That sentence way too long you need to cut it!</button>
+   		<p id="outputSubstring"> </p>
+    </div>
+    <div class="col-sm">
+      <h2>Palindrome Function</h2>
+      <br> <br>
+      <p> A Palindrome is a word or sentence that reads the same forward as it does backward.</p>
+      <br>
+      <p> Some examples of palindromes are "Level", "Civic", "Did, and "Hannah". </p>
+      <p> Not sure if a word you have in mind is a palindrome? Just input it and click the button below to find out!</p>
+      <br>
+      <!--  below is the form for inputting the number to extract and place in function that will perform palindrome check -->
+      	<div class="form-group">
+ 	 		<label for="function">Word</label>
+  			<input type="text" class="form-control" id="inputPal">
+		</div>
+		<!-- Below is the button that will be pressed, which the event listener will reference to in order to perform function -->
+    	<button type="button" class="btn btn-primary" id = "palindromeButton">Palindrome!</button>
+    	<p id = "outputPal"> </p>
+    </div>
+    <div class="col-sm">
+      <h2>Object Literal</h2>
+      <br> <br>
+      <p> In javascript, you're able to give create an object, a container of different types of information. In this function, we will create a YOU object!</p>
+      <br>
+      <p> the You object will have your name, age, and gender. </p>
+      <br>
+      <p> Based on your entry, we will create your object and print out its properties. Just input your corresponding information below then click print me!</p>
+      <br>
+      <!--  below is the form for inputting the number to extract and place in funciton that will perform object printing -->
+      	<div class="form-group">
+ 	 		<label for="function">Name</label>
+  			<input type="text" class="form-control" id="inputName">
+		</div>
+		<br>
+		<div class="form-group">
+ 	 		<label for="function">Age</label>
+  			<input type="number" class="form-control" id="inputAge">
+		</div>
+		<div class="form-group">
+ 	 		<label for="function">Gender</label>
+  			<input type="text" class="form-control" id="inputGender">
+		</div>
+		<!-- Below is the button that will be pressed, which the event listener will reference to in order to perform function -->
+    	<button type="button" class="btn btn-primary" id="personButton">Print Me!</button>
+   	<p id = "outputPerson"> </p>
+    </div>
+  </div>
+</div>
+
+
+
+
+<script type = "text/javascript" src = "js/Function.js"></script>
+</body>
+</html>
