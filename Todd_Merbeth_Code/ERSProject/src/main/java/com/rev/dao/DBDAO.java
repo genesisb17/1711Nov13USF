@@ -110,10 +110,10 @@ public class DBDAO implements DAO {
 			key[0] = "user_id";
 
 			PreparedStatement ps = conn.prepareStatement(sql, key);
-			ps.setString(1, user.getFirstname());
-			ps.setString(2, user.getLastname());
-			ps.setString(3, user.getUsername());
-			ps.setString(4, user.getPassword());
+			ps.setString(1, user.getUsername());
+			ps.setString(2, user.getPassword());
+			ps.setString(3, user.getFirstname());
+			ps.setString(4, user.getLastname());
 			ps.setString(5, user.getEmail());
 			ps.setInt(6, user.getRole());
 			int rows = ps.executeUpdate(); // could set variable to track that the update happened
@@ -211,25 +211,109 @@ public class DBDAO implements DAO {
 
 	@Override
 	public User getUser(String username, String password) {
-		// TODO Auto-generated method stub
-		return null;
+		User temp = new User();
+		try (Connection conn = ConnectionFactory.getInstance().getConnection();) {
+			String sql = "select * from USERS where username = ? and password = ?";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setString(1, username);
+			ps.setString(2, password);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				temp.setId(rs.getInt(1)); // Index starts at 1
+				temp.setUsername(rs.getString(2));
+				temp.setPassword(rs.getString(3));
+				temp.setFirstname(rs.getString(4));
+				temp.setLastname(rs.getString(5));
+				temp.setEmail(rs.getString(6));
+				temp.setRole(rs.getInt(7));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return temp;
 	}
 
 	@Override
 	public String getR_Status(int r_id) {
-		// TODO Auto-generated method stub
+		try (Connection conn = ConnectionFactory.getInstance().getConnection();) {
+			String sql = "select R_STATUS from REIMBURSEMENT_STATUS where R_STATUS_ID = ?";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setInt(1, r_id);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				return rs.getString(1);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		return null;
 	}
 
 	@Override
 	public String getR_Type(int r_id) {
-		// TODO Auto-generated method stub
+		try (Connection conn = ConnectionFactory.getInstance().getConnection();) {
+			String sql = "select R_TYPE from REIMBURSEMENT_TYPE where R_TYPE_ID = ?";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setInt(1, r_id);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				return rs.getString(1);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		return null;
 	}
 
 	@Override
-	public String getUser_Role(int u_id) {
-		// TODO Auto-generated method stub
+	public String getUser_Role(int ur_id) {
+		try (Connection conn = ConnectionFactory.getInstance().getConnection();) {
+			String sql = "select ROLE from USER_ROLES where ROLE_ID = ?";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setInt(1, ur_id);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				return rs.getString(1);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		return null;
+	}
+
+	@Override
+	public boolean checkUsername(String username) {
+		try (Connection conn = ConnectionFactory.getInstance().getConnection();) {
+			String sql = "select COUNT(USERNAME) from USERS where USERNAME = ?";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setString(1, username);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				if (rs.getInt(1) > 0) {
+					return true;
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+
+	@Override
+	public boolean checkEmail(String email) {
+		try (Connection conn = ConnectionFactory.getInstance().getConnection();) {
+			String sql = "select COUNT(EMAIL) from USERS where EMAIL = ?";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setString(1, email);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				if (rs.getInt(1) > 0) {
+					return true;
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return false;
 	}
 }

@@ -10,15 +10,10 @@ function login(){
 	alert("loggin in");
 	var username = $('#username').val();
 	var password = $('#password').val();
-	var json1 = [username, password];   // can do this way
-//	var user = {						// or this way, doesn't matter
-//			name: username,
-//			password: password
-//	}
+	var json1 = [username, password];
 	var json = JSON.stringify(json1);
 	
 	console.log(json);
-//	console.log(json2);
 	
 	//AJAX stuff
 	var xhr = new XMLHttpRequest();
@@ -27,6 +22,15 @@ function login(){
 		console.log("ready state: " + xhr.readyState);
 		if(xhr.readyState == 4 && xhr.status == 200) {
 			console.log("in xhr callback");
+			var user = JSON.parse(xhr.responseText);
+			$('#outcome').show();
+			if(user == null){
+				$('#outcome').html("Invalid username or password") ;
+			}
+			else{
+				$('#outcome').html(`Welcome ${user.firstname}`) ;
+				window.location.replace('logged.html');
+			}
 		}
 	};
 	
@@ -40,5 +44,5 @@ function login(){
 }
 
 function register(){
-	// nothing yet
+	// nothing yet. might not even do this is not required
 }

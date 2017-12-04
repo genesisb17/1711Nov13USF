@@ -8,14 +8,14 @@ import com.rev.pojos.User;
 public interface DAO {
 
 	//For employees
-	public ArrayList<Reimbursement> getUserReimbursements(int u_id);
+	public ArrayList<Reimbursement> getUserReimbursements(int u_id); 
 	
 	public Reimbursement addReimbursement(Reimbursement r);
 	
 	//For managers
 	public ArrayList<Reimbursement> getReimbursements();
 	
-//	public ArrayList<Reimbursement> getReimbursementsByStatus();
+//	public ArrayList<Reimbursement> getReimbursementsByStatus(); // Maybe need later? Depends on how decide to show data
 	
 	public ArrayList<Reimbursement> getPendingReimbursements();
 	
@@ -23,9 +23,13 @@ public interface DAO {
 	
 	public Reimbursement updateReimbursement(int r_id, int r_res, int r_status);
 	//For both
-	public User addUser(User user);
+	public User addUser(User user); // Optional
 	
-	public User getUser(String username, String password);
+	public boolean checkUsername(String username); // Optional for new user
+	
+	public boolean checkEmail(String email); // Optional for new user
+	
+	public User getUser(String username, String password); // For login
 	
 	public String getR_Status(int r_id);
 	

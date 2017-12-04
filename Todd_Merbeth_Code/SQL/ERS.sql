@@ -84,4 +84,4 @@ BEGIN
   UPDATE REIMBURSEMENT SET R_RESOLVER = rres, R_STATUS_ID = rstatus WHERE R_ID = rid;
 END;
 /
-commit;
+select * from USERS where username = 'SQLUSER' and password = 'SQLPASS';

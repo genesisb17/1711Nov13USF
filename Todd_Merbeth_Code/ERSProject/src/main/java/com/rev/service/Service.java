@@ -9,31 +9,41 @@ import com.rev.pojos.User;
 
 public class Service {
 
-//	private DAO dao = new DBDAO();
+	static DAO dao = new DBDAO();
 	
-	public static void main (String[] args) {
-		DAO dao = new DBDAO();
-//		User u = new User();
-//		u.setUsername("jusertest1");
-//		u.setPassword("juserpass1");
-//		u.setFirstname("jtestfirst1");
-//		u.setLastname("jtestlast1");
-//		u.setEmail("jtestemail1");
-//		u.setRole(1);
-		
-		Reimbursement r = new Reimbursement();
-//		r.setAmount(1000.00);
-//		r.setDescription("New Computer");
-//		r.setAuthor(101);
-//		r.setType(4);
-		
-//		ArrayList<Reimbursement> reimbursements = new ArrayList<Reimbursement>();
-//		reimbursements = dao.getPendingReimbursements();
-//		for (Reimbursement temp:reimbursements) {
-//			System.out.println(temp.toString());
-//		}
-		r = dao.updateReimbursement(503, 101, 1);
-		System.out.println(r.toString());
-		
+	public ArrayList<Reimbursement> getUserReimbursements(int u_id){
+		return dao.getUserReimbursements(u_id);
+	}
+	
+	public Reimbursement addReimbursement(Reimbursement r) {
+		return dao.addReimbursement(r);
+	}
+	
+	public ArrayList<Reimbursement> getAllReimbursements(){
+		return dao.getReimbursements();
+	}
+	
+	public ArrayList<Reimbursement> getPendingReimbursements(){
+		return dao.getPendingReimbursements();
+	}
+	
+	public Reimbursement updateReimbursement(int r_id, int r_res, int r_status) {
+		return dao.updateReimbursement(r_id, r_res, r_status);
+	}
+	
+	public User getUser(String username, String password) {
+		return dao.getUser(username, password);
+	}
+	
+	public String getR_Status(int r_id) {
+		return dao.getR_Status(r_id);
+	}
+	
+	public String getR_Type(int r_id) {
+		return dao.getR_Type(r_id);
+	}
+	
+	public String getUser_Role(int u_id) {
+		return dao.getUser_Role(u_id);
 	}
 }
