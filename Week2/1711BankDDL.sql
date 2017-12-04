@@ -1,10 +1,11 @@
 CREATE TABLE USERS(
-U_ID NUMBER PRIMARY KEY,
+U_ID NUMBER PRIMARY KEY,.............................................................................................................................................
 FIRSTNAME VARCHAR2(30) NOT NULL,
 LASTNAME VARCHAR2(30) NOT NULL,
 USERNAME VARCHAR2(30) UNIQUE NOT NULL,
 PASSWORD VARCHAR2(20) NOT NULL
 );
+
 
 -- PK, FK, NN, U, CHECK, DEFAULT
 CREATE TABLE ACCOUNTS(

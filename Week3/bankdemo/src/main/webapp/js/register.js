@@ -10,7 +10,8 @@ window.onload = function(){
 
 //function onblur that notifies the user of whether or not their email address is already in use 
 function validateEmail(){
-	console.log("blurred")
+	$('#register').attr("disabled",false);
+	$('#message').hide();
 	var username = $('#username').val();
 	
 	var toSend = [username, ""];
@@ -20,7 +21,6 @@ function validateEmail(){
 	var xhr = new XMLHttpRequest();
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState == 4 && xhr.status==200){
-			console.log("in xhr callback" + xhr.responseText);
 			var user = JSON.parse(xhr.responseText);
 			$('#message').show();
 			if(user != null){
@@ -41,8 +41,7 @@ function register(){
 	var uname = $('#username').val();
 	var pass = $('#pass').val();
 	// add password validation and second input confirmation?
-	
-	
+
 	var user = {
 			id: 0,
 			firstname: fn,

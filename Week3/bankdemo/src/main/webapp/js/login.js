@@ -36,7 +36,7 @@ function login(){
 			}
 			else{
 				$('#message').html(`Welcome ${user.firstname}`) ;
-				window.location.replace('register.html');
+				window.location.replace('app.html');
 				console.log("success!");
 			}
 		}

@@ -21,7 +21,7 @@ public class RegisterServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-		System.out.println("in login servlet");
+		System.out.println("in register servlet");
 
 		BufferedReader br = 
 				new BufferedReader(new InputStreamReader(req.getInputStream()));
