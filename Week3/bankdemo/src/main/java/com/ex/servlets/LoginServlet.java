@@ -55,6 +55,7 @@ public class LoginServlet extends HttpServlet{
 		}
 		else if(!temp.getPassword().equals(password)){ // if invalid pw, id = 0;
 			temp.setId(0);
+			temp.setPassword(null);
 		}
 		else{// valid credentials
 			HttpSession session = req.getSession();
