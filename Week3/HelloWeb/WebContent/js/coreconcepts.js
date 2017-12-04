@@ -25,7 +25,7 @@
 
 var a = 5;
 var b = "hello"
-var c = 'hello';
+	var c = 'hello';
 var d = 7/0
 var e = {name: "genesis", age:30};
 var f = e.age;
@@ -34,10 +34,12 @@ var h = null;
 var i;
 var j = 1, k = 'hey', l = null;
 var b; //if you redeclare a JS variable, it will not lose its value
-console.log(typeof(a)); //returns the tyoe of variable or expression
+console.log(typeof(a)); //returns the type of variable or expression
 var interpol = `Hi ${e.name}`;
-// further reading: http://es6-features.org/#StringInterpolation
-// 					https://codeburst.io/javascript-template-literals-tag-functions-for-beginners-758a041160e1
+//further reading: http://es6-features.org/#StringInterpolation
+//https://codeburst.io/javascript-template-literals-tag-functions-for-beginners-758a041160e1
+//https://ponyfoo.com/articles/es6-template-strings-in-depth
+//https://ponyfoo.com/articles/template-literals-strictly-better-strings
 
 //----------------------------OPERATORS--------------------------------------
 //Arithmetic: + - * / %
@@ -98,18 +100,18 @@ if(undefined) console.log("falsy");
         - UCS-2
         - String.length
         - String methods
-            * charAt
-            * concat
-            * indexOf
-            * lastIndexOf
-            * replace
-            * Search
+ * charAt
+ * concat
+ * indexOf
+ * lastIndexOf
+ * replace
+ * Search
                 - Use regular expressions.
-            * slice
-            * split
-            * substring
-            * toUpperCase
-            * toLowerCase
+ * slice
+ * split
+ * substring
+ * toUpperCase
+ * toLowerCase
  */
 
 //-----------------------------OBJECTS--------------------------------------
@@ -147,13 +149,24 @@ arr.push(0);
 
 
 //-----------------------------FUNCTIONS------------------------------------------
-/* 
+/* Functions are objects in javascript. They can be stored in variables, passed as 
+ * arguments to other functions, created within functions, and returned from functions
+ * 
+
  * 
  */
 function add(a, b){
 	return a + b;
 }
-
+/*
+ * Arrow notation
+ * - Arrow functions make JS code more concise, and simplify function scoping and the this keyword
+ * - 
+ */
+//ES5:
+var multiply = function(x, y){ return x * y;};
+//ES6:
+var multiply = (x,y)=>{return x*y} ;
 
 /*
  * the this keyword
@@ -174,7 +187,32 @@ var person = {
 		}
 }
 
+/* A callback function, also known as a higher-order function, is a function passed to
+ * another function as a parameter. The callback function is called/executed inside the 
+ * other function. A callback function is essentially a design pattern
+ */
+var friends = ["me", "myself", "i"];
+friends.forEach( function(eachName, index){
+	console.log(`${index + 1}: ${eachName}`);
+});
+// here, we pass an anonymous function(a function without a name) to the forEach method as a param
+// callback functions are closures
 
+/*
+ * Closures allow JS programmers to write better code. A closure is an inner function that has
+ * access to the outer  (enclosing) function's variables. The inner function has access to not
+ * only the outer function's variables, but also to the outer function's parameters.
+ * Further Reading: http://javascriptissexy.com/understand-javascript-closures-with-ease/
+ * Basic example: 
+ */
+function showName(fn, ln){
+	var welcome = "Hey ";
+	function fullName(){
+		return welcome + fn + " " + ln;
+	}
+	return fullName();
+}
+showName('Genesis', 'Bonds');
 
 
 //---------------------HOISTING & VARIBALE SCOPES------------------------------------------
@@ -217,9 +255,9 @@ function getValue(condition){
  * in the function; it just has a value of undefined.
  */
 
-// Understanding the LET keyword
+//Understanding the LET keyword
 /* limits the variable to block scope
-*/
+ */
 function getValue(condition){
 	if(condition){
 		let value="blue";
