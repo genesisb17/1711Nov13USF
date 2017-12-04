@@ -2,25 +2,27 @@
  * Functionality for ERS app
  */
 
+
 window.onload = function() {
-    $('#ca-input').hide();
-    $('#user-settings').hide();
-    $('#tickets').hide();
-    $('#up-account').hide();
+    // $('#ca-input').hide();
+    // $('#user-settings').hide();
+    // $('#tickets').hide();
+    // $('#up-account').hide();
+    
     $('#new-users').on('click', function() {
-        $('#login-input').hide();
-        $('#ca-input').show();
+        // $('#login-input').hide();
+        // $('#ca-input').show();
     });
     $('#returning-users').on('click', function() {
-        $('#login-input').show();
-        $('#ca-input').hide();
+        // $('#login-input').show();
+        // $('#ca-input').hide();
     });
     $('#login').on('click', login);
     $('#create-account').on('click', createAccount);
     $('#manage-account').on('click', function() {
-        $('#tickets').hide();
-        $('#up-account').show();
-        $('#up-configm-password').hide();
+        // $('#tickets').hide();
+        // $('#up-account').show();
+        // $('#up-configm-password').hide();
     });
 }
 
@@ -32,9 +34,9 @@ function login() {
     
     // Add more to this function as needed
     if (true) {
-        $('#login-input').hide();
-        $('#tickets').show();
-        $('#user-settings').show();
+        // $('#login-input').hide();
+        // $('#tickets').show();
+        // $('#user-settings').show();
     }
 
     // Just in case empty the text fields
@@ -51,6 +53,14 @@ function createAccount() {
     var password = $('#ca-password').val();
     var confirmPassword = $('#ca-confirm-password').val();
 
+    var user = {
+    	userId: 0,
+    	username: username,
+    	firstName: firstname,
+    	lastName: lastname,
+    	
+    };
+    
     if (true) {
         $('#ca-input').hide();
     }

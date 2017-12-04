@@ -134,7 +134,7 @@ public class ERSDatabaseDAO implements ERSDAO {
 	}
 
 	@Override
-	public Users addUser(Users newUser, String password) {
+	public Users addUser(Users newUser) {
 		Users u = null;
 		try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
 			conn.setAutoCommit(false);
@@ -144,7 +144,7 @@ public class ERSDatabaseDAO implements ERSDAO {
 			String[] keys = {DB_KEY_USERID};
 			PreparedStatement ps = conn.prepareStatement(sql, keys);
 			ps.setString(1, newUser.getUsername());
-			ps.setString(2, password);
+			ps.setString(2, newUser.getPassword());
 			ps.setString(3, newUser.getFirstName());
 			ps.setString(4, newUser.getLastName());
 			ps.setString(5, newUser.getEmail());
@@ -157,11 +157,6 @@ public class ERSDatabaseDAO implements ERSDAO {
 					u.setUserId(rs.getInt(1));
 				}
 				conn.commit();
-				u.setUsername(newUser.getUsername());
-				u.setFirstName(newUser.getFirstName());
-				u.setLastName(newUser.getLastName());
-				u.setEmail(newUser.getEmail());
-				u.setRoleId(newUser.getRoleId());
 			}
 
 
@@ -298,7 +293,6 @@ public class ERSDatabaseDAO implements ERSDAO {
 
 	@Override
 	public Reimbursement addTicket(Reimbursement newTicket) {
-		Reimbursement reimb = null;
 		try (Connection conn = ConnectionFactory.getInstance().getConnection()){
 			conn.setAutoCommit(false);
 			String sql = "INSERT INTO ERS_REIMBURSEMENT (REIMB_AMOUNT, REIMB_DESCRIPTION, REIMB_RECEIPT,\r\n" + 
@@ -314,27 +308,17 @@ public class ERSDatabaseDAO implements ERSDAO {
 
 			int rows = ps.executeUpdate();
 			if (rows > 0) {
-				reimb = new Reimbursement();
 				ResultSet rs = ps.getGeneratedKeys();
 				while (rs.next()) {
 					
-					reimb.setReimbId(rs.getInt(1));
+					newTicket.setReimbId(rs.getInt(1));
 				}
 				conn.commit();
-				reimb.setAmount(newTicket.getAmount());
-				reimb.setSubmitted(newTicket.getSubmitted());
-				reimb.setResolved(newTicket.getResolved());
-				reimb.setDescription(newTicket.getDescription());
-				reimb.setReceipt(newTicket.getReceipt());
-				reimb.setAuthor(newTicket.getAuthor());
-				reimb.setResolver(newTicket.getResolver());
-				reimb.setStatusId(newTicket.getStatusId());
-				reimb.setTypeId(newTicket.getTypeId());
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return reimb;
+		return newTicket;
 	}
 
 	@Override

@@ -54,7 +54,7 @@ public class TestDAO {
 //		System.out.println(dao.getType(1));
 		
 //		Reimbursement reimb = new Reimbursement();
-//		reimb.setAmount(20);
+//		reimb.setAmount(30);
 //		reimb.setDescription("generic descr.");
 //		reimb.setAuthor(7342);
 //		reimb.setStatusId(ReimbursementStatus.PENDING.ordinal()+1);
