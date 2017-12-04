@@ -1,0 +1,12 @@
+/*
+ * 
+ */
+function getPokemon()
+{
+	var id = document.getElementById("id").value;
+	console.log('seding poke no. '+id);
+}
+windo.onload=function()
+{
+	document.getElementById("submit").addEventListener("click",getPokemon);
+}

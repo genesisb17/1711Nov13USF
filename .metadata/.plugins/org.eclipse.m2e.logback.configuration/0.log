@@ -11508,3 +11508,4 @@ org.eclipse.core.internal.resources.ResourceException: Resource '/Project1serve'
 2017-12-04 09:02:51,443 [Worker-95] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
 2017-12-04 09:02:51,452 [Worker-95] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
 2017-12-04 09:02:51,467 [Worker-95] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-12-04 09:10:22,020 [Worker-9] INFO  c.g.t.t.d.PublishedGradleVersions - Gradle version information cache is out-of-date. Trying to update.

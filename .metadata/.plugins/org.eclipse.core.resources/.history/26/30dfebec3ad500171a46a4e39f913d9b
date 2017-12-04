@@ -1,0 +1,22 @@
+/*
+ * 
+ */
+function getPokemon()
+{
+	var id = document.getElementById("id").value;
+	console.log('seding poke no. '+id);
+
+	var xhr = newXMLHttpRequest();
+	//step 2 function to handle ready state change of the reponse callback function
+	xhr.onreadystatechange = function()
+	{
+		if(xhr.readyState==4&&xhr.status==200)
+		{
+			
+		}
+	}
+}
+window.onload=function()
+{
+	document.getElementById("submit").addEventListener("click",getPokemon);
+}

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy 4 packages to &apos;rev&apos;&#x0D;&#x0A;- Original project: &apos;Project1&apos;&#x0D;&#x0A;- Destination element: &apos;rev&apos;&#x0D;&#x0A;- Original elements:&#x0D;&#x0A;     Project1/src/main/java/com.rev.service&#x0D;&#x0A;     Project1/src/main/java/com.rev.dao&#x0D;&#x0A;     Project1/src/main/java/com.rev.pojo&#x0D;&#x0A;     Project1/src/main/java/com.rev.run" description="Copy packages" element1="/src\/main\/java&lt;com.rev.service" element2="/src\/main\/java&lt;com.rev.dao" element3="/src\/main\/java&lt;com.rev.pojo" element4="/src\/main\/java&lt;com.rev.run" flags="589830" fragments="4" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyPackages" stamp="1512264075344" target="/Project1serve/src/main/java/com/rev" version="1.0"/>
+</session>
