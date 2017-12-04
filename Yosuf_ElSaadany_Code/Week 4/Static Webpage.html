@@ -1,0 +1,243 @@
+
+
+<!DOCTYPE html>
+<html lang = "en">
+	
+	<head>
+
+		<title>Static Webpage</title>
+		
+		<meta charset = "utf-8">
+		
+		<!-- Width of Screen, Intial zoom level -->
+		<meta name = "viewport" content = "width = device - width, initial - scale = 1">
+
+		<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+		<!-- jQuery library -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+		<!-- Latest compiled JavaScript -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		
+	<style>
+	button.accordion {
+		background-color: #AED6F1;
+		color: #444;
+		cursor: pointer;
+		padding: 18px;
+		width: 100%;
+		border: none;
+		text-align: left;
+		outline: none;
+		font-size: 15px;
+		transition: 0.4s;
+	}
+
+	button.accordion.active, button.accordion:hover {
+		background-color: #3498DB;		
+	}
+
+	button.accordion:after {
+		content: '\002B';
+		color: #777;
+		font-weight: bold;
+		float: right;
+		margin-left: 5px;
+	}
+
+	button.accordion.active:after {
+		content: "\2212";
+	}
+
+	div.panel {
+		padding: 0 18px;
+		background-color: #D6EAF8;
+		max-height: 0;
+		overflow: hidden;
+		transition: max-height 0.2s ease-out;
+		width:800px; 
+		margin:0 auto;
+	}
+
+	p.text-center {
+	   font-size: 20px;
+	   font-weight: bold;
+	}
+
+	#image {
+		width: 780px;
+		margin:0 auto;
+		
+	}
+
+	h3 {
+		text-align:justify;
+		font-size: 22px;
+		font-weight: bold;
+	}
+</style>
+	</head>
+<body style = "background-color:#D6EAF8">
+
+	<!-- JUMBOTRON -->
+	<div class="jumbotron container-fluid text-center" style = "background-color: #3498DB">
+		<h1 class="display-4"><b>Primitive Types vs Wrapper Classes</b></h1>
+	</div>
+	
+	<div style="width:800px; margin:0 auto;">
+		<h3>A <i>primitive wrapper class</i> is one of eight classes provided in the java.lang package to provide object methods for the eight primitive
+	   types. All of the primitive wrapper classes in Java are immutable whose state cannot be modified after they are created.</h3>
+	</div>
+	
+	<br>
+	
+	<button class="accordion"><p class = "text-center">Primitive types and their corresponding wrapper classes</p></button>
+	<div class="panel" style = "width:1600px">
+		<div class = "row">
+			<div class = "col-lg-4"> </div>
+			<div class = "col-lg-4">
+				<table class="table">
+					<thead>
+						<tr>
+							<th>Primitive</th>
+							<th>Wrapper Class</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>byte</td>
+							<td>Byte</td>
+						</tr>
+						<tr>
+							<td>short</td>
+							<td>Short</td>
+						</tr>
+						<tr>
+							<td>int</td>
+							<td>Integer</td>
+						</tr>
+						<tr>
+							<td>long</td>
+							<td>Long</td>
+						</tr>
+						<tr>
+							<td>float</td>
+							<td>Float</td>
+						</tr>
+						<tr>
+							<td>double</td>
+							<td>Double</td>
+						</tr>
+						<tr>
+							<td>char</td>
+							<td>Character</td>
+						</tr>
+						<tr>
+							<td>boolean</td>
+							<td>Boolean</td>
+						</tr>
+					</tbody>
+				</table>
+			</div
+			<div class = "col-lg-4"> </div>
+		</div>
+	</div>	
+
+	<button class="accordion"><p class = "text-center">When to use Objects in place of Primitives</p></button>
+	<div class="panel" style = "font-weight: bold">
+	  
+	  <p>1. As an argument of a method that expects an object.</p>
+	  <p>2. To use constants defined by the class, such as MIN_VALUE and MAX_VALUE, that provide the upper and lower bounds of the data type.</p>
+	  <p>3. To use class methods for converting values to and from other primitive types, for converting to and from strings, and for converting between number systems (decimal, octal, hexadecimal, binary).</p>
+	</div>
+	
+	<button class="accordion"><p class = "text-center">Autoboxing</p></button>
+	<div class="panel"style = "font-weight: bold">
+	  <div id="accordion" role="tablist">
+		  <div class="card">
+			<div class="card-header" role="tab" id="headingOne">
+			  <h5 class="mb-0">
+				<a class="collapsed" data-toggle="collapse" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+					<p class = "text-center" style = "font-size: 16px">Example</p>
+				</a>
+			  </h5>
+			</div>
+			<div id="collapseOne" class="collapse" role="tabpanel" aria-labelledby="headingOne" data-parent="#accordion">
+			  <div class="card-body">
+			  <img src = "AutoboxingSnippet.png" id = "image"/>
+			  <br><br><br>
+			  </div>
+		    </div>
+		  </div>
+	  </div>
+	  <p><i>Autoboxing</i> is the automatic conversion that the Java compiler makes between the 
+		 primitive types and their corresponding object wrapper classes.</p>
+	  <p>The Java compiler applies autoboxing when a primitive value is:</p>
+	  <p>1. Passed as a parameter to a method that expects an object of the corresponding wrapper class.</p>
+	  <p>2. Assigned to a variable of the corresponding wrapper class.</p>	
+	  
+	</div>
+
+	<button class="accordion"><p class = "text-center">Unboxing</p></button>
+	<div class="panel" style = "font-weight: bold">
+	  <div id="accordion" role="tablist">
+		  <div class="card">
+			<div class="card-header" role="tab" id="headingTwo">
+			  <h5 class="mb-0">
+				<a class="collapsed" data-toggle="collapse" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+					<p class = "text-center" style = "font-size: 16px">Example</p>
+				</a>
+			  </h5>
+			</div>
+			<div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo" data-parent="#accordion">
+			  <div class="card-body">
+			  <img src = "UnboxingSnippet.png" id = "image">
+			  <br><br><br>
+			  </div>
+		    </div>
+		  </div>
+	  </div>
+	  <p><i>Unboxing</i> is converting an object of a wrapper type to its corresponding primitive value.</p>
+	  <p>The Java compiler applies unboxing when an object of a wrapper class is:</p>
+	  <p>1. Passed as a parameter to a method that expects a value of the corresponding primitive type.</p>
+	  <p>2. Assigned to a variable of the corresponding primitive type.</p>
+
+	  
+	</div>
+<br><br><br>
+	
+	<script>
+	
+	var acc = document.getElementsByClassName("accordion");
+	var i;
+
+	for (i = 0; i < acc.length; i++) {
+	  acc[i].onclick = function() {
+		this.classList.toggle("active");
+		var panel = this.nextElementSibling;
+		if (panel.style.maxHeight){
+		  panel.style.maxHeight = null;
+		} else {
+		  panel.style.maxHeight = panel.scrollHeight + "px";
+		} 
+	  }
+	}
+	</script>
+	
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
