@@ -24,6 +24,26 @@ table {
 th {
 	width: 5rem;
 }
+
+pre code {
+  background-color: #F1E3BB;
+  color: #B71234;
+  display: block;
+}
+
+.jumbotron {
+	background-color: #1E1656;
+	color: white;
+}
+
+.card-header {
+	background-color: #1E1656;
+	color: white;
+}
+
+.card-header a {
+	color: white;
+}
 </style>
 
 </head>
@@ -50,14 +70,14 @@ th {
 		    binary representation. Bitwise operations are fast, simple operations which
 		    are directly supported by the processor as part of its instruction set. </p>
 		<h1>Why Use Bitwise Operators?</h1>
-		<p> Bitwise operators are mainly used in embedded systems and other hardware with 
+		<p> Bitwise operators are often used in embedded systems and other hardware with 
 		    extremely stringent resource requirements (e.g. legacy systems). By operating
 		    on individual bits, bitwise operators can be used to store, alter, and retrieve
 		    data for multiple boolean or numeric values from a single numeric variable. This
 		    data packing can be much more space efficient in comparison to standard data types,
 		    which can make a huge difference on systems where available memory is measured in
 		    bytes instead of megabytes or gigabytes. </p>
-		<p> Also has other uses in more conventional programming. Encryption algorithms like
+		<p> They also have uses in more conventional programming. Encryption algorithms like
 			stream cipher make use of bitwise operators. Video and audio codecs make use of bitwise
 			operators for similar reasons to embedded systems; to get maximal utility out of 
 			minimal space. </p>
@@ -115,6 +135,21 @@ th {
 						<p> Bitwise OR sets a digit in the result to be 1 if the same location in
 							either input was 1. This is useful because it allows us to set digits
 							equal to 1 when using numeric types to store multiple boolean flags. </p>
+						<pre><code>
+							// byte contains 00000000
+							byte flags = 0;
+
+							// 1 = 00000001
+							flags = flags | 1;
+
+							// 4 = 00000100
+							flags = flags | 4;
+
+							// 8 = 00001000
+							flags = flag | 8;
+
+							// flags now contains 00001101
+						</code></pre>
 						
 					</div>
 				</div>
@@ -130,7 +165,7 @@ th {
 				<div id="collapseTwo" class="collapse" role="tabpanel"
 					aria-labelledby="headingTwo" data-parent="#accordion">
 					<div class="card-body">
-						<h4>Truth Table for Bitwise OR</h4>
+						<h4>Truth Table for Bitwise AND</h4>
 						<table class="table-bordered">
 							<tr>
 								<th><h4>A</h4></th>
@@ -163,9 +198,26 @@ th {
 							the same place digit in both inputs was 1. This is useful because it lets
 							us do something called masking, using a bit pattern to select a specific
 							region of a number input. This can be useful for operations like selecting
-							the G value out of an integer which stores RGBA values. However, the result
-							will often be "out of place" in comparison to where it should be to be read
-							as an integer. This can be solved with the... </p>
+							the G value out of an integer which stores RGBA values. </p>
+							
+							<pre><code>
+							// RGBA value holds #BADA55 in full opacity
+							// Or 186, 218, 85, 255 in RGBA values
+							// Or 1011 1010 1101 1010 0101 0101 1111 1111 in binary
+							rgbValues = 0xBADA55FF;
+
+							// Mask holds 0000 0000 1111 1111 0000 0000 0000 0000 in binary
+							int mask = 0x00FF0000;
+
+							gValue = rgbValues &amp; mask;
+
+							// gValue now contains 0000 0000 1101 1010 0000 0000 0000 0000 in binary
+							// the bits representing the green values have been selected while the
+							// others were set to zero
+							</pre></code>
+							
+						<p> However, the result will often be "out of place" in comparison to where it 
+							should be to be read as an integer. This can be solved with the... </p>
 					</div>
 				</div>
 			</div>
@@ -182,10 +234,23 @@ th {
 					<div class="card-body">
 					<p>The logical right shift operator shifts the pattern directly to the right a specific
 					number of digits. This can be used to move a bit pattern selected by masking into
-					the right place to be read as an integer value. The logical right shift operator can
-					also be used to divide positive integers by powers of two. However, since the logical
-					right shift operator just fills the left side of the bit pattern with zeroes, it shouldn't
-					be used for division with signed integer values. For that we need the...</p>
+					the right place to be read as an integer value. </p>
+					
+					<pre><code>
+						// gValue contains 0000 0000 1101 1010 0000 0000 0000 0000 in binary
+						// The actual green value in decimal is 218
+						// But this integer stores the decimal value 14 286 848
+
+						gValue = gValue >> 16;
+						// gValue now contains 0000 0000 0000 0000 0000 0000 1101 1010 in binary
+						// the correct representation for the decimal value
+
+					</code></pre>
+					
+					<p> The logical right shift operator can also be used to divide positive integers by powers 
+					of two. However, since the logical right shift operator just fills the left side of the 
+					bit pattern with zeroes, it shouldn't be used for division with signed integer values. 
+					For that we need the...</p>
 					</div>
 				</div>
 			</div>
@@ -308,6 +373,7 @@ th {
 				</div>
 			</div>
 		</div>
+		<br>
 	</div>
 
 	<!-- Optional JavaScript -->
