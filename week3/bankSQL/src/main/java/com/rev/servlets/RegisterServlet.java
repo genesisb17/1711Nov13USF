@@ -42,10 +42,10 @@ public class RegisterServlet extends HttpServlet {
 		//out.print("<h1> Welcome "+ name + "!</h1>");
 
 	}
+	static Service service = new Service();
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException{
-		demoService service = new demoService();
 		String name=request.getParameter("username");
 		service.addUser(name);
 		
