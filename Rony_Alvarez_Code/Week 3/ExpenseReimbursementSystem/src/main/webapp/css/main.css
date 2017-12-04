@@ -1,0 +1,32 @@
+body {
+	background: url(../img/bg.jpg) left top repeat;	
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  margin-top: 20%;
+}
+
+form a {
+	text-decoration: uderline;
+}
+
+.form-bottom-text {
+	text-align: center;
+}
+
+#loginRevatureImg {
+	display: block;
+    margin: auto;
+    width: 50%;
+}
+
+.login-h4 {
+	font-family: 'Roboto', sans-serif;
+    font-size: 20px;
+    font-weight: 300;
+    color: #888;
+    line-height: 30px;
+    text-align: left;
+}

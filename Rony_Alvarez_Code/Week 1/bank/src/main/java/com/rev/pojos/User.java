@@ -9,7 +9,6 @@ public class User {
 	private String password;
 	private double balance;
 	
-	
 	public String getPassword() {
 		return password;
 	}
@@ -75,10 +74,7 @@ public class User {
 	public String toFile() {
 		return  id + ":" + firstname + ":" + lastname + ":" + username
 				+ ":" + password + ":" + balance + "\n";
-	}
-	
-	
-	
+	}	
 	
 	
 }
