@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
+	integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb"
+	crossorigin="anonymous"></link>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+	integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+	crossorigin="anonymous"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"
+	integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh"
+	crossorigin="anonymous"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"
+	integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
+	crossorigin="anonymous"></script>
+
+<style>
+button.accordion {
+	background-color: rgba(253, 254, 254, 0.1);
+	color: #444;
+	cursor: pointer;
+	padding: 18px;
+	width: 1100px;
+	border: none;
+	text-align: left;
+	outline: none;
+	font-size: 15px;
+	transition: 0.4s;
+	margin-left: 340px;
+}
+
+button.accordion.active, button.accordion:hover {
+	background-color: rgba(208, 211, 212, 0.9);
+}
+
+button.accordion:after {
+	content: '\002B';
+	color: #777;
+	font-weight: bold;
+	float: right;
+	margin-left: 5px;
+}
+
+button.accordion.active:after {
+	content: "\2212";
+}
+
+div.panel {
+	padding: 0 18px;
+	background-color: rgba(208, 211, 212, 0.6);
+	max-height: 0;
+	overflow: hidden;
+	transition: max-height 0.2s ease-out;
+	width: 800px;
+	margin: 0 auto;
+	style ="font-weight: bold"
+}
+
+p.text-center {
+	font-size: 20px;
+	font-weight: bold;
+}
+
+#image {
+	width: 780px;
+	margin: 0 auto;
+}
+
+h3 {
+	text-align: justify;
+	font-size: 22px;
+	font-weight: bold;
+}
+
+.bg1 {
+	background-image: url('Background1.jpg');
+	/* background-size: 1590px 820px;
+ */
+	margin: 0;
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+	background-attachment: fixed;
+	height: 100%;
+	width: 100%;
+}
+
+.alert {
+	color: red;
+	margin-left: auto;
+	margin-right: auto;
+}	
+
+p.text-center {
+	font-size: 30px;
+}
+
+label.required:before {
+	content: ' *';
+}
+
+#username:before {
+	content: '*';
+}
+	
+</style>
+</head>
+
+<body class="bg1">
+
+	<!---------------------------- JUMBOTRON ---------------------------->
+	
+	<div class="jumbotron container-fluid text-center"
+		style="background-color: rgba(208, 211, 212, 0.6)">
+		<h1 class="display-5">
+			<b>WELCOME TO YOUR HOME PAGE</b>
+		</h1>
+	</div>
+	<br><br><br>
+	
+	<!------------------------Accordion Part I --------------------------->
+	
+	<!-- Title -->
+	<button class="accordion">
+		<p class="text-center">Add reimbursement request</p>
+	</button>
+
+	<!-- Body -->
+	<div class="panel">
+		<div id="accordion" role="tablist">
+
+		<!--<div class="panel-heading">
+				<h3 class="panel-title">
+					<center>Please enter the following information</center>
+				</h3>
+			</div -->
+			
+			<br>
+			<div class="panel-body">
+				<div class="form-group">
+					<input class="form-control" id="username"
+						placeholder="Username" name="username" type="text">
+				</div>	
+				<div class="form-group">
+					<input class="form-control" id="amount"
+						placeholder="Amount in $ (USD)" name="amount" type="text">
+				</div>
+
+				<div class="form-group">
+					<select class="form-control" id="type">
+						<option value="" selected disabled>Select Reimbursement Type</option>
+						<option>Food</option>
+						<option>Travel</option>
+						<option>Lodging</option>
+						<option>Other</option>
+					</select>
+				</div>
+			
+				<div class="form-group">
+					<input class="form-control" id="description" placeholder="Description (Optional)"
+						name="description" type="text">
+				</div>
+				
+				<div class="form-group">
+					<input id="request" class="btn btn-lg btn-success btn-block"
+						type="submit" value="Submit Request">
+				</div>
+				
+				<div class="alert alert-info" id="message" ></div>
+				
+				<br>
+				<br>
+				<br>
+			</div>
+		</div>
+	</div>
+
+
+	<!-------------------------- Accordion Part II --------------------------->
+	
+	<!-- Title -->
+ 	<button class="accordion" type = "submit">
+		<p class="text-center">View past reimbursements</p>
+	</button>
+
+	<!-- Body -->
+	<div class="panel">
+		<div id="accordion" role="tablist">
+			<div class = "panel-body">
+				<div class="form-group">
+					<input id="getbyamount" class="btn btn-lg btn-success btn-block"
+						type="submit" value="Sorted by amount">
+				</div>
+				<div class="alert alert-info" id="message2" ></div>
+				
+				<table id="students" class="table">
+					<tr>
+						<th>ID</th>
+						<th>Name</th>
+						<th>Major</th>
+					</tr>
+				</table>
+				
+				<br>
+			</div>
+		</div>
+	</div> 
+
+	<br><br><br><br><br><br><br><br><br><br><br><br><br>
+	
+	<!--------------------------- LOGOUT BUTTON ------------------------------->
+	<div class="row">
+		<div class="col-lg-5"></div>
+		<div class="col-lg-2">
+			<input id="logout" class="btn btn-lg btn-success btn-block"
+				type="submit" value="Logout">
+		</div>
+		<div class="col-lg-5"></div>
+
+	</div>
+	
+	<br>
+
+	<!-- JS Files -->
+	<script src = "js/main.js"></script>
+	<script src = "js/login.js"></script>
+</body>
+</html>
+
+
+
+
