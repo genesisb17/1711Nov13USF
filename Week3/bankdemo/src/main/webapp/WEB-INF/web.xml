@@ -10,14 +10,6 @@
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
   
-  <servlet>
-  	<servlet-name>demo</servlet-name>
-  	<servlet-class>com.ex.servlets.HelloServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-  	<servlet-name>demo</servlet-name>
-  	<url-pattern>/hello</url-pattern>
-  </servlet-mapping>
   
   
 </web-app>

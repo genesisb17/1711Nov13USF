@@ -50,8 +50,8 @@ public class LoginServlet extends HttpServlet{
 		
 
 		User temp = service.validateUser(username); // get user by uname
-		if(temp.getId() == 0){ // if invalid user, obj = null
-			temp = null;
+		if(temp == null){ // if invalid user, obj = null
+			System.out.println("temp is null");
 		}
 		else if(!temp.getPassword().equals(password)){ // if invalid pw, id = 0;
 			temp.setId(0);

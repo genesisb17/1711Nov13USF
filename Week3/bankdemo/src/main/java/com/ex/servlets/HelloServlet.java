@@ -7,7 +7,9 @@ import javax.servlet.GenericServlet;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
+import javax.servlet.annotation.WebServlet;
 
+@WebServlet("/hello")
 public class HelloServlet extends GenericServlet{
 
 	@Override
