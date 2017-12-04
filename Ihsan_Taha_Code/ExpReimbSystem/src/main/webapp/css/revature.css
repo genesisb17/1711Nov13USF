@@ -1,0 +1,39 @@
+.carousel-font {
+    font-size: 18pt;
+}
+
+.btn-custom {
+    background-color: #069 !important;
+    color: #FFF !important;
+}
+
+.btn-custom:hover {
+    background-color: #09C !important;
+}
+
+.custom-color {
+    color: #069 !important;
+}
+
+.custom-font {
+    color: #069 !important;
+}
+
+.custom-jumbo { 
+    background-color: #FFF !important;
+    color: #069;
+    margin-bottom: 0px !important; 
+    border-radius: 0px !important;
+}
+
+.navbar {
+	border-bottom: solid 1px #B0C0CA !important;
+}
+
+.section-color {
+    background-color: #E3F2FD !important;
+}
+
+.section-padding {
+    padding: 25px 0 25px 0;
+}

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>USF Bank</title>
+<link rel="stylesheet" href="css/revature.css">
+<link rel="stylesheet" href="C:/Bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="C:/Bootstrap/font-awesome-4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+
+	<!-- Navbar -->
+	<nav
+		class="navbar navbar-expand-lg navbar-light fixed-top section-color">
+		<a class="navbar-brand" href="index.html"> <i
+			class="fa fa-briefcase fa-2x custom-color"></i>
+		</a>
+
+		<button class="navbar-toggler" type="button" data-toggle="collapse"
+			data-target="#navbarSupportedContent"
+			aria-controls="navbarSupportedContent" aria-expanded="false"
+			aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item active"><a class="nav-link" href="#">Home<span
+						class="sr-only">(current)</span></a></li>
+				<li class="nav-item custom-color"><a class="nav-link" href="#">USF
+						Bank</a></li>
+				<li class="nav-item dropdown"><a
+					class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+					role="button" data-toggle="dropdown" aria-haspopup="true"
+					aria-expanded="false"> Technologies </a>
+					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+						<a class="dropdown-item" href="#">Java</a> <a
+							class="dropdown-item" href="#">Oracle DB</a> <a
+							class="dropdown-item" href="#">Spring</a>
+						<div class="dropdown-divider"></div>
+						<a class="dropdown-item" href="#">HTML</a> <a
+							class="dropdown-item" href="#">CSS</a> <a class="dropdown-item"
+							href="functions.html">JavaScript</a>
+					</div></li>
+			</ul>
+		</div>
+	</nav>
+
+	<!-- Header Section -->
+	<section>
+		<div class="jumbotron custom-jumbo">
+			<h1 class="display-4">USF BANK</h1>
+			<hr class="my-4" style="background-color: #09C">
+			<p class="lead">Welcome to the USF Bank! Register and create
+				multiple accounts to manage your financial assets.</p>
+		</div>
+	</section>
+
+	<div class="container">
+
+		<div class="row justify-content-center">
+
+			<div class="col-md-3 form-control m-1 section-color">
+
+				<input class="form-control" type="text" id="firstname" placeholder="First Name" />
+				<br />
+				<input class="form-control"type="text" id="lastname" placeholder="Last Name" /> 
+				<br /> 
+				<input class="form-control" type="text" id="username" placeholder="Username" />
+				<br /> 
+				<input class="form-control" type="password" id="password" placeholder="Password" />
+				<br />
+				<button id="login" class=" btn btn-custom form-control" type="submit" />Login</button>
+				<br />
+				<button id="register" class=" btn btn-custom form-control" type="submit" />Register</button>
+				<br />
+				
+			</div>
+
+			<div class="col-md-8 form-control m-1 section-color"></div>
+
+		</div>
+
+		<br /> <br /> <br />
+
+	</div>
+
+
+
+
+
+	<!-- Optional JavaScript -->
+	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+		integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"
+		integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh"
+		crossorigin="anonymous"></script>
+	<script src="C:/Bootstrap/js/bootstrap.min.js"></script>
+	
+	<script type="text/javascript" src="js/bank_app.js"></script>
+</body>
+</html>
