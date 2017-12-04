@@ -33,7 +33,8 @@
 <fullyQualifiedTypeName name="javax.servlet.GenericServlet"/>
 <fullyQualifiedTypeName name="java.io.PrintWriter"/>
 <fullyQualifiedTypeName name="java.util.Enumeration"/>
-<fullyQualifiedTypeName name="com.rev.service.Service"/>
 <fullyQualifiedTypeName name="java.lang.System"/>
 <fullyQualifiedTypeName name="java.util.Date"/>
+<fullyQualifiedTypeName name="javax.servlet.http.HttpServlet"/>
+<fullyQualifiedTypeName name="com.rev.service.Service"/>
 </qualifiedTypeNameHistroy>

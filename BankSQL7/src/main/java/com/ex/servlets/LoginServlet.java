@@ -1,40 +1,70 @@
 package com.ex.servlets;
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.PrintWriter;
 
+import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.rev.pojo.newUser;
 import com.rev.service.Service;
 
 @WebServlet("/login")
 public class LoginServlet extends HttpServlet
 {
 	static Service service = new Service();
+
 	@Override
-	protected void doPost(javax.servlet.http.HttpServletRequest req, javax.servlet.http.HttpServletResponse resp) throws javax.servlet.ServletException ,java.io.IOException 
-	{
-		System.out.println("in login Servlet");
-		//1. get received json data from request
-		BufferedReader br = new BufferedReader(new InputStreamReader(req.getInputStream()));
-		String json ="";
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) 
+			throws ServletException, IOException {
+		System.out.println("in login servlet");
+
 		
-		if(br!=null)
-		{
+		// 1. get received JSON data from request
+		BufferedReader br = 
+				new BufferedReader(new InputStreamReader(req.getInputStream()));
+		String json = "";
+		if(br != null){
 			json = br.readLine();
 		}
+		System.out.println("JSON STRING: " + json);
 
-		System.out.println("JSON: "+json);
-		//2. Initiate jackson mapper
-		ObjectMapper mapper =new ObjectMapper();
-		//3. Convert received JSON to String array
-		String[] user = mapper.readValue(json, String[].class);
-		String username = user[0];
-		String password = user[1];
-		System.out.println(username);
-				
-		//4. Set response type to json
+		// 2. initiate jackson mapper
+		ObjectMapper mapper = new ObjectMapper();
+
+		//// 3. Convert received JSON to String array
+		String[] userInfo = mapper.readValue(json, String[].class);
+		String username = userInfo[0];
+		String password = userInfo[1];
+		
+
+		newUser temp = service.validateUser(username,password,65); // get user by uname
+		if(temp == null){ // if invalid user, obj = null
+			System.out.println("temp is null");
+		}
+		else if(!temp.getPassword().equals(password))
+		{ // if invalid pw, id = 0;
+			temp.setId(0);
+			temp.setPassword(null);
+		}
+		else
+		{// valid credentials
+			HttpSession session = req.getSession();
+			session.setAttribute("user", temp);//persist this user to the session to be accessed throughout servlets
+		}
+		PrintWriter out = resp.getWriter();
 		resp.setContentType("application/json");
+		
+		String userJSON = mapper.writeValueAsString(temp);
+		
+		out.write(userJSON);
+		
+		   
 	}
 }

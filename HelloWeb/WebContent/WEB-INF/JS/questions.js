@@ -112,7 +112,7 @@ function runf()
 }
 document.getElementById("dof").addEventListener("click", runf);
 
-/*
+
 function ss(s,l,o)
 {
 	var s1="";

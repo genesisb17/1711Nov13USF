@@ -10,6 +10,12 @@ import com.rev.pojo.newUser;
 public class Service 
 {
 	static DAO dao = new FileDao();
+	public newUser validateUser(String user,String pass,int i)
+	{
+		newUser u = dao.getUser(user, pass, i);
+		if(u.getId()==0) return null;
+		return u;
+	}
 	public newUser addUser(newUser u,int j)
 	{
 		dao.addUser(u,j);

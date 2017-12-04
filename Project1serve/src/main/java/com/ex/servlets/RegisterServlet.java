@@ -51,7 +51,6 @@ public class RegisterServlet extends HttpServlet
 		
 		User u1 =new User();
 		User u2 = new User();
-	
 		
 		u1.setFirstname(first);
 		u1.setLastname(last);
