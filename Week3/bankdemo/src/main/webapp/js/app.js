@@ -5,38 +5,27 @@
  */
 
 window.onload = function(){
+	loadHome();
 	$('#home').on('click',loadHome);
 	$('#profile').on('click', loadProfile);
 }
 
 function loadHome(){
-	loadView("home");
+	loadView("getHomeView");
 }
 function loadProfile(){
-	loadView("profile");
+	loadView("getProfileView");
 }
 function loadView(page){
-	var goto = "loadView";
-	
-	switch(page){
-	case "home":
-		goto+="/home";
-		break;
-	case "profile":
-		goto+="/profile";
-		break;
-	}
-	
 	var xhr = new XMLHttpRequest();
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState == 4 && xhr.status == 200){
 			document.getElementById('view').
-			innerHTML = xhr.responseText;
-			getAcctPageInfo(); // loads user info by calling function
-			listenforEdits();
+			innerHTML = xhr.responseText;			
 		}
 	}
-	console.log("getting accts")
-	xhr.open("GET", goto , true);
+	console.log("REQUESTING VIEW " + page)
+	
+	xhr.open("GET", page , true);
 	xhr.send();
 };

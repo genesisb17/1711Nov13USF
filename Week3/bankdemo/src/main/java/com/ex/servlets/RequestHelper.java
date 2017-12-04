@@ -10,8 +10,11 @@ public class RequestHelper {
 
 
 		//		Factory.getMachineGun();
-
+System.out.println("in process method");
 		switch (req.getRequestURI()) {
+		case "loadView/home":{
+			return "partials/home.html";
+		}
 
 		default:
 			return "login.html";
