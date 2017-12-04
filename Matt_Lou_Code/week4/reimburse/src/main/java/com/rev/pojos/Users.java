@@ -78,12 +78,7 @@ public class Users {
 	public void setUserRoleId(int userRoleId) {
 		this.userRoleId = userRoleId;
 	}
-
-	@Override
-	public String toString() {
-		return "Users [users_id=" + users_id + ", username=" + username + ", password=" + password + ", firstname="
-				+ firstname + ", lastname=" + lastname + ", email=" + email + ", userRoleId=" + userRoleId + "]";
-	}
+	
 	
 	
 }
