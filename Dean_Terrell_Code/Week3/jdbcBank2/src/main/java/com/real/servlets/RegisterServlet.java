@@ -40,10 +40,10 @@ public class RegisterServlet extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		Service service = new Service();
+		/*Service service = new Service();
 		
 		String name = request.getParameter("username");
-		service.addUser(name);
+		service.addUser(User u);
 		
 		ArrayList<String> users = service.getUsers();
 		String userList = "<ul>";
@@ -54,6 +54,6 @@ public class RegisterServlet extends HttpServlet{
 		
 		PrintWriter out = response.getWriter();
 		response.setContentType("text/html");
-		out.print(userList);
+		out.print(userList);*/
 	}
 }

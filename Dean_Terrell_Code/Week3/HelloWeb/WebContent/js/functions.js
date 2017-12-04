@@ -58,16 +58,16 @@ function count() {
 	document.getElementById("count").innerHTML = counter;
 }
 
-document.getElementById("count").addEventListener("mouseover", count);
+//document.getElementById("count").addEventListener("mouseover", count);
 
-document.getElementById("outer").addEventListener("click", function() {
-	alert("IN OUTER!");}, false);
+//document.getElementById("outer").addEventListener("click", function() {
+	//alert("IN OUTER!");}, false);
 
-document.getElementById("middle").addEventListener("click", function() {
-	alert("IN MIDDLE!");}, true);
+//document.getElementById("middle").addEventListener("click", function() {
+	//alert("IN MIDDLE!");}, true);
 
-document.getElementById("inner").addEventListener("click", function() {
-	alert("IN INNER!");}, true);
+//document.getElementById("inner").addEventListener("click", function() {
+	//alert("IN INNER!");}, true);
 
 
 

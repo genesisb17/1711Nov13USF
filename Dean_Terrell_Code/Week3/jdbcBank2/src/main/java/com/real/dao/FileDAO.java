@@ -9,8 +9,6 @@ import com.real.pojos.User;
 import com.real.util.ConnectionFactory;
 
 public class FileDAO implements DAO{
-
-	String filename = "src/main/resources/bank.txt";
 	
 	public User addUser(User u) {
 		try(Connection conn = ConnectionFactory.getInstance().getConnection()) {

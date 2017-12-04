@@ -13,12 +13,12 @@
 		<welcome-file>default.jsp</welcome-file>
 	</welcome-file-list>
 
-	<servlet>
+	<!--  <servlet>
 		<servlet-name>hello</servlet-name>
 		<servlet-class>com.real.servlets.HelloServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>hello</servlet-name>
 		<url-pattern>/hello</url-pattern>
-	</servlet-mapping>
+	</servlet-mapping> -->
 </web-app>
