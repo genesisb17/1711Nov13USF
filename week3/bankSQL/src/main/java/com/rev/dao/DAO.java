@@ -15,4 +15,5 @@ public interface DAO {
 	ArrayList<User> getUsers();
 	ArrayList<Account> getAccountsByUser(int userId, Connection c);
 	User getUserByUsername(String username);
+	
 }

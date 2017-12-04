@@ -267,5 +267,3 @@ var john = getPerson("John", 30);
 function getPerson(name,age){
 	return {name: name, age: age};
 }
-
-//Part 2
