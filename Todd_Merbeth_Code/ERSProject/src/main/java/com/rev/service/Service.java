@@ -8,7 +8,7 @@ import com.rev.pojos.Reimbursement;
 import com.rev.pojos.User;
 
 public class Service {
-
+	static User user;
 	static DAO dao = new DBDAO();
 	
 	public ArrayList<Reimbursement> getUserReimbursements(int u_id){
@@ -31,8 +31,13 @@ public class Service {
 		return dao.updateReimbursement(r_id, r_res, r_status);
 	}
 	
+	public User addUser(User user) {
+		return dao.addUser(user);
+	}
+	
 	public User getUser(String username, String password) {
-		return dao.getUser(username, password);
+		user=dao.getUser(username, password);
+		return user;
 	}
 	
 	public String getR_Status(int r_id) {

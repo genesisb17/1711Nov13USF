@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Login</title>
+<title>Register</title>
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
 	integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb"
@@ -22,16 +22,16 @@
 	crossorigin="anonymous"></script>
 </head>
 <body>
-	<h1>Login and Registration</h1>
-	<label for="username">Username</label>
-	<input type="text" class="form-control" id="username"
-		placeholder="Enter username">
-	<label for="password">Password</label>
-	<input type="password" class="form-control" id="password"
-		placeholder="Password">
-	<input type="submit" id="login" value="Log In" class="btn btn-primary">
-	<button id="register" class="btn btn-primary">Register</button>
-	<div class="alert alert-info" id="outcome"></div>
-	<script src="js/login.js"></script>
+	<input type="text" id="fn" placeholder="First Name"> <br>
+	<input type="text" id="ln" placeholder="Last Name"> <br>
+	<input type="text" id="username" placeholder="Username"> <br>
+		<div class="alert alert-danger" id="message" ></div>
+	<input type="password" id="pass" placeholder="password"><br>
+	<input type="text" id="email" placeholder="Email"> <br>
+	<br>
+	<button id="register">Register</button>
+	<br>
+	
+	<script src="js/register.js"></script>
 </body>
 </html>

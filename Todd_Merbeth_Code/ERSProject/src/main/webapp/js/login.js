@@ -7,7 +7,6 @@ window.onload = function(){
 }
 
 function login(){
-	alert("loggin in");
 	var username = $('#username').val();
 	var password = $('#password').val();
 	var json1 = [username, password];
@@ -28,21 +27,26 @@ function login(){
 				$('#outcome').html("Invalid username or password") ;
 			}
 			else{
-				$('#outcome').html(`Welcome ${user.firstname}`) ;
+//				$('#outcome').html(`Welcome ${user.firstname}`);
 				window.location.replace('logged.html');
 			}
 		}
 	};
 	
-	xhr.open("POST", "login", true);	// what to do, what servlet address (the @WebServlet("/login") in this case), 
+	xhr.open("POST", "login", true);	// what to do, what servlet address (the @WebServlet("/login") in this case), asynchronous request
 	//ReadyState = 1, open() has been called.
 	xhr.setRequestHeader("Content-type", "application/x-www.form-urlencoded");
 	xhr.send(json);
 	//ReadyState = 2 send() has been called, and headers and status are available
 	
+	
+	
 	//End AJAX stuff
 }
 
 function register(){
-	// nothing yet. might not even do this is not required
+	window.location.replace('register.html');
 }
+
+
+

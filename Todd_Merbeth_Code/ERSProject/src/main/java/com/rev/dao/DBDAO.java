@@ -211,7 +211,6 @@ public class DBDAO implements DAO {
 
 	@Override
 	public User getUser(String username, String password) {
-		User temp = new User();
 		try (Connection conn = ConnectionFactory.getInstance().getConnection();) {
 			String sql = "select * from USERS where username = ? and password = ?";
 			PreparedStatement ps = conn.prepareStatement(sql);
@@ -219,6 +218,7 @@ public class DBDAO implements DAO {
 			ps.setString(2, password);
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
+				User temp = new User();
 				temp.setId(rs.getInt(1)); // Index starts at 1
 				temp.setUsername(rs.getString(2));
 				temp.setPassword(rs.getString(3));
@@ -226,11 +226,12 @@ public class DBDAO implements DAO {
 				temp.setLastname(rs.getString(5));
 				temp.setEmail(rs.getString(6));
 				temp.setRole(rs.getInt(7));
+				return temp;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return temp;
+		return null;
 	}
 
 	@Override
