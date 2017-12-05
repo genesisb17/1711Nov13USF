@@ -334,7 +334,7 @@
 							</tr>
 						</table>
 						<br>
-						<p> Used to invert a bit pattern. Used in the Two's Complement Operation. </p>
+						<p> Used to invert a bit pattern.</p>
 
 					</div>
 				</div>
@@ -385,13 +385,42 @@
 						</table>
 						<br>
 						<p>The Bitwise XOR Operator places a 1 in the bit pattern if and only if one but not both of the operands has a 1 in that
-							spot.</p>
+							spot.
+						</p>
 						<p>The Bitwise XOR operator is very versatile. One of its most common uses is toggling a specific bit in a bit pattern.
 							Another use is as a way of setting bit patterns equal to zero, since any number XOR'd with itself will always yield
 							zero. </p>
+						<p> Another property of XOR is that a number XOR'd with 0 will always be itself (this is an identity property). Remember
+							this? </p>
+						<div class="code-block">
+							var = function (x) {
+							<br> &nbsp;&nbsp;&nbsp;&nbsp;return (x^0) === x;
+							<br> }
+						</div>
+						<p> This uses the automatic type conversion to 32-bit signed integers and the identity property to check if a value is
+							already within the range of a 32-bit unsigned integer.
+						</p>
 						<p>The Bitwise XOR operation is reversible. This means that if A XOR B yields product C, then C XOR'd with B will produce
 							A as a result, and the result of A XOR'd with C will be B. This property leads to the use of XOR in many encryption
-							algorithms.</p>
+							algorithms. Here is an interesting application of that
+						</p>
+						<div class="code-block">
+							function bubbleSort(arr) {
+							<br> &nbsp;&nbsp;var n = arr.length;
+							<br> &nbsp;&nbsp;&nbsp;&nbsp;for (var i=0; i&lt;n; i++) {
+							<br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for (var j=0; j&lt;n-1-i; j++) {
+							<br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (arr[j] > arr[j+1]) {
+							<br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// Use bitwise XOR to swap array elements
+							<br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;arr[j] = arr[j] ^ arr[j+1]
+							<br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;arr[j+1] = arr[j] ^ arr[j+1];
+							<br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;arr[j] = arr[j] ^ arr[j+1]
+							<br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+							<br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+							<br> &nbsp;&nbsp;&nbsp;&nbsp;}
+							<br> &nbsp;&nbsp;return arr;
+							<br> }
+							<br>
+						</div>
 					</div>
 				</div>
 			</div>
