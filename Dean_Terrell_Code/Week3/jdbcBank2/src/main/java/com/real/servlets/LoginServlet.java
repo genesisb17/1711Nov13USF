@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.real.pojos.User;
@@ -42,11 +43,13 @@ public class LoginServlet extends HttpServlet {
 		else
 			System.out.println("Not a user.");
 		
+		HttpSession session = req.getSession();
+		session.setAttribute("user", username);
 		// 4. Set response type to JSON
 		PrintWriter out = resp.getWriter();
 		resp.setContentType("application/json");
 		
-		String userJSON = mapper.writeValueAsString(user);
+		String userJSON = mapper.writeValueAsString(username);
 		
 		out.write(userJSON);
 	}

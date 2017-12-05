@@ -1,0 +1,28 @@
+package com.real.servlets;
+
+import java.io.IOException;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import com.real.pojos.User;
+import com.real.util.Service;
+
+@WebServlet("/getUserInfo")
+public class GetUserInfoServlet extends HttpServlet {
+	
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
+			throws ServletException, IOException {
+		System.out.println("In user info servlet");
+		//Service service = new Service();
+		
+		HttpSession session = req.getSession();
+		User user = (User)session.getAttribute("user");
+		System.out.println(user);
+	}
+}

@@ -5,9 +5,11 @@
 			<item value="com.real"/>
 		</list>
 		<list key="name">
+			<item value="servlets"/>
 			<item value="BankJDBC"/>
 		</list>
 		<list key="artifactId">
+			<item value="helloservlets"/>
 			<item value="jdbcBank2"/>
 		</list>
 		<list key="projectNameTemplate">

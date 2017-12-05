@@ -149,7 +149,7 @@
              Note: The pattern used is equivalent to using pattern="common" -->
         <Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs" pattern="%h %l %u %t &quot;%r&quot; %s %b" prefix="localhost_access_log" suffix=".txt"/>
 
-      <Context docBase="C:\Users\Dean\my_git_repos\1711Nov13USF\Dean_Terrell_Code\Week3\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\ROOT" path="" reloadable="false"/><Context docBase="C:\Users\Dean\my_git_repos\1711Nov13USF\Dean_Terrell_Code\Week3\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\jdbcBank2" path="/jdbcBank2" reloadable="true" source="org.eclipse.jst.jee.server:jdbcBank2"/></Host>
+      <Context docBase="C:\Users\Dean\my_git_repos\1711Nov13USF\Dean_Terrell_Code\Week3\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\ROOT" path="" reloadable="false"/><Context docBase="C:\Users\Dean\my_git_repos\1711Nov13USF\Dean_Terrell_Code\Week3\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\helloservers" path="/helloservers" reloadable="true" source="org.eclipse.jst.jee.server:helloservers"/><Context docBase="C:\Users\Dean\my_git_repos\1711Nov13USF\Dean_Terrell_Code\Week3\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\helloservlets" path="/helloservlets" reloadable="true" source="org.eclipse.jst.jee.server:helloservlets"/></Host>
     </Engine>
   </Service>
 </Server>
