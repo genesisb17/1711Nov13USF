@@ -24,7 +24,7 @@ public class LoginServlet extends HttpServlet
 		{
 			json = br.readLine();
 		}
-
+		
 		System.out.println("JSON: "+json);
 		//2. Initiate jackson mapper
 		ObjectMapper mapper =new ObjectMapper();

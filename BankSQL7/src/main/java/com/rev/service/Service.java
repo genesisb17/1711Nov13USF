@@ -10,12 +10,6 @@ import com.rev.pojo.newUser;
 public class Service 
 {
 	static DAO dao = new FileDao();
-	public newUser validateUser(String user,String pass,int i)
-	{
-		newUser u = dao.getUser(user, pass, i);
-		if(u.getId()==0) return null;
-		return u;
-	}
 	public newUser addUser(newUser u,int j)
 	{
 		dao.addUser(u,j);
@@ -37,6 +31,7 @@ public class Service
 	{
 		dao.delete(u, p);
 	}
+	
 	public void createAccount(newUser u,double b,int ui) 
 	{
 		// TODO Auto-generated method stub
@@ -44,7 +39,11 @@ public class Service
 		
 	}
 	
-	
+	public newUser validateUser(String user,String pass,int i){
+		newUser user1 = dao.getUser(user,pass,65);
+		if(user1.getId()==0) return null;
+		return user1;
+	}
 	public void getArtbyid(newUser u)
 	{
 		dao.getArtbyid(u);

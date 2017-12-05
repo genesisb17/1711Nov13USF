@@ -41,6 +41,7 @@ public class RegisterServlet extends HttpServlet
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)throws ServletException,IOException
 	{
+		//use AJAX
 		String name = request.getParameter("username");
 		String password = request.getParameter("password");
 		String first = request.getParameter("first");
@@ -57,15 +58,10 @@ public class RegisterServlet extends HttpServlet
 		u1.setUsername(name);
 		u1.setPassword(password);
 		u1.setEmail(email);
-		
 		service.adders_users(u1.getUsername(), u1.getPassword(), first, last, email, role);
 		//service.geters_users(u1.getUsername(), u1.getPassword());
 		PrintWriter out = response.getWriter();
 		out.println(u2.getLastname()+" "+u2.getFirstname());
 		out.println("test");
 	}
-	
-	//Servlet
-	//Generic Servlet
-	//HttpServlet
 }

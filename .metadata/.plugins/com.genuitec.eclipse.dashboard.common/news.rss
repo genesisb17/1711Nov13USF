@@ -12,12 +12,70 @@
 	<atom:link href="https://www.genuitec.com/feed/" rel="self" type="application/rss+xml" />
 	<link>https://www.genuitec.com</link>
 	<description>The Cloud Control Company</description>
-	<lastBuildDate>Thu, 30 Nov 2017 00:32:22 +0000</lastBuildDate>
+	<lastBuildDate>Mon, 04 Dec 2017 16:43:59 +0000</lastBuildDate>
 	<language>en-US</language>
 	<sy:updatePeriod>hourly</sy:updatePeriod>
 	<sy:updateFrequency>1</sy:updateFrequency>
 	<generator>https://wordpress.org/?v=4.6.1</generator>
 	<item>
+		<title>In CI 9, DevStyle Ships with Webclipse and Angular IDE &#8211; Here’s Why</title>
+		<link>https://www.genuitec.com/ci-9-devstyle-ships-webclipse-angular-ide-heres/</link>
+		<pubDate>Fri, 01 Dec 2017 20:43:25 +0000</pubDate>
+		<dc:creator><![CDATA[timwebb]]></dc:creator>
+				<category><![CDATA[Eclipse]]></category>
+		<category><![CDATA[Genuitec]]></category>
+		<category><![CDATA[MyEclipse]]></category>
+		<category><![CDATA[Programming Tips]]></category>
+		<category><![CDATA[Webclipse]]></category>
+		<category><![CDATA[color theming]]></category>
+		<category><![CDATA[devstyle in angular]]></category>
+		<category><![CDATA[devstyle in webclipse]]></category>
+		<category><![CDATA[devstyle integration]]></category>
+		<category><![CDATA[enhanced startup]]></category>
+		<category><![CDATA[navigation]]></category>
+
+		<guid isPermaLink="false">https://www.genuitec.com/?p=544322</guid>
+		<description><![CDATA[<p>Webclipse and Angular IDE are key products for Genuitec and one main area we are trying to fix is not only support for coding in JavaScript, TypeScript, Angular and more inside Eclipse, but also make Eclipse a joy to work with.  Part of that was available for some time in Webclipse with things like the [&#8230;]</p>
+<p>The post <a rel="nofollow" href="https://www.genuitec.com/ci-9-devstyle-ships-webclipse-angular-ide-heres/">In CI 9, DevStyle Ships with Webclipse and Angular IDE &#8211; Here’s Why</a> appeared first on <a rel="nofollow" href="https://www.genuitec.com">Genuitec</a>.</p>
+]]></description>
+		</item>
+		<item>
+		<title>Introducing DevStyle &#8211; Rebooting Eclipse&#8217;s UX</title>
+		<link>https://www.genuitec.com/devstyle-rebooting-eclipses-ux/</link>
+		<pubDate>Fri, 01 Dec 2017 18:29:56 +0000</pubDate>
+		<dc:creator><![CDATA[wayne]]></dc:creator>
+				<category><![CDATA[Bright Ideas]]></category>
+		<category><![CDATA[Eclipse]]></category>
+		<category><![CDATA[Genuitec]]></category>
+		<category><![CDATA[color themes]]></category>
+		<category><![CDATA[color theming]]></category>
+		<category><![CDATA[enhanced startup]]></category>
+		<category><![CDATA[improved navigation]]></category>
+
+		<guid isPermaLink="false">https://www.genuitec.com/?p=539201</guid>
+		<description><![CDATA[<p>Yesterday we released the first production version of DevStyle, a free add-on for Eclipse. DevStyle seeks to dramatically improve the Eclipse user experience for millions of developers with the introduction of modern developer ergonomics and the beautiful styling you’ve come to expect from products in 2017.Over the years, the Eclipse evolution has been towards development [&#8230;]</p>
+<p>The post <a rel="nofollow" href="https://www.genuitec.com/devstyle-rebooting-eclipses-ux/">Introducing DevStyle &#8211; Rebooting Eclipse&#8217;s UX</a> appeared first on <a rel="nofollow" href="https://www.genuitec.com">Genuitec</a>.</p>
+]]></description>
+		</item>
+		<item>
+		<title>2017 CI 9 &#8211; Decking up for the Holidays with DevStyle and More!</title>
+		<link>https://www.genuitec.com/2017-ci-9-decking-holidays-devstyle/</link>
+		<pubDate>Thu, 30 Nov 2017 16:06:55 +0000</pubDate>
+		<dc:creator><![CDATA[Wanda Muriy]]></dc:creator>
+				<category><![CDATA[Eclipse]]></category>
+		<category><![CDATA[Genuitec]]></category>
+		<category><![CDATA[MyEclipse]]></category>
+		<category><![CDATA[Programming Tips]]></category>
+		<category><![CDATA[Webclipse]]></category>
+		<category><![CDATA[2017 CI 9 release]]></category>
+		<category><![CDATA[software updates]]></category>
+
+		<guid isPermaLink="false">https://www.genuitec.com/?p=541401</guid>
+		<description><![CDATA[<p>Malls across many countries are not the only places getting decked up for the holidays &#8211; we are getting into a pre-holiday mood ourselves with our latest release. Many improvements are included in our 2017 CI 9 release, both for our MyEclipse users, and for those who prefer Webclipse or Angular IDE. We are happy [&#8230;]</p>
+<p>The post <a rel="nofollow" href="https://www.genuitec.com/2017-ci-9-decking-holidays-devstyle/">2017 CI 9 &#8211; Decking up for the Holidays with DevStyle and More!</a> appeared first on <a rel="nofollow" href="https://www.genuitec.com">Genuitec</a>.</p>
+]]></description>
+		</item>
+		<item>
 		<title>Gradle vs Maven &#8211; in Search for the Perfect Build Automation Tool</title>
 		<link>https://www.genuitec.com/gradle-vs-maven-search-perfect-build-automation-tool/</link>
 		<pubDate>Fri, 24 Nov 2017 17:54:35 +0000</pubDate>
@@ -250,76 +308,14 @@
 <p>The post <a rel="nofollow" href="https://www.genuitec.com/code-sharing-evolving/">Code Sharing Evolving</a> appeared first on <a rel="nofollow" href="https://www.genuitec.com">Genuitec</a>.</p>
 ]]></description>
 		</item>
-		<item>
-		<title>Hackathons Going Virtual with CodeTogether</title>
-		<link>https://www.genuitec.com/hackathons-going-virtual-codetogether/</link>
-		<pubDate>Tue, 26 Sep 2017 15:52:05 +0000</pubDate>
-		<dc:creator><![CDATA[Wanda Muriy]]></dc:creator>
-				<category><![CDATA[Bright Ideas]]></category>
-		<category><![CDATA[Eclipse]]></category>
-		<category><![CDATA[Genuitec]]></category>
-		<category><![CDATA[MyEclipse]]></category>
-		<category><![CDATA[Programming Tips]]></category>
-		<category><![CDATA[Webclipse]]></category>
-		<category><![CDATA[coder parties]]></category>
-		<category><![CDATA[hackathons]]></category>
-		<category><![CDATA[pair programming]]></category>
-		<category><![CDATA[remote pair programming]]></category>
-		<category><![CDATA[virtual coder parties]]></category>
-		<category><![CDATA[virtual hackathons]]></category>
-
-		<guid isPermaLink="false">https://www.genuitec.com/?p=537687</guid>
-		<description><![CDATA[<p>In the coding world, collaboration has been taking place in the form of coding parties, retreats or hackathons, and, more recently, through new technologies that allow for virtual exchanges. Many might argue long and hard, giving preference to one over the other, but what’s the deal behind each one? Partying &#8216;developer-style&#8217;The word “party” normally conjures up [&#8230;]</p>
-<p>The post <a rel="nofollow" href="https://www.genuitec.com/hackathons-going-virtual-codetogether/">Hackathons Going Virtual with CodeTogether</a> appeared first on <a rel="nofollow" href="https://www.genuitec.com">Genuitec</a>.</p>
-]]></description>
-		</item>
-		<item>
-		<title>TypeScript 2.4 &#8212; Even More Reasons to Love it!</title>
-		<link>https://www.genuitec.com/typescript-2-4-even-more-reasons-to-love-it/</link>
-		<pubDate>Fri, 22 Sep 2017 16:55:59 +0000</pubDate>
-		<dc:creator><![CDATA[Wanda Muriy]]></dc:creator>
-				<category><![CDATA[Eclipse]]></category>
-		<category><![CDATA[Genuitec]]></category>
-		<category><![CDATA[MyEclipse]]></category>
-		<category><![CDATA[Programming Tips]]></category>
-		<category><![CDATA[Webclipse]]></category>
-		<category><![CDATA[typescript]]></category>
-		<category><![CDATA[typescript 2.4]]></category>
-		<category><![CDATA[typescript features]]></category>
-		<category><![CDATA[using typescript]]></category>
-
-		<guid isPermaLink="false">https://www.genuitec.com/?p=534301</guid>
-		<description><![CDATA[<p>Perhaps you are already enjoying all the amazing features TypeScript (TS) adds to JavaScript: you might already be in love with its interfaces, abstract classes, and algebraic data types, among many others. TS 2.4 brings more good news. This version of TS comes loaded with improvements, ranging from dynamic import expressions to weak type detection.ModulesNeed [&#8230;]</p>
-<p>The post <a rel="nofollow" href="https://www.genuitec.com/typescript-2-4-even-more-reasons-to-love-it/">TypeScript 2.4 &#8212; Even More Reasons to Love it!</a> appeared first on <a rel="nofollow" href="https://www.genuitec.com">Genuitec</a>.</p>
-]]></description>
-		</item>
-		<item>
-		<title>2017 CI 8 Keeps Adding to the Treasure Chest</title>
-		<link>https://www.genuitec.com/2017-ci-8-keeps-adding-to-the-treasure-chest/</link>
-		<pubDate>Tue, 19 Sep 2017 13:54:40 +0000</pubDate>
-		<dc:creator><![CDATA[Wanda Muriy]]></dc:creator>
-				<category><![CDATA[Eclipse]]></category>
-		<category><![CDATA[Genuitec]]></category>
-		<category><![CDATA[MyEclipse]]></category>
-		<category><![CDATA[MyEclipse Top News]]></category>
-		<category><![CDATA[Programming Tips]]></category>
-		<category><![CDATA[Webclipse]]></category>
-		<category><![CDATA[2017 CI 8 release]]></category>
-		<category><![CDATA[software updates]]></category>
-
-		<guid isPermaLink="false">https://www.genuitec.com/?p=536741</guid>
-		<description><![CDATA[<p>Good news &#8211; our new release is out the door! For Angular IDE and Webclipse, we give you access to a brand new Eclipse experience with our DevStyle Preview. MyEclipse includes some key bug fixes in the Spring / Maven project area, and a new version of the Eclipse Buildship toolset, for improved Gradle support. [&#8230;]</p>
-<p>The post <a rel="nofollow" href="https://www.genuitec.com/2017-ci-8-keeps-adding-to-the-treasure-chest/">2017 CI 8 Keeps Adding to the Treasure Chest</a> appeared first on <a rel="nofollow" href="https://www.genuitec.com">Genuitec</a>.</p>
-]]></description>
-		</item>
 	</channel>
 </rss>
 
 <!-- Performance optimized by W3 Total Cache. Learn more: https://www.w3-edge.com/products/
 
-Object Caching 9470/9589 objects using disk
+Object Caching 9386/10123 objects using disk
 Page Caching using disk: enhanced (Requested URI is rejected)
 Content Delivery Network via resources.cloud.genuitec.com
-Database Caching 43/46 queries in 0.813 seconds using disk
+Database Caching 65/132 queries in 1.603 seconds using disk
 
- Served from: www.genuitec.com @ 2017-11-29 18:52:39 by W3 Total Cache -->
+ Served from: www.genuitec.com @ 2017-12-04 11:43:29 by W3 Total Cache -->

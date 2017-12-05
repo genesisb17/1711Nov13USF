@@ -1,4 +1,5 @@
 package com.ex.servlets;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -16,8 +17,8 @@ import com.rev.pojo.newUser;
 import com.rev.service.Service;
 
 @WebServlet("/login")
-public class LoginServlet extends HttpServlet
-{
+public class LoginServlet extends HttpServlet{
+	
 	static Service service = new Service();
 
 	@Override
@@ -48,13 +49,11 @@ public class LoginServlet extends HttpServlet
 		if(temp == null){ // if invalid user, obj = null
 			System.out.println("temp is null");
 		}
-		else if(!temp.getPassword().equals(password))
-		{ // if invalid pw, id = 0;
+		else if(!temp.getPassword().equals(password)){ // if invalid pw, id = 0;
 			temp.setId(0);
 			temp.setPassword(null);
 		}
-		else
-		{// valid credentials
+		else{// valid credentials
 			HttpSession session = req.getSession();
 			session.setAttribute("user", temp);//persist this user to the session to be accessed throughout servlets
 		}
@@ -67,4 +66,5 @@ public class LoginServlet extends HttpServlet
 		
 		   
 	}
+
 }

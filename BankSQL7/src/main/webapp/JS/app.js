@@ -33,7 +33,7 @@ function login()
 			}
 			else{
 				$('#message').html(`Welcome ${user.firstname}`) ;
-				window.location.replace('app.html');
+				window.location.replace('landing.html');
 				console.log("success!");
 			}
 		}
@@ -49,5 +49,34 @@ function login()
 
 function register()
 {
-	window.location.replace('register.html');
+	window.location.replace('reg.html');
 }
+function getUserInfo()
+{
+	var sessionUser;
+	var xhr = XMLHttpRequest();
+	xhr.onreadystatechange = function()
+	{
+		if(xhr.readyState ==4&&xhr.status ==200)
+		{
+			console.log(xhr.responseText);
+			sessionUser = JSON.parse(xhr.responseText);
+			return sessionUser;
+		}
+	}
+	xhr.open("GET","getUserInfo",true);
+	xhr.send();
+}
+function loadProfile()
+{
+	var xhr = new XMLHttpRequest();
+	xhr.onreadystatechange=function()
+	{
+		if(xhr.readyState==4&&xhr.status==200)
+			{
+				document.getElementById('view').innerHTML=xhr.responseText;
+			}
+	}
+}
+
+
