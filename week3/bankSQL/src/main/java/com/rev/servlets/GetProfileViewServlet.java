@@ -8,8 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/getProfileView")
 public class GetProfileViewServlet extends HttpServlet{
-	
-	
+
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		req.getRequestDispatcher("partials/profile.html").forward(req, resp);
 	}

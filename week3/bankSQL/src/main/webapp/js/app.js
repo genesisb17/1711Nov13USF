@@ -5,7 +5,7 @@
 window.onload = function(){
 	$('#login').on('click',login);
 	$('#register').on('click',register);
-	
+
 }
 
 function loadHome(){
@@ -13,12 +13,16 @@ function loadHome(){
 }
 
 function loadProfile(){
-	loadView("getProfileView");
-	//send AJAX request to some type of getUserInfo Servlet.
-	//store user as object and access here
-
-	console.log("loaded profile view");
+	var xhr= new XMLHttpRequest();
+	xhr.onreadystatechange=function(){
+		if(this.readyState==4 &&this.status=200){
+			document.getElementById('view').innrHTML=xhr.responseText;
+			var user=getUserInfo();
+			$("#name").html(user.firstname);
+		}
+	}
 }
+
 function loadView(page){
 	var xhr= new XMLHttpRequest();
 	xhr.onreadstatechange= function(){
@@ -33,6 +37,16 @@ function loadView(page){
 };
 
 
-function getUserInfo(){
-	var user = {}; // AJAX call
+function	GetUserInfo(){
+	var sessionUser;
+	var xhr = new XMLHttpRequest();
+	xhr.onreadystatechange=function(){
+		if(xhr.readyState=4 && xhr.status=200){
+			console.log(xhr.responseText);
+			sessionUser=JSON.parse(xhr.responseText);
+			
+		}
+	}
+	xhr.open("GET","getUserInfo",true);
+	xhr.send();
 }
