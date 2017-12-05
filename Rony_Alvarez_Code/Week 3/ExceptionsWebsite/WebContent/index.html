@@ -7,7 +7,7 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 <meta name="description" content="">
-<meta name="author" content="">
+<meta name="author" contentS="">
 <link rel="icon" href="/favicon.ico">
 
 <title>Exceptions in Java</title>
@@ -37,6 +37,10 @@ section {
 .jumbotron {
 	background-color: lightskyblue;
 }
+
+img {
+max-width: 100%;
+}
 </style>
 
 </head>
@@ -48,12 +52,16 @@ section {
 			<button class="navbar-toggler hidden-md-up pull-right" type="button"
 				data-toggle="collapse" data-target="#collapsingNavbar">
 				&#9776;</button>
-			<a class="navbar-brand" href="#">Logo</a>
+			<a class="navbar-brand" href="#">Exceptions</a>
 			<div class="collapse navbar-toggleable-sm" id="collapsingNavbar">
 				<ul class="nav navbar-nav">
-					<li class="nav-item"><a class="nav-link" href="#grid">Grid</a>
+					<li class="nav-item"><a class="nav-link" href="#grid">Hierarchy</a>
 					</li>
-					<li class="nav-item"><a class="nav-link" href="#cards">Cards</a>
+					<li class="nav-item"><a class="nav-link" href="#grid1">Checked</a>
+					</li>
+					<li class="nav-item"><a class="nav-link" href="#grid2">Unchecked</a>
+					</li>
+					<li class="nav-item"><a class="nav-link" href="#grid3">Summary</a>
 					</li>
 				</ul>
 			</div>
@@ -70,6 +78,7 @@ section {
 			<p>
 				<a class="btn btn-primary btn-lg"
 					href="https://www.tutorialspoint.com/java/java_exceptions.htm"
+					target="_blank"
 					role="button">Exception Examples &raquo;</a>
 			</p>
 		</div>
@@ -100,7 +109,7 @@ section {
 		</section>
 
 
-		<section id="grid">
+		<section id="grid1">
 			<h2>Checked Exceptions</h2>
 
 			<p>A checked exception is an exception that occurs at the compile
@@ -115,19 +124,23 @@ section {
 				<div class="card">
 					<div class="card-header">Example</div>
 					<div class="card-block">
-						<p class="card-text">
-							import java.io.File; <br> import java.io.FileReader; <br>public
-							class FilenotFound_Demo { <br>public static void main(String
-							args[]) { <br>File file = new File("E://file.txt"); <br>FileReader
-							fr = new FileReader(file); <br>} <br>}
-						</p>
+						<pre>
+import java.io.File; 
+import java.io.FileReader;
+public class FilenotFound_Demo { 
+  public static void main(String args[]) { 
+    File file = new File("E://file.txt"); 
+    FileReader fr = new FileReader(file); 
+  }
+}
+						</pre>
 					</div>
 				</div>
 			</div>
 
 		</section>
 
-		<section id="cards">
+		<section id="grid2">
 			<h2>Unchecked Exceptions</h2>
 
 			<p>An unchecked exception is an exception that occurs at the time
@@ -140,18 +153,21 @@ section {
 				<div class="card">
 					<div class="card-header">Example</div>
 					<div class="card-block">
-						<p class="card-text">
-							public class Unchecked_Demo {<br> public static void
-							main(String args[]) {<br> int num[] = {1, 2, 3, 4};<br>
-							System.out.println(num[5]);<br> }<br> }<br>
-						</p>
+						<pre class="card-text">
+public class Unchecked_Demo {
+  public static void main(String args[]) {
+    int num[] = {1, 2, 3, 4};
+	System.out.println(num[5]); 
+  } 
+}
+						</pre>
 					</div>
 				</div>
 			</div>
 
 		</section>
 
-		<section id="cards">
+		<section id="grid3">
 			<h2>Summary</h2>
 			<p>A program can catch exceptions by using a combination of the
 				try, catch, and finally blocks.</p>

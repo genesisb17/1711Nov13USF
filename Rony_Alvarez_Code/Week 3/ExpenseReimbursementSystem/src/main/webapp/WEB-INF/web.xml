@@ -2,6 +2,7 @@
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
   <display-name>ExpenseReimbursementSystem</display-name>
   <welcome-file-list>
+    <welcome-file>login.html</welcome-file>
     <welcome-file>index.html</welcome-file>
     <welcome-file>index.htm</welcome-file>
     <welcome-file>index.jsp</welcome-file>
@@ -18,5 +19,25 @@
   <servlet-mapping>
     <servlet-name>Login</servlet-name>
     <url-pattern>/Login</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>Signup</display-name>
+    <servlet-name>Signup</servlet-name>
+    <servlet-class>servlets.Signup</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Signup</servlet-name>
+    <url-pattern>/Signup</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>getEmployeeView</display-name>
+    <servlet-name>getEmployeeView</servlet-name>
+    <servlet-class>servlets.getEmployeeView</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>getEmployeeView</servlet-name>
+    <url-pattern>/getEmployeeView</url-pattern>
   </servlet-mapping>
 </web-app>
