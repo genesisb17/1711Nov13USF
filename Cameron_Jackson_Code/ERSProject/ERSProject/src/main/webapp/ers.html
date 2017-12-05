@@ -16,6 +16,25 @@
 </head>
 
 <body>
+   <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="logoutModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="logoutModalLabel">Confim Logout</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Are you sure?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                    <button type="button" class="btn btn-primary" id="modal-logout">Yes</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <nav class="navbar sticky-top navbar-expand-lg navbar-light" style="background-color:rgb(122, 247, 184);">
         <a class="navbar-brand" href="#">Employee Reimbursement System</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -23,92 +42,9 @@
             <span class="navbar-toggler-icon"></span>
         </button>
 
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav" id="user-settings">
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-                        href="#">Account</a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" id="manage-account" href="#">Manage Account</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" id="logout" href="#">Logout</a>
-                    </div>
-                </li>
-            </ul>
-        </div>
     </nav>
 
-    <div class="container" id="main-web">
-        <!-- Login view -->
-        <!-- <div class="login-container mx-auto" id="login-input">
-            <h1 class="text-center">ERS Login</h1>
-            <hr/>
-            <input type="submit" class="btn btn-link btn-block" id="new-users" value="New users click here" />
-            <br>
-            <input type="text" class="form-control" id="username" placeholder="Username">
-            <br>
-            <input type="password" class="form-control" id="password" placeholder="Password">
-            <br>
-            <input type="submit" class="btn btn-primary" id="login" value="Login" />
-        </div> -->
-        <!-- Create account view -->
-        <!-- <div class="login-container mx-auto" id="ca-input">
-            <h1 class="text-center">Create Account</h1>
-            <hr/>
-            <input type="submit" class="btn btn-link btn-block" id="returning-users" value="Already have an account? Click here" />
-            <br>
-            <input type="text" class="form-control" id="firstname" placeholder="First Name">
-            <br>
-            <input type="text" class="form-control" id="lastname" placeholder="Last Name">
-            <br>
-            <input type="text" class="form-control" id="email" placeholder="Email">
-            <br>
-            <input type="username" class="form-control" id="ca-username" placeholder="Username">
-            <br>
-            <input type="password" class="form-control" id="ca-password" placeholder="Password">
-            <br>
-            <input type="password" class="form-control" id="ca-confirm-password" placeholder="Confirm Password">
-            <br>
-            <div class="form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" id="manager-check" type="checkbox" value=""> Check if you are a financial manager
-                </label>
-            </div>
-            <input type="submit" class="btn btn-primary" id="create-account" value="Create Account" />
-        </div> -->
-        <!-- Account management view -->
-        <!-- <div class="login-container mx-auto" id="up-account">
-            <h1 class="text-center">Manage Account</h1>
-            <hr/>
-            <input type="text" class="form-control" id="email" placeholder="Email">
-            <br>
-            <input type="username" class="form-control" id="up-username" placeholder="Username">
-            <br>
-            <input type="password" class="form-control" id="up-password" placeholder="Password">
-            <br>
-            <input type="password" class="form-control" id="up-confirm-password" placeholder="Confirm Password">
-        </div> -->
-        <!-- Reimbursement view -->
-        <!-- <div class="mx-auto" id="tickets">
-            <h1 class="text-center">Employee Reimbursement System</h1>
-            <hr/>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Status</th>
-                        <th scope="col">Type</th>
-                        <th scope="col">Reimbursement Amount</th>
-                        <th scope="col">Receipt</th>
-                        <th scope="col">Date Submitted</th>
-                        <th scope="col">Date Resolved</th>
-                        <th scope="col">Resolved by</th>
-                    </tr>
-                </thead>
-
-            </table>
-        </div> -->
-    </div>
+    <div class="container" id="view"></div>
 
 
     <script src="js/app.js"></script>

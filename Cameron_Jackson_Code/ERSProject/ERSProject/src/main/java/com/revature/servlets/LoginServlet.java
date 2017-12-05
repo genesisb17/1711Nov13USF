@@ -13,52 +13,40 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.revature.pojos.User;
-import com.revature.service.BankService;
+import com.revature.pojos.Users;
+import com.revature.service.ERSService;
 
 @WebServlet("/login")
 public class LoginServlet extends HttpServlet {
-	
-	static BankService service = new BankService();
-	
+
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		System.out.println("in login servlet");
+		ERSService service = new ERSService();
 		
-		// 1. get received JSON data from request
+		// Read json from request
 		BufferedReader br = 
 				new BufferedReader(new InputStreamReader(req.getInputStream()));
 		String json = "";
 		if (br !=null) {
 			json = br.readLine();
 		}
-		System.out.println("JSON STRING: " + json);
 		
-		// 2. initiate jackson mapper
+		// initiate jackson object mapper
 		ObjectMapper mapper = new ObjectMapper();
 		
-		// 3. Convert received JSON to object
-//		String[] user = mapper.readValue(json, String[].class);
-		User user = mapper.readValue(json, User.class);
-		String username = user.getUsername();
-		String password = user.getPassword();
-		System.out.println(username + ": " + password);
+		// convert json to object
+		Users user = mapper.readValue(json, Users.class);
 		
-		// Validation and stuff happens here
-		// HttpSession used to save page state
-		User temp = service.login(username, password);
-		if (temp == null) {
-			System.out.println("invalid user");
-		} else {
+		// Actually login and set HttpSession
+		Users currentUser = service.login(user.getUsername(), user.getPassword());
+		
+		if (currentUser != null) {
 			HttpSession session = req.getSession();
-			session.setAttribute("user", temp);
-		}
-		
+			session.setAttribute("user", currentUser);
+		} 
+			
 		PrintWriter out = resp.getWriter();
 		resp.setContentType("application/json");
-		
-		String userJSON = mapper.writeValueAsString(temp);
-		
-		out.write(userJSON);
+		out.write(mapper.writeValueAsString(currentUser));
 	}
 }

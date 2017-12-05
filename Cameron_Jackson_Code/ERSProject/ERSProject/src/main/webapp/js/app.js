@@ -4,74 +4,87 @@
 
 
 window.onload = function() {
-    // $('#ca-input').hide();
-    // $('#user-settings').hide();
-    // $('#tickets').hide();
-    // $('#up-account').hide();
-    
-    $('#new-users').on('click', function() {
-        // $('#login-input').hide();
-        // $('#ca-input').show();
-    });
-    $('#returning-users').on('click', function() {
-        // $('#login-input').show();
-        // $('#ca-input').hide();
-    });
-    $('#login').on('click', login);
-    $('#create-account').on('click', createAccount);
-    $('#manage-account').on('click', function() {
-        // $('#tickets').hide();
-        // $('#up-account').show();
-        // $('#up-configm-password').hide();
-    });
+    loadLogin();
+}
+
+$(document).on('click', '#new-users', loadCA);
+$(document).on('click', '#returning-users', loadLogin);
+$(document).on('click', '#login', login);
+
+$('#logoutModal').on('shown.bs.modal', function () {
+	$('#logoutModal').trigger('focus');
+	$('#modal-logout').on('click', function() {
+		console.log("logout bruh");
+		loadLogin();
+	});
+  });
+
+function loadLogin() {
+	console.log("at loadLogin()");
+    var xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function() {
+		if (xhr.readyState == 4 && xhr.status == 200) {
+            document.getElementById('view').innerHTML = xhr.responseText;
+            $('.message').hide();
+		}
+	}
+
+	xhr.open("GET", "getLoginView", true);
+	xhr.send();
+}
+
+function loadCA() {
+	console.log("at loadCA()");
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            document.getElementById('view').innerHTML = xhr.responseText;
+        }
+    }
+
+    xhr.open("GET", "getCAView", true);
+    xhr.send();
 }
 
 function login() {
     var username = $('#username').val();
-    username = username.toLowerCase();
     var password = $('#password').val();
-    // console.log(username + ": " + password);
+
+    var user = {
+        userId: 0,
+        username: username,
+        password: password,
+        firstName: null,
+        lastName: null,
+        email: null,
+        roleId: 0
+    }
     
-    // Add more to this function as needed
-    if (true) {
-        // $('#login-input').hide();
-        // $('#tickets').show();
-        // $('#user-settings').show();
+    var text = JSON.stringify(user);
+
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            var currUser = JSON.parse(xhr.responseText);
+            if (currUser == null) {
+                $('.message').show();
+                $('#message').html("Invalid username or password");
+				$('#password').val("");
+            } else {
+                console.log(currUser)
+                // load the main page
+            }
+        }
     }
 
-    // Just in case empty the text fields
-    $('#username').val("");
-    $('#password').val("");
+    if (user.username != "" && user.password != "") {
+        xhr.open("POST", "login", true);
+        xhr.send(text);
+    }
 }
 
 function createAccount() {
-    var firstname = $('#firstname').val();
-    var lastname = $('#lastname').val();
-    var email = $('#email').val();
-    var username = $('#ca-username').val();
-    username = username.toLowerCase();
-    var password = $('#ca-password').val();
-    var confirmPassword = $('#ca-confirm-password').val();
 
-    var user = {
-    	userId: 0,
-    	username: username,
-    	firstName: firstname,
-    	lastName: lastname,
-    	
-    };
-    
-    if (true) {
-        $('#ca-input').hide();
-    }
-
-    // Just in case empty the text fields
-    $('#firstname').val("");
-    $('#lastname').val("");
-    $('#email').val("");
-    $('#ca-username').val("");
-    $('#ca-password').val("");
-    $('#ca-confirm-password').val("");
 }
 
 function updateAccount() {
