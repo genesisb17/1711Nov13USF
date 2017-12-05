@@ -1,103 +1,98 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 
-<title>Bitwise Operators</title>
+	<title>Bitwise Operators</title>
 
-<!-- Meta tags for use with Bootstrap -->
-<meta charset="utf-8">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<!-- Meta tags for use with Bootstrap -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-<!-- Bootstrap CSS from CDN -->
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
-	integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb"
-	crossorigin="anonymous">
+	<!-- Bootstrap CSS from CDN -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb"
+	 crossorigin="anonymous">
 
-<style>
-table {
-	text-align: center;
-	font-size: x-large;
-}
+	<style>
+		table {
+			text-align: center;
+			font-size: x-large;
+		}
 
-th {
-	width: 5rem;
-}
+		th {
+			width: 5rem;
+		}
 
-pre code {
-  background-color: #F1E3BB;
-  color: #B71234;
-  display: block;
-}
+		.code-block {
+			font-family: monospace;
+			font-size: large;
+			padding: 20px;
+			background-color: #F1E3BB;
+			color: #B71234;
+			display: block;
+			text-align: left;
+		}
 
-.jumbotron {
-	background-color: #1E1656;
-	color: white;
-}
+		.jumbotron {
+			background-color: #1E1656;
+			color: white;
+		}
 
-.card-header {
-	background-color: #1E1656;
-	color: white;
-}
+		.card-header {
+			background-color: #1E1656;
+			color: white;
+		}
 
-.card-header a {
-	color: white;
-}
-</style>
+		.card-header a {
+			color: white;
+		}
+	</style>
 
 </head>
+
 <body>
 
 	<div class="jumbotron jumbotron-fluid">
 		<div class="container">
 			<h1 class="display-3">
-				Bitwise Operators <small class="text-muted">In Java and JS</small>
+				Bitwise Operators
+				<small class="text-muted">and uses in Java &amp; JS</small>
 			</h1>
 			<br>
-			<p class="lead">Bitwise operators are operators which perform
-				their function on one or more numbers or bit patterns at the level
-				of their individual bits</p>
+			<p class="lead">Bitwise operators are operators which perform their function on one or more numbers at the level of their individual bits</p>
 		</div>
 	</div>
 
 	<div class="container">
 		<h1>Basic Info</h1>
-		<p> Bitwise operator are a type of operator available in many programming
-		    languages, from high level languages like Java, JS, and Python all the way 
-		    down to assembly languages like ARM, MIPS, and the x86 family. They operate
-		    on numeric types, performing operations on the individual bits of the data's
-		    binary representation. Bitwise operations are fast, simple operations which
-		    are directly supported by the processor as part of its instruction set. </p>
+		<p> Bitwise operator are a type of operator available in many programming languages, from high level languages like Java, JS,
+			and Python all the way down to assembly languages like ARM, MIPS, and the x86 family. They operate on numeric types, performing
+			operations on the individual bits of the data's binary representation. Bitwise operations are fast, simple operations
+			which are directly supported by the processor as part of its instruction set. </p>
 		<h1>Why Use Bitwise Operators?</h1>
-		<p> Bitwise operators are often used in embedded systems and other hardware with 
-		    extremely stringent resource requirements (e.g. legacy systems). By operating
-		    on individual bits, bitwise operators can be used to store, alter, and retrieve
-		    data for multiple boolean or numeric values from a single numeric variable. This
-		    data packing can be much more space efficient in comparison to standard data types,
-		    which can make a huge difference on systems where available memory is measured in
-		    bytes instead of megabytes or gigabytes. </p>
-		<p> They also have uses in more conventional programming. Encryption algorithms like
-			stream cipher make use of bitwise operators. Video and audio codecs make use of bitwise
-			operators for similar reasons to embedded systems; to get maximal utility out of 
-			minimal space. </p>
+		<p> Bitwise operators are often used in embedded systems and other hardware with extremely stringent resource requirements
+			(e.g. legacy systems). By operating on individual bits, bitwise operators can be used to store, alter, and retrieve data
+			for multiple boolean or numeric values from a single numeric variable. This data packing can be much more space efficient
+			in comparison to standard data types, which can make a huge difference on systems where available memory is measured in
+			bytes instead of megabytes or gigabytes. </p>
+		<p> They also have uses in more conventional programming. Encryption algorithms like stream cipher make use of bitwise operators.
+			Video and audio codecs make use of bitwise operators for similar reasons to embedded systems; to get maximal utility out
+			of minimal space. </p>
 		<br>
 		<h3>Bitwise Operators Available in Java and JS</h3>
-		<p> Java and JS have access to the same library of seven bitwise operators: AND (&), OR(|),
-			NOT (~), XOR (^), Logical Right Shift (>>), Arithmetic Right Shift (>>>), and Left Shift
-			(&lt;&lt;) </p>
-		<p> However, the two languages have different caveats to consider when using bitwise operators.
-			In Java, <i>only</i> integers can be used on either side of a bitwise operator. Any other
-			type must be explicitly casted to an integer type, even if it is a numeric type smaller than
-			int. In JavaScript, any types can be used with bitwise operators, but you should be aware 
-			that numeric types in JS are by default stored as 64-bit floating point numbers and converted
-			to 32-bit signed integers for use with bitwise operators. </p>
+		<p> Java and JS have access to the same library of seven bitwise operators: AND (&), OR(|), NOT (~), XOR (^), Logical Right
+			Shift (>>), Arithmetic Right Shift (>>>), and Left Shift (&lt;&lt;) </p>
+		<p> However, the two languages have different caveats to consider when using bitwise operators. In Java,
+			<i>only</i> integers can be used on either side of a bitwise operator. Any other type must be explicitly casted to an integer
+			type, even if it is a numeric type smaller than int. In JavaScript, any types can be used with bitwise operators, but
+			you should be aware that numeric types in JS are by default stored as 64-bit floating point numbers and converted to 32-bit
+			signed integers for use with bitwise operators. </p>
 		<div id="accordion" role="tablist">
 			<div class="card">
 				<div class="card-header" role="tab" id="headingOne">
 					<h5 class="mb-0">
-						<a data-toggle="collapse" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne"> 
-						Bitwise OR | 
+						<a data-toggle="collapse" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+							Bitwise OR |
 						</a>
 					</h5>
 				</div>
@@ -106,9 +101,15 @@ pre code {
 						<h4>Truth Table for Bitwise OR</h4>
 						<table class="table-bordered">
 							<tr>
-								<th><h4>A</h4></th>
-								<th><h4>B</h4></th>
-								<th><h4>Result</h4></th>
+								<th>
+									<h4>A</h4>
+								</th>
+								<th>
+									<h4>B</h4>
+								</th>
+								<th>
+									<h4>Result</h4>
+								</th>
 							</tr>
 							<tr>
 								<td>0</td>
@@ -132,25 +133,24 @@ pre code {
 							</tr>
 						</table>
 						<br>
-						<p> Bitwise OR sets a digit in the result to be 1 if the same location in
-							either input was 1. This is useful because it allows us to set digits
-							equal to 1 when using numeric types to store multiple boolean flags. </p>
-						<pre><code>
+						<p> Bitwise OR sets a digit in the result to be 1 if the same location in either input was 1. This is useful because it
+							allows us to set digits equal to 1 when using numeric types to store multiple boolean flags. </p>
+						<div class="code-block">
 							// byte contains 00000000
-							byte flags = 0;
+							<br> byte flags = 0;
+							<br>
+							<br> // 1 = 00000001
+							<br> flags = flags | 1;
+							<br>
+							<br> // 4 = 00000100
+							<br> flags = flags | 4;
+							<br>
+							<br> // 8 = 00001000
+							<br> flags = flag | 8;
+							<br>
+							<br> // flags now contains 00001101
+						</div>
 
-							// 1 = 00000001
-							flags = flags | 1;
-
-							// 4 = 00000100
-							flags = flags | 4;
-
-							// 8 = 00001000
-							flags = flag | 8;
-
-							// flags now contains 00001101
-						</code></pre>
-						
 					</div>
 				</div>
 			</div>
@@ -158,19 +158,24 @@ pre code {
 				<div class="card-header" role="tab" id="headingTwo">
 					<h5 class="mb-0">
 						<a class="collapsed" data-toggle="collapse" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-						Bitwise AND &
+							Bitwise AND &
 						</a>
 					</h5>
 				</div>
-				<div id="collapseTwo" class="collapse" role="tabpanel"
-					aria-labelledby="headingTwo" data-parent="#accordion">
+				<div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo" data-parent="#accordion">
 					<div class="card-body">
 						<h4>Truth Table for Bitwise AND</h4>
 						<table class="table-bordered">
 							<tr>
-								<th><h4>A</h4></th>
-								<th><h4>B</h4></th>
-								<th><h4>Result</h4></th>
+								<th>
+									<h4>A</h4>
+								</th>
+								<th>
+									<h4>B</h4>
+								</th>
+								<th>
+									<h4>Result</h4>
+								</th>
 							</tr>
 							<tr>
 								<td>0</td>
@@ -194,30 +199,46 @@ pre code {
 							</tr>
 						</table>
 						<br>
-						<p> The bitwise AND operator puts a 1 in the result digit if and only if
-							the same place digit in both inputs was 1. This is useful because it lets
-							us do something called masking, using a bit pattern to select a specific
-							region of a number input. This can be useful for operations like selecting
-							the G value out of an integer which stores RGBA values. </p>
-							
-							<pre><code>
+						<p> The bitwise AND operator puts a 1 in the result digit if and only if the same place digit in both inputs was 1. This
+							is useful because it lets us do something called masking, using a bit pattern to select a specific region of a number
+							input. </p>
+
+						<div class="code-block">
+							// Example of a use of masking in code, using the bitwise and operator to
+							<br> // check if a number is even without using the % operator by masking the
+							<br> // final bit
+							<br> function isEven(num) {
+							<br> &nbsp;&nbsp;&nbsp;&nbsp;return (num & 1) === 0;
+							<br> }
+						</div>
+
+						<br>
+
+						<p> One application for this is selecting the green channel out of an integer which stores RGBA values. </p>
+
+						<div class="code-block">
 							// RGBA value holds #BADA55 in full opacity
-							// Or 186, 218, 85, 255 in RGBA values
-							// Or 1011 1010 1101 1010 0101 0101 1111 1111 in binary
-							rgbValues = 0xBADA55FF;
+							<br> // Or 186, 218, 85, 255 in RGBA values
+							<br> // Or 1011 1010 1101 1010 0101 0101 1111 1111 in binary
+							<br> rgbValues = 0xBADA55FF;
+							<br>
+							<br> // Mask holds 0000 0000 1111 1111 0000 0000 0000 0000 in binary
+							<br> // This selects the green channel from the bit pattern
+							<br> int mask = 0x00FF0000;
+							<br>
+							<br> // Apply the mask to the rgbValues
+							<br> gValue = rgbValues &amp; mask;
+							<br>
+							<br> // gValue now contains 0000 0000 1101 1010 0000 0000 0000 0000 in binary
+							<br> // the bits representing the green channel have been selected while the
+							<br> // others were set to zero
+							<br>
+						</div>
 
-							// Mask holds 0000 0000 1111 1111 0000 0000 0000 0000 in binary
-							int mask = 0x00FF0000;
+						<br>
 
-							gValue = rgbValues &amp; mask;
-
-							// gValue now contains 0000 0000 1101 1010 0000 0000 0000 0000 in binary
-							// the bits representing the green values have been selected while the
-							// others were set to zero
-							</pre></code>
-							
-						<p> However, the result will often be "out of place" in comparison to where it 
-							should be to be read as an integer. This can be solved with the... </p>
+						<p> However, the result will often be "out of place" in comparison to where it should be to be read as an integer. This
+							can be solved with the... </p>
 					</div>
 				</div>
 			</div>
@@ -225,150 +246,152 @@ pre code {
 				<div class="card-header" role="tab" id="headingThree">
 					<h5 class="mb-0">
 						<a class="collapsed" data-toggle="collapse" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-						Logical Right Shift Operator >>
+							Logical Right Shift Operator >>
 						</a>
 					</h5>
 				</div>
-				<div id="collapseThree" class="collapse" role="tabpanel"
-					aria-labelledby="headingThree" data-parent="#accordion">
+				<div id="collapseThree" class="collapse" role="tabpanel" aria-labelledby="headingThree" data-parent="#accordion">
 					<div class="card-body">
-					<p>The logical right shift operator shifts the pattern directly to the right a specific
-					number of digits. This can be used to move a bit pattern selected by masking into
-					the right place to be read as an integer value. </p>
-					
-					<pre><code>
-						// gValue contains 0000 0000 1101 1010 0000 0000 0000 0000 in binary
-						// The actual green value in decimal is 218
-						// But this integer stores the decimal value 14 286 848
+						<p>The logical right shift operator shifts the pattern directly to the right a specific number of digits. This can be
+							used to move a bit pattern selected by masking into the right place to be read as an integer value. </p>
 
-						gValue = gValue >> 16;
-						// gValue now contains 0000 0000 0000 0000 0000 0000 1101 1010 in binary
-						// the correct representation for the decimal value
+						<div class="code-block">
+							// gValue contains 0000 0000 1101 1010 0000 0000 0000 0000 in binary
+							<br> // The actual green value in decimal is 218
+							<br> // But this integer stores the decimal value 14 286 848
+							<br>
+							<br> gValue = gValue >> 16;
+							<br> // gValue now contains 0000 0000 0000 0000 0000 0000 1101 1010 in binary
+							<br> // the correct representation for the decimal value
 
-					</code></pre>
-					
-					<p> The logical right shift operator can also be used to divide positive integers by powers 
-					of two. However, since the logical right shift operator just fills the left side of the 
-					bit pattern with zeroes, it shouldn't be used for division with signed integer values. 
-					For that we need the...</p>
+						</div>
+
+						<br>
+
+						<p> The logical right shift operator can also be used to divide positive integers by powers of two. However, since the
+							logical right shift operator just fills the left side of the bit pattern with zeroes, it shouldn't be used for division
+							with signed integer values. For that we need the...</p>
 					</div>
 				</div>
 			</div>
 			<div class="card">
 				<div class="card-header" role="tab" id="headingFour">
 					<h5 class="mb-0">
-						<a class="collapsed" data-toggle="collapse" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour"> 
-						Bitwise Arithmetic Right Shift Operator >>
+						<a class="collapsed" data-toggle="collapse" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+							Bitwise Arithmetic Right Shift Operator >>
 						</a>
 					</h5>
 				</div>
-				<div id="collapseFour" class="collapse" role="tabpanel"
-					aria-labelledby="headingFour" data-parent="#accordion">
-					<div class="card-body"> 
-					The Bitwise Arithmetic Right Shift Operator also shifts the pattern to the right,
-					but does so filling in the left hand side of the bit pattern with the sign digit.
-					This allows for proper behavior when dividing signed integer values.
+				<div id="collapseFour" class="collapse" role="tabpanel" aria-labelledby="headingFour" data-parent="#accordion">
+					<div class="card-body">
+						The Bitwise Arithmetic Right Shift Operator also shifts the pattern to the right, but does so filling in the left hand side
+						of the bit pattern with the sign digit. This allows for proper behavior when dividing signed integer values.
 					</div>
 				</div>
 			</div>
 			<div class="card">
 				<div class="card-header" role="tab" id="headingFive">
 					<h5 class="mb-0">
-						<a class="collapsed" data-toggle="collapse" href="#collapseFive" aria-expanded="false" aria-controls="collapseFive"> 
-						Bitwise Left Shift Operator &lt;&lt;
+						<a class="collapsed" data-toggle="collapse" href="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+							Bitwise Left Shift Operator &lt;&lt;
 						</a>
 					</h5>
 				</div>
-				<div id="collapseFive" class="collapse" role="tabpanel"
-					aria-labelledby="headingFive" data-parent="#accordion">
+				<div id="collapseFive" class="collapse" role="tabpanel" aria-labelledby="headingFive" data-parent="#accordion">
 					<div class="card-body">
-					Used for multiplication by powers of two. Can also be used to hand-write multiplication
-					by other numbers if necessary (e.g. for instruction sets without a multiplication instruction)
+						Used for multiplication by powers of two. Can also be used to hand-write multiplication by other numbers if necessary (e.g.
+						for instruction sets without a multiplication instruction)
 					</div>
 				</div>
 			</div>
 			<div class="card">
 				<div class="card-header" role="tab" id="headingSix">
 					<h5 class="mb-0">
-						<a class="collapsed" data-toggle="collapse" href="#collapseSix" aria-expanded="false" aria-controls="collapseSix"> 
-						Bitwise NOT ~
+						<a class="collapsed" data-toggle="collapse" href="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+							Bitwise NOT ~
 						</a>
 					</h5>
 				</div>
-				<div id="collapseSix" class="collapse" role="tabpanel"
-					aria-labelledby="headingSix" data-parent="#accordion">
+				<div id="collapseSix" class="collapse" role="tabpanel" aria-labelledby="headingSix" data-parent="#accordion">
 					<div class="card-body">
-					<h4>Truth Table for Bitwise NOT</h4>
-					<table class="table-bordered">
-						<tr>
-							<th><h4>A</h4></th>
-							<th><h4>Result</h4></th>
-						</tr>
-						<tr>
-							<td>0</td>
-							<td>1</td>
-						</tr>
-						<tr>
-							<td>1</td>
-							<td>0</td>
-						</tr>
-					</table>
-					<br>
-					<p> Used to invert a bit pattern. Used in the Two's Complement Operation. </p>
-					
+						<h4>Truth Table for Bitwise NOT</h4>
+						<table class="table-bordered">
+							<tr>
+								<th>
+									<h4>A</h4>
+								</th>
+								<th>
+									<h4>Result</h4>
+								</th>
+							</tr>
+							<tr>
+								<td>0</td>
+								<td>1</td>
+							</tr>
+							<tr>
+								<td>1</td>
+								<td>0</td>
+							</tr>
+						</table>
+						<br>
+						<p> Used to invert a bit pattern. Used in the Two's Complement Operation. </p>
+
 					</div>
 				</div>
 			</div>
 			<div class="card">
 				<div class="card-header" role="tab" id="headingSeven">
 					<h5 class="mb-0">
-						<a class="collapsed" data-toggle="collapse" href="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven"> 
-						Bitwise XOR ^
+						<a class="collapsed" data-toggle="collapse" href="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
+							Bitwise XOR ^
 						</a>
 					</h5>
 				</div>
-				<div id="collapseSeven" class="collapse" role="tabpanel"
-					aria-labelledby="headingSeven" data-parent="#accordion">
+				<div id="collapseSeven" class="collapse" role="tabpanel" aria-labelledby="headingSeven" data-parent="#accordion">
 					<div class="card-body">
-					<h4>Truth Table for Bitwise XOR</h4>
-					<table class="table-bordered">
-						<tr>
-							<th><h4>A</h4></th>
-							<th><h4>B</h4></th>
-							<th><h4>Result</h4></th>
-						</tr>
-						<tr>
-							<td>0</td>
-							<td>0</td>
-							<td>0</td>
-						</tr>
-						<tr>
-							<td>1</td>
-							<td>0</td>
-							<td>1</td>
-						</tr>
-						<tr>
-							<td>0</td>
-							<td>1</td>
-							<td>1</td>
-						</tr>
-						<tr>
-							<td>1</td>
-							<td>1</td>
-							<td>0</td>
-						</tr>
-					</table>
-					<br>
-					<p>The Bitwise XOR Operator places a 1 in the bit pattern if and only if one but
-					not both of the operands has a 1 in that spot.</p> 
-					<p>The Bitwise XOR operator is very versatile. One of its most common uses is 
-					toggling a specific bit in a bit pattern. Another use is as a way of setting
-					bit patterns equal to zero, since any number XOR'd with itself will always
-					yield zero. </p>
-					<p>The Bitwise XOR operation is reversible. This means that if A XOR B yields
-					product C, then C XOR'd with B will produce A as a result, and the result of
-					A XOR'd with C will be B. This property leads to the use of XOR in many
-					encryption algorithms.</p>
+						<h4>Truth Table for Bitwise XOR</h4>
+						<table class="table-bordered">
+							<tr>
+								<th>
+									<h4>A</h4>
+								</th>
+								<th>
+									<h4>B</h4>
+								</th>
+								<th>
+									<h4>Result</h4>
+								</th>
+							</tr>
+							<tr>
+								<td>0</td>
+								<td>0</td>
+								<td>0</td>
+							</tr>
+							<tr>
+								<td>1</td>
+								<td>0</td>
+								<td>1</td>
+							</tr>
+							<tr>
+								<td>0</td>
+								<td>1</td>
+								<td>1</td>
+							</tr>
+							<tr>
+								<td>1</td>
+								<td>1</td>
+								<td>0</td>
+							</tr>
+						</table>
+						<br>
+						<p>The Bitwise XOR Operator places a 1 in the bit pattern if and only if one but not both of the operands has a 1 in that
+							spot.</p>
+						<p>The Bitwise XOR operator is very versatile. One of its most common uses is toggling a specific bit in a bit pattern.
+							Another use is as a way of setting bit patterns equal to zero, since any number XOR'd with itself will always yield
+							zero. </p>
+						<p>The Bitwise XOR operation is reversible. This means that if A XOR B yields product C, then C XOR'd with B will produce
+							A as a result, and the result of A XOR'd with C will be B. This property leads to the use of XOR in many encryption
+							algorithms.</p>
 					</div>
 				</div>
 			</div>
@@ -378,16 +401,12 @@ pre code {
 
 	<!-- Optional JavaScript -->
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-		integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-		crossorigin="anonymous"></script>
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"
-		integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh"
-		crossorigin="anonymous"></script>
-	<script
-		src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"
-		integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
-		crossorigin="anonymous"></script>
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+	 crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh"
+	 crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
+	 crossorigin="anonymous"></script>
 </body>
+
 </html>
