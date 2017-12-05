@@ -11,7 +11,7 @@ import com.bank.pojos.Accounts;
 import com.bank.pojos.Users;
 
 public class Services {
-	Scanner scan = new Scanner(System.in);
+/*	Scanner scan = new Scanner(System.in);
 	DAO dao = new DAOimpl();
 	public String inputChk() {
 		String input = scan.nextLine();
@@ -119,6 +119,6 @@ public class Services {
 		}
 		return u;
 
-	}
+	}*/
 
 }
