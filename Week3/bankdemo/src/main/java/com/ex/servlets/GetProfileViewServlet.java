@@ -16,7 +16,6 @@ public class GetProfileViewServlet extends HttpServlet{
 			HttpServletResponse resp) throws
 			ServletException, IOException{
 		
-		req.getRequestDispatcher("partials/profile.html")
-		.forward(req, resp);
+		req.getRequestDispatcher("partials/profile.html").forward(req, resp);
 	}
 }

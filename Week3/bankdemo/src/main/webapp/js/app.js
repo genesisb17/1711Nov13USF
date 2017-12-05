@@ -11,21 +11,47 @@ window.onload = function(){
 }
 
 function loadHome(){
-	loadView("getHomeView");
-}
-function loadProfile(){
-	loadView("getProfileView");
-}
-function loadView(page){
 	var xhr = new XMLHttpRequest();
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState == 4 && xhr.status == 200){
-			document.getElementById('view').
-			innerHTML = xhr.responseText;			
+			document.getElementById('view').innerHTML = xhr.responseText;				
+		}
+	}	
+	xhr.open("GET", "getHomeView" , true);
+	xhr.send();
+}
+
+function loadProfile(){
+	var xhr = new XMLHttpRequest();
+	xhr.open("GET", "getProfileView" , true);
+	xhr.send();
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState == 4 && xhr.status == 200){
+			document.getElementById('view').innerHTML = xhr.responseText;//partials/profile.html	
+			loadProfileInfo();
 		}
 	}
-	console.log("REQUESTING VIEW " + page)
+}
+
+
+function loadProfileInfo(){
+	var xhr = new XMLHttpRequest();
 	
-	xhr.open("GET", page , true);
+	xhr.open("GET","getUserInfo", true);
 	xhr.send();
-};
+	
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState == 4 && xhr.status == 200){
+			console.log(xhr.responseText);
+			sessionUser = JSON.parse(xhr.responseText);
+			$("#name").html(sessionUser.firstname);
+			return sessionUser;
+		}
+	}
+}
+
+
+
+
+
+
