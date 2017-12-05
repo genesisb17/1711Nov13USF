@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="ISO-8859-1">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<title>Bank Login</title>
+	
+	<link rel="stylesheet"
+		href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
+		integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb"
+		crossorigin="anonymous">
+	
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+		integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+		crossorigin="anonymous">
+		</script>
+	
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"
+		integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh"
+		crossorigin="anonymous">
+		</script>
+	
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"
+		integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
+		crossorigin="anonymous">
+		</script>
+	
+	<style>
+	
+	body {
+	
+		margin-right: 50px;
+		margin-left: 50px;
+	}
+	
+	h2 {
+		margin-bottom: 5px;
+	}
+	
+	h3 {
+		margin-bottom: 20px;
+	}
+	
+	.nav-container {
+		padding-bottom: 100px;
+	}
+	
+	#data-container {
+		padding: 25px;
+		width: 40%; 
+		border-color : #BBBBBB;
+		border-style: solid;
+		border-width: 1px;
+		border-radius: 5px;
+		background-color: #CCCCCC;
+		border-color: #BBBBBB;
+	}
+
+	.navbar {
+		background-color: #CCCCCC !important;
+	}
+	
+	</style>
+
+</head>
+
+<!----------------------------------------------BODY--------------------------------------------------->
+
+<body>
+
+	<div class="wrapper">
+		<div class="nav-container">
+			<nav class="navbar navbar-expand-lg bg-light">
+				<a class="navbar-brand" href="#"><img src="images/logo.png" alt="MuhBank logo" id="logo"/></a>
+				<button class="navbar-toggler" type="button" data-toggle="collapse"
+						data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup"
+						aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+					<div class="navbar-nav">
+						<a class="nav-item nav-link" id="toLogin">Login</a>
+						<a class="nav-item nav-link" id="toRegister">Register</a>
+						<a class="nav-item nav-link" id="toHome">Home</a> 
+						<a class="nav-item nav-link" id="toProfile">Profile</a> 
+						<a class="nav-item nav-link" id="toLogout">Logout</a>
+					</div>
+				</div>
+			</nav>
+		</div>
+		
+		<div class="view"></div>
+		<div class="container" id="data-container">
+			<h2>MuhBank</h2>
+			<hr>
+			<h3>Sign Into Online Banking</h3>
+		
+			<div class="form-group">
+				<label for="username">Username</label> <input type="email"
+					class="form-control" id="login-username" placeholder="Username">
+			</div>
+		
+			<div class="form-group">
+				<label for="password">Password</label> <input type="password"
+					class="form-control" id="login-password" placeholder="Password">
+			</div>
+		
+			<button type="submit" class="btn btn-block btn-primary" id="login">Login</button>
+			<br> <br>
+		
+			<div class="alert alert-danger" id="login-message"></div>
+		</div>
+		
+		<br><br>
+		
+		<div class="container" id="data-container">
+			<h2>MuhBank</h2>
+			<hr>
+			<h3>Online Banking Enrollment</h3>
+		
+			<div class="form-group">
+				<label for="fn">First name</label> <input type="text"
+					class="form-control" id="fn" placeholder="Enter your first name">
+			</div>
+		
+			<div class="form-group">
+				<label for="password">Last name</label> <input type="text"
+					class="form-control" id="ln" placeholder="Enter your last name">
+			</div>
+		
+			<div class="form-group">
+				<label for="password">Email Address</label> <input type="email"
+					class="form-control" id="email" placeholder="Enter your email address">
+			</div>
+			
+			<div class="form-group">
+				<label for="password">Username</label> <input type="text"
+					class="form-control" id="reg-username" placeholder="Enter your desired username">
+			</div>
+			
+			<div class="form-group">
+				<label for="password">Password</label> <input type="password"
+					class="form-control" id="reg-password" placeholder="Enter your password">
+			</div>
+			
+			<button type="submit" class="btn btn-block btn-primary" id="register">Register</button>
+			<br> <br>
+		
+			<div class="alert alert-danger" id="reg-message"></div>
+		</div>
+	</div>
+	
+	<script type="text/javascript" src="js/index.js"></script>
+
+</body>
+</html>

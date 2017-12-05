@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import org.omg.Messaging.SyncScopeHelper;
+
 import com.rev.pojos.Account;
 import com.rev.pojos.AccountRegistrar;
 import com.rev.pojos.User;
@@ -15,7 +17,7 @@ public class RunBank {
 
 
 	public static void main(String[] args) {
-
+		
 		try (Scanner scan = new Scanner(System.in)){
 			run(scan);
 		}
@@ -56,8 +58,21 @@ public class RunBank {
 		case "2": 	
 			System.out.println("\n+--------------------------------------------------+");
 			System.out.println("\nFirst time? Let's get some information first.");
-			service.createNewUser(scan); 
-			run(scan);
+			
+			User newUser = new User();
+
+			System.out.print("Enter your first name: ");
+			newUser.setFirstName(scan.nextLine());
+			System.out.print("\nEnter your last name: ");
+			newUser.setLastName(scan.nextLine());
+			System.out.print("\nEnter your email address: ");
+			newUser.setEmailAddress(scan.nextLine().toLowerCase());
+			System.out.print("\nEnter your desired username: ");
+			newUser.setUsername(scan.nextLine().toLowerCase());
+			System.out.print("\nEnter your desired password: ");
+			newUser.setPassword(scan.nextLine());
+			service.createNewUser(newUser);
+			
 			break;
 
 			// Invalid selection
@@ -415,7 +430,17 @@ public class RunBank {
 			User userToAdd = service.getUserByUsername(username);
 			
 			if (userToAdd.getId() != 0) {
-				System.out.println("Attempting to register user, " + userToAdd.getUsername() + ", to account id: " + account.getAcctId() + "...");
+				System.out.println("\nAttempting to register user, " + userToAdd.getUsername() + ", to account id: " + account.getAcctId() + "...");
+				
+				for (AccountRegistrar acctRegistrar : service.getUsersOnAccount(account)) {
+					
+					if (acctRegistrar.getUserId() == userToAdd.getId()) {
+						System.out.println("User already exists on account!\nReturning to account menu...");
+						showAccountMenu(scan, account, user);
+					}
+					
+				}
+				
 				AccountRegistrar registeredUserOnAccount = service.registerAccountToUser(userToAdd, account, "secondary");
 			
 				if (registeredUserOnAccount.getUserId() == userToAdd.getId() && registeredUserOnAccount.getAcctId() == account.getAcctId()) {
@@ -424,7 +449,7 @@ public class RunBank {
 				}
 			
 				else {
-					System.out.println("Unable to register user, " + userToAdd.getId() + ", to account id: " + account.getAcctId());
+					System.out.println("Unable to register user, " + userToAdd.getUsername() + ", to account id: " + account.getAcctId());
 					showAccountMenu(scan, account, user);
 				}
 			}

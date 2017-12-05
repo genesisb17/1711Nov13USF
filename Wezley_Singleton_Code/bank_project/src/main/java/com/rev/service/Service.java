@@ -1,7 +1,6 @@
 package com.rev.service;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
 import com.rev.dao.AccountDAO;
 import com.rev.dao.AccountDAOImpl;
@@ -24,30 +23,15 @@ public class Service {
 	 * @return User; null if new user creation is unsuccessful, 
 	 * 				 newly created user (with id) if new user creation is successful
 	 */
-	public User createNewUser(Scanner scan) {
+	public User createNewUser(User user) {
 
-		User newUser = new User();
+		User newUser = null;
 
-		System.out.print("Enter your first name: ");
-		newUser.setFirstName(scan.nextLine());
-		System.out.print("\nEnter your last name: ");
-		newUser.setLastName(scan.nextLine());
-		System.out.print("\nEnter your email address: ");
-		newUser.setEmailAddress(scan.nextLine().toLowerCase());
-		System.out.print("\nEnter your desired username: ");
-		newUser.setUsername(scan.nextLine().toLowerCase());
-		System.out.print("\nEnter your desired password: ");
-		newUser.setPassword(scan.nextLine());
-
-		boolean emailAddressAvailable = isEmailAvailable(newUser.getEmailAddress());
-		boolean usernameAvailable = isUsernameAvailable(newUser.getUsername());
+		boolean emailAddressAvailable = isEmailAvailable(user.getEmailAddress());
+		boolean usernameAvailable = isUsernameAvailable(user.getUsername());
 
 		if (emailAddressAvailable && usernameAvailable) {
-			newUser = userDao.addUser(newUser);
-		} 
-
-		else {
-			newUser = null;
+			newUser = userDao.addUser(user);
 		}
 
 		return newUser;
@@ -133,7 +117,6 @@ public class Service {
 	/**
 	 * prints all users to the console (ADMIN ONLY)
 	 */
-	// prints all users from the data store to the console (ADMIN USE ONLY)
 	public void printAllUsers() {
 
 		ArrayList<User> users = userDao.getAllUsers();
@@ -154,8 +137,8 @@ public class Service {
 		ArrayList<User> users = userDao.getAllUsers();
 
 		for (User user : users) {
-			if (user.getUsername() == username) {
-				System.out.println("That username is already in use!/nPlease try again...");
+			if (user.getUsername().equalsIgnoreCase(username)) {
+				System.out.println("That username is already in use!\nPlease try again...");
 				return false;
 			}
 		}
@@ -175,8 +158,8 @@ public class Service {
 		ArrayList<User> users = userDao.getAllUsers();
 
 		for (User user : users) {
-			if (user.getEmailAddress() == emailAddress) {
-				System.out.println("That email address is already in use!/nPlease try again...");
+			if (user.getEmailAddress().equalsIgnoreCase(emailAddress)) {
+				System.out.println("\nThat email address is already in use!\nPlease try again...");
 				return false;
 			}
 		}
@@ -257,6 +240,13 @@ public class Service {
 		
 		ArrayList<AccountRegistrar> userAccounts = accountRegistrarDao.getUserAccounts(user.getId());
 		return userAccounts;
+		
+	}
+	
+	public ArrayList<AccountRegistrar> getUsersOnAccount(Account acct) {
+		
+		ArrayList<AccountRegistrar> usersOnAccount = accountRegistrarDao.getUsersOnAccount(acct.getAcctId());
+		return usersOnAccount;
 		
 	}
 }
