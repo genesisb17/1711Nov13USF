@@ -1,38 +1,31 @@
 /**
- * 
+ * main page of the application. thinking about creating a pseudo 
+ * 	"admin" role based on a userame and password of admin for demo 
+ * 	purposes 
  */
 
 window.onload = function(){
-	$('#login').on('click',login);
-	$('#register').on('click', register);
-	
+	loadHome();
+	$('#home').on('click',loadHome);
+	$('#profile').on('click', loadProfile);
 }
 
-function login(){
-//	alert("logging in");
-	var username = $('#username').val();
-	var password = $('#pass').val();
-	var toSend = [username, password];
-//	var user = {
-//			name: username, 
-//			password: password
-//	};
-	json = JSON.stringify(toSend);
-	console.log(toSend);
-	
+function loadHome(){
+	loadView("getHomeView");
+}
+function loadProfile(){
+	loadView("getProfileView");
+}
+function loadView(page){
 	var xhr = new XMLHttpRequest();
-	
-	xhr.open("POST","login", true);
-	xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-	xhr.send(json);
 	xhr.onreadystatechange = function(){
-		if(xhr.readyState == 4 && xhr.status==200){
-			console.log("in xhr callback ")
+		if(xhr.readyState == 4 && xhr.status == 200){
+			document.getElementById('view').
+			innerHTML = xhr.responseText;			
 		}
-	};
+	}
+	console.log("REQUESTING VIEW " + page)
 	
-}
-
-function register(){
-	alert("registering");
-}
+	xhr.open("GET", page , true);
+	xhr.send();
+};

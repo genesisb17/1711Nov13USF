@@ -1,9 +1,8 @@
 package com.ex.servlets;
 
+import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.Enumeration;
+import java.io.InputStreamReader;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,55 +10,33 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.ex.service.DemoService;
+import com.ex.pojos.User;
+import com.ex.service.Service;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 @WebServlet("/register")
-public class RegisterServlet extends HttpServlet{
+public class RegisterServlet extends HttpServlet {
 
-	private static final long serialVersionUID = 1L;
-
+	static Service service = new Service();
 	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException{
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-		String name = request.getParameter("username");
-		String pass = request.getParameter("password");
+		System.out.println("in register servlet");
 
-		System.out.println("User: " + name + "\nPassword: " + pass);
-
-		Enumeration<String> paramNames = request.getParameterNames();
-		while(paramNames.hasMoreElements()){
-			String param = paramNames.nextElement();
-			String val = request.getParameter(param);
-			System.out.println(param + ": " + val);
+		BufferedReader br = 
+				new BufferedReader(new InputStreamReader(req.getInputStream()));
+		String json = "";
+		if(br != null){
+			json = br.readLine();
 		}
-
-		//		PrintWriter out = response.getWriter();
-		//		out.print("Welcome " + name +"!");
-
+		
+		ObjectMapper mapper = new ObjectMapper();
+		
+		User u = mapper.readValue(json, User.class);
+		u = service.addUser(u);
+		
+		// redirect to login page? display successful login page then request login page? 
+		
 	}
 
-
-	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException{
-		DemoService service = new DemoService();
-		
-		String name = request.getParameter("username");
-		service.addUser(name);
-		
-		
-		ArrayList<String> users = service.getUsers();
-		
-		String userList = "<ul>";
-		for(String u : users){
-			userList = userList + "<li>" + u + "</li>";
-		}
-		userList = userList + "</ul>";
-		
-		PrintWriter out = response.getWriter();
-		response.setContentType("text/html");
-		out.print(userList);
-		
-	}
 }

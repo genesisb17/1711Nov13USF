@@ -1,13 +1,9 @@
-package com.ex.servlets;
+package com.reimb.servlets;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.Enumeration;
-import java.util.Map;
-import java.util.Set;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,24 +12,30 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.ex.pojos.User;
-import com.ex.service.DemoService;
-import com.ex.service.Service;
+import com.reimb.pojos.User;
+//import com.reimb.service.DemoService;
+import com.reimb.service.Service;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @WebServlet("/login")
-public class LoginServlet extends HttpServlet{
+public class login extends HttpServlet {
 	static Service service = new Service();
+	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public login() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
 
-	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) 
-			throws ServletException, IOException {
-		System.out.println("in login servlet");
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+System.out.println("in login servlet");
 
 		
 		// 1. get received JSON data from request
-		BufferedReader br = 
-				new BufferedReader(new InputStreamReader(req.getInputStream()));
+		BufferedReader br = new BufferedReader(new InputStreamReader(req.getInputStream()));
 		String json = "";
 		if(br != null){
 			json = br.readLine();
@@ -49,17 +51,17 @@ public class LoginServlet extends HttpServlet{
 		String password = userInfo[1];
 		
 
-		User temp = service.validateUser(username); // get user by uname
+		User temp = service.loginValidate(username); // get user by uname
 		if(temp == null){ // if invalid user, obj = null
 			System.out.println("temp is null");
 		}
 		else if(!temp.getPassword().equals(password)){ // if invalid pw, id = 0;
 			temp.setId(0);
-			temp.setPassword(null);
 		}
 		else{// valid credentials
 			HttpSession session = req.getSession();
 			session.setAttribute("user", temp);//persist this user to the session to be accessed throughout servlets
+			//req.getRequestDispatcher("members.html").forward(req, resp);
 		}
 		PrintWriter out = resp.getWriter();
 		resp.setContentType("application/json");
@@ -72,3 +74,5 @@ public class LoginServlet extends HttpServlet{
 	}
 
 }
+
+
