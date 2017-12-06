@@ -15,7 +15,7 @@ function loadHome(){
 function loadProfile(){
 	var xhr= new XMLHttpRequest();
 	xhr.onreadystatechange=function(){
-		if(this.readyState==4 &&this.status=200){
+		if(this.readyState==4 &&this.status==200){
 			document.getElementById('view').innrHTML=xhr.responseText;
 			var user=getUserInfo();
 			$("#name").html(user.firstname);
@@ -37,11 +37,11 @@ function loadView(page){
 };
 
 
-function	GetUserInfo(){
+function GetUserInfo(){
 	var sessionUser;
 	var xhr = new XMLHttpRequest();
 	xhr.onreadystatechange=function(){
-		if(xhr.readyState=4 && xhr.status=200){
+		if(xhr.readyState=4 && xhr.status==200){
 			console.log(xhr.responseText);
 			sessionUser=JSON.parse(xhr.responseText);
 			

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
+	integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb"
+	crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+	integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+	crossorigin="anonymous"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"
+	integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh"
+	crossorigin="anonymous"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"
+	integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
+	crossorigin="anonymous"></script>
+<style>
+body {
+	background-color: linen
+}
+</style>
+</head>
+<body>
+	<form>
+		<div class="container form-control"
+			style="margin-top: 50px !important">
+			<h1>Electronic Reimbursements System</h1>
+			<h4>(ERS)</h4>
+			<label class="
+			col-form-label" for="formGroupExampleInput">
+				username:</label> <input type="text" class="col-3 form-control"
+				id="username" placeholder="username"
+				style="padding-top: 3px !important"> <label
+				class="col-form-label" for="formGroupExampleInput">password:</label>
+			<input type="text" class="col-3 form-control" id="password"
+				placeholder="password" style="padding-top: 3px !important" /> <br />
+			<input type="button" class="btn btn-dark" id="login" value="Login">
+			<input type="button" class="btn btn-dark" id="register"
+				value="Register">
+		</div>
+	</form>
+</body>
+
+<script>
+$(#login).on(click,function{
+	var xhr=new XMLHttpRequest();
+	xhr.onreadystatechange(function(){
+		if(this.status==200 && this.readystate==4){
+			//do some stuff
+		}
+	}
+	xhr.open("GET","ValidateLoginServlet",true);
+	xhr.send();
+	);
+});
+
+$(#register).on(click,function{
+	var xhr=new XMLHttpRequest();
+	xhr.onreadystatechange(function(){
+		if(this.status==200 && this.readystate==4){
+			//do some stuff	
+		}
+	}
+	xhr.open("POST","RegisterNewServlet",true);
+	xhr.send();
+	);
+});
+</script>
+
+</html>
