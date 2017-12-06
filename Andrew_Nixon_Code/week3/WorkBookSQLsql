@@ -1,0 +1,254 @@
+--SQL Assignment Andrew Nixon
+
+--Part I
+--2.1 Select
+/*
+select * from EMPLOYEE;
+select * from EMPLOYEE 
+where LASTNAME = 'King';
+SELECT * FROM EMPLOYEE
+where FIRSTNAME = 'Andrew'
+and REPORTSTO is NULL;
+*/
+--2.2 ORDER BY
+/*
+SELECT * FROM ALBUM
+ORDER BY TITLE;
+SELECT firstname from CUSTOMER
+ORDER by CITY;
+*/
+
+--2.3 INSERT INTO
+/*
+INSERT INTO GENRE VALUES(26, 'Electro Swing');
+INSERT INTO GENRE VALUES(27, 'J-Pop');
+*/
+/*select * from EMPLOYEE;
+INSERT INTO Employee ( ) VALUES (9, 'Naughton', 'Joan', 'Sales Support Agent', 2, 
+"13-04-78", "05-05-05", '1474 Evergreen Way South', 'Calgary', 'AB', 'Canada',
+'T2P 5H0', '+1 (403) 263-4444', '+1 (403) 263-4455', 'joan@chinookcorp.com');
+INSERT INTO Employee VALUES (10, 'Dean', 'Mac', 'Sales Support Agent', 2,
+"26-10-75", "01-07-05", '1474 Evergreen Way South', 'Calgary', 'AB', 'Canada',
+'T2P 5H0', '+1 (403) 263-5555', '+1 (403) 263-5566', 'joan@chinookcorp.com');
+select * from EMPLOYEE;*/
+
+update customer
+set FIRSTNAME = 'Robert', LASTNAME = 'Walter'
+where FIRSTNAME = 'Aaron' AND LASTNAME = 'Mitchell';
+
+update Artist set NAME = 'CCR' where NAME = 'Creedence Clearwater Revival';
+
+--2.5 LIKE
+select * from INVOICE where BILLINGADDRESS like 'T%';
+
+--2.6 BETWEEN !!!!!
+select * from INVOICE where TOTAL BETWEEN 15 and 50;
+
+--2.7 DELETE
+DELETE FROM CUSTOMER WHERE FIRSTNAME = 'Robert' and LASTNAME = 'Walter';
+
+--PART III SQL FUNCTIONS !!!!!
+
+--6.1 !!!!!
+/*
+create or replace display_new_employee after INSERT on employee for each row
+declare 
+*/
+--7.1 INNER JOIN
+select customer.firstname, customer.lastname, invoice.invoiceid
+from CUSTOMER
+inner join invoice on CUSTOMER.CUSTOMERID = invoice.CUSTOMERID;
+
+--7.2 OUTER JOIN
+select customer.CUSTOMERID, customer.firstname, customer.lastname, 
+  invoice.invoiceid, invoice.TOTAL
+from CUSTOMER
+full outer join invoice on CUSTOMER.CUSTOMERID = invoice.CUSTOMERID;
+
+--7.3 RIGHT
+select artist.name, album.title
+from ARTIST
+RIGHT JOIN album on ARTIST.ARTISTID = album.ARTISTID;
+
+--7.4 CROSS
+select * from ARTIST cross JOIN album order by ARTIST.NAME ASC;
+
+--7.5 SELF !!!!!
+
+--Part II
+CREATE TABLE employees (
+  EmployeeID NUMBER NOT NULL,
+  UserName VARCHAR(20) NOT NULL,
+  Password VARCHAR(20) NOT NULL,
+  Name VARCHAR(25) NOT NULL,
+  Department CHAR(2) NOT NULL,
+  Manager NUMBER NOT NULL,
+  PRIMARY KEY (EmployeeID)
+);
+
+CREATE TABLE Orders (
+  OrderID NUMBER NOT NULL,
+  EmployeeID NUMBER NOT NULL,
+  OrderDate DATE NOT NULL,
+  Status CHAR NOT NULL,
+  PRIMARY KEY (OrderID),
+  CONSTRAINT FK_OrdersEmployees FOREIGN KEY (EmployeeID)
+  REFERENCES employees (EmployeeID)
+);
+
+CREATE TABLE Supplier (
+SuppID number NOT NULL,
+Name VARCHAR(80) NOT NULL 
+);
+
+ALTER TABLE Supplier 
+ADD PRIMARY KEY (SuppID);
+
+CREATE TABLE Category(
+CatID number not null,
+Name VARCHAR(80),
+Descript VARCHAR(255),
+PRIMARY KEY (CatID)
+);
+
+CREATE TABLE Product (
+  ProductID NUMBER NOT NULL,
+  CatID NUMBER NOT NULL,
+  Name VARCHAR(80),
+  Descript VARCHAR(255),
+  UnitCost NUMBER,
+  SuppID NUMBER NOT NULL,
+  PRIMARY KEY (ProductID),  
+  CONSTRAINT FK_ProductSupplier FOREIGN KEY (SuppID)
+  REFERENCES Supplier (SuppID),
+  CONSTRAINT FK_ProductCat FOREIGN KEY (CatID)
+  REFERENCES Category (CatID)
+);
+
+Create Table OrderItem (
+OrderID number NOT NULL,
+ProductID number NOT NULL,
+Quantity number NOT NULL,
+PRIMARY KEY (OrderID, ProductID),
+CONSTRAINT FK_OrderItemOrder FOREIGN KEY (OrderID) REFERENCES Orders (OrderID),
+CONSTRAINT FK_OrderItemProduct FOREIGN KEY (ProductID) 
+  REFERENCES Product (ProductID)
+);
+
+ALTER TABLE OrderItem DROP CONSTRAINT FK_OrderItemProduct;
+
+ALTER TABLE OrderItem
+ADD CONSTRAINT FK_OrderItemProduct
+FOREIGN KEY (ProductID) REFERENCES Product(ProductID);
+
+ALTER TABLE EMPLOYEES DROP COLUMN NAME;
+
+
+INSERT INTO EMPLOYEES (EMPLOYEEID, USERNAME, PASSWORD, DEPARTMENT, MANAGER) 
+Values (1, 'dclark', 'drc', 'HR', 0);
+
+INSERT INTO EMPLOYEES (EMPLOYEEID, USERNAME, PASSWORD, DEPARTMENT, MANAGER) 
+Values (2, 'jsmith', 'js', 'IT', 1);
+
+INSERT INTO EMPLOYEES (EMPLOYEEID, USERNAME, PASSWORD, DEPARTMENT, MANAGER) 
+Values (3, 'mjones', 'mj', 'HR', 1);
+
+INSERT INTO EMPLOYEES (EMPLOYEEID, USERNAME, PASSWORD, DEPARTMENT, MANAGER) 
+Values (4, 'klink', 'kl', 'IT', 0);
+
+INSERT INTO Supplier (SUPPID, NAME) VALUES (1, 'XYZ Office Supplies');
+INSERT INTO Supplier (SUPPID, NAME) VALUES (2, 'ABC Office Products');
+
+INSERT INTO CATEGORY (CATID, NAME) VALUES (1, 'Audio Visual');
+INSERT INTO CATEGORY (CATID, NAME) VALUES (2, 'Art Supplies');
+INSERT INTO CATEGORY (CATID, NAME) VALUES (3, 'Cleaning Supplies');
+INSERT INTO CATEGORY (CATID, NAME) VALUES (4, 'Computer Supplies');
+INSERT INTO CATEGORY (CATID, NAME) VALUES (5, 'Desl Accessories');
+INSERT INTO CATEGORY (CATID, NAME) VALUES (6, 'Writing Supplies');
+INSERT INTO CATEGORY (CATID, NAME) VALUES (7, 'Printer Supplies');
+
+INSERT INTO Product (ProductID, CATID, NAME, DESCRIPT, UNITCOST, SUPPID) 
+Values (1, 2, 'Ruler', '12 incg stainless steel', 3.79, 2);
+INSERT INTO Product (ProductID, CATID, NAME, DESCRIPT, UNITCOST, SUPPID) 
+Values (2, 1, 'Trasparency', 'Quick dry ink jet', 24.49, 1);
+INSERT INTO Product (ProductID, CATID, NAME, DESCRIPT, UNITCOST, SUPPID) 
+Values (3, 1, 'Overhead Bulb', 'High insensity bulb', 12.00, 1);
+INSERT INTO Product (ProductID, CATID, NAME, DESCRIPT, UNITCOST, SUPPID) 
+Values (4, 1, 'Lazer Pointer', 'General Purpose Laser Pointer', 29.99, 2);
+INSERT INTO Product (ProductID, CATID, NAME, DESCRIPT, UNITCOST, SUPPID) 
+Values (5, 2, 'Colored Pencils', 'Non Tpxic 12 Pack', 2.84, 1);
+INSERT INTO Product (ProductID, CATID, NAME, DESCRIPT, UNITCOST, SUPPID) 
+Values (6, 3, 'Colored Pencils', 'Use on all washable surfaces', 4.29, 2);
+INSERT INTO Product (ProductID, CATID, NAME, DESCRIPT, UNITCOST, SUPPID) 
+Values (7, 3, 'Paper hand towels', '320 sheets per roll', 5.25, 1);
+INSERT INTO Product (ProductID, CATID, NAME, DESCRIPT, UNITCOST, SUPPID) 
+Values (8, 4, 'CD-R', '700 mb with jewel case', 1.09, 1);
+INSERT INTO Product (ProductID, CATID, NAME, DESCRIPT, UNITCOST, SUPPID) 
+Values (9, 4, '3.5 inch disks', 'High Density Formatted Box of 10 ', 5.99, 1);
+INSERT INTO Product (ProductID, CATID, NAME, DESCRIPT, UNITCOST, SUPPID) 
+Values (10, 4, 'Monotor Wipes', 'Non abrasive lint free', 6.99, 2);
+INSERT INTO Product (ProductID, CATID, NAME, DESCRIPT, UNITCOST, SUPPID) 
+Values (11, 4, 'Dust Blaster', 'Ozone safe no CFCs', 8.99, 2);
+INSERT INTO Product (ProductID, CATID, NAME, DESCRIPT, UNITCOST, SUPPID) 
+Values (12, 2, 'Clear Tape', '1 inch wide rolls', 3.90, 1);
+INSERT INTO Product (ProductID, CATID, NAME, DESCRIPT, UNITCOST, SUPPID) 
+Values (13, 1, 'Overhead Protector', 'Portable with travel cover', 759.97, 1);
+INSERT INTO Product (ProductID, CATID, NAME, DESCRIPT, UNITCOST, SUPPID) 
+Values (14, 2, 'Glue Stick', 'Oderless non toxic', 1.99, 2);
+
+UPDATE PRODUCT SET NAME = 'All-Purpose Cleaner' WHERE PRODUCTID = 6;
+UPDATE PRODUCT SET NAME = 'Monitor Wipes' WHERE PRODUCTID = 10;
+
+SELECT * FROM EMPLOYEES;
+SELECT * FROM EMPLOYEES where DEPARTMENT= 'HR';
+SELECT * FROM EMPLOYEES where DEPARTMENT= 'HR' AND USERNAME='jsmith';
+SELECT * FROM EMPLOYEES where DEPARTMENT= 'HR' OR MANAGER = 1;
+
+
+Select name FROM PRODUCT ORDER BY NAME ASC;
+Select name FROM PRODUCT ORDER BY NAME DESC;
+Select name FROM CATEGORY ORDER BY NAME;
+
+INSERT INTO EMPLOYEES (EMPLOYEEID, USERNAME, PASSWORD, DEPARTMENT, MANAGER) 
+Values (5, 'anixon', 'an', 'IT', 0);
+INSERT INTO Supplier (SUPPID, NAME) VALUES (3, 'LMNO Office Tools');
+INSERT INTO CATEGORY (CATID, NAME) VALUES (8, 'Misc');
+
+UPDATE PRODUCT SET UNITCOST = 3.99 WHERE NAME = 'Ruler';
+UPDATE CATEGORY SET DESCRIPT = 'this cleans things' WHERE NAME like 'C%Supplies';
+
+select username from EMPLOYEES where USERNAME like 'j%';
+select name from PRODUCT where NAME like 'O%';
+
+Select name from product where UNITCOST between 3 and 10;
+Select name from product where UNITCOST between 500 and 800;
+
+Delete from category where NAME = 'Audio Visual';
+INSERT INTO Supplier (SUPPID, NAME) VALUES (4, 'UVW Office Tools');
+INSERT INTO Supplier (SUPPID, NAME) VALUES (5, 'UVW Office Tools');
+INSERT INTO Supplier (SUPPID, NAME) VALUES (6, 'UVW Office Tools');
+Delete from SUPPLIER where NAME = 'UVW Office Tools';
+
+CREATE OR REPLACE FUNCTION Laser_Length
+return number
+is 
+  Desc_Length number;
+  dl varchar(255);
+begin
+Select DESCRIPT INTO dl FROM PRODUCT WHERE PRODUCTID = 4;
+SELECT Length(dl) INTO Desc_Length from dual;
+return Desc_Length;
+end;
+/
+DECLARE
+  total NUMBER;
+BEGIN
+  
+  total := Laser_Length();
+  
+  DBMS_OUTPUT.PUT_LINE('total number of artists is: ' || total);
+  
+END;
+/
+
+

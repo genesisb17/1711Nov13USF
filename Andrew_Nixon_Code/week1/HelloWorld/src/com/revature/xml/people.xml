@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<people>
+	<person id="1">
+		<firstName>Genesis</firstName>
+		<lastName>Bonds</lastName>
+		<age>1000</age>
+	</person>
+	<person id="2">
+		<firstName>Jimmy</firstName>
+		<lastName>Neutron</lastName>
+		<age>12</age>
+	</person>
+</people>
+
+<!-- this is how you comment -->

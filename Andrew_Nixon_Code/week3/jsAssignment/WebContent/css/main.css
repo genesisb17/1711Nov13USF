@@ -1,0 +1,21 @@
+@charset "ISO-8859-1";
+
+body {
+	background-color: grey;
+}
+* {
+	font-family: "Times New Roman", Times, serif;
+}
+#testid {
+    font-weight: bold;
+    font-size: 20px;
+    
+}
+
+.jdbclogo {
+	background-image: url('../images/images.png');
+}
+
+#navline {
+	background-color: grey;
+}
