@@ -14,39 +14,39 @@ import com.rev.util.ConnectionFactory;
 public class JDBCDAO implements DAO {
 
 	public User addUser(User u) {
-		try(Connection conn = ConnectionFactory.getInstance().getConnection()){
+		try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
 			conn.setAutoCommit(false);
-			String sql="insert into Users (FIRSTNAME, LASTNAME, USERNAME, PASSWORD)"
-					+ " values ((?), (?), (?), (?))";
-			
-			PreparedStatement ps= conn.prepareStatement(sql);
-			ps.setString(1, u.getFirstname());
-			ps.setString(2, u.getLastname());
-			ps.setString(3, u.getEmail());
-			ps.setString(4, u.getPassword());
+			String sql = "INSERT INTO ERS_USERS (ERS_USERNAME, ERS_PASSWORD,USER_FIRST_NAME, USER_LAST_NAME, USER_EMAIL, USER_ROLE_ID) VALUES (?, ?, ?, ?, ?, 1);";
+
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setString(1, u.getEmail());
+			ps.setString(2, u.getPassword());
+			ps.setString(3, u.getFirstname());
+			ps.setString(4, u.getLastname());
+			ps.setString(5, u.getEmail());
 			ps.executeUpdate();
 			conn.commit();
-		} catch(SQLIntegrityConstraintViolationException e) {
+		} catch (SQLIntegrityConstraintViolationException e) {
 			System.out.println("Sorry but an account with this username already exists");
 			return null;
-		}catch (SQLException e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		User user=getUser(u.getEmail(), u.getPassword());
+		User user = getUser(u.getEmail(), u.getPassword());
 		addAccount(user);
 		return user;
 	}
-	
+
 	public User getUser(String email, String password) {
-		User user=new User();
-		
-		try(Connection conn = ConnectionFactory.getInstance().getConnection()){
+		User user = new User();
+
+		try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
 			String sql = "select * from Users where username=? and password=?";
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setString(1, email);
 			ps.setString(2, password);
 			ResultSet info = ps.executeQuery();
-			while(info.next()) {
+			while (info.next()) {
 				user.setId(info.getInt(1));
 				user.setFirstname(info.getString(2));
 				user.setLastname(info.getString(3));
@@ -56,17 +56,17 @@ public class JDBCDAO implements DAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		if(user.getEmail()==null)
+		if (user.getEmail() == null)
 			return null;
 		return user;
 	}
 
 	public Account addAccount(User u) {
-		try(Connection conn = ConnectionFactory.getInstance().getConnection()){
+		try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
 			conn.setAutoCommit(false);
-			String sql="insert into Accounts (user_id, balance) values ((?), (?))";
-			
-			PreparedStatement ps= conn.prepareStatement(sql);
+			String sql = "insert into Accounts (user_id, balance) values ((?), (?))";
+
+			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setInt(1, u.getId());
 			ps.setDouble(2, 0);
 			ps.executeUpdate();
@@ -78,13 +78,13 @@ public class JDBCDAO implements DAO {
 	}
 
 	public Account getAccount(int U_id) {
-		Account a=new Account();	
-		try(Connection conn = ConnectionFactory.getInstance().getConnection()){
+		Account a = new Account();
+		try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
 			String sql = "select * from Accounts where User_ID=?";
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setInt(1, U_id);
 			ResultSet info = ps.executeQuery();
-			while(info.next()) {
+			while (info.next()) {
 				a.setId(info.getInt(1));
 				a.setU_id(info.getInt(2));
 				a.setBalance(info.getDouble(3));
@@ -96,10 +96,10 @@ public class JDBCDAO implements DAO {
 	}
 
 	public Double setBalance(int id, double money) {
-		Account a=new Account();
-		try(Connection conn = ConnectionFactory.getInstance().getConnection()){
+		Account a = new Account();
+		try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
 			conn.setAutoCommit(false);
-			String sql="Update Accounts set balance = ? where Acc_id=?";
+			String sql = "Update Accounts set balance = ? where Acc_id=?";
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setDouble(1, money);
 			ps.setInt(2, id);
