@@ -17,13 +17,13 @@ function loadHome(){
 			document.getElementById('view').innerHTML = xhr.responseText;				
 		}
 	}	
-	xhr.open("GET", "getHomeView" , true);
+	xhr.open("GET", "view/home" , true);
 	xhr.send();
 }
 
 function loadProfile(){
 	var xhr = new XMLHttpRequest();
-	xhr.open("GET", "getProfileView" , true);
+	xhr.open("GET", "view/profile" , true);
 	xhr.send();
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState == 4 && xhr.status == 200){

@@ -9,20 +9,19 @@ public class RequestHelper {
 		System.err.println("[LOG] Processing request with helper : " + req.getRequestURI());
 
 
-		//		Factory.getMachineGun();
-System.out.println("in process method");
+
+		System.out.println("in process method");
 		switch (req.getRequestURI()) {
-		case "loadView/home":{
+		case "view/profile":{
+			return "partials/profile.html";
+		}
+		case "view/home":{
 			return "partials/home.html";
 		}
-
-		default:
-			return "login.html";
-		
 		}
-
+		
+		return null;
 
 
 	}
-
 }
