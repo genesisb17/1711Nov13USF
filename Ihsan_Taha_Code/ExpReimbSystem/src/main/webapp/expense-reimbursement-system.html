@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Expense Reimbursement System</title>
+<link rel="stylesheet" href="css/revature.css">
+<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="bootstrap/font-awesome-4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+
+	<!-- *************************************************************************** -->
+	<!-- Navigation Bar -->
+	<!-- *************************************************************************** -->
+	<nav class="navbar navbar-expand-lg navbar-light fixed-top section-color">
+		<a class="navbar-brand" href="#"> <i
+			class="fa fa-briefcase fa-2x custom-color"></i>
+		</a>
+
+		<button class="navbar-toggler" type="button" data-toggle="collapse"
+			data-target="#navbarSupportedContent"
+			aria-controls="navbarSupportedContent" aria-expanded="false"
+			aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item active"><a class="nav-link" href="#">Home<span
+						class="sr-only">(current)</span></a></li>
+				<li class="nav-item"><a class="nav-link" href="#">About</a></li>
+				<li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
+			</ul>
+		</div>
+	</nav>
+	
+	
+	
+	<!-- Header Section -->
+    <section>
+        <div class="jumbotron custom-jumbo">
+        
+        	<!-- *************************************************************************** -->
+			<!-- 1. Header View -->
+			<!-- *************************************************************************** -->
+        	<div id="headerView">
+            	<h1 class="display-4">Expense Reimbursement System</h1>
+            	<hr class="my-4" style="background-color: #09C">
+            	<p class="lead">
+            		Welcome to the Expense Reimbursement System! Login or register to create new reimbursement requests, and we will help you get your money back!
+            	</p>
+        	</div>
+        </div>
+    </section>
+
+
+
+	<div class="container">
+
+		<div class="row justify-content-center">
+		
+		
+		
+			<!-- *************************************************************************** -->
+			<!-- 2. Menu View -->
+			<!-- *************************************************************************** -->
+			<div class="col-md-3 form-control m-1 section-color">
+				<div id="menuView">
+					<br />
+					<h3 class="custom-color" style="text-align: center">Login</h3>
+					<hr />
+					<input class="form-control" type="text" id="loginUsername" placeholder="Username"/>
+					<br />
+					<input class="form-control" type="password" id="loginPassword" placeholder="Password"/>
+					<br />
+					<button class="form-control btn-custom" id="loginBtn">Login</button>
+					<br />
+					<h6 class="text-muted" style="text-align: center">Not registered?</h6>
+  					<button class="form-control btn-custom"data-toggle="collapse" data-target="#collapseSubmit" aria-expanded="false" aria-controls="collapseSubmit">
+    					Sign Up!
+  					</button>
+  					<br />
+					<div class="collapse" id="collapseSubmit">				
+						<hr />
+						<input class="form-control" type="text" id="username" placeholder="Username"/>
+						<br />
+						<input  class="form-control" type="password" id="password" placeholder="Password"/>
+						<br />
+						<input class="form-control" type="text" id="firstname" placeholder="First Name"/>
+						<br />
+						<input class="form-control" type="text" id="lastname" placeholder="Last Name"/>
+						<br />
+						<input class="form-control" type="email" id="useremail" placeholder="Email" />
+						<br />	
+						<select class="selectpicker form-control" id="myselect">
+  							<option>User</option>
+  							<option>Manager</option>
+						</select>
+						<br />
+						<button class="form-control btn-custom" id="registerBtn">Register</button>
+						<br />
+					</div>
+				</div>
+			</div>
+			
+			
+			
+			<!-- *************************************************************************** -->
+			<!-- 3. Content View -->
+			<!-- *************************************************************************** -->
+			<div class="col-md-8 form-control m-1 section-color">
+				<div id="contentView">
+					<br />
+					<h5 class="custom-color" style="text-align: center; margin-top:10px">Getting your money back is easy with five simple steps</h5>
+					<hr />
+					<span>After logging in:</span><br />
+					<ol>
+						<li>Create a request from the logged-in menu on the left</li>
+						<li>Select the type of reimbursement you are requesting</li>
+						<li>Put in the amount to be reimbursed</li>
+						<li>Describe the purpose for the reimbursement</li>
+						<li>Attach a receipt if you have one available</li>
+					</ol>
+					<span>That's it! Submit the request, and a resolver will get back to you shortly!</span>
+				</div>
+			</div>
+			
+			
+			
+			
+		</div>
+
+		<br />
+		<br />
+		<br />
+		
+	</div>
+		
+		
+		
+    <!-- *************************************************************************** -->
+	<!-- Optional JavaScript && Application's JavaScript -->
+	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+	<!-- *************************************************************************** -->
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+	<script src="bootstrap/js/bootstrap.min.js"></script>
+	<script src="js/exp_app.js"></script>
+		
+</body>
+</html>
