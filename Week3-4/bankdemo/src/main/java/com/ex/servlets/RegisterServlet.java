@@ -16,8 +16,20 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 @WebServlet("/register")
 public class RegisterServlet extends HttpServlet {
+	static{
+		System.out.println("in register servlet");
+	}
+	
 
 	static Service service = new Service();
+	
+	
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		System.out.println("in do get");
+		req.getRequestDispatcher("register.html").forward(req, resp);
+	}
+	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
