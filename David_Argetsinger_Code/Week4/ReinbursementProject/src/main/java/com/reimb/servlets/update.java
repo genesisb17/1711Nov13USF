@@ -35,15 +35,17 @@ public class update extends HttpServlet {
 		User ogU=(User)session.getAttribute("user");
 		System.out.println(ogU);
 		u.setId(ogU.getId()); // id wont change and niether will e-mail .. nah lets let that happen username will remain though. session bound as will role
-		u.setEmail(ogU.getEmail());
+		u.setUsername(ogU.getUsername());
 		u.setRole(ogU.getRole());
 
-		if(u.getLastname()==null)
+		if(u.getLastname()=="")
 			u.setLastname(ogU.getLastname());
-		if(u.getName()==null)
+		if(u.getName()=="")
 			u.setName(ogU.getName());
-		if(u.getPassword()==null)
+		if(u.getPassword()=="")
 			u.setPassword(ogU.getPassword());
+		if(u.getEmail()=="")
+			u.setPassword(ogU.getEmail());
 	
 		
 		service.updateUser(u);

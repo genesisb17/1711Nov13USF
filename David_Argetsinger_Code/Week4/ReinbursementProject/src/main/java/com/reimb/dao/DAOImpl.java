@@ -53,6 +53,9 @@ public class DAOImpl implements DAO {
 			preparedStatement.setString(3,user.getPassword());
 			preparedStatement.setString(4,user.getEmail());
 			preparedStatement.setString(5,user.getUsername());
+			System.out.println("attempting to ssysout prepstate in updateaccount");
+			System.out.println(preparedStatement);
+			System.out.println(user);
 			int rows = preparedStatement.executeUpdate();// returns number of rows modified 
 			if (rows != 0) {
 				conn.commit();
