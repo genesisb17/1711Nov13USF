@@ -66,7 +66,6 @@ public class JDBCDAO implements DAO {
 				user.setLastName(info.getString(5));
 				user.setEmail(info.getString(6));
 				user.setRole(info.getInt(7));
-				System.out.println("test1");
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

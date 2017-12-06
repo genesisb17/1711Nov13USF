@@ -15,7 +15,7 @@ public class User {
 	public User(int user_ID, String username, String password, String firstName, String lastName, String email,
 			int role) {
 		super();
-		user_ID = user_ID;
+		this.user_ID = user_ID;
 		this.username = username;
 		this.password = password;
 		this.firstName = firstName;
@@ -29,7 +29,7 @@ public class User {
 	}
 
 	public void setUser_ID(int user_ID) {
-		user_ID = user_ID;
+		this.user_ID = user_ID;
 	}
 
 	public String getUsername() {
