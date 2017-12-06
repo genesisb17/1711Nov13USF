@@ -26,7 +26,7 @@ function loadHome() {
 		}
 	}
 
-	xhr.open("GET", "getHomeView", true);
+	xhr.open("GET", "getHomeView.view", true);
 	xhr.send();
 }
 
@@ -39,18 +39,18 @@ function loadProfile() {
 		}
 	}
 
-	xhr.open("GET", "getProfileView", true);
+	xhr.open("GET", "getProfileView.view", true);
 	xhr.send();
 }
 
 function loadUserInfo() {
+	console.log("LoadUserInfo");
 	var sessionUser;
 	var xhr = new XMLHttpRequest();
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState == 4 && xhr.status == 200) {
 			sessionUser = JSON.parse(xhr.responseText);
 			$("#name").html(sessionUser.firstname + " " + sessionUser.lastname);
-			return sessionUser;
 		}
 	}
 	xhr.open("GET", "getUserInfo", true);

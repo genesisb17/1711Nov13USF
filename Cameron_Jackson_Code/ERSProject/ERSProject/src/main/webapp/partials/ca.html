@@ -1,5 +1,5 @@
 <div class="login-container mx-auto" id="ca-input">
-    <h1 class="text-center">Create Account</h1>
+    <h2 class="text-center">Create Account</h2>
     <hr/>
     <button type="submit" class="btn btn-link btn-block" id="returning-users">Already have an account? Click here</button>
     <br>
@@ -9,8 +9,12 @@
     <br>
     <input type="text" class="form-control" id="email" placeholder="Email">
     <br>
+    <div class="alert alert-danger bad-username" role="alert" id="bad-username"></div>
+    <br class="bad-username"/>
     <input type="username" class="form-control" id="username" placeholder="Username">
     <br>
+    <div class="alert alert-danger bad-password" role="alert" id="bad-password"></div>
+    <br class="bad-password"/>
     <input type="password" class="form-control" id="password" placeholder="Password">
     <br>
     <input type="password" class="form-control" id="confirm-password" placeholder="Confirm Password">

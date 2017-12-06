@@ -6,12 +6,29 @@
   </welcome-file-list>
   
   <servlet>
-  	<servlet-name>hello</servlet-name>
-  	<servlet-class>com.revature.servlets.HelloServlet</servlet-class>
+  	<servlet-name>GetViews</servlet-name>
+  	<servlet-class>com.revature.servlets.GetViewsServlet</servlet-class>
   </servlet>
   <servlet-mapping>
-  	<servlet-name>hello</servlet-name>
-  	<url-pattern>/hello</url-pattern>
+  	<servlet-name>GetViews</servlet-name>
+  	<url-pattern>*.view</url-pattern>
   </servlet-mapping>
-  
+  <!-- <servlet>
+    <servlet-name>hello</servlet-name>
+    <servlet-class>com.revature.servlets.HelloServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>hello</servlet-name>
+    <url-pattern>/hello</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>GetNavBarServlet</display-name>
+    <servlet-name>GetNavBarServlet</servlet-name>
+    <servlet-class>com.revature.servlets.GetNavBarServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>GetNavBarServlet</servlet-name>
+    <url-pattern>/GetNavBarServlet</url-pattern>
+  </servlet-mapping> -->
 </web-app>

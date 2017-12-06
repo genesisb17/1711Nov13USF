@@ -9,7 +9,7 @@ import com.revature.types.ReimbursementStatus;
 public class ERSService {
 	static ERSDAO dao = new ERSDatabaseDAO();
 	
-	private boolean userExists(String username) {
+	public boolean userExists(String username) {
 		String existingUser = dao.findUsername(username);
 		if (existingUser != null) 
 			return true;
@@ -17,12 +17,20 @@ public class ERSService {
 		return false;
 	}
 	
+	public boolean correctPassword(String username, String password) {
+		String existingUser = dao.findUsername(username);
+		String existingPass = dao.findPassword(username);
+		if (userExists(username) && existingPass.equals(password)) 
+			return true;
+			
+		return false;
+	}
+	
 	public Users login(String username, String password) {
 		Users u = null;
-		if (userExists(username)) {
-			if (password.equals(dao.findPassword(username)))
-				u = dao.getUserByUsername(username);
-		}
+		if (userExists(username) && correctPassword(username, password)) 
+			u = dao.getUserByUsername(username);
+		
 		return u;
 	}
 	

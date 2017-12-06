@@ -5,4 +5,34 @@
     <welcome-file>ers.html</welcome-file>
     <welcome-file>ers.htm</welcome-file>
   </welcome-file-list>
+  <servlet>
+    <description></description>
+    <display-name>LoadPageServlet</display-name>
+    <servlet-name>LoadPageServlet</servlet-name>
+    <servlet-class>com.revature.servlets.LoadPageServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>LoadPageServlet</servlet-name>
+    <url-pattern>/LoadPageServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>LogoutServlet</display-name>
+    <servlet-name>LogoutServlet</servlet-name>
+    <servlet-class>com.revature.servlets.LogoutServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>LogoutServlet</servlet-name>
+    <url-pattern>/LogoutServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>GetLogoutModalServlet</display-name>
+    <servlet-name>GetLogoutModalServlet</servlet-name>
+    <servlet-class>com.revature.servlets.GetLogoutModalServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>GetLogoutModalServlet</servlet-name>
+    <url-pattern>/GetLogoutModalServlet</url-pattern>
+  </servlet-mapping>
 </web-app>

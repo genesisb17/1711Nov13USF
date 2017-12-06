@@ -54,6 +54,7 @@ public class ERSDatabaseDAO implements ERSDAO {
 				u = new Users();
 				u.setUserId(userSet.getInt(DB_KEY_USERID));
 				u.setUsername(userSet.getString(DB_KEY_USERNAME));
+				u.setPassword(userSet.getString(DB_KEY_PASSWORD));
 				u.setFirstName(userSet.getString(DB_KEY_FIRSTNAME));
 				u.setLastName(userSet.getString(DB_KEY_LASTNAME));
 				u.setEmail(userSet.getString(DB_KEY_EMAIL));
@@ -79,6 +80,7 @@ public class ERSDatabaseDAO implements ERSDAO {
 				u = new Users();
 				u.setUserId(userSet.getInt(DB_KEY_USERID));
 				u.setUsername(userSet.getString(DB_KEY_USERNAME));
+				u.setPassword(userSet.getString(DB_KEY_PASSWORD));
 				u.setFirstName(userSet.getString(DB_KEY_FIRSTNAME));
 				u.setLastName(userSet.getString(DB_KEY_LASTNAME));
 				u.setEmail(userSet.getString(DB_KEY_EMAIL));
@@ -121,6 +123,7 @@ public class ERSDatabaseDAO implements ERSDAO {
 				Users u = new Users();
 				u.setUserId(rs.getInt(DB_KEY_USERID));
 				u.setUsername(rs.getString(DB_KEY_USERNAME));
+				u.setPassword(rs.getString(DB_KEY_PASSWORD));
 				u.setFirstName(rs.getString(DB_KEY_FIRSTNAME));
 				u.setLastName(rs.getString(DB_KEY_LASTNAME));
 				u.setEmail(rs.getString(DB_KEY_EMAIL));
@@ -135,7 +138,6 @@ public class ERSDatabaseDAO implements ERSDAO {
 
 	@Override
 	public Users addUser(Users newUser) {
-		Users u = null;
 		try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
 			conn.setAutoCommit(false);
 			String sql = "INSERT INTO ERS_USERS (ERS_USERNAME, ERS_PASSWORD, USER_FIRST_NAME, USER_LAST_NAME,\r\n" + 
@@ -153,8 +155,7 @@ public class ERSDatabaseDAO implements ERSDAO {
 			if (rows > 0) {
 				ResultSet rs = ps.getGeneratedKeys();
 				while (rs.next()) {
-					u = new Users();
-					u.setUserId(rs.getInt(1));
+					newUser.setUserId(rs.getInt(1));
 				}
 				conn.commit();
 			}
@@ -163,7 +164,7 @@ public class ERSDatabaseDAO implements ERSDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return u;
+		return newUser;
 	}
 
 	@Override

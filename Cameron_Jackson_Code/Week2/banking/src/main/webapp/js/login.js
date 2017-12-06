@@ -24,9 +24,7 @@ function login() {
 	var xhr = new XMLHttpRequest();
 
 	xhr.onreadystatechange = function () {
-		console.log("ready state: " + xhr.readyState);
 		if (xhr.readyState == 4 && xhr.status == 200) {
-			console.log("in xhr callback" + xhr.responseText);
 			var user = JSON.parse(xhr.responseText);
 			if (user == null) {
 				$('#message').show();
