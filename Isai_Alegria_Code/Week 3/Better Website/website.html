@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+img {
+    display: block;
+    margin: auto;
+    width: 40%;
+}
+</style>
+</head>
+<title>My First Webpage</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<body>
+
+<div class="w3-container">
+    <h1>My First Web Page<small> by Isai Alegria</small></h1>
+</div>
+
+<div class="w3-bar w3-teal">
+  <button class="w3-bar-item w3-button" onclick="openTab('Introduction')">Introduction</button>
+  <button class="w3-bar-item w3-button" onclick="openTab('Abstraction')">Abstraction</button>
+  <button class="w3-bar-item w3-button" onclick="openTab('Encapsulation')">Encapsulation</button>
+  <button class="w3-bar-item w3-button" onclick="openTab('Inheritance')">Inerheritance</button>
+  <button class="w3-bar-item w3-button" onclick="openTab('Polymorphism')">Polymorphism</button>
+</div>
+
+<div id="Introduction" class="w3-container subject">
+	<div class="w3-container">
+	  <h2>Introduction to Object Oriented Programming</h2>
+		<br>
+	  			<img src = "OOP_Objects.png">
+	 </div>
+	 <br>
+	 <button onclick="myFunction('Demo1')" class="w3-btn w3-block w3-teal w3-left-align">What is Procedural Programming?</button>
+		<div id="Demo1" class="w3-container w3-hide">
+			<br>
+			<img src = "OOP_CFUnction.png" width ="5:px" height = "400:px">
+			<ul style="list-style-type:circle; font-size:15px">
+				<li>Relies on procedure calls (routines or subroutines) that focus on order and execute in linear fashion, otherwise referred to as "top-down" languages.</li>
+				<li>Hard to reuse functions because the function you want to copy probably references headers, global variables and other other functions.</li>
+				<li>Not suitable for high-level abstraction since mainly low level structures. </li>
+			</ul>  
+		</div>
+		
+		<button onclick="myFunction('Demo2')" class="w3-btn w3-block w3-teal w3-left-align">Benefits of OOP</button>
+		<div id="Demo2" class="w3-container w3-hide">
+			<br>
+			<ul style="list-style-type:circle; font-size:15px">
+			<img src="advantages.jpg">
+			<br>
+				<li>Focuses on components that the user perceives with objects are basic unit.</li>
+				<li>Easier to design software since you are dealing with higher-levels of concepts and can focus on the task at hand rather than the machine's bytes.</li>
+				<li>We can easily debug programs since they are easier to understand</li>
+				<li>Code easier to reuse.</li>
+			</ul>  
+		</div>
+		<br><br>
+</div>
+
+
+
+<div id="Abstraction" class="w3-container subject">
+	<div class="w3-container">
+		<h2>Abstraction</h2>
+		<img src ="abstraction-perspective.png" >
+	</div>
+	<br>
+		 <button onclick="myFunction('Demo3')" class="w3-btn w3-block w3-teal w3-left-align">Example of Abstraction.</button>
+		<div id="Demo3" class="w3-container w3-hide">
+			<br>
+			<img src = "abstract.png" width ="5:px" height = "400:px">
+			<ul style="list-style-type:circle; font-size:15px">
+				<li>Practice of only showing what is relatable to the user. All trivial and/or non-essential units aren't available to user.</li>
+				<li>Also identifying the main properties so we can better distinguish two objects.</li>
+				<li>Achieved by implementing interfaces and abstract classes. </li>
+			</ul>  
+		</div>
+				 <button onclick="myFunction('Demo4')" class="w3-btn w3-block w3-teal w3-left-align">Abstract Class vs Interface</button>
+		<div id="Demo4" class="w3-container w3-hide">
+			<br>
+			<img src = "Abstract-Class-vs-Interface.png" height = "300:px" width = "350:px">
+			<ul style="list-style-type:circle; font-size:15px">
+				<li>An interface can extend another Java interface only, an abstract class can extend another Java class and implement multiple Java interfaces.</li>
+				<li>Abstract class can provide the implementation of interface.	Interface can’t provide the implementation of abstract class.</li>
+				<li>Interface can have only abstract methods. Abstract class can have abstract and non-abstract methods</li>
+			</ul>  
+		</div>
+		<br><br>
+</div>
+
+<div id="Encapsulation" class="w3-container subject" style="display:none">
+	<div class="w3-container">
+		<h2>Encapsulation</h2>
+		<br>
+		<img src = "encap.png" >
+		<br>
+						 <button onclick="myFunction('Demo5')" class="w3-btn w3-block w3-teal w3-left-align">Example of Enapsulation</button>
+		<div id="Demo5" class="w3-container w3-hide">
+		<br>
+			<img src = "encapex.jpg">
+			<ul style="list-style-type:circle; font-size:15px">
+				<li>Encapsulation in Java is a mechanism of wrapping the data and methods together as a single unit</li>
+				<li>Also known as data hiding, protect information from being unintetionally manipulated.</li>
+				<li>Provide public setter and getter methods to modify and view the variables values.</li>
+			</ul>  
+			
+	</div>
+							 <button onclick="myFunction('Demo6')" class="w3-btn w3-block w3-teal w3-left-align">Encapsulation vs. Abstraction</button>
+		<div id="Demo6" class="w3-container w3-hide">
+		<br>
+			<img src = "encapvsab.jpg">
+			<ul style="list-style-type:circle; font-size:15px">
+				<li>Encapsulation and abstraction go hand in hand so much so that you could make the point that they are truly inseparable.</li>
+				<li>Abstraction is the "abstract form of anything", so this is the process of generalzing.</li>
+				<li>Encapsulation more focused on how the inside works but the goal is to hide the low-level implementation.</li>
+			</ul>  
+			
+		</div>
+	<br><br>
+</div>
+</div>
+
+<div id="Inheritance" class="w3-container subject" style="display:none">
+	<div class="w3-container">
+		<h2>Inheritance</h2>
+		<br>
+		<img src = "inherit.jpg" >
+		<p align="center">"inherit" definition: A quality, characteristic, or other immaterial possession, received from predecessors by succession.</p>
+		<br>
+						 <button onclick="myFunction('Demo7')" class="w3-btn w3-block w3-teal w3-left-align">Example of Inheritance</button>
+		<div id="Demo7" class="w3-container w3-hide">
+		<br>
+			<img src = "incon.jpg">
+			<ul style="list-style-type:circle; font-size:15px">
+				<li>A subclass will "inherit" the methods and fields of the superclass that it extends.</li>
+				<li>extends is the keyword used to inherit the properties of a class.</li>
+			</ul>  
+		</div>
+			
+	
+							 <button onclick="myFunction('Demo8')" class="w3-btn w3-block w3-teal w3-left-align">Types of Inerheritance</button>
+		<div id="Demo8" class="w3-container w3-hide">
+		<br>
+			<img src = "typesofinheritance.jpg">
+			<ul style="list-style-type:circle; font-size:15px">
+				<li>Inheritance represents the IS-A relationship, also known as parent-child relationship.</li>
+				<li>There are different types of inheritance. From directly from the superclass is called 
+				"single" level inheritance. When a class inherits from a class that inherits from a class
+				 is "multi-level" inheritance. Finally, we have hierarchical inheritance, where two classes inherit from a single superclass.</li>
+				<li>We use inheritance through method overriding.</li>
+			</ul>  
+			
+		</div>
+	<br><br>
+	</div>
+</div>
+
+
+<div id="Polymorphism" class="w3-container subject" style="display:none">
+	<div class="w3-container">
+		<h2>Polymorphism</h2>
+		<br>
+		<img src = "polymorphism.png" >
+		<br>
+						 <button onclick="myFunction('Demo9')" class="w3-btn w3-block w3-teal w3-left-align">Example of Polymorphism</button>
+		<div id="Demo9" class="w3-container w3-hide">
+		<br>
+			<img src = "download.png">
+			<ul style="list-style-type:circle; font-size:15px">
+				<li>Java’s ability to process objects of various types and classes through a single, uniform interface.</li>
+				<li>Compile time polymorphism (static binding) and Runtime polymorphism (dynamic binding). 
+				Method overloading is an example of static polymorphism, while method overriding is an example of dynamic polymorphism.</li>
+				<li>An important example of polymorphism is how a parent class refers to a child class object.  In fact, any object that
+				satisfies more than one IS-A relationship is polymorphic in nature.</li>
+			</ul>  
+			
+	</div>
+	
+
+							 <button onclick="myFunction('Demo10')" class="w3-btn w3-block w3-teal w3-left-align">Polymorphism vs. Inheritance</button>
+		<div id="Demo10" class="w3-container w3-hide">
+		<br>
+		<br>
+			<img src = "images.jpg">
+		<br>
+			<ul style="list-style-type:circle; font-size:15px">
+				<li>Inhertance defines parent-child relationships, while polymorphim takes advantage of that relationship to provide more dynamic code.</li>
+				<li>Inheritance is meant for inital methods to be reused in subclasses, polymorphism allows a child to redefine already defined behavior.</li>
+				<li>Java doesn't allow multiple inheritance of classes, but allows multiple inheritance of Interface, which is required to implement polymorphim.</li>
+			</ul>  
+			
+		</div>
+	<br><br>
+</div>
+</div>
+
+
+
+
+<script>
+function openTab(subName) {
+    var i;
+    var x = document.getElementsByClassName("subject");
+    for (i = 0; i < x.length; i++) {
+       x[i].style.display = "none";  
+    }
+    document.getElementById(subName).style.display = "block";  
+}
+</script>
+
+<script>
+function myFunction(id) {
+    var x = document.getElementById(id);
+    if (x.className.indexOf("w3-show") == -1) {
+        x.className += " w3-show";
+    } else { 
+        x.className = x.className.replace(" w3-show", "");
+    }
+}
+</script>
+
+</body>
+</html>
