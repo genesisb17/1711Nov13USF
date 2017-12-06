@@ -19,8 +19,12 @@ public class GetViewsServlet extends HttpServlet {
 		
 		
 		System.err.println("[LOG] Request sent to Front Controller");
+		
 		String nextView = new RequestHelper().process(req, resp);
+		
 		req.getRequestDispatcher(nextView).forward(req, resp);
 	}
 
+	
+	
 }
