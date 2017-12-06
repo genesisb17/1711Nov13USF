@@ -60,7 +60,8 @@ public class ERSDatabaseDAO implements ERSDAO {
 				u.setEmail(userSet.getString(DB_KEY_EMAIL));
 				u.setRoleId(userSet.getInt(DB_KEY_ROLEID));
 			}
-
+			userSet.close();
+			su.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -86,7 +87,8 @@ public class ERSDatabaseDAO implements ERSDAO {
 				u.setEmail(userSet.getString(DB_KEY_EMAIL));
 				u.setRoleId(userSet.getInt(DB_KEY_ROLEID));
 			}
-
+			userSet.close();
+			su.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -105,6 +107,8 @@ public class ERSDatabaseDAO implements ERSDAO {
 			while (rs.next()) {
 				role = UserRoles.valueOf(rs.getString(DB_KEY_ROLE));
 			}
+			rs.close();
+			ps.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -130,6 +134,8 @@ public class ERSDatabaseDAO implements ERSDAO {
 				u.setRoleId(rs.getInt(DB_KEY_ROLEID));
 				users.add(u);
 			}
+			rs.close();
+			su.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -158,9 +164,9 @@ public class ERSDatabaseDAO implements ERSDAO {
 					newUser.setUserId(rs.getInt(1));
 				}
 				conn.commit();
+				rs.close();
 			}
-
-
+			ps.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -179,6 +185,8 @@ public class ERSDatabaseDAO implements ERSDAO {
 			while (rs.next()) {
 				ersUsername = rs.getString(DB_KEY_USERNAME);
 			}
+			rs.close();
+			ps.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -198,12 +206,34 @@ public class ERSDatabaseDAO implements ERSDAO {
 			while (rs.next()) {
 				password = rs.getString(DB_KEY_PASSWORD);
 			}
+			rs.close();
+			ps.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		return password;
 	}
 
+	@Override
+	public String findEmail(String email) {
+		String existingEmail = null;
+		try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
+			String sql = "select * from ers_users where user_email=?";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setString(1, email);
+			ResultSet rs = ps.executeQuery();
+			
+			while (rs.next()) {
+				existingEmail = rs.getString(DB_KEY_EMAIL);
+			}
+			rs.close();
+			ps.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return existingEmail;
+	}
+	
 	@Override
 	public Reimbursement getTicket(int reimbId) {
 		Reimbursement reimb = null;
@@ -226,6 +256,8 @@ public class ERSDatabaseDAO implements ERSDAO {
 				reimb.setStatusId(rs.getInt(DB_KEY_STATUSID));
 				reimb.setTypeId(rs.getInt(DB_KEY_TYPEID));
 			}
+			rs.close();
+			ps.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -257,6 +289,8 @@ public class ERSDatabaseDAO implements ERSDAO {
 				reimb.setTypeId(rs.getInt(DB_KEY_TYPEID));
 				tickets.add(reimb);
 			}
+			rs.close();
+			ps.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -286,6 +320,8 @@ public class ERSDatabaseDAO implements ERSDAO {
 				reimb.setTypeId(rs.getInt(DB_KEY_TYPEID));
 				tickets.add(reimb);
 			}
+			rs.close();
+			s.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -315,7 +351,9 @@ public class ERSDatabaseDAO implements ERSDAO {
 					newTicket.setReimbId(rs.getInt(1));
 				}
 				conn.commit();
+				rs.close();
 			}
+			ps.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -332,7 +370,8 @@ public class ERSDatabaseDAO implements ERSDAO {
 			cs.setInt(2, status.ordinal()+1);
 			cs.setInt(3, resolverId);
 			cs.executeUpdate();
-			conn.commit();			
+			conn.commit();		
+			cs.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -351,6 +390,9 @@ public class ERSDatabaseDAO implements ERSDAO {
 			while (rs.next()) {
 				status = ReimbursementStatus.valueOf(rs.getString(DB_KEY_STATUS));
 			}
+			rs.close();
+			ps.close();
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -369,6 +411,8 @@ public class ERSDatabaseDAO implements ERSDAO {
 			while (rs.next()) {
 				type = ReimbursementType.valueOf(rs.getString(DB_KEY_TYPE));
 			}
+			rs.close();
+			ps.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

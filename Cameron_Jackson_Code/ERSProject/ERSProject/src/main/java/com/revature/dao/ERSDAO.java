@@ -17,6 +17,7 @@ public interface ERSDAO {
 	public Users addUser(Users newUser);
 	public String findUsername(String username);
 	public String findPassword(String username);
+	public String findEmail(String email);
 	
 	// Reimbursement ticket related functions
 	public Reimbursement getTicket(int reimbId);

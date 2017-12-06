@@ -26,6 +26,14 @@ public class ERSService {
 		return false;
 	}
 	
+	public boolean uniqueEmail(String email) {
+		String existingEmail = dao.findEmail(email);
+		if (existingEmail != null) 
+			return false;
+		
+		return true;
+	}
+	
 	public Users login(String username, String password) {
 		Users u = null;
 		if (userExists(username) && correctPassword(username, password)) 

@@ -2,26 +2,30 @@
  * Functionality for ERS app
  */
 window.onload = function () {
-    loadLoginPage();
+    console.log("onload");
+    loadPage();
+    
 };
 
 $(document).on('click', '#new-users', loadCA);
 $(document).on('click', '#returning-users', loadLogin);
 $(document).on('click', '#login', login);
+$(document).on('click', '#create-account', createAccount);
 $(document).on('shown.bs.modal', '#logoutModal', function () {
     $('#logoutModal').trigger('focus');
     $(document).on('click', '#modal-logout', function() {
         logout();
     });
-})
-// $(document).on('click', '#create-account', createAccount);
-// $(document).ready(function () {
-//     $('#data-table').DataTable();
-// });
+});
 
-//check for navigation time API support
+$(document).ready(function () {
+    $('#data-table').DataTable();
+});
+
+// check for navigation time API support
 // window.onbeforeunload = function() {
-//     console.log("Are you sure you want to navigate away?");
+//     console.log("onbeforeload");
+//     loadPage();
 // }
 
 
@@ -35,7 +39,12 @@ function loadPage() {
     var xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function() {
         if (xhr.readyState == 4 && xhr.status == 200) {
-
+            if (xhr.responseText == "loadLoginPage")
+                loadLoginPage();
+            else if (xhr.responseText == "loadMainPage") {
+                var currUser = getUser();
+                loadMainPage(currUser);
+            }
         }
     }
     xhr.open("GET", "loadPage", true);
@@ -61,7 +70,7 @@ function loadMainPage(currUser) {
         if (xhr.readyState == 4 && xhr.status == 200) {
             $('#appview').html(xhr.responseText);
             loadLogoutModal();
-            // loadReimb(currUser);
+            loadReimb(currUser);
         }
     }
     xhr.open("GET", "mainpage.view", true);
@@ -101,12 +110,11 @@ function loadReimb(currUser) {
         if (xhr.readyState == 4 && xhr.status == 200) {
             document.getElementById('view').innerHTML = xhr.responseText;
             document.getElementById('name').innerHTML =
-                `${document.getElementById('name').innerHTML}, ${user.firstName} ${user.lastName}`;
-            // loadMainNav();
+                `${document.getElementById('name').innerHTML}, ${currUser.firstName} ${currUser.lastName}`;
         }
     }
 
-    xhr.open("GET", "reimb", true);
+    xhr.open("GET", "reimb.view", true);
     xhr.send();
 }
 
@@ -196,31 +204,54 @@ function createAccount() {
         user.roleId = 1;
     }
 
-    if (user.password != $('#confirm-password').val()) {
-        $('.bad-password').show();
-        $('#bad-password').html("Password and Confirm password do not match");
-        $('#password').val("");
-        $('#confirm-password').val("");
+    var userInfo = {
+        user: user,
+        message: ""
     }
 
     var xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function () {
         if (xhr.readyState == 4 && xhr.status == 200) {
-            var currUser = JSON.parse(xhr.responseText);
+            var ui = JSON.parse(xhr.responseText);
+            var currUser = ui.user;
+            var message = ui.message;
             if (currUser == null) {
                 $('.bad-username').show();
-                $('#bad-username').html("Username already taken");
+                $('#bad-username').html(ui.message);
                 $('#username').val("");
                 $('#password').val("");
                 $('#confirm-password').val("");
             } else {
-                loadMain(user);
+                loadMainPage(currUser);
             }
         }
     }
-    var userString = JSON.stringify(user);
-    xhr.open("POST", "createAccount", true);
-    xhr.send(userString);
+
+    if (user.password != $('#confirm-password').val()) {
+        $('.bad-password').show();
+        $('#bad-password').html("Password and Confirm password do not match");
+        $('#password').val("");
+        $('#confirm-password').val("");
+    } else {
+        var userString = JSON.stringify(userInfo);
+        xhr.open("POST", "createAccount", true);
+        xhr.send(userString);
+    }
+
+}
+
+function getUser() {
+    var user = {};
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            user = JSON.parse(xhr.responseText);
+            console.log(user);
+        }
+    }
+    xhr.open("GET", "getuser", true);
+    xhr.send();
+    return user;
 }
 
 function updateAccount() {

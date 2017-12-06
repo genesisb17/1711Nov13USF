@@ -1,10 +1,14 @@
 package com.revature.servlets;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import com.revature.pojos.Users;
 
 
 public class GetViewsServlet extends HttpServlet {
@@ -33,7 +37,12 @@ public class GetViewsServlet extends HttpServlet {
 			return "partials/logout-modal.html";
 				
 		case "/ERSProject/reimb.view":
-			return "partials/";
+			HttpSession session = request.getSession();
+			Users u = (Users)session.getAttribute("user");
+			if (u.getRoleId() == 1)
+				return "partials/employee-view.html";
+			else 
+				return "partials/manager-view.html";
 		default:
 			return null;
 		}

@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.revature.dto.UserValidator;
 import com.revature.pojos.Users;
 import com.revature.service.ERSService;
 
@@ -41,18 +42,30 @@ public class CreateAccountServlet extends HttpServlet{
 		ObjectMapper mapper = new ObjectMapper();
 		
 		// 3. Convert received JSON to String array
-		Users u = mapper.readValue(json, Users.class);
+		UserValidator uv = mapper.readValue(json, UserValidator.class);
+		Users u = uv.getUser();
+		String message = uv.getMessage();
 		
-		// 4. add to database
-		Users newUser = service.createAccount(u);
-		System.out.println("createAccountServlet" + newUser);
+		Users newUser = null;
+		// 4. Validate
+		if(service.userExists(u.getUsername()))
+			message = "An account with that username exists";
+		else if(!service.uniqueEmail(u.getEmail()))
+			message = "An account with that email already exists";
+		else {
+			// 5. add to database
+			newUser = service.createAccount(u);
+		}
+		
 		if(newUser != null) {
 			HttpSession session = req.getSession();
 			session.setAttribute("user", newUser);
 		}
 		
+		uv.setMessage(message);
+		uv.setUser(newUser);
 		PrintWriter out = resp.getWriter();
 		resp.setContentType("application/json");
-		out.write(mapper.writeValueAsString(newUser));
+		out.write(mapper.writeValueAsString(uv));
 	}
 }

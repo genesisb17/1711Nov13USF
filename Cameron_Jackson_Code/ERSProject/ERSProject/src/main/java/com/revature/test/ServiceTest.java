@@ -11,13 +11,15 @@ public class ServiceTest {
 //		Users u = service.login("imanage", "psswrd");
 //		System.out.println(u);
 		
-		Users u = new Users();
-		u.setFirstName("Arnie");
-		u.setLastName("Geddon");
-		u.setUsername("jdoe");
-		u.setPassword("password");
-		u.setEmail("email@email.com");
-		u.setRoleId(2);
-		System.out.println(service.createAccount(u));
+//		Users u = new Users();
+//		u.setFirstName("Arnie");
+//		u.setLastName("Geddon");
+//		u.setUsername("jdoe");
+//		u.setPassword("password");
+//		u.setEmail("email@email.com");
+//		u.setRoleId(2);
+//		System.out.println(service.createAccount(u));
+		
+//		System.out.println(service.uniqueEmail("aysafsda@email.com"));
 	}
 }
