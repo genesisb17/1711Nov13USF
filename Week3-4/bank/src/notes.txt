@@ -1,0 +1,27 @@
+FLOW
+
+Start app in login form.. mine is at home.html 
+form has the action tag of login w method post, 
+taking us to a servlet with the url-mapping of
+/login and its doPost method 
+
+said doPost method uses the service class to validate
+user information w our database, and upon successful
+login, will forward us to our app.html page
+in addition, this servlet is where we add our 
+validated user to our HttpSession, for careful 
+tracking throughout our project
+
+NEXT 
+in the app.html, 
+we include the script of demo.js, which tells the browser
+that upon loading of the window, we want to run the function 
+loadDashboardView();
+
+this function essentially loads our landing page for 
+the user, where we want to have their basic user info
+That being said, the loaddashboard function calls a 
+get user info function
+both of these are functions w AJAX requests that 
+send get/post requests to our servlets 
+
