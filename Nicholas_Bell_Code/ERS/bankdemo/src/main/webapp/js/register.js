@@ -1,75 +1,12 @@
-/**
- * previously app.js
- */
+
 
 window.onload = function(){
 	$('#message').hide();
-	$('#login').on('click',login);
-	$('#register').on('click', registerView);
+	$('#register').on('click', register);
+	$('#username').blur(validateEmail);
+	$('#register').attr("disabled",true);
 	
 }
-
-function login(){
-//	alert("logging in");
-	var username = $('#username').val();
-	var password = $('#pass').val();
-	
-	var toSend = [username, password];
-
-	
-	
-	var json = JSON.stringify(toSend);
-	console.log(json);
-	
-	var xhr = new XMLHttpRequest();
-	console.log(xhr.readyState);
-	xhr.onreadystatechange = function(){
-		if(xhr.readyState == 4 && xhr.status==200){
-			console.log("in xhr callback" + xhr.responseText);
-			var user = JSON.parse(xhr.responseText);
-			$('#message').show();
-			if(user == null){
-				$('#message').html("Invalid user") ;
-			}
-			else if(user.id == 0){
-				$('#message').html( "Invalid password");
-			}
-			else{
-				$('#message').html(`Welcome ${user.firstname}`) ;
-				window.location.replace('app.html');
-				console.log("success!");
-			}
-		}
-	};
-	
-	xhr.open("POST","login", true);
-	console.log(xhr.readyState);
-	xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-	console.log("AFTER HEADER " + xhr.readyState);
-	xhr.send(json);
-	
-
-}
-
-function registerView(){
-	var xhr = new XMLHttpRequest();
-	xhr.onreadystatechange = function(){
-		if(xhr.readyState == 4 && xhr.status == 200){
-		//	window.location.replace(xhr.responseText);
-		document.getElementById('view').innerHTML = xhr.responseText;
-		$('#message').hide();
-		$('#register').on('click', register);
-		$('#username').blur(validateEmail);
-		$('#register').attr("disabled",true);
-		}
-	}	
-	xhr.open("GET", "register" , true);
-	xhr.send();
-}
-
-
-
-
 
 //function onblur that notifies the user of whether or not their email address is already in use 
 function validateEmail(){
@@ -136,3 +73,52 @@ function register(){
 }
 
 
+
+
+function validatePass(){
+	// got from internet. need to edit keeping for ideas 
+	$('input[type=password]').keyup(function() {
+		var pswd = $(this).val();
+
+		//validate the length
+		if ( pswd.length < 8 ) {
+			$('#length').removeClass('valid').addClass('invalid');
+		} else {
+			$('#length').removeClass('invalid').addClass('valid');
+		}
+
+		//validate letter
+		if ( pswd.match(/[A-z]/) ) {
+			$('#letter').removeClass('invalid').addClass('valid');
+		} else {
+			$('#letter').removeClass('valid').addClass('invalid');
+		}
+
+		//validate capital letter
+		if ( pswd.match(/[A-Z]/) ) {
+			$('#capital').removeClass('invalid').addClass('valid');
+		} else {
+			$('#capital').removeClass('valid').addClass('invalid');
+		}
+
+		//validate number
+		if ( pswd.match(/\d/) ) {
+			$('#number').removeClass('invalid').addClass('valid');
+		} else {
+			$('#number').removeClass('valid').addClass('invalid');
+		}
+
+		//validate space
+		if ( pswd.match(/[^a-zA-Z0-9\-\/]/) ) {
+			$('#space').removeClass('invalid').addClass('valid');
+		} else {
+			$('#space').removeClass('valid').addClass('invalid');
+		}
+
+	}).focus(function() {
+		$('#pswd_info').show();
+	}).blur(function() {
+		$('#pswd_info').hide();
+	});
+
+};
