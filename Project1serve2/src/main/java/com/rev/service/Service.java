@@ -10,6 +10,11 @@ public class Service
 {
 	static DAO dao = new FileDao();
 	
+	public User validateUser(String email,String pass){
+		User user = dao.geters_users(email,pass);
+		if(user.getUid()==0) return null;
+		return user;
+	}
 	public void addReimbursements(double amount,  String Description, int uid,int statusid, int typeid, int uid2)
 	{
 		dao.addReimbursements(amount,Description, uid,statusid,typeid,uid2);

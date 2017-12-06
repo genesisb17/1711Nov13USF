@@ -1,41 +1,51 @@
-/*
- * 
+/**
+ * main page of the application. thinking about creating a pseudo 
+ * 	"admin" role based on a userame and password of admin for demo 
+ * 	purposes 
  */
 window.onload = function()
 {
-	$('#message').hide();
-	$("#login").on('click',login);
-	$('#register').on('click',register);
+	loadHome();
+	$('#home').on('click',loadHome);
+	$('#profile').on('click', loadProfile);
 }
-function login()
+
+function loadHome()
 {
-	alert("logging in");
-	var username = $('#username').val();
-	var password = $('pass').val();
-	var json =[username,pass];
-	//used to access values
-	var user =
-	{
-			name:username,
-			password:password
-	}
-	var tx =JSON.stringify(user);
-	json =JSON.stringify(json);
-	console.log(tx);
-	console.log(json);
-	var xhr =XMLHttpRequest();
-	xhr.onreadystatechange = function()
-	{
-		if(xhr.readyState==4&&xhr.status==200)
-			{
-			
-			}
-	}
-	xhr.open("POST","login",true);
-	xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-	xhr.send(json);
+	var xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState == 4 && xhr.status == 200){
+			document.getElementById('view').innerHTML = xhr.responseText;				
+		}
+	}	
+	xhr.open("GET", "getHomeView" , true);
+	xhr.send();
 }
-function register()
+function loadProfile()
 {
-	alert("regristing");
+	var xhr = new XMLHttpRequest();
+	xhr.open("GET", "/getProfileView" , true);
+	xhr.send();
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState == 4 && xhr.status == 200){
+			document.getElementById('view').innerHTML = xhr.responseText;//partials/profile.html	
+			loadProfileInfo();
+		}
+	}
+}
+function loadProfileInfo()
+{
+	var xhr = new XMLHttpRequest();
+	
+	xhr.open("GET","getUserInfo", true);
+	xhr.send();
+	
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState == 4 && xhr.status == 200){
+			console.log(xhr.responseText);0
+			sessionUser = JSON.parse(xhr.responseText);
+			$("#name").html(sessionUser.firstname);
+			return sessionUser;
+		}
+	}
 }

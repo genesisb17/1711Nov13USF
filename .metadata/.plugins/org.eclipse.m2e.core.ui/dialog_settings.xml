@@ -2,12 +2,14 @@
 <section name="Workbench">
 	<section name="MavenProjectWizardArtifactPage">
 		<list key="groupId">
+			<item value="com.ex"/>
 			<item value="com.web"/>
 			<item value="com.revature"/>
 		</list>
 		<list key="name">
 		</list>
 		<list key="artifactId">
+			<item value="helloServlets"/>
 			<item value="HelloServer1"/>
 			<item value="HelloSever"/>
 			<item value="HelloServers"/>

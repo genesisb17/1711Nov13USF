@@ -1,4 +1,3 @@
-
 package com.ex.servlets;
 
 import java.io.IOException;
@@ -21,18 +20,21 @@ public class UserRoleIdRstatusRtypeServelet extends HttpServlet
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)throws ServletException,IOException
 	{
+	
 		String Rtype = request.getParameter("Rtype");
 		String rstatus = "pending";
-		String r = request.getParameter("role");
+		String r = request.getParameter("op");
 		
 		service.addRtype(Rtype);
 		service.addRStatus(rstatus);
 		service.adders_user_roles(r);
 		
 		PrintWriter out = response.getWriter();
-		out.println("test");
+		out.println(r);
+		out.println(rstatus);
+		out.println(Rtype);
+
 	}
 	
 	
 }
-

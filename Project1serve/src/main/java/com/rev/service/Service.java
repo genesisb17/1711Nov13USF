@@ -9,7 +9,12 @@ import com.rev.pojo.User;
 public class Service 
 {
 	static DAO dao = new FileDao();
-	
+
+	public User validateUser(String user1,String pass){
+		User user = dao.geters_users(user1, pass);
+		if(user.getUid()==0) return null;
+		return user;
+	}
 	public void addReimbursements(double amount,  String Description, int uid,int statusid, int typeid, int uid2)
 	{
 		dao.addReimbursements(amount,Description, uid,statusid,typeid,uid2);
