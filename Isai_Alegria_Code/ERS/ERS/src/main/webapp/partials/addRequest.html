@@ -1,0 +1,32 @@
+<div>
+	<h1>Add your reimbursement request here</h1>
+	<form>
+  <div class="form-group">
+    <label for="reimbamount">Reimbursement Amount</label>
+    <input type="text" class="form-control" id="amount" aria-describedby="emailHelp" placeholder="Enter reimbursement amount">
+  </div>
+  <div class="form-group">
+    <label for="datesubmitted">Date Submitted</label>
+    <input type="date" class="form-control" id="date" placeholder="Enter date in the following format: (MM-DD-YYYY)">
+  </div>
+   <div class="form-group">
+    <label for="reimbdescription">Description</label>
+    <input type="text" class="form-control" id="description" placeholder="Enter a description for your expense">
+  </div>
+  <div class="form-group">
+    <label for="exampleSelect1">Select Your Type of Reimbursement</label>
+    <select class="form-control" id="exampleSelect1">
+      <option>Food</option>
+      <option>Lodging</option>
+      <option>Travel</option>
+      <option>Other</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="inputFile">Copy of Receipt</label>
+    <input type="file" class="form-control-file" id="receiptimage" aria-describedby="fileHelp">
+    <small id="fileHelp" class="form-text text-muted">Submit an image of your receipt(s) for your expense(s).</small>
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+</div>

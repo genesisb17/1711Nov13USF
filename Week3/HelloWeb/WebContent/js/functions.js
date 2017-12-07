@@ -23,9 +23,6 @@ function count(){
 
 document.getElementById("count").addEventListener("mouseover",count);
 
-
-
-
 document.getElementById("doFib").addEventListener("click", runFib);
 
 document.getElementById("outer").addEventListener("click", 
