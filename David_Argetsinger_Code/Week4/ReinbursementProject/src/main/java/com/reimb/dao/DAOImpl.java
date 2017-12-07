@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.SQLIntegrityConstraintViolationException;
 
+import com.reimb.pojos.Reimburse;
 import com.reimb.pojos.User;
 import com.reimb.util.ConnectionFactory;
 
@@ -103,10 +104,36 @@ public class DAOImpl implements DAO {
 	}
 
 	
+	public boolean addReimb(Reimburse reimb){
+		try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
+			conn.setAutoCommit(false);
+			String sql = "INSERT INTO ERS_REIMBURSEMENT (REIMB_AMOUNT,REIMB_AUTHOR,REIMB_STATUS_ID,REIMB_TYPE_ID,REIMB_DESCRIPTION)VALUES(?,?,?,?,?)";
+			PreparedStatement preparedStatement = conn.prepareStatement(sql);
+			preparedStatement.setDouble(1, reimb.getAmount());
+			preparedStatement.setInt(2,reimb.getAuthor());
+			preparedStatement.setInt(3,reimb.getStatus());
+			preparedStatement.setInt(4,reimb.getType());
+			preparedStatement.setString(5,reimb.getDesc());
+			int rows = preparedStatement.executeUpdate();// returns number of rows modified 
+			if (rows != 0) {
+				System.out.println("first try boooi (got to commit)");
+				conn.commit();
+				return true;
+
+			}
+		} catch(SQLIntegrityConstraintViolationException e){
+			System.out.println("Constaint breaking aborted.");
+		}catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.println("not in table sorry m8 ");
+		return false;
+}
 	
-	
-	
-	public boolean addUser(String name, String Lastname, String username, String password,String email, int role) {
+	//INSERT INTO ERS_REIMBURSEMENT (REIMB_AMOUNT,REIMB_AUTHOR,REIMB_STATUS_ID,REIMB_TYPE_ID,REIMB_DESCRIPTION)VALUES('20.00',7,0,0,'i spent 20$ on lodging in a box');
+
+		public boolean addUser(String name, String Lastname, String username, String password,String email, int role) {
 		//User use = new User();
 		try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
 			conn.setAutoCommit(false);

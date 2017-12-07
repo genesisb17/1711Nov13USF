@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 import com.reimb.dao.DAO;
 import com.reimb.dao.DAOImpl;
+import com.reimb.pojos.Reimburse;
 //import com.reimb.pojos.Reimburse;
 import com.reimb.pojos.User;
 public class Service {
@@ -64,5 +65,9 @@ public class Service {
 		dao.updateAccount(u);
 		return u;
 		
+	}
+	public boolean addReim(Reimburse reimb)
+	{
+		return dao.addReimb(reimb);
 	}
 }
