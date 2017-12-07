@@ -1,0 +1,32 @@
+table {
+    text-align: center;
+    font-size: x-large;
+}
+
+th {
+    width: 5rem;
+}
+
+.code-block {
+    font-family: monospace;
+    font-size: large;
+    padding: 20px;
+    background-color: #F1E3BB;
+    color: #B71234;
+    display: block;
+    text-align: left;
+}
+
+.jumbotron {
+    background-color: #1E1656;
+    color: white;
+}
+
+.card-header {
+    background-color: #1E1656;
+    color: white;
+}
+
+.card-header a {
+    color: white;
+}
