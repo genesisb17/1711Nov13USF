@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 import com.ERS.pojos.USER_ROLE;
 import com.ERS.pojos.User;
-import com.bank.util.ConnectionFactory;
+import com.ERS.util.ConnectionFactory;
 
 public class UserDAO_Impl implements UserDAO{
 
@@ -27,11 +27,11 @@ public class UserDAO_Impl implements UserDAO{
 			key[0] = "ERS_USERS_ID";
 			
 			PreparedStatement ps = conn.prepareStatement(sql, key);
-			ps.setString(1, u.getFirstname());
-			ps.setString(2, u.getLastname());
-			ps.setString(3, u.getUsername());
-			ps.setString(4, u.getPassword());
-			ps.setString(5, u.getEmail());
+			ps.setString(1, user.getFirstname());
+			ps.setString(2, user.getLastname());
+			ps.setString(3, user.getUsername());
+			ps.setString(4, user.getPassword());
+			ps.setString(5, user.getEmail());
 			//if admin flag, set 
 			int role = (admin ? 1 : 0);
 			ps.setInt(6, role);
@@ -42,7 +42,7 @@ public class UserDAO_Impl implements UserDAO{
 				ResultSet pk = ps.getGeneratedKeys();
 				while(pk.next()) {
 				//	id = pk.getInt(1);
-					u.setUser_id(pk.getInt(1));
+					user.setUser_id(pk.getInt(1));
 			
 				}
 				conn.commit();
@@ -51,7 +51,7 @@ public class UserDAO_Impl implements UserDAO{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return u;
+		return user;
 	}
 
 	

@@ -8,7 +8,30 @@
 	integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb"
 	crossorigin="anonymous">
 
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+
+
+</head>
+<body>
+
+
+<div id="global_view">
+	
+	<!-- global greet may need to move? (12/6) -->
+	<h1 id="global_greet">Welcome to the Employee Reimbursement System!</h1>
+		<input type="text" id="username" placeholder="Username"> <br>
+		<input type="password" id="pass" placeholder="Password"><br>
+		<input type="submit" id="login" value="Log In">
+		<button id="register">Create New User</button>
+		<br>
+	<div class="alert alert-info" id="message" ></div>
+</div>
+	
+	
+	<!-- This file's Functional JS -->
+	<script src="js/landing.js"></script>
+	
+	<!-- Bootstrap JS -->
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
 	integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
 	crossorigin="anonymous"></script>
 <script
@@ -19,17 +42,5 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"
 	integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
 	crossorigin="anonymous"></script>
-
-</head>
-<body>
-<h1>Welcome to the Employee Reimbursement System!</h1>
-	<input type="text" id="username" placeholder="Username"> <br>
-	<input type="password" id="pass" placeholder="Password"><br>
-	<input type="submit" id="login" value="Log In">
-	<button id="register">Create New User</button>
-	<br>
-	<!-- <div class="alert alert-info" id="message" ></div>-->
-	
-	<script src="js/login.js"></script>
 </body>
 </html>
