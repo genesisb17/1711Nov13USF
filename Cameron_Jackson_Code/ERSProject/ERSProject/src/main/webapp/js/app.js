@@ -2,7 +2,6 @@
  * Functionality for ERS app
  */
 window.onload = function () {
-    console.log("onload");
     loadPage();
     
 };
@@ -42,8 +41,7 @@ function loadPage() {
             if (xhr.responseText == "loadLoginPage")
                 loadLoginPage();
             else if (xhr.responseText == "loadMainPage") {
-                var currUser = getUser();
-                loadMainPage(currUser);
+                loadMainPage();
             }
         }
     }
@@ -64,13 +62,13 @@ function loadLoginPage() {
     xhr.send();
 }
 
-function loadMainPage(currUser) {
+function loadMainPage() {
     var xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function() {
         if (xhr.readyState == 4 && xhr.status == 200) {
             $('#appview').html(xhr.responseText);
             loadLogoutModal();
-            loadReimb(currUser);
+            loadReimb();
         }
     }
     xhr.open("GET", "mainpage.view", true);
@@ -103,32 +101,19 @@ function loadCA() {
     xhr.send();
 }
 
-function loadReimb(currUser) {
+function loadReimb() {
 
     var xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function () {
         if (xhr.readyState == 4 && xhr.status == 200) {
             document.getElementById('view').innerHTML = xhr.responseText;
-            document.getElementById('name').innerHTML =
-                `${document.getElementById('name').innerHTML}, ${currUser.firstName} ${currUser.lastName}`;
+            getUser();
         }
     }
 
     xhr.open("GET", "reimb.view", true);
     xhr.send();
 }
-
-// function loadMainNav() {
-//     var xhr = new XMLHttpRequest();
-//     xhr.onreadystatechange = function() {
-//         if (xhr.readyState == 4 && xhr.status == 200) {
-//             document.getElementById('navigation').innerHTML = xhr.responseText;
-//             loadLogoutModal();
-//         }
-//     }
-//     xhr.open("GET", "getNav", true);
-//     xhr.send();
-// }
 
 function loadLogoutModal() {
     var xhr = new XMLHttpRequest();
@@ -222,7 +207,7 @@ function createAccount() {
                 $('#password').val("");
                 $('#confirm-password').val("");
             } else {
-                loadMainPage(currUser);
+                loadMainPage();
             }
         }
     }
@@ -241,17 +226,17 @@ function createAccount() {
 }
 
 function getUser() {
-    var user = {};
+    var currUser = {};
     var xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function() {
         if (xhr.readyState == 4 && xhr.status == 200) {
-            user = JSON.parse(xhr.responseText);
-            console.log(user);
+            currUser = JSON.parse(xhr.responseText);
+            document.getElementById('name').innerHTML =
+            `${document.getElementById('name').innerHTML}, ${currUser.firstName} ${currUser.lastName}`;
         }
     }
     xhr.open("GET", "getuser", true);
     xhr.send();
-    return user;
 }
 
 function updateAccount() {
