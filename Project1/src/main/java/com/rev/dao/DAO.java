@@ -17,5 +17,11 @@ public interface DAO
 	String getRStatus(int i);
 	User geters_users(String user,String pass);
 	String geters_user_roles(int i);
+	int findmax();
+	int getRtypeById(String i);
+	int getRStatusById(String i);
+	int geters_user_rolesbyId(String role);
+	void UpdateStatus(int id);
+	void UpdateReimb(int reimbid1, int uid2);
 
 }

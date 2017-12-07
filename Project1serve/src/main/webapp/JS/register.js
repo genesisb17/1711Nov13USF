@@ -53,7 +53,7 @@ function register(){
 	};
 	
 	var userJSON = JSON.stringify(user);
-	
+	console.log(userJSON);
 	var xhr = new XMLHttpRequest();
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState == 4 && xhr.status==200){

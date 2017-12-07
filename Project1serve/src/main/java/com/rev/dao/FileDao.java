@@ -29,6 +29,8 @@ public class FileDao implements DAO {
 		// TODO Auto-generated method stub
 	}
 
+	
+	
 	@Override
 	public void adders_user_roles(String s) {
 		try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
@@ -81,7 +83,9 @@ public class FileDao implements DAO {
 			ps.executeUpdate();
 			conn.commit();
 			conn.close();
-		} catch (SQLException e) {
+		} 
+		catch (SQLException e) 
+		{
 
 			// TODO Auto-generated catch block
 		}
@@ -133,14 +137,16 @@ public class FileDao implements DAO {
 	}
 
 	@Override
-	public String getRtype(int i) {
+	public String getRtype(int i) 
+	{
 
 		try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
 			String sql = "select REIMB_TYPE from ERS_REIMBURSEMENT_TYPE where REIMB_TYPE_ID =?";
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setInt(1, i);
 			ResultSet info = ps.executeQuery();
-			while (info.next()) {
+			while (info.next()) 
+			{
 				return info.getString(1);
 			}
 		} catch (SQLException e) {
@@ -150,6 +156,52 @@ public class FileDao implements DAO {
 		return null;
 	}
 
+	
+
+	@Override
+	public int findmax() 
+	{
+
+		try (Connection conn = ConnectionFactory.getInstance().getConnection()) 
+		{
+			String sql = "select max(REIMB_STATUS_ID) from ERSREIMBURSEMENTSTATUS";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ResultSet info = ps.executeQuery();
+			while (info.next()) 
+			{
+				return info.getInt(1);
+			}
+		} 
+		catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return 0;
+	}
+
+	@Override
+	public int getRtypeById(String i) 
+	{
+
+		try (Connection conn = ConnectionFactory.getInstance().getConnection()) 
+		{
+			String sql = "select REIMB_TYPE_ID from ERS_REIMBURSEMENT_TYPE where  REIMB_TYPE=?";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setString(1, i);
+			ResultSet info = ps.executeQuery();
+			while (info.next()) 
+			{
+				return info.getInt(1);
+			}
+		} 
+		catch (SQLException e) 
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return 0;
+	}
+	
 	@Override
 	public String getRStatus(int i) {
 
@@ -168,7 +220,26 @@ public class FileDao implements DAO {
 		return null;
 		// TODO Auto-generated method stub
 	}
+	
+	@Override
+	public int getRStatusById(String i) {
 
+		try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
+			String sql = "select REIMB_STATUS_ID from ERSREIMBURSEMENTSTATUS where  REIMB_STATUS=?";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setString(1, i);
+			ResultSet info = ps.executeQuery();
+			while (info.next()) {
+				return info.getInt(1);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return 0;
+		// TODO Auto-generated method stub
+	}
+	
 	@Override
 	public User geters_users(String user, String pass) 
 	{
@@ -194,14 +265,6 @@ public class FileDao implements DAO {
 				u.setUid(info.getInt("U_ID"));
 				u.setUser_Role_Id(info.getInt("ERS_USER_ROLE_ID"));
 				return u;
-				/*u.setUsername(info.getString(4));
-				u.setEmail(info.getString(6));
-				u.setFirstname(info.getString(2));
-				u.setLastname(info.getString(3));
-				u.setPassword(info.getString(5));
-				u.setUid(info.getInt(1));
-				u.setUser_Role_Id(info.getInt(7));
-			*/
 			}
 			conn.commit();
 			conn.close();
@@ -236,6 +299,26 @@ public class FileDao implements DAO {
 		}
 		return null;
 	}
+	//might not work with this
+	@Override
+	public int geters_user_rolesbyId(String role) 
+	{
+	// TODO Auto-generated method stub
+
+		try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
+			String sql = "select * from ers_user_roles where USER_ROLE =?";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setString(1, role);
+			ResultSet info = ps.executeQuery();
+			while (info.next()) {
+				return info.getInt(1);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return 0;
+	}
 
 	@Override
 	public void addReimbursements(double amount, String description, int uid, int statusid, int typeid,int uid2) 
@@ -254,6 +337,51 @@ public class FileDao implements DAO {
 			ps.setInt(4, statusid);
 			ps.setInt(5, typeid);
 			ps.setInt(6, uid2);
+			ps.executeUpdate();
+			conn.commit();
+			conn.close();
+		} 
+		catch (SQLException e) 
+		{
+			// TODO Auto-generated catch block
+			System.out.println("Failed to save reimbursement");
+		}
+	}
+	@Override
+	public void UpdateStatus(int id)
+	{
+		// TODO Auto-generated method stub
+		try (Connection conn = ConnectionFactory.getInstance().getConnection()) 
+		{
+			// add submit date and approved date to it.
+			conn.setAutoCommit(false);
+			String sql = "update ERSREIMBURSEMENTSTATUS set REIMB_STATUS = ? where REIMB_STATUS_ID=?";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setString(1, "success");
+			ps.setInt(2, id);
+			ps.executeUpdate();
+			conn.commit();
+			conn.close();
+		} 
+		catch (SQLException e) 
+		{
+			// TODO Auto-generated catch block
+			System.out.println("Failed to save reimbursement");
+		}
+	}
+	
+	@Override
+	public void UpdateReimb(int reimbid1,int uid2)
+	{
+		// TODO Auto-generated method stub
+		try (Connection conn = ConnectionFactory.getInstance().getConnection()) 
+		{
+			// add submit date and approved date to it.
+			conn.setAutoCommit(false);
+			String sql = "update ERS_REIMBURSEMENT set U_ID2=? where reimb_id=?";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setInt(1, uid2);
+			ps.setInt(2, reimbid1);
 			ps.executeUpdate();
 			conn.commit();
 			conn.close();

@@ -2,7 +2,8 @@
  * previously app.js
  */
 
-window.onload = function(){
+window.onload = function()
+{
 	$('#message').hide();
 	$('#login').on('click',login);
 	$('#register').on('click', register);

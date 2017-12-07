@@ -29,19 +29,17 @@ public class LoginServlet extends HttpServlet {
 		String json = "";
 		if (br != null) {
 			json = br.readLine();
-		}
-		System.out.println("JSON STRING: " + json);
 
+		}
+	
 		// 2. initiate jackson mapper
 		ObjectMapper mapper = new ObjectMapper();
-
 		//// 3. Convert received JSON to String array
 		String[] userInfo = mapper.readValue(json, String[].class);
 		String username = userInfo[0];
 		String password = userInfo[1];
 
 		User temp = service.geters_users(username, password); // get user by uname
-		
 		if (temp == null) { // if invalid user, obj = null
 			System.out.println("temp is null");
 		} else if (!temp.getPassword().equals(password)) { // if invalid pw, id = 0;
@@ -51,6 +49,9 @@ public class LoginServlet extends HttpServlet {
 			HttpSession session = req.getSession();
 			session.setAttribute("user", temp);// persist this user to the session to be accessed throughout servlets
 		}
+		
+		
+//where the if statement for user and manager should go
 		PrintWriter out = resp.getWriter();
 		resp.setContentType("application/json");
 		out.println("hello");

@@ -55,7 +55,7 @@ public class LoginServlet extends HttpServlet{
 			temp.setId(0);
 			temp.setPassword(null);
 		}
-		else{// valid credentials
+		else{// valid credentials0
 			HttpSession session = req.getSession();
 			session.setAttribute("user", temp);//persist this user to the session to be accessed throughout servlets
 		}

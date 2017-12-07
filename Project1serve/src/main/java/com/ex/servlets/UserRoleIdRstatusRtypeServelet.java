@@ -15,26 +15,22 @@ import com.rev.service.Service;
 @WebServlet("/Rtype")
 public class UserRoleIdRstatusRtypeServelet extends HttpServlet
 {
-
 	static Service service = new Service();
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)throws ServletException,IOException
 	{
-	
 		String Rtype = request.getParameter("Rtype");
 		String rstatus = "pending";
-		String r = request.getParameter("op");
-		
+		String amount =request.getParameter("amount");
+		double a = Double.parseDouble(amount);
+		String desc = request.getParameter("description");
+
 		service.addRtype(Rtype);
 		service.addRStatus(rstatus);
-		service.adders_user_roles(r);
+		int s = service.getRStatusById(rstatus);
+		int t = service.getRtypeById(Rtype);
+		//service.addReimbursements(a, description, uid, statusid, typeid, null);
 		
 		PrintWriter out = response.getWriter();
-		out.println(r);
-		out.println(rstatus);
-		out.println(Rtype);
-
-	}
-	
-	
+	}	
 }

@@ -27,15 +27,18 @@ function login()
 		if(xhr.readyState == 4 && xhr.status==200)
 		{
 			console.log("in xhr callback" + xhr.responseText);
-			var user = JSON.parse(xhr.responseText);
+			//var user = JSON.parse(xhr.responseText);
+			var user = xhr.responseText;
 			$('#message').show();
 			if(user == null)
 			{
 				$('#message').html("Invalid user") ;
+				alert("error1");
 			}
 			else if(user.id == 0)
 			{
 				$('#message').html( "Invalid password");
+				alert("error2");
 			}
 			else
 			{
@@ -45,15 +48,13 @@ function login()
 			}
 		}
 	};
-	
 	xhr.open("POST","login", true);
 	console.log(xhr.readyState);
 	xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 	console.log("AFTER HEADER " + xhr.readyState);
 	xhr.send(json);	
-
+	console.log("hooray!!")
 }
-
 function register()
 {
 	window.location.replace('register.html');

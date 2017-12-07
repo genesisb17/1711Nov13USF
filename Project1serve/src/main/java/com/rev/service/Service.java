@@ -9,7 +9,18 @@ import com.rev.pojo.User;
 public class Service 
 {
 	static DAO dao = new FileDao();
-
+	public int geters_user_rolesbyId(String role)
+	{
+		return dao.geters_user_rolesbyId(role);
+	}
+	public int getRStatusById(String i)
+	{
+		return dao.getRStatusById(i);
+	}
+	public int getRtypeById(String i)
+	{
+		return dao.getRtypeById(i);
+	}
 	public User validateUser(String user1,String pass){
 		User user = dao.geters_users(user1, pass);
 		if(user.getUid()==0) return null;

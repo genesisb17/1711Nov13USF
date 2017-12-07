@@ -13,8 +13,10 @@ window.onload = function()
 function loadHome()
 {
 	var xhr = new XMLHttpRequest();
-	xhr.onreadystatechange = function(){
-		if(xhr.readyState == 4 && xhr.status == 200){
+	xhr.onreadystatechange = function()
+	{
+		if(xhr.readyState == 4 && xhr.status == 200)
+		{
 			document.getElementById('view').innerHTML = xhr.responseText;				
 		}
 	}	
@@ -24,10 +26,12 @@ function loadHome()
 function loadProfile()
 {
 	var xhr = new XMLHttpRequest();
-	xhr.open("GET", "/getProfileView" , true);
+	xhr.open("GET", "getProfileView" , true);
 	xhr.send();
-	xhr.onreadystatechange = function(){
-		if(xhr.readyState == 4 && xhr.status == 200){
+	xhr.onreadystatechange = function()
+	{
+		if(xhr.readyState == 4 && xhr.status == 200)
+		{
 			document.getElementById('view').innerHTML = xhr.responseText;//partials/profile.html	
 			loadProfileInfo();
 		}
@@ -40,8 +44,10 @@ function loadProfileInfo()
 	xhr.open("GET","getUserInfo", true);
 	xhr.send();
 	
-	xhr.onreadystatechange = function(){
-		if(xhr.readyState == 4 && xhr.status == 200){
+	xhr.onreadystatechange = function()
+	{
+		if(xhr.readyState == 4 && xhr.status == 200)
+		{
 			console.log(xhr.responseText);0
 			sessionUser = JSON.parse(xhr.responseText);
 			$("#name").html(sessionUser.firstname);

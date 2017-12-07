@@ -15,5 +15,5 @@
 	  	<version>11.2.0</version>
 	  	</dependency>
   </dependencies>
-<packaging>war</packaging><!-- check for error -->
+<packaging>jar</packaging><!-- check for error -->
 </project>

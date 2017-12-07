@@ -9,7 +9,30 @@ import com.rev.pojo.User;
 public class Service 
 {
 	static DAO dao = new FileDao();
-	
+	public int findmax()
+	{
+		return dao.findmax();
+	}
+	public int getRtypeById(String i)
+	{
+		return dao.getRtypeById(i);
+	}
+	public int getRStatusById(String i)
+	{
+		return dao.getRStatusById(i);
+	}
+	public int geters_user_rolesbyId(String role)
+	{
+		return dao.geters_user_rolesbyId(role);
+	}
+	public void UpdateStatus(int id)
+	{
+		dao.UpdateStatus(id);
+	}
+	public void UpdateReimb(int reimbid1, int uid2)
+	{
+		dao.UpdateReimb(reimbid1, uid2);
+	}
 	public void addReimbursements(double amount,  String Description, int uid,int statusid, int typeid, int uid2)
 	{
 		dao.addReimbursements(amount,Description, uid,statusid,typeid,uid2);
