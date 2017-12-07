@@ -18,6 +18,7 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"
 	integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
 	crossorigin="anonymous"></script>
+<script src="js/login.js"></script>
 <style>
 body {
 	background-color: linen
@@ -26,49 +27,18 @@ body {
 </head>
 <body>
 	<form>
-		<div class="container form-control"
-			style="margin-top: 50px !important">
-			<h1>Electronic Reimbursements System</h1>
-			<h4>(ERS)</h4>
-			<label class="
-			col-form-label" for="formGroupExampleInput">
-				username:</label> <input type="text" class="col-3 form-control"
-				id="username" placeholder="username"
-				style="padding-top: 3px !important"> <label
-				class="col-form-label" for="formGroupExampleInput">password:</label>
-			<input type="text" class="col-3 form-control" id="password"
-				placeholder="password" style="padding-top: 3px !important" /> <br />
+		<div class="container form-control" style="margin-top: 50px !important">
+			<h1 align="center">Electronic Reimbursements System</h1>
+			<label class="col-form-label" for="formGroupExampleInput">username:</label> 
+			<input id="username" type="text" class="col-3 form-control" placeholder="username" style="padding-top: 3px !important"> 
+			<label class="col-form-label" for="formGroupExampleInput">password:</label>
+			<input id="password" type="text" class="col-3 form-control" placeholder="password" style="padding-top: 3px !important" /> 
+			<br>
 			<input type="button" class="btn btn-dark" id="login" value="Login">
-			<input type="button" class="btn btn-dark" id="register"
-				value="Register">
+			<input type="button" class="btn btn-dark" id="register" value="Register">
+			<h4 id="notification" align="center"></h4>
 		</div>
 	</form>
 </body>
-
-<script>
-$(#login).on(click,function{
-	var xhr=new XMLHttpRequest();
-	xhr.onreadystatechange(function(){
-		if(this.status==200 && this.readystate==4){
-			//do some stuff
-		}
-	}
-	xhr.open("GET","ValidateLoginServlet",true);
-	xhr.send();
-	);
-});
-
-$(#register).on(click,function{
-	var xhr=new XMLHttpRequest();
-	xhr.onreadystatechange(function(){
-		if(this.status==200 && this.readystate==4){
-			//do some stuff	
-		}
-	}
-	xhr.open("POST","RegisterNewServlet",true);
-	xhr.send();
-	);
-});
-</script>
 
 </html>

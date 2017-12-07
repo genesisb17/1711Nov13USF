@@ -1,9 +1,8 @@
 package com.rev.servlets;
 
+import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.Enumeration;
+import java.io.InputStreamReader;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,54 +10,47 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.rev.pojos.User;
 import com.rev.service.Service;
-import com.rev.service.demoService;
 
 @WebServlet("/register")
 public class RegisterServlet extends HttpServlet {
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID=1L;
+	static{
+		System.out.println("in register servlet");
+	}
+	
+	static Service service = new Service();
 	
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
 		throws ServletException, IOException {
-		
-		String name = request.getParameter("username");
-		String pass= request.getParameter("password");
-		
-		System.out.println("User: " + name + "\nPassword: "+ pass);
-		
-		Enumeration<String> paramNames=request.getParameterNames();
-		while(paramNames.hasMoreElements()) {
-			String param=paramNames.nextElement();
-			String val=request.getParameter(param);
-			System.out.println(param + ": " + val);
+		System.out.println("in do get");
+		request.getRequestDispatcher("register.html").forward(request, response);
 		}
-		
-		//PrintWriter out=response.getWriter();
-		//out.print("<h1> Welcome "+ name + "!</h1>");
 
-	}
-	static Service service = new Service();
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException{
-		String name=request.getParameter("username");
-		service.addUser(name);
+		System.out.println("in register servlet");
+
+		BufferedReader br = 
+				new BufferedReader(new InputStreamReader(request.getInputStream()));
+		String json = "";
 		
-		
-		ArrayList<String> users = service.getUsers();
-		String userList = "<ul>";
-		for(String u: users) {
-			userList = userList + "<li>" + u + "</li>";
+		if(br != null){
+			json = br.readLine();
 		}
-		userList=userList+"</ul>";
-		PrintWriter out = response.getWriter();
-		response.setContentType("text/html");
 		
-		out.print(userList);
+		ObjectMapper mapper = new ObjectMapper();
+		
+		User u = mapper.readValue(json, User.class);
+		String username=u.getUsername();
+		String password=u.getPassword();
+		String fn=u.getFirstname();
+		String ln=u.getLastname();
+		service.addUser(fn,ln,username,password);
+		
+		// redirect to login page? display successful login page then request login page? 
 	}
 }

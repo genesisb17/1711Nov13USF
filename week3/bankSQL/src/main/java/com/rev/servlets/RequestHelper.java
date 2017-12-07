@@ -9,12 +9,13 @@ public class RequestHelper {
 		
 		System.out.println("in process method");
 		switch(req.getRequestURI()) {
-		case "view/profile":{
+		case "bankdemo/profile.view":{
 			return "partials/profile.html";
 		}
-		case "view/home":{
+		case "bankdemo/home.view":{
 			return "partials/home.html";
 		}
+		
 		}
 		return null;
 	}

@@ -23,8 +23,13 @@
     <servlet-name>ValidateLoginServlet</servlet-name>
     <servlet-class>com.rev.servlets.ValidateLoginServlet</servlet-class>
   </servlet>
+  <servlet>
+  <servlet-name>LoadViewFC</servlet-name>
+  <url-pattern>*.view</url-pattern>
+  </servlet>
   <servlet-mapping>
     <servlet-name>ValidateLoginServlet</servlet-name>
     <url-pattern>/ValidateLoginServlet</url-pattern>
   </servlet-mapping>
+  
 </web-app>
