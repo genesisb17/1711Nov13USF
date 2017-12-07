@@ -58,7 +58,7 @@ public class DAOImpl implements DAO{
 		return id;
 		
 	}
-
+	
 	public User findUser(String uname) {
 		
 		User temp = new User();
@@ -146,10 +146,10 @@ public class DAOImpl implements DAO{
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setInt(1, reimb.getReimbID());
 			ps.setInt(2, reimb.getReimbAmount());
-			ps.setString(3, reimb.getReimbSubmitted());
-			ps.setString(4, reimb.getReimbResolved());
+			ps.setTimestamp(3, reimb.getReimbSubmitted());
+			ps.setTimestamp(4, reimb.getReimbResolved());
 			ps.setString(5, reimb.getReimbDescription());
-			ps.setString(6, reimb.getReimbReceipt());
+			ps.setBlob(6, reimb.getReimbReceipt());
 			ps.setInt(7, reimb.getReimbAuthor());
 			ps.setInt(8, reimb.getReimbResolver());
 			ps.setInt(9, reimb.getReimbStatusID());
@@ -165,34 +165,115 @@ public class DAOImpl implements DAO{
 	}
 
 	@Override
-	public void viewTickets(User u) {
+	public ArrayList<Reimbursement> returnTickets(User u) {
 
-		try(Connection conn = ConnectionFactory.getInstance().getConnection()){
-			
-			int check = u.getUserRoleID();
-			if(check == 0) {
-				//associate, print only tickets he/she has submitted
-				String sql = "select * from ers_reimbursement where reimb_author = ? ";
-				PreparedStatement ps = conn.prepareStatement(sql);
-				ps.setInt(1, u.getUserID());
-				ResultSet info = ps.executeQuery();
+		ArrayList<Reimbursement> reimArray = new ArrayList<Reimbursement>();
+		Reimbursement reim = new Reimbursement();
+
+		try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
+
+			//find all requests for the user with the corresponding ID
+			String sql = "SELECT * FROM ERS_REIMBURSEMENT WHERE REIMB_AUTHOR = (?)";
+
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setInt(1, u.getUserID());
+			ResultSet info = ps.executeQuery();
+
+			//iterate through result set of returned query 
+			while (info.next()) {
+
+				reim.setReimbID(info.getInt("REIMB_ID"));
+				reim.setReimbAmount(info.getInt("REIMB_AMOUNT"));
+				reim.setReimbSubmitted(info.getTimestamp("REIMB_SUBMITTED"));
+				reim.setReimbResolved(info.getTimestamp("REIMB_RESOLVED"));
+				reim.setReimbDescription(info.getString("REIMB_DESCRIPTION"));
+				reim.setReimbReceipt(info.getBlob("REIMB_RECEIPT"));
+				reim.setReimbAuthor(info.getInt("REIMB_AUTHOR"));
+				reim.setReimbResolver(info.getInt("REIMB_RESOLVER"));
+				reim.setReimbStatusID(info.getInt("REIMB_STATUS_ID"));
+				reim.setReimbTypeID(info.getInt("REIMB_TYPE_ID"));
+				
+				System.out.println(reim.getReimbID());
+				
+				reimArray.add(reim);
+
 			}
-			
-			else {
-				//manager is able to see all tickets pending
-				String sql = "select * from ers_users where reimb_status_id = ? ";
-				PreparedStatement ps = conn.prepareStatement(sql);
-				ps.setInt(1, 1); //search for where reimbursement status is pending (1)
-				ResultSet info = ps.executeQuery();
-			}
-			
+
 		} catch (SQLException e) {
+
 			e.printStackTrace();
+
 		}
+
+		return reimArray;
+		
+	}
+
+	@Override
+	public ArrayList<Reimbursement> returnPendingTickets() {
+		
+		
+		ArrayList<Reimbursement> pendingArray = new ArrayList<Reimbursement>();
+		Reimbursement pendingReimb = new Reimbursement();
+
+		try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
+
+			//return all pending requests
+			String sql = "SELECT * FROM ERS_REIMBURSEMENT WHERE REIMB_STATUS_ID = (?)";
+
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setInt(1, 1);
+			ResultSet info = ps.executeQuery();
+
+			//iterate through result set of returned query 
+			while (info.next()) {
+
+				pendingReimb.setReimbID(info.getInt("REIMB_ID"));
+				pendingReimb.setReimbID(info.getInt("REIMB_AMOUNT"));
+				pendingReimb.setReimbSubmitted(info.getTimestamp("REIMB_SUBMITTED"));
+				pendingReimb.setReimbResolved(info.getTimestamp("REIMB_RESOLVED"));
+				pendingReimb.setReimbDescription(info.getString("REIMB_DESCRIPTION"));
+				pendingReimb.setReimbReceipt(info.getBlob("REIMB_RECEIPT"));
+				pendingReimb.setReimbAuthor(info.getInt("REIMB_AUTHOR"));
+				pendingReimb.setReimbResolver(info.getInt("REIMB_RESOLVER"));
+				pendingReimb.setReimbStatusID(info.getInt("REIMB_STATUS_ID"));
+				pendingReimb.setReimbTypeID(info.getInt("REIMB_TYPE_ID"));
+				
+				System.out.println("adding pending reimbursement ID: " + pendingReimb.getReimbID() + ", to list");
+				
+				pendingArray.add(pendingReimb);
+
+			}
+
+		} catch (SQLException e) {
+
+			e.printStackTrace();
+
+		}
+
+		return pendingArray;
+		
 		
 	}
 	
-
+	public void approveDenyRequest(int requestID, int reimStatus) {
+			
+			try(Connection conn = ConnectionFactory.getInstance().getConnection()){
+			
+			conn.setAutoCommit(false);
+			
+			//update the status of a request to either approved or denied
+			String sql = "update ers_eimbursement set reimb_status_id = (?) where reimb_id = (?)";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setInt(1,requestID);
+			ps.setInt(2,reimStatus);
+			ps.executeUpdate();
+			conn.commit();
+		
+			} catch (SQLException e) {
+				
+			}
+	}
 
 
 }

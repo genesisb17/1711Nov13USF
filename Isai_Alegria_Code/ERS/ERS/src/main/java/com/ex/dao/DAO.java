@@ -14,7 +14,9 @@ public interface DAO {
 	public boolean findUser2(String uname);
 	public boolean checkPass(User u, String pass);
 	public void addRequest(Reimbursement reimb);
-	public void viewTickets(User u);
+	public ArrayList<Reimbursement> returnTickets(User u);
+	public ArrayList<Reimbursement> returnPendingTickets();
+	public void approveDenyRequest(int rtID, int rStatus);
 	
 	
 }

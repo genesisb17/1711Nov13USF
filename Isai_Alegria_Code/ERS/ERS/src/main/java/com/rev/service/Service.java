@@ -2,6 +2,9 @@ package com.rev.service;
 
 import com.rev.pojos.Reimbursement;
 import com.rev.pojos.User;
+
+import java.util.ArrayList;
+
 import com.ex.dao.DAO;
 import com.ex.dao.DAOImpl;
 
@@ -15,7 +18,7 @@ public class Service {
 
 		
 	}
-	//funciton returns true if username is found and false if not
+	//function returns true if username is found and false if not
 	public boolean findUser2(String uname) {
 		
 		return dao.findUser2(uname);
@@ -39,12 +42,21 @@ public class Service {
 		dao.addRequest(reimb);
 	}
 	
-	public void returnTickets(User u) {
+	public ArrayList<Reimbursement> returnTickets(User u) {
 		
-		dao.viewTickets(u);
+		return dao.returnTickets(u);
 		
 	}
 	
+	public ArrayList<Reimbursement> returnPendingTickets(){
+		
+		return dao.returnPendingTickets();
+	}
 	
+	public void approveDenyRequest(int requestID, int reimStatus) {
+		
+		dao.approveDenyRequest(requestID,reimStatus);
+		
+	}
 
 }

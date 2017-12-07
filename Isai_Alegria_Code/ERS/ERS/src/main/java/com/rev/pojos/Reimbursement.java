@@ -1,13 +1,16 @@
 package com.rev.pojos;
 
+import java.sql.Blob;
+import java.sql.Timestamp;
+
 public class Reimbursement {
 	
 	public int reimbID;
 	public int reimbAmount;
-	public String reimbSubmitted;
-	public String reimbResolved;
+	public Timestamp reimbSubmitted;
+	public Timestamp reimbResolved;
 	public String reimbDescription;
-	public String reimbReceipt;
+	public Blob reimbReceipt;
 	public int reimbAuthor;
 	public int reimbResolver;
 	public int reimbStatusID;
@@ -28,13 +31,13 @@ public class Reimbursement {
 		
 	}
 	
-	public String getReimbSubmitted()
+	public Timestamp getReimbSubmitted()
 	{
 		return reimbSubmitted;
 	}
 	
-	public void setReimbSubmitted(String reimbSub) {
-		this.reimbSubmitted = reimbSub;
+	public void setReimbSubmitted(Timestamp timestamp) {
+		this.reimbSubmitted = timestamp;
 		
 	}
 
@@ -54,12 +57,12 @@ public class Reimbursement {
 		this.reimbAmount = reimbAmount;
 	}
 
-	public String getReimbResolved() {
+	public Timestamp getReimbResolved() {
 		return reimbResolved;
 	}
 
-	public void setReimbResolved(String reimbResolved) {
-		this.reimbResolved = reimbResolved;
+	public void setReimbResolved(Timestamp timestamp) {
+		this.reimbResolved = timestamp;
 	}
 
 	public String getReimbDescription() {
@@ -70,12 +73,12 @@ public class Reimbursement {
 		this.reimbDescription = reimbDescription;
 	}
 
-	public String getReimbReceipt() {
+	public Blob getReimbReceipt() {
 		return reimbReceipt;
 	}
 
-	public void setReimbReceipt(String reimbReceipt) {
-		this.reimbReceipt = reimbReceipt;
+	public void setReimbReceipt(Blob blob) {
+		this.reimbReceipt = blob;
 	}
 
 	public int getReimbAuthor() {

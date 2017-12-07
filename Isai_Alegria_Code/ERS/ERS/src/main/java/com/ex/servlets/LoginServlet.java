@@ -76,6 +76,7 @@ public class LoginServlet extends HttpServlet{
 			String userJSON = mapper.writeValueAsString(temp);
 			
 			out.write(userJSON);
+			
 		}
 
 		

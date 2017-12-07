@@ -15,6 +15,22 @@ window.onload = function(){
 var user = {}
 
 
+function editProfile(){
+	
+	//window.location.replace("login.html");
+	var xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function(){
+			if(xhr.readyState == 4 && xhr.status == 200){
+				document.getElementById('view').innerHTML = xhr.responseText;
+				
+			}
+	}
+	xhr.open("GET","editprofile.view",true);
+	xhr.send();
+	
+}
+
+
 function logOut(){
 
 	window.location.replace("login.html");
@@ -27,7 +43,7 @@ function logOut(){
 				console.log("in callback for logout")
 			}
 	}
-	xhr.open("GET","logOut",true);
+	xhr.open("GET","signOut",true);
 	xhr.send();
 }
 
@@ -42,7 +58,7 @@ function loadHome(){
 				$('#viewRequests').on('click',loadViewTickets);
 			}
 	}
-	xhr.open("GET","getHomeView",true);
+	xhr.open("GET","home.view",true);
 	xhr.send();
 	
 }
@@ -57,11 +73,12 @@ function loadProfile(){
 		if(xhr.readyState == 4 && xhr.status == 200){
 			document.getElementById('view').innerHTML = xhr.responseText;
 			loadProfileInfo();
+			$('#edit').on('click',editProfile);
 		}
 		
 	}
 
-	xhr.open("GET","getProfileView",true);
+	xhr.open("GET","profile.view",true);
 	xhr.send();
 	
 }
@@ -101,7 +118,7 @@ function loadAddRequest(){
 		
 	}
 
-	xhr.open("GET","getAddRequestView",true);
+	xhr.open("GET","request.view",true);
 	xhr.send();
 	
 }
@@ -116,7 +133,7 @@ function loadViewTickets(){
 		
 	}
 
-	xhr.open("GET","getViewTicketsView",true);
+	xhr.open("GET","tickets.view",true);
 	xhr.send();
 	
 }

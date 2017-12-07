@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-@WebServlet ("/logOut")
+@WebServlet ("/logOut.view")
 public class LogOut extends HttpServlet{
 
 	/**
@@ -34,9 +34,10 @@ public class LogOut extends HttpServlet{
 				session.invalidate();
 				//System.out.println("session invalidated!");
 				//resp.sendRedirect("index.html");
+				resp.sendRedirect("login.html");
 				
 			}
-			resp.sendRedirect("app.html");
+			
 	}
 
 }

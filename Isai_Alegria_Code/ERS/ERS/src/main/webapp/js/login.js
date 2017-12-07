@@ -3,6 +3,7 @@
  */
 
 window.onload = function(){
+	
 	$('#message').hide();
 	$('#login').on('click',login);
 	$('#register').on('click', register);

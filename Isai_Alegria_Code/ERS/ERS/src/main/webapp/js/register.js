@@ -10,6 +10,7 @@ window.onload = function(){
 	
 }
 
+
 function register(){
 	var fn = $('#firstname').val();
 	var ln = $('#lastname').val();

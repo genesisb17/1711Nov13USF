@@ -11,14 +11,13 @@
   </welcome-file-list>
   
   <servlet>
-  	<servlet-name>demo</servlet-name>
-  	<servlet-class>com.ex.servlets.ForwardRedirect</servlet-class>
-  	<load-on-startup>1</load-on-startup>
+  	<servlet-name>RequestHelper</servlet-name>
+  	<servlet-class>com.ex.servlets.ForwardDirect</servlet-class>
   </servlet>
   
   <servlet-mapping>
-  	<servlet-name>demo</servlet-name>
-  	<url-pattern>/index</url-pattern>
+  	<servlet-name>RequestHelper</servlet-name>
+  	<url-pattern>/view/*</url-pattern>
   </servlet-mapping>
   
 </web-app>
