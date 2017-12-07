@@ -13,40 +13,7 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb"
 	 crossorigin="anonymous">
 
-	<style>
-		table {
-			text-align: center;
-			font-size: x-large;
-		}
-
-		th {
-			width: 5rem;
-		}
-
-		.code-block {
-			font-family: monospace;
-			font-size: large;
-			padding: 20px;
-			background-color: #F1E3BB;
-			color: #B71234;
-			display: block;
-			text-align: left;
-		}
-
-		.jumbotron {
-			background-color: #1E1656;
-			color: white;
-		}
-
-		.card-header {
-			background-color: #1E1656;
-			color: white;
-		}
-
-		.card-header a {
-			color: white;
-		}
-	</style>
+	<link rel="stylesheet" href="css/style.css">
 
 </head>
 
@@ -65,10 +32,10 @@
 
 	<div class="container">
 		<h1>Basic Info</h1>
-		<p> Bitwise operator are a type of operator available in many programming languages, from high level languages like Java, JS,
-			and Python all the way down to assembly languages like ARM, MIPS, and the x86 family. They operate on numeric types, performing
-			operations on the individual bits of the data's binary representation. Bitwise operations are fast, simple operations
-			which are directly supported by the processor as part of its instruction set. </p>
+		<p> Bitwise operators are a type of operator available in many programming languages, from high level languages like Java,
+			JS, and Python all the way down to assembly languages like ARM, MIPS, and the x86 family. They operate on numeric types,
+			performing operations on the individual bits of the data's binary representation. Bitwise operations are fast, simple
+			operations which are directly supported by the processor as part of its instruction set. </p>
 		<h1>Why Use Bitwise Operators?</h1>
 		<p> Bitwise operators are often used in embedded systems and other hardware with extremely stringent resource requirements
 			(e.g. legacy systems). By operating on individual bits, bitwise operators can be used to store, alter, and retrieve data
@@ -82,11 +49,11 @@
 		<h3>Bitwise Operators Available in Java and JS</h3>
 		<p> Java and JS have access to the same library of seven bitwise operators: AND (&), OR(|), NOT (~), XOR (^), Logical Right
 			Shift (>>), Arithmetic Right Shift (>>>), and Left Shift (&lt;&lt;) </p>
-		<p> However, the two languages have different caveats to consider when using bitwise operators. In Java,
-			<i>only</i> integers can be used on either side of a bitwise operator. Any other type must be explicitly casted to an integer
-			type, even if it is a numeric type smaller than int. In JavaScript, any types can be used with bitwise operators, but
-			you should be aware that numeric types in JS are by default stored as 64-bit floating point numbers and converted to 32-bit
-			signed integers for use with bitwise operators. </p>
+		<p> However, the two languages have different caveats to consider when using bitwise operators. In Java, while all integral
+			types can be used with bitwise operators, the output of the operator will always be an int, which means some common use
+			cases may require explicit casting back to the intended result type. In JavaScript, any types can be used with bitwise
+			operators, but you should be aware that numeric types in JS are by default stored as 64-bit floating point numbers and
+			converted to 32-bit signed integers for use with bitwise operators. </p>
 		<div id="accordion" role="tablist">
 			<div class="card">
 				<div class="card-header" role="tab" id="headingOne">
