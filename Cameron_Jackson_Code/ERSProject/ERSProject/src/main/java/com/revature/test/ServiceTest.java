@@ -1,7 +1,9 @@
 package com.revature.test;
 
 
-import com.revature.pojos.Users;
+import java.util.ArrayList;
+
+import com.revature.pojos.Reimbursement;
 import com.revature.service.ERSService;
 
 public class ServiceTest {
@@ -21,5 +23,9 @@ public class ServiceTest {
 //		System.out.println(service.createAccount(u));
 		
 //		System.out.println(service.uniqueEmail("aysafsda@email.com"));
+//		ArrayList<Reimbursement> tickets = service.getPastTickets(7353);
+//		for (Reimbursement r: tickets) 
+//			System.out.println(r);
+		System.out.println(service.getStatus(1));
 	}
 }

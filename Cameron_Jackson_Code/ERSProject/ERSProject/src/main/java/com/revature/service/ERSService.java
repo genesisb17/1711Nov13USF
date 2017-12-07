@@ -1,10 +1,13 @@
 package com.revature.service;
 
+import java.util.ArrayList;
+
 import com.revature.dao.ERSDAO;
 import com.revature.dao.ERSDatabaseDAO;
 import com.revature.pojos.Reimbursement;
 import com.revature.pojos.Users;
 import com.revature.types.ReimbursementStatus;
+import com.revature.types.ReimbursementType;
 
 public class ERSService {
 	static ERSDAO dao = new ERSDatabaseDAO();
@@ -18,7 +21,6 @@ public class ERSService {
 	}
 	
 	public boolean correctPassword(String username, String password) {
-		String existingUser = dao.findUsername(username);
 		String existingPass = dao.findPassword(username);
 		if (userExists(username) && existingPass.equals(password)) 
 			return true;
@@ -50,10 +52,24 @@ public class ERSService {
 		return u;
 	}
 	
+	public Users getUser(int userId) {
+		Users u = null;
+		u = dao.getUserById(userId);
+		return u;
+	}
+	
 	public Reimbursement getTicket(int reimbId) {
 		Reimbursement ticket = null;
 		ticket = dao.getTicket(reimbId);
 		return ticket;
+	}
+	
+	public ArrayList<Reimbursement> getPastTickets(int userId) {
+		ArrayList<Reimbursement> tickets = dao.getPastTickets(userId);
+		if (tickets.isEmpty())
+			return null;
+		
+		return tickets;
 	}
 	
 	public Reimbursement addTicket(Reimbursement newTicket) {
@@ -66,5 +82,15 @@ public class ERSService {
 		Reimbursement ticket = null;
 		ticket = dao.resolveTicket(reimbId, status, resolverId);
 		return ticket;
+	}
+	
+	public String getStatus(int statusId) {
+		ReimbursementStatus status = dao.getStatus(statusId);
+		return status.name();
+	}
+	
+	public String getType(int typeId) {
+		ReimbursementType type = dao.getType(typeId);
+		return type.name();
 	}
 }

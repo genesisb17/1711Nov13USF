@@ -108,6 +108,7 @@ function loadReimb() {
         if (xhr.readyState == 4 && xhr.status == 200) {
             document.getElementById('view').innerHTML = xhr.responseText;
             getUser();
+            getEmployeeTicketInfo();
         }
     }
 
@@ -148,7 +149,7 @@ function login() {
                 $('#message').html("Invalid username or password");
                 $('#password').val("");
             } else {
-                loadMainPage(currUser);
+                loadMainPage();
             }
         }
     }
@@ -239,8 +240,24 @@ function getUser() {
     xhr.send();
 }
 
-function updateAccount() {
-
+function getEmployeeTicketInfo() {
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            var tick = JSON.parse(xhr.responseText);
+            for (x in tick) {
+                var reimb = tick[x].reimb;
+                var status = tick[x].status;
+                var type = tick[x].type;
+                var resolver = tick[x].user;
+                var rowData =
+                `<td>${reimb.reimbId}</td><td>${status}</td><td>${type}</td><td>${reimb.amount}</td><td>${reimb.submitted}</td><td>${reimb.resolved}</td><td>${resolver.firstName} ${resolver.lastName}</td>`;
+                console.log(rowData);
+            }
+        }
+    }
+    xhr.open("GET", "getemployeetickets", true);
+    xhr.send();
 }
 
 function sanitizeUsername(username) {
