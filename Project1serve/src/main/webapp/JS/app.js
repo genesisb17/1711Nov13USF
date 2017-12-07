@@ -3,6 +3,7 @@
  * 	"admin" role based on a userame and password of admin for demo 
  * 	purposes 
  */
+
 window.onload = function()
 {
 	loadHome();
@@ -17,7 +18,7 @@ function loadHome()
 	{
 		if(xhr.readyState == 4 && xhr.status == 200)
 		{
-			document.getElementById('view').innerHTML = xhr.responseText;				
+			document.getElementById('view').innerHTML = xhr.responseText;
 		}
 	}	
 	xhr.open("GET", "getHomeView" , true);
@@ -48,7 +49,7 @@ function loadProfileInfo()
 	{
 		if(xhr.readyState == 4 && xhr.status == 200)
 		{
-			console.log(xhr.responseText);0
+			console.log(xhr.responseText);
 			sessionUser = JSON.parse(xhr.responseText);
 			$("#name").html(sessionUser.firstname);
 			return sessionUser;

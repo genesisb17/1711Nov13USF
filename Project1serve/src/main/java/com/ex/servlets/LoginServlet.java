@@ -21,13 +21,14 @@ public class LoginServlet extends HttpServlet {
 	static Service service = new Service();
 
 	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException 
+	{
 		System.out.println("in login servlet");
-
 		// 1. get received JSON data from request
 		BufferedReader br = new BufferedReader(new InputStreamReader(req.getInputStream()));
 		String json = "";
-		if (br != null) {
+		if (br != null) 
+		{
 			json = br.readLine();
 
 		}
@@ -40,25 +41,27 @@ public class LoginServlet extends HttpServlet {
 		String password = userInfo[1];
 
 		User temp = service.geters_users(username, password); // get user by uname
-		if (temp == null) { // if invalid user, obj = null
+		if (temp == null) 
+		{ // if invalid user, obj = null
 			System.out.println("temp is null");
-		} else if (!temp.getPassword().equals(password)) { // if invalid pw, id = 0;
+		} 
+		else if (!temp.getPassword().equals(password)) { // if invalid pw, id = 0;
 			temp.setUid(0);
 			temp.setPassword(null);
-		} else {// valid credentials
+		} 
+		else 
+		{// valid credentials
 			HttpSession session = req.getSession();
-			session.setAttribute("user", temp);// persist this user to the session to be accessed throughout servlets
+			session.setAttribute("user", temp);// persist this user to the session to be accessed throughout servlets			
 		}
 		
 		
 //where the if statement for user and manager should go
 		PrintWriter out = resp.getWriter();
 		resp.setContentType("application/json");
-		out.println("hello");
+		out.println("test");
 		out.println(temp.getFirstname());
 		String userJSON = mapper.writeValueAsString(temp);
-
 		out.write(userJSON);
 	}
-
 }

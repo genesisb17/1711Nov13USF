@@ -9,13 +9,9 @@ import com.rev.pojo.User;
 public class Service 
 {
 	static DAO dao = new FileDao();
-	public int geters_user_rolesbyId(String role)
+	public int findmax1()
 	{
-		return dao.geters_user_rolesbyId(role);
-	}
-	public int getRStatusById(String i)
-	{
-		return dao.getRStatusById(i);
+		return dao.findmax1();
 	}
 	public int getRtypeById(String i)
 	{
@@ -68,5 +64,24 @@ public class Service
 	public String geters_user_roles(int i)
 	{
 		return dao.geters_user_roles(i);
+	}
+	public int geters_user_rolesbyId1(String role)
+	{
+		return dao.geters_user_rolesbyId(role);
+	}
+	public int getRStatusById1(String i)
+	{
+		return dao.getRStatusById(i);
+	}
+	public void UpdateStatus(int id) {
+		dao.UpdateStatus(id);
+	}
+	public void UpdateReimb(int reimbid1,int uid2)
+	{
+		dao.UpdateReimb(reimbid1, uid2);
+	}
+	public int findmax()
+	{
+		return dao.findmax();
 	}
 }

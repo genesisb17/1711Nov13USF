@@ -179,6 +179,7 @@ public class FileDao implements DAO {
 		return 0;
 	}
 
+	
 	@Override
 	public int getRtypeById(String i) 
 	{
@@ -391,5 +392,28 @@ public class FileDao implements DAO {
 			// TODO Auto-generated catch block
 			System.out.println("Failed to save reimbursement");
 		}
+	}
+
+
+
+	@Override
+	public int findmax1() {
+		// TODO Auto-generated method stub
+		
+		try (Connection conn = ConnectionFactory.getInstance().getConnection()) 
+		{
+			String sql = "select max(REIMB_STATUS_ID) from ERSREIMBURSEMENTSTATUS";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ResultSet info = ps.executeQuery();
+			while (info.next()) 
+			{
+				return info.getInt(1);
+			}
+		} 
+		catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return 0;
 	}
 }

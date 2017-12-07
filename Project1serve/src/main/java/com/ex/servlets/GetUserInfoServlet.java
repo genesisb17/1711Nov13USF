@@ -14,7 +14,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.rev.pojo.User;
 
 @WebServlet("/getUserInfo")
-public class GetUserInfoServlet extends HttpServlet{
+public class GetUserInfoServlet extends HttpServlet
+{
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -25,7 +26,8 @@ public class GetUserInfoServlet extends HttpServlet{
 		User user = (User)session.getAttribute("user");
 		System.out.println(user);
 		
-		if(user!=null){
+		if(user!=null)
+		{
 			ObjectMapper mapper = new ObjectMapper();
 			String json = mapper.writeValueAsString(user);
 			

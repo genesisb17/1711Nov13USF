@@ -1,6 +1,7 @@
 package com.ex.servlets;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
 import javax.servlet.ServletException;
@@ -8,8 +9,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.rev.pojo.R;
+import com.rev.pojo.User;
 import com.rev.service.Service;
 
 @WebServlet("/getHomeView")
@@ -19,7 +22,10 @@ public class GetHomeViewServlet extends HttpServlet
 	static Service service = new Service();
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException
 	{	
-
+		HttpSession session = req.getSession(true);
+		User u = (User)session.getAttribute("user");
+		PrintWriter out = resp.getWriter();
+		System.out.println("Over here Trent" +u.getUid());
 		req.getRequestDispatcher("partials/home.html").forward(req, resp);
 		ArrayList<R> a = new ArrayList<R>();
 		System.out.println("in loginview servlet");
