@@ -343,14 +343,15 @@ public class DAOimpl implements DAO{
 	@Override
 	public Employee registerUser(ArrayList<Employee> input) {
 		// TODO Auto-generated method stub
-		ArrayList<Employee> e = new ArrayList<>();
+		Employee e = new Employee();
+
 		try(Connection con = ConnectionFactory.getInstance().getConnection()){		
 		String sql = "INSERT INTO ERS_USERS (ERS_USERNAME, ERS_PASSWORD, USER_FIRST_NAME, USER_LAST_NAME, USER_EMAIL, USER_ROLE_ID) "
 				+ "VALUES ('?', '?', '?', '?', '?', ?)";
 		
 		
 		PreparedStatement ps = con.prepareStatement(sql);
-		
+		//ps.setString(1, e)
 		} catch (SQLException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();

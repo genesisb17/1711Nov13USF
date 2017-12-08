@@ -13,6 +13,17 @@ public class Employee {
 		
 	}
 	
+	public Employee(String userName, String password, String firstName, String lastName, String email,
+			Integer userRoleId) {
+		super();
+		this.userName = userName;
+		this.password = password;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
+		this.userRoleId = userRoleId;
+	}
+
 	public Employee(Integer userId, String userName, String password,
 			String firstName, String lastName, String email, Integer userRoleId) {
 		super();		

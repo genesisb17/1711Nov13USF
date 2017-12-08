@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Reimbursement</title>
+<style>
+.navbar-dark {
+        	background-color: #212121 !important;
+         	border-bottom: 0.25em solid #FFDF00 !important; 
+         	margin-bottom: 0px !important;
+}
+
+.jumbotron-head {
+	color: #fff;
+	background: linear-gradient(rgba(0,0,0,.7), rgba(0,0,0,.7)), url("http://www.designdpi.com/blog/images/blog/subtle-animated-gif-18.gif");
+    background-repeat: no-repeat;
+    background-size: cover !important;;
+    background-position: center center !important;;
+	background-size: cover !important;
+	height: 100vh;
+}
+
+#mb {
+margin-top: 50px;
+padding: 10px;
+		height: 100vh;
+}
+
+.tabulator-headers {
+background-color: #212121 !important;
+border-bottom: 0.25em solid #FFDF00 !important; 
+}
+
+
+</style>
+<link href="css/mdb.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb"
+        crossorigin="anonymous">
+<script
+  src="https://code.jquery.com/jquery-3.2.1.js"
+  integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+  crossorigin="anonymous"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"
+	integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh"
+	crossorigin="anonymous"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"
+	integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
+	crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
+        crossorigin="anonymous"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/tabulator/3.3.2/css/tabulator.min.css" rel="stylesheet">
+<script type="text/javascript" src= "https://cdnjs.cloudflare.com/ajax/libs/tabulator/3.3.2/js/tabulator.min.js" crossOrigin="anonymous"></script>
+</head>
+<body>
+<header>
+	<nav class="navbar navbar-expand-lg navbar-dark bg-faded fixed-top">
+		<a class="navbar-brand" href="#">Reimbursement</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup"
+			aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+		
+					    <ul class="navbar-nav mr-auto">
+					    <li class="nav-item">
+				<a class="nav-link" id="ehome" href="#TOP">Home</a> 
+				</li>
+				<li class="nav-item">
+				<a class="nav-link" id="mhome" href="#TOP">Home</a>
+							</li>
+				<li class="nav-item">
+					<a class="nav-link" id="enewreq" href="#mb">New Request</a> 
+ 							</li>
+
+				<li class="nav-item">					
+					<a class="nav-link" id="mprofile" href="#mb">Resolve Requests</a>
+				</li>			
+				</ul>
+				
+				<ul class="navbar-nav">
+				<li class="nav-item">					
+				<a class="nav-link" id="signin" href="#mb">Sign In</a>
+				</li>
+				<li class="nav-item">					
+				<a class="nav-link" id="register" href="#mb">Register</a>
+				</li>
+				<li class="nav-item">					
+				<a class="nav-link" id="logout" href=".">Sign Out</a>
+				</li>					
+				</ul>
+		</div>
+	</nav>
+
+<div class="jumbotron jumbotron-head">
+  <h1 class="display-3">REVATURE REIMBURSEMENT</h1>
+  <p class="lead"><strong>By Jose Belloga</strong></p>
+  <hr class="my-4">
+  <p><strong>Welcome to Reimbursement Project!</strong></p>
+
+</div>
+</header>
+<div id="mb">
+<div id="view"></div>
+<div id="example-table"></div>
+</div>
+</body>
+<script src="js/app.js"></script>
+</html>

@@ -15,9 +15,36 @@ public class ReimbServices {
 	
 		ArrayList<Employee> x = new ArrayList<>();
 		x = dao.getAllUsers();
+
 		for(Employee get : x) {
 			System.out.println(get.toFile());
-			
 		}
+		
 	}
+
+	public Employee validateUser(String username) {
+		ArrayList<Employee> x = new ArrayList<>();
+
+		x = dao.getAllUsers();
+		for(Employee get : x) {
+			
+			if(get.getUserName().equals(username)) {
+				System.out.println("Match");
+
+				return get;
+			}
+
+		}
+		
+		return null;
+	}
+
+	public Employee addUser(Employee u) {
+		ArrayList<Employee> x = new ArrayList<>();
+		x.add(u);
+		dao.registerUser(x);
+		return null;
+	}
+
+	
 }
