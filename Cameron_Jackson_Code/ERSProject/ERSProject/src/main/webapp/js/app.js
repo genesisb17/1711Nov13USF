@@ -3,7 +3,7 @@
  */
 window.onload = function () {
     loadPage();
-    
+
 };
 
 $(document).on('click', '#new-users', loadCA);
@@ -12,14 +12,14 @@ $(document).on('click', '#login', login);
 $(document).on('click', '#create-account', createAccount);
 $(document).on('shown.bs.modal', '#logoutModal', function () {
     $('#logoutModal').trigger('focus');
-    $(document).on('click', '#modal-logout', function() {
+    $(document).on('click', '#modal-logout', function () {
         logout();
     });
 });
 
-$(document).ready(function () {
-    $('#data-table').DataTable();
-});
+// $(document).ready(function () {
+//     $('#reimb-table').DataTable();
+// });
 
 // check for navigation time API support
 // window.onbeforeunload = function() {
@@ -36,7 +36,7 @@ $(document).ready(function () {
  */
 function loadPage() {
     var xhr = new XMLHttpRequest();
-    xhr.onreadystatechange = function() {
+    xhr.onreadystatechange = function () {
         if (xhr.readyState == 4 && xhr.status == 200) {
             if (xhr.responseText == "loadLoginPage")
                 loadLoginPage();
@@ -50,9 +50,8 @@ function loadPage() {
 }
 
 function loadLoginPage() {
-    
     var xhr = new XMLHttpRequest();
-    xhr.onreadystatechange = function() {
+    xhr.onreadystatechange = function () {
         if (xhr.readyState == 4 && xhr.status == 200) {
             $('#appview').html(xhr.responseText);
             loadLogin();
@@ -64,7 +63,7 @@ function loadLoginPage() {
 
 function loadMainPage() {
     var xhr = new XMLHttpRequest();
-    xhr.onreadystatechange = function() {
+    xhr.onreadystatechange = function () {
         if (xhr.readyState == 4 && xhr.status == 200) {
             $('#appview').html(xhr.responseText);
             loadLogoutModal();
@@ -77,7 +76,7 @@ function loadMainPage() {
 
 function loadLogin() {
     var xhr = new XMLHttpRequest();
-    xhr.onreadystatechange = function() {
+    xhr.onreadystatechange = function () {
         if (xhr.readyState == 4 && xhr.status == 200) {
             $('#view').html(xhr.responseText);
             $('.bad-login').hide();
@@ -108,7 +107,7 @@ function loadReimb() {
         if (xhr.readyState == 4 && xhr.status == 200) {
             document.getElementById('view').innerHTML = xhr.responseText;
             getUser();
-            getEmployeeTicketInfo();
+            // getEmployeeTicketInfo();
         }
     }
 
@@ -118,7 +117,7 @@ function loadReimb() {
 
 function loadLogoutModal() {
     var xhr = new XMLHttpRequest();
-    xhr.onreadystatechange = function() {
+    xhr.onreadystatechange = function () {
         if (xhr.readyState == 4 && xhr.status == 200) {
             $('body').prepend(xhr.responseText);
         }
@@ -162,7 +161,7 @@ function login() {
 
 function logout() {
     var xhr = new XMLHttpRequest();
-    xhr.onreadystatechange = function() {
+    xhr.onreadystatechange = function () {
         if (xhr.readyState == 4 && xhr.status == 200) {
             loadLoginPage();
         }
@@ -229,11 +228,15 @@ function createAccount() {
 function getUser() {
     var currUser = {};
     var xhr = new XMLHttpRequest();
-    xhr.onreadystatechange = function() {
+    xhr.onreadystatechange = function () {
         if (xhr.readyState == 4 && xhr.status == 200) {
             currUser = JSON.parse(xhr.responseText);
-            document.getElementById('name').innerHTML =
-            `${document.getElementById('name').innerHTML}, ${currUser.firstName} ${currUser.lastName}`;
+            if (currUser.roleId == 1) {
+                document.getElementById('navbarDropdown').innerHTML =
+                `${currUser.firstName} ${currUser.lastName}`;
+                getEmployeeTicketInfo();
+            }
+            
         }
     }
     xhr.open("GET", "getuser", true);
@@ -242,7 +245,7 @@ function getUser() {
 
 function getEmployeeTicketInfo() {
     var xhr = new XMLHttpRequest();
-    xhr.onreadystatechange = function() {
+    xhr.onreadystatechange = function () {
         if (xhr.readyState == 4 && xhr.status == 200) {
             var tick = JSON.parse(xhr.responseText);
             for (x in tick) {
@@ -250,16 +253,36 @@ function getEmployeeTicketInfo() {
                 var status = tick[x].status;
                 var type = tick[x].type;
                 var resolver = tick[x].user;
-                var rowData =
-                `<td>${reimb.reimbId}</td><td>${status}</td><td>${type}</td><td>${reimb.amount}</td><td>${reimb.submitted}</td><td>${reimb.resolved}</td><td>${resolver.firstName} ${resolver.lastName}</td>`;
-                console.log(rowData);
+                var name = "Unresolved";
+                if (resolver != null) {
+                    name = `${resolver.firstName} ${resolver.lastName}`;
+                }
+                var timeResolved = "";
+                if (reimb.resolved != null) {
+                    timeResolved = reimb.resolved;
+                }
+                var rowData = `<td>${reimb.reimbId}</td>
+                <td>${status}</td><td>${type}</td>
+                <td>${reimb.amount}</td>
+                <td>${reimb.submitted}</td>
+                <td>${timeResolved}</td>
+                <td>${name}</td>`;
+                // console.log(rowData);
+                // Create table row element
+                var tableRow = document.createElement("tr");
+                // Insert rowData into this element
+                tableRow.innerHTML = rowData;
+                // append the element to the table
+                $('#table-data').append(tableRow);
             }
+            // initialize datatable
+            $('#reimb-table').DataTable();
         }
     }
     xhr.open("GET", "getemployeetickets", true);
     xhr.send();
 }
 
-function sanitizeUsername(username) {
+function getAllTicketInfo() {
 
 }

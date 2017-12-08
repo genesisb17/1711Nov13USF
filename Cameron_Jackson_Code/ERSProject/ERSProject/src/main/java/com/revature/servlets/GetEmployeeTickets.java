@@ -31,9 +31,9 @@ public class GetEmployeeTickets extends HttpServlet {
 		int userId = u.getUserId();
 		ArrayList<Reimbursement> reimbs = service.getPastTickets(userId);
 		ArrayList<ReimbDTO> tickets = new ArrayList<>();
-		
 		for (Reimbursement r: reimbs) {
-			Users resolver = service.getUser(r.getResolver());
+			Users resolver = new Users();
+			resolver = service.getUser(r.getResolver());
 			ReimbDTO rdto = new ReimbDTO();
 			rdto.setReimb(r);
 			rdto.setUser(resolver);
@@ -51,7 +51,7 @@ public class GetEmployeeTickets extends HttpServlet {
 			json.append(",");
 		}
 		json.replace(json.lastIndexOf(","), json.length(), "]");
-		System.out.println(json);
+//		System.out.println(json);
 		PrintWriter out = resp.getWriter();
 		resp.setContentType("application/json");
 		out.println(json);		

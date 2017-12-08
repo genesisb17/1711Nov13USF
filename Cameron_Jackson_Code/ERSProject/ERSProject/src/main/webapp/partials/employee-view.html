@@ -1,23 +1,30 @@
 <div class="mx-auto" id="emp-page">
-    <div class="row">
-        <h3 id="name">Welcome </h3>
-        <hr/>
-        <table class="table" id="data-table">
-            <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Status</th>
-                    <th scope="col">Type</th>
-                    <th scope="col">Reimbursement Amount</th>
-                    <!-- <th scope="col">Receipt</th> -->
-                    <th scope="col">Date Submitted</th>
-                    <th scope="col">Date Resolved</th>
-                    <th scope="col">Resolved by</th>
-                </tr>
-            </thead>
-            <tbody id="">
-
-            </tbody>
-        </table>
+    <br/>
+    <div class="row justify-content-between">
+        <div class="col-4">
+            <h3>Reimbursements</h3>
+            <!-- <button class="btn btn-link" id=""></button> -->
+        </div>
+        <div class="col-3 text-right">
+            <button class="btn btn-link" id="create-ticket">Create Ticket</button>
+        </div>
     </div>
+    <hr/>
+    <table class="table" id="reimb-table">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Status</th>
+                <th scope="col">Type</th>
+                <th scope="col">Reimbursement Amount</th>
+                <!-- <th scope="col">Receipt</th> -->
+                <th scope="col">Date Submitted</th>
+                <th scope="col">Date Resolved</th>
+                <th scope="col">Resolved by</th>
+            </tr>
+        </thead>
+        <tbody id="table-data">
+
+        </tbody>
+    </table>
 </div>
