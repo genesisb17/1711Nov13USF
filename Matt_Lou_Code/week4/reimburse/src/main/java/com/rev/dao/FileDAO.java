@@ -25,26 +25,52 @@ public class FileDAO implements DAO{
 //					+ "REIMB AUTHOR, REIMB_RESOLVER, REIMB_STATUS_ID, REIMB_TYPE_ID "
 //					+ "VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
 
-			PreparedStatement insertUser = connect.prepareStatement(sqlAddUser);
+			PreparedStatement ps = connect.prepareStatement(sqlAddUser);
 			//PreparedStatement insertReimb = connect.prepareStatement(sqlAddReimb);
-			insertUser.setString(1, u.getUsername());
-			insertUser.setString(2, u.getPassword());
-			insertUser.setString(3, u.getFirstname());
-			insertUser.setString(4, u.getLastname());
-			insertUser.setString(5, u.getEmail());
-			insertUser.setInt(6, u.getUserRoleId());
-			
-			
-			int rows = insertUser.executeUpdate();
-			
-			if(rows != 0) {
-				user.setUsername(u.getUsername());
-				user.setPassword(u.getPassword());
-				user.setFirstname(u.getFirstname());
-				user.setLastname(u.getLastname());
-				user.setEmail(u.getEmail());
-				user.setUserRoleId(u.getUserRoleId());
+			System.out.println("in sql");
+			ps.setString(1, u.getUsername());
+			ps.setString(2, u.getPassword());
+			ps.setString(3, u.getFirstname());
+			ps.setString(4, u.getLastname());
+			ps.setString(5, u.getEmail());
+			ps.setInt(6, u.getUserRoleId());
+			System.out.println(u);
+			System.out.println("in sql2");
+			int row = ps.executeUpdate();
+			//connect.commit();
+			if(row != 0) {
+				connect.commit();
+				System.out.println("in sql3");
+				return user;
 			}
+//			if(rows != 0) {
+//				ResultSet pk = ps.getGeneratedKeys();
+//				while(pk.next()) {
+//					u.setId(pk.getInt(1));
+//				}
+//				user.setFirstname(u.getFirstname());
+//				user.setLastname(u.getLastname());
+//				user.setUsername(u.getUsername());
+//				user.setPassword(u.getPassword());
+//				user.setBalance(u.getBalance());
+//				conn.commit();
+//				
+//			}
+//			if(rows != 0) {
+//				ResultSet rs = ps.getGeneratedKeys();
+//				while(rs.next()) {
+//					u.setUsers_id(rs.getInt(1));
+//				}
+//				user.setUsername(u.getUsername());
+//				user.setPassword(u.getPassword());
+//				user.setFirstname(u.getFirstname());
+//				user.setLastname(u.getLastname());
+//				user.setEmail(u.getEmail());
+//				user.setUserRoleId(u.getUserRoleId());
+//				connect.commit();
+//				System.out.println("after commit");
+//				connect.close();
+//			}
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -78,7 +104,7 @@ public class FileDAO implements DAO{
 		return user;
 	}
 
-	public Users update(Users u) {
+	public Users update(Users u, Reimbursement reimb) {
 		
 //		UPDATE ERS_REIMBURSEMENT
 //		SET REIMB_RESOLVER = 2, REIMB_STATUS_ID = 2
@@ -91,8 +117,8 @@ public class FileDAO implements DAO{
 			String sqlUpdate = "update ERS_REIMBURSEMENT set REIMB_RESOLVER = ?, 				REIMB_STATUS_ID = ? where REIMB_ID = ?";
 			PreparedStatement prepStatement = connect.prepareStatement(sqlUpdate);
 			prepStatement.setInt(1, u.getUsers_id());
-			prepStatement.setInt(2, reimburse.);
-			prepStatement.setInt(3, );
+			prepStatement.setInt(2, reimb.getStatus_id());
+			prepStatement.setInt(3, reimb.getReimb_id());
 			prepStatement.executeUpdate();
 			
 		} catch (SQLException e) {

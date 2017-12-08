@@ -23,6 +23,18 @@ public class Users {
 		this.userRoleId = userRoleId;
 	}
 
+	
+	
+	public Users(String username, String password, String firstname, String lastname, String email, int userRoleId) {
+		super();
+		this.username = username;
+		this.password = password;
+		this.firstname = firstname;
+		this.lastname = lastname;
+		this.email = email;
+		this.userRoleId = userRoleId;
+	}
+
 	public int getUsers_id() {
 		return users_id;
 	}
@@ -77,6 +89,12 @@ public class Users {
 
 	public void setUserRoleId(int userRoleId) {
 		this.userRoleId = userRoleId;
+	}
+
+	@Override
+	public String toString() {
+		return "Users [users_id=" + users_id + ", username=" + username + ", password=" + password + ", firstname="
+				+ firstname + ", lastname=" + lastname + ", email=" + email + ", userRoleId=" + userRoleId + "]";
 	}
 	
 	

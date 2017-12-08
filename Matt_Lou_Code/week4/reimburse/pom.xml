@@ -4,6 +4,10 @@
   <artifactId>reimburse</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <name>ERS</name>
+  <properties>
+  	<maven.compiler.source>1.8</maven.compiler.source>
+  	<maven.compiler.target>1.8</maven.compiler.target>
+  </properties>
   <dependencies>
   		<dependency>
            	<groupId>javax.servlet</groupId>
@@ -31,4 +35,5 @@
   
   </dependencies>
   <description>ERS project</description>
+  <packaging>war</packaging>
 </project>
