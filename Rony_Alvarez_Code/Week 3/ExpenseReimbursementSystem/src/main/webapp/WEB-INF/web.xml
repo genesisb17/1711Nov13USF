@@ -40,4 +40,24 @@
     <servlet-name>getEmployeeView</servlet-name>
     <url-pattern>/getEmployeeView</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>Logout</display-name>
+    <servlet-name>Logout</servlet-name>
+    <servlet-class>servlets.Logout</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Logout</servlet-name>
+    <url-pattern>/Logout</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>AllTickets</display-name>
+    <servlet-name>AllTickets</servlet-name>
+    <servlet-class>servlets.AllTickets</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AllTickets</servlet-name>
+    <url-pattern>/AllTickets</url-pattern>
+  </servlet-mapping>
 </web-app>

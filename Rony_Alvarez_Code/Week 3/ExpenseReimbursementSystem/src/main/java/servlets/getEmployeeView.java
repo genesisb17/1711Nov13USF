@@ -30,7 +30,7 @@ public class getEmployeeView extends HttpServlet {
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
 		
-		request.getRequestDispatcher("include/employee.html")
+		request.getRequestDispatcher("employee.html")
 		.forward(request, response);
 	}
 
