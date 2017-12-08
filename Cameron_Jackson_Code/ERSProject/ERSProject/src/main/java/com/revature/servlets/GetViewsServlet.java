@@ -37,6 +37,9 @@ public class GetViewsServlet extends HttpServlet {
 			
 		case "/ERSProject/logout-modal.view":
 			return "partials/logout-modal.html";
+			
+		case "/ERSProject/create-ticket.view":
+			return "partials/create-ticket-view.html";
 				
 		case "/ERSProject/reimb.view":
 			HttpSession session = request.getSession();

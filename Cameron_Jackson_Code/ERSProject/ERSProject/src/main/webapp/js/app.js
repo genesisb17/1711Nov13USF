@@ -3,31 +3,24 @@
  */
 window.onload = function () {
     loadPage();
-
 };
 
 $(document).on('click', '#new-users', loadCA);
 $(document).on('click', '#returning-users', loadLogin);
 $(document).on('click', '#login', login);
 $(document).on('click', '#create-account', createAccount);
-$(document).on('shown.bs.modal', '#logoutModal', function () {
+// $(document).on('click', '#create-ticket', loadCreateTicket);
+// $(document).on('click', '#create', createTicket);
+$(document).on('shown.bs.modal', '#create-ticket-modal', function() {
+    $('#create-ticket-modal').trigger('focus');
+    $(document).on('click', '#create', createTicket);
+})
+$(document).on('shown.bs.modal', '#logoutModal', function() {
     $('#logoutModal').trigger('focus');
-    $(document).on('click', '#modal-logout', function () {
+    $(document).on('click', '#modal-logout', function() {
         logout();
     });
 });
-
-// $(document).ready(function () {
-//     $('#reimb-table').DataTable();
-// });
-
-// check for navigation time API support
-// window.onbeforeunload = function() {
-//     console.log("onbeforeload");
-//     loadPage();
-// }
-
-
 
 /**
  * This function will be a get request to check where the user is in the page
@@ -36,7 +29,7 @@ $(document).on('shown.bs.modal', '#logoutModal', function () {
  */
 function loadPage() {
     var xhr = new XMLHttpRequest();
-    xhr.onreadystatechange = function () {
+    xhr.onreadystatechange = function() {
         if (xhr.readyState == 4 && xhr.status == 200) {
             if (xhr.responseText == "loadLoginPage")
                 loadLoginPage();
@@ -67,6 +60,7 @@ function loadMainPage() {
         if (xhr.readyState == 4 && xhr.status == 200) {
             $('#appview').html(xhr.responseText);
             loadLogoutModal();
+            loadCreateTicket();
             loadReimb();
         }
     }
@@ -114,18 +108,16 @@ function loadReimb() {
     xhr.send();
 }
 
-// function loadManagerScreen() {
-//     var xhr = new XMLHttpRequest();
-//     xhr.onreadystatechange = function () {
-//         if (xhr.readyState == 4 && xhr.status == 200) {
-//             getUser();
-//             // getEmployeeTicketInfo();
-//         }
-//     }
-
-//     xhr.open("GET", "manager-.view", true);
-//     xhr.send();
-// }
+function loadCreateTicket() {
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            $('body').prepend(xhr.responseText);
+        }
+    }
+    xhr.open("GET", "create-ticket.view", true);
+    xhr.send();
+}
 
 function loadLogoutModal() {
     var xhr = new XMLHttpRequest();
@@ -234,7 +226,26 @@ function createAccount() {
         xhr.open("POST", "createAccount", true);
         xhr.send(userString);
     }
+}
 
+function createTicket() {
+    var ticket = {
+        reimbId: 0,
+        amount: $('#amount').val(),
+        submitted: null,
+        resolved: null,
+        description: $('#description').val(),
+        receipt: null,
+        author: 0,
+        resolver: 0,
+        statusId: 0,
+        typeId: $('#reimb-type').val()
+    }
+    $('#amount').val("");
+    $('#description').val("");
+    $('#reimb-type').val("");
+    getEmployeeTicketInfo();
+    // loadMainPage();
 }
 
 function getUser() {
@@ -249,7 +260,6 @@ function getUser() {
                 getEmployeeTicketInfo();
             else if (currUser.roleId == 2)
                 getAllTicketInfo();
-
         }
     }
     xhr.open("GET", "getuser", true);
@@ -261,6 +271,8 @@ function getEmployeeTicketInfo() {
     xhr.onreadystatechange = function () {
         if (xhr.readyState == 4 && xhr.status == 200) {
             var tick = JSON.parse(xhr.responseText);
+            // Empty table to avoid duplicates
+            $('#table-data').html("");
             for (x in tick) {
                 var reimb = tick[x].reimb;
                 var status = tick[x].status;
