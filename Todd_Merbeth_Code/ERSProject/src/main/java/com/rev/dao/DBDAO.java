@@ -27,14 +27,19 @@ public class DBDAO implements DAO {
 				Reimbursement temp = new Reimbursement();
 				temp.setId(rs.getInt(1)); // Index starts at 1
 				temp.setAmount(rs.getDouble(2));
-				temp.setSubmitted(rs.getDate(3));
-				temp.setResolved(rs.getDate(4));
+				temp.setSubmitted(rs.getDate(3).toString());
+				try { temp.setResolved(rs.getDate(4).toString()); }
+				catch (Exception e) {temp.setResolved(null);}
 				temp.setDescription(rs.getString(5));
 				temp.setReceipt(rs.getBlob(6));
 				temp.setAuthor(rs.getInt(7));
 				temp.setResolver(rs.getInt(8));
 				temp.setStatus(rs.getInt(9));
 				temp.setType(rs.getInt(10));
+				temp.setAuthorStr(getFirstAndLastById(temp.getAuthor()));
+				temp.setResolverStr(getFirstAndLastById(temp.getResolver()));
+				temp.setStatusStr(getR_Status(temp.getStatus()));
+				temp.setTypeStr(getR_Type(temp.getType()));
 				reimbursements.add(temp);
 			}
 		} catch (SQLException e) {
@@ -55,14 +60,19 @@ public class DBDAO implements DAO {
 				Reimbursement temp = new Reimbursement();
 				temp.setId(rs.getInt(1)); // Index starts at 1
 				temp.setAmount(rs.getDouble(2));
-				temp.setSubmitted(rs.getDate(3));
-				temp.setResolved(rs.getDate(4));
+				temp.setSubmitted(rs.getDate(3).toString());
+				try { temp.setResolved(rs.getDate(4).toString()); }
+				catch (Exception e) {temp.setResolved(null);}
 				temp.setDescription(rs.getString(5));
 				temp.setReceipt(rs.getBlob(6));
 				temp.setAuthor(rs.getInt(7));
 				temp.setResolver(rs.getInt(8));
 				temp.setStatus(rs.getInt(9));
 				temp.setType(rs.getInt(10));
+				temp.setAuthorStr(getFirstAndLastById(temp.getAuthor()));
+				temp.setResolverStr(getFirstAndLastById(temp.getResolver()));
+				temp.setStatusStr(getR_Status(temp.getStatus()));
+				temp.setTypeStr(getR_Type(temp.getType()));
 				reimbursements.add(temp);
 			}
 
@@ -91,7 +101,7 @@ public class DBDAO implements DAO {
 				ResultSet pk = ps.getGeneratedKeys();
 				while (pk.next()) {
 					r.setId(pk.getInt(1));
-					r.setSubmitted(pk.getDate(2));
+					r.setSubmitted(pk.getDate(2).toString());
 				}
 				return r;
 			}
@@ -128,6 +138,7 @@ public class DBDAO implements DAO {
 				temp.setPassword(user.getPassword());
 				temp.setEmail(user.getEmail());
 				temp.setRole(user.getRole());
+				temp.setRoleStr(getUser_Role(user.getRole()));
 				conn.commit();
 			}
 		} catch (SQLException e) {
@@ -147,14 +158,19 @@ public class DBDAO implements DAO {
 				Reimbursement temp = new Reimbursement();
 				temp.setId(rs.getInt(1)); // Index starts at 1
 				temp.setAmount(rs.getDouble(2));
-				temp.setSubmitted(rs.getDate(3));
-				temp.setResolved(rs.getDate(4));
+				temp.setSubmitted(rs.getDate(3).toString());
+				try { temp.setResolved(rs.getDate(4).toString()); }
+				catch (Exception e) {temp.setResolved(null);}
 				temp.setDescription(rs.getString(5));
 				temp.setReceipt(rs.getBlob(6));
 				temp.setAuthor(rs.getInt(7));
 				temp.setResolver(rs.getInt(8));
 				temp.setStatus(rs.getInt(9));
 				temp.setType(rs.getInt(10));
+				temp.setAuthorStr(getFirstAndLastById(temp.getAuthor()));
+				temp.setResolverStr(getFirstAndLastById(temp.getResolver()));
+				temp.setStatusStr(getR_Status(temp.getStatus()));
+				temp.setTypeStr(getR_Type(temp.getType()));
 				reimbursements.add(temp);
 			}
 		} catch (SQLException e) {
@@ -175,14 +191,19 @@ public class DBDAO implements DAO {
 			while (rs.next()) {
 				temp.setId(rs.getInt(1)); // Index starts at 1
 				temp.setAmount(rs.getDouble(2));
-				temp.setSubmitted(rs.getDate(3));
-				temp.setResolved(rs.getDate(4));
+				temp.setSubmitted(rs.getDate(3).toString());
+				try { temp.setResolved(rs.getDate(4).toString()); }
+				catch (Exception e) {temp.setResolved(null);}
 				temp.setDescription(rs.getString(5));
 				temp.setReceipt(rs.getBlob(6));
 				temp.setAuthor(rs.getInt(7));
 				temp.setResolver(rs.getInt(8));
 				temp.setStatus(rs.getInt(9));
 				temp.setType(rs.getInt(10));
+				temp.setAuthorStr(getFirstAndLastById(temp.getAuthor()));
+				temp.setResolverStr(getFirstAndLastById(temp.getResolver()));
+				temp.setStatusStr(getR_Status(temp.getStatus()));
+				temp.setTypeStr(getR_Type(temp.getType()));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -226,6 +247,7 @@ public class DBDAO implements DAO {
 				temp.setLastname(rs.getString(5));
 				temp.setEmail(rs.getString(6));
 				temp.setRole(rs.getInt(7));
+				temp.setRoleStr(getUser_Role(temp.getRole()));
 				return temp;
 			}
 		} catch (SQLException e) {
@@ -316,5 +338,25 @@ public class DBDAO implements DAO {
 			e.printStackTrace();
 		}
 		return false;
+	}
+
+	@Override
+	public String getFirstAndLastById(int id) {
+		try (Connection conn = ConnectionFactory.getInstance().getConnection();) {
+			String sql = "select FIRSTNAME, LASTNAME from USERS where user_id = ?";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setInt(1, id);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				String fn = rs.getString(1);
+				String ln = rs.getString(2);
+				String name = fn + " " + ln;
+				return name;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+
 	}
 }

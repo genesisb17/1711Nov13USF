@@ -37,5 +37,7 @@ public interface DAO {
 	
 	public String getUser_Role(int u_id);
 	
+	public String getFirstAndLastById(int id);
+	
 	
 }

@@ -47,6 +47,3 @@ function login(){
 function register(){
 	window.location.replace('register.html');
 }
-
-
-

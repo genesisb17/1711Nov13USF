@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,6 +14,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.rev.dto.DTO;
+import com.rev.pojos.Reimbursement;
 import com.rev.pojos.User;
 import com.rev.service.Service;
 
@@ -39,7 +42,6 @@ public class LoginServlet extends HttpServlet{
 		String[] user = mapper.readValue(json, String[].class); // This knows how to convert js objects to java objects
 		String username = user[0];
 		String password = user[1];
-		System.out.println(username);
 		
 		// 4. Set response type to JSON
 		User temp = service.getUser(username, password); // get user by uname
@@ -49,6 +51,9 @@ public class LoginServlet extends HttpServlet{
 		else{// valid credentials
 			HttpSession session = req.getSession();
 			session.setAttribute("user", temp);//persist this user to the session to be accessed throughout servlets
+			ArrayList<Reimbursement> reimbs = service.getUserReimbursements(temp.getId());
+			DTO dto = new DTO(temp, reimbs);
+			session.setAttribute("dto", dto);
 		}
 		PrintWriter out = resp.getWriter();
 		resp.setContentType("application/json");
