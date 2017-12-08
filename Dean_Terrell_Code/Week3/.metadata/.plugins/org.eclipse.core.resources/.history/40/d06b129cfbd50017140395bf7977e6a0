@@ -1,8 +1,0 @@
-package com.real.servlets;
-
-import javax.servlet.annotation.WebServlet;
-
-@WebServlet("/register")
-public class RegisterServlet {
-
-}

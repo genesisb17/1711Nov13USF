@@ -1,5 +1,0 @@
-function addElement() {
-	
-}
-
-document.getElementById("add").addEventListener("click", addElement, false);
