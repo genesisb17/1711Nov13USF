@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="ISO-8859-1">
+	<title>Insert title here</title>
+	<style>
+
+		div {
+			background-color: green;
+		}
+		
+		#nested {
+			border-color: magenta;
+			border: solid 10px magenta;
+			background-color: yellow;
+		}
+		
+		.outer {
+			font: italic bold 15px Georgia serif;
+		}
+	</style>
+</head>
+
+<body>
+	<!-- this is an HTML comment -->
+
+	<h1>Hello</h1>
+
+	<h4>
+		<b><i>Hello again...</i></b>
+	</h4>
+
+	<a href="http://www.google.com">Google it!</a>
+
+	<div id="first" style="background-color: red;">
+		Inside first div
+
+		<div id="nested">
+			Inside nested div
+		</div>
+
+		Still inside first div
+	</div>
+
+	<div id="second" class="outer">
+		Inside second div
+	</div>
+
+	<button>Click Me!</button>
+
+</body>
+</html>
