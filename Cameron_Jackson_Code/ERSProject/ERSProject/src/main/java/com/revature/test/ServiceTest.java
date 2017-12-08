@@ -23,9 +23,11 @@ public class ServiceTest {
 //		System.out.println(service.createAccount(u));
 		
 //		System.out.println(service.uniqueEmail("aysafsda@email.com"));
-//		ArrayList<Reimbursement> tickets = service.getPastTickets(7353);
-//		for (Reimbursement r: tickets) 
-//			System.out.println(r);
-		System.out.println(service.getStatus(1));
+		ArrayList<Reimbursement> tickets = service.getAllTickets();
+		int count = 1;
+		for (Reimbursement r: tickets) {
+			System.out.println(count++ + ": " + r);
+		}
+//		System.out.println(service.getStatus(1));
 	}
 }

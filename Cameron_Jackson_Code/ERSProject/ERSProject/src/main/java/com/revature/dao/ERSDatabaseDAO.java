@@ -43,52 +43,51 @@ public class ERSDatabaseDAO implements ERSDAO {
 	@Override
 	public Users getUserByUsername(String username) {
 		Users u = null;
-		try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
-			String selectUsers = "select * from ers_users where ers_username = ?";
-			PreparedStatement su = conn.prepareStatement(selectUsers);
+		String selectUsers = "select * from ers_users where ers_username = ?";		
+		try (Connection conn = ConnectionFactory.getInstance().getConnection();
+				PreparedStatement su = conn.prepareStatement(selectUsers);) {
 			su.setString(1, username);
-			ResultSet userSet = su.executeQuery();
-
-			while (userSet.next()) { // make sure result set isn't empty
-				// add to user object
-				u = new Users();
-				u.setUserId(userSet.getInt(DB_KEY_USERID));
-				u.setUsername(userSet.getString(DB_KEY_USERNAME));
-				u.setPassword(userSet.getString(DB_KEY_PASSWORD));
-				u.setFirstName(userSet.getString(DB_KEY_FIRSTNAME));
-				u.setLastName(userSet.getString(DB_KEY_LASTNAME));
-				u.setEmail(userSet.getString(DB_KEY_EMAIL));
-				u.setRoleId(userSet.getInt(DB_KEY_ROLEID));
+			try (ResultSet userSet = su.executeQuery();) {
+				while (userSet.next()) { // make sure result set isn't empty
+					// add to user object
+					u = new Users();
+					u.setUserId(userSet.getInt(DB_KEY_USERID));
+					u.setUsername(userSet.getString(DB_KEY_USERNAME));
+					u.setPassword(userSet.getString(DB_KEY_PASSWORD));
+					u.setFirstName(userSet.getString(DB_KEY_FIRSTNAME));
+					u.setLastName(userSet.getString(DB_KEY_LASTNAME));
+					u.setEmail(userSet.getString(DB_KEY_EMAIL));
+					u.setRoleId(userSet.getInt(DB_KEY_ROLEID));
+				}
 			}
-			userSet.close();
-			su.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+
 		return u;
 	}
 
 	@Override
 	public Users getUserById(int userId) {
 		Users u = null;
-		try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
-			String selectUsers = "select * from ers_users where ers_users_id = ?";
-			PreparedStatement su = conn.prepareStatement(selectUsers);
-			su.setInt(1, userId);
-			ResultSet userSet = su.executeQuery();
+		String selectUsers = "select * from ers_users where ers_users_id = ?";
 
-			while (userSet.next()) {
-				u = new Users();
-				u.setUserId(userSet.getInt(DB_KEY_USERID));
-				u.setUsername(userSet.getString(DB_KEY_USERNAME));
-				u.setPassword(userSet.getString(DB_KEY_PASSWORD));
-				u.setFirstName(userSet.getString(DB_KEY_FIRSTNAME));
-				u.setLastName(userSet.getString(DB_KEY_LASTNAME));
-				u.setEmail(userSet.getString(DB_KEY_EMAIL));
-				u.setRoleId(userSet.getInt(DB_KEY_ROLEID));
+		try (Connection conn = ConnectionFactory.getInstance().getConnection();
+				PreparedStatement su = conn.prepareStatement(selectUsers);){
+
+			su.setInt(1, userId);
+			try (ResultSet userSet = su.executeQuery();) {
+				while (userSet.next()) {
+					u = new Users();
+					u.setUserId(userSet.getInt(DB_KEY_USERID));
+					u.setUsername(userSet.getString(DB_KEY_USERNAME));
+					u.setPassword(userSet.getString(DB_KEY_PASSWORD));
+					u.setFirstName(userSet.getString(DB_KEY_FIRSTNAME));
+					u.setLastName(userSet.getString(DB_KEY_LASTNAME));
+					u.setEmail(userSet.getString(DB_KEY_EMAIL));
+					u.setRoleId(userSet.getInt(DB_KEY_ROLEID));
+				}
 			}
-			userSet.close();
-			su.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -98,17 +97,17 @@ public class ERSDatabaseDAO implements ERSDAO {
 	@Override
 	public UserRoles getRole(int roleId) {
 		UserRoles role = null;
-		try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
-			String sql = "select * from ers_user_roles where ers_user_role_id = ?";
-			PreparedStatement ps = conn.prepareStatement(sql);
+		String sql = "select * from ers_user_roles where ers_user_role_id = ?";
+		
+		try (Connection conn = ConnectionFactory.getInstance().getConnection();
+				PreparedStatement ps = conn.prepareStatement(sql);){
 			ps.setInt(1, roleId);
-			ResultSet rs = ps.executeQuery();
-
-			while (rs.next()) {
-				role = UserRoles.valueOf(rs.getString(DB_KEY_ROLE));
+			try (ResultSet rs = ps.executeQuery();) {
+				while (rs.next()) {
+					role = UserRoles.valueOf(rs.getString(DB_KEY_ROLE));
+				}
 			}
-			rs.close();
-			ps.close();
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -118,11 +117,11 @@ public class ERSDatabaseDAO implements ERSDAO {
 	@Override
 	public ArrayList<Users> getAllUsers() {
 		ArrayList<Users> users = new ArrayList<>();
-		try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
-			String selectUsers = "select * from ers_users";
-			Statement su = conn.createStatement();
-			ResultSet rs = su.executeQuery(selectUsers);
-
+		String selectUsers = "select * from ers_users";
+		
+		try (Connection conn = ConnectionFactory.getInstance().getConnection();
+				Statement su = conn.createStatement();
+				ResultSet rs = su.executeQuery(selectUsers);) {
 			while (rs.next()) {
 				Users u = new Users();
 				u.setUserId(rs.getInt(DB_KEY_USERID));
@@ -134,8 +133,6 @@ public class ERSDatabaseDAO implements ERSDAO {
 				u.setRoleId(rs.getInt(DB_KEY_ROLEID));
 				users.add(u);
 			}
-			rs.close();
-			su.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -144,13 +141,13 @@ public class ERSDatabaseDAO implements ERSDAO {
 
 	@Override
 	public Users addUser(Users newUser) {
-		try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
+		String sql = "INSERT INTO ERS_USERS (ERS_USERNAME, ERS_PASSWORD, USER_FIRST_NAME, USER_LAST_NAME,\r\n" + 
+				"USER_EMAIL, USER_ROLE_ID)\r\n" + 
+				"VALUES (?,?,?,?,?,?)";
+		String[] keys = {DB_KEY_USERID};
+		try (Connection conn = ConnectionFactory.getInstance().getConnection();
+				PreparedStatement ps = conn.prepareStatement(sql, keys);) {
 			conn.setAutoCommit(false);
-			String sql = "INSERT INTO ERS_USERS (ERS_USERNAME, ERS_PASSWORD, USER_FIRST_NAME, USER_LAST_NAME,\r\n" + 
-					"USER_EMAIL, USER_ROLE_ID)\r\n" + 
-					"VALUES (?,?,?,?,?,?)";
-			String[] keys = {DB_KEY_USERID};
-			PreparedStatement ps = conn.prepareStatement(sql, keys);
 			ps.setString(1, newUser.getUsername());
 			ps.setString(2, newUser.getPassword());
 			ps.setString(3, newUser.getFirstName());
@@ -159,14 +156,13 @@ public class ERSDatabaseDAO implements ERSDAO {
 			ps.setInt(6, newUser.getRoleId());
 			int rows = ps.executeUpdate();
 			if (rows > 0) {
-				ResultSet rs = ps.getGeneratedKeys();
-				while (rs.next()) {
-					newUser.setUserId(rs.getInt(1));
+				try (ResultSet rs = ps.getGeneratedKeys();) {
+					while (rs.next()) {
+						newUser.setUserId(rs.getInt(1));
+					}
 				}
 				conn.commit();
-				rs.close();
 			}
-			ps.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -176,17 +172,17 @@ public class ERSDatabaseDAO implements ERSDAO {
 	@Override
 	public String findUsername(String username) {
 		String ersUsername = null;
-		try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
-			String sql = "select ers_username from ers_users where ers_username=?";
-			PreparedStatement ps = conn.prepareStatement(sql);
-			ps.setString(1, username);
-			ResultSet rs = ps.executeQuery();
+		String sql = "select ers_username from ers_users where ers_username=?";
 
-			while (rs.next()) {
-				ersUsername = rs.getString(DB_KEY_USERNAME);
+		try (Connection conn = ConnectionFactory.getInstance().getConnection();
+				PreparedStatement ps = conn.prepareStatement(sql);){
+			ps.setString(1, username);
+
+			try (ResultSet rs = ps.executeQuery();) {
+				while (rs.next()) {
+					ersUsername = rs.getString(DB_KEY_USERNAME);
+				}
 			}
-			rs.close();
-			ps.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -197,17 +193,15 @@ public class ERSDatabaseDAO implements ERSDAO {
 	@Override
 	public String findPassword(String username) {
 		String password = null;
-		try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
-			String sql = "select ers_password from ers_users where ers_username=?";
-			PreparedStatement ps = conn.prepareStatement(sql);
+		String sql = "select ers_password from ers_users where ers_username=?";
+		try (Connection conn = ConnectionFactory.getInstance().getConnection();
+				PreparedStatement ps = conn.prepareStatement(sql);) {
 			ps.setString(1, username);
-			ResultSet rs = ps.executeQuery();
-
-			while (rs.next()) {
-				password = rs.getString(DB_KEY_PASSWORD);
+			try (ResultSet rs = ps.executeQuery();) {
+				while (rs.next()) {
+					password = rs.getString(DB_KEY_PASSWORD);
+				}
 			}
-			rs.close();
-			ps.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -217,47 +211,45 @@ public class ERSDatabaseDAO implements ERSDAO {
 	@Override
 	public String findEmail(String email) {
 		String existingEmail = null;
-		try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
-			String sql = "select * from ers_users where user_email=?";
-			PreparedStatement ps = conn.prepareStatement(sql);
+		String sql = "select * from ers_users where user_email=?";
+		
+		try (Connection conn = ConnectionFactory.getInstance().getConnection();
+				PreparedStatement ps = conn.prepareStatement(sql);) {
 			ps.setString(1, email);
-			ResultSet rs = ps.executeQuery();
-			
-			while (rs.next()) {
-				existingEmail = rs.getString(DB_KEY_EMAIL);
+			try (ResultSet rs = ps.executeQuery();) {
+				while (rs.next()) {
+					existingEmail = rs.getString(DB_KEY_EMAIL);
+				}
 			}
-			rs.close();
-			ps.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+
 		return existingEmail;
 	}
-	
+
 	@Override
 	public Reimbursement getTicket(int reimbId) {
 		Reimbursement reimb = null;
-		try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
-			String sql = "select * from ers_reimbursement where reimb_id = ?";
-			PreparedStatement ps = conn.prepareStatement(sql);
+		String sql = "select * from ers_reimbursement where reimb_id = ?";
+		try (Connection conn = ConnectionFactory.getInstance().getConnection();
+				PreparedStatement ps = conn.prepareStatement(sql);) {
 			ps.setInt(1, reimbId);
-			ResultSet rs = ps.executeQuery();
-
-			while (rs.next()) {
-				reimb = new Reimbursement();
-				reimb.setReimbId(reimbId);
-				reimb.setAmount(rs.getDouble(DB_KEY_AMOUNT));
-				reimb.setSubmitted(rs.getString(DB_KEY_SUBMITTED));
-				reimb.setResolved(rs.getString(DB_KEY_RESOLVED));
-				reimb.setDescription(rs.getString(DB_KEY_DESCRIPTION));
-				reimb.setReceipt(rs.getBlob(DB_KEY_RECEIPT));
-				reimb.setAuthor(rs.getInt(DB_KEY_AUTHOR));
-				reimb.setResolver(rs.getInt(DB_KEY_RESOLVER));
-				reimb.setStatusId(rs.getInt(DB_KEY_STATUSID));
-				reimb.setTypeId(rs.getInt(DB_KEY_TYPEID));
+			try (ResultSet rs = ps.executeQuery();) {
+				while (rs.next()) {
+					reimb = new Reimbursement();
+					reimb.setReimbId(reimbId);
+					reimb.setAmount(rs.getDouble(DB_KEY_AMOUNT));
+					reimb.setSubmitted(rs.getString(DB_KEY_SUBMITTED));
+					reimb.setResolved(rs.getString(DB_KEY_RESOLVED));
+					reimb.setDescription(rs.getString(DB_KEY_DESCRIPTION));
+					reimb.setReceipt(rs.getBlob(DB_KEY_RECEIPT));
+					reimb.setAuthor(rs.getInt(DB_KEY_AUTHOR));
+					reimb.setResolver(rs.getInt(DB_KEY_RESOLVER));
+					reimb.setStatusId(rs.getInt(DB_KEY_STATUSID));
+					reimb.setTypeId(rs.getInt(DB_KEY_TYPEID));
+				}
 			}
-			rs.close();
-			ps.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -268,29 +260,28 @@ public class ERSDatabaseDAO implements ERSDAO {
 	@Override
 	public ArrayList<Reimbursement> getPastTickets(int employeeId) {
 		ArrayList<Reimbursement> tickets = new ArrayList<>();
-		try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
-			String sql = "select * from ers_reimbursement where reimb_author = ?";
-			PreparedStatement ps = conn.prepareStatement(sql);
+		String sql = "select * from ers_reimbursement where reimb_author = ?";
+		
+		try (Connection conn = ConnectionFactory.getInstance().getConnection();
+				PreparedStatement ps = conn.prepareStatement(sql);) {
 			ps.setInt(1, employeeId);
-			ResultSet rs = ps.executeQuery();
-
-			while (rs.next()) {
-				Reimbursement reimb = new Reimbursement();
-				reimb = new Reimbursement();
-				reimb.setReimbId(rs.getInt(DB_KEY_REIMBID));
-				reimb.setAmount(rs.getDouble(DB_KEY_AMOUNT));
-				reimb.setSubmitted(rs.getString(DB_KEY_SUBMITTED));
-				reimb.setResolved(rs.getString(DB_KEY_RESOLVED));
-				reimb.setDescription(rs.getString(DB_KEY_DESCRIPTION));
-				reimb.setReceipt(rs.getBlob(DB_KEY_RECEIPT));
-				reimb.setAuthor(rs.getInt(DB_KEY_AUTHOR));
-				reimb.setResolver(rs.getInt(DB_KEY_RESOLVER));
-				reimb.setStatusId(rs.getInt(DB_KEY_STATUSID));
-				reimb.setTypeId(rs.getInt(DB_KEY_TYPEID));
-				tickets.add(reimb);
+			try (ResultSet rs = ps.executeQuery();) {
+				while (rs.next()) {
+					Reimbursement reimb = new Reimbursement();
+					reimb = new Reimbursement();
+					reimb.setReimbId(rs.getInt(DB_KEY_REIMBID));
+					reimb.setAmount(rs.getDouble(DB_KEY_AMOUNT));
+					reimb.setSubmitted(rs.getString(DB_KEY_SUBMITTED));
+					reimb.setResolved(rs.getString(DB_KEY_RESOLVED));
+					reimb.setDescription(rs.getString(DB_KEY_DESCRIPTION));
+					reimb.setReceipt(rs.getBlob(DB_KEY_RECEIPT));
+					reimb.setAuthor(rs.getInt(DB_KEY_AUTHOR));
+					reimb.setResolver(rs.getInt(DB_KEY_RESOLVER));
+					reimb.setStatusId(rs.getInt(DB_KEY_STATUSID));
+					reimb.setTypeId(rs.getInt(DB_KEY_TYPEID));
+					tickets.add(reimb);
+				}
 			}
-			rs.close();
-			ps.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -300,11 +291,11 @@ public class ERSDatabaseDAO implements ERSDAO {
 	@Override
 	public ArrayList<Reimbursement> getAllTickets() {
 		ArrayList<Reimbursement> tickets = new ArrayList<>();
-		try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
-			String sql = "select * from ers_reimbursement";
-			Statement s = conn.createStatement();
-			ResultSet rs = s.executeQuery(sql);
+		String sql = "select * from ers_reimbursement";
 
+		try (Connection conn = ConnectionFactory.getInstance().getConnection();
+				Statement s = conn.createStatement();
+				ResultSet rs = s.executeQuery(sql);){
 			while (rs.next()) {
 				Reimbursement reimb = new Reimbursement();
 				reimb = new Reimbursement();
@@ -320,8 +311,6 @@ public class ERSDatabaseDAO implements ERSDAO {
 				reimb.setTypeId(rs.getInt(DB_KEY_TYPEID));
 				tickets.add(reimb);
 			}
-			rs.close();
-			s.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -330,12 +319,14 @@ public class ERSDatabaseDAO implements ERSDAO {
 
 	@Override
 	public Reimbursement addTicket(Reimbursement newTicket) {
-		try (Connection conn = ConnectionFactory.getInstance().getConnection()){
+		String sql = "INSERT INTO ERS_REIMBURSEMENT (REIMB_AMOUNT, REIMB_DESCRIPTION, REIMB_RECEIPT,\r\n" + 
+				"REIMB_AUTHOR, REIMB_STATUS_ID, REIMB_TYPE_ID) VALUES (?,?,?,?,?,?)";
+		String[] keys = {DB_KEY_REIMBID};
+		
+		
+		try (Connection conn = ConnectionFactory.getInstance().getConnection();
+				PreparedStatement ps = conn.prepareStatement(sql, keys);) {
 			conn.setAutoCommit(false);
-			String sql = "INSERT INTO ERS_REIMBURSEMENT (REIMB_AMOUNT, REIMB_DESCRIPTION, REIMB_RECEIPT,\r\n" + 
-					"REIMB_AUTHOR, REIMB_STATUS_ID, REIMB_TYPE_ID) VALUES (?,?,?,?,?,?)";
-			String[] keys = {DB_KEY_REIMBID};
-			PreparedStatement ps = conn.prepareStatement(sql, keys);
 			ps.setDouble(1, newTicket.getAmount());
 			ps.setString(2, newTicket.getDescription());
 			ps.setBlob(3, newTicket.getReceipt());
@@ -345,15 +336,13 @@ public class ERSDatabaseDAO implements ERSDAO {
 
 			int rows = ps.executeUpdate();
 			if (rows > 0) {
-				ResultSet rs = ps.getGeneratedKeys();
-				while (rs.next()) {
-					
-					newTicket.setReimbId(rs.getInt(1));
+				try (ResultSet rs = ps.getGeneratedKeys();) {
+					while (rs.next()) {
+
+						newTicket.setReimbId(rs.getInt(1));
+					}
 				}
-				conn.commit();
-				rs.close();
 			}
-			ps.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -362,37 +351,34 @@ public class ERSDatabaseDAO implements ERSDAO {
 
 	@Override
 	public Reimbursement resolveTicket(int reimbId, ReimbursementStatus status, int resolverId) {
-		try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
+		String sql = "{CALL RESOLVE_REIMBURSEMENT(?,?,?)}";
+		try (Connection conn = ConnectionFactory.getInstance().getConnection();
+				CallableStatement cs = conn.prepareCall(sql);) {
 			conn.setAutoCommit(false);
-			String sql = "{CALL RESOLVE_REIMBURSEMENT(?,?,?)}";
-			CallableStatement cs = conn.prepareCall(sql);
 			cs.setInt(1, reimbId);
 			cs.setInt(2, status.ordinal()+1);
 			cs.setInt(3, resolverId);
 			cs.executeUpdate();
 			conn.commit();		
-			cs.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		
 		return getTicket(reimbId);
 	}
 
 	@Override
 	public ReimbursementStatus getStatus(int statusId) {
 		ReimbursementStatus status = null;
-		try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
-			String sql = "select reimb_status from ers_reimbursement_status where REIMB_STATUS_ID = ?";
-			PreparedStatement ps = conn.prepareStatement(sql);
+		String sql = "select reimb_status from ers_reimbursement_status where REIMB_STATUS_ID = ?";
+		try (Connection conn = ConnectionFactory.getInstance().getConnection();
+				PreparedStatement ps = conn.prepareStatement(sql);) {
 			ps.setInt(1, statusId);
-			ResultSet rs = ps.executeQuery();
-
-			while (rs.next()) {
-				status = ReimbursementStatus.valueOf(rs.getString(DB_KEY_STATUS));
+			try (ResultSet rs = ps.executeQuery();) {
+				while (rs.next()) {
+					status = ReimbursementStatus.valueOf(rs.getString(DB_KEY_STATUS));
+				}
 			}
-			rs.close();
-			ps.close();
-			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -402,17 +388,16 @@ public class ERSDatabaseDAO implements ERSDAO {
 	@Override
 	public ReimbursementType getType(int typeId) {
 		ReimbursementType type = null;
-		try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
-			String sql = "select reimb_type from ers_reimbursement_type where reimb_type_id = ?";
-			PreparedStatement ps = conn.prepareStatement(sql);
+		String sql = "select reimb_type from ers_reimbursement_type where reimb_type_id = ?";
+		
+		try (Connection conn = ConnectionFactory.getInstance().getConnection();
+				PreparedStatement ps = conn.prepareStatement(sql);) {
 			ps.setInt(1, typeId);
-			ResultSet rs = ps.executeQuery();
-
-			while (rs.next()) {
-				type = ReimbursementType.valueOf(rs.getString(DB_KEY_TYPE));
+			try (ResultSet rs = ps.executeQuery();) {
+				while (rs.next()) {
+					type = ReimbursementType.valueOf(rs.getString(DB_KEY_TYPE));
+				}
 			}
-			rs.close();
-			ps.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

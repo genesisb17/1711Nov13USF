@@ -30,18 +30,24 @@ public class GetEmployeeTickets extends HttpServlet {
 		Users u = (Users)session.getAttribute("user");
 		int userId = u.getUserId();
 		ArrayList<Reimbursement> reimbs = new ArrayList<>();
+		// Check if user is a manager, if so then return all tickets
+		// otherwise return their past tickets
 		if (u.getRoleId() == 1)
 			reimbs = service.getPastTickets(userId);
 		else if (u.getRoleId() == 2)
 			reimbs = service.getAllTickets();
 		
+		// add information to DTO with author, resolver, status, and type info
 		ArrayList<ReimbDTO> tickets = new ArrayList<>();
 		for (Reimbursement r: reimbs) {
 			Users resolver = new Users();
+			Users author = new Users();
 			resolver = service.getUser(r.getResolver());
+			author = service.getUser(r.getAuthor());
 			ReimbDTO rdto = new ReimbDTO();
 			rdto.setReimb(r);
-			rdto.setUser(resolver);
+			rdto.setAuthor(author);
+			rdto.setResolver(resolver);
 			rdto.setStatus(service.getStatus(r.getStatusId()));
 			rdto.setType(service.getType(r.getTypeId()));
 			tickets.add(rdto);

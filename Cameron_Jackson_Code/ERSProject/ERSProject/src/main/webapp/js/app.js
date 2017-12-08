@@ -245,7 +245,10 @@ function getUser() {
             currUser = JSON.parse(xhr.responseText);
             document.getElementById('navbarDropdown').innerHTML =
                 `${currUser.firstName} ${currUser.lastName}`;
-            getEmployeeTicketInfo();
+            if (currUser.roleId == 1)
+                getEmployeeTicketInfo();
+            else if (currUser.roleId == 2)
+                getAllTicketInfo();
 
         }
     }
@@ -262,7 +265,7 @@ function getEmployeeTicketInfo() {
                 var reimb = tick[x].reimb;
                 var status = tick[x].status;
                 var type = tick[x].type;
-                var resolver = tick[x].user;
+                var resolver = tick[x].resolver;
                 var name = "Unresolved";
                 if (resolver != null) {
                     name = `${resolver.firstName} ${resolver.lastName}`;
@@ -272,7 +275,8 @@ function getEmployeeTicketInfo() {
                     timeResolved = reimb.resolved;
                 }
                 var rowData = `<td>${reimb.reimbId}</td>
-                <td>${status}</td><td>${type}</td>
+                <td>${status}</td>
+                <td>${type}</td>
                 <td>${reimb.amount}</td>
                 <td>${reimb.submitted}</td>
                 <td>${timeResolved}</td>
@@ -294,5 +298,46 @@ function getEmployeeTicketInfo() {
 }
 
 function getAllTicketInfo() {
-
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            var tick = JSON.parse(xhr.responseText);
+            for (x in tick) {
+                var reimb = tick[x].reimb;
+                var status = tick[x].status;
+                var type = tick[x].type;
+                var author = tick[x].author;
+                var resolver = tick[x].resolver;
+                if (author != null) {
+                    authorName = `${author.firstName} ${author.lastName}`;
+                } else authorName = "Error";
+                if (resolver != null) {
+                    resolverName = `${resolver.firstName} ${resolver.lastName}`;
+                } else resolverName = "N/A";
+                var timeResolved = "";
+                if (reimb.resolved != null) {
+                    timeResolved = reimb.resolved;
+                }
+                var rowData = `<td>${reimb.reimbId}</td>
+                    <td>${authorName}</td>
+                    <td>${status}</td>
+                    <td>${type}</td>
+                    <td>${reimb.amount}</td>
+                    <td>${reimb.submitted}</td>
+                    <td>${timeResolved}</td>
+                    <td>${resolverName}</td>`;
+                console.log(rowData);
+                // Create table row element
+                var tableRow = document.createElement("tr");
+                // Insert rowData into this element
+                tableRow.innerHTML = rowData;
+                // append the element to the table
+                $('#table-data').append(tableRow);
+            }
+            // initialize datatable
+            $('#reimb-table').DataTable();
+        }
+    }
+    xhr.open("GET", "getemployeetickets", true);
+    xhr.send();
 }

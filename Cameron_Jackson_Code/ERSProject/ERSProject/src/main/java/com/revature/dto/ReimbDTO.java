@@ -5,16 +5,18 @@ import com.revature.pojos.Users;
 
 public class ReimbDTO {
 	private Reimbursement reimb;
-	private Users user;
+	private Users author;
+	private Users resolver;
 	private String status;
 	private String type;
 	
 	public ReimbDTO() {}
 
-	public ReimbDTO(Reimbursement reimb, Users user, String status, String type) {
+	public ReimbDTO(Reimbursement reimb, Users author, Users resolver, String status, String type) {
 		super();
 		this.reimb = reimb;
-		this.user = user;
+		this.author = author;
+		this.resolver = resolver;
 		this.status = status;
 		this.type = type;
 	}
@@ -43,16 +45,22 @@ public class ReimbDTO {
 		this.type = type;
 	}
 
-	public Users getUser() {
-		return user;
+	public Users getAuthor() {
+		return author;
 	}
 
-	public void setUser(Users user) {
-		this.user = user;
+	public void setAuthor(Users author) {
+		this.author = author;
 	}
 
-	@Override
-	public String toString() {
-		return "ReimbDTO [reimb=" + reimb + ", user=" + user + ", status=" + status + ", type=" + type + "]";
+	public Users getResolver() {
+		return resolver;
 	}
+
+	public void setResolver(Users resolver) {
+		this.resolver = resolver;
+	}
+
+
+
 }
