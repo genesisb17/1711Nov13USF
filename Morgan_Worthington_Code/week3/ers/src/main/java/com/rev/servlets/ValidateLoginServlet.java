@@ -1,10 +1,9 @@
 package com.rev.servlets;
 
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.rev.service.Service;
 
-@WebServlet("/ValidateLoginServlet")
+@WebServlet("/validlogin")
 public class ValidateLoginServlet extends HttpServlet{
 	
 	static Service service=new Service();
@@ -32,18 +31,17 @@ public class ValidateLoginServlet extends HttpServlet{
 		String[] credentials=om.readValue(json,String[].class);
 		String username=credentials[0];
 		String password=credentials[1];
+		
+		PrintWriter pw=resp.getWriter();
 		resp.setContentType("text/html");
-		BufferedWriter bw= new BufferedWriter(new OutputStreamWriter(resp.getOutputStream()));
 		if(service.userExists(username)) {
 			if(service.passwordCorrect(username,password)) {
-				//make session maybe? 
-				//go to other page?
-				bw.write("Validated.");
+				pw.write("Validated.");
 			} else {
-				bw.write("Incorrect password.");
+				pw.write("Incorrect password.");
 			}
 		} else {
-			bw.write("User does not exist.");
+			pw.write("User does not exist.");
 		}
 	}
 }

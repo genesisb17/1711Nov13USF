@@ -66,7 +66,10 @@ public class LoginServlet extends HttpServlet{
 		
 		String userJSON = mapper.writeValueAsString(temp);
 		System.out.println("JSON: " + userJSON);
-		out.write(userJSON);	
+
+		out.write(userJSON);
+		
+
 		   
 	}
 

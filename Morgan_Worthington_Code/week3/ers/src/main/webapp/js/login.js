@@ -1,39 +1,67 @@
 /**
  * 
  */
+window.onload= function(){
+	sendToLogin();
+};
 
-$(#login).on(click,function{
-	//AJAX servlet call
+function requestValid(){
+	var user=$("#username").val();
+	var pass= $("#password").val();
+	credentials=[user, pass];
+	json=JSON.stringify(credentials);
 	var xhr=new XMLHttpRequest();
-	xhr.onreadystatechange(function(){
-		if(this.status==200 && this.readystate==4){
-			user=$(#username).val();
-			pass=$(#password).val();
-			credentials={username:user; password:pass};
-			json=credentials.stringify();
+	xhr.onreadystatechange=function(){
+		if(xhr.status==200 && xhr.readyState==4){
+			response=xhr.responseText;
+			if(response == 'Validated.'){
+				sendToProfile();
+			} else {
+				$("#notification").html(response);
+			}
+			
 		}
 	}
-	xhr.open("POST","ValidateLoginServlet",true);
+	xhr.open("POST","validlogin",true);
 	xhr.send(json);
-	
-	//
-	response=xhr.response;
-	if(response == 'Validated.'){
-		
-	} else {
-		$(#notification).html(response);
-	}
-	);
-});
+};
 
-$(#register).on(click,function{
+function sendToRegister(){
 	var xhr=new XMLHttpRequest();
-	xhr.onreadystatechange(function(){
-		if(this.status==200 && this.readystate==4){
-			//redirect to register page
+	xhr.onreadystatechange=function(){
+		if(xhr.status==200 && xhr.readyState==4){
+			registerPage=xhr.responseText;
+			$("#view").html(registerPage);
 		}
 	}
-	xhr.open("POST","RegisterNewServlet",true);
+	xhr.open("GET","register.view",true);
 	xhr.send();
-	);
-});
+};
+
+function sendToLogin(){
+	var xhr=new XMLHttpRequest();
+	xhr.onreadystatechange=function(){
+		if(xhr.status==200 && xhr.readyState==4){
+			loginPage=xhr.responseText;
+			$("#view").html(loginPage);
+			$("#login").on('click',requestValid);
+			$("#register").on('click',sendToRegister);
+		}
+	}
+	xhr.open("GET","login.view",true);
+	xhr.send();
+};
+
+function sendToProfile(){
+	var xhr=new XMLHttpRequest();
+	xhr.onreadystatechange=function(){
+		if(xhr.status==200 && xhr.readyState==4){
+			console.log('test');
+			profilePage=xhr.responseText;
+			console.log(profilePage);
+			$("#view").html(profilePage);
+		}
+	}
+	xhr.open("GET","profile.view",true);
+	xhr.send();
+};

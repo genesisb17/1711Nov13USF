@@ -36,8 +36,11 @@ function login(){
 			}
 			else{
 				$('#message').html(`Welcome ${user.firstname}`) ;
-				window.location.replace('app.html');
+
+				loadApp()
 				console.log("success!");
+				loadHome();
+				
 			}
 		}
 	};
@@ -63,7 +66,23 @@ function registerView(){
 		$('#register').attr("disabled",true);
 		}
 	}	
-	xhr.open("GET", "register" , true);
+	xhr.open("GET", "register.view" , true);
+	xhr.send();
+}
+
+
+function loadApp(){
+	var xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState == 4 && xhr.status == 200){
+		//	window.location.replace(xhr.responseText);
+		document.getElementById('view').innerHTML = xhr.responseText;
+		$('#home').on('click',loadHome);
+		$('#profile').on('click', loadProfile);
+		}
+	}	
+	xhr.open("GET", "app.view" , true);
+
 	xhr.send();
 }
 
@@ -134,5 +153,61 @@ function register(){
 	alert("Success! Please login using your credentials");
 	window.location.replace('landing.html');
 }
+
+
+
+/**
+ * main page of the application. thinking about creating a pseudo 
+ * 	"admin" role based on a userame and password of admin for demo 
+ * 	purposes 
+ */
+
+
+function loadHome(){
+	var xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState == 4 && xhr.status == 200){
+			document.getElementById('appview').innerHTML = xhr.responseText;				
+		}
+	}	
+	xhr.open("GET", "home.view" , true);
+	xhr.send();
+}
+
+function loadProfile(){
+	var xhr = new XMLHttpRequest();
+	xhr.open("GET", "profile.view" , true);
+	xhr.send();
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState == 4 && xhr.status == 200){
+			document.getElementById('appview').innerHTML = xhr.responseText;//partials/profile.html	
+			loadProfileView();
+			
+			console.log("TESTING IF WE ARE GETTING THE USER" + test);
+		
+		}
+	}
+}
+
+function loadProfileView(){
+	var xhr = new XMLHttpRequest();
+	xhr.open("GET","getUserInfo", true);
+	xhr.send();
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState == 4 && xhr.status == 200){
+			console.log(xhr.responseText);
+			var sessionUser = JSON.parse(xhr.responseText);
+			$("#name").html(sessionUser.firstname);
+		}
+	}
+	
+	
+}
+
+
+
+
+
+
 
 

@@ -3,6 +3,7 @@
   <groupId>com.rev</groupId>
   <artifactId>ers</artifactId>
   <version>0.0.1-SNAPSHOT</version>
+  <packaging>war</packaging>
   <name>ers</name>
   <description>An electronic reimbursement system as specified in ERS_Requirements.pdf</description>
   
