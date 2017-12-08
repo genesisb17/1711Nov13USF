@@ -1,6 +1,7 @@
 package com.revature.servlets;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -8,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.pojos.Users;
 
 
@@ -41,7 +43,7 @@ public class GetViewsServlet extends HttpServlet {
 			Users u = (Users)session.getAttribute("user");
 			if (u.getRoleId() == 1)
 				return "partials/employee-view.html";
-			else 
+			else if (u.getRoleId() == 2)
 				return "partials/manager-view.html";
 		default:
 			return null;

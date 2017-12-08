@@ -2,14 +2,14 @@ package com.revature.dto;
 
 import com.revature.pojos.Users;
 
-public class UserValidator {
+public class UserDTO {
 
 	private Users user;
 	private String message;
 	
-	public UserValidator() {}
+	public UserDTO() {}
 
-	public UserValidator(Users user, String message) {
+	public UserDTO(Users user, String message) {
 		super();
 		this.user = user;
 		this.message = message;
@@ -33,7 +33,7 @@ public class UserValidator {
 
 	@Override
 	public String toString() {
-		return "UserValidator [user=" + user + ", message=" + message + "]";
+		return "UserDTO [user=" + user + ", message=" + message + "]";
 	}
 	
 }

@@ -101,7 +101,6 @@ function loadCA() {
 }
 
 function loadReimb() {
-
     var xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function () {
         if (xhr.readyState == 4 && xhr.status == 200) {
@@ -114,6 +113,19 @@ function loadReimb() {
     xhr.open("GET", "reimb.view", true);
     xhr.send();
 }
+
+// function loadManagerScreen() {
+//     var xhr = new XMLHttpRequest();
+//     xhr.onreadystatechange = function () {
+//         if (xhr.readyState == 4 && xhr.status == 200) {
+//             getUser();
+//             // getEmployeeTicketInfo();
+//         }
+//     }
+
+//     xhr.open("GET", "manager-.view", true);
+//     xhr.send();
+// }
 
 function loadLogoutModal() {
     var xhr = new XMLHttpRequest();
@@ -231,12 +243,10 @@ function getUser() {
     xhr.onreadystatechange = function () {
         if (xhr.readyState == 4 && xhr.status == 200) {
             currUser = JSON.parse(xhr.responseText);
-            if (currUser.roleId == 1) {
-                document.getElementById('navbarDropdown').innerHTML =
+            document.getElementById('navbarDropdown').innerHTML =
                 `${currUser.firstName} ${currUser.lastName}`;
-                getEmployeeTicketInfo();
-            }
-            
+            getEmployeeTicketInfo();
+
         }
     }
     xhr.open("GET", "getuser", true);

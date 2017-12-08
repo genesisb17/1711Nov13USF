@@ -21,10 +21,10 @@ public class PageLoadServlet extends HttpServlet {
 		response.setContentType("text/plain;charset=UTF-8");
 		HttpSession session = request.getSession(false);
 		if (session == null) {
-			System.out.println("no session");
+//			System.out.println("no session");
 			out.print("loadLoginPage");
 		} else {
-			System.out.println("yes session");
+//			System.out.println("yes session");
 			Users u = (Users)session.getAttribute("user");
 			if (u != null) {
 				out.print("loadMainPage");

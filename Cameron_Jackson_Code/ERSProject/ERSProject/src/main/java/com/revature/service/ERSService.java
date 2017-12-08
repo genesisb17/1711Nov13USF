@@ -72,6 +72,14 @@ public class ERSService {
 		return tickets;
 	}
 	
+	public ArrayList<Reimbursement> getAllTickets() {
+		ArrayList<Reimbursement> tickets = dao.getAllTickets();
+		if (tickets.isEmpty())
+			return null;
+		
+		return tickets;
+	}
+	
 	public Reimbursement addTicket(Reimbursement newTicket) {
 		Reimbursement ticket = null;
 		ticket = dao.addTicket(newTicket);

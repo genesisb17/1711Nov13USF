@@ -29,7 +29,12 @@ public class GetEmployeeTickets extends HttpServlet {
 		HttpSession session = req.getSession();
 		Users u = (Users)session.getAttribute("user");
 		int userId = u.getUserId();
-		ArrayList<Reimbursement> reimbs = service.getPastTickets(userId);
+		ArrayList<Reimbursement> reimbs = new ArrayList<>();
+		if (u.getRoleId() == 1)
+			reimbs = service.getPastTickets(userId);
+		else if (u.getRoleId() == 2)
+			reimbs = service.getAllTickets();
+		
 		ArrayList<ReimbDTO> tickets = new ArrayList<>();
 		for (Reimbursement r: reimbs) {
 			Users resolver = new Users();

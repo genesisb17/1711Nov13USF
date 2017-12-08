@@ -16,11 +16,11 @@ public class LogoutServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		System.out.println("Logging out user");
-		if(req.getSession(false) == null) {
-			//req.getSession returns the current HttpSession, if there is none
-			// bool value of true would create the session
-			resp.sendRedirect("/");
-		}
+//		if(req.getSession(false) == null) {
+//			//req.getSession returns the current HttpSession, if there is none
+//			// bool value of true would create the session
+//			resp.sendRedirect("/");
+//		}
 		
 		HttpSession session = req.getSession(false);
 		if(session != null) {

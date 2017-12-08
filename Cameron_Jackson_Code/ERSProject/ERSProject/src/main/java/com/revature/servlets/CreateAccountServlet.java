@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.revature.dto.UserValidator;
+import com.revature.dto.UserDTO;
 import com.revature.pojos.Users;
 import com.revature.service.ERSService;
 
@@ -42,7 +42,7 @@ public class CreateAccountServlet extends HttpServlet{
 		ObjectMapper mapper = new ObjectMapper();
 		
 		// 3. Convert received JSON to String array
-		UserValidator uv = mapper.readValue(json, UserValidator.class);
+		UserDTO uv = mapper.readValue(json, UserDTO.class);
 		Users u = uv.getUser();
 		String message = uv.getMessage();
 		
