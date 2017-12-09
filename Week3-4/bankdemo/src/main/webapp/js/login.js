@@ -36,7 +36,7 @@ function login(){
 			}
 			else{
 				$('#message').html(`Welcome ${user.firstname}`) ;
-				loadApp();
+				loadApp()
 				console.log("success!");
 				loadHome();
 				
