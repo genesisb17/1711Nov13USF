@@ -19,7 +19,7 @@ public class ERSUser {
 		this.username = username;
 		this.password = password;
 		this.firstName = firstName;
-		LastName = lastName;
+		this.LastName = lastName;
 		this.email = email;
 		this.roleID = roleID;
 	}
@@ -106,7 +106,16 @@ public class ERSUser {
 	public void setRoleID(int roleID) {
 		this.roleID = roleID;
 	}
-
+	
+	public void nullifyUser() {
+		this.userID = -1;
+		this.username = null;
+		this.password = null;
+		this.firstName = null;
+		this.LastName = null;
+		this.email = null;
+		this.roleID = -1;
+	}
 
 
 	@Override

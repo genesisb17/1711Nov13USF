@@ -32,8 +32,7 @@ public class LoginServlet extends HttpServlet{
 
 		
 		// 1. get received JSON data from request
-		BufferedReader br = 
-				new BufferedReader(new InputStreamReader(req.getInputStream()));
+		BufferedReader br = new BufferedReader(new InputStreamReader(req.getInputStream()));
 		String json = "";
 		if(br != null){
 			json = br.readLine();
