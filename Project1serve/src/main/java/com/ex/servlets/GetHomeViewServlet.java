@@ -29,11 +29,10 @@ public class GetHomeViewServlet extends HttpServlet
 		req.getRequestDispatcher("partials/home.html").forward(req, resp);
 		ArrayList<R> a = new ArrayList<R>();
 		System.out.println("in loginview servlet");
-		a  = service.getReimbursements("u", "p");
-		int i;
-		for(i=0;i<a.size();i++)
+		a  = service.getReimbursements(u.getUsername(), u.getPassword());
+		for(int i = 0;i<a.size();i++)
 		{
-			System.out.println("Description"+a.get(i).getDescription());
+			System.out.println(a.get(i).getDescription());
 		}
 	}
 }

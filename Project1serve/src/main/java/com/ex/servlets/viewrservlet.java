@@ -2,6 +2,7 @@ package com.ex.servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,31 +15,37 @@ import com.rev.pojo.R;
 import com.rev.pojo.User;
 import com.rev.service.Service;
 
-@WebServlet("/Rtype")
-public class UserRoleIdRstatusRtypeServelet extends HttpServlet
+@WebServlet("/viewr")
+public class viewrservlet extends HttpServlet
 {
 	static Service service = new Service();
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)throws ServletException,IOException
 	{
-		//session is up and running
+		//use AJAX
 		HttpSession session = request.getSession(true);
 		User u = (User)session.getAttribute("user");
-		String Rtype = request.getParameter("Rtype");
-		String rstatus = "pending";
-		String amount =request.getParameter("amount");
-		double a = Double.parseDouble(amount);
-		String desc = request.getParameter("description");
-		
-		//R r = new R();		
-		service.addRtype(Rtype);
-		service.addRStatus(rstatus);
-		int s = service.findmax();
-		int t = service.findmax1();
-		// 0 is a representation of null
-		service.addReimbursements(a,desc, u.getUid(), s, t, u.getUid());
-		//cannot be the same id
+		R r = new R();
+		ArrayList <R> a = new ArrayList<R>();
+		a = service.getReimbursements(u.getUsername(), u.getPassword());
 		PrintWriter out = response.getWriter();
-//to select a reimbursement simply creat and r object and add it to the session.
+		int i;
+		if(a.size()==0)
+		{
+			out.println("none available");
+		}
+		else
+		{
+			for(i=0;i<a.size();i++)
+			{
+				out.println(a.get(i).getReimb_id()+" "+a.get(i).getReimb_Amount()+" "+a.get(i).getDescription());
+			}
+		}
+		if(u.getUser_Role_Id()==13)
+		{
+			out.println("what is the id number you want to change??<br>");
+			out.println("<input type=\"text\" id =\"rid\">");
+		}
 	}
 }
+

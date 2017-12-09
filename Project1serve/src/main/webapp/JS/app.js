@@ -9,6 +9,7 @@ window.onload = function()
 	loadHome();
 	$('#home').on('click',loadHome);
 	$('#profile').on('click', loadProfile);
+	$('#hello').on('click', viewReimb);
 }
 
 function loadHome()
@@ -24,6 +25,22 @@ function loadHome()
 	xhr.open("GET", "getHomeView" , true);
 	xhr.send();
 }
+
+
+function viewReimb()
+{
+	var xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function()
+	{
+		if(xhr.readyState == 4 && xhr.status == 200)
+		{
+			document.getElementById('view').innerHTML = xhr.responseText;
+		}
+	}	
+	xhr.open("GET", "getHomeView" , true);
+	xhr.send();
+}
+
 function loadProfile()
 {
 	var xhr = new XMLHttpRequest();
@@ -38,6 +55,7 @@ function loadProfile()
 		}
 	}
 }
+
 function loadProfileInfo()
 {
 	var xhr = new XMLHttpRequest();

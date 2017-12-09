@@ -19,7 +19,7 @@ public class RegisterServlet extends HttpServlet
 	private static final long serialVersionUID =1L;
 	static Service service = new Service();
 
-	@Override
+	/*@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)throws ServletException,IOException
 	{
 		String name = request.getParameter("username");
@@ -36,7 +36,7 @@ public class RegisterServlet extends HttpServlet
 			String val = request.getParameter(param);
 			System.out.println(param+": "+val);
 		}
-	}
+	}*/
 	
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)throws ServletException,IOException
@@ -51,7 +51,6 @@ public class RegisterServlet extends HttpServlet
 		int role = Integer.parseInt(r);
 		
 		User u1 =new User();
-		User u2 = new User();
 		
 		u1.setFirstname(first);
 		u1.setLastname(last);
@@ -61,7 +60,7 @@ public class RegisterServlet extends HttpServlet
 		service.adders_users(u1.getUsername(), u1.getPassword(), first, last, email, role);
 		//service.geters_users(u1.getUsername(), u1.getPassword());
 		PrintWriter out = response.getWriter();
-		out.println(u2.getLastname()+" "+u2.getFirstname());
+		out.println(u1.getLastname()+" "+u1.getFirstname());
 		out.println("test");
 	}
 }

@@ -62,7 +62,7 @@ function register(){
 	};
 	
 	xhr.open("POST","register", true);
-	xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+	//xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 	xhr.send(userJSON);
 	$('#message').hide();
 	alert("Success! Please login using your credentials");

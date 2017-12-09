@@ -1,5 +1,4 @@
 package com.rev.dao;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -9,11 +8,14 @@ import java.util.ArrayList;
 import com.rev.pojo.R;
 import com.rev.pojo.User;
 import java.util.Date;
-public class FileDao implements DAO {
+
+public class FileDao implements DAO 
+{
 	@Override
 	public void addRtype(String s) 
 	{
-		try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
+		try (Connection conn = ConnectionFactory.getInstance().getConnection()) 
+		{
 			conn.setAutoCommit(false);
 			String sql = "insert into ERS_REIMBURSEMENT_TYPE(REIMB_TYPE)Values(?)";
 
@@ -22,14 +24,13 @@ public class FileDao implements DAO {
 			ps.executeUpdate();
 			conn.commit();
 			conn.close();
-			System.out.println("Executed");
-		} catch (SQLException e) {
+		} 
+		catch (SQLException e) 
+		{
 			// TODO Auto-generated catch block
 		}
 		// TODO Auto-generated method stub
 	}
-
-	
 	
 	@Override
 	public void adders_user_roles(String s) {
@@ -42,7 +43,6 @@ public class FileDao implements DAO {
 			ps.executeUpdate();
 			conn.commit();
 			conn.close();
-			System.out.println("Executed");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 		}
@@ -93,7 +93,8 @@ public class FileDao implements DAO {
 	}
 
 	@Override
-	public ArrayList<R> getReimbursements(String username, String password) {
+	public ArrayList<R> getReimbursements(String username, String password) 
+	{
 		// TODO Auto-generated method stub
 
 		ArrayList<R> a = new ArrayList<R>();
@@ -103,16 +104,23 @@ public class FileDao implements DAO {
 		{
 			conn.setAutoCommit(false);
 			User u = new User();
-			R r = new R();
+			R r;
 			u = geters_users(username, password);
-
-			String sql = "select * FROM ERS_REIMBURSEMENT WHERE U_ID=?";
+			String sql;
+			if(u.getUser_Role_Id()==13)
+			{
+				sql = "select * FROM ERS_REIMBURSEMENT";
+			}
+			else
+			{
+				sql = "select * FROM ERS_REIMBURSEMENT WHERE U_ID=?";
+			}
 			PreparedStatement p = conn.prepareStatement(sql);
 			p.setInt(1, u.getUid());
 			ResultSet info1 = p.executeQuery();
 			while (info1.next()) 
 			{
-				
+				r = new R();
 				r.setReimb_Amount(info1.getDouble("REIMB_AMOUNT"));
 				r.setSubmit(info1.getString("REIMB_SUBMITTED"));
 				r.setResolv(info1.getString("REIMB_RESOLVED"));
@@ -128,7 +136,9 @@ public class FileDao implements DAO {
 			conn.close();
 			System.out.println(a.size());
 			System.out.println("executed");
-		} catch (SQLException e) {
+		} 
+		catch (SQLException e) 
+		{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			System.out.println("what");
@@ -156,8 +166,6 @@ public class FileDao implements DAO {
 		return null;
 	}
 
-	
-
 	@Override
 	public int findmax() 
 	{
@@ -178,7 +186,6 @@ public class FileDao implements DAO {
 		}
 		return 0;
 	}
-
 	
 	@Override
 	public int getRtypeById(String i) 
@@ -275,11 +282,7 @@ public class FileDao implements DAO {
 			e.printStackTrace();
 		}
 		return u;
-
-
-		//
 	}
-
 	// QC
 	@Override
 	public String geters_user_roles(int i) 
@@ -306,15 +309,18 @@ public class FileDao implements DAO {
 	{
 	// TODO Auto-generated method stub
 
-		try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
+		try (Connection conn = ConnectionFactory.getInstance().getConnection()) 
+		{
 			String sql = "select * from ers_user_roles where USER_ROLE =?";
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setString(1, role);
 			ResultSet info = ps.executeQuery();
-			while (info.next()) {
+			while (info.next()) 
+			{
 				return info.getInt(1);
 			}
-		} catch (SQLException e) {
+		} 
+		catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -348,6 +354,7 @@ public class FileDao implements DAO {
 			System.out.println("Failed to save reimbursement");
 		}
 	}
+	
 	@Override
 	public void UpdateStatus(int id)
 	{
@@ -394,10 +401,9 @@ public class FileDao implements DAO {
 		}
 	}
 
-
-
 	@Override
-	public int findmax1() {
+	public int findmax1() 
+	{
 		// TODO Auto-generated method stub
 		
 		try (Connection conn = ConnectionFactory.getInstance().getConnection()) 
@@ -410,7 +416,8 @@ public class FileDao implements DAO {
 				return info.getInt(1);
 			}
 		} 
-		catch (SQLException e) {
+		catch (SQLException e) 
+		{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

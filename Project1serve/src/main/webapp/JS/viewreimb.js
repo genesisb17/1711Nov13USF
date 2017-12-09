@@ -5,9 +5,7 @@ window.onload = function()
 {
 	console.log("test1")
 	$('#message').hide();
-	$('#login').on('click',login);
-	$('#register').on('click', register);
-	
+	$('#login').on('click',login);	
 }
 
 function login()
@@ -53,8 +51,4 @@ function login()
 	xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 	console.log("AFTER HEADER " + xhr.readyState);
 	xhr.send(json);	
-}
-function register()
-{
-	window.location.replace('register.html');
 }
