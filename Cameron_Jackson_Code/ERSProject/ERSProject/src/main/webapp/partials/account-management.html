@@ -1,11 +1,39 @@
 <div class="login-container mx-auto" id="up-account">
-    <h1 class="text-center">Manage Account</h1>
+    <h2 class="text-center">Manage Account</h2>
     <hr/>
-    <input type="text" class="form-control" id="email" placeholder="Email">
+    <label>Email</label>
+    <div class="input-group">
+        <input type="text" class="form-control ma-input" id="up-email" placeholder="Email" readonly>
+        <span class="input-group-btn">
+            <button class="btn btn-outline-warning up-btn" type="button" id="up-email-btn">Change</button>
+        </span>
+    </div>
     <br>
-    <input type="username" class="form-control" id="up-username" placeholder="Username">
+    <label>Username</label>
+    <div class="input-group">
+        <input type="username" class="form-control ma-input" id="up-username" placeholder="Username" readonly>
+        <span class="input-group-btn">
+            <button class="btn btn-outline-warning up-btn" type="button" id="up-username-btn">Change</button>
+        </span>
+    </div>
     <br>
-    <input type="password" class="form-control" id="up-password" placeholder="Password">
+    <label>Password</label>
+    <div class="input-group">
+        <input type="password" class="form-control ma-input" id="up-password" placeholder="Password" readonly>
+        <span class="input-group-btn">
+            <button class="btn btn-outline-warning up-btn" type="button" id="up-password-btn">Change</button>
+        </span>
+    </div>
     <br>
     <input type="password" class="form-control" id="up-confirm-password" placeholder="Confirm Password">
+    <input type="password" class="form-control up-verify-password" id="up-verify-password" placeholder="Password">
+    <br>
+    <div class="row">
+        <div class="col-auto">
+            <button class="btn btn-secondary" id="ma-cancel">Cancel</button>
+        </div>
+        <div class="col-auto">
+            <button class="btn btn-outline-primary" id="ma-submit">Submit</button>
+        </div>
+    </div>
 </div>

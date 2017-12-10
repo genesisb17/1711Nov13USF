@@ -22,6 +22,7 @@ public class GetViewsServlet extends HttpServlet {
 	}
 
 	private String process(HttpServletRequest request, HttpServletResponse response) {
+		HttpSession session = request.getSession();
 		switch (request.getRequestURI()) {
 		case "/ERSProject/mainpage.view": 
 			return "partials/main-page.html";
@@ -40,9 +41,11 @@ public class GetViewsServlet extends HttpServlet {
 			
 		case "/ERSProject/create-ticket.view":
 			return "partials/create-ticket-view.html";
+			
+		case "/ERSProject/manage-account.view":
+			return "partials/account-management.html";
 				
 		case "/ERSProject/reimb.view":
-			HttpSession session = request.getSession();
 			Users u = (Users)session.getAttribute("user");
 			if (u.getRoleId() == 1)
 				return "partials/employee-view.html";

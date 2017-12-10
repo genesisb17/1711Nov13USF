@@ -5,10 +5,14 @@ body {
 }
 
 #view {
-    margin-top: 5px;
+    margin-top: 25px;
 }
 
 .login-container {
     width: 40%;
     min-height: 100%;
+}
+
+.up-btn {
+    min-width: 60px;
 }

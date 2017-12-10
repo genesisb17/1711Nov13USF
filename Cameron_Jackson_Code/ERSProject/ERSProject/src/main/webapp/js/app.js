@@ -9,15 +9,66 @@ $(document).on('click', '#new-users', loadCA);
 $(document).on('click', '#returning-users', loadLogin);
 $(document).on('click', '#login', login);
 $(document).on('click', '#create-account', createAccount);
+$(document).on('click', '#manage-account', loadManageAccountView);
 // $(document).on('click', '#create-ticket', loadCreateTicket);
 // $(document).on('click', '#create', createTicket);
-$(document).on('shown.bs.modal', '#create-ticket-modal', function() {
+$(document).on('click', '#ma-cancel', loadReimb);
+$(document).on('click', '.up-btn', function () {
+    // $(this).attr('class', 'btn btn-warning up-btn');
+    $(this).html('Cancel');
+    $(this).attr('class', 'btn btn-danger up-btn-cancel');
+    if ($(this).attr('id') == "up-email-btn") {
+        $('#up-email').attr('readonly', false);
+        $('#up-confirm-password').hide();
+        $('#up-verify-password').show();
+    } else if ($(this).attr('id') == "up-username-btn") {
+        $('#up-username').attr('readonly', false);
+        $('#up-confirm-password').hide();
+        $('#up-verify-password').show();
+    } 
+    if ($(this).attr('id') == "up-password-btn") {
+        $('#up-password').attr('readonly', false);
+        $('#up-confirm-password').show();
+        $('#up-verify-password').hide();
+    }
+    if (!$('#up-password').is('[readonly]')) {
+        $('#up-confirm-password').show();
+        $('#up-verify-password').hide();
+    } else {
+        $('#up-confirm-password').hide();
+        $('#up-verify-password').show();
+    }
+});
+$(document).on('click', '.up-btn-cancel', function () {
+    $(this).html('Change');
+    $(this).attr('class', 'btn btn-outline-warning up-btn');
+    if ($(this).attr('id') == "up-email-btn") {
+        $('#up-email').attr('readonly', true);
+    } else if ($(this).attr('id') == "up-username-btn") {
+        $('#up-username').attr('readonly', true);
+    } else if ($(this).attr('id') == "up-password-btn") {
+        $('#up-password').attr('readonly', true);
+        $('#up-confirm-password').hide();
+    }
+    $('#up-verify-password').hide();
+    // if any element is readonly DON'T hide the password verifications
+    if ($('.ma-input:not([readonly])').length) {
+        if ($('#up-password').is('[readonly]')) {
+            $('#up-confirm-password').hide();
+            $('#up-verify-password').show();
+        } else {
+            $('#up-confirm-password').show();
+            $('#up-verify-password').hide();
+        }
+    }
+});
+$(document).on('shown.bs.modal', '#create-ticket-modal', function () {
     $('#create-ticket-modal').trigger('focus');
     $(document).on('click', '#create', createTicket);
 })
-$(document).on('shown.bs.modal', '#logoutModal', function() {
+$(document).on('shown.bs.modal', '#logoutModal', function () {
     $('#logoutModal').trigger('focus');
-    $(document).on('click', '#modal-logout', function() {
+    $(document).on('click', '#modal-logout', function () {
         logout();
     });
 });
@@ -29,7 +80,7 @@ $(document).on('shown.bs.modal', '#logoutModal', function() {
  */
 function loadPage() {
     var xhr = new XMLHttpRequest();
-    xhr.onreadystatechange = function() {
+    xhr.onreadystatechange = function () {
         if (xhr.readyState == 4 && xhr.status == 200) {
             if (xhr.responseText == "loadLoginPage")
                 loadLoginPage();
@@ -110,7 +161,7 @@ function loadReimb() {
 
 function loadCreateTicket() {
     var xhr = new XMLHttpRequest();
-    xhr.onreadystatechange = function() {
+    xhr.onreadystatechange = function () {
         if (xhr.readyState == 4 && xhr.status == 200) {
             $('body').prepend(xhr.responseText);
         }
@@ -127,6 +178,20 @@ function loadLogoutModal() {
         }
     }
     xhr.open("GET", "logout-modal.view", true);
+    xhr.send();
+}
+
+function loadManageAccountView() {
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            $('#view').html(xhr.responseText);
+            $('#up-confirm-password').hide();
+            $('#up-verify-password').hide();
+            getAccountInfo();
+        }
+    }
+    xhr.open("GET", "manage-account.view", true);
     xhr.send();
 }
 
@@ -241,11 +306,21 @@ function createTicket() {
         statusId: 0,
         typeId: $('#reimb-type').val()
     }
-    $('#amount').val("");
+
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            getEmployeeTicketInfo();
+        }
+    }
+
+    var ticketString = JSON.stringify(ticket);
+    xhr.open("POST", "createticket", true);
+    xhr.send(ticketString);
+
+    $('#amount').val("0");
     $('#description').val("");
     $('#reimb-type').val("");
-    getEmployeeTicketInfo();
-    // loadMainPage();
 }
 
 function getUser() {
@@ -260,6 +335,23 @@ function getUser() {
                 getEmployeeTicketInfo();
             else if (currUser.roleId == 2)
                 getAllTicketInfo();
+        }
+    }
+    xhr.open("GET", "getuser", true);
+    xhr.send();
+}
+
+function getAccountInfo() {
+    var currUser = {};
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            currUser = JSON.parse(xhr.responseText);
+            $('#up-email').val(currUser.email);
+            $('#up-username').val(currUser.username);
+            $('#up-password').val(currUser.password);
+            $('.ma-input').attr('readonly', true);
+            $('#ma-submit').attr('disabled', true);
         }
     }
     xhr.open("GET", "getuser", true);

@@ -26,8 +26,9 @@ public class GetSessionUser extends HttpServlet {
 		HttpSession session = req.getSession();
 		Users u = (Users) session.getAttribute("user");
 		ObjectMapper mapper = new ObjectMapper();
+		String json = mapper.writeValueAsString(u);
 		PrintWriter out = resp.getWriter();
 		resp.setContentType("application/json");
-		out.println(mapper.writeValueAsString(u));
+		out.println(json);
 	}
 }
