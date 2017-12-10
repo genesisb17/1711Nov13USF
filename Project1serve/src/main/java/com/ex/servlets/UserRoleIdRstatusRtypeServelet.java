@@ -24,21 +24,27 @@ public class UserRoleIdRstatusRtypeServelet extends HttpServlet
 		//session is up and running
 		HttpSession session = request.getSession(true);
 		User u = (User)session.getAttribute("user");
+		R r = new R();
 		String Rtype = request.getParameter("Rtype");
 		String rstatus = "pending";
 		String amount =request.getParameter("amount");
 		double a = Double.parseDouble(amount);
 		String desc = request.getParameter("description");
 		
-		//R r = new R();		
 		service.addRtype(Rtype);
 		service.addRStatus(rstatus);
 		int s = service.findmax();
 		int t = service.findmax1();
 		// 0 is a representation of null
+		r.setReimb_Amount(a);
+		r.setERS_USER_ROLE_ID(0);
+		r.setDescription(desc);
+		r.setReimb_id(u.getUid());
+		r.setREIMB_STATUS_ID(s);
+		r.setREIMB_TYPE_ID(t);
 		service.addReimbursements(a,desc, u.getUid(), s, t, u.getUid());
 		//cannot be the same id
 		PrintWriter out = response.getWriter();
-//to select a reimbursement simply creat and r object and add it to the session.
+		//to select a reimbursement simply creat and r object and add it to the session.
 	}
 }

@@ -23,16 +23,17 @@ public class GetHomeViewServlet extends HttpServlet
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException
 	{	
 		HttpSession session = req.getSession(true);
-		User u = (User)session.getAttribute("user");
-		PrintWriter out = resp.getWriter();
-		System.out.println("Over here Trent" +u.getUid());
+		User u = (User)session.getAttribute("user");	
 		req.getRequestDispatcher("partials/home.html").forward(req, resp);
 		ArrayList<R> a = new ArrayList<R>();
-		System.out.println("in loginview servlet");
 		a  = service.getReimbursements(u.getUsername(), u.getPassword());
+		
+		PrintWriter out = resp.getWriter();
 		for(int i = 0;i<a.size();i++)
 		{
-			System.out.println(a.get(i).getDescription());
+			out.println(a.get(i).getDescription());
 		}
+
 	}
+
 }

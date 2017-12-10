@@ -73,8 +73,8 @@ public class Service
 	{
 		return dao.getRStatusById(i);
 	}
-	public void UpdateStatus(int id) {
-		dao.UpdateStatus(id);
+	public void UpdateStatus(int id,String status) {
+		dao.UpdateStatus(id,status);
 	}
 	public void UpdateReimb(int reimbid1,int uid2)
 	{

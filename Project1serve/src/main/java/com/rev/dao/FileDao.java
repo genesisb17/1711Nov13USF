@@ -86,7 +86,6 @@ public class FileDao implements DAO
 		} 
 		catch (SQLException e) 
 		{
-
 			// TODO Auto-generated catch block
 		}
 		// TODO Auto-generated method stub
@@ -107,18 +106,22 @@ public class FileDao implements DAO
 			R r;
 			u = geters_users(username, password);
 			String sql;
+			PreparedStatement p;
 			if(u.getUser_Role_Id()==13)
 			{
 				sql = "select * FROM ERS_REIMBURSEMENT";
+				 p = conn.prepareStatement(sql);
+
 			}
 			else
 			{
 				sql = "select * FROM ERS_REIMBURSEMENT WHERE U_ID=?";
+				p = conn.prepareStatement(sql);
+				p.setInt(1, u.getUid());
 			}
-			PreparedStatement p = conn.prepareStatement(sql);
-			p.setInt(1, u.getUid());
+
 			ResultSet info1 = p.executeQuery();
-			while (info1.next()) 
+			while (info1.next())
 			{
 				r = new R();
 				r.setReimb_Amount(info1.getDouble("REIMB_AMOUNT"));
@@ -135,7 +138,6 @@ public class FileDao implements DAO
 			conn.commit();
 			conn.close();
 			System.out.println(a.size());
-			System.out.println("executed");
 		} 
 		catch (SQLException e) 
 		{
@@ -356,7 +358,7 @@ public class FileDao implements DAO
 	}
 	
 	@Override
-	public void UpdateStatus(int id)
+	public void UpdateStatus(int id,String status)
 	{
 		// TODO Auto-generated method stub
 		try (Connection conn = ConnectionFactory.getInstance().getConnection()) 
@@ -365,7 +367,7 @@ public class FileDao implements DAO
 			conn.setAutoCommit(false);
 			String sql = "update ERSREIMBURSEMENTSTATUS set REIMB_STATUS = ? where REIMB_STATUS_ID=?";
 			PreparedStatement ps = conn.prepareStatement(sql);
-			ps.setString(1, "success");
+			ps.setString(1, status);
 			ps.setInt(2, id);
 			ps.executeUpdate();
 			conn.commit();

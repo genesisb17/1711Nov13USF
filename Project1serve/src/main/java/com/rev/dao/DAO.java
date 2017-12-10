@@ -22,7 +22,7 @@ public interface DAO
 	int geters_user_rolesbyId(String role);
 	int getRStatusById(String i);
 	int getRtypeById(String i);
-	void UpdateStatus(int id);
+	void UpdateStatus(int id,String status);
 	void UpdateReimb(int reimbid1,int uid2);
 	int findmax();
 	int findmax1();
