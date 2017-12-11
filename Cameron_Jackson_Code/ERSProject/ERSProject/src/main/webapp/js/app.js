@@ -9,10 +9,23 @@ $(document).on('click', '#new-users', loadCA);
 $(document).on('click', '#returning-users', loadLogin);
 $(document).on('click', '#login', login);
 $(document).on('click', '#create-account', createAccount);
-$(document).on('click', '#manage-account', loadManageAccountView);
+$(document).on('click', '#manage-account', loadManageAccount);
 // $(document).on('click', '#create-ticket', loadCreateTicket);
 // $(document).on('click', '#create', createTicket);
 $(document).on('click', '#ma-cancel', loadReimb);
+$(document).on('click', '#ma-submit', updateAccount);
+$(document).on('blur', '#up-account input', function () {
+    if ((($("#up-email")[0].validity.valueMissing == true) && !$("#up-email").is("[readonly]")) ||
+        (($("#up-username")[0].validity.valueMissing == true) && !$("#up-username").is("[readonly]")) ||
+        (($("#up-password")[0].validity.valueMissing == true) && !$("#up-password").is("[readonly]"))) {
+        // Ignore this case
+        // Equivalent to disabling submission if invalid info
+        $('#ma-submit').attr('disabled', true);
+    }
+});
+$(document).on('input', '.ma-password', function () {
+    $('#ma-submit').attr('disabled', false);
+});
 $(document).on('click', '.up-btn', function () {
     // $(this).attr('class', 'btn btn-warning up-btn');
     $(this).html('Cancel');
@@ -25,12 +38,16 @@ $(document).on('click', '.up-btn', function () {
         $('#up-username').attr('readonly', false);
         $('#up-confirm-password').hide();
         $('#up-verify-password').show();
-    } 
+    }
+    // This is for if the password change button gets pressed
     if ($(this).attr('id') == "up-password-btn") {
         $('#up-password').attr('readonly', false);
         $('#up-confirm-password').show();
         $('#up-verify-password').hide();
     }
+    // This is for if a button other than the password change gets pressed
+    // but the password change button was previously pressed and never 
+    // cancelled
     if (!$('#up-password').is('[readonly]')) {
         $('#up-confirm-password').show();
         $('#up-verify-password').hide();
@@ -38,10 +55,11 @@ $(document).on('click', '.up-btn', function () {
         $('#up-confirm-password').hide();
         $('#up-verify-password').show();
     }
+    // $('#ma-submit').attr('disabled', false);
 });
 $(document).on('click', '.up-btn-cancel', function () {
     $(this).html('Change');
-    $(this).attr('class', 'btn btn-outline-warning up-btn');
+    $(this).attr('class', 'btn btn-warning up-btn');
     if ($(this).attr('id') == "up-email-btn") {
         $('#up-email').attr('readonly', true);
     } else if ($(this).attr('id') == "up-username-btn") {
@@ -51,7 +69,7 @@ $(document).on('click', '.up-btn-cancel', function () {
         $('#up-confirm-password').hide();
     }
     $('#up-verify-password').hide();
-    // if any element is readonly DON'T hide the password verifications
+    // if any element is NOT readonly don't hide the password verifications
     if ($('.ma-input:not([readonly])').length) {
         if ($('#up-password').is('[readonly]')) {
             $('#up-confirm-password').hide();
@@ -60,6 +78,10 @@ $(document).on('click', '.up-btn-cancel', function () {
             $('#up-confirm-password').show();
             $('#up-verify-password').hide();
         }
+        $('#ma-submit').attr('disabled', false);
+    } else {
+        $('.ma-password').val("");
+        $('#ma-submit').attr('disabled', true);
     }
 });
 $(document).on('shown.bs.modal', '#create-ticket-modal', function () {
@@ -82,10 +104,26 @@ function loadPage() {
     var xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function () {
         if (xhr.readyState == 4 && xhr.status == 200) {
-            if (xhr.responseText == "loadLoginPage")
+            // if (xhr.responseText == "loadLoginPage")
+            //     loadLoginPage();
+            // else if (xhr.responseText == "loadMainPage") {
+            //     loadMainPage();
+            // }
+            // console.log(xhr.responseText);
+            if (xhr.responseText == "login") {
                 loadLoginPage();
-            else if (xhr.responseText == "loadMainPage") {
+            }
+            else if (xhr.responseText == "createaccount") {
+                loadLoginPageMini();
+                loadCA();
+            }
+            else if (xhr.responseText == "tickets") {
                 loadMainPage();
+            }
+            else if (xhr.responseText == "manageaccount") {
+                loadMainPageMini();
+                getUser();
+                loadManageAccount();
             }
         }
     }
@@ -105,6 +143,17 @@ function loadLoginPage() {
     xhr.send();
 }
 
+function loadLoginPageMini() {
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            $('#appview').html(xhr.responseText);
+        }
+    }
+    xhr.open("GET", "loginpage.view", true);
+    xhr.send();
+}
+
 function loadMainPage() {
     var xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function () {
@@ -113,6 +162,18 @@ function loadMainPage() {
             loadLogoutModal();
             loadCreateTicket();
             loadReimb();
+        }
+    }
+    xhr.open("GET", "mainpage.view", true);
+    xhr.send();
+}
+
+function loadMainPageMini() {
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            $('#appview').html(xhr.responseText);
+            loadLogoutModal();
         }
     }
     xhr.open("GET", "mainpage.view", true);
@@ -181,7 +242,7 @@ function loadLogoutModal() {
     xhr.send();
 }
 
-function loadManageAccountView() {
+function loadManageAccount() {
     var xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function () {
         if (xhr.readyState == 4 && xhr.status == 200) {
@@ -189,6 +250,7 @@ function loadManageAccountView() {
             $('#up-confirm-password').hide();
             $('#up-verify-password').hide();
             getAccountInfo();
+
         }
     }
     xhr.open("GET", "manage-account.view", true);
@@ -239,9 +301,62 @@ function logout() {
     xhr.send();
 }
 
+function updateAccount() {
+    var updatedUser = {
+        userId: 0,
+        username: null,
+        password: null,
+        firstName: null,
+        lastName: null,
+        email: null,
+        roleId: 0
+    }
+    if (!$("#up-email").is("[readonly]"))
+        updatedUser.email = $('#up-email').val();
+    if (!$("#up-username").is("[readonly]"))
+        updatedUser.username = $('#up-username').val();
+    if (!$("#up-password").is("[readonly]"))
+        updatedUser.password = $('#up-password').val();
+
+    var xhr = new XMLHttpRequest();
+
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            var user = JSON.parse(xhr.responseText);
+            if (user != null) {
+                loadManageAccount()
+                // $('#up-confirm-password').hide();
+                // $('#up-verify-password').hide();
+
+                // $('#up-email').val(user.email);
+                // $('#up-username').val(user.username);
+                // $('#up-password').val(user.password);
+                // $('.ma-input').attr('readonly', true);
+                // $('#ma-submit').attr('disabled', true);
+            }
+        }
+    }
+
+    if ($('#up-confirm-password').is(':visible') && ($('#up-confirm-password input').val() == $('#up-password').val())) {
+        var updatedUserInfo = {
+            user: updatedUser,
+            message: [""]
+        }
+        xhr.open("POST", "updateaccount", true);
+        xhr.send(JSON.stringify(updatedUserInfo));
+    } else if ($('#up-verify-password').is(':visible')) {
+        var updatedUserInfo = {
+            user: updatedUser,
+            message: [$('#up-verify-password input').val()]
+        }
+        xhr.open("POST", "updateaccount", true);
+        xhr.send(JSON.stringify(updatedUserInfo));
+    }
+}
+
 function createAccount() {
-    $('.bad-username').hide();
-    $('.bad-password').hide();
+    $('.bad-username').hide(); // Refactor this 
+    $('.bad-password').hide(); // * 
     var user = {
         userId: 0,
         username: $('#username').val(),
@@ -258,11 +373,6 @@ function createAccount() {
         user.roleId = 1;
     }
 
-    var userInfo = {
-        user: user,
-        message: ""
-    }
-
     var xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function () {
         if (xhr.readyState == 4 && xhr.status == 200) {
@@ -271,7 +381,7 @@ function createAccount() {
             var message = ui.message;
             if (currUser == null) {
                 $('.bad-username').show();
-                $('#bad-username').html(ui.message);
+                $('#bad-username').html(ui.message[0]);
                 $('#username').val("");
                 $('#password').val("");
                 $('#confirm-password').val("");
@@ -287,7 +397,7 @@ function createAccount() {
         $('#password').val("");
         $('#confirm-password').val("");
     } else {
-        var userString = JSON.stringify(userInfo);
+        var userString = JSON.stringify(user);
         xhr.open("POST", "createAccount", true);
         xhr.send(userString);
     }
@@ -362,7 +472,10 @@ function getEmployeeTicketInfo() {
     var xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function () {
         if (xhr.readyState == 4 && xhr.status == 200) {
-            var tick = JSON.parse(xhr.responseText);
+            // console.log(`Response: ${xhr.responseText}`);
+            var tick;
+            if (xhr.responseText != null)
+            tick = JSON.parse(xhr.responseText);
             // Empty table to avoid duplicates
             $('#table-data').html("");
             for (x in tick) {

@@ -15,6 +15,7 @@ public interface ERSDAO {
 	public ArrayList<Users> getAllUsers();
 	public UserRoles getRole(int roleId);
 	public Users addUser(Users newUser);
+	public Users updateAccount(Users newInfo);
 	public String findUsername(String username);
 	public String findPassword(String username);
 	public String findEmail(String email);

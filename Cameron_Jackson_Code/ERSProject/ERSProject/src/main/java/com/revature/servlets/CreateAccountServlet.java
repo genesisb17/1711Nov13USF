@@ -42,16 +42,15 @@ public class CreateAccountServlet extends HttpServlet{
 		ObjectMapper mapper = new ObjectMapper();
 		
 		// 3. Convert received JSON to String array
-		UserDTO uv = mapper.readValue(json, UserDTO.class);
-		Users u = uv.getUser();
-		String message = uv.getMessage();
+		Users u = mapper.readValue(json, Users.class);
 		
+		String[] message = new String[1];
 		Users newUser = null;
 		// 4. Validate
 		if(service.userExists(u.getUsername()))
-			message = "An account with that username exists";
+			message[0] = "An account with that username exists";
 		else if(!service.uniqueEmail(u.getEmail()))
-			message = "An account with that email already exists";
+			message[0] = "An account with that email already exists";
 		else {
 			// 5. add to database
 			newUser = service.createAccount(u);
@@ -61,7 +60,7 @@ public class CreateAccountServlet extends HttpServlet{
 			HttpSession session = req.getSession();
 			session.setAttribute("user", newUser);
 		}
-		
+		UserDTO uv = new UserDTO();
 		uv.setMessage(message);
 		uv.setUser(newUser);
 		PrintWriter out = resp.getWriter();

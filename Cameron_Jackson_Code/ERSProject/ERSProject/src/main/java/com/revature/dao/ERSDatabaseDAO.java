@@ -98,7 +98,7 @@ public class ERSDatabaseDAO implements ERSDAO {
 	public UserRoles getRole(int roleId) {
 		UserRoles role = null;
 		String sql = "select * from ers_user_roles where ers_user_role_id = ?";
-		
+
 		try (Connection conn = ConnectionFactory.getInstance().getConnection();
 				PreparedStatement ps = conn.prepareStatement(sql);){
 			ps.setInt(1, roleId);
@@ -118,7 +118,7 @@ public class ERSDatabaseDAO implements ERSDAO {
 	public ArrayList<Users> getAllUsers() {
 		ArrayList<Users> users = new ArrayList<>();
 		String selectUsers = "select * from ers_users";
-		
+
 		try (Connection conn = ConnectionFactory.getInstance().getConnection();
 				Statement su = conn.createStatement();
 				ResultSet rs = su.executeQuery(selectUsers);) {
@@ -170,6 +170,28 @@ public class ERSDatabaseDAO implements ERSDAO {
 	}
 
 	@Override
+	public Users updateAccount(Users newInfo) {
+		String sql = "update ers_users set ERS_USERNAME = ?, ERS_PASSWORD = ?, USER_EMAIL = ? where ERS_USERS_ID = ?";
+		Users u = null;
+		try (Connection conn = ConnectionFactory.getInstance().getConnection();
+				PreparedStatement ps = conn.prepareStatement(sql);) {
+			ps.setString(1, newInfo.getUsername());
+			ps.setString(2, newInfo.getPassword());
+			ps.setString(3, newInfo.getEmail());
+			ps.setInt(4, newInfo.getUserId());
+			int rows = ps.executeUpdate();
+			if (rows == 0) return null;
+			
+			u = new Users();
+			u = getUserById(newInfo.getUserId());
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return u;
+	}
+
+
+	@Override
 	public String findUsername(String username) {
 		String ersUsername = null;
 		String sql = "select ers_username from ers_users where ers_username=?";
@@ -212,7 +234,7 @@ public class ERSDatabaseDAO implements ERSDAO {
 	public String findEmail(String email) {
 		String existingEmail = null;
 		String sql = "select * from ers_users where user_email=?";
-		
+
 		try (Connection conn = ConnectionFactory.getInstance().getConnection();
 				PreparedStatement ps = conn.prepareStatement(sql);) {
 			ps.setString(1, email);
@@ -261,7 +283,7 @@ public class ERSDatabaseDAO implements ERSDAO {
 	public ArrayList<Reimbursement> getPastTickets(int employeeId) {
 		ArrayList<Reimbursement> tickets = new ArrayList<>();
 		String sql = "select * from ers_reimbursement where reimb_author = ?";
-		
+
 		try (Connection conn = ConnectionFactory.getInstance().getConnection();
 				PreparedStatement ps = conn.prepareStatement(sql);) {
 			ps.setInt(1, employeeId);
@@ -322,8 +344,8 @@ public class ERSDatabaseDAO implements ERSDAO {
 		String sql = "INSERT INTO ERS_REIMBURSEMENT (REIMB_AMOUNT, REIMB_DESCRIPTION, REIMB_RECEIPT,\r\n" + 
 				"REIMB_AUTHOR, REIMB_STATUS_ID, REIMB_TYPE_ID) VALUES (?,?,?,?,?,?)";
 		String[] keys = {DB_KEY_REIMBID};
-		
-		
+
+
 		try (Connection conn = ConnectionFactory.getInstance().getConnection();
 				PreparedStatement ps = conn.prepareStatement(sql, keys);) {
 			conn.setAutoCommit(false);
@@ -363,7 +385,7 @@ public class ERSDatabaseDAO implements ERSDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
+
 		return getTicket(reimbId);
 	}
 
@@ -389,7 +411,7 @@ public class ERSDatabaseDAO implements ERSDAO {
 	public ReimbursementType getType(int typeId) {
 		ReimbursementType type = null;
 		String sql = "select reimb_type from ers_reimbursement_type where reimb_type_id = ?";
-		
+
 		try (Connection conn = ConnectionFactory.getInstance().getConnection();
 				PreparedStatement ps = conn.prepareStatement(sql);) {
 			ps.setInt(1, typeId);

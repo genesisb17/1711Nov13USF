@@ -31,9 +31,11 @@ public class GetViewsServlet extends HttpServlet {
 			return "partials/login-page.html";
 			
 		case "/ERSProject/login.view": 
+			session.setAttribute("view", "login");
 			return "partials/login.html";
 			
 		case "/ERSProject/ca.view":
+			session.setAttribute("view", "createaccount");
 			return "partials/ca.html";
 			
 		case "/ERSProject/logout-modal.view":
@@ -43,10 +45,12 @@ public class GetViewsServlet extends HttpServlet {
 			return "partials/create-ticket-view.html";
 			
 		case "/ERSProject/manage-account.view":
+			session.setAttribute("view", "manageaccount");
 			return "partials/account-management.html";
 				
 		case "/ERSProject/reimb.view":
 			Users u = (Users)session.getAttribute("user");
+			session.setAttribute("view", "tickets");
 			if (u.getRoleId() == 1)
 				return "partials/employee-view.html";
 			else if (u.getRoleId() == 2)

@@ -39,29 +39,33 @@ public class GetEmployeeTickets extends HttpServlet {
 		
 		// add information to DTO with author, resolver, status, and type info
 		ArrayList<ReimbDTO> tickets = new ArrayList<>();
-		for (Reimbursement r: reimbs) {
-			Users resolver = new Users();
-			Users author = new Users();
-			resolver = service.getUser(r.getResolver());
-			author = service.getUser(r.getAuthor());
-			ReimbDTO rdto = new ReimbDTO();
-			rdto.setReimb(r);
-			rdto.setAuthor(author);
-			rdto.setResolver(resolver);
-			rdto.setStatus(service.getStatus(r.getStatusId()));
-			rdto.setType(service.getType(r.getTypeId()));
-			tickets.add(rdto);
+		if (reimbs != null) {
+			for (Reimbursement r: reimbs) {
+				Users resolver = new Users();
+				Users author = new Users();
+				resolver = service.getUser(r.getResolver());
+				author = service.getUser(r.getAuthor());
+				ReimbDTO rdto = new ReimbDTO();
+				rdto.setReimb(r);
+				rdto.setAuthor(author);
+				rdto.setResolver(resolver);
+				rdto.setStatus(service.getStatus(r.getStatusId()));
+				rdto.setType(service.getType(r.getTypeId()));
+				tickets.add(rdto);
+			}
 		}
 		
-		
-		StringBuilder json = new StringBuilder();
-		json.append("["); // have to make a custom json string since an ArrayList can't be converted easily
+		StringBuilder json = null;
 		ObjectMapper mapper = new ObjectMapper();
-		for (ReimbDTO t: tickets) {
-			json.append(mapper.writeValueAsString(t));
-			json.append(",");
+		if (!tickets.isEmpty()) {
+			json = new StringBuilder();
+			json.append("["); // have to make a custom json string since an ArrayList can't be converted easily
+			for (ReimbDTO t: tickets) {
+				json.append(mapper.writeValueAsString(t));
+				json.append(",");
+			}
+			json.replace(json.lastIndexOf(","), json.length(), "]");
 		}
-		json.replace(json.lastIndexOf(","), json.length(), "]");
 //		System.out.println(json);
 		PrintWriter out = resp.getWriter();
 		resp.setContentType("application/json");

@@ -16,3 +16,9 @@ body {
 .up-btn {
     min-width: 60px;
 }
+
+.input-group.is-invalid {
+    ~ .invalid-feedback {
+      display: block;
+    }
+  }

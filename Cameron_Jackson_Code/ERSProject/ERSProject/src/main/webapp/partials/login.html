@@ -1,13 +1,19 @@
-<div class="login-container mx-auto" id="login-input">
+<div class="login-container was-validated mx-auto" id="login-input">
     <h2 class="text-center">ERS Login</h2>
     <hr/>
     <button class="btn btn-link btn-block" id="new-users">New users click here</button>
     <br>
     <div class="alert alert-danger bad-login" role="alert" id="bad-login"></div>
     <br class="bad-login" />
-    <input type="text" class="form-control" id="username" placeholder="Username">
+    <input type="text" class="form-control" id="username" placeholder="Username" required>
+    <div class="invalid-feedback">
+        Please enter a username.
+    </div>
     <br>
-    <input type="password" class="form-control" id="password" placeholder="Password">
+    <input type="password" class="form-control" id="password" placeholder="Password" required>
+    <div class="invalid-feedback">
+        Please enter a password.
+    </div>
     <br>
     <input type="submit" class="btn btn-primary" id="login" value="Login" />
 </div>

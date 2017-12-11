@@ -52,6 +52,15 @@ public class ERSService {
 		return u;
 	}
 	
+	public Users updateAccount(Users user, String cUsername, String password) {
+		Users u = null;
+		if (userExists(cUsername) && correctPassword(cUsername, password)) {
+			if ((user.getUsername() != null) && (user.getPassword() != null) && (user.getEmail() != null))
+				u = dao.updateAccount(user);
+		}
+		return u;
+	}
+	
 	public Users getUser(int userId) {
 		Users u = null;
 		u = dao.getUserById(userId);
