@@ -40,14 +40,14 @@ public class Service
 	// ------------------------------------------------------------
 	// ReimbDAO Service
 	// ------------------------------------------------------------
-	public ArrayList<Reimbursement> getAllReimb(User user)
+	public ArrayList<Reimbursement> getAllReimb()
 	{
-		return ReimbDao.getReimbById(user);
+		return ReimbDao.getAllReimb();
 	}
 
-	public ArrayList<Reimbursement> getReimbById(User user)
+	public ArrayList<Reimbursement> getReimbByUser(User user)
 	{
-		return ReimbDao.getReimbById(user);
+		return ReimbDao.getReimbByUser(user);
 	}
 
 	public Reimbursement addReimb(User user, Reimbursement reimb)
@@ -63,6 +63,11 @@ public class Service
 	public void updateReimb(Reimbursement reimb)
 	{
 		ReimbDao.updateReimb(reimb);
+	}
+	
+	public void updateReimbByManager(User manager, int statusId, int reimbId)
+	{
+		ReimbDao.updateReimbByManager(manager, statusId, reimbId);
 	}
 	
 	public void deleteReimb(int reimb_id)

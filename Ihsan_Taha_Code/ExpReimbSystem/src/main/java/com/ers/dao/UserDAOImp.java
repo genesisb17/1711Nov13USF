@@ -70,22 +70,24 @@ public class UserDAOImp implements UserDAO
 
 			ps.executeUpdate();
 
-			/*
-			 * int rows = ps.executeUpdate();
-			 * 
-			 * if (rows != 0) { ResultSet rs = ps.getGeneratedKeys(); while (rs.next()) {
-			 * user.setUserId(rs.getInt(1)); user.setUserName(rs.getString(2));
-			 * user.setPassWord(rs.getString(3)); user.setFirstName(rs.getString(4));
-			 * user.setLastName(rs.getString(5)); user.setUserEmail(rs.getString(6));
-			 * user.setRoleId(rs.getInt(7)); }
-			 * 
-			 * conn.commit(); }
-			 */
+			
+			  int rows = ps.executeUpdate();
+			  
+			  if (rows != 0) { ResultSet rs = ps.getGeneratedKeys(); while (rs.next()) {
+			  user.setUserId(rs.getInt(1)); user.setUserName(rs.getString(2));
+			  user.setPassWord(rs.getString(3)); user.setFirstName(rs.getString(4));
+			  user.setLastName(rs.getString(5)); user.setUserEmail(rs.getString(6));
+			  user.setRoleId(rs.getInt(7)); }
+			  
+			  conn.commit(); }
+			 
 
 		} catch (SQLException e)
 		{
-			e.printStackTrace();
+			//e.printStackTrace();
 		}
+		
+		System.out.println(user.getUserId());
 
 		if (user.getUserId() != 0)
 			return user;

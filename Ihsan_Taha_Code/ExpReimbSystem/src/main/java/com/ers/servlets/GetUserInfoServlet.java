@@ -43,7 +43,6 @@ public class GetUserInfoServlet extends HttpServlet
 		{
 			HttpSession session = request.getSession();
 			session.setAttribute("user", user);
-			user = (User) session.getAttribute("user");
 
 			mapper = new ObjectMapper();
 			json = mapper.writeValueAsString(user);
@@ -51,7 +50,8 @@ public class GetUserInfoServlet extends HttpServlet
 			PrintWriter out = response.getWriter();
 			response.setContentType("application/json");
 			out.write(json);
-		} else
+		} 
+		else
 		{
 			response.sendRedirect("index.html");
 		}

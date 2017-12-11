@@ -5,8 +5,11 @@
 <title>Expense Reimbursement System</title>
 <link rel="stylesheet" href="css/revature.css">
 <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
-<link rel="stylesheet"
-	href="bootstrap/font-awesome-4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="bootstrap/font-awesome-4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css"/>
+
+
+
 </head>
 <body>
 
@@ -93,7 +96,8 @@
 						<br />
 						<input class="form-control" type="email" id="useremail" placeholder="Email" />
 						<br />	
-						<select class="selectpicker form-control" id="myselect">
+						<select class="selectpicker form-control" id="myselect" required="">
+							<option disabled="" selected="">Select User Role</option>
   							<option>User</option>
   							<option>Manager</option>
 						</select>
@@ -143,10 +147,14 @@
 	<!-- Optional JavaScript && Application's JavaScript -->
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
 	<!-- *************************************************************************** -->
-	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
+	<!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script> -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
 	<script src="bootstrap/js/bootstrap.min.js"></script>
+	<script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+	<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script>
+        
 	<script src="js/exp_app.js"></script>
-		
+
 </body>
 </html>

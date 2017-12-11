@@ -1,9 +1,11 @@
 package com.ers.pojos;
 
+import java.sql.Blob;
+
 public class Reimbursement
 {
 	private int reimbId;
-	private int reimbAmount;
+	private double reimbAmount;
 	private int reimbAuthor;
 	private int reimbResolver;
 	private int reimbStatusId;
@@ -12,7 +14,7 @@ public class Reimbursement
 	private String reimbSubmitted;
 	private String reimbResolved;
 	private String reimbDescription;
-	private String reimbReceipt;
+	private Blob reimbReceipt;
 
 	public int getReimbId()
 	{
@@ -24,12 +26,12 @@ public class Reimbursement
 		this.reimbId = reimbId;
 	}
 
-	public int getReimbAmount()
+	public double getReimbAmount()
 	{
 		return reimbAmount;
 	}
 
-	public void setReimbAmount(int reimbAmount)
+	public void setReimbAmount(double reimbAmount)
 	{
 		this.reimbAmount = reimbAmount;
 	}
@@ -104,14 +106,14 @@ public class Reimbursement
 		this.reimbDescription = reimbDescription;
 	}
 
-	public String getReimbReceipt()
+	public Blob getReimbReceipt()
 	{
 		return reimbReceipt;
 	}
 
-	public void setReimbReceipt(String reimbReceipt)
+	public void setReimbReceipt(Blob blob)
 	{
-		this.reimbReceipt = reimbReceipt;
+		this.reimbReceipt = blob;
 	}
 
 	@Override

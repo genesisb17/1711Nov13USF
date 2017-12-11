@@ -37,3 +37,37 @@
 .section-padding {
     padding: 25px 0 25px 0;
 }
+
+/***************************************************************************
+	Data Table Integration
+/***************************************************************************/
+table.dataTable thead .sorting:before, table.dataTable thead .sorting:after, table.dataTable thead .sorting_asc:before, table.dataTable thead .sorting_asc:after, table.dataTable thead .sorting_desc:before, table.dataTable thead .sorting_desc:after {
+   padding: 5px;
+}
+.dataTables_wrapper .mdb-select {
+    border: none;
+}
+.dataTables_wrapper .mdb-select.form-control {
+    padding-top: 0;
+    margin-top: -1rem;
+    margin-left: 0.7rem;
+    margin-right: 0.7rem;
+    width: 100px;
+}
+.dataTables_length label {
+    display: flex;
+    justify-content: left;
+}
+.dataTables_filter label {
+    margin-bottom: 0;
+}
+.dataTables_filter label input.form-control {
+    margin-top: -0.6rem;
+    padding-bottom: 0;
+}
+table.dataTable {
+    margin-bottom: 3rem!important;
+}
+div.dataTables_wrapper div.dataTables_info {
+    padding-top: 0;
+}

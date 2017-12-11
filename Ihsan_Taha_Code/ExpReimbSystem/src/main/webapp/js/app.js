@@ -1,40 +1,36 @@
-/**
- * 
- */
-
 window.onload = function(){
-	$('#login').on('click',login);
-	$('#register').on('click', register);
-	
+	alert("Hi from app.js");
+	$('#home').on('click', loadHome);
+	$('#profile').on('click', loadProfile);
 }
 
-function login(){
-//	alert("logging in");
-	var username = $('#username').val();
-	var password = $('#pass').val();
-	
-	var toSend = [username, password];
+function loadHome() {
+	loadView("getHomeView");
+}
 
-	
-	var json = JSON.stringify(toSend);
-	console.log(json);
+function loadProfile() {
+	loadView("getProfileView");
+}
+
+function loadView(page) {
+		
+	alert(page);
+	alert("Before xhr.onreadystatechange");
+	document.getElementById('view').innerHTML = "Bye";
 	
 	var xhr = new XMLHttpRequest();
-	
-	xhr.open("POST","login", true);
-	xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-	xhr.send(json);
-	
-	xhr.onreadystatechange = function(){
-		console.log("ready state: " + xhr.readyState);
-		if(xhr.readyState == 4 && xhr.status==200){
-			console.log("in xhr callback");
+	xhr.onreadystatechange = function() {
+		if (xhr.readyState == 4 && xhr.status == 200) {
+			document.getElementById('view').innerHTML = xhr.responseText;	
+			alert("In xhr.onreadystatechange");
 		}
-	};
-}
-
-function register(){
-	alert("registering");
-}
-
-
+	}
+	
+	alert("After xhr.onreadystatechange");
+	
+	console.log("Requesting View " + page);
+	
+	xhr.open("GET", page, true);
+	
+	xhr.send();
+};

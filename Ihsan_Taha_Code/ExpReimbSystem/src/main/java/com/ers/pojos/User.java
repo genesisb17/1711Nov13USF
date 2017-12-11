@@ -3,13 +3,12 @@ package com.ers.pojos;
 public class User
 {
 	private int userId;
-	private int roleId;
-
 	private String userName;
 	private String passWord;
 	private String firstName;
 	private String lastName;
-	private String userEmail;
+	private String userEmail;	
+	private int roleId;
 
 	public int getUserId()
 	{
@@ -19,16 +18,6 @@ public class User
 	public void setUserId(int userId)
 	{
 		this.userId = userId;
-	}
-
-	public int getRoleId()
-	{
-		return roleId;
-	}
-
-	public void setRoleId(int roleId)
-	{
-		this.roleId = roleId;
 	}
 
 	public String getUserName()
@@ -80,11 +69,22 @@ public class User
 	{
 		this.userEmail = userEmail;
 	}
+	
+	public int getRoleId()
+	{
+		return roleId;
+	}
+
+	public void setRoleId(int roleId)
+	{
+		this.roleId = roleId;
+	}
 
 	@Override
 	public String toString()
 	{
-		return "User [userId=" + userId + ", roleId=" + roleId + ", userName=" + userName + ", passWord=" + passWord
-				+ ", firstName=" + firstName + ", lastName=" + lastName + ", userEmail=" + userEmail + "]";
+		return "User [userId=" + userId + ", userName=" + userName + ", passWord=" + passWord + ", firstName="
+				+ firstName + ", lastName=" + lastName + ", userEmail=" + userEmail + ", roleId=" + roleId + "]";
 	}
+
 }

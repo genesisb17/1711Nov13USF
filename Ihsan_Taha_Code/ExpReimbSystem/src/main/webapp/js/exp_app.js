@@ -1,6 +1,13 @@
 // ---------------------------------------------------------------------------
 // 1. Listen for Button click events - (Login or Register)
 // ---------------------------------------------------------------------------
+var sessionUser;
+var sessionReimb;
+var userlogin;
+var userPassword;
+var toSend;
+var json;
+
 window.onload = function() 
 {
 	$('#loginBtn').on('click', loginFunc);
@@ -15,14 +22,14 @@ window.onload = function()
 function loginFunc()
 {
 	// 1. Get input values from html file according to their id's
-	var userlogin = $('#loginUsername').val();
-	var userPassword = $('#loginPassword').val();
+	userlogin = $('#loginUsername').val();
+	userPassword = $('#loginPassword').val();
 	
 	// 2. Assign the input values to a string array
-	var toSend = [userlogin, userPassword];
+	toSend = [userlogin, userPassword];
 	
 	// 3. Stringify the array into a json string
-	var json = JSON.stringify(toSend);
+	json = JSON.stringify(toSend);
 	
 	// 4. Create a new XMLHttpRequest to GetUserInfoServlet to send the json string
 	//    for processing and retreive the user information from the database
@@ -33,15 +40,12 @@ function loginFunc()
 	{
 		if (xhr.readyState == 4 && xhr.status == 200) 
 		{
-			var sessionUser = JSON.parse(xhr.responseText);
-			$('#sessionUser').html(sessionUser.firstName);
+			sessionUser = JSON.parse(xhr.responseText);
+			loadView("GetHeader.view", "headerView");
+			loadView("GetMenu.view", "menuView");
+			loadView("GetContent.view", "contentView");
 		}
 	}
-	
-	// 5. Load the new views upon successful logging in
-	loadView("GetHeader.view", "headerView");
-	loadView("GetMenu.view", "menuView");
-	loadView("GetContent.view", "contentView");
 }
 
 
@@ -49,7 +53,7 @@ function loginFunc()
 //----------------------------------------------------------------------------
 // 3. Load new views according to arguments (page and id)
 //----------------------------------------------------------------------------
-function loadView(page, id) 
+function loadView(page, id)
 {
 	var xhr = new XMLHttpRequest();
 	xhr.open("GET", page, true);
@@ -59,15 +63,117 @@ function loadView(page, id)
 		if (xhr.readyState == 4 && xhr.status == 200) 
 		{
 			document.getElementById(id).innerHTML = xhr.responseText;
+			if (page == "GetHeader.view")
+			{
+				$('#sessionUser').html(sessionUser.firstName);
+			}
+			else if (page == "GetMenu.view")
+			{
+				loadRequests();
+			}
+			else if (page == "GetContent.view")
+			{
+				$('#newRequestContent').hide();
+			}
 		}
 	}
 }
 
 
 
+//----------------------------------------------------------------------------
+// 3. loadRequests
+//----------------------------------------------------------------------------
+function loadRequests()
+{	
+	$('#viewRequests').prop('disabled', true);
+	$('#createNewRequest').prop('disabled', false);
+	$('#createNewRequest').on('click', loadNewRequest);
+	
+	sessionReimb = 
+	{
+		reimbId: 0,
+		reimbAmount: 0.0,
+		reimbAuthor: 0,
+		reimbStatusId: 0,
+		reimbTypeId: 0,
+		reimbSumbitted: "",
+		reimbResolved: 0,
+		reimbResolver: null,
+		reimbDescription: "",
+		reimbReceipt: null
+	}
+	
+	var xhr = new XMLHttpRequest();
+	xhr.open("GET", "GetReimbServlet", true);
+	xhr.send(json);
+	xhr.onreadystatechange = function() 
+	{	
+		if (xhr.readyState == 4 && xhr.status == 200) 
+		{
+			var reimbs = [];
+			var jsonArray = JSON.parse(xhr.responseText);
+			for(var i = 0; i < jsonArray.length; i++) {
+			    reimbs.push(jsonArray[i]);
+			}
+			
+			for (var i = 0; i < reimbs.length; i++)
+			{
+				var markup = 					   "<tr><td>" + 
+					reimbs[i].reimbId 			+ "</td><td>" + 
+					reimbs[i].reimbAmount 		+ "</td><td>" +
+					reimbs[i].reimbAuthor 		+ "</td><td>" +
+					reimbs[i].reimbStatusId 	+ "</td><td>" + 
+					reimbs[i].reimbTypeId 		+ "</td><td>" +
+					reimbs[i].reimbSubmitted 	+ "</td><td>" + 
+					reimbs[i].reimbResolved 	+ "</td><td>" +
+					reimbs[i].reimbResolver 	+ "</td><td>" +
+					reimbs[i].reimbDescription 	+ "</td><td>" + 
+					reimbs[i].reimbReceipt 		+ "</td></tr>";
+	            $("table tbody").append(markup);
+			}
+			
+			$(document).ready(function() {
+			    $('#pastViews').DataTable();
+			    $('select').addClass('mdb-select');
+			    $('.mdb-select').material_select();
+			});
+		}
+	}
+}
+
+
 
 //----------------------------------------------------------------------------
-// 3. Register
+// 4. Load New Request
+//----------------------------------------------------------------------------
+function loadNewRequest()
+{
+	$('#viewRequests').prop('disabled', false);
+	$('#createNewRequest').prop('disabled', true);
+	$('#requestsContent').hide();
+	$('#newRequestContent').show();
+	$('#viewRequests').on('click', viewRequests);
+}
+
+
+
+//----------------------------------------------------------------------------
+// 5. View Requests
+//----------------------------------------------------------------------------
+function viewRequests()
+{	
+	$('#viewRequests').prop('disabled', true);
+	$('#createNewRequest').prop('disabled', false);	
+	$('#requestsContent').show();
+	$('#newRequestContent').hide();
+	$('#createNewRequest').on('click', loadNewRequest);
+}
+
+
+
+//----------------------------------------------------------------------------
+// 5. Register
 //----------------------------------------------------------------------------
 function registerFunc() 
 {
@@ -114,11 +220,10 @@ function registerFunc()
 	};
 	
 	// 5. Load the new views upon successful registration
-	loadView("GetHeader.view", "headerView");
-	loadView("GetMenu.view", "menuView");
-	loadView("GetContent.view", "contentView");
+	// loadView("GetHeader.view", "headerView");
+	// loadView("GetMenu.view", "menuView");
+	// loadView("GetContent.view", "contentView");
 }
-
 
 
 

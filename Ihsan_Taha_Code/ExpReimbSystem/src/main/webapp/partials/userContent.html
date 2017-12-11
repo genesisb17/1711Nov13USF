@@ -1,3 +1,53 @@
-<br />
-<h5 class="custom-color" style="text-align: center; margin-top: 10px">Please choose a past request to view.</h5>
-<hr />
+<div id="requestsContent">
+	<br />
+	<h5 id="contentHeader" class="custom-color" style="text-align: center; margin-top: 10px">Reimbursement Requests</h5>
+	<hr />
+	<br />
+	<br />
+	<table id="pastViews" class="table table-striped table-borded table-hover table-sm table-responsive">
+    	<thead>
+        	<tr>
+            	<th>ID&nbsp;&nbsp;</th>
+            	<th>Amount&nbsp;&nbsp;</th>
+            	<th>Author&nbsp;&nbsp;</th>
+            	<th>Status&nbsp;&nbsp;</th>
+            	<th>Type&nbsp;&nbsp;</th>
+            	<th>Submitted&nbsp;&nbsp;</th>
+            	<th>Resolved&nbsp;&nbsp;</th>
+            	<th>Resolver&nbsp;&nbsp;</th>
+            	<th>Description&nbsp;&nbsp;</th>
+            	<th>Receipt&nbsp;&nbsp;</th>
+    		</tr>
+    	</thead>
+    	<tbody>
+    	<!-- ************************************************** -->
+		<!-- Dynamic data gets loaded here -->
+		<!-- ************************************************** -->
+    	</tbody>
+	</table>
+</div>
+<div id="newRequestContent">
+	<br />
+	<h5 id="contentHeader" class="custom-color" style="text-align: center; margin-top: 10px">Fill out a new Reimbursement Request Form</h5>
+	<hr />
+	<br />
+
+		<select class="selectpicker form-control" id="reimbType" required="">
+        	<option disabled="" selected="">Select Reimbursement Type</option>
+  			<option>Lodging</option>
+  			<option>Travel</option>
+  			<option>Food</option>
+  			<option>Other</option>
+		</select>
+		<br />
+		<input class="form-control" type="number" id="reimbAmount" placeholder="Amount"/>
+		<br />
+		<textarea class="form-control" id="reimbDesc" placeholder="Description" maxlength="300" style="resize: none; max-height: 500px"/></textarea>
+		<br />
+		<label for="file">Upload receipt</label>
+		<input type="file" name="file" id="file" class="inputfile form-control" style="cursor: pointer"/>
+		<br />	
+		<button class="form-control btn-custom" id="submitBtn" style="width: 245px">Submit Request</button>
+		<br />
+
+</div>
