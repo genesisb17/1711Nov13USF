@@ -13,8 +13,8 @@ public class SwitchView extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException
 	{
 		
-		
-		System.err.println("[LOG] Request sent to Front Controller");
+		System.out.println("inside in SwitchView");
+		//System.err.println("[LOG] Request sent to Front Controller");
 		
 		String nextView = new RequestHelper().process(req, resp);
 		
