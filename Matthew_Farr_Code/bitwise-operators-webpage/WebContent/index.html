@@ -42,9 +42,9 @@
 			for multiple boolean or numeric values from a single numeric variable. This data packing can be much more space efficient
 			in comparison to standard data types, which can make a huge difference on systems where available memory is measured in
 			bytes instead of megabytes or gigabytes. </p>
-		<p> They also have uses in more conventional programming. Encryption algorithms like stream cipher make use of bitwise operators.
-			Video and audio codecs make use of bitwise operators for similar reasons to embedded systems; to get maximal utility out
-			of minimal space. </p>
+		<p> They also have uses in more conventional programming. Encryption algorithms like stream cipher and block cipher make use
+			of bitwise operators. Video and audio codecs make use of bitwise operators for similar reasons to embedded systems; to
+			get maximal utility out of minimal space. </p>
 		<br>
 		<h3>Bitwise Operators Available in Java and JS</h3>
 		<p> Java and JS have access to the same library of seven bitwise operators: AND (&), OR(|), NOT (~), XOR (^), Logical Right
@@ -52,8 +52,9 @@
 		<p> However, the two languages have different caveats to consider when using bitwise operators. In Java, while all integral
 			types can be used with bitwise operators, the output of the operator will always be an int, which means some common use
 			cases may require explicit casting back to the intended result type. In JavaScript, any types can be used with bitwise
-			operators, but you should be aware that numeric types in JS are by default stored as 64-bit floating point numbers and
-			converted to 32-bit signed integers for use with bitwise operators. </p>
+			operators, although most non-numeric types will just be coerced to 0. You should also be aware that numeric types in JS
+			are by default stored as 64-bit floating point numbers and converted to 32-bit signed integers for use with bitwise operators.
+		</p>
 		<div id="accordion" role="tablist">
 			<div class="card">
 				<div class="card-header" role="tab" id="headingOne">
@@ -66,6 +67,7 @@
 				<div id="collapseOne" class="collapse show" role="tabpanel" aria-labelledby="headingOne" data-parent="#accordion">
 					<div class="card-body">
 						<h4>Truth Table for Bitwise OR</h4>
+						<br>
 						<table class="table-bordered">
 							<tr>
 								<th>
@@ -132,6 +134,7 @@
 				<div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo" data-parent="#accordion">
 					<div class="card-body">
 						<h4>Truth Table for Bitwise AND</h4>
+						<br>
 						<table class="table-bordered">
 							<tr>
 								<th>
@@ -282,6 +285,7 @@
 				<div id="collapseSix" class="collapse" role="tabpanel" aria-labelledby="headingSix" data-parent="#accordion">
 					<div class="card-body">
 						<h4>Truth Table for Bitwise NOT</h4>
+						<br>
 						<table class="table-bordered">
 							<tr>
 								<th>
@@ -317,6 +321,7 @@
 				<div id="collapseSeven" class="collapse" role="tabpanel" aria-labelledby="headingSeven" data-parent="#accordion">
 					<div class="card-body">
 						<h4>Truth Table for Bitwise XOR</h4>
+						<br>
 						<table class="table-bordered">
 							<tr>
 								<th>
@@ -360,7 +365,7 @@
 						<p> Another property of XOR is that a number XOR'd with 0 will always be itself (this is an identity property). Remember
 							this? </p>
 						<div class="code-block">
-							var = function (x) {
+							function (x) {
 							<br> &nbsp;&nbsp;&nbsp;&nbsp;return (x^0) === x;
 							<br> }
 						</div>
@@ -369,7 +374,7 @@
 						</p>
 						<p>The Bitwise XOR operation is reversible. This means that if A XOR B yields product C, then C XOR'd with B will produce
 							A as a result, and the result of A XOR'd with C will be B. This property leads to the use of XOR in many encryption
-							algorithms. Here is an interesting application of that
+							algorithms. Here is an interesting application of that.
 						</p>
 						<div class="code-block">
 							function bubbleSort(arr) {
