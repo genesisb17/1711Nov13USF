@@ -1,20 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns="http://java.sun.com/xml/ns/javaee"
-	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
-	version="2.5">
-	<display-name>ERSProject</display-name>
-	<welcome-file-list>
-		<welcome-file>index.html</welcome-file>
-	</welcome-file-list>
-
-	<servlet>
-		<servlet-name>LoadViewFC</servlet-name>
-		<servlet-class>com.rev.servlets.GetViewsServlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>LoadViewFC</servlet-name>
-		<url-pattern>*.view</url-pattern>
-	</servlet-mapping>
-
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
+  <display-name>ERSProject</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+  </welcome-file-list>
+  <servlet>
+    <servlet-name>LoadViewFC</servlet-name>
+    <servlet-class>com.rev.servlets.GetViewsServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>LoadViewFC</servlet-name>
+    <url-pattern>*.view</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ReimbursementTypesServlet</display-name>
+    <servlet-name>ReimbursementTypesServlet</servlet-name>
+    <servlet-class>com.rev.servlets.ReimbursementTypesServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ReimbursementTypesServlet</servlet-name>
+    <url-pattern>/ReimbursementTypesServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>LoadReimbursementsServlet</display-name>
+    <servlet-name>LoadReimbursementsServlet</servlet-name>
+    <servlet-class>com.rev.servlets.LoadReimbursementsServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>LoadReimbursementsServlet</servlet-name>
+    <url-pattern>/LoadReimbursementsServlet</url-pattern>
+  </servlet-mapping>
 </web-app>

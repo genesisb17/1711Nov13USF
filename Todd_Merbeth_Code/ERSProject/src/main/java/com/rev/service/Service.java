@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import com.rev.dao.DAO;
 import com.rev.dao.DBDAO;
+import com.rev.pojos.R_Type;
 import com.rev.pojos.Reimbursement;
 import com.rev.pojos.User;
 
@@ -52,5 +53,14 @@ public class Service {
 	
 	public String getFirstAndLastById(int id) {
 		return dao.getFirstAndLastById(id);
+	}
+	public Boolean checkUsername(String username) {
+		return dao.checkUsername(username);
+	}
+	public Boolean checkEmail(String email) {
+		return dao.checkEmail(email);
+	}
+	public ArrayList<R_Type> getAllRTypes(){
+		return dao.getAllRTypes();
 	}
 }

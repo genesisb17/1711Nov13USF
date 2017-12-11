@@ -30,13 +30,13 @@ public class RegisterServlet extends HttpServlet{
 		if(br != null){
 			json = br.readLine();
 		}
-		
+		System.out.println(json);
 		ObjectMapper mapper = new ObjectMapper();
 		
 		User u = mapper.readValue(json, User.class);
 		u = service.addUser(u);
-		
 		PrintWriter out = resp.getWriter();
+		
 		resp.setContentType("application/json");
 		
 		String userJSON = mapper.writeValueAsString(u);

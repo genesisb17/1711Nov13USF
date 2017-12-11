@@ -15,7 +15,6 @@ public class GetViewsServlet extends HttpServlet{
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
 		System.err.println("[LOG] Request sent to Front Controller");
-		System.out.println("in getviews servlet");
 		
 		String nextView = new RequestHelper().process(req, resp);
 		

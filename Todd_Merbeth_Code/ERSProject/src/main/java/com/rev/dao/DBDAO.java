@@ -6,9 +6,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.sql.Types;
 import java.util.ArrayList;
 
+import com.rev.pojos.R_Type;
 import com.rev.pojos.Reimbursement;
 import com.rev.pojos.User;
 import com.rev.util.ConnectionFactory;
@@ -86,7 +86,7 @@ public class DBDAO implements DAO {
 	public Reimbursement addReimbursement(Reimbursement r) {
 		try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
 			conn.setAutoCommit(false);
-			String sql = "insert into Reimbursement (r_amount, r_description, r_author, r_type_id) values (?, ?, ?, ?)";
+			String sql = "insert into Reimbursement (r_amount, r_description, r_author, r_status_id, r_type_id) values (?, ?, ?, 0, ?)";
 			String[] key = new String[2];
 			key[0] = "r_id";
 			key[1] = "r_submitted";
@@ -112,6 +112,7 @@ public class DBDAO implements DAO {
 	}
 
 	public User addUser(User user) {
+		System.out.println("adding user:" + user.toString());
 		User temp = new User();
 		try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
 			conn.setAutoCommit(false); // Set to false to make sure it has properly changed
@@ -128,6 +129,7 @@ public class DBDAO implements DAO {
 			ps.setInt(6, user.getRole());
 			int rows = ps.executeUpdate(); // could set variable to track that the update happened
 			if (rows != 0) {
+				System.out.println("in adduser if");
 				ResultSet pk = ps.getGeneratedKeys();
 				while (pk.next()) {
 					temp.setId(pk.getInt(1));
@@ -140,11 +142,13 @@ public class DBDAO implements DAO {
 				temp.setRole(user.getRole());
 				temp.setRoleStr(getUser_Role(user.getRole()));
 				conn.commit();
+				return temp;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return temp;
+		System.out.println("returning");
+		return null;
 	}
 
 	public ArrayList<Reimbursement> getUserReimbursements(int id) {
@@ -358,5 +362,22 @@ public class DBDAO implements DAO {
 		}
 		return null;
 
+	}
+
+	@Override
+	public ArrayList<R_Type> getAllRTypes() {
+		ArrayList<R_Type> types = new ArrayList<R_Type>();
+		try (Connection conn = ConnectionFactory.getInstance().getConnection();) {
+			String sql = "select * from REIMBURSEMENT_TYPE";
+			Statement statement = conn.createStatement();
+			ResultSet rs = statement.executeQuery(sql);
+			while (rs.next()) {
+				R_Type temp = new R_Type(rs.getInt(1), rs.getString(2));
+				types.add(temp);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return types;
 	}
 }

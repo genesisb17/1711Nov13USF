@@ -2,6 +2,7 @@ package com.rev.dao;
 
 import java.util.ArrayList;
 
+import com.rev.pojos.R_Type;
 import com.rev.pojos.Reimbursement;
 import com.rev.pojos.User;
 
@@ -11,6 +12,8 @@ public interface DAO {
 	public ArrayList<Reimbursement> getUserReimbursements(int u_id); 
 	
 	public Reimbursement addReimbursement(Reimbursement r);
+	
+	public ArrayList<R_Type> getAllRTypes();
 	
 	//For managers
 	public ArrayList<Reimbursement> getReimbursements();

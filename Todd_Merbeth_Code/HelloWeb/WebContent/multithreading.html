@@ -3,7 +3,6 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Multithreading</title>
-<link rel="icon" href="C:/Users/Genesis/Desktop/personalpic.jpg">
 
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
@@ -24,15 +23,30 @@
 	crossorigin="anonymous"></script>
 </head>
 <style>
+h1 {
+padding-top: 12px;
+font-size: 200%;
+}
 h2 {
 	text-align: center;
 	padding-bottom: 20px;
+	padding-top:20px;
 	font-weight: bold;
 	text-decoration: underline;
+	font-size:200%;
 }
 
-h4, h5 {
+h4 {
+	padding-top: 75px;
 	font-weight: bold;
+	font-size:150%;
+	padding-bottom: 15px;
+}
+h5 {
+	padding-top: 75px;
+	font-weight: bold;
+	font-size:110%;
+	padding-bottom: 10px;
 }
 
 img {
@@ -41,23 +55,27 @@ img {
 	display: block;
 	padding: 0;
 	margin: auto;
+	margin-top: 50px;
 	box-shadow: 0 0 30px black;
 }
 
 p {
 	padding-left: 5px;
 }
+.container {
+    max-width: 100vw;
+}
 </style>
 <body
-	style="background-color:#000033; line-spacing: 115%; font-size: 110%;">
+	style="background-color:#000033; line-spacing: 115%; font-size: 135%;">
 	<header style="color:white; padding:8px 0 0 5vw; height:10vh;"><h1>Threads and Multithreading in Java</h1></header>
 	<div class="container-fluid"
 		style="height: 90vh; width: 100vw; margin-top: 0vh;">
 		<div class="row" style="height: 100%;">
-			<div class="col-3"
+			<div class="col-2"
 				style="padding: 0; margin: 0; border-radius: 25px 0px 0px 25px; height: 100%; font-family: Arial;">
 				<div class="container bg-light"
-					style="height: 100%; padding: 20% 0 0 0;; margin: 0; border-radius: 0px 0px 0px 0px;">
+					style="height: 100%; padding: 20% 0 0 0; margin: 0; border-radius: 0px 0px 0px 0px;">
 					<nav id="navbar-example3"
 						class="navbar navbar-light bg-light flex-column"
 						style="border-radius: 25px 0px 0px 25px;">
@@ -67,6 +85,7 @@ p {
 								<a class="nav-link ml-3 my-1" href="#item-1-1">What is a
 									Thread?</a> <a class="nav-link ml-3 my-1" href="#item-1-2">Creation
 									of a Thread</a> <a class="nav-link ml-3 my-1" href="#item-1-3">States
+									of a Thread</a><a class="nav-link ml-3 my-1" href="#item-1-4">Lifecycle
 									of a Thread</a>
 							</nav>
 							<hr> 
@@ -81,9 +100,9 @@ p {
 					</nav>
 				</div>
 			</div>
-			<div class="col-9" style="padding: 0; margin: 0;">
+			<div class="col-10" style="padding: 0; margin: 0; width: 100%;">
 				<div class="container"
-					style="height: 100%; padding: 25px 35px 25px 35px; font-family: Aerial; margin: 0; position: relative; overflow-y: scroll; background-color: #eee"
+					style="height: 100%; width: 100%; padding: 25px 35px 25px 35px; font-family: Aerial; margin: 0; position: relative; overflow-y: scroll; background-color: #eee"
 					data-spy="scroll" data-target="#navbar-example3" data-offset="25">
 					<h2 id="item-1">Threads</h2>
 					<h4 id="item-1-1">What is a Thread?</h4>
@@ -124,7 +143,7 @@ p {
 					<p>Each thread can be in only one of these states at any given
 						time.</p>
 					<br>
-					<h4 id="item-1-3">Lifecycle of a Thread</h4>
+					<h4 id="item-1-4">Lifecycle of a Thread</h4>
 					<p>A thread first needs to be created. After creation a
 						thread must call the start() method in order to begin its run()
 						method. Once running a thread will attempt to complete its task.
@@ -134,8 +153,9 @@ p {
 						methods. Depending on what call cause the thread to wait, it may
 						or may not need to be notified by another thread to start again.
 						When a thread finishes its task it terminates.</p><br>
-					<img src="https://www.javatpoint.com/images/threadstates.jpg" style="border-radius:25%"><br>
+					<img src="https://www.javatpoint.com/images/threadstates.jpg" style="border-radius:25%"><br><br>
 					<hr> 
+					<br>
 					<h2 id="item-2">Multithreading</h2>
 					<h4 id="item-2-1">What is Multithreading?</h4>
 					<p>Multithreading is the process of executing multiple threads

@@ -21,6 +21,12 @@ public class RequestHelper {
 		case "/ERSProject/register.view": {
 			return "partials/registerP.html";
 		}
+		case "/ERSProject/empNewRequest.view": {
+			return "partials/empNewRequestP.html";
+		}
+		case "/ERSProject/managerHome.view": {
+			return "partials/manHomeP.html";
+		}
 		}
 		return null;
 	}

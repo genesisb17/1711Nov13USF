@@ -30,7 +30,6 @@ public class EmployeeReimbursementsServlet extends HttpServlet{
 		User u = (User) session.getAttribute("user");
 		DTO dto = (DTO) session.getAttribute("dto");
 		
-		System.out.println(u.getId());
 		ArrayList<Reimbursement> reimbs = service.getUserReimbursements(u.getId());
 		
 		PrintWriter out = resp.getWriter();
