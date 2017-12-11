@@ -1,19 +1,47 @@
 <!DOCTYPE html>
 <html>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
+	integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb"
+	crossorigin="anonymous">
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+	integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+	crossorigin="anonymous"></script>
+
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"
+	integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh"
+	crossorigin="anonymous"></script>
+
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"
+	integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
+	crossorigin="anonymous"></script>
 <head>
 <meta charset="ISO-8859-1">
 <title>Project 1</title>
 </head>
+<style>
+	body
+	{		
+	    padding-top: 170px;
+	    padding-right: 30px;
+	    padding-bottom: 50px;
+	    padding-left: 80px;
+	}
+
+</style>
 <body>
 <center>
 <form name ="Rtype" action ="Rtype" method="Post">
-		<input type="text" name ="Rtype" placeholder = "Rtype" id = "Rtype">
+		<input type="text" name ="Rtype" class="form-control" placeholder = "Rtype" id = "Rtype">
 		<br>
-		<input type = "text" name="amount" placeholder = "how much??" id ="amount">
+		<input type = "text" name="amount" class="form-control" placeholder = "how much??" id ="amount">
 		<br>
-		<input type = "text" name="description" placeholder = "type of issue" id = "description">
+		<input type = "text" name="description" class="form-control" placeholder = "type of issue" id = "description">
 		<br>
-		<button id="ropen">create reimbursment</button>
+		<button id="ropen" class="form-control">create reimbursment</button>
 </form>
 </center>
 	<script src="JS/Ropen.js"></script>

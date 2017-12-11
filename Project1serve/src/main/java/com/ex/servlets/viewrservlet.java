@@ -28,20 +28,34 @@ public class viewrservlet extends HttpServlet
 		ArrayList <R> a = new ArrayList<R>();
 		a = service.getReimbursements(u.getUsername(), u.getPassword());
 
-		 session.setAttribute("Array",a);
-		
+		session.setAttribute("Array",a);
+		String filter = request.getParameter("filter");
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
 		int i;
 		String s;
-		
-
+		String test;
+		out.println(filter);
 		if(u.getUser_Role_Id()==13)
 		{
+			
 			for(i=0;i<a.size();i++)
 			{
-				s = service.getRStatus(a.get(i).getREIMB_STATUS_ID());
-				out.println(a.get(i).getReimb_id()+" "+a.get(i).getReimb_Amount()+" "+a.get(i).getDescription()+" "+a.get(i).getU_ID()+"  "+s+"<br>");
+				
+				if(filter.equals(""))
+				{
+					s = service.getRStatus(a.get(i).getREIMB_STATUS_ID());
+					out.println(i+" "+a.get(i).getReimb_id()+" "+a.get(i).getReimb_Amount()+" "+a.get(i).getDescription()+" "+a.get(i).getU_ID()+"<br>");
+				}
+				else
+				{
+					test = service.getRStatus(a.get(i).getREIMB_STATUS_ID());
+					if(filter.equals(test))
+					{
+						s = service.getRStatus(a.get(i).getREIMB_STATUS_ID());
+						out.println(a.get(i).getReimb_id()+" "+a.get(i).getReimb_Amount()+" "+a.get(i).getDescription()+" "+a.get(i).getU_ID()+"  "+test+"<br>");
+					}
+				}
 			}
 			out.println("what is the id number you want to change??<br>");
 			out.println("<form name =\"update\" action =\"update\" method=\"Post\">");
@@ -64,6 +78,12 @@ public class viewrservlet extends HttpServlet
 					s = service.getRStatus(a.get(i).getREIMB_STATUS_ID());
 					out.println(a.get(i).getReimb_id()+" "+a.get(i).getReimb_Amount()+" "+a.get(i).getDescription()+" "+a.get(i).getU_ID()+s+"<br>");
 				}
+				
+	/*			out.println("what is the id number you want to change??<br>");
+				out.println("<form name =\"update\" action =\"update\" method=\"Post\">");
+				out.println("<input type=\"text\" name=\"filter\" id =\"f\">");
+				out.println("<input type =\"submit\">");
+				out.println("</form>");*/
 			}
 		}
 	}

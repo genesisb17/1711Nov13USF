@@ -1,6 +1,8 @@
 package com.ex.servlets;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.util.Enumeration;
 
@@ -10,6 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.rev.pojo.User;
 import com.rev.service.Service;
 
@@ -41,6 +44,7 @@ public class RegisterServlet extends HttpServlet
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)throws ServletException,IOException
 	{
+
 		//use AJAX
 		String name = request.getParameter("username");
 		String password = request.getParameter("password");
@@ -62,5 +66,27 @@ public class RegisterServlet extends HttpServlet
 		PrintWriter out = response.getWriter();
 		out.println(u1.getLastname()+" "+u1.getFirstname());
 		out.println("test");
+
 	}
 }
+// 1. get received JSON data from request
+/*		BufferedReader br = new BufferedReader(new InputStreamReader(request.getInputStream()));
+String json = "";
+if (br != null) 
+{
+	json = br.readLine();
+}
+
+// 2. initiate jackson mapper
+ObjectMapper mapper = new ObjectMapper();
+//
+String[] userInfo = mapper.readValue(json, String[].class);
+String name = userInfo[1];
+String password = userInfo[5];
+String first = userInfo[2];
+String last = userInfo[3];
+String email = userInfo[4];
+String r = userInfo[6];
+int role = Integer.parseInt(r);
+*/
+//System.out.println(name+first+last+role);

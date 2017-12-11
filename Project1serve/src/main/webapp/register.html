@@ -18,24 +18,36 @@
 	integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh"
 	crossorigin="anonymous"></script>
 	
+ <!-- <script src = "JS/register.js"></script>  -->
+
+<style>
+	body
+	{		
+	    padding-top: 170px;
+	    padding-right: 30px;
+	    padding-bottom: 50px;
+	    padding-left: 80px;
+	}
+
+</style>
 <center>
 <h1>Register Here</h1>
-<form name ="register" action ="register" method="Post">
-name<br> <input type="text" name ="username" id = "username">
+ <form name ="register" action ="register" method="Post">
+name <br> <input type="text" class="form-control" name ="username" id = "username">
 <br>
-password <br><input type="text" name ="password" id = "password">
+password <br> <input class="form-control" type="text" name ="password" id = "password">
 <br>
-first<br> <input type="text" name ="first" id = "first">
+first <br> <input class="form-control" type="text" name ="first" id = "first">
 <br>
-last <br><input type="text" name ="last" id = "last">
+last <br> <input class="form-control" type="text" name ="last" id = "last">
 <br>
-email<br> <input type="text" name ="email" id = "email">
+email <br> <input class="form-control" type="text" name ="email" id = "email">
 <br>
- user_role_id <br><input type ="text" name="role" id = "role">
+ user_role_id <br> <input class="form-control" type ="text" name="role" id = "role">
  <br>
-<input type="submit" value="register">
-  </form> 
-<!--  <script src = "JS/register.js"></script>  -->
+<input type="submit" class="form-control" value="register" id ="register">
+</form>
+
 </center>
 
 </body>

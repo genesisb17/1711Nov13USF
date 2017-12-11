@@ -5,14 +5,14 @@
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
+			<item value="get"/>
+			<item value="arraylist"/>
 			<item value="status"/>
 			<item value="addReimb"/>
 			<item value="findma"/>
 			<item value="reimbursem"/>
 			<item value="service"/>
 			<item value="{"/>
-			<item value="validate"/>
-			<item value="insert"/>
 		</list>
 		<list key="replacehistory">
 		</list>

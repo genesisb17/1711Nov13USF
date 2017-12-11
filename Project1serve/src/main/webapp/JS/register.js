@@ -33,7 +33,8 @@ function validateEmail()
 	xhr.send(json);
 }
 
-function register(){
+function register()
+{
 	var fn = $('#fn').val();
 	var ln = $('#ln').val();
 	var uname = $('#username').val();
@@ -45,9 +46,10 @@ function register(){
 	var user = 
 	{
 			id: 0,
+			username: uname,
 			firstname: fn,
 			lastname: ln, 
-			email: uname, 
+			email: email, 
 			password: pass,
 			role: role
 	};
@@ -72,7 +74,8 @@ function register(){
 
 
 
-function validatePass(){
+function validatePass()
+{
 	// got from internet. need to edit keeping for ideas 
 	$('input[type=password]').keyup(function() {
 		var pswd = $(this).val();

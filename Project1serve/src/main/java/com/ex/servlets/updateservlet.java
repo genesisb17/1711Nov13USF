@@ -1,6 +1,7 @@
 package com.ex.servlets;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
 import javax.servlet.ServletException;
@@ -31,9 +32,16 @@ public class updateservlet extends HttpServlet
 		{
 			if(j==a.get(k).getReimb_id())
 			{
-				service.UpdateStatus(a.get(k).getREIMB_STATUS_ID(),status);
-				service.UpdateReimb(a.get(k).getReimb_id(), u.getUid());
+
+					service.UpdateStatus(a.get(k).getREIMB_STATUS_ID(),status);
+					service.UpdateReimb(a.get(k).getReimb_id(), u.getUid());
 			}
 		}
+		response.setContentType("text/html");
+		PrintWriter out = response.getWriter();
+		out.println("<form name =\"viewr\" action =\"viewr\" method=\"Post\">");
+		out.println("<input type=\"text\" name=\"rid\" id =\"rid\">");
+		out.println("<input type =\"submit\">");
+		out.println("</form>");
 	}
 }
