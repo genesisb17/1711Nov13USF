@@ -169,18 +169,23 @@ public class DAOImpl implements DAO {
 	}
 
 	@Override
-	public void addNewUser(String username, String password, String fn, String ln, String email, int role) {
+	public void addNewUser(String[] userInfo) {
 		try(Connection conn=ConnectionFactory.getInstance().getConnection()){
 			String sql="INSERT INTO ERS_USERS "
-					+ "(ERS_USERNAME, ERS_PASSWORD,USER_FIRST_NAME,USER_LAST_NAME,USER_EMAIL,USER_ROLE_ID)"
+					+ "(USER_FIRST_NAME,USER_LAST_NAME,ERS_USERNAME, ERS_PASSWORD,USER_EMAIL,USER_ROLE_ID)"
 					+ "VALUES(?,?,?,?,?,?)";
 			PreparedStatement ps=conn.prepareStatement(sql);
-			ps.setString(1, username);
-			ps.setString(2, password);
-			ps.setString(3, fn);
-			ps.setString(4,ln);
-			ps.setString(5,email);
-			ps.setInt(6, role);
+			ps.setString(1, userInfo[0]);
+			ps.setString(2, userInfo[1]);
+			ps.setString(3, userInfo[2]);
+			ps.setString(4, userInfo[3]);
+			ps.setString(5, userInfo[4]);
+			if(userInfo[5].equals("manager")) {
+				ps.setInt(6, 1);
+			} else {
+				ps.setInt(6, 2);
+			}
+			
 			ps.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();

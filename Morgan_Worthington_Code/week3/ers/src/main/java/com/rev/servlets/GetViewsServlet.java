@@ -16,9 +16,6 @@ public class GetViewsServlet extends HttpServlet {
 		String nextView = new RequestHelper().process(req, resp);
 		
 		req.getRequestDispatcher(nextView).forward(req, resp);
-
-//		req.getRequestDispatcher("partials/home.html")
-//		.forward(req, resp);
-
+	
 	}
 }

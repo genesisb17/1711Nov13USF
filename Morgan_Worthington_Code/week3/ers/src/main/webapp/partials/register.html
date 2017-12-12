@@ -1,0 +1,108 @@
+<h1 align="center">Electronic Reimbursements System</h1>
+<h4>Register New User:</h4>
+
+<label class="col-form-label" for="formGroupExampleInput">First Name:</label>
+<input id="firstname" type="text" class="col-3 form-control" placeholder="First Name" style="padding-top: 3px !important"/>
+
+<label class="col-form-label" for="formGroupExampleInput">Last Name:</label>
+<input id="lastname" type="text" class="col-3 form-control" placeholder="Last Name" style="padding-top: 3px !important"/>
+
+<label class="col-form-label" for="formGroupExampleInput">email:</label>
+<input id="email" type="text" class="col-3 form-control" placeholder="email" style="padding-top: 3px !important"/>
+
+<label class="col-form-label" for="formGroupExampleInput">username:</label>
+<input id="username" type="text" class="col-3 form-control" placeholder="username" style="padding-top: 3px !important"/>
+
+<label class="col-form-label" for="formGroupExampleInput">password:</label>
+<input id="password" type="text" class="col-3 form-control" placeholder="password" style="padding-top: 3px !important" />
+
+User role:
+<br>
+<input id="manager" type="radio" name="role" value="manager"> Manager	
+<br>
+<input id="employee" type="radio" name="role" value="employee"> Employee
+
+<br>
+<br>
+<input type="button" class="btn btn-dark" id="register" value="Register">
+<h4 id="notification" align="center"></h4>
+<script>
+$("#register").on('click',checkValid);
+
+function checkValid(){
+	var fn=$("#firstname").val();
+	var ln=$("#lastname").val();
+	var email=$("#email").val();
+	var username=$("#username").val();
+	var password=$("#password").val();
+	var role=$("input[name=role]:checked").val();
+
+	var xhr=new XMLHttpRequest();
+	xhr.onreadystatechange=function(){
+		if(xhr.status==200 && xhr.readyState==4){
+			var response=xhr.responseText;
+			if(response=="Validated."){
+				addNewUser();
+			} else {
+				$("#notification").html(response);
+			}
+		}
+	}
+	xhr.open("POST","validregister",true);
+	xhr.send(username);
+};
+
+function addNewUser(){
+	
+	var fn=$("#firstname").val();
+	var ln=$("#lastname").val();
+	var email=$("#email").val();
+	var username=$("#username").val();
+	var password=$("#password").val();
+	var role=$("input[name=role]:checked").val();
+	var user={
+			"firstname":fn,
+			"lastname":ln,
+			"email":email,
+			"username":username,
+			"password":password,
+			"role":role
+	};
+	var json=JSON.stringify(user);
+	console.log(json);
+
+	var xhr=new XMLHttpRequest();
+	xhr.onreadystatechange=function(){
+		if(xhr.status==200 && xhr.readyState==4){
+			persistUser(username);
+			sendToProfile();
+		}
+	}
+	xhr.open("POST","registerNew",true);
+	xhr.send(json);
+};
+
+function sendToProfile(){
+	var xhr=new XMLHttpRequest();
+	xhr.onreadystatechange=function(){
+		if(xhr.status==200 && xhr.readyState==4){
+			var profilePage=xhr.responseText;
+			console.log(profilePage);
+			$("#view").html(profilePage);
+		}
+	}
+	xhr.open("GET","profile.view",true);
+	xhr.send();
+};
+
+function persistUser(username){
+	var xhr=new XMLHttpRequest();
+	xhr.onreadystatechange=function(){
+		if(xhr.status==200 && xhr.readyState==4){
+			console.log("User persisted.");
+		}
+	}
+	xhr.open("POST","makeSession",true);
+	xhr.send();
+};
+</script>

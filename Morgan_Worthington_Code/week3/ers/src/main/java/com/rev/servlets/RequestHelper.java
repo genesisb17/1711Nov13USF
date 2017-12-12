@@ -12,16 +12,12 @@ public class RequestHelper {
 			partial="partials/login.html";
 			break;
 		}
-		case "/ers/landing.view":{
-			
-			break;
-		}
 		case "/ers/profile.view":{
 			partial="partials/profile.html";
 			break;
 		}
 		case "/ers/register.view":{
-			
+			partial="partials/register.html";
 			break;
 		}
 		}

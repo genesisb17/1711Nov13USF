@@ -15,6 +15,7 @@ function requestValid(){
 		if(xhr.status==200 && xhr.readyState==4){
 			response=xhr.responseText;
 			if(response == 'Validated.'){
+				persistUser(user);
 				sendToProfile();
 			} else {
 				$("#notification").html(response);
@@ -56,12 +57,21 @@ function sendToProfile(){
 	var xhr=new XMLHttpRequest();
 	xhr.onreadystatechange=function(){
 		if(xhr.status==200 && xhr.readyState==4){
-			console.log('test');
 			profilePage=xhr.responseText;
-			console.log(profilePage);
 			$("#view").html(profilePage);
 		}
 	}
 	xhr.open("GET","profile.view",true);
+	xhr.send();
+};
+
+function persistUser(username){
+	var xhr=new XMLHttpRequest();
+	xhr.onreadystatechange=function(){
+		if(xhr.status==200 && xhr.readyState==4){
+			console.log("User persisted.");
+		}
+	}
+	xhr.open("POST","makeSession",true);
 	xhr.send();
 };

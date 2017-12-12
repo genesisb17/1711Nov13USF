@@ -28,4 +28,14 @@ public class Service {
 		}
 		return correct;
 	}
+	
+	public void addUser(String [] userInfo) {
+		dao.addNewUser(userInfo);
+	}
+	
+	public User getUserByUsername(String username) {
+		User u=dao.getUserByUsername(username);
+		
+		return u;
+	}
 }

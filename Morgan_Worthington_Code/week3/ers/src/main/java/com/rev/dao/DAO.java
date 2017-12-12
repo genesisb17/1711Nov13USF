@@ -12,7 +12,7 @@ public interface DAO {
 	ArrayList<Reimbursement> getReimbByAuthor(int auth);
 	ArrayList<Reimbursement> getReimbursements();
 	ArrayList<User> getUsers();
-	void addNewUser(String username, String password, String fn, String ln, String email, int role);
+	void addNewUser(String[] userInfo);
 	void addNewReimbursement(int amount, String description, String receipt, int author, int typeId);
 	void updateStatus(Reimbursement r, int newStatus, int resolver);
 }
