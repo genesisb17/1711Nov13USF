@@ -44,8 +44,7 @@ function viewReimb()
 function loadProfile()
 {
 	var xhr = new XMLHttpRequest();
-	xhr.open("GET", "getProfileView" , true);
-	xhr.send();
+
 	xhr.onreadystatechange = function()
 	{
 		if(xhr.readyState == 4 && xhr.status == 200)
@@ -54,6 +53,8 @@ function loadProfile()
 			loadProfileInfo();
 		}
 	}
+	xhr.open("GET", "getProfileView" , true);
+	xhr.send();
 }
 
 function loadProfileInfo()

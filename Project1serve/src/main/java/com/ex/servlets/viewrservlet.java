@@ -24,7 +24,6 @@ public class viewrservlet extends HttpServlet
 	{
 		HttpSession session = request.getSession(true);
 		User u = (User)session.getAttribute("user");
-		R r = new R();
 		ArrayList <R> a = new ArrayList<R>();
 		a = service.getReimbursements(u.getUsername(), u.getPassword());
 
@@ -35,28 +34,92 @@ public class viewrservlet extends HttpServlet
 		int i;
 		String s;
 		String test;
-		out.println(filter);
+		out.println("<link rel=\"stylesheet\"\r\n" + 
+				"	href=\"https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css\"\r\n" + 
+				"	integrity=\"sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb\"\r\n" + 
+				"	crossorigin=\"anonymous\">\r\n" + 
+				"\r\n" + 
+				"<script src=\"https://code.jquery.com/jquery-3.2.1.slim.min.js\"\r\n" + 
+				"	integrity=\"sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN\"\r\n" + 
+				"	crossorigin=\"anonymous\"></script>\r\n" + 
+				"\r\n" + 
+				"<script\r\n" + 
+				"	src=\"https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js\"\r\n" + 
+				"	integrity=\"sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh\"\r\n" + 
+				"	crossorigin=\"anonymous\"></script>\r\n" + 
+				"\r\n" + 
+				"<script\r\n" + 
+				"	src=\"https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js\"\r\n" + 
+				"	integrity=\"sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ\"\r\n" + 
+				"	crossorigin=\"anonymous\"></script>");
+
 		if(u.getUser_Role_Id()==13)
 		{
-			
+						out.println("<table style=\"width:100%\" class=\"table table-bordered\">");
+			out.println(
+					"    <thead>\r\n" + 
+					"      <tr>\r\n" + 
+					"        <th>Reimb ID</th>\r\n" + 
+					"        <th>amount</th>\r\n" + 
+					"        <th>Description</th>\r\n" + 
+					"        <th>User ID</th>\r\n" + 
+					"        <th>Status</th>\r\n" + 
+					"        <th>Username</th>\r\n" + 
+					"        <th>Firstname</th>\r\n" + 
+					"        <th>Lastname</th>\r\n" + 
+					"      </tr>\r\n" + 
+					"    </thead>"
+					);
 			for(i=0;i<a.size();i++)
 			{
 				
 				if(filter.equals(""))
 				{
 					s = service.getRStatus(a.get(i).getREIMB_STATUS_ID());
-					out.println(i+" "+a.get(i).getReimb_id()+" "+a.get(i).getReimb_Amount()+" "+a.get(i).getDescription()+" "+a.get(i).getU_ID()+"<br>");
-				}
+					out.println("<tr>");
+					out.println("<td>");
+					out.println(a.get(i).getReimb_id());
+					out.println("</td>");
+					out.println("<td>");
+					out.println(a.get(i).getReimb_Amount());
+					out.println("</td>");
+					out.println("<td>");
+					out.println(a.get(i).getDescription());
+					out.println("</td>");
+					out.println("<td>");
+					out.println(a.get(i).getU_ID());
+					out.println("</td>");
+					out.println("<td>");
+					out.println(s);
+					out.println("</td>");
+					out.println("</tr>");				}
 				else
 				{
 					test = service.getRStatus(a.get(i).getREIMB_STATUS_ID());
 					if(filter.equals(test))
 					{
+						out.println("<tr>");
 						s = service.getRStatus(a.get(i).getREIMB_STATUS_ID());
-						out.println(a.get(i).getReimb_id()+" "+a.get(i).getReimb_Amount()+" "+a.get(i).getDescription()+" "+a.get(i).getU_ID()+"  "+test+"<br>");
+						out.println("<td>");
+						out.println(a.get(i).getReimb_id());
+						out.println("</td>");
+						out.println("<td>");
+						out.println(a.get(i).getReimb_Amount());
+						out.println("</td>");
+						out.println("<td>");
+						out.println(a.get(i).getDescription());
+						out.println("</td>");
+						out.println("<td>");
+						out.println(a.get(i).getU_ID());
+						out.println("</td>");
+						out.println("<td>");
+						out.println(s);
+						out.println("</td>");
+						out.println("</tr>");
 					}
 				}
 			}
+			out.println("</table>");
 			out.println("what is the id number you want to change??<br>");
 			out.println("<form name =\"update\" action =\"update\" method=\"Post\">");
 			out.println("<input type=\"text\" name=\"rid\" id =\"rid\">");
@@ -73,12 +136,40 @@ public class viewrservlet extends HttpServlet
 			}
 			else
 			{
+				out.println("<table style=\"width:100%\" class=\"table table-bordered\">");
+				out.println(
+						"    <thead>\r\n" + 
+						"      <tr>\r\n" + 
+						"        <th>Reimb ID</th>\r\n" + 
+						"        <th>amount</th>\r\n" + 
+						"        <th>Description</th>\r\n" + 
+						"        <th>User ID</th>\r\n" + 
+						"        <th>Status</th>\r\n" + 
+						"      </tr>\r\n" + 
+						"    </thead>"
+						);
 				for(i=0;i<a.size();i++)
 				{
+					out.println("<tr>");
 					s = service.getRStatus(a.get(i).getREIMB_STATUS_ID());
-					out.println(a.get(i).getReimb_id()+" "+a.get(i).getReimb_Amount()+" "+a.get(i).getDescription()+" "+a.get(i).getU_ID()+s+"<br>");
+					out.println("<td>");
+					out.println(a.get(i).getReimb_id());
+					out.println("</td>");
+					out.println("<td>");
+					out.println(a.get(i).getReimb_Amount());
+					out.println("</td>");
+					out.println("<td>");
+					out.println(a.get(i).getDescription());
+					out.println("</td>");
+					out.println("<td>");
+					out.println(a.get(i).getU_ID());
+					out.println("</td>");
+					out.println("<td>");
+					out.println(s);
+					out.println("</td>");
+					out.println("</tr>");
 				}
-				
+				out.println("</table>");
 	/*			out.println("what is the id number you want to change??<br>");
 				out.println("<form name =\"update\" action =\"update\" method=\"Post\">");
 				out.println("<input type=\"text\" name=\"filter\" id =\"f\">");

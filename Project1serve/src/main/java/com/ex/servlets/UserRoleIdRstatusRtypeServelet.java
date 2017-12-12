@@ -3,6 +3,7 @@ package com.ex.servlets;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -30,7 +31,6 @@ public class UserRoleIdRstatusRtypeServelet extends HttpServlet
 		String amount =request.getParameter("amount");
 		double a = Double.parseDouble(amount);
 		String desc = request.getParameter("description");
-		
 		service.addRtype(Rtype);
 		service.addRStatus(rstatus);
 		int s = service.findmax();
@@ -45,6 +45,8 @@ public class UserRoleIdRstatusRtypeServelet extends HttpServlet
 		service.addReimbursements(a,desc, u.getUid(), s, t, u.getUid());
 		//cannot be the same id
 		PrintWriter out = response.getWriter();
+		RequestDispatcher rd = request.getRequestDispatcher("viewr");
+		rd.forward(request,response);
 		//to select a reimbursement simply creat and r object and add it to the session.
 	}
 }
