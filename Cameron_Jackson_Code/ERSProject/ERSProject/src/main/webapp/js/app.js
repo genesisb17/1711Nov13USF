@@ -469,92 +469,128 @@ function getAccountInfo() {
 }
 
 function getEmployeeTicketInfo() {
-    var xhr = new XMLHttpRequest();
-    xhr.onreadystatechange = function () {
-        if (xhr.readyState == 4 && xhr.status == 200) {
-            // console.log(`Response: ${xhr.responseText}`);
-            var tick;
-            if (xhr.responseText != null)
-            tick = JSON.parse(xhr.responseText);
-            // Empty table to avoid duplicates
-            $('#table-data').html("");
-            for (x in tick) {
-                var reimb = tick[x].reimb;
-                var status = tick[x].status;
-                var type = tick[x].type;
-                var resolver = tick[x].resolver;
-                var name = "Unresolved";
-                if (resolver != null) {
-                    name = `${resolver.firstName} ${resolver.lastName}`;
-                }
-                var timeResolved = "";
-                if (reimb.resolved != null) {
-                    timeResolved = reimb.resolved;
-                }
-                var rowData = `<td>${reimb.reimbId}</td>
-                <td>${status}</td>
-                <td>${type}</td>
-                <td>${reimb.amount}</td>
-                <td>${reimb.submitted}</td>
-                <td>${timeResolved}</td>
-                <td>${name}</td>`;
-                // console.log(rowData);
-                // Create table row element
-                var tableRow = document.createElement("tr");
-                // Insert rowData into this element
-                tableRow.innerHTML = rowData;
-                // append the element to the table
-                $('#table-data').append(tableRow);
-            }
-            // initialize datatable
-            $('#reimb-table').DataTable();
-        }
-    }
-    xhr.open("GET", "getemployeetickets", true);
-    xhr.send();
+    console.log("getEmployeeTickets");
+    $('#reimb-table').DataTable({
+        ajax: '/ERSProject/getemployeetickets',
+        columns: [
+            { data: "reimbursements.reimbId" },
+            { data: "r_status.name", editField: "reimbursements.status" },
+            { data: "reimbursements.type" },
+            { data: "reimbursements.amount" },
+            { data: "reimbursements.description" },
+            { data: "reimbursements.submitted" },
+            { data: "reimbursements.resolved" },
+            { data: "reimbursements.resolver" }
+        ]
+    });
 }
 
 function getAllTicketInfo() {
-    var xhr = new XMLHttpRequest();
-    xhr.onreadystatechange = function () {
-        if (xhr.readyState == 4 && xhr.status == 200) {
-            var tick = JSON.parse(xhr.responseText);
-            for (x in tick) {
-                var reimb = tick[x].reimb;
-                var status = tick[x].status;
-                var type = tick[x].type;
-                var author = tick[x].author;
-                var resolver = tick[x].resolver;
-                if (author != null) {
-                    authorName = `${author.firstName} ${author.lastName}`;
-                } else authorName = "Error";
-                if (resolver != null) {
-                    resolverName = `${resolver.firstName} ${resolver.lastName}`;
-                } else resolverName = "N/A";
-                var timeResolved = "";
-                if (reimb.resolved != null) {
-                    timeResolved = reimb.resolved;
-                }
-                var rowData = `<td>${reimb.reimbId}</td>
-                    <td>${authorName}</td>
-                    <td>${status}</td>
-                    <td>${type}</td>
-                    <td>${reimb.amount}</td>
-                    <td>${reimb.submitted}</td>
-                    <td>${timeResolved}</td>
-                    <td>${resolverName}</td>`;
-                console.log(rowData);
-                // Create table row element
-                var tableRow = document.createElement("tr");
-                // Insert rowData into this element
-                tableRow.innerHTML = rowData;
-                // append the element to the table
-                $('#table-data').append(tableRow);
-            }
-            // initialize datatable
-            $('#reimb-table').DataTable();
-        }
-    }
-    xhr.open("GET", "getemployeetickets", true);
-    xhr.send();
+    console.log("getEmployeeTickets");
+    $('#reimb-table').DataTable({
+        select: true,
+        ajax: '/ERSProject/getemployeetickets',
+        columns: [
+            { data: "reimbursements.reimbId" },
+            { data: "reimbursements.author" },
+            { data: "r_status.name", editField: "reimbursements.status" },
+            { data: "reimbursements.type" },
+            { data: "reimbursements.amount" },
+            { data: "reimbursements.description" },
+            { data: "reimbursements.submitted" },
+            { data: "reimbursements.resolved" },
+            { data: "reimbursements.resolver" }
+        ]
+    });
 }
+
+// function getEmployeeTicketInfo() {
+//     var xhr = new XMLHttpRequest();
+//     xhr.onreadystatechange = function () {
+//         if (xhr.readyState == 4 && xhr.status == 200) {
+//             // console.log(`Response: ${xhr.responseText}`);
+//             var tick;
+//             if (xhr.responseText != null)
+//             tick = JSON.parse(xhr.responseText);
+//             // Empty table to avoid duplicates
+//             $('#table-data').html("");
+//             for (x in tick) {
+//                 var reimb = tick[x].reimb;
+//                 var status = tick[x].status;
+//                 var type = tick[x].type;
+//                 var resolver = tick[x].resolver;
+//                 var name = "Unresolved";
+//                 if (resolver != null) {
+//                     name = `${resolver.firstName} ${resolver.lastName}`;
+//                 }
+//                 var timeResolved = "";
+//                 if (reimb.resolved != null) {
+//                     timeResolved = reimb.resolved;
+//                 }
+//                 var rowData = `<td>${reimb.reimbId}</td>
+//                 <td>${status}</td>
+//                 <td id="reimb-type">${type}</td>
+//                 <td id="reimb-amount">${reimb.amount}</td>
+//                 <td>${reimb.submitted}</td>
+//                 <td>${timeResolved}</td>
+//                 <td>${name}</td>`;
+//                 // console.log(rowData);
+//                 // Create table row element
+//                 var tableRow = document.createElement("tr");
+//                 // Insert rowData into this element
+//                 tableRow.innerHTML = rowData;
+//                 // append the element to the table
+//                 $('#table-data').append(tableRow);
+//             }
+//             // initialize datatable
+//             $('#reimb-table').DataTable();
+//         }
+//     }
+//     xhr.open("GET", "getemployeetickets", true);
+//     xhr.send();
+// }
+
+// function getAllTicketInfo() {
+//     var xhr = new XMLHttpRequest();
+//     xhr.onreadystatechange = function () {
+//         if (xhr.readyState == 4 && xhr.status == 200) {
+//             var tick = JSON.parse(xhr.responseText);
+//             for (x in tick) {
+//                 var reimb = tick[x].reimb;
+//                 var status = tick[x].status;
+//                 var type = tick[x].type;
+//                 var author = tick[x].author;
+//                 var resolver = tick[x].resolver;
+//                 if (author != null) {
+//                     authorName = `${author.firstName} ${author.lastName}`;
+//                 } else authorName = "Error";
+//                 if (resolver != null) {
+//                     resolverName = `${resolver.firstName} ${resolver.lastName}`;
+//                 } else resolverName = "N/A";
+//                 var timeResolved = "";
+//                 if (reimb.resolved != null) {
+//                     timeResolved = reimb.resolved;
+//                 }
+//                 var rowData = `<td>${reimb.reimbId}</td>
+//                     <td>${authorName}</td>
+//                     <td id="reimb-status">${status}</td>
+//                     <td id="reimb-type">${type}</td>
+//                     <td id="reimb-amount">${reimb.amount}</td>
+//                     <td>${reimb.submitted}</td>
+//                     <td>${timeResolved}</td>
+//                     <td>${resolverName}</td>`;
+//                 // console.log(rowData);
+//                 // Create table row element
+//                 var tableRow = document.createElement("tr");
+//                 // Insert rowData into this element
+//                 tableRow.innerHTML = rowData;
+//                 // append the element to the table
+//                 $('#table-data').append(tableRow);
+//             }
+//             // initialize datatable
+//             $('#reimb-table').DataTable();
+//         }
+//     }
+//     xhr.open("GET", "getemployeetickets", true);
+//     xhr.send();
+// }

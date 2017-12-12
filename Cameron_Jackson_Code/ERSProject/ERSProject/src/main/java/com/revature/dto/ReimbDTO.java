@@ -4,36 +4,77 @@ import com.revature.pojos.Reimbursement;
 import com.revature.pojos.Users;
 
 public class ReimbDTO {
-	private Reimbursement reimb;
-	private Users author;
-	private Users resolver;
-	private String status;
+	private Integer reimbId;
+	private double amount;
+	private String submitted;
+	private String resolved;
+	private String description;
+	private String author;
+	private String resolver;
+	private int status;
 	private String type;
 	
 	public ReimbDTO() {}
 
-	public ReimbDTO(Reimbursement reimb, Users author, Users resolver, String status, String type) {
+	public ReimbDTO(Integer reimbId, double amount, String submitted, String resolved, String description,
+			String author, String resolver, int status, String type) {
 		super();
-		this.reimb = reimb;
+		this.reimbId = reimbId;
+		this.amount = amount;
+		this.submitted = submitted;
+		this.resolved = resolved;
+		this.description = description;
 		this.author = author;
 		this.resolver = resolver;
 		this.status = status;
 		this.type = type;
 	}
 
-	public Reimbursement getReimb() {
-		return reimb;
+	public Integer getReimbId() {
+		return reimbId;
 	}
 
-	public void setReimb(Reimbursement reimb) {
-		this.reimb = reimb;
+	public void setReimbId(Integer reimbId) {
+		this.reimbId = reimbId;
 	}
 
-	public String getStatus() {
+	public double getAmount() {
+		return amount;
+	}
+
+	public void setAmount(double amount) {
+		this.amount = amount;
+	}
+
+	public String getSubmitted() {
+		return submitted;
+	}
+
+	public void setSubmitted(String submitted) {
+		this.submitted = submitted;
+	}
+
+	public String getResolved() {
+		return resolved;
+	}
+
+	public void setResolved(String resolved) {
+		this.resolved = resolved;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public int getStatus() {
 		return status;
 	}
 
-	public void setStatus(String status) {
+	public void setStatus(int status) {
 		this.status = status;
 	}
 
@@ -45,22 +86,20 @@ public class ReimbDTO {
 		this.type = type;
 	}
 
-	public Users getAuthor() {
+	public String getAuthor() {
 		return author;
 	}
 
-	public void setAuthor(Users author) {
+	public void setAuthor(String author) {
 		this.author = author;
 	}
 
-	public Users getResolver() {
+	public String getResolver() {
 		return resolver;
 	}
 
-	public void setResolver(Users resolver) {
+	public void setResolver(String resolver) {
 		this.resolver = resolver;
 	}
-
-
 
 }

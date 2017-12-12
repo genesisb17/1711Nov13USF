@@ -320,7 +320,6 @@ public class ERSDatabaseDAO implements ERSDAO {
 				ResultSet rs = s.executeQuery(sql);){
 			while (rs.next()) {
 				Reimbursement reimb = new Reimbursement();
-				reimb = new Reimbursement();
 				reimb.setReimbId(rs.getInt(DB_KEY_REIMBID));
 				reimb.setAmount(rs.getDouble(DB_KEY_AMOUNT));
 				reimb.setSubmitted(rs.getString(DB_KEY_SUBMITTED));
