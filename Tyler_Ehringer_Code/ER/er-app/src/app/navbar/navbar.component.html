@@ -1,0 +1,15 @@
+<nav class="navbar navbar-expand navbar-dark bg-dark">
+  <a class="navbar-brand" style="color: white" routerLink="/">Expense Reimbursements</a>
+  <ul class="navbar-nav ml-auto">
+    <li class="nav-item">
+      <a class="nav-link disabled" *ngIf="isLoggedIn" href="#">{{loginMessage}}</a>
+    </li>
+    <li class="nav-item" *ngIf="isLoggedIn">
+      <a class="nav-link" routerLink="/updateUser">Profile</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" *ngIf="!isLoggedIn" routerLink="/login">| Login</a>
+      <a class="nav-link" *ngIf="isLoggedIn" (click)="logout()">| Logout</a>
+    </li>
+  </ul>
+</nav>  

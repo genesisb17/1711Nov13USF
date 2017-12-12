@@ -1,0 +1,23 @@
+/* You can add global styles to this file, and also import other style files */
+:root{
+    --color1: #1454CC;
+    --color2: #3D5D99;
+    --color3: #00DFFF;
+    --color4: #FF7840;
+    --color5: #CC3014;
+}
+
+body{
+    background-color: #90c9ff;
+}
+.card-title{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    color: var(--color1);
+}
+.bg-color1{
+    background-color: var(--color1);
+}
+.col-form-label{
+    text-align: right;
+}

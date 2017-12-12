@@ -1,0 +1,39 @@
+<div class="card">
+    <div class="card-block">
+        <h2 class="card-title text-center">Create Account</h2>
+        <div class="card-text">
+            <div class="form-group row">
+                <div class="col">
+                    <div class="row">
+                        <label for="username" class="col-3 col-form-label">Username</label>
+                        <div class="col-8">
+                            <input type="text" class="form-control" id="username" placeholder="Username">
+                        </div>
+                    </div>
+                    <div class="row text-center">
+                        <p class="col text-danger" id="usernameTakenWarning">Username must be at least 8 characters long</p>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="password" class="col-3 col-form-label">Password</label>
+                <div class="col-8">
+                    <input type="password" class="form-control" id="password" placeholder="Password">
+                </div>
+            </div>
+            <div class="row">
+                <p class="text-danger" id="passwordFormatWarning"></p>
+            </div>
+            <div class="form-group row">
+                <label for="confirmPassword" class="col-3 col-form-label">Confirm Password</label>
+                <div class="col-8">
+                    <input type="password" class="form-control" id="confirmPassword" placeholder="Password">
+                </div>
+            </div>
+            <div class="row">
+                <p class="text-danger" id="passwordMatchWarning"></p>
+            </div>
+
+        </div>
+    </div>
+</div>

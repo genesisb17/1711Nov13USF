@@ -57,7 +57,7 @@ public class RunBank implements Runnable {
 	private void login() {
 		String email;
 		while (!dao.hasUser(email = con.promptString("Please enter your username/email:"))) { // repeat until they input an existing email
-			System.out.println("That did not match a valid usernam/email.");
+			System.out.println("That did not match a valid username/email.");
 		}
 		User u = dao.getUser(email);
 		while (!con.promptString("Please enter your password:").equals(u.getPassword())) { // repeat until they enter the correct password

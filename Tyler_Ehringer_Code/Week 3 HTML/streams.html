@@ -90,7 +90,7 @@
                     <div id="foundation">
                         <h3>Functional Programming</h3>
                         <p>
-                            Functional programming is definately different in its overall style than the more familiar procedural programming, but at
+                            Functional programming is definately different in its overall style from the more familiar procedural programming, but at
                             its core it is very simple. It involves nothing that procedural programmers don't already use;
                             it just uses those elemnts in different ways. While the syntax might be different, it just involves
                             chaining together different functions and having some funstions call other functions. It also
@@ -136,14 +136,14 @@
                     <div>
                         <h2 class="text-center">What is a Stream?</h2>
                         <p>
-                            A stream just a sequence of values. It can be thought of as another form aof a list or array, and in fact both of these objects
+                            A stream just a sequence of values. It can be thought of as another form of a list or array, and in fact both of these objects
                             (as well as many others) can be readily transformed to and from streams. However, the evaluation
                             of streams is lazy; only the immediate next element is available and for all that we know no
                             thers might exist. What this allows for is something similar to the functionality of lists in
                             other functional languages. To create a stream from a list is very simple:
                         </p>
                         <pre><code>
-                            List&lt;Car&gt; cars = new ArrayLis&lt;&gt;();
+                            List&lt;Car&gt; cars = new ArrayList&lt;&gt;();
                             //add some cars
                             Stream&lt;Car&gt; carsStream = cars.stream();
                         </code></pre>
@@ -157,7 +157,7 @@
                     <div>
                         <h4>map and forEach</h4>
                         <p>
-                            Often you will want to do something to each elemtn in a list. Sometimes that is just an action that doens't have any effece
+                            Often you will want to do something to each element in a list. Sometimes that is just an action that doesn't have any effect
                             on the element itself. In those cases we can use the forEach() method. It is basically like using
                             an enhanced for loop. Simply pass it the action to perform for each element:
                         </p>
@@ -166,8 +166,8 @@
                             carsStream.forEach(c -> c.honk());       // passing a lambda that takes a car and calls its honk() method
                         </code></pre>
                         <p>
-                            Thats neat but its nothing we couldn't have done as simply with a for loop. But what if you want to return a value for each
-                            elemnt into a new stream? That is where the map() mehtod comes in.
+                            Thats neat but its nothing we couldn't have done with a for loop. But what if you want to return a value for each element
+                            into a new stream? That is where the map() method comes in.
                         </p>
                         <pre><code>
                             Stream&lt;String&gt; manufacturers = carsStream.map(c -> c.getManufacturer().toString());
@@ -181,10 +181,10 @@
                     <div>
                         <h4>filter</h4>
                         <p id="reduce">
-                            Another thing you might want to do with a list (by which i really mean a stream) is to select only certain elemnts of it.
+                            Another thing you might want to do with a list (by which i really mean a stream) is to select only certain elemnts from it.
                             That is a job for the filter() method. We simply pass it a predicate (something that takes an
                             element and evaluates to true of false) and it will return to us a stream comprised of only the
-                            elemnts that passed the test.
+                            elements that passed the test.
                         </p>
                         <pre><code>
                             Stream&lt;Car&gt; redCars = carStream.filter(c -> c.getColor() == "red");
@@ -206,7 +206,9 @@
                             int sumOfNumbers = numbers.reduce(0, Integer::sum); // adds all of these numbers, starting with the base number 0
                         </code></pre>
                         <p id="examples">
-                            Again, this might not be very impressive and it might not be clear why this is useful, but we are about to get to the payoff.
+                            Again, this might not be very impressive and it might not be clear why this is useful, but it is actually very powerful.
+                            In fact, every other function on a list (stream) can be written in terms of reduce. For further
+                            reading you can look up monoids to see just how to combine things with reduce.
                         </p>
                     </div>
                     <br>
@@ -216,7 +218,7 @@
                     <div>
                         <h2 class="text-center">Examples</h2>
                         <p>
-                            The nice thing here fromt he perspective of the programmer is that all of these methods can be chained together. That makes
+                            The nice thing here from the perspective of the programmer is that all of these methods can be chained together. That makes
                             things very fast to write and easy to read once you become familair with the syntax. For example,
                             lets say you wanted to find the product of all of the even valued vin numbers of your cars. You
                             could certainly do this with a normal for loop but it would be messy. Lets see if there is a
@@ -235,10 +237,12 @@
                             more complicated example:
                         </p>
                         <pre><code>
-                            BufferedReader br = ... // assume we have some users data in a text file
-                            //the lines() method of the BufferedReader returns a stream of the lines of the file<br>
-                            User youngestWoman = br.lines()
-                                .map(l -> {
+                            BufferedReader br = new BufferedReader(new FileReader("userdata.txt"));
+                            // the lines() method of the BufferedReader returns a stream of the lines of the file
+                            // assume userdata.txt has data of the form:
+                            // 25:Mary:female
+                            // 30:John:male<br>
+                            User youngestWoman = br.lines().map(l -> {
                                     String[] values = l.split(":");
                                     return new User(Integer.parseInt(values[0]), values[1], values[2]);
                                 }).filter(u -> u.getSex() == "female")
@@ -250,7 +254,8 @@
                             This example might not be as easy to follow but it more closely matches a real example. In this short excerpt we are going
                             directly from a collection of lines of text in a file that represent users to finding the youngest
                             woman user. It was all done in place without having to write a bunch of boilerplate and extra
-                            methods.
+                            methods. Of course, if you wanted to reuse any of that logic you could use method references
+                            instead of all of these lambda expressions.
                         </p>
                     </div>
                     <br>
@@ -276,25 +281,26 @@
                         <p id="infinite">
                             Just adding this parallel() method automatically means that your stream will be processed in parallel in as many threads
                             as your machine will support. You can call any number of methods, including the map, forEach,
-                            filter, and reduce methods mentioned before as well as many other stream methods. It is easy
-                            to understate how big of a deal this is because it takes virtually no effort to speed up your
-                            program by an order fo magnitude. Just make sure that the operations on your stream are stateless
-                            and pure and it will simply work.
+                            filter, and reduce methods mentioned before as well as many other stream methods all chained
+                            together and it will automatically compose them into a single pipeline process to be executed
+                            on each thread. It is easy to understate how big of a deal this is because it takes virtually
+                            no effort to speed up your program by an order of magnitude. Just make sure that the operations
+                            on your stream are stateless and pure and it will simply work.
                         </p>
                     </div>
                     <div>
                         <h3 class="text-centered">Infinite Lists</h3>
                         <p>
-                            Although there are many more things you can do with lists, we will leave off with one more cool feature: infinite streams.
-                            This is possible again because the evaluation of sreams is lazy. There are a few ways to create
-                            an infinite stream but we will highlight 2 here.
+                            Although there are many more things you can do with lists, we will leave off with one more interesting feature: infinite
+                            streams. This is possible again because the evaluation of streams is lazy. There are a few ways
+                            to create an infinite stream but we will highlight 2 of them here.
                         </p>
                         <pre><code>
                             IntStream naturalNumbers = IntStream.iterate(0, i -> i + 1);
                         </code></pre>
                         <p>
-                            This is an infinte stream of the numbers 0 to infinity (at least if we ignore integer overflow). It can be operted on just
-                            as any other stream, although care ha to be taken to make sure that the operation will terminate
+                            This is an infinte stream of the numbers 0 to infinity (at least if we ignore integer overflow). It can be operated on just
+                            as any other stream, although care has to be taken to make sure that the operation will terminate
                             (if you use it carelessly it will just process the stream forever).
                         </p>
                         <pre><code>
@@ -304,7 +310,7 @@
                         <p>
                             Again, we get an infinite stream but this time it is of random numbers. I will leave it to you to research more about this
                             and find out where infinite streams might be useful (they are mostly a novelty but there are
-                            some applications).
+                            some applications, especially when you are using them in conjunction with other finite streams).
                         </p>
                     </div>
                     <br>
