@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import com.rev.dao.DAO;
 import com.rev.dao.DBDAO;
+import com.rev.pojos.R_Status;
 import com.rev.pojos.R_Type;
 import com.rev.pojos.Reimbursement;
 import com.rev.pojos.User;
@@ -62,5 +63,9 @@ public class Service {
 	}
 	public ArrayList<R_Type> getAllRTypes(){
 		return dao.getAllRTypes();
+	}
+	
+	public ArrayList<R_Status> getAllRStatus(){
+		return dao.getAllRStatus();
 	}
 }

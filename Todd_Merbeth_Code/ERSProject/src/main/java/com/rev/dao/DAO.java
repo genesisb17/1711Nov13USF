@@ -2,6 +2,7 @@ package com.rev.dao;
 
 import java.util.ArrayList;
 
+import com.rev.pojos.R_Status;
 import com.rev.pojos.R_Type;
 import com.rev.pojos.Reimbursement;
 import com.rev.pojos.User;
@@ -17,6 +18,8 @@ public interface DAO {
 	
 	//For managers
 	public ArrayList<Reimbursement> getReimbursements();
+	
+	public ArrayList<R_Status> getAllRStatus();
 	
 //	public ArrayList<Reimbursement> getReimbursementsByStatus(); // Maybe need later? Depends on how decide to show data
 	

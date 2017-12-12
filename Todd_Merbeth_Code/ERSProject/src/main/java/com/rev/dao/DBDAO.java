@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import com.rev.pojos.R_Status;
 import com.rev.pojos.R_Type;
 import com.rev.pojos.Reimbursement;
 import com.rev.pojos.User;
@@ -379,5 +380,22 @@ public class DBDAO implements DAO {
 			e.printStackTrace();
 		}
 		return types;
+	}
+
+	@Override
+	public ArrayList<R_Status> getAllRStatus() {
+		ArrayList<R_Status> statusList = new ArrayList<R_Status>();
+		try (Connection conn = ConnectionFactory.getInstance().getConnection();) {
+			String sql = "select * from REIMBURSEMENT_STATUS";
+			Statement statement = conn.createStatement();
+			ResultSet rs = statement.executeQuery(sql);
+			while (rs.next()) {
+				R_Status temp = new R_Status(rs.getInt(1), rs.getString(2));
+				statusList.add(temp);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return statusList;
 	}
 }

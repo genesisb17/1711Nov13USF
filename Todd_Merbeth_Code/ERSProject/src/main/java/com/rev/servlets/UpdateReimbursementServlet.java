@@ -10,42 +10,42 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.rev.pojos.Reimbursement;
 import com.rev.pojos.User;
 import com.rev.service.Service;
 
-@WebServlet("/newReimbursement")
-public class NewReimbursementServlet extends HttpServlet{
-
+@WebServlet("/updateReimbursement")
+public class UpdateReimbursementServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	static Service service = new Service();
+	
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
+		Service service = new Service();
+		
 		BufferedReader br = 
 				new BufferedReader(new InputStreamReader(req.getInputStream()));
 		String json = "";
 		if(br != null){
 			json = br.readLine();
 		}
-		
 		ObjectMapper mapper = new ObjectMapper();
 		
-		Reimbursement r = mapper.readValue(json, Reimbursement.class);
+		int[] values = mapper.readValue(json, int[].class);
+		int index = values[0];
+		int status = values[1];
 		
-		HttpSession session = req.getSession();
-		User u = (User) session.getAttribute("user");
+		int resolver = ((User) req.getSession().getAttribute("user")).getId();
 		
-		r.setAuthor(u.getId());
-		r = service.addReimbursement(r);
+		Reimbursement result = service.updateReimbursement(index, resolver, status);
+		
 		PrintWriter out = resp.getWriter();
 		
 		resp.setContentType("application/json");
 		
-		String userJSON = mapper.writeValueAsString(r);
-		out.write(userJSON);
+		String resJSON = mapper.writeValueAsString(result);
+		out.write(resJSON);
+		
 	}
 
 }

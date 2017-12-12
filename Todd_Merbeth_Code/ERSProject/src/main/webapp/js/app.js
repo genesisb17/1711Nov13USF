@@ -252,21 +252,7 @@ function loadEmployeeReimbursements(){
 		console.log(xhr.readyState);
 		if(xhr.readyState == 4 && xhr.status == 200){
 			var reimbursements = JSON.parse(xhr.responseText);
-			// Fix this by table append instead of this massive string
-			var str = `
-				<table id="userReimbs" class="display dataTable" cellspacing="0"
-				width="100%" role="grid">
-					<thead>
-						<tr>
-							<th class="sorting_asc" tabindex="0">ID</th>
-							<th class="sorting">Amount</th>
-							<th class="sorting">Submission Date</th>
-							<th class="sorting">Description</th>
-							<th class="sorting">Type</th>
-							<th class="sorting">Status</th>
-						</tr>
-					</thead>
-					<tbody>`;
+			$("#userReimbsBody tr").remove(); 
 			for (var i=0; i<reimbursements.length; i++){
 				var line = 
 						`<tr>
@@ -277,10 +263,8 @@ function loadEmployeeReimbursements(){
 							<td> ${reimbursements[i].typeStr} </td>
 							<td> ${reimbursements[i].statusStr}</td>
 						</tr>`;
-				str = str.concat(line);
+				$('#userReimbsBody').append(line);
 			}
-			str = str.concat('</tbody></table>');
-			document.getElementById('userReimbursements').innerHTML = str;
 			$(document).ready(function(){
 			    $('#userReimbs').DataTable();
 			});
@@ -411,7 +395,9 @@ function loadManagerHome(){
 	console.log("LOADMANHOMEVIEW " + xhr.readyState);
 		if(xhr.readyState == 4 && xhr.status == 200){
 			document.getElementById('view').innerHTML = xhr.responseText;
+			$('#updateError').hide();
 			loadAllReimbursements();
+			loadRStatusOptions();
 		}
 	}
 	xhr.open("GET", "managerHome.view", true);
@@ -419,31 +405,13 @@ function loadManagerHome(){
 }
 
 function loadAllReimbursements(){
+	$("#allReimbsBody tr").remove(); 
 	var xhr = new XMLHttpRequest();
 	xhr.onreadystatechange = function(){
 	console.log("LOADALLREIMBS " + xhr.readyState);
 		if(xhr.readyState == 4 && xhr.status == 200){
 			var reimbursements = JSON.parse(xhr.responseText);
-			// Fix this by table append instead of this massive string
-			var str = `
-				<table id="allReimbs" class="display dataTable" cellspacing="0"
-				width="100%" role="grid">
-					<thead>
-						<tr>
-							<th class="sorting_asc" tabindex="0">ID</th>
-							<th class="sorting">Amount</th>
-							<th class="sorting">Submission Date</th>
-							<th class="sorting">Resolved Date</th>
-							<th class="sorting">Description</th>
-							<th class="sorting">Author</th>
-							<th class="sorting">Resolver</th>
-							<th class="sorting">Type</th>
-							<th class="sorting">Status</th>
-						</tr>
-					</thead>
-					<tbody>`;
 			for (var i=0; i<reimbursements.length; i++){
-				var dollar = '$';
 				var line = 
 						`<tr>
 							<td> ${reimbursements[i].id} </td>
@@ -456,10 +424,8 @@ function loadAllReimbursements(){
 							<td> ${reimbursements[i].typeStr} </td>
 							<td> ${reimbursements[i].statusStr}</td>
 						</tr>`;
-				str = str.concat(line);
+				$('#allReimbsBody').append(line);
 			}
-			str = str.concat('</tbody></table>');
-			document.getElementById('reimbursements').innerHTML = str;
 			$(document).ready(function(){
 			    $('#allReimbs').DataTable();
 			});
@@ -469,12 +435,65 @@ function loadAllReimbursements(){
 	xhr.open("GET", "loadAllReimbursements", true);
 	xhr.send();
 }
+function loadRStatusOptions(){
+	var xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function(){
+		console.log("LOADREQUESTINFO " + xhr.readyState);
+		if(xhr.readyState == 4 && xhr.status == 200){
+			var status = JSON.parse(xhr.responseText);
+			console.log(status);
+			var str = '<label for="statusSelect">Change Status to: </label><select id="statusSelect"><option disabled selected value> -- select an option -- </option>';
+			for (let i = 1; i < status.length; i++){
+				var line = `<option value="${status[i].id}">${status[i].status}</option>`;
+				str = str.concat(line);
+			}
+			str = str.concat("</select>");
+			document.getElementById('reqStatus').innerHTML = str;
+			$('#reqStatus').hide();
+			$('#updateStatus').hide();
+			$('#updateStatus').on('click', updateReimbursement);
+		}
+	}
+	xhr.open("GET", "reimbursementStatus", true);
+	xhr.send();	
+}
 function addTableClicks(reimbursements) {
     $("#allReimbs tr").click(function() {
     	document.getElementById('selected').innerHTML = this.getElementsByTagName("td")[0].innerHTML;
-    	});
+    	$('#reqStatus').show();
+    	$('#updateStatus').show();
+    });
 }
-
+function updateReimbursement(){
+	var index = document.getElementById('selected').innerHTML;
+	var status = $('#reqStatus option:selected').val();
+	if(status == ""){
+		$('#updateError').show();
+	}
+	else {
+		var arr = [index, status];
+		var arrJSON = JSON.stringify(arr);
+		
+		var xhr = new XMLHttpRequest();
+		xhr.onreadystatechange = function(){
+			console.log("ATTEMPTINGUPDATE " + xhr.readyState);
+			if(xhr.readyState == 4 && xhr.status==200){
+				var result = JSON.parse(xhr.responseText);
+				console.log(result);
+				if (result == null){
+					alert(`Error updating reimbursement status`);
+				}
+				else {
+					alert(`Status for reimbursement request #${result.id} has been changed to:${result.statusStr}`);
+					loadManagerHome();
+				}
+			}
+		};
+		xhr.open("POST","updateReimbursement", true);
+		xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+		xhr.send(arrJSON);
+	}
+}
 ////////////////////////////////////////////////////  Logout  ///////////////////////////////////////////////////
 
 function logout(){
@@ -497,6 +516,8 @@ function showManagerNav(){
 	$('#mhome').show();
 	$('#mprofile').show();
 	$('#logout').show()
+	$('#mhome').on('click', loadManagerHome);
+	$('#mprofile').on('click', loadEmployeeProfile);
 }
 
 function showEmployeeNav(){
@@ -517,6 +538,14 @@ function hideNav(){
 	$('#enewreq').hide();
 	$('#logout').hide()
 }
+
+// ********** Left todo **********
+// Update user info
+// Styling pretty much all pages
+// Delete reimbursement (optional)
+// Manager approves new managers (optional)
+// ERS nav button sends to an informational page (optional)
+// Reimbursement receipt (optional)
 
 
 

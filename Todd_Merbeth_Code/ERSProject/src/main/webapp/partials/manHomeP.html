@@ -2,8 +2,29 @@
 	<h1>Home</h1>
 	Welcome to your home page
 	<h2>Reimbursement Requests:</h2>
-	<div id="reimbursements"></div>
-	<br>
-	<br>
+	<div id="reimbursements">
+		<table id="allReimbs" class="display dataTable" cellspacing="0"
+			width="100%" role="grid">
+			<thead>
+				<tr>
+					<th class="sorting_asc" tabindex="0">ID</th>
+					<th class="sorting">Amount</th>
+					<th class="sorting">Submission Date</th>
+					<th class="sorting">Resolved Date</th>
+					<th class="sorting">Description</th>
+					<th class="sorting">Author</th>
+					<th class="sorting">Resolver</th>
+					<th class="sorting">Type</th>
+					<th class="sorting">Status</th>
+				</tr>
+			</thead>
+			<tbody id="allReimbsBody">
+			</tbody>
+		</table>
+	</div>
+	<br> <br>
 	<div id="selected"></div>
+	<div id="reqStatus"></div>
+	<div class="alert alert-danger" id="updateError">Please select approve or deny to update the reimbursement</div>
+	<button id="updateStatus" class="btn btn-primary">Update Status</button>
 </div>

@@ -21,9 +21,6 @@ public class RegisterServlet extends HttpServlet{
 	private static final long serialVersionUID = 1L;
 	static Service service = new Service();
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-		System.out.println("in register servlet");
-
 		BufferedReader br = 
 				new BufferedReader(new InputStreamReader(req.getInputStream()));
 		String json = "";
