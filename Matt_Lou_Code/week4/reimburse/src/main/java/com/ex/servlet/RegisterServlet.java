@@ -19,9 +19,8 @@ public class RegisterServlet extends HttpServlet{
 	static Service service = new Service();
 	
 	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws 		ServletException, IOException {
-		
-		System.out.println("in register servlet");
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws
+		ServletException, IOException {
 		
 		BufferedReader br = new BufferedReader(new InputStreamReader(req.getInputStream()));
 		

@@ -28,19 +28,19 @@ public class ValidateEmailServlet extends HttpServlet{
 		if(br != null) {
 			json = br.readLine();
 		}
-
+// AJAX sent via user typing in email, convert JSON to java string to check in database
 		ObjectMapper mapper = new ObjectMapper();
 		String[] userInfo = mapper.readValue(json, String[].class);
 		String email = userInfo[0];
 		
-		
+// function to validate whether the email exists		
 		Users user = service.validateEmail(email);
-		
+
+// send a response back to JS whether the email exists or not(null)
 		PrintWriter out = resp.getWriter();
 		resp.setContentType("application/json");
 		
 		String userJSON = mapper.writeValueAsString(user);
-		System.out.println("JSON: " + userJSON);
 		
 		out.write(userJSON);
 		

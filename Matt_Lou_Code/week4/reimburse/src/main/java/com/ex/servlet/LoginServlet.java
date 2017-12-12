@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.rev.pojos.Users;
@@ -38,7 +39,16 @@ public class LoginServlet extends HttpServlet{
 		String password = userInfo[1];
 		
 		Users user = service.login(username, password);
+		HttpSession session = req.getSession();
+		System.out.println(user.getEmail());
 		
+		if(user == null) {
+			System.out.println("user was null, username/password not found.");
+		}
+		else{
+			// persist the user that logged in to "user"
+			session.setAttribute("user", user);
+		}
 		
 		PrintWriter out = resp.getWriter();
 		resp.setContentType("application/json");
@@ -47,7 +57,9 @@ public class LoginServlet extends HttpServlet{
 		System.out.println("JSON: " + userJSON);
 		
 		out.write(userJSON);
-		
-		
+
+		//resp.sendRedirect("html/submitrequest.html");
+		//req.getRequestDispatcher("SubmitRequestPageServlet").forward(req, resp);
+			
 	}
 }

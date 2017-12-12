@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 
 import com.ex.util.ConnectionFactory;
 import com.rev.dao.DAO;
@@ -68,6 +69,11 @@ public class Service {
 	public Users callUpdate(Users u, Reimbursement reimb) {
 		dao.update(u, reimb);
 		return u;
+	}
+	
+	public ArrayList<Reimbursement> getdata(){
+		return dao.getTable();
+		
 	}
 	
 	
@@ -139,24 +145,26 @@ public class Service {
 		//Reimbursement reimb = new Reimbursement();
 		
 		try(Connection connect = ConnectionFactory.getInstance().getConnection()){
+			connect.setAutoCommit(false);
 			String sql = "insert into ers_reimbursement(reimb_amount, reimb_description,"
 					+ " reimb_author, reimb_type_id)" + 
 					"values(?, ?, ?, ?)";
 			PreparedStatement ps = connect.prepareStatement(sql);
-			int row = ps.executeUpdate();
 			
-			while(row != 0) {
-				ps.setDouble(1, amount);
-				ps.setString(2, description);
-				ps.setInt(3, authorId);
-				ps.setInt(4, typeId);
-			}
+			System.out.println("submit req in service");
+
+			ps.setDouble(1, amount);
+			ps.setString(2, description);
+			ps.setInt(3, authorId);
+			ps.setInt(4, typeId);
+			
+			ps.executeUpdate();
+			connect.commit();
+			
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}
-		
-		
+		}	
 	}
 	
 	public Users updateReimbursement(int resolver, int status, int reimb_id) {

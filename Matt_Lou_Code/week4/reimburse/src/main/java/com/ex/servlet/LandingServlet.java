@@ -12,7 +12,6 @@ import javax.servlet.http.HttpServletResponse;
 public class LandingServlet extends HttpServlet{
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
-			System.out.println("in landing servlet");
 			request.getRequestDispatcher("landing.html").forward(request, response);
 		}
 }

@@ -19,7 +19,6 @@ public class GetUserInforServlet extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) 
 			throws ServletException, IOException {
-		System.out.println("in user info servlet doGet");
 		
 		//Service service = new Service();
 		

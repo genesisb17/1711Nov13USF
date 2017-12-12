@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 
 import com.ex.util.ConnectionFactory;
 import com.rev.pojos.Reimbursement;
@@ -20,62 +22,26 @@ public class FileDAO implements DAO{
 					+ "USER_FIRST_NAME, USER_LAST_NAME, USER_EMAIL, USER_ROLE_ID) "
 					+ "VALUES(?, ?, ?, ?, ?, ?)";
 			
-//			String sqlAddReimb = "insert into ERS_REIMBURSEMENT(REIMB_AMOUNT, "
-//					+ "REIMB_SUBMITTED, REIMB_RESOLVED, REIMB_DESCRIPTION, "
-//					+ "REIMB AUTHOR, REIMB_RESOLVER, REIMB_STATUS_ID, REIMB_TYPE_ID "
-//					+ "VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
-
 			PreparedStatement ps = connect.prepareStatement(sqlAddUser);
-			//PreparedStatement insertReimb = connect.prepareStatement(sqlAddReimb);
-			System.out.println("in sql");
+
 			ps.setString(1, u.getUsername());
 			ps.setString(2, u.getPassword());
 			ps.setString(3, u.getFirstname());
 			ps.setString(4, u.getLastname());
 			ps.setString(5, u.getEmail());
 			ps.setInt(6, u.getUserRoleId());
-			System.out.println(u);
-			System.out.println("in sql2");
+
 			int row = ps.executeUpdate();
-			//connect.commit();
 			if(row != 0) {
 				connect.commit();
 				System.out.println("in sql3");
 				return user;
 			}
-//			if(rows != 0) {
-//				ResultSet pk = ps.getGeneratedKeys();
-//				while(pk.next()) {
-//					u.setId(pk.getInt(1));
-//				}
-//				user.setFirstname(u.getFirstname());
-//				user.setLastname(u.getLastname());
-//				user.setUsername(u.getUsername());
-//				user.setPassword(u.getPassword());
-//				user.setBalance(u.getBalance());
-//				conn.commit();
-//				
-//			}
-//			if(rows != 0) {
-//				ResultSet rs = ps.getGeneratedKeys();
-//				while(rs.next()) {
-//					u.setUsers_id(rs.getInt(1));
-//				}
-//				user.setUsername(u.getUsername());
-//				user.setPassword(u.getPassword());
-//				user.setFirstname(u.getFirstname());
-//				user.setLastname(u.getLastname());
-//				user.setEmail(u.getEmail());
-//				user.setUserRoleId(u.getUserRoleId());
-//				connect.commit();
-//				System.out.println("after commit");
-//				connect.close();
-//			}
-			
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return user;
+		return null;
 	}
 	
 	public Users getUser(String username) {
@@ -125,6 +91,35 @@ public class FileDAO implements DAO{
 			e.printStackTrace();
 		}
 		return user;
+	}
+	
+	public ArrayList<Reimbursement> getTable(){
+		ArrayList<Reimbursement> arr = new ArrayList<Reimbursement>();
+		
+		try(Connection connect = ConnectionFactory.getInstance().getConnection()){
+			String sql = "select reimb_amount, reimb_submitted, reimb_resolved, "
+					+ "reimb_description, reimb_author, reimb_resolver, " + 
+					"reimb_status_id, reimb_type_id from ers_reimbursement";
+			Statement state = connect.createStatement();
+			ResultSet rs = state.executeQuery(sql);
+			while(rs.next()) {
+				Reimbursement reimb = new Reimbursement();
+				reimb.setAmount(rs.getDouble(1));
+				reimb.setSubmitted(rs.getTimestamp(2));
+				reimb.setResolved(rs.getTimestamp(3));
+				reimb.setDescription(rs.getString(4));
+				reimb.setAuthor(rs.getInt(5));
+				reimb.setResolver(rs.getInt(6));
+				reimb.setStatus_id(rs.getInt(7));
+				reimb.setType_id(rs.getInt(8));
+				arr.add(reimb);
+			}
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return arr;
 	}
 
 }
