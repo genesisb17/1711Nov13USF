@@ -16,8 +16,8 @@ window.onload = function(){
 //onblur is to say when not focused, when they switch to a different field for instance 
 
 function validRole(){
-	console.log (" in valiD ROLE	 function (blurred)")
-	var role = $(`#role`).val();
+	//console.log (" in valiD ROLE	 function (blurred)")
+	var role = $(`#role`).val().trim();
 	console.log(role);
 	 if (isNaN(role) || role < 0 || role > 1) 
 		 $(`#rolemessage`).html("only 1 or 2 are valid current input will default to 1");
@@ -27,7 +27,7 @@ function validRole(){
 
 function validateEmail(){
 	console.log (" in validate e-mail function (blurred)")
-	var email = $(`#emai2l`).val();
+	var email = $(`#emai2l`).val().trim();
 	var toSend=[email,""];
 	var json = JSON.stringify(toSend);
 	var xhr= new XMLHttpRequest();
@@ -63,7 +63,7 @@ function validateEmail(){
 
 function validateUsername(){
 	console.log('Within validate username, the username field is out of focus ');
-	var username = $('#username').val();
+	var username = $('#username').val().trim();
 	var toSend=[username,""];
 	// exact same as above just with a different field 
 	// i wonder if you could ...,. yes you can just make one  function taking in a field as a param
@@ -92,11 +92,11 @@ function validateUsername(){
 
 
 function register(){
-	var fitname = $(`#fn`).val();
-	var latname = $(`#ln`).val();
-	var emil = $(`#emai2l`).val();
-	var usrname = $('#username').val();
-	var pasword = $('#pass').val();
+	var fitname = $(`#fn`).val().trim();
+	var latname = $(`#ln`).val().trim();
+	var emil = $(`#emai2l`).val().trim();
+	var usrname = $('#username').val().trim();
+	var pasword = $('#pass').val().trim();
 	var roe;
 	if (isNaN(role) || role < 0 || role > 1)
 	roe =$(`#role`).val();

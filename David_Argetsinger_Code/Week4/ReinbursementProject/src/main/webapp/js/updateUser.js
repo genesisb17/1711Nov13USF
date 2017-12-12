@@ -5,7 +5,6 @@
 window.onload = function(){
 	$('#update').on('click', update);
 	$('#emai2l').blur(validateEmail);
-	$('#update').attr("disabled",true);
 	
 
 
@@ -14,7 +13,7 @@ window.onload = function(){
 
 
 function validateEmail(){
-	console.log (" in validate e-mail function (blurred)")
+	//console.log (" in validate e-mail function (blurred)")
 	var email = $(`#emai2l`).val();
 	var toSend=[email,""];
 	var json = JSON.stringify(toSend);
@@ -31,11 +30,12 @@ function validateEmail(){
 			var user =JSON.parse(xhr.responseText);
 			$(`#emailmessage`).show();
 			if(user.email !=null){
+				$('#update').attr("disabled",true);
 				$('#emailmessage').html("Email Already in use! Please try another") ;
-				$('#register').attr("disabled",true);
+				
 			}
 			else {
-				$('#emailmessage').html("Email is good");
+
 				$('#update').attr("disabled",false);// remove this later
 				// you don't need to tell the user when they are good , just when they are bad 
 			}
@@ -65,23 +65,22 @@ function update(){
 	};
 
 	var json = JSON.stringify(user);
-	console.log(json);
+	//console.log(json);
 
 	var xhr = new XMLHttpRequest();
-	console.log(xhr.readyState);
+	//console.log(xhr.readyState);
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState == 4 && xhr.status==200){
 			console.log("in xhr callback" + xhr.responseText);
-			console.log("added user");
+			//console.log("added user");
 		}
 	};
 
 
 
-	xhr.open("POST","update", true); // goes to the register servlet! 
+	xhr.open("POST","update", true); 
 	xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 	xhr.send(json);
-	alert("Success! Account updated");
-
+	
 }
 

@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Administrator style </title>
+<title>Reimbursement TICKETEEEE</title>
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
 	integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb"
@@ -19,27 +19,36 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"
 	integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
 	crossorigin="anonymous"></script>
+	
+	<!-- table specific scripts ! --> 
+<link rel="stylesheet"
+	href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
 
 </head>
 <body>
+
 <a href="ModifyUser.html"> to edit user information</a><br>
-<a href="addTickets.html">Open a new Reimbursement ticket</a>
-<!-- 
-<h1>Submit Reimbursement</h1>
-	<input type="text" id="desc" placeholder="REIMB reason (optional)"> <br>
-	<input type="text" id="amount" placeholder="Riemb Amount"> <br>
-		<div class="alert alert-danger" id="amountmessage" ></div>
-	<select id = type>
-  	<option value=0>Lodging</option>
-  	<option value=1>Travel</option>
-  	<option value=2>Food</option>
-    <option value=3>Other</option>
+ 
+ <table id="example" class="display" width="100%"></table>
+    
+  
+  
+  <br>
+    <input type="number" id="riembNum" placeholder="Enter the corrosponding request #">
+    <div class="alert alert-danger" id="amountmessage" ></div>
+     <br>
+     <h1>Approve/deny reinbursements</h1>
+  	<select id = type>
+  	<option value=1>Approve</option>
+  	<option value=2>Deny</option>
 	</select>
 	<br>
-	<button id="add">Add!</button>
-	<br>
+	<button id="update">reinburse!</button>
+	<script src="js/viewAdminTickets.js"></script>
+		
 	
-	<script src="js/riembAdd.js"></script>
- -->
+	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+
+<script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
 </body>
 </html>

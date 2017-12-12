@@ -18,10 +18,9 @@ import com.reimb.service.Service;
 @WebServlet("/update")
 public class update extends HttpServlet {
 	static Service service = new Service();
-	
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("Please update servlet");
+		//System.out.println("Please update servlet");
 		BufferedReader br = 
 				new BufferedReader(new InputStreamReader(request.getInputStream()));
 		String json = "";
@@ -33,34 +32,34 @@ public class update extends HttpServlet {
 		User u = mapper.readValue(json, User.class);
 		HttpSession session = request.getSession();
 		User ogU=(User)session.getAttribute("user");
-		
-		System.out.println(ogU);
+		//System.out.println(ogU);
+		//System.out.println(u);
 		u.setId(ogU.getId()); // id wont change and niether will e-mail .. nah lets let that happen username will remain though. session bound as will role
-		u.setUsername(ogU.getUsername());
+		u.setEmail(ogU.getEmail());
 		u.setRole(ogU.getRole());
-
+		u.setUsername(ogU.getUsername());
+		
+		// set the SESSION to match new changes!! 
+		// if the user doesn't decide to change their  information for fields they will remain the same! 
+		// <:! 
 		if(u.getLastname()=="")
 			u.setLastname(ogU.getLastname());
 		else 
 			ogU.setLastname(u.getLastname());
-		
 		if(u.getName()=="")
 			u.setName(ogU.getName());
-		else 
+		else
 			ogU.setName(u.getName());
-		
-		if(u.getPassword()=="")
-			u.setPassword(ogU.getPassword());
-		else 
-			ogU.setPassword(u.getPassword());
-		
 		if(u.getEmail()=="")
 			u.setEmail(ogU.getEmail());
-		else 
+		else
 			ogU.setEmail(u.getEmail());
-		
+		if(u.getPassword()=="")
+			u.setPassword(ogU.getPassword());
+		else
+			ogU.setPassword(u.getPassword());
 	
-		
+		//System.out.println(u);
 		service.updateUser(u);
 	}
 

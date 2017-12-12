@@ -4,7 +4,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
-import java.lang.ProcessBuilder.Redirect;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -66,12 +65,8 @@ System.out.println("in login servlet");
 		}
 		PrintWriter out = resp.getWriter();
 		resp.setContentType("application/json");
-	
+		
 		String userJSON = mapper.writeValueAsString(temp);
-		
-		
-		//redirect based on role from sesssion 
-		// can redirect to other  servlets - such as frontcontroller based on role 
 		
 		out.write(userJSON);
 		

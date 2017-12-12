@@ -11,9 +11,8 @@ window.onload = function(){
 
 function login(){
 	
-	var username = $('#username').val();
-	var password = $('#password').val();
-	alert("logging in" + username);
+	var username = $('#username').val().trim();
+	var password = $('#password').val().trim();
 	var toSend = [username, password];
 
 	
@@ -21,7 +20,7 @@ function login(){
 	var json = JSON.stringify(toSend);
 	console.log(json);
 	
-	var xhr = new XMLHttpRequest();
+	var xhr = new XMLHttpRequest(); 	
 	console.log(xhr.readyState);
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState == 4 && xhr.status==200){
@@ -35,9 +34,11 @@ function login(){
 				$('#message').html( "Invalid password");
 			}
 			else{
-				$('#message').html(`Welcome ${user.firstname}`) ;
+				if(user.role==0)
+				window.location.replace('admin.html');
+				if(user.role==1)
 				window.location.replace('members.html');
-				console.log("success!");
+				//console.log("success!");
 			}
 		}
 	};

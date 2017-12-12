@@ -33,7 +33,7 @@ public class validator2 extends HttpServlet {
 		// remake first servlet to be modular and the find user method to be modular as well! 
 		String[] userInfo = mapper.readValue(json, String[].class);
 		String email = userInfo[0]; 
-		System.out.println("we think email is in validator  " +email );
+		//System.out.println("we think email is in validator  " +email );
 
 		User temp = service.findUserEmail(email);
 		

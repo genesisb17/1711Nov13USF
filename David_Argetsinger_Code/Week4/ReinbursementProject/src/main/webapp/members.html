@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Reimbursement Party Fix user</title>
+<title>Reimbursement TICKETEEEE</title>
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
 	integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb"
@@ -19,19 +19,25 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"
 	integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
 	crossorigin="anonymous"></script>
+	
+	<!-- table specific scripts ! --> 
+<link rel="stylesheet"
+	href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
 
 </head>
 <body>
-<h1>Update User</h1>
-	<input type="text" id="fn" placeholder="First Name"> <br>
-	<input type="text" id="ln" placeholder="Last Name"> <br>
-	<input type="text" id="emai2l" placeholder="email"> <br>
-	<div class="alert alert-danger" id="emailmessage" ></div>
-	<input type="password" id="pass" placeholder="password"><br>
-	<br>
-	<button id="update">Update!</button>
-	<br>
+
+<a href="ModifyUser.html"> to edit user information</a><br>
+<a href="addTickets.html">Open a new Reimbursement ticket</a>
+ 
+ <table id="example" class="display" width="100%"></table>
+    
+  
+	<script src="js/viewTickets.js"></script>
+		
 	
-	<script src="js/updateUser.js"></script>
+	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+
+<script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
 </body>
 </html>

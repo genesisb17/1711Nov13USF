@@ -1,17 +1,21 @@
 package com.reimb.dao;
 
+import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.SQLIntegrityConstraintViolationException;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 
 import com.reimb.pojos.Reimburse;
 import com.reimb.pojos.User;
 import com.reimb.util.ConnectionFactory;
 
 public class DAOImpl implements DAO {
-
+// re tool anything having to do with riemb, to use the new logging 
 	public User getUserById(int id) {
 		// TODO Auto-generated method stub
 		return null;
@@ -42,8 +46,8 @@ public class DAOImpl implements DAO {
 
 		return use;
 	}
-	
-	
+
+
 	public User updateAccount(User user){
 		try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
 			conn.setAutoCommit(false);
@@ -62,16 +66,16 @@ public class DAOImpl implements DAO {
 				conn.commit();
 				return user;
 			}
-		
-	} catch (SQLException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	}
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		System.out.println("update not effective. check frontend checks . ");
 		return user;
-}
-		
-	
+	}
+
+
 	public User getUserByUname(String username) {
 		User use = new User();
 
@@ -103,7 +107,7 @@ public class DAOImpl implements DAO {
 		return null;
 	}
 
-	
+
 	public boolean addReimb(Reimburse reimb){
 		try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
 			conn.setAutoCommit(false);
@@ -116,7 +120,7 @@ public class DAOImpl implements DAO {
 			preparedStatement.setString(5,reimb.getDesc());
 			int rows = preparedStatement.executeUpdate();// returns number of rows modified 
 			if (rows != 0) {
-				System.out.println("first try boooi (got to commit)");
+				//System.out.println("first try boooi (got to commit)");
 				conn.commit();
 				return true;
 
@@ -129,11 +133,11 @@ public class DAOImpl implements DAO {
 		}
 		System.out.println("not in table sorry m8 ");
 		return false;
-}
-	
+	}
+
 	//INSERT INTO ERS_REIMBURSEMENT (REIMB_AMOUNT,REIMB_AUTHOR,REIMB_STATUS_ID,REIMB_TYPE_ID,REIMB_DESCRIPTION)VALUES('20.00',7,0,0,'i spent 20$ on lodging in a box');
 
-		public boolean addUser(String name, String Lastname, String username, String password,String email, int role) {
+	public boolean addUser(String name, String Lastname, String username, String password,String email, int role) {
 		//User use = new User();
 		try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
 			conn.setAutoCommit(false);
@@ -180,5 +184,101 @@ public class DAOImpl implements DAO {
 
 	}
 
-}
 
+
+
+	/*
+		 select s.REIMB_STATUS,reimb.REIMB_AMOUNT,reimb.REIMB_DESCRIPTION,
+ty.REIMB_TYPE,reimb.REIMB_SUBMITTED from ERS_REIMBURSEMENT reimb 
+inner join ERS_USERS u on u.ERS_USERS_ID = reimb.REIMB_AUTHOR
+inner join ERS_REIMBURSEMENT_STATUS s on s.REIMB_STATUS_ID=reimb.REIMB_STATUS_ID
+inner join ERS_REIMBURSEMENT_TYPE ty on ty.REIMB_TYPE_ID=reimb.REIMB_TYPE_ID
+				 where u.ERS_USERS_ID = 7
+				 lol doing too much work there guy. this is more accurate to what the user WANTS to see rather than what they will see
+				 make the frontend translate it to not make an extra object to hold strings for the type  because they don't care.
+	 */
+	public ArrayList<Reimburse> getReimb(){ 
+		ArrayList<Reimburse> reimbs = new ArrayList<Reimburse>();
+
+		try(Connection conn = ConnectionFactory
+				.getInstance().getConnection();){
+			String sql = "select * from ERS_REIMBURSEMENT reimb inner "
+					+ "join ERS_USERS u on u.ERS_USERS_ID = "
+					+ "reimb.REIMB_AUTHOR";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ResultSet info = ps.executeQuery();
+			SimpleDateFormat format = new SimpleDateFormat("dd-MMM-yyyy HH:mm:ss");
+			while(info.next()){
+				Reimburse temp = new Reimburse();
+				temp.setId(info.getInt(1));
+				//System.out.println("Account " + temp.getId());
+				temp.setAmount(info.getDouble(2));
+				temp.setSubmitted(format.format(info.getTimestamp(3)));
+				if(info.getTimestamp(4)!=null)
+					temp.setResolved(format.format(info.getTimestamp(4)));
+				else
+					temp.setResolved(null);//grab the null don't convert it
+				temp.setDesc(info.getString(5));
+				temp.setReceipt(info.getBlob(6));
+				temp.setAuthor(info.getInt(7));
+				temp.setResolver(info.getInt(8));
+				temp.setStatus(info.getInt(9));
+				temp.setType(info.getInt(10));
+				reimbs.add(temp);
+
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		//for (Reimburse temp : reimbs) {
+		//    System.out.println(temp);
+		//}
+		return reimbs;
+	}
+
+
+
+
+	public ArrayList<Reimburse> getReimbByUser(User u){
+		ArrayList<Reimburse> reimbs = new ArrayList<Reimburse>();
+
+		try(Connection conn = ConnectionFactory
+				.getInstance().getConnection();){
+			String sql = "select * from ERS_REIMBURSEMENT reimb inner "
+					+ "join ERS_USERS u on u.ERS_USERS_ID = "
+					+ "reimb.REIMB_AUTHOR where u.ERS_USERS_ID = ?";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setInt(1, u.getId());
+			ResultSet info = ps.executeQuery();
+			SimpleDateFormat format = new SimpleDateFormat("dd-MMM-yyyy HH:mm:ss");
+			while(info.next()){
+				Reimburse temp = new Reimburse();
+				temp.setId(info.getInt(1));
+				//System.out.println("Account " + temp.getId());
+				temp.setAmount(info.getDouble(2));
+				temp.setSubmitted(format.format(info.getTimestamp(3)));
+				if(info.getTimestamp(4)!=null)
+					temp.setResolved(format.format(info.getTimestamp(4)));
+				else
+					temp.setResolved(null);//grab the null don't convert it
+				temp.setDesc(info.getString(5));
+				temp.setReceipt(info.getBlob(6));
+				temp.setAuthor(info.getInt(7));
+				temp.setResolver(info.getInt(8));
+				temp.setStatus(info.getInt(9));
+				temp.setType(info.getInt(10));
+				reimbs.add(temp);
+
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		//for (Reimburse temp : reimbs) {
+		//    System.out.println(temp);
+		//}
+		return reimbs;
+	}
+
+}

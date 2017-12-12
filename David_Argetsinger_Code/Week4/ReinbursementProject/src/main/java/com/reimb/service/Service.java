@@ -1,5 +1,6 @@
 package com.reimb.service;
-
+// get ready to change reimb instances to riemb log instances  
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import com.reimb.dao.DAO;
@@ -70,4 +71,15 @@ public class Service {
 	{
 		return dao.addReimb(reimb);
 	}
+	
+	public ArrayList<Reimburse> usersRiembs(User u){
+		
+	return dao.getReimbByUser(u);
+	}
+	public ArrayList<Reimburse> adminRiembs(){
+		
+	return dao.getReimb();
+	}
+	
+	 
 }
