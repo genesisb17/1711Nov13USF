@@ -1,0 +1,9 @@
+<div>
+<h1>Submit a reimbursement</h1>
+	<input type="text" id="amount" placeholder="Reimbursement amount"> <br>
+	<input type="text" id="role" placeholder="Role: 1(employee) or 2(Manager))"> <br> <br>
+	<textarea rows="10" cols="70" id="desc">Describe your request</textarea>
+	<br>
+	<button id="request">Submit request</button>
+	<br>
+</div>

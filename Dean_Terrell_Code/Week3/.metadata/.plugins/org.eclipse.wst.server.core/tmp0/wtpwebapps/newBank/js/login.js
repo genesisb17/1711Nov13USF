@@ -12,13 +12,10 @@ window.onload = function(){
 
 function login(){
 	var username = $('#username').val();
-	var password = $('#pass').val();
-	
+	var password = $('#pass').val();	
 	var toSend = [username, password];
-
-	
-	
 	var json = JSON.stringify(toSend);
+	
 	console.log(json);
 	
 	var xhr = new XMLHttpRequest();
@@ -38,7 +35,6 @@ function login(){
 				loadApp();
 				console.log("success!");
 				loadHome();
-				
 			}
 		}
 	};
@@ -66,7 +62,6 @@ function registerView(){
 	xhr.send();
 }
 
-
 function loadApp(){
 	var xhr = new XMLHttpRequest();
 	xhr.onreadystatechange = function(){
@@ -81,20 +76,14 @@ function loadApp(){
 	xhr.send();
 }
 
-
-
-
-
 //function onblur that notifies the user of whether or not their email address is already in use 
 function validateEmail(){
 	$('#register').attr("disabled",false);
 	$('#message').hide();
 	var username = $('#username').val();
-	
 	var toSend = [username, ""];
-
-	
 	var json = JSON.stringify(toSend);
+	
 	var xhr = new XMLHttpRequest();
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState == 4 && xhr.status==200){
@@ -122,6 +111,7 @@ function register(){
 	var ln = $('#ln').val();
 	var uname = $('#username').val();
 	var pass = $('#pass').val();
+	var role = $('#role').val();
 	// add password validation and second input confirmation?
 
 	var user = {
@@ -130,9 +120,8 @@ function register(){
 			lName: ln, 
 			uName: uname, 
 			password: pass,
-			balance: 0
+			role: role
 	};
-	
 	var userJSON = JSON.stringify(user);
 	
 	var xhr = new XMLHttpRequest();
@@ -150,23 +139,46 @@ function register(){
 	window.location.replace('landing.html');
 }
 
-
 /**
  * main page of the application. thinking about creating a pseudo 
  * 	"admin" role based on a userame and password of admin for demo 
  * 	purposes 
  */
-
-
 function loadHome(){
 	var xhr = new XMLHttpRequest();
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState == 4 && xhr.status == 200){
-			document.getElementById('appview').innerHTML = xhr.responseText;				
+			document.getElementById('appview').innerHTML = xhr.responseText;
+			$('#submit').on('click', processReimb);
 		}
 	};	
 	xhr.open("GET", "home.view" , true);
 	xhr.send();
+}
+
+function processReimb(){
+	console.log("Processing Reimbursement");
+	var amount = $('#amount').val();
+	var type = $('#type').val();
+	var description = $('#description').val();
+	// add password validation and second input confirmation?
+
+	var toSend = [amount, type, description];
+	console.log(toSend);
+	var userJSON = JSON.stringify(toSend);
+	
+	var xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState == 4 && xhr.status==200){
+			console.log("added user");
+		}
+	};
+	
+	xhr.open("POST","reimbursement", true);
+	xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+	xhr.send(userJSON);
+	alert("Success! Reimbursement created");
+	loadHome();
 }
 
 function loadProfile(){
@@ -177,9 +189,6 @@ function loadProfile(){
 		if(xhr.readyState == 4 && xhr.status == 200){
 			document.getElementById('appview').innerHTML = xhr.responseText;//partials/profile.html	
 			loadProfileView();
-			
-			//console.log("TESTING IF WE ARE GETTING THE USER" + test);
-		
 		}
 	};
 }

@@ -1,0 +1,16 @@
+<div>
+<h1>Submit a reimbursement</h1>
+	<input type="text" id="amount" placeholder="Reimbursement amount"> <br>
+<select class="form-control">
+    <option value="one">One</option>
+    <option value="two">Two</option>
+    <option value="three">Three</option>
+    <option value="four">Four</option>
+    <option value="five">Five</option>
+</select>
+ <br> <br>
+	<textarea rows="10" cols="70" id="desc">Describe your request</textarea>
+	<br>
+	<button id="request">Submit request</button>
+	<br>
+</div>

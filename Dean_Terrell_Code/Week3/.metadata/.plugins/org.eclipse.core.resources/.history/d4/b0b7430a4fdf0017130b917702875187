@@ -1,0 +1,13 @@
+<div>
+<h1>Submit a reimbursement</h1>
+	<input type="text" id="amount" placeholder="Reimbursement amount"> <br>
+	<select>
+    <option value="" disabled="disabled" selected="selected">Please select a name</option>
+    <option value="1">One</option>
+    <option value="2">Two</option>
+</select> <br> <br>
+	<textarea rows="10" cols="70" id="desc">Describe your request</textarea>
+	<br>
+	<button id="request">Submit request</button>
+	<br>
+</div>

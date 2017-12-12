@@ -14,11 +14,19 @@ public class Service {
 	static DAO dao = new FileDAO();
 
 	public User addUser(User u) {
+		if(isUser(u.getuName())) {
+			System.out.println("In service.addUser(): already a user");
+			return null;
+		}
 		dao.addUser(u);
 		return u;
 	}
 	
 	public User getUser(String uName) {
+		if(!isUser(uName)) {
+			System.out.println("In service.getUser(): not a user");
+			return null;
+		}
 		return dao.getUser(uName);
 	}
 	
@@ -28,10 +36,11 @@ public class Service {
 			String sql = "select * from users where username = ?";
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setString(1, username); // Goes by order of question marks
-			ResultSet info = ps.executeQuery();
+			ResultSet info = ps.executeQuery();	
 			String cmp = "";
 			while(info.next()) {
-				cmp = info.getString(4);
+				cmp = info.getString(2);
+				System.out.println(cmp);
 			}
 			if(username.equals(cmp))
 				return true;

@@ -1,0 +1,12 @@
+<div>
+<h1>Submit a reimbursement</h1>
+	<input type="text" id="amount" placeholder="Reimbursement amount"> <br>
+	<input type="textarea" id="ln" placeholder="Last Name"> <br>
+	<input type="text" id="role" placeholder="Role: 1(employee) or 2(Manager))"> <br>
+	<input type="text" id="username" placeholder="Username"> <br>
+		<div class="alert alert-danger" id="message" ></div>
+	<input type="password" id="pass" placeholder="password"><br>
+	<br>
+	<button id="register">Register</button>
+	<br>
+</div>

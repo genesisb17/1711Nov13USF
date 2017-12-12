@@ -25,7 +25,6 @@ public class GetUserInfoServlet extends HttpServlet {
 		
 		HttpSession session = req.getSession();
 		User user = (User)session.getAttribute("user");
-		System.out.println(user);
 		
 		if(user != null) {
 			ObjectMapper mapper = new ObjectMapper();

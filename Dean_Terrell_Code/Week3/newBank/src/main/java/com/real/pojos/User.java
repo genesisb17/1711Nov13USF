@@ -3,24 +3,24 @@ package com.real.pojos;
 public class User {
 
 	private int id;
-	private String fName;
-	private String lName;
 	private String uName;
 	private String password;
-	private double balance;
+	private String fName;
+	private String lName;
+	private int role;
 	
 	public User() {
 	}
 	
 	public User(int id, String fName, String lName, String uName,
-			String password, double balance) {
+			String password, String email, int role) {
 		super();
 		this.id = id;
 		this.fName = fName;
 		this.lName = lName;
 		this.uName = uName;
 		this.password = password;
-		this.balance = balance;
+		this.role = role;
 	}
 
 	public int getId() {
@@ -29,22 +29,6 @@ public class User {
 
 	public void setId(int id) {
 		this.id = id;
-	}
-
-	public String getfName() {
-		return fName;
-	}
-
-	public void setfName(String fName) {
-		this.fName = fName;
-	}
-
-	public String getlName() {
-		return lName;
-	}
-
-	public void setlName(String lName) {
-		this.lName = lName;
 	}
 
 	public String getuName() {
@@ -63,21 +47,27 @@ public class User {
 		this.password = password;
 	}
 
-	public double getBalance() {
-		return balance;
+	public String getfName() {
+		return fName;
 	}
 
-	public void setBalance(double balance) {
-		this.balance = balance;
+	public void setfName(String fName) {
+		this.fName = fName;
 	}
 
-	public String toFile() {
-		return id + ":" + fName + ":" + lName
-				+ ":" + uName + ":" + password + ":"
-				+ balance + "\n";
+	public String getlName() {
+		return lName;
 	}
-	
-	
-	
-	
+
+	public void setlName(String lName) {
+		this.lName = lName;
+	}
+
+	public int getRole() {
+		return role;
+	}
+
+	public void setRole(int role) {
+		this.role = role;
+	}
 }
