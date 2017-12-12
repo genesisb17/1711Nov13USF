@@ -62,3 +62,28 @@ function add(){
 	console.log("good luck m8 off to the servlet");
 
 }
+/*
+ * jquery version of above 
+ 
+ * $.ajax({
+	type: 'GET',
+	url: 'send-ajax-data.php',
+	dataType: "JSON", // data type expected from server
+	success: function (data) {
+		console.log(data);
+	},
+	error: function() {
+	    console.log('Error: ' + data);
+	}
+});
+
+$.get('send-ajax-data.php').done(function(data) {
+	console.log(data);
+}).fail(function(data) {
+	console.log('Error: ' + data);
+});
+
+switch out .php with servlet i think . do more resarch 
+
+
+*/
