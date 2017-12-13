@@ -1,0 +1,9 @@
+.completed{
+    text-decoration: line-through;
+}
+
+button{
+    float: right;
+    clear: right;
+    
+}

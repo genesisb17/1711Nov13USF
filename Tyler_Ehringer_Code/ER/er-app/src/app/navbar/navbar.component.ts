@@ -22,8 +22,8 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit() {
     this.onLogout();
-    this.account.subscribeLogin((success, user) => this.onLogin(success, user));
-    this.account.subscribeLogout(() => this.onLogout());
+    this.account.subscribeLogin(this.onLogin);
+    this.account.subscribeLogout(this.onLogout);
   }
 
   onLogin = (success: boolean, user: User) => {

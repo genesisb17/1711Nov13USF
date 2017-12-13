@@ -12,6 +12,8 @@ import { LandingComponent } from './landing/landing.component';
 import { RegisterComponent } from './register/register.component';
 import { UserinfoComponent } from './userinfo/userinfo.component';
 import { ReimbursementService } from './reimbursement.service';
+import { ReimbursementsComponent } from './reimbursements/reimbursements.component';
+import { ReimbursementComponent } from './reimbursement/reimbursement.component';
 
 const appRoutes: Routes = [
   { path: "landing", component: LandingComponent },
@@ -29,7 +31,9 @@ const appRoutes: Routes = [
     LoginComponent,
     LandingComponent,
     RegisterComponent,
-    UserinfoComponent
+    UserinfoComponent,
+    ReimbursementsComponent,
+    ReimbursementComponent
   ],
   imports: [
     BrowserModule,

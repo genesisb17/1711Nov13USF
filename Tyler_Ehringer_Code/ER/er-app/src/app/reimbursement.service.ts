@@ -11,10 +11,11 @@ export class ReimbursementService {
   constructor(private http: HttpClient, private account: AccountService) { }
 
   getReimbursements() {
+
     if (this.account.getcurrentUser().role == 1) {
-      return this.http.get<Reimbursement[]>("http://localhost:9999/ER/reimbursements/user")
+      return this.http.get<Reimbursement[]>("http://localhost:9999/ER/reimbursements/user");
     } else {
-      return this.http.get<Reimbursement[]>("http://localhost:9999/ER/reimbursements/all")
+      return this.http.get<Reimbursement[]>("http://localhost:9999/ER/reimbursements/all");
     }
   }
 
