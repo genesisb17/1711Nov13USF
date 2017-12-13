@@ -6,8 +6,8 @@ public class Reimbursement {
 
 	private int reimb_id;
 	private double amount;
-	private Timestamp submitted;
-	private Timestamp resolved;
+	private String submitted;
+	private String resolved;
 	private String description;
 	private int author;
 	private int resolver;
@@ -16,7 +16,7 @@ public class Reimbursement {
 	
 	public Reimbursement() {}
 
-	public Reimbursement(int reimb_id, double amount, Timestamp submitted, Timestamp resolved, String description, int author,
+	public Reimbursement(int reimb_id, double amount, String submitted, String resolved, String description, int author,
 			int resolver, int status, int type) {
 		super();
 		this.reimb_id = reimb_id;
@@ -46,20 +46,20 @@ public class Reimbursement {
 		this.amount = amount;
 	}
 
-	public Timestamp getSubmitted() {
+	public String getSubmitted() {
 		return submitted;
 	}
 
-	public void setSubmitted(Timestamp timestamp) {
-		this.submitted = timestamp;
+	public void setSubmitted(String string) {
+		this.submitted = string;
 	}
 
-	public Timestamp getResolved() {
+	public String getResolved() {
 		return resolved;
 	}
 
-	public void setResolved(Timestamp resolved) {
-		this.resolved = resolved;
+	public void setResolved(String string) {
+		this.resolved = string;
 	}
 
 	public String getDescription() {

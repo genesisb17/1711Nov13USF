@@ -12,9 +12,11 @@ public class EmployeeService {
 	static EmployeeDAO empdao = new EmployeeDAOImpl();
 
 	public User Login(User u) {
-		if(empdao.Login(u) == null)
+		User user = new User();
+		user = empdao.Login(u);
+		if(user == null)
 			return null;
-		return u;
+		return user;
 	}
 	
 	public ArrayList<Reimbursement> viewPastTickets(User u) {
@@ -38,4 +40,26 @@ public class EmployeeService {
 		System.out.println(y.toString());
 		return y;
 	}
+	
+	public int Register(User u) {
+		System.out.println(u.toString());
+		int x = empdao.Register(u);
+		if(x == 0) {
+			return 0;
+		}
+		else {
+			return 1;
+		}
+	}
+	
+	public User Update(User newuser, User olduser) {
+		User u = new User();
+		u = empdao.UpdateInfo(newuser, olduser);
+		if(u == null) 
+			return null;
+		else 
+			return u;
+	}
 }
+
+

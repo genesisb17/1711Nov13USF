@@ -10,7 +10,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.rev.pojos.Reimbursement;
@@ -72,24 +71,12 @@ public class AddReimb extends HttpServlet{
 		User u = new User();
 		u.setUsername(username);
 		
-		r = empservice.addReimbursement(r, u);
-				
-		// No Past Tickets for this user
-		if(r == null)
-			System.out.println("Servlet NULL");
-		// Valid credentials
-		else {
-			HttpSession session = req.getSession();
-			session.setAttribute("user", r);//persist this user to the session to be accessed throughout servlets
-			System.out.println("Success");
-		}
-		
+		r = empservice.addReimbursement(r, u);		
+			
 		PrintWriter out = resp.getWriter();
 		resp.setContentType("application/json");
 				
 		String userJSON = mapper.writeValueAsString(r);		
-		out.write(userJSON);
-		
+		out.write(userJSON);	
 	}
-	
 }

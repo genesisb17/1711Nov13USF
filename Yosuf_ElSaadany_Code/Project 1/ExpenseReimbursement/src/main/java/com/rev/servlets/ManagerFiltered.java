@@ -13,20 +13,21 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.rev.pojos.Reimbursement;
-import com.rev.pojos.User;
-import com.rev.service.EmployeeService;
+import com.rev.DTOs.ManagerTicketInfo;
+import com.rev.pojos.ReimbursementStatus;
+import com.rev.service.ManagerService;
 
-@WebServlet("/ViewPastTickets")
-public class ViewPastTickets extends HttpServlet{
+@WebServlet("/ManagerFiltered")
+public class ManagerFiltered extends HttpServlet{
 
 	private static final long serialVersionUID = 1L;
-	static EmployeeService empservice = new EmployeeService();
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) 
 			throws ServletException, IOException {
-
+		
+		ManagerService ManagerService = new ManagerService();
+		System.out.println(req.toString());
 		// 1. get received JSON data from request
 		BufferedReader br = new BufferedReader(new InputStreamReader(req.getInputStream()));
 		
@@ -34,28 +35,32 @@ public class ViewPastTickets extends HttpServlet{
 		if(br != null) {
 			json = br.readLine();
 		}
-		
+				
 		System.out.println("THE JSON STRING: " + json);
 
 		// 2. initiate jackson mapper
 		ObjectMapper mapper = new ObjectMapper();
-
-		//// 3. Convert received JSON to String array
 		String[] userInfo = mapper.readValue(json, String[].class);
-		String username = userInfo[0];
 		
-		User u = new User();
-		u.setUsername(username);
+		int status = Integer.parseInt(userInfo[0]);		
 		
-		ArrayList<Reimbursement> arr = new ArrayList<Reimbursement>();
+		ReimbursementStatus rs = new ReimbursementStatus();
+		rs.setStatus_id(status);
 		
-		arr = empservice.viewPastTickets(u);
+		ArrayList<ManagerTicketInfo> arr = new ArrayList<ManagerTicketInfo>();
+
+		arr = ManagerService.filterByStatus(rs);
 		
+		/*ArrayList<Reimbursement> arr = new ArrayList<Reimbursement>();
+
+		arr = ManagerService.filterByStatus(rs);*/
+		System.out.println("THE ARRAY LIST: " + arr);			
 		PrintWriter out = resp.getWriter();
 		resp.setContentType("application/json");
-				
+			
 		String userJSON = mapper.writeValueAsString(arr);		
 		out.write(userJSON);
-	}	
+		
+	}
 
 }

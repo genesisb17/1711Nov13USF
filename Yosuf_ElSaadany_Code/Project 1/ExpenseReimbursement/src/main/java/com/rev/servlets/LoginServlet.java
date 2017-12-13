@@ -50,15 +50,9 @@ public class LoginServlet extends HttpServlet{
 		
 		User temp = empservice.Login(u);
 		
-		// Invalid credentials
-		if(temp == null)
-			System.out.println("Login Failed");
-		// Valid credentials
-		else{
-			HttpSession session = req.getSession();
-			session.setAttribute("user", temp);//persist this user to the session to be accessed throughout servlets
-			System.out.println("Success");
-		}
+		HttpSession session = req.getSession();
+		session.setAttribute("user", temp);//persist this user to the session to be accessed throughout servlets
+		
 		PrintWriter out = resp.getWriter();
 		resp.setContentType("application/json");
 		

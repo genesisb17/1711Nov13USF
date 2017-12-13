@@ -3,6 +3,8 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>ERSProject</title>
+
+
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
 	integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb"
@@ -23,13 +25,17 @@
 
 .bg1 {
 	background-image: url('Background1.jpg');
-	background-size: 1800px 900px;
+	/* background-size: 1920px 1080px; */
+	background-size:     cover;                    
+    background-repeat:   no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
 }
 	
 .panel {
-	margin-left: 650px;
-	margin-right: 650px;
-	padding-top: 300px;
+	margin-left: 550px;
+	margin-right: 550px;
+	padding-top: 260px;
 }
 
 .alert {
@@ -45,6 +51,7 @@
 		<div class="panel-heading">
 			 <h3 class="panel-title"><center>Please Sign In</center></h3>
 		</div>
+		<br>
 		<div class="panel-body">
 			<div class="form-group">
 			    <input class="form-control" id = "username" placeholder="Username" name="username" type="text">
@@ -53,12 +60,13 @@
 				<input class="form-control" id = "password" placeholder="Password" name="password" type="password">
 			</div>
 			<input id = "login" class="btn btn-lg btn-success btn-block" type="submit" value="Login">
-			
-			<div class="alert alert-info" id="message" ></div>
+			<input id = "register" class="btn btn-lg btn-success btn-block" type="submit" value="Register">
+			<div class="alert alert-danger" id="message" ></div>
 		</div>
-	</div>
-		
+	</div>	
 	
-	<script src="js/login.js"></script>
+	<script src="js/Login.js"></script>
 </body>
 </html>
+
+

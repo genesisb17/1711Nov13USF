@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Home</title>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
+	integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb"
+	crossorigin="anonymous">
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+	integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+	crossorigin="anonymous"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"
+	integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh"
+	crossorigin="anonymous"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"
+	integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
+	crossorigin="anonymous"></script>
+
+<!-- DataTables Plugin -->
+<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.css">
+  
+<script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.js"></script>
+
+
+<style>
+
+ 	.bg1 {
+		background-image: url('Background.jpg');
+		background-repeat: no-repeat;
+    	background-attachment: fixed;
+    	background-size:     cover;                   
+    	background-position: center center;
+ 	}
+ 	
+	.bg-light {
+		background-color: #239B56  !important;
+	}
+	
+	.navbar-light .navbar-nav .nav-link {
+    	color: rgba(0,0,0,.5);
+    	color: white;
+   	    padding: 14px 16px 0px 9px;
+     	font-weight: bold;
+	}
+	
+	#menu {
+		color: white;
+		font-size: 30px;
+	}
+		
+	#user {
+		width: 120px;
+		height: 120px;
+	}
+	
+	#data {
+		font-size: 20px;
+		text-align: justify;
+	}
+	
+	#img {
+		position: absolute;
+    	left: 50%;
+    	top: 8%;
+    	margin-left: -45px;
+	}
+	
+	#userinfo {
+		position: fixed;
+		top: 32%;
+		left: 50%;
+		margin-top: -60px;
+	 	margin-left: -150px;
+	}
+	
+  	div.panel {
+		/* padding: 0 18px; */
+		max-height: 0;
+		overflow: hidden;
+		transition: max-height 0.2s ease-out;
+		width: 350px;; 
+		/* margin:0 auto; */
+		font-weight: bold;
+	}
+	
+	.panel-title1 {
+		font-size: 17px;
+	}
+	
+  	 #panel {
+		margin-left: 550px;
+		margin-right: 550px;
+		padding-top: 50px;
+	} 	 
+	
+	 #panel1 {
+		margin-left: 650px;
+		margin-right: 650px;
+		/* padding-top: 50px; */
+	}
+
+  	 #wtf {
+		margin-left: 550px;
+		margin-right: 550px;
+		padding-top: 50px;
+	}  	 
+	
+	button.accordion {
+		background-color: #239B56;
+		color: white;
+		cursor: pointer;
+		/* padding: 18px; */
+		width: 100%;
+		border: none;
+		text-align: left;
+		outline: none;
+		font-size: 20px;
+		transition: 0.4s;
+		height: 60px;
+	}
+	
+ 	button.accordion:hover {
+		background-color: #58D68D;		
+	} 
+	
+	.alert {
+		color: red;
+	} 
+	
+	/* #table {
+		margin-left: 200px;
+		margin-right: 200px;
+	} */
+
+</style>
+</head>
+
+<body class = "bg1">
+
+<div id = "navbar">
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+	  <!-- <a id = "menu" class="navbar-brand" href="#">Menu</a>
+	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+	    <span class="navbar-toggler-icon"></span>
+	  </button> -->
+	  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+	    <div class="navbar-nav">
+	      <a class="nav-item nav-link" href="#" id="profile">Profile</a>
+	      <a class="nav-item nav-link" href="#" id="add">Add reimbursement</a>
+	      <a class="nav-item nav-link" href="#" id="past">View past reimbursements</a>
+	      <a class="nav-item nav-link" href="#" id="managerview">View all reimbursements</a>
+	      <a class="nav-item nav-link" href="#" id="managerfilter">Filter reimbursements by status</a>
+	      <!-- <a class="nav-item nav-link" href="#" id="managerprocess">Process reimbursements</a> -->
+	      <a class="nav-item nav-link" href="#" id="logout">Logout</a>
+	    </div>
+	  </div>
+	</nav>
+</div>
+
+<div id="view"></div>
+
+
+<script src = "js/Home.js"></script>
+</body>
+</html>
+
+

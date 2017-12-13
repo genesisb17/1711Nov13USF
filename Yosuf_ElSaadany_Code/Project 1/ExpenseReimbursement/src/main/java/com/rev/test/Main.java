@@ -16,19 +16,23 @@ public class Main {
 	public static void main(String[] args) {
 		
 		//---------------- Testing Users Login Function -------------------//
-/*		System.out.println("Please enter your username:");
-		Scanner u = new Scanner(System.in);
-		String username = u.nextLine();
+		System.out.println("Please enter your username:");
+		Scanner u1 = new Scanner(System.in);
+		String username = u1.nextLine();
 		System.out.println("Please enter you password:");
 		Scanner p = new Scanner(System.in);
 		String password = p.nextLine();
 		User user = new User();
 		user.setUsername(username);
 		user.setPassword(password);
-		if(EmployeeService.Login(user) != null)
+		User u = new User();
+		u = EmployeeService.Login(user);
+		if(u != null) {
 			System.out.println("Login Successful");
+			System.out.println(u.toString());
+		}
 		else
-			System.out.println("Username or Password incorrect");*/
+			System.out.println("Username or Password incorrect");
 
 		
 		//-------------- Testing View Past Tickets Function -----------------//
@@ -82,15 +86,25 @@ public class Main {
 		}*/
 		
 		
-		//--------- Testing View Tickets Filtered by Status Employees ---------//
+		//--------------- Testing Process Reimbursement Tickets ---------------//
 /*		int rows;
 		rows = ManagerService.processRequest(2, 1);
 		if(rows == 0)
 			System.out.println("Row not updated");
 		else
-			System.out.println("Row updated");
-		*/
+			System.out.println("Row updated");*/
+		
 	
+/*		User u = new User();
+		u.setUsername("Testingggg");
+		u.setPassword("1234");
+		u.setFirstname("WORK");
+		u.setLastname("PLEASE");
+		u.setEmail("sssgggg");
+		u.setUserRole(1);
+		int x = EmployeeService.Register(u);
+		*/
+		
 	}
 	
 }

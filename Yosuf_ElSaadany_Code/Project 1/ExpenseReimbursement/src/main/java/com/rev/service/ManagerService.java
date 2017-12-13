@@ -2,6 +2,7 @@ package com.rev.service;
 
 import java.util.ArrayList;
 
+import com.rev.DTOs.ManagerTicketInfo;
 import com.rev.dao.ManagerDAO;
 import com.rev.dao.ManagerDAOImpl;
 import com.rev.pojos.Reimbursement;
@@ -11,7 +12,7 @@ public class ManagerService {
 	
 	static ManagerDAO manDAO = new ManagerDAOImpl();
 
-	public ArrayList<Reimbursement> viewAllTickets() {
+/*	public ArrayList<Reimbursement> viewAllTickets() {
 		ArrayList<Reimbursement> allTickets = new ArrayList<Reimbursement> ();
 		allTickets = manDAO.viewAllTickets();
 		if(allTickets == null) {
@@ -19,10 +20,10 @@ public class ManagerService {
 			return null;
 		}
 		return allTickets;
-	}
+	}*/
 	
-	public ArrayList<Reimbursement> filterByStatus(ReimbursementStatus rs){
-		ArrayList<Reimbursement> filteredTickets = new ArrayList<Reimbursement> ();
+	public ArrayList<ManagerTicketInfo> filterByStatus(ReimbursementStatus rs){
+		ArrayList<ManagerTicketInfo> filteredTickets = new ArrayList<ManagerTicketInfo> ();
 		filteredTickets = manDAO.filterByStatus(rs);
 		if(filteredTickets == null) {
 			System.out.println("NULL");
@@ -31,10 +32,33 @@ public class ManagerService {
 		return filteredTickets;
 	}
 
-	public int processRequest(int status_ID, int Reimb_ID) {
+	public int processRequest(int Status_ID, int Reimb_ID, int Resolver_ID) {
 		int rows;
-		rows = manDAO.processRequest(status_ID, Reimb_ID);
+		rows = manDAO.processRequest(Status_ID, Reimb_ID, Resolver_ID);
 		return rows;
 	}
 	
+	public ArrayList<ManagerTicketInfo> managerTicketInfo(){
+		ArrayList<ManagerTicketInfo> allTickets = new ArrayList<ManagerTicketInfo>();
+		allTickets = manDAO.managerTicketInfo();
+		if(allTickets == null) {
+			return null;
+		}
+		return allTickets;
+	}
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+

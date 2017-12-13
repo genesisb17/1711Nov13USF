@@ -2,6 +2,12 @@ package com.rev.pojos;
 
 public class User {
 	
+	@Override
+	public String toString() {
+		return "User [user_id=" + user_id + ", username=" + username + ", password=" + password + ", firstname="
+				+ firstname + ", lastname=" + lastname + ", email=" + email + ", userRole=" + userRole + "]";
+	}
+
 	private int user_id;
 	private String username;
 	private String password;

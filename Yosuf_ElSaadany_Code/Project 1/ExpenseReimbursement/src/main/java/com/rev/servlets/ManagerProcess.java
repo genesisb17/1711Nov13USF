@@ -4,7 +4,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,19 +12,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.rev.pojos.Reimbursement;
-import com.rev.pojos.User;
-import com.rev.service.EmployeeService;
+import com.rev.service.ManagerService;
 
-@WebServlet("/ViewPastTickets")
-public class ViewPastTickets extends HttpServlet{
+@WebServlet("/process")
+public class ManagerProcess extends HttpServlet{
 
 	private static final long serialVersionUID = 1L;
-	static EmployeeService empservice = new EmployeeService();
 
 	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) 
-			throws ServletException, IOException {
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
+		ManagerService ManagerService = new ManagerService();
 
 		// 1. get received JSON data from request
 		BufferedReader br = new BufferedReader(new InputStreamReader(req.getInputStream()));
@@ -34,28 +31,22 @@ public class ViewPastTickets extends HttpServlet{
 		if(br != null) {
 			json = br.readLine();
 		}
-		
-		System.out.println("THE JSON STRING: " + json);
-
+				
 		// 2. initiate jackson mapper
 		ObjectMapper mapper = new ObjectMapper();
-
-		//// 3. Convert received JSON to String array
-		String[] userInfo = mapper.readValue(json, String[].class);
-		String username = userInfo[0];
+		String[] processed = mapper.readValue(json, String[].class);
 		
-		User u = new User();
-		u.setUsername(username);
+		int reimbID = Integer.parseInt(processed[0]);
+		int status = Integer.parseInt(processed[1]);
+		int resolver_ID = Integer.parseInt(processed[2]);
 		
-		ArrayList<Reimbursement> arr = new ArrayList<Reimbursement>();
-		
-		arr = empservice.viewPastTickets(u);
+		int result = ManagerService.processRequest(status, reimbID, resolver_ID);
 		
 		PrintWriter out = resp.getWriter();
 		resp.setContentType("application/json");
-				
-		String userJSON = mapper.writeValueAsString(arr);		
+			
+		String userJSON = mapper.writeValueAsString(result);		
 		out.write(userJSON);
-	}	
-
+		
+	}
 }
