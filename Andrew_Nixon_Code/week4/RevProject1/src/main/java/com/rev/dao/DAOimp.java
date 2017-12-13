@@ -25,7 +25,7 @@ public class DAOimp implements DAO {
 			ResultSet info = ps.executeQuery();
 
 			while (info.next()) {
-				usr.setUserid(info.getInt(1));
+				usr.setUserID(info.getInt(1));
 				usr.setUsername(info.getString(2));
 				usr.setPassword(info.getString(3));
 				usr.setFirstName(info.getString(4));
@@ -51,7 +51,7 @@ public class DAOimp implements DAO {
 
 			while (rs.next()) {
 				ERSUser temp = new ERSUser();
-				temp.setUserid(rs.getInt(1));
+				temp.setUserID(rs.getInt(1));
 				temp.setUsername(rs.getString(2));
 				temp.setPassword(rs.getString(3));
 				temp.setFirstName(rs.getString(4));
@@ -78,10 +78,10 @@ public class DAOimp implements DAO {
 			while (rs.next()) {
 				r.setReimbID(rs.getInt(1));
 				r.setAmount(rs.getDouble(2));
-				r.setSubmitted(rs.getDouble(3));
-				r.setResolved(rs.getDouble(4));
+				r.setSubmitted(rs.getTimestamp(3));
+				r.setResolved(rs.getTimestamp(4));
 				r.setDescription(rs.getString(5));
-				r.setReceipt(rs.getString(6));
+				r.setReceipt(rs.getBlob(6));
 				r.setAuthor(rs.getInt(7));
 				r.setResolver(rs.getInt(8));
 				r.setStatusID(rs.getInt(9));
@@ -107,10 +107,10 @@ public class DAOimp implements DAO {
 				Reimbursement temp = new Reimbursement();
 				temp.setReimbID(rs.getInt(1));
 				temp.setAmount(rs.getDouble(2));
-				temp.setSubmitted(rs.getDouble(3));
-				temp.setResolved(rs.getDouble(4));
+				temp.setSubmitted(rs.getTimestamp(3));
+				temp.setResolved(rs.getTimestamp(4));
 				temp.setDescription(rs.getString(5));
-				temp.setReceipt(rs.getString(6));
+				temp.setReceipt(rs.getBlob(6));
 				temp.setAuthor(rs.getInt(7));
 				temp.setResolver(rs.getInt(8));
 				temp.setStatusID(rs.getInt(9));
@@ -170,13 +170,13 @@ public class DAOimp implements DAO {
 	}
 
 	public ERSUser addUser(ERSUser ersUser) {
-		ERSUser usr = new ERSUser();		
+		ERSUser usr = ersUser;		
 		try (Connection conn = ConnectionFactory.getInstance().getConnection();){
 			conn.setAutoCommit(false);
 			String sql = "INSERT INTO ERS_USERS(ERS_USERNAME, ERS_PASSWORD, USER_FIRST_NAME, "
 					+ "USER_LAST_NAME, USER_EMAIL, USER_ROLE_ID) VALUES (?, ?, ?, ?, ?, ?)";
 			String[] key = new String[1];
-			key[0] = "U_ID";
+			key[0] = "ERS_USER_ID";
 			
 			PreparedStatement ps = conn.prepareStatement(sql, key);
 			ps.setString(1, usr.getUsername());
@@ -188,7 +188,7 @@ public class DAOimp implements DAO {
 			ps.executeUpdate();
 			ResultSet pk = ps.getGeneratedKeys();
 			while (pk.next()) {
-				usr.setUserid(pk.getInt(1));
+				usr.setUserID(pk.getInt(1));
 			}
 			
 			conn.commit();
@@ -199,8 +199,30 @@ public class DAOimp implements DAO {
 	}
 
 	public Reimbursement addReimbursement(Reimbursement reimbursement) {
-		// TODO Auto-generated method stub
-		return null;
+		Reimbursement reimb = reimbursement;
+		try (Connection conn = ConnectionFactory.getInstance().getConnection();){
+			conn.setAutoCommit(false);
+			String sql = "INSERT INTO ERS_REIMBURSEMENT (REIMB_AMOUNT, REIMB_DESCRIPTION, "
+					+ "REIMB_AUTHOR, REIMB_TYPE_ID) VALUES ( ?, ?, ?, ?)";
+			String[] key = new String[1];
+			key[0] = "REIMB_ID";
+			
+			PreparedStatement ps = conn.prepareStatement(sql, key);
+			ps.setDouble(1, reimb.getAmount());
+			ps.setString(2, reimb.getDescription());
+			ps.setInt(3, reimb.getAuthor());
+			ps.setInt(4, reimb.getTypeID());
+			ps.executeUpdate();
+			ResultSet pk = ps.getGeneratedKeys();
+			while (pk.next()) {
+				reimb.setReimbID(pk.getInt(1)); //setUserID(pk.getInt(1));
+			}
+			
+			conn.commit();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return reimb;
 	}
 
 	public ERSUser getERSUserByUsername(String username) {
@@ -212,7 +234,7 @@ public class DAOimp implements DAO {
 			ResultSet info = ps.executeQuery();
 
 			while (info.next()) {
-				usr.setUserid(info.getInt(1));
+				usr.setUserID(info.getInt(1));
 				usr.setUsername(info.getString(2));
 				usr.setPassword(info.getString(3));
 				usr.setFirstName(info.getString(4));
@@ -238,7 +260,7 @@ public class DAOimp implements DAO {
 			ResultSet info = ps.executeQuery();
 
 			while (info.next()) {
-				usr.setUserid(info.getInt(1));
+				usr.setUserID(info.getInt(1));
 				usr.setUsername(info.getString(2));
 				usr.setPassword(info.getString(3));
 				usr.setFirstName(info.getString(4));
@@ -252,6 +274,36 @@ public class DAOimp implements DAO {
 		}
 		
 		return usr;
+	}
+
+	@Override
+	public ArrayList<Reimbursement> getReimbursementsByAuthorID(int authorID) {
+		ArrayList<Reimbursement> rba = new ArrayList<Reimbursement>();
+		try (Connection conn = ConnectionFactory.getInstance().getConnection();){
+			String sql = "select * from ERS_REIMBURSEMENT where REIMB_AUTHOR = ?";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setInt(1, authorID);
+			ResultSet rs = ps.executeQuery();
+			
+			while (rs.next()) {
+				Reimbursement temp = new Reimbursement();
+				temp.setReimbID(rs.getInt(1));
+				temp.setAmount(rs.getDouble(2));
+				temp.setSubmitted(rs.getTimestamp(3));
+				temp.setResolved(rs.getTimestamp(4));
+				temp.setDescription(rs.getString(5));
+				temp.setReceipt(rs.getBlob(6));
+				temp.setAuthor(rs.getInt(7));
+				temp.setResolver(rs.getInt(8));
+				temp.setStatusID(rs.getInt(9));
+				temp.setTypeID(rs.getInt(10));
+				rba.add(temp);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return rba;
 	}
 
 	/*

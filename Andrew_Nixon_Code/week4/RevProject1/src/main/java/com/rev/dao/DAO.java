@@ -24,5 +24,7 @@ public interface DAO {
 	//public UserRole addRole(UserRole userRole);
 	public ERSUser getERSUserByUsername(String username);
 	public ERSUser getERSUserByUsernameAndPassword(String username, String password);
+	public ArrayList<Reimbursement> getReimbursementsByAuthorID(int authorID);
+
 
 }

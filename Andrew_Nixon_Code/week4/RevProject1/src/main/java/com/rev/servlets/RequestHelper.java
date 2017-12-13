@@ -9,8 +9,17 @@ import com.rev.pojos.ERSUser;
 public class RequestHelper {
 	
 	public String process(HttpServletRequest req, HttpServletResponse resp) {
-		System.out.println("req.getRequestURI() " + req.getRequestURI());
+		System.out.println("in RequestHelper.process method");
 		switch (req.getRequestURI()) {
+		//home.view
+		case "/RevProject1/home.view": {
+			System.out.println("process = home");
+			return "home.html";
+		}
+		case "/RevProject1/registerUser.view": {
+			System.out.println("process = register");
+			return "registerUser.html";
+		}
 		case "/RevProject1/main.view":{
 			System.out.println("process = main");
 			return "main.html";
@@ -19,15 +28,17 @@ public class RequestHelper {
 			System.out.println("process = userInfo");
 			HttpSession session = req.getSession();
 			ERSUser user = (ERSUser) session.getAttribute("user");
-			System.out.println("user.getRoleID() = " + user.getRoleID());
 			//return "userInfo.html";
-			
-			if (user.getRoleID() == 21) {
-				return "employeePage.html";
-			}
-			else if (user.getRoleID() == 22) {
-				return "fManagerPage.html";				
-			}
+			if(user != null) {
+				System.out.println("user.getRoleID() = " + user.getRoleID());
+				
+				if (user.getRoleID() == 21) {
+					return "employeePage.html";
+				}
+				else if (user.getRoleID() == 22) {
+					return "fManagerPage.html";				
+				}
+			}			
 			else {
 				resp.setStatus(418);
 			}

@@ -37,7 +37,8 @@ public class UserLoginServlet extends HttpServlet {
 		ERSUser temp = service.checkUsernameExists(username); // get user by uname
 		System.out.println(temp.toString());
 		
-		if(temp.getUserid() == 0) {
+		if(temp.getUserID() == 0) {
+			temp = null;
 			System.out.println("invalid username");
 		}
 		//else if(temp.getPassword() != password) {
