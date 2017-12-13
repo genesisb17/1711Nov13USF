@@ -1,12 +1,12 @@
 package com.rev.pojos;
 
-import java.sql.Date;
+import java.sql.Timestamp;
 
 public class Ticket {
 	int ticket_ID;
-	int amount;
-	Date submitted;
-	Date resolved;
+	double amount;
+	Timestamp submitted;
+	Timestamp resolved;
 	String description;
 	int author_ID;
 	int resolver_ID;
@@ -17,7 +17,7 @@ public class Ticket {
 		super();
 	}
 
-	public Ticket(int ticket_ID, int amount, Date submitted, Date resolved, String description, int author_ID,
+	public Ticket(int ticket_ID, int amount, Timestamp submitted, Timestamp resolved, String description, int author_ID,
 			int resolver_ID, int status_ID, int type_ID) {
 		super();
 		this.ticket_ID = ticket_ID;
@@ -39,7 +39,7 @@ public class Ticket {
 		this.ticket_ID = ticket_ID;
 	}
 
-	public int getAmount() {
+	public double getAmount() {
 		return amount;
 	}
 
@@ -47,19 +47,19 @@ public class Ticket {
 		this.amount = amount;
 	}
 
-	public Date getSubmitted() {
+	public Timestamp getSubmitted() {
 		return submitted;
 	}
 
-	public void setSubmitted(Date submitted) {
+	public void setSubmitted(Timestamp submitted) {
 		this.submitted = submitted;
 	}
 
-	public Date getResolved() {
+	public Timestamp getResolved() {
 		return resolved;
 	}
 
-	public void setResolved(Date resolved) {
+	public void setResolved(Timestamp resolved) {
 		this.resolved = resolved;
 	}
 

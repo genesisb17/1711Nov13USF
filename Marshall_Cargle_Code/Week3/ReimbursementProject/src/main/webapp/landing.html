@@ -39,9 +39,58 @@
       <li class="nav-item">
         <a class="nav-link" href="#">Logout</a>
       </li>
+      <li class="nav-item" mr-sm-2>
+        <a class="nav-link" href="#">Name</a>
+      </li>
     </ul>
+    <span class="navbar-text" id="name"></span>
   </div>
+  
 </nav>
+
+<div id="fade" class="overlay"></div>
+<button type="button" class="btn btn-primary text" style="float: right;">Submit a Ticket</button>
+<div class="popup">
+  <div>
+  	<!-- input stuff and submit buttons stuff goes here -->
+    <h3 style="text-align:center">Submit a Ticket</h3>
+    <form style="text-align:center">
+    <br>
+    <input type="text" class="form-control" placeholder="Amount" >
+    <br>
+    <div class="form-group">
+    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Description of Ticket"></textarea>
+  </div>
+    <br>
+<div class="form-check form-check-inline">
+  <label class="form-check-label">
+    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> Lodging
+  </label>
+</div>
+<div class="form-check form-check-inline">
+  <label class="form-check-label">
+    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> Travel
+  </label>
+</div>
+<div class="form-check form-check-inline">
+  <label class="form-check-label">
+    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3"> Food
+  </label>
+</div>
+<div class="form-check form-check-inline">
+  <label class="form-check-label">
+    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> Other
+  </label>
+</div>
+
+<br>
+<br>
+<button type="button" class="btn btn-primary text">Submit</button>
+    
+    </form>
+  </div>
+  <a class='popup-close' href="#">Close</a>
+</div>
 <script src = "js/landing.js"></script>
 </body>
 </html>

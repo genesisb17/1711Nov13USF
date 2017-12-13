@@ -34,15 +34,12 @@ public class RegisterServlet extends HttpServlet {
 		mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
 		
 		User u = mapper.readValue(json, User.class);
-		//u = service.addUser(u);
-		System.out.println(service.addUser(u));
-		if(true) {
-			resp.setContentType("text/html");
-		    PrintWriter out = resp.getWriter();
-
-		    out.println("alert(\"invalid Username\")");
-		}
-		// redirect to login page? display successful login page then request login page? 
-		
+		u=service.addUser(u);
+		PrintWriter out = resp.getWriter();
+		resp.setContentType("application/json");
+		//u.setPassword(null);
+		String userJSON=mapper.writeValueAsString(u);
+		System.out.println(userJSON.toString());
+		out.write(userJSON);
 	}
 }

@@ -17,7 +17,7 @@ import com.rev.pojos.User;
 import com.rev.service.Service;
 
 @WebServlet("/login")
-public class LoginServlet extends HttpServlet{
+public class LoginServlet extends HttpServlet {
 	static Service service = new Service();
 
 	@Override
@@ -39,21 +39,14 @@ public class LoginServlet extends HttpServlet{
 		String[] userInfo = mapper.readValue(json, String[].class);
 		String username = userInfo[0];
 		String password = userInfo[1];
-		
+
 		User temp = service.getUser(username, password);
-		System.out.println(temp.toString());
-		if (temp == null) { // if invalid user, obj = null
-			System.out.println("temp is null");
-		} else if (!temp.getPassword().equals(password)) { // if invalid pw, id = 0;
-			temp.setUser_ID(0);;
-			temp.setPassword(null); // set all user fields to null;
-		} else {// valid credentials
+		if (temp != null) {
 			HttpSession session = req.getSession();
 			session.setAttribute("user", temp);// persist this user to the session to be accessed throughout servlets
 		}
 		PrintWriter out = resp.getWriter();
 		resp.setContentType("application/json");
-
 		String userJSON = mapper.writeValueAsString(temp);
 		System.out.println("JSON: " + userJSON);
 		out.write(userJSON);

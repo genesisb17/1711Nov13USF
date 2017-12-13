@@ -1,6 +1,7 @@
 window.onload = function() {
 	$('#register').on('click', register);
 	$('#loginButton').on('click', login);
+	console.log("testing");
 }
 
 function register() {
@@ -20,18 +21,26 @@ function register() {
 		role : 0
 	};
 	var userJSON = JSON.stringify(user);
-
+	alert("testing");
 	var xhr = new XMLHttpRequest();
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState == 4 && xhr.status == 200) {
-			console.log("added user");
+			var user = JSON.parse(xhr.responseText);
+			if(user==null){
+				$('#notice').removeClass('alert alert-success').addClass('alert alert-danger');
+				$('#header').html("User already exists");
+				$('#notice').show();
+			}else{
+				$('#notice').removeClass('alert alert-danger').addClass('alert alert-success');
+				$('#notice').show();
+				$('#header').html("Success");
+			}
 		}
 	};
-
 	xhr.open("POST", "register", true);
 	xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	xhr.send(userJSON);
-	$('#message').hide();
+	alert(user.password);
 	//window.location.replace('landing.html');
 }
 
@@ -52,18 +61,14 @@ function login(){
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState == 4 && xhr.status==200){
 			console.log("in xhr callback" + xhr.responseText);
-			/*var user = JSON.parse(xhr.responseText);
-			$('#message').show();
-			if(user == null){
-				$('#message').html("Invalid") ;
+			var user = JSON.parse(xhr.responseText);
+			if(user==null){
+				$('#notice').removeClass('alert alert-success').addClass('alert alert-danger');
+				$('#header').html("Invalid Login");
+				$('#notice').show();
+			}else{
+				window.location.replace('landing.html');
 			}
-			else{
-				$('#message').html(`Welcome ${user.firstname}`) ;
-				loadApp()
-				console.log("success!");
-				loadHome();
-				
-			}*/
 		}
 	};
 	
@@ -72,7 +77,7 @@ function login(){
 	xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 	console.log("AFTER HEADER " + xhr.readyState);
 	xhr.send(json);
-	window.location.replace('landing.html');
+	
 }
 
 var $loginMsg = $(".loginMsg"),
