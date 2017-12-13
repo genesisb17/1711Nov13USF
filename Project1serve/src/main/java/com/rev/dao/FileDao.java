@@ -213,6 +213,28 @@ public class FileDao implements DAO
 	}
 	
 	@Override
+	public String getUserById(int i) 
+	{
+
+		try (Connection conn = ConnectionFactory.getInstance().getConnection()) 
+		{
+			String sql = "select username from ERS_USERS where U_ID = ?";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setInt(1, i);
+			ResultSet info = ps.executeQuery();
+			while (info.next()) 
+			{
+				return info.getString(1);
+			}
+		} 
+		catch (SQLException e) 
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+	@Override
 	public String getRStatus(int i) {
 
 		try (Connection conn = ConnectionFactory.getInstance().getConnection()) {

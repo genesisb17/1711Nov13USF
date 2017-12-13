@@ -23,11 +23,7 @@ public class RunErs
 		//service.adders_users("test1", "test1", "test1", "test1", "test1", 7);//might need work
 		//System.out.println(service.geters_users("test1", "test1").getUid());
 		//service.addReimbursements(100.20,"testing1",12,22,22,12);
-		System.out.println(service.getReimbursements("test1", "test1").get(1).getReimb_Amount());
-
-
-		
-		
+		System.out.println(service.getUserById(34));		
 //not working
 		
 		

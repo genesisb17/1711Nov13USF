@@ -22,7 +22,7 @@ function loadHome()
 			document.getElementById('view').innerHTML = xhr.responseText;
 		}
 	}	
-	xhr.open("POST", "getHomeView" , true);
+	xhr.open("GET", "getHomeView" , true);
 	xhr.send();
 }
 

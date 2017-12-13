@@ -1,14 +1,18 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <section>
   <header class="header">
+      <app-root></app-root>
     <h1>Todos</h1>
     <input class = "new-todo" placeholder="what needs to be don??" autofocus=""
     [(ngModel)]="newTodo.title"
     (keyup.enter)="addTodo()">
   </header>
+
   <section class = "main" *ngIf="todos.length>0">
     <ul>
-      <li*ngFor="let todo of todos"></li>
+      <li*ngFor="let todo of todos">
+        {{todo.title}}
+      </li>
     </ul>
   </section>
 </section>

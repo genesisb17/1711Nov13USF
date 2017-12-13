@@ -24,6 +24,7 @@ public class viewrservlet extends HttpServlet
 	{
 		HttpSession session = request.getSession(true);
 		User u = (User)session.getAttribute("user");
+		User u1 = (User)session.getAttribute("user");
 		ArrayList <R> a = new ArrayList<R>();
 		a = service.getReimbursements(u.getUsername(), u.getPassword());
 
@@ -53,6 +54,23 @@ public class viewrservlet extends HttpServlet
 				"	integrity=\"sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ\"\r\n" + 
 				"	crossorigin=\"anonymous\"></script>");
 
+		out.println(
+				"		<form name =\"viewr\" action =\"viewr\" method=\"Post\">\r\n" + 
+				"		Filter results\r\n" + 
+				"		<input class = \"form-control\" type = \"text\" name = \"filter\" id = \"filter\">\r\n" + 
+				"		<input class = \"form-control\" type =\"submit\">\r\n" + 
+				"		</form>"
+				   );
+		if(u.getUser_Role_Id()==13)
+		{
+		out.println("what is the id number you want to change??<br>");
+		out.println("<form name =\"update\" action =\"update\" method=\"Post\">");
+		out.println("<input class =\"form-control\" type=\"text\" name=\"rid\" id =\"rid\">");
+		out.println("<br>status<br>");
+		out.println("<input class =\"form-control\" type=\"text\" name=\"status\" id =\"status\">");
+		out.println("<input class =\"form-control\"  type =\"submit\">");
+		out.println("</form>");
+		}
 		if(u.getUser_Role_Id()==13)
 		{
 						out.println("<table style=\"width:100%\" class=\"table table-bordered\">");
@@ -62,11 +80,8 @@ public class viewrservlet extends HttpServlet
 					"        <th>Reimb ID</th>\r\n" + 
 					"        <th>amount</th>\r\n" + 
 					"        <th>Description</th>\r\n" + 
-					"        <th>User ID</th>\r\n" + 
-					"        <th>Status</th>\r\n" + 
 					"        <th>Username</th>\r\n" + 
-					"        <th>Firstname</th>\r\n" + 
-					"        <th>Lastname</th>\r\n" + 
+					"        <th>Status</th>\r\n" + 
 					"      </tr>\r\n" + 
 					"    </thead>"
 					);
@@ -87,12 +102,13 @@ public class viewrservlet extends HttpServlet
 					out.println(a.get(i).getDescription());
 					out.println("</td>");
 					out.println("<td>");
-					out.println(a.get(i).getU_ID());
+					out.println(service.getUserById(a.get(i).getU_ID()));
 					out.println("</td>");
 					out.println("<td>");
 					out.println(s);
 					out.println("</td>");
-					out.println("</tr>");				}
+					out.println("</tr>");
+				}
 				else
 				{
 					test = service.getRStatus(a.get(i).getREIMB_STATUS_ID());
@@ -110,7 +126,7 @@ public class viewrservlet extends HttpServlet
 						out.println(a.get(i).getDescription());
 						out.println("</td>");
 						out.println("<td>");
-						out.println(a.get(i).getU_ID());
+						out.println(service.getUserById(a.get(i).getU_ID()));
 						out.println("</td>");
 						out.println("<td>");
 						out.println(s);
@@ -118,15 +134,9 @@ public class viewrservlet extends HttpServlet
 						out.println("</tr>");
 					}
 				}
+
 			}
 			out.println("</table>");
-			out.println("what is the id number you want to change??<br>");
-			out.println("<form name =\"update\" action =\"update\" method=\"Post\">");
-			out.println("<input type=\"text\" name=\"rid\" id =\"rid\">");
-			out.println("<br>status<br>");
-			out.println("<input type=\"text\" name=\"status\" id =\"status\">");
-			out.println("<input type =\"submit\">");
-			out.println("</form>");
 		}
 		else
 		{
@@ -143,39 +153,64 @@ public class viewrservlet extends HttpServlet
 						"        <th>Reimb ID</th>\r\n" + 
 						"        <th>amount</th>\r\n" + 
 						"        <th>Description</th>\r\n" + 
-						"        <th>User ID</th>\r\n" + 
+						"        <th>Username</th>\r\n" + 
 						"        <th>Status</th>\r\n" + 
 						"      </tr>\r\n" + 
 						"    </thead>"
 						);
 				for(i=0;i<a.size();i++)
 				{
-					out.println("<tr>");
-					s = service.getRStatus(a.get(i).getREIMB_STATUS_ID());
-					out.println("<td>");
-					out.println(a.get(i).getReimb_id());
-					out.println("</td>");
-					out.println("<td>");
-					out.println(a.get(i).getReimb_Amount());
-					out.println("</td>");
-					out.println("<td>");
-					out.println(a.get(i).getDescription());
-					out.println("</td>");
-					out.println("<td>");
-					out.println(a.get(i).getU_ID());
-					out.println("</td>");
-					out.println("<td>");
-					out.println(s);
-					out.println("</td>");
-					out.println("</tr>");
+					if(filter.equals(""))
+					{
+						s = service.getRStatus(a.get(i).getREIMB_STATUS_ID());
+						out.println("<tr>");
+						out.println("<td>");
+						out.println(a.get(i).getReimb_id());
+						out.println("</td>");
+						out.println("<td>");
+						out.println(a.get(i).getReimb_Amount());
+						out.println("</td>");
+						out.println("<td>");
+						out.println(a.get(i).getDescription());
+						out.println("</td>");
+						out.println("<td>");
+						out.println(service.getUserById(a.get(i).getU_ID()));
+						out.println("</td>");
+						out.println("<td>");
+						out.println(s);
+						out.println("</td>");
+						out.println("</tr>");
+					}
+					else
+					{
+						test = service.getRStatus(a.get(i).getREIMB_STATUS_ID());
+						if(filter.equals(test))
+						{
+							out.println("<tr>");
+							s = service.getRStatus(a.get(i).getREIMB_STATUS_ID());
+							out.println("<td>");
+							out.println(a.get(i).getReimb_id());
+							out.println("</td>");
+							out.println("<td>");
+							out.println(a.get(i).getReimb_Amount());
+							out.println("</td>");
+							out.println("<td>");
+							out.println(a.get(i).getDescription());
+							out.println("</td>");
+							out.println("<td>");
+							out.println(service.getUserById(a.get(i).getU_ID()));
+							out.println("</td>");
+							out.println("<td>");
+							out.println(s);
+							out.println("</td>");
+							out.println("</tr>");
+						}
+					}
 				}
 				out.println("</table>");
-	/*			out.println("what is the id number you want to change??<br>");
-				out.println("<form name =\"update\" action =\"update\" method=\"Post\">");
-				out.println("<input type=\"text\" name=\"filter\" id =\"f\">");
-				out.println("<input type =\"submit\">");
-				out.println("</form>");*/
 			}
 		}
+
+
 	}
-}
+	}

@@ -5,6 +5,7 @@
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
+			<item value="rid"/>
 			<item value="get"/>
 			<item value="arraylist"/>
 			<item value="status"/>
@@ -12,7 +13,6 @@
 			<item value="findma"/>
 			<item value="reimbursem"/>
 			<item value="service"/>
-			<item value="{"/>
 		</list>
 		<list key="replacehistory">
 		</list>

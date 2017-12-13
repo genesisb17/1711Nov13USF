@@ -9,6 +9,10 @@ import com.rev.pojo.User;
 public class Service 
 {
 	static DAO dao = new FileDao();
+	public String getUserById(int i)
+	{
+		return dao.getUserById(i);
+	}
 	public int findmax1()
 	{
 		return dao.findmax1();
