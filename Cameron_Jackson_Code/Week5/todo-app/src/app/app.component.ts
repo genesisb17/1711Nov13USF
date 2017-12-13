@@ -21,11 +21,19 @@ export class AppComponent {
     this.newTodo = new Todo();
   }
 
+  onAddTodo(todo: Todo) {
+    this.todoDataService.addTodo(todo);
+  }
+
   get todos() {
     return this.todoDataService.getAllTodos();
   }
 
-  toggleTodoComplete(todo) {
+  onToggleTodoComplete(todo: Todo) {
     this.todoDataService.toggleTodoComplete(todo);
+  }
+
+  onRemoveTodo(todo: Todo) {
+    this.todoDataService.deleteTodo(todo);
   }
 }

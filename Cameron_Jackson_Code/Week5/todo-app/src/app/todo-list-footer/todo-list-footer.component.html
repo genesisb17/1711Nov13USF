@@ -1,0 +1,8 @@
+<footer *ngIf="todos.length > 0">
+  <h4>
+    <strong>{{todos.length}}</strong> {{todos.length == 1 ? 'item': 'items'}}
+  </h4>
+  <h4>
+    <strong>{{completed()}}</strong> {{completed() == 1 ? 'item completed': 'items completed'}}
+  </h4>
+</footer>

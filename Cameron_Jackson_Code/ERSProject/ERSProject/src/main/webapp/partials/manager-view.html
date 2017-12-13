@@ -5,16 +5,24 @@
             <h3>Reimbursements</h3>
             <!-- <button class="btn btn-link" id=""></button> -->
         </div>
-        <div class="col-3 text-right">
-            <button class="btn btn-link" id="create-ticket">Create Ticket</button>
-        </div>
     </div>
     <hr/>
     <div id="reimb-table-manager"></div>
     <br>
-    <h3>Tickets created by you:</h3>
+    <div class="row justify-content-between">
+        <div class="col-4">
+            <h3>Your Tickets</h3>
+            <!-- <button class="btn btn-link" id=""></button> -->
+        </div>
+        <div class="col-3 text-right">
+            <button class="btn btn-link" data-toggle="modal" 
+            data-target="#create-ticket-modal" 
+            id="create-ticket">Create Ticket</button>
+        </div>
+    </div>
     <hr/>
     <div id="reimb-table"></div>
     <br>
 </div>
-<br><br>
+<br>
+<br>

@@ -1,0 +1,9 @@
+<section class="main" *ngIf="todos.length > 0">
+  <ul>
+    <li *ngFor="let todo of todos" [class.completed]="todo.complete">
+      <input type="checkbox" (click)="onToggleTodoComplete(todo)" [checked]="todo.complete">
+      <label>{{todo.title}}</label>
+      <button (click)="onRemoveTodo(todo)">x</button>
+    </li>
+  </ul>
+</section>
