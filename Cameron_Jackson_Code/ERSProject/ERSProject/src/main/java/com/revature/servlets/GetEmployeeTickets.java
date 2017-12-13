@@ -63,7 +63,7 @@ public class GetEmployeeTickets extends HttpServlet {
 						r.getDescription(), 
 						authorStr, 
 						resolverStr, 
-						r.getStatusId(), 
+						service.getStatus(r.getStatusId()), 
 						service.getType(r.getTypeId()));
 				//				rdto.setReimb(r);
 				//				rdto.setAuthor(authorStr);
@@ -78,20 +78,12 @@ public class GetEmployeeTickets extends HttpServlet {
 		ObjectMapper mapper = new ObjectMapper();
 		if (!tickets.isEmpty()) {
 			json = new StringBuilder();
-			json.append("{\"data\":["); // have to make a custom json string since an ArrayList can't be converted easily
+			json.append("["); // have to make a custom json string since an ArrayList can't be converted easily
 			for (ReimbDTO t: tickets) {
-				json.append("{\"reimbursements\":");
 				json.append(mapper.writeValueAsString(t));
 				json.append(",");
-				json.append("\"r_status\":");
-				json.append(mapper.writeValueAsString(ReimbursementStatus.valueOf(service.getStatus(t.getStatus()))));
-				json.append("},");
 			}
-			json.replace(json.lastIndexOf(","), json.length(), "],");
-			json.append("\"options\":{\"reimbursements.status\":[");
-			json.append(mapper.writeValueAsString(ReimbursementStatus.PENDING)+",");
-			json.append(mapper.writeValueAsString(ReimbursementStatus.APPROVED)+",");
-			json.append(mapper.writeValueAsString(ReimbursementStatus.DENIED)+"]}}");
+			json.replace(json.lastIndexOf(","), json.length(), "]");
 		}
 //		System.out.println(json);
 		PrintWriter out = resp.getWriter();

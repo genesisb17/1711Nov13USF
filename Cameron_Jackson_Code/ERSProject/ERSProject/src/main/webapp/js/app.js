@@ -468,40 +468,78 @@ function getAccountInfo() {
     xhr.send();
 }
 
+
+
 function getEmployeeTicketInfo() {
-    console.log("getEmployeeTickets");
-    $('#reimb-table').DataTable({
-        ajax: '/ERSProject/getemployeetickets',
-        columns: [
-            { data: "reimbursements.reimbId" },
-            { data: "r_status.name", editField: "reimbursements.status" },
-            { data: "reimbursements.type" },
-            { data: "reimbursements.amount" },
-            { data: "reimbursements.description" },
-            { data: "reimbursements.submitted" },
-            { data: "reimbursements.resolved" },
-            { data: "reimbursements.resolver" }
+    $("#reimb-table").tabulator({
+        layout:'fitColumns',
+        selectable:1,
+        columns:[
+            {title:"Ticket #:", field:"reimbId"},
+            {title:"Status:", field:"status"},
+            {title:"Type:", field:"type"},
+            {title:"Amount:", field:"amount"},
+            {title:"Description:", field:"description"},
+            {title:"Submitted:", field:"submitted"},
+            {title:"Resolved:", field:"resolved"},
+            {title:"Resolved by:", field:"resolver"}
         ]
     });
+    $("#reimb-table").tabulator("setData", '/ERSProject/getemployeetickets');
+    // console.log("getEmployeeTickets");
+}
+
+function resolveTicket(id, status) {
+    
 }
 
 function getAllTicketInfo() {
-    console.log("getEmployeeTickets");
-    $('#reimb-table').DataTable({
-        select: true,
-        ajax: '/ERSProject/getemployeetickets',
-        columns: [
-            { data: "reimbursements.reimbId" },
-            { data: "reimbursements.author" },
-            { data: "r_status.name", editField: "reimbursements.status" },
-            { data: "reimbursements.type" },
-            { data: "reimbursements.amount" },
-            { data: "reimbursements.description" },
-            { data: "reimbursements.submitted" },
-            { data: "reimbursements.resolved" },
-            { data: "reimbursements.resolver" }
+    var statusEditor = function(cell, onRendered, success, cancel){
+        var editor = $(`
+        <select>
+        <option value=''></option>
+        <option value='pending'>PENDING</option>
+        <option value='approved'>APPROVED</option>
+        <option value='denied'>DENIED</option>
+        </select>
+        `);
+
+        editor.css({
+            "padding":"3px",
+            "width":"100%",
+            "box-sizing":"border-box",
+        });
+
+        editor.val(cell.getValue());
+        onRendered(function(){
+          editor.focus();
+          editor.css("height","100%");
+        });
+
+        var row = cell.getRow().getData();
+        console.log(row.reimbId);
+        editor.on("change blur", function(e){
+            // success(editor.val());
+
+        });
+        return editor;
+    };
+    $("#reimb-table").tabulator({
+        layout:'fitColumns',
+        selectable:1,
+        columns:[
+            {title:"Ticket #:", field:"reimbId"},
+            {title:"Author:", field:"author"},
+            {title:"Status:", field:"status", editor:statusEditor},
+            {title:"Type:", field:"type"},
+            {title:"Amount:", field:"amount"},
+            {title:"Description:", field:"description"},
+            {title:"Submitted:", field:"submitted"},
+            {title:"Resolved:", field:"resolved"},
+            {title:"Resolved by:", field:"resolver"}
         ]
     });
+    $("#reimb-table").tabulator("setData", '/ERSProject/getemployeetickets');
 }
 
 // function getEmployeeTicketInfo() {
