@@ -1,1 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
+.completed{
+    text-decoration: line-through;
+}
+ul, li{
+    text-align: center;
+}
+button{
+    float: right;
+    clear: both;
+}   
