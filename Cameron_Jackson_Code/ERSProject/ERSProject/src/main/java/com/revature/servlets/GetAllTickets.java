@@ -17,28 +17,31 @@ import com.revature.pojos.Reimbursement;
 import com.revature.pojos.Users;
 import com.revature.service.ERSService;
 
-@WebServlet("/getemployeetickets")
-public class GetEmployeeTickets extends HttpServlet {
+@WebServlet("/getalltickets")
+public class GetAllTickets extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+			
 		ERSService service = new ERSService();
-
 		HttpSession session = req.getSession();
 		Users u = (Users)session.getAttribute("user");
 		ArrayList<Reimbursement> reimbs = new ArrayList<>();
-		if (u != null) {
-			int userId = u.getUserId();
-			reimbs = service.getPastTickets(userId);
-		}
+		// Check if user is a manager, if so then return all tickets
+		// otherwise return their past tickets
+		if (u.getRoleId() == 1)
+			reimbs = null;
+		else if (u.getRoleId() == 2)
+			reimbs = service.getAllTickets();
+
 		// add information to DTO with author, resolver, status, and type info
 		ArrayList<ReimbDTO> tickets = new ArrayList<>();
 		if (reimbs != null) {
 //			int count = 1;
 			for (Reimbursement r: reimbs) {
-				//				System.out.println(r);
+//				System.out.println(r);
 				Users resolver = service.getUser(r.getResolver());
 				Users author = service.getUser(r.getAuthor());
 //				System.out.println(resolver);
@@ -50,15 +53,18 @@ public class GetEmployeeTickets extends HttpServlet {
 				if (author != null)
 					authorStr = author.getFirstName() + " " + author.getLastName();
 //				System.out.println(count++ + ": " + r);
-				ReimbDTO rdto = new ReimbDTO(r.getReimbId(), r.getAmount(), r.getSubmitted(), 
-						r.getResolved(), r.getDescription(), authorStr, resolverStr, 
-						service.getStatus(r.getStatusId()), service.getType(r.getTypeId()));
-				//				rdto.setReimb(r);
-				//				rdto.setAuthor(authorStr);
-				//				rdto.setResolver(resolverStr);
-				//				rdto.setStatus(service.getStatus(r.getStatusId()));
-				//				rdto.setType(service.getType(r.getTypeId()));
-				tickets.add(rdto);
+				if (!r.getAuthor().equals(u.getUserId()))  {
+					ReimbDTO rdto = new ReimbDTO(r.getReimbId(), r.getAmount(), r.getSubmitted(), 
+							r.getResolved(), r.getDescription(), authorStr, resolverStr, 
+							service.getStatus(r.getStatusId()), service.getType(r.getTypeId()));
+					//				rdto.setReimb(r);
+					//				rdto.setAuthor(authorStr);
+					//				rdto.setResolver(resolverStr);
+					//				rdto.setStatus(service.getStatus(r.getStatusId()));
+					//				rdto.setType(service.getType(r.getTypeId()));
+					tickets.add(rdto);
+				}
+
 			}
 		}
 
@@ -73,7 +79,7 @@ public class GetEmployeeTickets extends HttpServlet {
 			}
 			json.replace(json.lastIndexOf(","), json.length(), "]");
 		}
-//		System.out.println(json);
+		System.out.println(json);
 		PrintWriter out = resp.getWriter();
 		resp.setContentType("application/json");
 		out.println(json);		

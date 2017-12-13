@@ -22,6 +22,8 @@ import com.revature.types.ReimbursementStatus;
 @WebServlet("/resolveticket")
 public class ResolveTicketServlet extends HttpServlet {
 	
+	private static final long serialVersionUID = 1L;
+
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		ERSService service = new ERSService();

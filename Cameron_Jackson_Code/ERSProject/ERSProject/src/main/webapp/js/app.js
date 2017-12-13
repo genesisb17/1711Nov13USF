@@ -477,13 +477,13 @@ function getAccountInfo() {
 function getEmployeeTicketInfo() {
     $("#reimb-table").tabulator({
         index: "reimbId",
-        layout: 'fitColumns',
+        layout: 'fitDataFill',
         selectable: 1,
         columns: [
             { title: "Ticket #:", field: "reimbId" },
             { title: "Status:", field: "status" },
             { title: "Type:", field: "type" },
-            { title: "Amount:", field: "amount" },
+            { title: "Amount:", field: "amount", formatter: "money" },
             { title: "Description:", field: "description" },
             { title: "Submitted:", field: "submitted" },
             { title: "Resolved:", field: "resolved" },
@@ -499,7 +499,7 @@ function resolveTicket(id, status) {
     var xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function() {
         if (xhr.readyState == 4 && xhr.status == 200) {
-            $("#reimb-table-manager").tabulator("setData", '/ERSProject/getemployeetickets');
+            $("#reimb-table-manager").tabulator("setData", '/ERSProject/getalltickets');
         }
     }
     xhr.open("POST", "resolveticket", true);
@@ -523,6 +523,7 @@ function getAllTicketInfo() {
             "box-sizing": "border-box",
         });
 
+        var currentVal = cell.getValue();
         editor.val(cell.getValue());
         onRendered(function () {
             editor.focus();
@@ -533,21 +534,14 @@ function getAllTicketInfo() {
         console.log(row.reimbId);
         editor.on("change blur", function (e) {
             success(editor.val());
-            // console.log("This should show: " + editor.val());
-            resolveTicket(row.reimbId, editor.val());
-            // Resolve the Ticket
-            // var ajaxConfig = {
-            //     method: "POST",
-            //     contentType: "application/json",
-            //     data: {  }
-            // }
-            // $("#reimb-table").tabulator("setData", "/ERSProject/resolveticket", {id: row.reimbId, status: editor.val()}, "POST");
+            if (currentVal != editor.val())
+                resolveTicket(row.reimbId, editor.val());
         });
         return editor;
     };
     $("#reimb-table-manager").tabulator({
         index: "reimbId",
-        layout: 'fitColumns',
+        layout: 'fitDataFill',
         pagination:"local",
         paginationSize:10,
         selectable: 1,
@@ -556,14 +550,14 @@ function getAllTicketInfo() {
             { title: "Author:", field: "author" },
             { title: "Status:", field: "status", editor: statusEditor },
             { title: "Type:", field: "type" },
-            { title: "Amount:", field: "amount" },
+            { title: "Amount:", field: "amount", formatter: "money" },
             { title: "Description:", field: "description" },
             { title: "Submitted:", field: "submitted" },
             { title: "Resolved:", field: "resolved" },
             { title: "Resolved by:", field: "resolver" }
         ]
     });
-    $("#reimb-table-manager").tabulator("setData", '/ERSProject/getemployeetickets');
+    $("#reimb-table-manager").tabulator("setData", '/ERSProject/getalltickets');
 }
 
 // function getEmployeeTicketInfo() {
