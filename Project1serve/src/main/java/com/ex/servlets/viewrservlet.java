@@ -73,7 +73,7 @@ public class viewrservlet extends HttpServlet
 		}
 		if(u.getUser_Role_Id()==13)
 		{
-						out.println("<table style=\"width:100%\" class=\"table table-bordered\">");
+						out.println("<table style=\"width:100%\" class=\"table .table-striped\">");
 			out.println(
 					"    <thead>\r\n" + 
 					"      <tr>\r\n" + 
@@ -91,6 +91,8 @@ public class viewrservlet extends HttpServlet
 				if(filter.equals(""))
 				{
 					s = service.getRStatus(a.get(i).getREIMB_STATUS_ID());
+					if(a.get(i).getReimb_id()!=22)
+					{
 					out.println("<tr>");
 					out.println("<td>");
 					out.println(a.get(i).getReimb_id());
@@ -108,12 +110,15 @@ public class viewrservlet extends HttpServlet
 					out.println(s);
 					out.println("</td>");
 					out.println("</tr>");
+					}
 				}
 				else
 				{
 					test = service.getRStatus(a.get(i).getREIMB_STATUS_ID());
 					if(filter.equals(test))
 					{
+						if(a.get(i).getReimb_id()!=22)
+						{
 						out.println("<tr>");
 						s = service.getRStatus(a.get(i).getREIMB_STATUS_ID());
 						out.println("<td>");
@@ -132,6 +137,7 @@ public class viewrservlet extends HttpServlet
 						out.println(s);
 						out.println("</td>");
 						out.println("</tr>");
+						}
 					}
 				}
 
@@ -146,7 +152,7 @@ public class viewrservlet extends HttpServlet
 			}
 			else
 			{
-				out.println("<table style=\"width:100%\" class=\"table table-bordered\">");
+				out.println("<table style=\"width:100%\" class=\"table .table-striped\">");
 				out.println(
 						"    <thead>\r\n" + 
 						"      <tr>\r\n" + 
@@ -162,32 +168,10 @@ public class viewrservlet extends HttpServlet
 				{
 					if(filter.equals(""))
 					{
-						s = service.getRStatus(a.get(i).getREIMB_STATUS_ID());
-						out.println("<tr>");
-						out.println("<td>");
-						out.println(a.get(i).getReimb_id());
-						out.println("</td>");
-						out.println("<td>");
-						out.println(a.get(i).getReimb_Amount());
-						out.println("</td>");
-						out.println("<td>");
-						out.println(a.get(i).getDescription());
-						out.println("</td>");
-						out.println("<td>");
-						out.println(service.getUserById(a.get(i).getU_ID()));
-						out.println("</td>");
-						out.println("<td>");
-						out.println(s);
-						out.println("</td>");
-						out.println("</tr>");
-					}
-					else
-					{
-						test = service.getRStatus(a.get(i).getREIMB_STATUS_ID());
-						if(filter.equals(test))
+						if(a.get(i).getReimb_id()!=22)
 						{
-							out.println("<tr>");
 							s = service.getRStatus(a.get(i).getREIMB_STATUS_ID());
+							out.println("<tr>");
 							out.println("<td>");
 							out.println(a.get(i).getReimb_id());
 							out.println("</td>");
@@ -204,6 +188,34 @@ public class viewrservlet extends HttpServlet
 							out.println(s);
 							out.println("</td>");
 							out.println("</tr>");
+						}
+					}
+					else
+					{
+						test = service.getRStatus(a.get(i).getREIMB_STATUS_ID());
+						if(filter.equals(test))
+						{
+							if(a.get(i).getReimb_id()!=22)
+							{
+								out.println("<tr>");
+								s = service.getRStatus(a.get(i).getREIMB_STATUS_ID());
+								out.println("<td>");
+								out.println(a.get(i).getReimb_id());
+								out.println("</td>");
+								out.println("<td>");
+								out.println(a.get(i).getReimb_Amount());
+								out.println("</td>");
+								out.println("<td>");
+								out.println(a.get(i).getDescription());
+								out.println("</td>");
+								out.println("<td>");
+								out.println(service.getUserById(a.get(i).getU_ID()));
+								out.println("</td>");
+								out.println("<td>");
+								out.println(s);
+								out.println("</td>");
+								out.println("</tr>");
+							}
 						}
 					}
 				}

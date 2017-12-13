@@ -360,8 +360,8 @@ public class FileDao implements DAO
 		{
 			// add submit date and approved date to it.
 			conn.setAutoCommit(false);
-			//String sql = "insert into ERS_REIMBURSEMENT(REIMB_AMOUNT,REIMB_DESCRIPTION,U_ID,REIMB_STATUS_ID,REIMB_TYPE_ID,U_ID2)values (?,?,?,?,?,?)";
-			String sql = "insert into ERS_REIMBURSEMENT(REIMB_AMOUNT,REIMB_DESCRIPTION,U_ID,REIMB_STATUS_ID,REIMB_TYPE_ID,U_ID2,REIMB_SUBMITTED)Values(?,?,?,?,?,?,to_date(sysdate,'DD/MM/YYYY'))";
+			String sql = "insert into ERS_REIMBURSEMENT(REIMB_AMOUNT,REIMB_DESCRIPTION,U_ID,REIMB_STATUS_ID,REIMB_TYPE_ID,U_ID2)values (?,?,?,?,?,?)";
+			//String sql = "insert into ERS_REIMBURSEMENT(REIMB_AMOUNT,REIMB_DESCRIPTION,U_ID,REIMB_STATUS_ID,REIMB_TYPE_ID,U_ID2,REIMB_SUBMITTED)Values(?,?,?,?,?,?,to_date(sysdate,'DD/MM/YYYY'))";
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setDouble(1, amount);
 			ps.setString(2, description);
@@ -433,7 +433,7 @@ public class FileDao implements DAO
 		
 		try (Connection conn = ConnectionFactory.getInstance().getConnection()) 
 		{
-			String sql = "select max(REIMB_STATUS_ID) from ERSREIMBURSEMENTSTATUS";
+			String sql = "select max(REIMB_TYPE_ID) from ERS_REIMBURSEMENT_TYPE";
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ResultSet info = ps.executeQuery();
 			while (info.next()) 

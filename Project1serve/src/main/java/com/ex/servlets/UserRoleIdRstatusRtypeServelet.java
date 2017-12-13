@@ -35,6 +35,9 @@ public class UserRoleIdRstatusRtypeServelet extends HttpServlet
 		service.addRStatus(rstatus);
 		int s = service.findmax();
 		int t = service.findmax1();
+		System.out.println(s);
+		System.out.println(t);
+		System.out.println(u.getUid());	
 		// 0 is a representation of null
 		r.setReimb_Amount(a);
 		r.setERS_USER_ROLE_ID(0);

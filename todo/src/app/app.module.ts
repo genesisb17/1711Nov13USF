@@ -3,11 +3,13 @@ import { NgModule } from '@angular/core';
 
 
 import { AppComponent } from './app.component';
-import {TodoDataService} from './todo-data.service'
+import {TodoDataService} from './todo-data.service';
+import { TodoListHeaderComponent } from './todo-list-header/todo-list-header.component'
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    TodoListHeaderComponent
   ],
   imports: [
     BrowserModule
