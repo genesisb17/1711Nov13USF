@@ -35,6 +35,7 @@ public class viewrservlet extends HttpServlet
 		int i;
 		String s;
 		String test;
+		int count=0;
 		out.println("<link rel=\"stylesheet\"\r\n" + 
 				"	href=\"https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css\"\r\n" + 
 				"	integrity=\"sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb\"\r\n" + 
@@ -110,8 +111,12 @@ public class viewrservlet extends HttpServlet
 					out.println(s);
 					out.println("</td>");
 					out.println("</tr>");
+					if(s.equals("pending"))
+					{
+						count = count++;
 					}
-				}
+					}
+				}	
 				else
 				{
 					test = service.getRStatus(a.get(i).getREIMB_STATUS_ID());
@@ -137,12 +142,19 @@ public class viewrservlet extends HttpServlet
 						out.println(s);
 						out.println("</td>");
 						out.println("</tr>");
+						if(s.equals("pending"))
+						{
+							count = count++;
+						}
 						}
 					}
 				}
 
 			}
+			
 			out.println("</table>");
+			out.println("there are "+count+" pending");
+
 		}
 		else
 		{
@@ -188,6 +200,7 @@ public class viewrservlet extends HttpServlet
 							out.println(s);
 							out.println("</td>");
 							out.println("</tr>");
+					
 						}
 					}
 					else
@@ -215,6 +228,7 @@ public class viewrservlet extends HttpServlet
 								out.println(s);
 								out.println("</td>");
 								out.println("</tr>");
+						
 							}
 						}
 					}
@@ -222,7 +236,6 @@ public class viewrservlet extends HttpServlet
 				out.println("</table>");
 			}
 		}
-
 
 	}
 	}
