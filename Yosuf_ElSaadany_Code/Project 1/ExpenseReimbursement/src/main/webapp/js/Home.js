@@ -183,8 +183,10 @@ function process2(user, value){
 					}
 				}
 			};
+			viewAll();
 		}
-		viewAll();
+		//window.location.reload(true);
+		//viewAll();
 	}
 }
 
