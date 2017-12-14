@@ -8,6 +8,7 @@ import { TodoListHeaderComponent } from './todo-list-header/todo-list-header.com
 import { TodoListComponent } from './todo-list/todo-list.component';
 import { TodoListFooterComponent } from './todo-list-footer/todo-list-footer.component';
 import { ApiService } from './api.service';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { ApiService } from './api.service';
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [TodoDataService, ApiService],
   bootstrap: [AppComponent]
