@@ -6,6 +6,7 @@ import {FormsModule} from '@angular/forms'
 import { AppComponent } from './app.component';
 import {TodoDataService} from './todo-data.service';
 import { TodoListHeaderComponent } from './todo-list-header/todo-list-header.component';
+import { ApiService } from './api.service';
 
 
 @NgModule({
@@ -16,7 +17,7 @@ import { TodoListHeaderComponent } from './todo-list-header/todo-list-header.com
   imports: [
     BrowserModule, FormsModule
   ],
-  providers: [TodoDataService],
+  providers: [TodoDataService, ApiService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

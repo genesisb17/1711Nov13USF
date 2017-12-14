@@ -1,7 +1,6 @@
 window.onload = function() {
 	$('#register').on('click', register);
 	$('#loginButton').on('click', login);
-	console.log("testing");
 }
 
 function register() {

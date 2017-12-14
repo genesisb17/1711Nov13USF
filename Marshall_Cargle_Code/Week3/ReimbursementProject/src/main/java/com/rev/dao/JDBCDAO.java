@@ -52,7 +52,6 @@ public class JDBCDAO implements DAO {
 
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setDouble(1, 50);
-			System.out.println(sdf.format(t.getSubmitted()).toString());
 			ps.setString(2, sdf.format(t.getSubmitted()));
 			ps.setString(3, t.getDescription());
 			ps.setInt(4, 21);

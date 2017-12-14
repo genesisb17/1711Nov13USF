@@ -9,7 +9,7 @@ public class Ticket {
 	Timestamp resolved;
 	String description;
 	int author_ID;
-	int resolver_ID;
+	Integer resolver_ID;
 	int status_ID;
 	int type_ID;
 
@@ -18,7 +18,7 @@ public class Ticket {
 	}
 
 	public Ticket(int ticket_ID, int amount, Timestamp submitted, Timestamp resolved, String description, int author_ID,
-			int resolver_ID, int status_ID, int type_ID) {
+			Integer resolver_ID, int status_ID, int type_ID) {
 		super();
 		this.ticket_ID = ticket_ID;
 		this.amount = amount;
@@ -83,7 +83,7 @@ public class Ticket {
 		return resolver_ID;
 	}
 
-	public void setResolver_ID(int resolver_ID) {
+	public void setResolver_ID(Integer resolver_ID) {
 		this.resolver_ID = resolver_ID;
 	}
 
@@ -101,6 +101,13 @@ public class Ticket {
 
 	public void setType_ID(int type_ID) {
 		this.type_ID = type_ID;
+	}
+
+	@Override
+	public String toString() {
+		return "Ticket [ticket_ID=" + ticket_ID + ", amount=" + amount + ", submitted=" + submitted + ", resolved="
+				+ resolved + ", description=" + description + ", author_ID=" + author_ID + ", resolver_ID="
+				+ resolver_ID + ", status_ID=" + status_ID + ", type_ID=" + type_ID + "]";
 	}
 
 }
