@@ -23,13 +23,9 @@ public class RunErs
 		//service.adders_users("test1", "test1", "test1", "test1", "test1", 7);//might need work
 		//System.out.println(service.geters_users("test1", "test1").getUid());
 		service.addReimbursements(100.20,"thisisatest",12,83,83,12);
-		System.out.println(service.getUserById(34));		
-//not working
+		System.out.println(service.getUserById(34));
+		//not working
 		
-		
-
-		
-		int i =1;
 		//doesn't work
 
 	}

@@ -3,11 +3,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 import com.rev.pojo.R;
 import com.rev.pojo.User;
-import java.util.Date;
 
 public class FileDao implements DAO 
 {
@@ -254,7 +254,8 @@ public class FileDao implements DAO
 	}
 	
 	@Override
-	public int getRStatusById(String i) {
+	public int getRStatusById(String i) 
+	{
 
 		try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
 			String sql = "select REIMB_STATUS_ID from ERSREIMBURSEMENTSTATUS where  REIMB_STATUS=?";
@@ -434,8 +435,8 @@ public class FileDao implements DAO
 		try (Connection conn = ConnectionFactory.getInstance().getConnection()) 
 		{
 			String sql = "select max(REIMB_TYPE_ID) from ERS_REIMBURSEMENT_TYPE";
-			PreparedStatement ps = conn.prepareStatement(sql);
-			ResultSet info = ps.executeQuery();
+			Statement ps = conn.createStatement();// prepareStatement(sql);
+			ResultSet info = ps.executeQuery(sql);
 			while (info.next()) 
 			{
 				return info.getInt(1);

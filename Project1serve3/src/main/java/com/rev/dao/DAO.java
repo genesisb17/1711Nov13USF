@@ -26,4 +26,5 @@ public interface DAO
 	void UpdateReimb(int reimbid1,int uid2);
 	int findmax();
 	int findmax1();
+	int findcount();
 }

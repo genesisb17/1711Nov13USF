@@ -3,11 +3,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 import com.rev.pojo.R;
 import com.rev.pojo.User;
-import java.util.Date;
 
 public class FileDao implements DAO 
 {
@@ -59,7 +59,6 @@ public class FileDao implements DAO
 			ps.setString(1, s);
 			ps.executeUpdate();
 			conn.commit();
-			conn.close();
 			System.out.println("Executed");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -109,13 +108,13 @@ public class FileDao implements DAO
 			PreparedStatement p;
 			if(u.getUser_Role_Id()==13)
 			{
-				sql = "select * FROM ERS_REIMBURSEMENT";
+				sql = "select * FROM ERS_REIMBURSEMENT order by reimb_id";
 				 p = conn.prepareStatement(sql);
 
 			}
 			else
 			{
-				sql = "select * FROM ERS_REIMBURSEMENT WHERE U_ID=?";
+				sql = "select * FROM ERS_REIMBURSEMENT WHERE U_ID=? order by reimb_id";
 				p = conn.prepareStatement(sql);
 				p.setInt(1, u.getUid());
 			}
@@ -188,6 +187,29 @@ public class FileDao implements DAO
 		}
 		return 0;
 	}
+	
+	
+	@Override
+	public int findcount() 
+	{
+
+		try (Connection conn = ConnectionFactory.getInstance().getConnection()) 
+		{
+			String sql = "select count(reimb) from ERSREIMBURSEMENTSTATUS";
+			Statement ps = conn.createStatement();
+			ResultSet info = ps.executeQuery(sql);
+			while (info.next()) 
+			{
+				return info.getInt(1);
+			}
+		} 
+		catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return 0;
+	}
+	
 	
 	@Override
 	public int getRtypeById(String i) 

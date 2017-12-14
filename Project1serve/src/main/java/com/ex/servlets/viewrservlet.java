@@ -62,6 +62,17 @@ public class viewrservlet extends HttpServlet
 				"		<input class = \"form-control\" type =\"submit\">\r\n" + 
 				"		</form>"
 				   );
+		out.println("<style>\r\n" + 
+				"	body\r\n" + 
+				"	{		\r\n" + 
+				"	    background-color:#ADD8E6\r\n" + 
+				"	}\r\n" + 
+				"	table\r\n" + 
+				"	{		\r\n" + 
+				"	    background-color:white\r\n" + 
+				"	}\r\n" + 
+				"\r\n" + 
+				"</style>");
 		if(u.getUser_Role_Id()==13)
 		{
 		out.println("what is the id number you want to change??<br>");
@@ -92,7 +103,7 @@ public class viewrservlet extends HttpServlet
 				if(filter.equals(""))
 				{
 					s = service.getRStatus(a.get(i).getREIMB_STATUS_ID());
-					if(a.get(i).getReimb_id()!=22)
+					if(a.get(i).getReimb_id()!=22||a.get(i).getReimb_id()!=41||a.get(i).getReimb_id()!=21)
 					{
 					out.println("<tr>");
 					out.println("<td>");
@@ -122,7 +133,7 @@ public class viewrservlet extends HttpServlet
 					test = service.getRStatus(a.get(i).getREIMB_STATUS_ID());
 					if(filter.equals(test))
 					{
-						if(a.get(i).getReimb_id()!=22)
+						if(a.get(i).getReimb_id()!=22||a.get(i).getReimb_id()!=41||a.get(i).getReimb_id()!=21)
 						{
 						out.println("<tr>");
 						s = service.getRStatus(a.get(i).getREIMB_STATUS_ID());
@@ -180,7 +191,7 @@ public class viewrservlet extends HttpServlet
 				{
 					if(filter.equals(""))
 					{
-						if(a.get(i).getReimb_id()!=22)
+						if(a.get(i).getReimb_id()!=22||a.get(i).getReimb_id()!=41||a.get(i).getReimb_id()!=21)
 						{
 							s = service.getRStatus(a.get(i).getREIMB_STATUS_ID());
 							out.println("<tr>");
