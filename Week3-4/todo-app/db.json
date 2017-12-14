@@ -1,34 +1,24 @@
 {
   "todos": [
     {
-      "id": 2,
-      "title": "make dinner",
-      "complete": true
-    },
-    {
-      "id": 3,
-      "title": "eat dinner",
-      "complete": true
-    },
-    {
-      "id": 4,
-      "title": "do more with angular",
-      "complete": false
-    },
-    {
-      "title": "jhuhuh",
+      "title": "this is persisting",
       "complete": false,
-      "id": 6
+      "id": 11
     },
     {
-      "title": "kjnkjn",
+      "title": "test",
       "complete": false,
-      "id": 7
+      "id": 12
     },
     {
-      "title": "hi",
+      "title": "eat good food",
       "complete": false,
-      "id": 8
+      "id": 13
+    },
+    {
+      "title": "do more NG",
+      "complete": false,
+      "id": 14
     }
   ]
 }

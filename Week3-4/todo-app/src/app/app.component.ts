@@ -35,17 +35,23 @@ export class AppComponent implements OnInit {
   }
 
 
-  onRemoveTodo(todo: Todo){
-    console.log("app component deleting " + todo.id);
-    this.apiService.deleteTodoById(todo.id);
+
+  onRemoveTodo(todo) {
+    this.apiService
+      .deleteTodoById(todo.id)
+      .subscribe(
+        (_) => { //(_) is the same as ()
+          this.todos = this.todos.filter((t) => t.id !== todo.id);
+        }
+      );
   }
+
   onToggleTodoComplete(todo: Todo) {
     todo.complete = !todo.complete;
     this.apiService.updateTodo(todo)
       .subscribe((newTodo) => {
         todo = newTodo;
-      }
-      );
+      });
   }
 
 

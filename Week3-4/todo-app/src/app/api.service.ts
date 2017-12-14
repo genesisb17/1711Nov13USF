@@ -6,6 +6,7 @@ import { Observable }  from 'rxjs/Observable';
 
 /* Observables are lazy collections of multiple values over time/"streams"
 */
+//API_URLN - stored as an environment var = localhost:3000
 const API_URL = environment.apiUrl;
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
@@ -38,9 +39,7 @@ export class ApiService {
   //DELETE /todos/id
   public deleteTodoById(todoId: number){
     console.log('in delete todo -- service.ts');
-    this.http.delete(API_URL+'/todos/'+todoId);
-    return this.getAllTodos();
-
+    return this.http.delete(API_URL+'/todos/'+todoId);
   }
 }
 
