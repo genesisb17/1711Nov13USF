@@ -1,7 +1,34 @@
 {
-  "todos":{
-    "id": 1,
-    "title": "Finish things",
-    "complete": false
-  }
+  "todos": [
+    {
+      "id": 2,
+      "title": "make dinner",
+      "complete": true
+    },
+    {
+      "id": 3,
+      "title": "eat dinner",
+      "complete": true
+    },
+    {
+      "id": 4,
+      "title": "do more with angular",
+      "complete": false
+    },
+    {
+      "title": "jhuhuh",
+      "complete": false,
+      "id": 6
+    },
+    {
+      "title": "kjnkjn",
+      "complete": false,
+      "id": 7
+    },
+    {
+      "title": "hi",
+      "complete": false,
+      "id": 8
+    }
+  ]
 }

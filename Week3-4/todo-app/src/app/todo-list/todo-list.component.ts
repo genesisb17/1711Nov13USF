@@ -13,7 +13,7 @@ export class TodoListComponent implements OnInit {
   @Input()
   todos: Todo[];
 
-  /*HEre we define two output events. We set their type to 
+  /*Here we define two output events. We set their type to 
   EventEmitter<Todo> and assign them a new eventemitter instance
   this is a generic type that tells TS that both remove
   and togglecomplete are event emitter instances and that the 
