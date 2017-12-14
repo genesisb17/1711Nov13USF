@@ -32,11 +32,11 @@
     background-attachment: fixed;
 }
 	
-.panel {
+ 	#panel {
 	margin-left: 550px;
 	margin-right: 550px;
 	padding-top: 260px;
-}
+} 
 
 .alert {
 	color: red;
@@ -47,7 +47,7 @@
 
 <body class = "bg1">
 
-	<div class="panel panel-default">
+	<div id = "panel">
 		<div class="panel-heading">
 			 <h3 class="panel-title"><center>Please Sign In</center></h3>
 		</div>
@@ -63,8 +63,9 @@
 			<input id = "register" class="btn btn-lg btn-success btn-block" type="submit" value="Register">
 			<div class="alert alert-danger" id="message" ></div>
 		</div>
-	</div>	
-	
+	</div> 
+
+
 	<script src="js/Login.js"></script>
 </body>
 </html>

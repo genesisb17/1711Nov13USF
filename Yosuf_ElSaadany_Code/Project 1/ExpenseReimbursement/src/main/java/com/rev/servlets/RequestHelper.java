@@ -7,8 +7,6 @@ public class RequestHelper {
 
 	public String process(HttpServletRequest req, HttpServletResponse resp) {
 		System.err.println("[LOG] Processing request with helper : " + req.getRequestURI());
-
-		System.out.println("in process method");
 		
 		switch (req.getRequestURI()) {
 		case "/ExpenseReimbursement/profile.view":{
@@ -23,12 +21,9 @@ public class RequestHelper {
 		case "/ExpenseReimbursement/ManagerView.view":{
 			return "/partials/ManagerViewAll.html";
 		}
-		case "/ExpenseReimbursement/ManagerFilter.view":{
+/*		case "/ExpenseReimbursement/ManagerFilter.view":{
 			return "/partials/ManagerFilter.html";
-		}
-		case "/ExpenseReimbursement/ManagerProcess.view":{
-			return "/partials/process.html";
-		}	
+		}	*/
 		}
 		return null;
 	}

@@ -9,7 +9,7 @@ window.onload = function(){
 	$('#past').on('click', loadPastReimbursements);	
 	
 	$('#managerview').on('click', loadViewAll);
-	$('#managerfilter').on('click', loadfiltered);
+	//$('#managerfilter').on('click', loadfiltered);
 }
 
 //-------------------------------------------------------------------------------------//
@@ -25,6 +25,7 @@ function loadViewAll(){
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState == 4 && xhr.status == 200){
 			document.getElementById('view').innerHTML = xhr.responseText;
+			$('#message3').hide();
 			viewAll();
 		}
 	}	
@@ -34,7 +35,6 @@ var count = 0;
 // VIEW ALL REIMBURSEMENTS
 function viewAll(){
 	// DELETE ALL ROWS EVERYTIME TO GET RID OF DUPLICATES
-	//$("#table-body").children().remove();
 	$("#table-body tr").remove(); 
 	console.log("HERE " + ++count);
 	var xhr = new XMLHttpRequest();
@@ -97,16 +97,42 @@ function viewAll(){
 				// APPEND ROW TO TABLE
 				$('#table-body').append(tr);
 			}
-			// DATATABLES
-			$('#table').DataTable();
+			// DATATABLES PLUGIN
+			//$('#table').DataTable();
+			$('#table').dataTable( {
+				  "pageLength": 50
+				} );
 			
 			// CLICK ON ROW TO APPROVE OR DENY REIMBURSEMENT
 			$("#table tr").click(function(){
-				   $(this).addClass('selected').siblings().removeClass('selected');    
-				   var value = $(this).find('td:first').html();
-				   $('#reimb_ID').html(value);
-				//	$(this).remove(); 
-				   process1(value);
+				// MARK SELECTED
+				$(this).addClass('selected').siblings().removeClass('selected');    
+				
+				// GET VALUE OF FIRST ELEMENT IN THE ROW CLICKED (REIMBURSEMENT ID)
+				var value = $(this).find('td:first').html();
+				
+				// DISPLAY IT ON SCREEN
+				$('#reimb_ID').html(value);
+				
+				// GET VALUE OF SIXTH ELEMENT IN THE ROW CLICKED (STATUS)
+				var Status = $(this).find('td:nth-child(6)').html();
+				
+				// IF REIMBURSEMENT ALREADY PROCESSED, DON'T ALLOW MANAGER TO PROCESS IT AGAIN
+				if(Status == "Denied" || Status == "Approved") {
+					$('#process').attr('disabled','disabled');
+					$('#message3').show();
+					$('#message3').html('Reimbursement already processed!');
+					$(function() {
+						setTimeout(function() {
+							$("#message3").hide('blind', {}, 500)
+					    }, 2000);
+					});
+				}
+				else if(Status == "Pending"){
+					$('#process').removeAttr('disabled');
+					$('#status').show();
+					process1(value);
+				}
 			});
 		}
 	}		
@@ -130,39 +156,28 @@ function process1(value) {
 
 // RESOLVE THE REIMBURSEMENT
 function process2(user, value){
-
 	$('#process').on('click', goProcess);
 	function goProcess() {
 		var reimbID = value;
 		var status = $('#status').val();
 		var resolver = user.user_id;
-		
+
 		if(status == "Approve")
 			status = 2;
 		if(status == "Deny")
 			status = 3;
 		
 		var toSend = [reimbID, status, resolver];
-		var json = JSON.stringify(toSend);	
-		console.log("JSON: " + json);
-		
-		/*if(reimbID == "") {
-			$('#messagee').show();
-			$('#messagee').html("Please enter all information");
-		    $(function() {
-		        setTimeout(function() {
-		            $("#messagee").hide('blind', {}, 500)
-		        }, 2000);
-		    });
-		}
-		else*/ if(status == null){
-			$('#messagee').show();
-			$('#messagee').html("Please enter all information");
-			 $(function() {
-			        setTimeout(function() {
-			            $("#messagee").hide('blind', {}, 500)
-			        }, 2000);
-			    });
+		var json = JSON.stringify(toSend);			
+		console.log("PRINT: " + status);
+		if(status == null){
+			$('#message3').show();
+			$('#message3').html("Please choose an option");
+			$(function() {
+				setTimeout(function() {
+					$("#message3").hide('blind', {}, 500)
+			    }, 2000);
+			});
 		}
 		else {
 			var xhr = new XMLHttpRequest();
@@ -176,121 +191,19 @@ function process2(user, value){
 						$('#messagee').show();
 						$('#messagee').html("Error");
 						$(function() {
-						        setTimeout(function() {
-						            $("#messagee").hide('blind', {}, 500)
-						        }, 2000);
+							setTimeout(function() {
+								$("#messagee").hide('blind', {}, 500)
+						    }, 2000);
 						});
 					}
 				}
 			};
-			viewAll();
-		}
-		//window.location.reload(true);
-		//viewAll();
-	}
-}
-
-
-//-------------------------------------------------------------------------------------//
-// LOAD FILTERED REIMBURSEMENTS
-function loadfiltered(){
-	// AJAX REQUEST TO GET VIEW 
-	var xhr = new XMLHttpRequest();
-	xhr.open("GET", "ManagerFilter.view", true);
-	xhr.send();
-	xhr.onreadystatechange = function(){
-		if(xhr.readyState == 4 && xhr.status == 200){
-			document.getElementById('view').innerHTML = xhr.responseText;
-			console.log("MANAGER VIEW");
-			$('#SubmitStatus').on('click', Filtered);
-		}	
-	}	
-}
-
-// VIEW FILTERED REIMBURSEMENTS
-function Filtered(){
-	// DELETE ALL ROWS EVERYTIME TO GET RID OF DUPLICATES
-	$("#table-body2").children().remove();
-
-	// AJAX REQUEST TO GET VIEW
-	var status = $('#status').val();
-	
-	if(status == "Pending")
-		var x = 1;
-	if(status == "Approved")
-		var x = 2;
-	if(status == "Denied")
-		var x = 3;
-	
-	var toSend = [x];
-	var json = JSON.stringify(toSend);
-	console.log(json);
-	
-	var xhr = new XMLHttpRequest();
-	xhr.open("POST", "ManagerFiltered", true);
-	xhr.send(json);
-	xhr.onreadystatechange = function(){
-		if(xhr.readyState == 4 && xhr.status == 200){
-			var pastTickets = JSON.parse(xhr.responseText);
-			for(var i = 0; i < pastTickets.length; i++){
-				var Reimb1 = pastTickets[i];
-
-				// CHANGE TYPE FROM ID TO CORRESPONDING STRING
-				if(Reimb1.status == 1)
-					var status = "Pending";
-				if(Reimb1.status == 2)
-					var status = "Approved";
-				if(Reimb1.status == 3)
-					var status = "Denied";
-
-				if(Reimb1.type == 1)
-					var type = "Food";
-				if(Reimb1.type == 2)
-					var type = "Travel";
-				if(Reimb1.type == 3)
-					var type = "Lodging";
-				if(Reimb1.type == 4)
-					var type = "Other";
-
-				if(Reimb1.resolved == null)
-					Reimb1.resolved = "Not Resolved Yet";
-
-				if(Reimb1.description == null)
-					Reimb1.resolved = "N/A";
-
-				var employeeName = Reimb1.firstname + " " + Reimb1.lastname;
-				var managerName = Reimb1.resolverfn + " " + Reimb1.resolverln;
-				
-				if(Reimb1.resolverfn == null)
-					managerName = "N/A";
-				
-				// SET COLUMN VALUES
-				var rd = 
-				   `<td>${Reimb1.reimb_id}</td>
-					<td>${employeeName}</td>
-					<td>${Reimb1.email}</td>
-					<td>${Reimb1.amount}</td>
-					<td>${managerName}</td>
-					<td>${status}</td>
-					<td>${type}</td>
-					<td>${Reimb1.description}</td>
-					<td>${Reimb1.submitted}</td>
-					<td>${Reimb1.resolved}</td>`;
-				
-				// CREATE TABLE ROW
-				var tr = document.createElement("tr");
-			
-				// INSERT ROW DATA INTO ROW
-				tr.innerHTML = rd;
-				
-				// APPEND ROW TO TABLE
-				$('#table-body2').append(tr);
-			}
-			// DATATABLES
-			$('#table2').DataTable();
+			window.location.reload(true);
+			//viewAll();
 		}
 	}
 }
+
 
 //-------------------------------------------------------------------------------------//
 //										BOTH
@@ -519,7 +432,6 @@ function addReimbursement(username){
 }
 
 //-------------------------------------------------------------------------------------//
-// LOAD VIEW PAST REIMBURSEMENTS VIEW
 function loadPastReimbursements() {
 	// AJAX REQUEST TO GET VIEW 
 	var xhr = new XMLHttpRequest();
@@ -534,7 +446,21 @@ function loadPastReimbursements() {
 		}
 	}
 }
-
+//LOAD VIEW PAST REIMBURSEMENTS VIEW
+function loadPastReimbursements() {
+	// AJAX REQUEST TO GET VIEW 
+	var xhr = new XMLHttpRequest();
+	//xhr.open("GET", "getPastTicketsView", true);
+	xhr.open("GET", "ViewPastReimbursements.view", true);
+	xhr.send();
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState == 4 && xhr.status == 200){
+			document.getElementById('view').innerHTML = xhr.responseText;
+			$('#message2').hide();
+			getPastReimbursements();
+		}
+	}
+}
 //GET USER INFO FROM SESSION AND VIEW PAST REIMBURSEMENTS
 function getPastReimbursements() {
 	var xhr = new XMLHttpRequest();
@@ -547,11 +473,7 @@ function getPastReimbursements() {
 			sessionUser = JSON.parse(xhr.responseText);
 			var user = sessionUser.user;
 			var pastTickets = sessionUser.pastReimbursments;
-					
-			console.log("INSIDE: " + user.username);
-			console.log("INSIDE: " + pastTickets[1]);
 
-			
 			// If user has no past tickets 
 			if(pastTickets == ""){
 				$('#message2').show();
@@ -616,4 +538,106 @@ function getPastReimbursements() {
 	}
 }
 
+//-------------------------------------------------------------------------------------//
+//										UNUSED CODE
+//-------------------------------------------------------------------------------------//
+//LOAD FILTERED REIMBURSEMENTS
+/*function loadfiltered(){
+	// AJAX REQUEST TO GET VIEW 
+	var xhr = new XMLHttpRequest();
+	xhr.open("GET", "ManagerFilter.view", true);
+	xhr.send();
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState == 4 && xhr.status == 200){
+			document.getElementById('view').innerHTML = xhr.responseText;
+			console.log("MANAGER VIEW");
+			$('#SubmitStatus').on('click', Filtered);
+		}	
+	}	
+}
+
+//VIEW FILTERED REIMBURSEMENTS
+function Filtered(){
+	// DELETE ALL ROWS EVERYTIME TO GET RID OF DUPLICATES
+	$("#table-body2").children().remove();
+
+	// AJAX REQUEST TO GET VIEW
+	var status = $('#status').val();
+	
+	if(status == "Pending")
+		var x = 1;
+	if(status == "Approved")
+		var x = 2;
+	if(status == "Denied")
+		var x = 3;
+	
+	var toSend = [x];
+	var json = JSON.stringify(toSend);
+	console.log(json);
+	
+	var xhr = new XMLHttpRequest();
+	xhr.open("POST", "ManagerFiltered", true);
+	xhr.send(json);
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState == 4 && xhr.status == 200){
+			var pastTickets = JSON.parse(xhr.responseText);
+			for(var i = 0; i < pastTickets.length; i++){
+				var Reimb1 = pastTickets[i];
+
+				// CHANGE TYPE FROM ID TO CORRESPONDING STRING
+				if(Reimb1.status == 1)
+					var status = "Pending";
+				if(Reimb1.status == 2)
+					var status = "Approved";
+				if(Reimb1.status == 3)
+					var status = "Denied";
+
+				if(Reimb1.type == 1)
+					var type = "Food";
+				if(Reimb1.type == 2)
+					var type = "Travel";
+				if(Reimb1.type == 3)
+					var type = "Lodging";
+				if(Reimb1.type == 4)
+					var type = "Other";
+
+				if(Reimb1.resolved == null)
+					Reimb1.resolved = "Not Resolved Yet";
+
+				if(Reimb1.description == null)
+					Reimb1.resolved = "N/A";
+
+				var employeeName = Reimb1.firstname + " " + Reimb1.lastname;
+				var managerName = Reimb1.resolverfn + " " + Reimb1.resolverln;
+				
+				if(Reimb1.resolverfn == null)
+					managerName = "N/A";
+				
+				// SET COLUMN VALUES
+				var rd = 
+				   `<td>${Reimb1.reimb_id}</td>
+					<td>${employeeName}</td>
+					<td>${Reimb1.email}</td>
+					<td>${Reimb1.amount}</td>
+					<td>${managerName}</td>
+					<td>${status}</td>
+					<td>${type}</td>
+					<td>${Reimb1.description}</td>
+					<td>${Reimb1.submitted}</td>
+					<td>${Reimb1.resolved}</td>`;
+				
+				// CREATE TABLE ROW
+				var tr = document.createElement("tr");
+			
+				// INSERT ROW DATA INTO ROW
+				tr.innerHTML = rd;
+				
+				// APPEND ROW TO TABLE
+				$('#table-body2').append(tr);
+			}
+			// DATATABLES
+			$('#table2').DataTable();
+		}
+	}
+}*/
 
