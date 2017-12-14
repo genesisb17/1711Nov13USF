@@ -13,6 +13,6 @@ public interface DAO {
 	ArrayList<Reimbursement> getReimbursements();
 	ArrayList<User> getUsers();
 	void addNewUser(String[] userInfo);
-	void addNewReimbursement(int amount, String description, String receipt, int author, int typeId);
+	void addNewReimbursement(String[] reimbInfo);
 	void updateStatus(Reimbursement r, int newStatus, int resolver);
 }

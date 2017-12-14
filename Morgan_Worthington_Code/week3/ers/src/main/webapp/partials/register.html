@@ -1,4 +1,4 @@
-<h1 align="center">Electronic Reimbursements System</h1>
+<h1 align="center">Expense Reimbursements System</h1>
 <h4>Register New User:</h4>
 
 <label class="col-form-label" for="formGroupExampleInput">First Name:</label>
@@ -26,6 +26,7 @@ User role:
 <br>
 <input type="button" class="btn btn-dark" id="register" value="Register">
 <h4 id="notification" align="center"></h4>
+
 <script>
 $("#register").on('click',checkValid);
 
@@ -53,7 +54,6 @@ function checkValid(){
 };
 
 function addNewUser(){
-	
 	var fn=$("#firstname").val();
 	var ln=$("#lastname").val();
 	var email=$("#email").val();
@@ -69,13 +69,12 @@ function addNewUser(){
 			"role":role
 	};
 	var json=JSON.stringify(user);
-	console.log(json);
 
 	var xhr=new XMLHttpRequest();
 	xhr.onreadystatechange=function(){
 		if(xhr.status==200 && xhr.readyState==4){
-			persistUser(username);
 			sendToProfile();
+			
 		}
 	}
 	xhr.open("POST","registerNew",true);
@@ -92,17 +91,6 @@ function sendToProfile(){
 		}
 	}
 	xhr.open("GET","profile.view",true);
-	xhr.send();
-};
-
-function persistUser(username){
-	var xhr=new XMLHttpRequest();
-	xhr.onreadystatechange=function(){
-		if(xhr.status==200 && xhr.readyState==4){
-			console.log("User persisted.");
-		}
-	}
-	xhr.open("POST","makeSession",true);
 	xhr.send();
 };
 </script>

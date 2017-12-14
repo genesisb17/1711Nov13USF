@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import com.rev.dao.DAO;
 import com.rev.dao.DAOImpl;
+import com.rev.pojos.Reimbursement;
 import com.rev.pojos.User;
 
 public class Service {
@@ -38,4 +39,23 @@ public class Service {
 		
 		return u;
 	}
+	
+	public void addReimbursement(String[] reimbInfo) {
+		dao.addNewReimbursement(reimbInfo);
+	}
+	
+	public ArrayList<Reimbursement> getReimbursementsByRole(String role, int auth){
+		ArrayList<Reimbursement> rList;
+		if(role.equals("1")) {
+			rList=dao.getReimbursements();
+		} else {
+			rList=dao.getReimbByAuthor(auth);
+		}
+		return rList;
+	}
+	
+	public User getUserById(int id) {
+		return dao.getUserById(id);
+	}
+	
 }

@@ -16,10 +16,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.rev.pojos.User;
 import com.rev.service.Service;
 
-@WebServlet("/registerNew")
-public class NewRegisterServlet extends HttpServlet {
-	
-	static Service service= new Service();
+@WebServlet("/newReimbursement")
+public class NewReimbursementServlet extends HttpServlet {
+	static Service service=new Service();
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -30,18 +29,17 @@ public class NewRegisterServlet extends HttpServlet {
 		}
 		
 		ObjectMapper om=new ObjectMapper();
-		JsonNode user=om.readTree(json);
-		String firstname=user.get("firstname").asText();
-		String lastname=user.get("lastname").asText();
-		String email=user.get("email").asText();
-		String username=user.get("username").asText();
-		String password=user.get("password").asText();
-		String role=user.get("role").asText();
-		String[] userInfo= {firstname,lastname,email,username,password,role};
-		service.addUser(userInfo);
+		JsonNode reimbursement=om.readTree(json);
+		String amount=reimbursement.get("amount").asText();
+		String description=reimbursement.get("description").asText();
+		String type=reimbursement.get("type").asText();
 		
-		User u=service.getUserByUsername(username);
 		HttpSession session=req.getSession();
-		session.setAttribute("user", u);
+		User u= (User) session.getAttribute("user");
+		int id=u.getId();
+		String author=Integer.toString(id);
+		
+		String[] reimbInfo= {amount, description, author, type};
+		service.addReimbursement(reimbInfo);
 	}
 }

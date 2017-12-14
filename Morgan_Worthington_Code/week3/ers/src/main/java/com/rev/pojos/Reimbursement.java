@@ -119,4 +119,23 @@ public class Reimbursement {
 	public void setTypeId(int typeId) {
 		this.typeId = typeId;
 	}
+	
+	@Override
+	public String toString() {
+		String str;
+		str="{\"id\":"+id+
+			",\"amount\":"+amount+
+			",\"submitted\":\""+submitted+
+			"\",\"resolved\":\""+resolved+
+			"\",\"description\":\""+description+
+			"\",\"receipt\":\""+receipt+
+			"\",\"author\":"+author+
+			",\"resolver\":"+resolver+
+			",\"statusId\":"+statusId+
+			",\"typeId\":"+typeId+
+			"}";
+		
+		
+		return str;
+	}
 }

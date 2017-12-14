@@ -20,6 +20,10 @@ public class RequestHelper {
 			partial="partials/register.html";
 			break;
 		}
+		case "/ers/newReimbursement.view":{
+			partial="partials/newReimbursement.html";
+			break;
+		}
 		}
 		return partial;
 	}

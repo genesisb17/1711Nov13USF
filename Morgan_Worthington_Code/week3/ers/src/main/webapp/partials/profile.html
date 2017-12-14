@@ -1,2 +1,90 @@
-<h1 align="center">Electronic Reimbursements System</h1>
-<h4 id="welcome" align="center">Welcome!</h4>
+<h1 align="center">Expense Reimbursements System</h1>
+<h4 id="welcome" align="center"></h4>
+<h4>Reimbursements</h4>
+
+<input type="button" class="btn btn-dark" id="pending" value="Pending">
+<input type="button" class="btn btn-dark" id="resolved" value="Resolved">
+<table id="table_id" class="display">
+<thead id="col_names">
+</thead>
+<tbody id="rows">
+<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+</tbody>
+</table>
+<input type="button" class="btn btn-dark" id="newreimb" value="Add New">
+
+<script>
+var user;
+getUserInfo();
+console.log(user);
+var firstname=user.firstname;
+var role=user.role;
+console.log(firstname);
+$("#welcome").html(`Welcome ${firstname}`);
+getTableHead(role);
+//$('#table_id').DataTable();
+
+$("#newreimb").on('click',sendToNewReimbursement);
+$("#pending").on('click',function(){
+	var rStatus="pending";
+	getRows(role,rStatus);
+});
+$("#resolved").on('click',function(){
+	var rStatus="resolved";
+	getRows(role,rStatus);
+});
+
+function getUserInfo(){
+	var xhr=new XMLHttpRequest();
+	xhr.onreadystatechange=function(){
+		if(xhr.status==200 && xhr.readyState==4){
+			var userJson=xhr.responseText;
+			console.log(userJson);
+			user=JSON.parse(userJson);
+			console.log("inside AJAX request");
+			console.log(user);
+		}
+	}
+	xhr.open("GET","getSessionInfo",false);
+	xhr.send();
+};
+
+function sendToNewReimbursement(){
+	var xhr=new XMLHttpRequest();
+	xhr.onreadystatechange=function(){
+		if(xhr.status==200 && xhr.readyState==4){
+			newReimbursementPage=xhr.responseText;
+			$("#view").html(newReimbursementPage);
+		}
+	}
+	xhr.open("GET","newReimbursement.view",true);
+	xhr.send();
+};
+
+function getTableHead(role){
+	var xhr=new XMLHttpRequest();
+	xhr.onreadystatechange=function(){
+		tableHead=xhr.responseText;
+		$("#col_names").html(tableHead);
+	}
+	xhr.open("POST","getTableHead",true);
+	xhr.send(role);
+}
+
+function getRows(role, status){
+	var xhr=new XMLHttpRequest();
+	var tableKind={
+			"role":role,
+			"status":status
+	};
+	var json=JSON.stringify(tableKind);
+	xhr.onreadystatechange=function(){
+		if(xhr.status==200 && xhr.readyState==4){
+			tableRows=xhr.responseText;
+			$("#rows").html(tableRows);
+		}
+	}
+	xhr.open("POST","populateRows",false);
+	xhr.send(json);
+}
+</script>

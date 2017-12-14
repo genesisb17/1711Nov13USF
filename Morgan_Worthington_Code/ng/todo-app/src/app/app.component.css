@@ -1,0 +1,11 @@
+.complete{
+    text-decoration: line-through;
+}
+
+li{
+    text-align: center;
+}
+button{
+    float: right;
+    clear:both;
+}

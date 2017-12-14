@@ -1,0 +1,59 @@
+<h1 align="center">Expense Reimbursements System</h1>
+<h4>New Reimbursement Request:</h4>
+
+<label class="col-form-label" for="formGroupExampleInput">Amount:</label>
+<input id="amount" type="text" class="col-3 form-control" placeholder="Amount" style="padding-top: 3px !important"/>
+
+<label class="col-form-label" for="formGroupExampleInput">Description:</label>
+<input id="description" type="text" class="col-3 form-control" placeholder="Description" style="padding-top: 3px !important"/>
+
+<label class="col-form-label" for="formGroupExampleInput">Type:</label>
+<br>
+<input id="lodging" type="radio" name="type" value="1"/> Lodging
+<br>
+<input id="travel" type="radio" name="type" value="2"/> Travel
+<br>
+<input id="food" type="radio" name="type" value="3"/> Food
+<br>
+<input id="other" type="radio" name="type" value="4"/> Other
+<br>
+<br>
+<input type="button" class="btn btn-dark" id="addReimbursement" value="Add Reimbursement">
+
+<script>
+$("#addReimbursement").on('click',addNewReimbursement);
+
+function addNewReimbursement(){
+	var amount=$("#amount").val();
+	var description=$("#description").val();
+	var type=$("input[name=type]:checked").val();
+	var reimbursement = {
+					"amount":amount,
+					"description":description,
+					"type":type
+	};
+	var json=JSON.stringify(reimbursement);
+	console.log(json);
+	var xhr=new XMLHttpRequest();
+	xhr.onreadystatechange= function(){
+		if(xhr.status==200 && xhr.readyState==4){
+			console.log("reimbursement added");
+			sendToProfile();
+		}
+	}
+	xhr.open("POST","newReimbursement",true);
+	xhr.send(json);
+};
+
+function sendToProfile(){
+	var xhr=new XMLHttpRequest();
+	xhr.onreadystatechange=function(){
+		if(xhr.status==200 && xhr.readyState==4){
+			profilePage=xhr.responseText;
+			$("#view").html(profilePage);
+		}
+	}
+	xhr.open("GET","profile.view",true);
+	xhr.send();
+};
+</script>

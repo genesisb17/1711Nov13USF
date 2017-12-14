@@ -73,11 +73,12 @@ public class DAOImpl implements DAO {
 				reimb.setAmount(rs.getDouble(2));
 				reimb.setSubmitted(rs.getString(3));
 				reimb.setResolved(rs.getString(4));
-				reimb.setReceipt(rs.getString(5));
-				reimb.setAuthor(rs.getInt(6));
-				reimb.setResolver(rs.getInt(7));
-				reimb.setStatusId(rs.getInt(8));
-				reimb.setTypeId(rs.getInt(9));
+				reimb.setDescription(rs.getString(5));
+				reimb.setReceipt(rs.getString(6));
+				reimb.setAuthor(rs.getInt(7));
+				reimb.setResolver(rs.getInt(8));
+				reimb.setStatusId(rs.getInt(9));
+				reimb.setTypeId(rs.getInt(10));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -100,11 +101,12 @@ public class DAOImpl implements DAO {
 				temp.setAmount(rs.getDouble(2));
 				temp.setSubmitted(rs.getString(3));
 				temp.setResolved(rs.getString(4));
-				temp.setReceipt(rs.getString(5));
-				temp.setAuthor(rs.getInt(6));
-				temp.setResolver(rs.getInt(7));
-				temp.setStatusId(rs.getInt(8));
-				temp.setTypeId(rs.getInt(9));
+				temp.setDescription(rs.getString(5));
+				temp.setReceipt(rs.getString(6));
+				temp.setAuthor(rs.getInt(7));
+				temp.setResolver(rs.getInt(8));
+				temp.setStatusId(rs.getInt(9));
+				temp.setTypeId(rs.getInt(10));
 				reimbs.add(temp);
 			}
 		} catch (SQLException e) {
@@ -128,11 +130,12 @@ public class DAOImpl implements DAO {
 				temp.setAmount(rs.getDouble(2));
 				temp.setSubmitted(rs.getString(3));
 				temp.setResolved(rs.getString(4));
-				temp.setReceipt(rs.getString(5));
-				temp.setAuthor(rs.getInt(6));
-				temp.setResolver(rs.getInt(7));
-				temp.setStatusId(rs.getInt(8));
-				temp.setTypeId(rs.getInt(9));
+				temp.setDescription(rs.getString(5));
+				temp.setReceipt(rs.getString(6));
+				temp.setAuthor(rs.getInt(7));
+				temp.setResolver(rs.getInt(8));
+				temp.setStatusId(rs.getInt(9));
+				temp.setTypeId(rs.getInt(10));
 				reimbs.add(temp);
 			}
 		} catch (SQLException e) {
@@ -172,7 +175,7 @@ public class DAOImpl implements DAO {
 	public void addNewUser(String[] userInfo) {
 		try(Connection conn=ConnectionFactory.getInstance().getConnection()){
 			String sql="INSERT INTO ERS_USERS "
-					+ "(USER_FIRST_NAME,USER_LAST_NAME,ERS_USERNAME, ERS_PASSWORD,USER_EMAIL,USER_ROLE_ID)"
+					+ "(USER_FIRST_NAME,USER_LAST_NAME,USER_EMAIL,ERS_USERNAME, ERS_PASSWORD,USER_ROLE_ID)"
 					+ "VALUES(?,?,?,?,?,?)";
 			PreparedStatement ps=conn.prepareStatement(sql);
 			ps.setString(1, userInfo[0]);
@@ -192,18 +195,25 @@ public class DAOImpl implements DAO {
 		}
 	}
 
+	//double amount, String description, int author, int typeId
+	
 	@Override
-	public void addNewReimbursement(int amount, String description, String receipt, int author, int typeId) {
+	public void addNewReimbursement(String[] reimbInfo) {
 		try(Connection conn=ConnectionFactory.getInstance().getConnection()){
+			
+			double amount=Double.parseDouble(reimbInfo[0]);
+			String description=reimbInfo[1];
+			int author=Integer.parseInt(reimbInfo[2]);
+			int type=Integer.parseInt(reimbInfo[3]);
+			
 			String sql="INSERT INTO ERS_REIMBURSEMENT "
-					+ "(REIMB_AMOUNT,REIMB_DESCRIPTION,REIMB_RECEIPT,REIMB_AUTHOR,REIMB_STATUS_ID,REIMB_TYPE_ID)"
-					+ "VALUES(?,?,?,?,1,?)";
+					+ "(REIMB_AMOUNT,REIMB_DESCRIPTION,REIMB_AUTHOR,REIMB_STATUS_ID,REIMB_TYPE_ID)"
+					+ "VALUES(?,?,?,1,?)";
 			PreparedStatement ps=conn.prepareStatement(sql);
-			ps.setInt(1, amount);
+			ps.setDouble(1, amount);
 			ps.setString(2, description);
-			ps.setString(3, receipt);
-			ps.setInt(4,author);
-			ps.setInt(5,typeId);
+			ps.setInt(3, author);
+			ps.setInt(4, type);
 			ps.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
