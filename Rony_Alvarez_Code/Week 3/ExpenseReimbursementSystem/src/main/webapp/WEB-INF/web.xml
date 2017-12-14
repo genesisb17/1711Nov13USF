@@ -60,4 +60,24 @@
     <servlet-name>AllTickets</servlet-name>
     <url-pattern>/AllTickets</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>AllTicketsManager</display-name>
+    <servlet-name>AllTicketsManager</servlet-name>
+    <servlet-class>servlets.AllTicketsManager</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AllTicketsManager</servlet-name>
+    <url-pattern>/AllTicketsManager</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ChangeStatus</display-name>
+    <servlet-name>ChangeStatus</servlet-name>
+    <servlet-class>servlets.ChangeStatus</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ChangeStatus</servlet-name>
+    <url-pattern>/ChangeStatus</url-pattern>
+  </servlet-mapping>
 </web-app>

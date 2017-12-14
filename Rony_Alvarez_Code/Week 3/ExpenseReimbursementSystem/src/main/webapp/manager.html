@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Banking App!</title>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
+	integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb"
+	crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+	integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+	crossorigin="anonymous"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"
+	integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh"
+	crossorigin="anonymous"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"
+	integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
+	crossorigin="anonymous"></script>
+
+<link rel="stylesheet" href="css/main.css">
+<link rel="stylesheet" href="css/employee.css">
+
+<!-- Default Theme -->
+<!--1 <link rel="stylesheet"
+	href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
+<script type="text/javascript" src="//code.jquery.com/jquery-1.12.4.js"></script>
+<script type="text/javascript"
+	src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script> -->
+
+<!-- JQuery UI Theme -->
+<!--2 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/themes/base/jquery-ui.min.css"/>
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/dataTables.jqueryui.min.css"/>
+<script type="text/javascript" src="//code.jquery.com/jquery-1.12.4.js"></script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/dataTables.jqueryui.min.js"></script> -->
+
+<!-- JQuery UI Orange Theme -->
+<link rel="stylesheet" type="text/css"
+	href="https://cdn.datatables.net/r/ju-1.11.4/jqc-1.11.3,dt-1.10.8/datatables.min.css" />
+
+<script type="text/javascript" src="//code.jquery.com/jquery-1.12.4.js"></script>
+<script type="text/javascript"
+	src="https://cdn.datatables.net/r/ju-1.11.4/jqc-1.11.3,dt-1.10.8/datatables.min.js"></script>
+
+<link
+	href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300"
+	rel="stylesheet">
+
+<!-- <link href="https://fonts.googleapis.com/css?family=Cormorant+Garamond" rel="stylesheet">
+ -->
+</head>
+
+<body>
+
+	<div>
+
+		<ul>
+			<li style="padding: 10%"><img
+				src="https://3g4d13k75x47q7v53surz1gi-wpengine.netdna-ssl.com/wp-content/themes/revature/imgs/logo.png"
+				id="loginRevatureImg"></li>
+			<li id="allTickets" class="navButtons" style="padding-top: 10%"><a>Ticket
+					History</a></li>
+			<li id="newRequest" class="navButtons"><a>New Request</a></li>
+			<li id="logout" class="navButtons"><a>Logout</a></li>
+		</ul>
+
+		<div
+			style="margin-left: 15%; margin-right: 2%; padding-top: 3%; padding-bottom: 1%; padding-left: 16px; padding-right: 16px;">
+
+			<div style="float: left;">
+				<h2>Ticket History</h2>
+			</div>
+
+			<div style="float: right;">
+				<button type="button" id="opener" class="btn btn-warning btn-lg">New
+					Request</button>
+			</div>
+
+			<br>
+			<br>
+
+			<hr>
+
+		</div>
+
+		<div id="view"
+			style="margin-left: 15%; margin-right: 2%; padding: 1px 16px;">
+
+			<table id="example" class="display" cellspacing="0" width="100%">
+				<thead>
+					<tr>
+						<th>#</th>
+						<th>Username</th>
+						<th>Amount</th>
+						<th>Submitted</th>
+						<th>Description</th>
+						<th>Type</th>
+						<th>Status</th>
+					</tr>
+				</thead>
+			</table>
+
+			<br>
+
+			<div id="dialog" title="New Ticket">
+				<form name="newrequest" action="" method="get">
+
+					<br> <input type="number" name="amount" placeholder="Amount"
+						class="form-control"> <br>
+					<textarea name="description" placeholder="Description"
+						class="form-control"></textarea>
+					<br> <select name="type"
+						class="form-control dropdown-toggle dropdown-toggle-split">
+						<option value="lodging">Lodging</option>
+						<option value="travel">Travel</option>
+						<option value="food">Food</option>
+						<option value="other">Other</option>
+					</select><br> <input type="submit" value="Submit"
+						class="btn btn-primary btn-block"> <br>
+
+				</form>
+			</div>
+			
+			<div id="updatedialog" title="Update Status" >
+				<div>
+					
+					<select name="status"
+						class="form-control dropdown-toggle dropdown-toggle-split">
+						<option value="pending">PENDING</option>
+						<option value="approved">APPROVED</option>
+						<option value="denied">DENIED</option>
+					</select>
+
+					<br>
+
+					<button type="submit" value="Submit"
+						class="btn btn-primary btn-block"></button>
+					<br>
+					
+				</div>
+			</div>
+
+			<br> <br>
+
+		</div>
+
+	</div>
+
+	<script src="js/appmanager.js"></script>
+</body>
+</html>

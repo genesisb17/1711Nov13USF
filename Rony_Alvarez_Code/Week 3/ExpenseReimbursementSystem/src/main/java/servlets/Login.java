@@ -1,7 +1,6 @@
 package servlets;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,12 +9,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-
 import dao.DAO;
 import dao.FileDAO;
 import pojos.User;
-
 
 @WebServlet("/login")
 public class Login extends HttpServlet {
@@ -39,10 +35,16 @@ public class Login extends HttpServlet {
 			
 			// persist this user and reimbursement data to the session to be accessed throughout servlets and js
 			HttpSession session = request.getSession();
-			session.setAttribute("user", temp);
+			session.setAttribute("user", temp);	
 			
-			redirectTo = "employee.html";
-		
+			// if the id is 2 go to manager, otherwise go to employee
+			if(temp.getRole() == 2) {
+				redirectTo = "manager.html";
+			} else {
+				redirectTo = "employee.html";
+			}
+			
+			
 		} else {
 			
 			redirectTo = "loginerror.html";

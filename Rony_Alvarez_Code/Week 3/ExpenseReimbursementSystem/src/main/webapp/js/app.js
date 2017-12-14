@@ -2,13 +2,16 @@ window.onload = function() {
 	$('#home').on('click', loadHome);
 	$('#profile').on('click', loadProfile);
 	$('#logout').on('click', logout);
-	$('#allTickets').on('click', getAllTickets);
+	$('#allTickets').on('click', function() {
+		location.reload();
+	});
 }
 
 $(document).ready(function() {
-	
+
 	getAllTickets();
-	
+	newTicketModal();
+
 });
 
 function loadHome() {
@@ -69,43 +72,42 @@ function logout() {
 
 function getAllTickets() {
 
-	// Create XMLHttpRequest Object
-	var xhr = new XMLHttpRequest();
+	var table = $('#example')
+			.DataTable(
+					{
+						paging : true,
+						sort : true,
+						search : true,
+						"ajax" : {
+							"url" : "http://localhost:9999/ExpenseReimbursementSystem/getAllTickets",
+							cache : false
+						},
+						"columns" : [
+								{"data" : "id"},
+								{"data" : "amount",render : $.fn.dataTable.render.number(',','.', 0, '$')}, 
+								{"data" : "submitted"}, 
+								{"data" : "description"}, {"data" : "type"},
+								{"data" : "status"} ]
+					});
+	
+}
 
-	// Callback function
-	xhr.onreadystatechange = function() {
-		if (xhr.readyState == 4 && xhr.status == 200) {
+function newTicketModal() {
 
-			var response = JSON.parse(xhr.responseText);
-
-			$(function() {
-				$.each(response, function(i, item) {
-					$('#reimTable > tbody').html(
-							"<td>" + response[i].id + "</td><td>"
-									+ response[i].amount + "</td><td>"
-									+ response[i].submitted + "</td><td>"								
-									+ response[i].resolved + "</td><td>"
-									+ response[i].description + "</td><td>"
-									+ response[i].receipt + "</td><td>"
-									+ response[i].author + "</td><td>"
-									+ response[i].resolver + "</td><td>"
-									+ response[i].statusId + "</td><td>"
-									+ response[i].typeId + "</td>")
-							.appendTo('#reimTable');
-				});
-			});
-
-			
-			$('#reimTable').dataTable();
-			
-
+	$("#dialog").dialog({
+		autoOpen : false,
+		show : {
+			effect : "scale",
+			duration : 300
+		},
+		hide : {
+			effect : "scale",
+			duration : 300
 		}
-	}
+	});
 
-	// Open the request
-	xhr.open("GET", "getAllTickets", true);
-
-	// Send the request
-	xhr.send();
+	$("#opener").on("click", function() {
+		$("#dialog").dialog("open");
+	});
 
 }

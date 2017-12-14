@@ -5,11 +5,13 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 import connection.ConnectionFactory;
 import pojos.Reimbursement;
 import pojos.User;
+import pojos.UserReimbursement;
 
 public class FileDAO implements DAO {
 
@@ -127,33 +129,44 @@ public class FileDAO implements DAO {
 	public ArrayList<Reimbursement> getAllReimbursements(String username) {
 		
 		ArrayList<Reimbursement> reimArray = new ArrayList<Reimbursement>();
-		Reimbursement reim = new Reimbursement();
 
 		try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
 
-			String sql = "SELECT * FROM ERS_REIMBURSEMENT";
+			String sql = "SELECT REIMB.REIMB_ID, \r\n" + 
+					"  USR.ERS_USERNAME,\r\n" + 
+					"  REIMB.REIMB_AMOUNT,\r\n" + 
+					"  REIMB.REIMB_SUBMITTED, \r\n" + 
+					"  REIMB.REIMB_DESCRIPTION, \r\n" + 
+					"  TYP.REIMB_TYPE,\r\n" + 
+					"  STAT.REIMB_STATUS\r\n" + 
+					"FROM ERS_REIMBURSEMENT REIMB\r\n" + 
+					"INNER JOIN ERS_REIMBURSEMENT_STATUS STAT\r\n" + 
+					"ON REIMB.REIMB_STATUS_ID = STAT.REIMB_STATUS_ID \r\n" + 
+					"INNER JOIN ERS_REIMBURSEMENT_TYPE TYP\r\n" + 
+					"ON REIMB.REIMB_TYPE_ID = TYP.REIMB_TYPE_ID\r\n" + 
+					"INNER JOIN ERS_USERS USR\r\n" + 
+					"ON REIMB.REIMB_AUTHOR = USR.ERS_USERS_ID";
 
 			PreparedStatement ps = conn.prepareStatement(sql);
 
 			ResultSet info = ps.executeQuery();
 
 			while (info.next()) {
+				
+				Reimbursement reim = new Reimbursement();
 
 				reim.setId(info.getInt("REIMB_ID"));
+				reim.setUsername(info.getString("ERS_USERNAME"));
 				reim.setAmount(info.getInt("REIMB_AMOUNT"));
 				reim.setSubmitted(info.getTimestamp("REIMB_SUBMITTED"));
-				reim.setResolved(info.getTimestamp("REIMB_RESOLVED"));
 				reim.setDescription(info.getString("REIMB_DESCRIPTION"));
-				reim.setReceipt(info.getBlob("REIMB_RECEIPT"));
-				reim.setAuthor(info.getInt("REIMB_AUTHOR"));
-				reim.setResolver(info.getInt("REIMB_RESOLVER"));
-				reim.setStatusId(info.getInt("REIMB_STATUS_ID"));
-				reim.setTypeId(info.getInt("REIMB_TYPE_ID"));
+				reim.setType(info.getString("REIMB_TYPE"));
+				reim.setStatus(info.getString("REIMB_STATUS"));
 				
-				reimArray.add(reim);
+				reimArray.add(reim);	
 
 			}
-
+			
 		} catch (SQLException e) {
 
 			e.printStackTrace();
@@ -163,4 +176,83 @@ public class FileDAO implements DAO {
 		return reimArray;
 	}
 
+	@Override
+	public ArrayList<UserReimbursement> getUserReimbursements(int id) {
+		
+		ArrayList<UserReimbursement> reimArray = new ArrayList<UserReimbursement>();
+
+		try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
+
+			String sql = "SELECT REIMB.REIMB_ID, \r\n" + 
+					"  REIMB.REIMB_AMOUNT,\r\n" + 
+					"  REIMB.REIMB_SUBMITTED, \r\n" + 
+					"  REIMB.REIMB_DESCRIPTION, \r\n" + 
+					"  TYP.REIMB_TYPE,\r\n" + 
+					"  STAT.REIMB_STATUS\r\n" + 
+					"FROM ERS_REIMBURSEMENT REIMB\r\n" + 
+					"INNER JOIN ERS_REIMBURSEMENT_STATUS STAT\r\n" + 
+					"ON REIMB.REIMB_STATUS_ID = STAT.REIMB_STATUS_ID \r\n" + 
+					"INNER JOIN ERS_REIMBURSEMENT_TYPE TYP\r\n" + 
+					"ON REIMB.REIMB_TYPE_ID = TYP.REIMB_TYPE_ID\r\n" + 
+					"WHERE REIMB.REIMB_AUTHOR = ?";
+
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setInt(1, id);
+			
+			ResultSet info = ps.executeQuery();
+
+			while (info.next()) {
+				
+				UserReimbursement reim = new UserReimbursement();
+
+				reim.setId(info.getInt("REIMB_ID"));
+				reim.setAmount(info.getInt("REIMB_AMOUNT"));
+				reim.setSubmitted(info.getTimestamp("REIMB_SUBMITTED"));
+				reim.setDescription(info.getString("REIMB_DESCRIPTION"));
+				reim.setType(info.getString("REIMB_TYPE"));
+				reim.setStatus(info.getString("REIMB_STATUS"));
+				
+				reimArray.add(reim);
+
+			}
+			
+		} catch (SQLException e) {
+
+			e.printStackTrace();
+
+		}
+		
+		return reimArray;
+	}
+
+	@Override
+	public Reimbursement updateStatus(int id) {
+		
+		Reimbursement reim = new Reimbursement();
+
+		try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
+
+			String sql = "UPDATE ERS_REIMBURSEMENT SET REIMB_STATUS_ID = " + id + " WHERE REIMB_ID = 123464;\r\n" + 
+					"commit;";
+
+			Statement stmt = conn.createStatement();
+
+			int rows = stmt.executeUpdate(sql);
+			
+			if(rows >= 1) {
+				System.out.println("update successful");
+			} else {
+				System.out.println("nope");
+			}
+
+		} catch (SQLException e) {
+
+			e.printStackTrace();
+
+		}
+		
+		return null;
+	}
+
 }
+

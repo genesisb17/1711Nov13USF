@@ -1,0 +1,16 @@
+<section>
+  <header class="header">
+    <h1>Todos</h1>
+    <input class="new-todo" placeholder="What needs to be done?" autofocus="" [(ngModel)]="newTodo.title" (keyup.enter)="addTodo()">    
+  </header>
+
+  <section class="main" *ng-if="todos.length>0">
+    <ul>
+      <li *ngFor = "let todo of todos">
+        
+      </li>
+    </ul>
+  </section>
+
+
+</section>

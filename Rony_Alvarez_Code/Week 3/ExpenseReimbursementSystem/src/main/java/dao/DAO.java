@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import pojos.Reimbursement;
 import pojos.User;
+import pojos.UserReimbursement;
 
 public interface DAO {
 
@@ -11,4 +12,7 @@ public interface DAO {
 	int login(String username, String password);
 	User signup(User u);
 	ArrayList<Reimbursement> getAllReimbursements(String username);
+	ArrayList<UserReimbursement> getUserReimbursements(int id);
+	Reimbursement updateStatus(int id);
+	
 }

@@ -1,36 +1,29 @@
 package pojos;
 
-import java.sql.Blob;
 import java.sql.Timestamp;
 
 public class Reimbursement {
 
-	int id;
-	int amount;
-	Timestamp submitted;
-	Timestamp resolved;
-	String description;
-	Blob receipt;
-	int author;
-	int resolver;
-	int statusId;
-	int typeId;
+	private int id;
+	private String username;
+	private int amount;
+	private Timestamp submitted;
+	private String description;
+	private String type;
+	private String status;
 	
 	public Reimbursement() {}
 
-	public Reimbursement(int id, int amount, Timestamp submitted, Timestamp resolved, String description, Blob receipt,
-			int author, int resolver, int statusId, int typeId) {
+	public Reimbursement(int id, String username, int amount, Timestamp submitted, String description, String type,
+			String status) {
 		super();
 		this.id = id;
+		this.username = username;
 		this.amount = amount;
 		this.submitted = submitted;
-		this.resolved = resolved;
 		this.description = description;
-		this.receipt = receipt;
-		this.author = author;
-		this.resolver = resolver;
-		this.statusId = statusId;
-		this.typeId = typeId;
+		this.type = type;
+		this.status = status;
 	}
 
 	public int getId() {
@@ -39,6 +32,14 @@ public class Reimbursement {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 	public int getAmount() {
@@ -57,14 +58,6 @@ public class Reimbursement {
 		this.submitted = submitted;
 	}
 
-	public Timestamp getResolved() {
-		return resolved;
-	}
-
-	public void setResolved(Timestamp resolved) {
-		this.resolved = resolved;
-	}
-
 	public String getDescription() {
 		return description;
 	}
@@ -73,46 +66,20 @@ public class Reimbursement {
 		this.description = description;
 	}
 
-	public Blob getReceipt() {
-		return receipt;
+	public String getType() {
+		return type;
 	}
 
-	public void setReceipt(Blob receipt) {
-		this.receipt = receipt;
+	public void setType(String type) {
+		this.type = type;
 	}
 
-	public int getAuthor() {
-		return author;
+	public String getStatus() {
+		return status;
 	}
 
-	public void setAuthor(int author) {
-		this.author = author;
+	public void setStatus(String status) {
+		this.status = status;
 	}
-
-	public int getResolver() {
-		return resolver;
-	}
-
-	public void setResolver(int resolver) {
-		this.resolver = resolver;
-	}
-
-	public int getStatusId() {
-		return statusId;
-	}
-
-	public void setStatusId(int statusId) {
-		this.statusId = statusId;
-	}
-
-	public int getTypeId() {
-		return typeId;
-	}
-
-	public void setTypeId(int typeId) {
-		this.typeId = typeId;
-	};
-	
-	
 	
 }

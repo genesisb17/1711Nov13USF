@@ -10,11 +10,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 
 import dao.DAO;
 import dao.FileDAO;
-import pojos.Reimbursement;
+import pojos.User;
+import pojos.UserReimbursement;
 
 @WebServlet("/getAllTickets")
 public class AllTickets extends HttpServlet {
@@ -25,16 +29,22 @@ public class AllTickets extends HttpServlet {
 
 		DAO dao = new FileDAO();
 
-		// get all the reimbursements
-		Object reim = dao.getAllReimbursements("rons");
-
-		// create the json object
-		ObjectMapper mapper = new ObjectMapper();
-		String json = mapper.writeValueAsString(reim);
+		// get user from session
+		User user = (User) request.getSession(false).getAttribute("user");
 		
+		// get the user reimbursements
+		ArrayList<UserReimbursement> userreim = dao.getUserReimbursements(user.getId());
+		
+		// create the json object
 		response.setContentType("application/json");
 		PrintWriter out = response.getWriter();
-		out.write(json);
+		
+		Gson gson = new GsonBuilder().serializeNulls().create();
+		JsonArray jarray = gson.toJsonTree(userreim).getAsJsonArray();
+		JsonObject jsonObject = new JsonObject();
+		jsonObject.add("data", jarray);
+
+		out.print(jsonObject.toString());
 		out.flush();
 
 	}

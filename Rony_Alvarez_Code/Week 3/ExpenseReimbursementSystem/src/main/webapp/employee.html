@@ -7,7 +7,6 @@
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
 	integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb"
 	crossorigin="anonymous">
-
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
 	integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
 	crossorigin="anonymous"></script>
@@ -20,18 +19,45 @@
 	integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
 	crossorigin="anonymous"></script>
 
-<link rel="stylesheet"
-	href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
-<script type="text/javascript"
-	src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
-<link rel="stylesheet"
-	href="https://unpkg.com/purecss@1.0.0/build/pure-min.css"
-	integrity="sha384-nn4HPE8lTHyVtfCBi5yW9d20FjT8BJwUXyWZT9InLYax14RDjBj46LmSztkmNP9w"
-	crossorigin="anonymous">
-
 <link rel="stylesheet" href="css/main.css">
 <link rel="stylesheet" href="css/employee.css">
+<link rel="stylesheet" href="css/editor.dataTables.min.css">
 
+<!-- Default Theme -->
+<!--1 <link rel="stylesheet"
+	href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
+<script type="text/javascript" src="//code.jquery.com/jquery-1.12.4.js"></script>
+<script type="text/javascript"
+	src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script> -->
+
+<!-- JQuery UI Theme -->
+<!--2 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/themes/base/jquery-ui.min.css"/>
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/dataTables.jqueryui.min.css"/>
+<script type="text/javascript" src="//code.jquery.com/jquery-1.12.4.js"></script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/dataTables.jqueryui.min.js"></script> -->
+
+<!-- JQuery UI Orange Theme -->
+<link rel="stylesheet" type="text/css"
+	href="https://cdn.datatables.net/r/ju-1.11.4/jqc-1.11.3,dt-1.10.8/datatables.min.css" />
+
+<script type="text/javascript" src="//code.jquery.com/jquery-1.12.4.js"></script>
+<script type="text/javascript"
+	src="https://cdn.datatables.net/r/ju-1.11.4/jqc-1.11.3,dt-1.10.8/datatables.min.js"></script>
+	
+	
+	<script src="https://cdn.datatables.net/buttons/1.5.0/js/dataTables.buttons.min.js"></script>
+	<script src="https://cdn.datatables.net/select/1.2.4/js/dataTables.select.min.js"></script>
+	<script src="js/dataTables.editor.min.js"></script>
+
+<link
+	href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300"
+	rel="stylesheet">
+
+<!-- <link href="https://fonts.googleapis.com/css?family=Cormorant+Garamond" rel="stylesheet">
+ -->
 </head>
 
 <body>
@@ -42,32 +68,69 @@
 			<li style="padding: 10%"><img
 				src="https://3g4d13k75x47q7v53surz1gi-wpengine.netdna-ssl.com/wp-content/themes/revature/imgs/logo.png"
 				id="loginRevatureImg"></li>
-			<li id="allTickets" class="navButtons" style="padding-top: 10%">All Tickets</li>
+			<li id="allTickets" class="navButtons" style="padding-top: 10%"><a>Ticket
+					History</a></li>
 			<li id="newRequest" class="navButtons"><a>New Request</a></li>
-			<li id="logout"><a >Logout</a></li>
+			<li id="logout" class="navButtons"><a>Logout</a></li>
 		</ul>
 
-		<div id="view" style="margin-left: 15%; padding: 1px 16px;">
-			<table id="reimTable" class="pure-table" style=" margin-top:5%;">
+		<div
+			style="margin-left: 15%; margin-right: 2%; padding-top: 3%; padding-bottom: 1%; padding-left: 16px; padding-right: 16px;">
+
+			<div style="float: left;">
+				<h2>Ticket History</h2>
+			</div>
+
+			<div style="float: right;">
+				<button type="button" id="opener" class="btn btn-warning btn-lg">New
+					Request</button>
+			</div>
+
+			<br> <br>
+
+			<hr>
+
+		</div>
+
+		<div id="view"
+			style="margin-left: 15%; margin-right: 2%; padding: 1px 16px;">
+
+			<table id="example" class="display" cellspacing="0" width="100%">
 				<thead>
 					<tr>
 						<th>#</th>
 						<th>Amount</th>
 						<th>Submitted</th>
-						<th>Resolved</th>
 						<th>Description</th>
-						<th>Receipt</th>
-						<th>Author</th>
-						<th>Resolver</th>
-						<th>Status Id</th>
-						<th>Type Id</th>
+						<th>Type</th>
+						<th>Status</th>
 					</tr>
 				</thead>
-				<tbody>
-					<tr>
-					</tr>
-				</tbody>
 			</table>
+
+			<br>
+
+			<div id="dialog" title="New Ticket">
+				<form name="newrequest" action="" method="get">
+
+					<br> <input type="number" name="amount" placeholder="Amount"
+						class="form-control"> <br>
+					<textarea name="description" placeholder="Description"
+						class="form-control"></textarea>
+					<br> <select name="type"
+						class="form-control dropdown-toggle dropdown-toggle-split">
+						<option value="lodging">Lodging</option>
+						<option value="travel">Travel</option>
+						<option value="food">Food</option>
+						<option value="other">Other</option>
+					</select><br> <input type="submit" value="Submit"
+						class="btn btn-primary btn-block"> <br>
+
+				</form>
+			</div>
+
+			<br> <br>
+
 		</div>
 
 	</div>
