@@ -40,7 +40,7 @@ public class LoginServlet extends HttpServlet{
 		
 		Users user = service.login(username, password);
 		HttpSession session = req.getSession();
-		System.out.println(user.getEmail());
+		//System.out.println(user.getEmail());
 		
 		if(user == null) {
 			System.out.println("user was null, username/password not found.");

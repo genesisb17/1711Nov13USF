@@ -104,6 +104,7 @@ public class FileDAO implements DAO{
 			ResultSet rs = state.executeQuery(sql);
 			while(rs.next()) {
 				Reimbursement reimb = new Reimbursement();
+				//reimb.setReimb_id(rs.getInt(0));
 				reimb.setAmount(rs.getDouble(1));
 				reimb.setSubmitted(rs.getTimestamp(2));
 				reimb.setResolved(rs.getTimestamp(3));
@@ -113,6 +114,8 @@ public class FileDAO implements DAO{
 				reimb.setStatus_id(rs.getInt(7));
 				reimb.setType_id(rs.getInt(8));
 				arr.add(reimb);
+				//System.out.println(reimb.getResolved());
+				//System.out.println(reimb.getSubmitted());
 			}
 			
 			

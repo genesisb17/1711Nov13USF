@@ -7,12 +7,37 @@ window.onload = function(){
 	console.log("in on load");
 	//$("#register-submit").on("click", register);
 	$('#submit').on("click", submitRequest);
+	$('#viewrequest').on("click", viewRequest);
+	$('#logout').on("click", logout);
 }
-console.log('outside');
 //$( document ).ready(function(){
 //	console.log("in load ");
 //	$('#submit').click(submitRequest);
 //});
+
+
+function logout() {
+	var xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState == 4 && xhr.status == 200){
+			window.location.replace("index.html");
+		}
+	}
+	xhr.open("GET", "logout", true);
+	xhr.send();
+
+}
+
+function viewRequest(){
+	var xhr = new XMLHttpRequest();
+	xhr.open("GET", "viewrequest" ,true)
+	xhr.send();
+	xhr.onreadystatechange = function(){
+		if(xhr.readystate == 4 && xhr.status == 200) {
+			console.log("going to another page");
+		}
+	}
+}
 
 function submitRequest(){
 	console.log("in submit function");

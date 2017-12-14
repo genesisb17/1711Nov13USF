@@ -2,6 +2,8 @@ package com.ex.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import javax.servlet.ServletException;
@@ -29,7 +31,12 @@ public class DataTableServlet extends HttpServlet{
 		
 		resp.setContentType("application/json");
 		
+		System.out.println("in datatable servlet before json" + data);
+	
+		
 		ObjectMapper mapper = new ObjectMapper();
+		DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm a z");
+		mapper.setDateFormat(df);
 		String json = mapper.writeValueAsString(data);
 		System.out.println(json);
 		out.write(json);

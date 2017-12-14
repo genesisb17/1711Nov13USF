@@ -87,7 +87,6 @@ public class Service {
 			ps.setString(1, username);
 			ps.setString(2, password);
 			
-			System.out.println("login service2");
 			
 			boolean found = false;
 			ResultSet result = ps.executeQuery();
@@ -103,9 +102,10 @@ public class Service {
 					return user;
 				}
 				
-//				else if(!found) {
-//					System.out.println("User information is incorrect or DNE");
-//				}
+				// return null, 
+				else if(!found) {
+					return null;
+				}
 			}
 						
 		} catch (SQLException e) {

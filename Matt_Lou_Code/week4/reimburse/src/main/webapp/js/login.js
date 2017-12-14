@@ -174,8 +174,6 @@ function login(){
 				else {
 					window.location.replace("submitrequest.html")
 				}
-					
-				
 			}
 		}
 	}

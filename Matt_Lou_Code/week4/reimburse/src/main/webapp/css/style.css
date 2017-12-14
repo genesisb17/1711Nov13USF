@@ -9,3 +9,17 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
 textarea {
     resize: none;
 }
+
+.align-right {
+	position: absolute;
+    right: 0px;
+    margin-right: 50px;
+}
+
+.red{
+	color: red;
+}
+
+.green{
+	color: green;
+}
