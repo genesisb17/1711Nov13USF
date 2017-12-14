@@ -29,8 +29,11 @@ public class DBDAO implements DAO {
 				temp.setId(rs.getInt(1)); // Index starts at 1
 				temp.setAmount(rs.getDouble(2));
 				temp.setSubmitted(rs.getDate(3).toString());
-				try { temp.setResolved(rs.getDate(4).toString()); }
-				catch (Exception e) {temp.setResolved(null);}
+				try {
+					temp.setResolved(rs.getDate(4).toString());
+				} catch (Exception e) {
+					temp.setResolved(null);
+				}
 				temp.setDescription(rs.getString(5));
 				temp.setReceipt(rs.getBlob(6));
 				temp.setAuthor(rs.getInt(7));
@@ -62,8 +65,11 @@ public class DBDAO implements DAO {
 				temp.setId(rs.getInt(1)); // Index starts at 1
 				temp.setAmount(rs.getDouble(2));
 				temp.setSubmitted(rs.getDate(3).toString());
-				try { temp.setResolved(rs.getDate(4).toString()); }
-				catch (Exception e) {temp.setResolved(null);}
+				try {
+					temp.setResolved(rs.getDate(4).toString());
+				} catch (Exception e) {
+					temp.setResolved(null);
+				}
 				temp.setDescription(rs.getString(5));
 				temp.setReceipt(rs.getBlob(6));
 				temp.setAuthor(rs.getInt(7));
@@ -113,7 +119,7 @@ public class DBDAO implements DAO {
 	}
 
 	public User addUser(User user) {
-		System.out.println("adding user:" + user.toString());
+		// System.out.println("adding user:" + user.toString());
 		User temp = new User();
 		try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
 			conn.setAutoCommit(false); // Set to false to make sure it has properly changed
@@ -164,8 +170,11 @@ public class DBDAO implements DAO {
 				temp.setId(rs.getInt(1)); // Index starts at 1
 				temp.setAmount(rs.getDouble(2));
 				temp.setSubmitted(rs.getDate(3).toString());
-				try { temp.setResolved(rs.getDate(4).toString()); }
-				catch (Exception e) {temp.setResolved(null);}
+				try {
+					temp.setResolved(rs.getDate(4).toString());
+				} catch (Exception e) {
+					temp.setResolved(null);
+				}
 				temp.setDescription(rs.getString(5));
 				temp.setReceipt(rs.getBlob(6));
 				temp.setAuthor(rs.getInt(7));
@@ -197,8 +206,11 @@ public class DBDAO implements DAO {
 				temp.setId(rs.getInt(1)); // Index starts at 1
 				temp.setAmount(rs.getDouble(2));
 				temp.setSubmitted(rs.getDate(3).toString());
-				try { temp.setResolved(rs.getDate(4).toString()); }
-				catch (Exception e) {temp.setResolved(null);}
+				try {
+					temp.setResolved(rs.getDate(4).toString());
+				} catch (Exception e) {
+					temp.setResolved(null);
+				}
 				temp.setDescription(rs.getString(5));
 				temp.setReceipt(rs.getBlob(6));
 				temp.setAuthor(rs.getInt(7));
@@ -397,5 +409,39 @@ public class DBDAO implements DAO {
 			e.printStackTrace();
 		}
 		return statusList;
+	}
+
+	@Override
+	public User updateUser(User newUser, int u_id) {
+		try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
+			conn.setAutoCommit(false); // Set to false to make sure it has properly changed
+			String sql = "update users set username = ?, password = ?, firstname = ?, lastname = ?, email = ?, role_id = ? where user_id = ?";
+
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setString(1, newUser.getUsername());
+			ps.setString(2, newUser.getPassword());
+			ps.setString(3, newUser.getFirstname());
+			ps.setString(4, newUser.getLastname());
+			ps.setString(5, newUser.getEmail());
+			ps.setInt(6, newUser.getRole());
+			ps.setInt(7, u_id);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				User temp = new User();
+				temp.setId(rs.getInt(1));
+				temp.setFirstname(rs.getString(2));
+				temp.setLastname(rs.getString(3));
+				temp.setUsername(rs.getString(4));
+				temp.setPassword(rs.getString(5));
+				temp.setEmail(rs.getString(6));
+				temp.setRole(rs.getInt(7));
+				temp.setRoleStr(getUser_Role(temp.getRole()));
+				conn.commit();
+				return temp;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 }

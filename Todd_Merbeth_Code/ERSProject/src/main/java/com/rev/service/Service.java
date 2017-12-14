@@ -68,4 +68,8 @@ public class Service {
 	public ArrayList<R_Status> getAllRStatus(){
 		return dao.getAllRStatus();
 	}
+	
+	public User updateUser(User newUser, int u_id) {
+		return dao.updateUser(newUser, u_id);
+	}
 }

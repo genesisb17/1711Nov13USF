@@ -12,5 +12,4 @@
     <servlet-name>LoadViewFC</servlet-name>
     <url-pattern>*.view</url-pattern>
   </servlet-mapping>
-
 </web-app>

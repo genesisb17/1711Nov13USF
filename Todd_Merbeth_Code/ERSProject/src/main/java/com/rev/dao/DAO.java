@@ -29,13 +29,15 @@ public interface DAO {
 	
 	public Reimbursement updateReimbursement(int r_id, int r_res, int r_status);
 	//For both
-	public User addUser(User user); // Optional
+	public User addUser(User user);
 	
-	public boolean checkUsername(String username); // Optional for new user
+	public boolean checkUsername(String username);
 	
-	public boolean checkEmail(String email); // Optional for new user
+	public boolean checkEmail(String email);
 	
 	public User getUser(String username, String password); // For login
+	
+	public User updateUser(User newUser, int u_id);
 	
 	public String getR_Status(int r_id);
 	
