@@ -95,24 +95,39 @@ public class FileDAO implements DAO{
 	
 	public ArrayList<Reimbursement> getTable(){
 		ArrayList<Reimbursement> arr = new ArrayList<Reimbursement>();
+		Users user = new Users();
 		
 		try(Connection connect = ConnectionFactory.getInstance().getConnection()){
-			String sql = "select reimb_amount, reimb_submitted, reimb_resolved, "
+			String sql = "select reimb_id, reimb_amount, reimb_submitted, reimb_resolved, "
 					+ "reimb_description, reimb_author, reimb_resolver, " + 
 					"reimb_status_id, reimb_type_id from ers_reimbursement";
+			String sql2 = "select user_first_name, user_last_name from ers_users, "
+					+ "where ers_users_id = ?";
+			
+			// statement to select firstname and lastname from reimbursement author id
+			PreparedStatement prepared = connect.prepareStatement(sql2);
+			
 			Statement state = connect.createStatement();
 			ResultSet rs = state.executeQuery(sql);
+			
+			
+			// get the authorId from the reimbursement table and execute preparedStatement
+			// to get the first name and last name of the author.
+			prepared.setInt(1, rs.getInt(7));
+			ResultSet rs2 = prepared.executeQuery();
+			
+			
 			while(rs.next()) {
 				Reimbursement reimb = new Reimbursement();
-				//reimb.setReimb_id(rs.getInt(0));
-				reimb.setAmount(rs.getDouble(1));
-				reimb.setSubmitted(rs.getTimestamp(2));
-				reimb.setResolved(rs.getTimestamp(3));
-				reimb.setDescription(rs.getString(4));
-				reimb.setAuthor(rs.getInt(5));
-				reimb.setResolver(rs.getInt(6));
-				reimb.setStatus_id(rs.getInt(7));
-				reimb.setType_id(rs.getInt(8));
+				reimb.setReimb_id(rs.getInt(1));
+				reimb.setAmount(rs.getDouble(2));
+				reimb.setSubmitted(rs.getTimestamp(3));
+				reimb.setResolved(rs.getTimestamp(4));
+				reimb.setDescription(rs.getString(5));
+				//reimb.setAuthor_name(rs2.getString(columnIndex));
+				reimb.setResolver(rs.getInt(7));
+				reimb.setStatus_id(rs.getInt(8));
+				reimb.setType_id(rs.getInt(9));
 				arr.add(reimb);
 				//System.out.println(reimb.getResolved());
 				//System.out.println(reimb.getSubmitted());

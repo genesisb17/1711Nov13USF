@@ -24,9 +24,10 @@ console.log("after window on loads");
 
 $(document).ready(function(){
 	appendData();
-	$('#2').on('click', updateApprove);
+	//$('#2').on('click', updateApprove);
 	
 });
+
 
 function updateApprove(){
 	var status = $('#2').attr('id');
@@ -150,7 +151,8 @@ function appendData(){
 			
 			// use store array of data in array for formatting the table
 			for(var i = 0; i < data.length; i++){
-				var dataset = new Array();	
+				var dataset = new Array();
+				dataset.push(data[i].reimb_id);
 				dataset.push("$" + String(data[i].amount));
 				dataset.push(String(data[i].submitted));
 				dataset.push(String(timeResolve(data[i].resolved)));
@@ -161,10 +163,12 @@ function appendData(){
 				dataset.push(String(type(data[i].type_id)));
 				store.push(dataset);
 			}
+			
 			$(document).ready(function(){
 			    $('#example').DataTable( {
 			    	data: store,
 			    	columns: [
+			    		{title: "Id"},
 			    		{title: "amount" },
 			    		{title: "submitted" },
 			    		{title: "resolved" },
@@ -175,7 +179,7 @@ function appendData(){
 			    		{title: "type" }
 			    	]
 			    });
-			    
+			    $("#2").onclick = updateApprove;
 			});
 			
 //			for(var i = 0; i < data.length; i++){

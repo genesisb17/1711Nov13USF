@@ -3,22 +3,22 @@ import { Todo } from './todo';
 
 @Injectable()
 export class TodoDataService {
-  
-  //placeholder for last id to simulate auto increment
+  //placeholder for last id to simulate auto incrementing
   lastId: number = 0;
-
   todos: Todo[] = [];
+
 
   constructor() { }
 
-  /*
-    The following function will add the todo object
-    (restricted to being of type Todo) and return the current instance of the 
-    toDoDataService. This allows us to chain method calls from an instance
-    of the service
+  /* Here we are starting our simulation of an api to do
+    basic tasks for our to do list. The following function will
+    add the todo object (restricted to being of type Todo) and 
+    return the current instance of the TodoDataService. This is 
+    useful for many reasons, including the fact that it allows us
+    to chain method calls from an instance of the service
   */
 
-  // simulate POST/todos
+  // simulating POST /todos
   addTodo(todo: Todo): TodoDataService{
     if(!todo.id){
       todo.id = ++this.lastId;
@@ -29,17 +29,16 @@ export class TodoDataService {
 
   // simulate DELETE /todos/:id
   deleteTodoById(id: number): TodoDataService{
-    this.todos = this.todos.filter(todo => todo.id !== id);
-
+    this.todos = this.todos.filter(todo => todo.id !==id);
     return this;
   }
 
-  // simulate GET/todos/:id
+  //simulate GET /todos/:id
   getTodoById(id: number): Todo{
-    return this.todos.filter(todo => todo.id === id).pop();
+    return this.todos.filter(todo=>todo.id === id).pop();
   }
 
-  // simulate PUT/todos/:id; put should 'update'
+  //simulate PUT /todos/:id
   updateTodoById(id: number, values: {}): Todo{
     let todo = this.getTodoById(id);
     if(!todo) return null;
@@ -47,19 +46,23 @@ export class TodoDataService {
     return todo;
   }
 
+  //simulate GET /todos
   getAllTodos(): Todo[]{
     return this.todos;
   }
 
-  toggleTodoComplete(todo: Todo) {
-    let updatedToDo = this.updateTodoById(
+  toggleTodoComplete(todo: Todo){
+    let updatedTodo = this.updateTodoById(
       todo.id , {complete: !todo.complete});
-      return updatedToDo;
+      return updatedTodo;
   }
 
 }
 
 /*
-  new concepts: arrow notation, filters, specified return types, etc.
-  main takeaway: centralized businesss logic
+Here we do introduce some new concepts in terms of 
+arrow notation, filters, specified return types, etc
+
+HOWEVER: the main takeaway is that we have centralized
+our biz logic in one place -- the service
 */

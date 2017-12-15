@@ -14,9 +14,33 @@ public class Reimbursement {
 	private int type_id;
 	private Timestamp submitted;
 	private Timestamp resolved;
+	private String author_first_name;
+	private String author_last_name;
 	
 	public Reimbursement() {}
 	
+
+
+	public Reimbursement(int reimb_id, double amount, Blob receipt, String description, int author, int resolver,
+			int status_id, int type_id, Timestamp submitted, Timestamp resolved, String author_first_name,
+			String author_last_name) {
+		super();
+		this.reimb_id = reimb_id;
+		this.amount = amount;
+		this.receipt = receipt;
+		this.description = description;
+		this.author = author;
+		this.resolver = resolver;
+		this.status_id = status_id;
+		this.type_id = type_id;
+		this.submitted = submitted;
+		this.resolved = resolved;
+		this.author_first_name = author_first_name;
+		this.author_last_name = author_last_name;
+	}
+
+
+
 	public Reimbursement(int reimb_id, double amount, Blob receipt, String description, int author, int resolver,
 			int status_id, int type_id, Timestamp submitted, Timestamp resolved) {
 		super();
@@ -31,6 +55,44 @@ public class Reimbursement {
 		this.submitted = submitted;
 		this.resolved = resolved;
 	}
+
+	
+
+	public int getAuthor() {
+		return author;
+	}
+
+
+
+	public void setAuthor(int author) {
+		this.author = author;
+	}
+
+
+
+	public String getAuthor_first_name() {
+		return author_first_name;
+	}
+
+
+
+	public void setAuthor_first_name(String author_first_name) {
+		this.author_first_name = author_first_name;
+	}
+
+
+
+	public String getAuthor_last_name() {
+		return author_last_name;
+	}
+
+
+
+	public void setAuthor_last_name(String author_last_name) {
+		this.author_last_name = author_last_name;
+	}
+
+
 
 	public int getReimb_id() {
 		return reimb_id;
@@ -62,14 +124,6 @@ public class Reimbursement {
 
 	public void setDescription(String description) {
 		this.description = description;
-	}
-
-	public int getAuthor() {
-		return author;
-	}
-
-	public void setAuthor(int author) {
-		this.author = author;
 	}
 
 	public int getResolver() {
@@ -112,13 +166,17 @@ public class Reimbursement {
 		this.resolved = resolved;
 	}
 
+
+
 	@Override
 	public String toString() {
 		return "Reimbursement [reimb_id=" + reimb_id + ", amount=" + amount + ", receipt=" + receipt + ", description="
 				+ description + ", author=" + author + ", resolver=" + resolver + ", status_id=" + status_id
-				+ ", type_id=" + type_id + ", submitted=" + submitted + ", resolved=" + resolved + "]";
+				+ ", type_id=" + type_id + ", submitted=" + submitted + ", resolved=" + resolved
+				+ ", author_first_name=" + author_first_name + ", author_last_name=" + author_last_name + "]";
 	}
-	
+
+
 }
 
 
