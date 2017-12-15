@@ -9,7 +9,8 @@ export class TodoDataService {
 
   constructor() { }
 
-  /*Here we are starting our simulation of an api to do
+  /*
+    Here we are starting our simulation of an api to do
     basic tasks for our to do list. The following function will 
     add the todo object (restricted to being of type Todo) and
     return the current instance of the TodoDataService. This is
