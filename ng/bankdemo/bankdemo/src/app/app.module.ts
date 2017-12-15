@@ -6,16 +6,29 @@ import { AppComponent } from './app.component';
 import { LoginService } from './login.service';
 import { HttpClientModule } from '@angular/common/http'
 import { FormsModule } from '@angular/forms';
-import { LoginComponent } from './login/login.component'
+import { LoginComponent } from './login/login.component';
+import { LandingComponent } from './landing/landing.component'
+import { RouterModule, Routes} from '@angular/router';
 
+const routes: Routes=[
+  {
+    path: '',
+    component: LoginComponent
+  },
+  {
+    path: 'logged',
+    component: LandingComponent
+  }
+]
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent
+    LoginComponent,
+    LandingComponent
   ],
   imports: [
-    BrowserModule, HttpClientModule, FormsModule
+    BrowserModule, HttpClientModule, FormsModule, RouterModule.forRoot(routes)
   ],
   providers: [LoginService],
   bootstrap: [AppComponent]
