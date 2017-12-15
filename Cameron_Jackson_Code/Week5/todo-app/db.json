@@ -1,29 +1,3 @@
 {
-  "todos": [
-    {
-      "id": 1,
-      "title": "Finish things",
-      "complete": false
-    },
-    {
-      "id": 2,
-      "title": "Finish more things",
-      "complete": false
-    },
-    {
-      "id": 3,
-      "title": "Groceries",
-      "complete": false
-    },
-    {
-      "id": 4,
-      "title": "Sleep",
-      "complete": false
-    },
-    {
-      "id": 5,
-      "title": "Eating",
-      "complete": true
-    }
-  ]
+  "todos": []
 }

@@ -1,15 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { TodoDataService } from './todo-data.service';
-import { Todo } from './todo';
-import { ApiService } from './api.service';
+import { Todo } from '../todo';
+import { ApiService } from '../api.service';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  selector: 'app-todos',
+  templateUrl: './todos.component.html',
+  styleUrls: ['./todos.component.css']
 })
-export class AppComponent implements OnInit {
-
+export class TodosComponent implements OnInit {
   todos: Todo[] = [];
   /*
     Ask DI system to inject the dependency associated with our

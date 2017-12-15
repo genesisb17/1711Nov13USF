@@ -73,7 +73,6 @@ public class GetEmployeeTickets extends HttpServlet {
 			}
 			json.replace(json.lastIndexOf(","), json.length(), "]");
 		}
-//		System.out.println(json);
 		PrintWriter out = resp.getWriter();
 		resp.setContentType("application/json");
 		out.println(json);		

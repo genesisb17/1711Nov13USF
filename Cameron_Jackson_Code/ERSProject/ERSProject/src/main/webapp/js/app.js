@@ -10,6 +10,7 @@ $(document).on('click', '#returning-users', loadLogin);
 $(document).on('click', '#login', login);
 $(document).on('click', '#create-account', createAccount);
 $(document).on('click', '#manage-account', loadManageAccount);
+$(document).on('click', '#return-tickets', loadReimb);
 // $(document).on('click', '#create-ticket', loadCreateTicket);
 // $(document).on('click', '#create', createTicket);
 $(document).on('click', '#ma-cancel', loadReimb);
@@ -84,6 +85,18 @@ $(document).on('click', '.up-btn-cancel', function () {
         $('#ma-submit').attr('disabled', true);
     }
 });
+$(document).on('click', '#show-user', function () {
+    $("#all-reimbs").hide();
+    $("#user-reimbs").show();
+    $("#reimb-table").tabulator("setData");
+    // getEmployeeTicketInfo();
+});
+$(document).on('click', '#show-all', function () {
+    $("#all-reimbs").show();
+    $("#user-reimbs").hide();
+    $("#reimb-table-manager").tabulator("setData");
+    // getAllTicketInfo();
+});
 $(document).on('shown.bs.modal', '#create-ticket-modal', function () {
     $('#create-ticket-modal').trigger('focus');
     $(document).on('click', '#create', createTicket);
@@ -94,7 +107,47 @@ $(document).on('shown.bs.modal', '#logoutModal', function () {
         logout();
     });
 });
+$(document).on('click', '#showall', function () {
+    if ($("#all-reimbs").is(":visible")) {
+        $("#reimb-table-manager").tabulator("clearFilter");
+        $("#reimb-table-manager").tabulator("clearSort");
+        $("#reimb-table-manager").tabulator("setSort", "reimbId", "asc");
+    }
+    else {
+        $("#reimb-table").tabulator("clearFilter");
+        $("#reimb-table").tabulator("clearSort");
+        $("#reimb-table").tabulator("setSort", "reimbId", "asc");
+    }
+    $("#tablefilters .active").removeClass('active');
+    $("#showall").addClass('active');
 
+});
+$(document).on('click', '#showpending', function () {
+    if ($("#all-reimbs").is(":visible")) {
+        $("#reimb-table-manager").tabulator("setFilter", "status", "=", "PENDING");
+        $("#reimb-table-manager").tabulator("clearSort");
+        $("#reimb-table-manager").tabulator("setSort", "submitted", "asc");
+    } else {
+        $("#reimb-table").tabulator("setFilter", "status", "=", "PENDING");
+        $("#reimb-table").tabulator("clearSort");
+        $("#reimb-table").tabulator("setSort", "submitted", "asc");
+    }
+    $("#tablefilters .active").removeClass('active');
+    $("#showpending").addClass('active');
+});
+$(document).on('click', '#showresolved', function () {
+    if ($("#all-reimbs").is(":visible")) {
+        $("#reimb-table-manager").tabulator("setFilter", "status", "!=", "PENDING");
+        $("#reimb-table-manager").tabulator("clearSort");
+        $("#reimb-table-manager").tabulator("setSort", "resolved", "asc");
+    } else {
+        $("#reimb-table").tabulator("setFilter", "status", "!=", "PENDING");
+        $("#reimb-table").tabulator("clearSort");
+        $("#reimb-table").tabulator("setSort", "resolved", "asc");
+    }
+    $("#tablefilters .active").removeClass('active');
+    $("#showresolved").addClass('active');
+});
 /**
  * This function will be a get request to check where the user is in the page
  * if this is first login, it will load the login page.
@@ -104,12 +157,6 @@ function loadPage() {
     var xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function () {
         if (xhr.readyState == 4 && xhr.status == 200) {
-            // if (xhr.responseText == "loadLoginPage")
-            //     loadLoginPage();
-            // else if (xhr.responseText == "loadMainPage") {
-            //     loadMainPage();
-            // }
-            // console.log(xhr.responseText);
             if (xhr.responseText == "login") {
                 loadLoginPage();
             }
@@ -420,7 +467,18 @@ function createTicket() {
     var xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function () {
         if (xhr.readyState == 4 && xhr.status == 200) {
-            getEmployeeTicketInfo();
+            // getEmployeeTicketInfo();
+            var newRow = [];
+            newRow[0] = JSON.parse(xhr.responseText);
+            console.log(xhr.responseText);
+            console.log(newRow);
+            let submitted = moment(newRow[0].submitted);
+            newRow[0].submitted = submitted.format("MM-DD-YY HH:mm");
+            if (newRow[0].resolved != null) {
+                let resolved = moment(newRow[0].resolved);
+                newRow[0].resolved = resolved.format("MM-DD-YY HH:mm");
+            }
+            $("#reimb-table").tabulator("addData", newRow);
         }
     }
 
@@ -441,14 +499,15 @@ function getUser() {
             currUser = JSON.parse(xhr.responseText);
             document.getElementById('navbarDropdown').innerHTML =
                 `${currUser.firstName} ${currUser.lastName}`;
-            if (currUser.roleId == 1)
+            if (currUser.roleId == 1) {
                 getEmployeeTicketInfo();
+            }
             else if (currUser.roleId == 2) {
+                $("#all-reimbs").show();
+                $("#user-reimbs").hide();
                 getAllTicketInfo();
                 getEmployeeTicketInfo();
             }
-                
-                
         }
     }
     xhr.open("GET", "getuser", true);
@@ -472,12 +531,15 @@ function getAccountInfo() {
     xhr.send();
 }
 
-
-
 function getEmployeeTicketInfo() {
     $("#reimb-table").tabulator({
+        height: 400,
         index: "reimbId",
-        layout: 'fitDataFill',
+        layout: 'fitColumns',
+        pagination: "local",
+        paginationSize: 8,
+        persistentLayout: true,
+        persistentLayoutID: "alltickets",
         selectable: 1,
         columns: [
             { title: "Ticket #:", field: "reimbId" },
@@ -485,19 +547,34 @@ function getEmployeeTicketInfo() {
             { title: "Type:", field: "type" },
             { title: "Amount:", field: "amount", formatter: "money" },
             { title: "Description:", field: "description" },
-            { title: "Submitted:", field: "submitted" },
-            { title: "Resolved:", field: "resolved" },
+            { title: "Submitted:", field: "submitted", sorter: "date", sorterParams: { format: "MM-DD-YY" } },
+            { title: "Resolved:", field: "resolved", sorter: "date", sorterParams: { format: "MM-DD-YY" } },
             { title: "Resolved by:", field: "resolver" }
-        ]
+        ],
+        ajaxResponse: function (url, params, response) {
+            for (x in response) {
+                let submitted = moment(response[x].submitted);
+                response[x].submitted = submitted.format("MM-DD-YY HH:mm");
+                if (response[x].resolved != null) {
+                    let resolved = moment(response[x].resolved);
+                    response[x].resolved = resolved.format("MM-DD-YY HH:mm");
+                }
+            }
+            return response; //return the tableData peroperty of a response json object
+        }
     });
+    // $("#reimb-table").tabulator("setFilter", "status", "like");
     $("#reimb-table").tabulator("setData", '/ERSProject/getemployeetickets');
+    $("#reimb-table").tabulator("setFilter", "status", "=", "PENDING");
+    $("#reimb-table").tabulator("clearSort");
+    $("#reimb-table").tabulator("setSort", "submitted", "asc");
     // console.log("getEmployeeTickets");
 }
 
 function resolveTicket(id, status) {
     var data = [id, status];
     var xhr = new XMLHttpRequest();
-    xhr.onreadystatechange = function() {
+    xhr.onreadystatechange = function () {
         if (xhr.readyState == 4 && xhr.status == 200) {
             $("#reimb-table-manager").tabulator("setData", '/ERSProject/getalltickets');
         }
@@ -540,10 +617,13 @@ function getAllTicketInfo() {
         return editor;
     };
     $("#reimb-table-manager").tabulator({
+        height: 400,
         index: "reimbId",
         layout: 'fitDataFill',
-        pagination:"local",
-        paginationSize:10,
+        pagination: "local",
+        paginationSize: 8,
+        persistentLayout: true,
+        persistentLayoutID: "alltickets",
         selectable: 1,
         columns: [
             { title: "Ticket #:", field: "reimbId" },
@@ -552,101 +632,25 @@ function getAllTicketInfo() {
             { title: "Type:", field: "type" },
             { title: "Amount:", field: "amount", formatter: "money" },
             { title: "Description:", field: "description" },
-            { title: "Submitted:", field: "submitted" },
-            { title: "Resolved:", field: "resolved" },
+            { title: "Submitted:", field: "submitted", sorter: "date", sorterParams: { format: "MM-DD-YY" } },
+            { title: "Resolved:", field: "resolved", sorter: "date", sorterParams: { format: "MM-DD-YY" } },
             { title: "Resolved by:", field: "resolver" }
-        ]
+        ],
+        ajaxResponse: function (url, params, response) {
+            for (x in response) {
+                let submitted = moment(response[x].submitted);
+                response[x].submitted = submitted.format("MM-DD-YY HH:mm");
+                if (response[x].resolved != null) {
+                    let resolved = moment(response[x].resolved);
+                    response[x].resolved = resolved.format("MM-DD-YY HH:mm");
+                }
+            }
+            return response; //return the tableData peroperty of a response json object
+        }
     });
     $("#reimb-table-manager").tabulator("setData", '/ERSProject/getalltickets');
+    $("#reimb-table-manager").tabulator("setFilter", "status", "=", "PENDING");
+    $("#reimb-table-manager").tabulator("clearSort");
+    $("#reimb-table-manager").tabulator("setSort", "submitted", "asc");
+    // $("#reimb-table").tabulator("setData", '/ERSProject/getemployeetickets');
 }
-
-// function getEmployeeTicketInfo() {
-//     var xhr = new XMLHttpRequest();
-//     xhr.onreadystatechange = function () {
-//         if (xhr.readyState == 4 && xhr.status == 200) {
-//             // console.log(`Response: ${xhr.responseText}`);
-//             var tick;
-//             if (xhr.responseText != null)
-//             tick = JSON.parse(xhr.responseText);
-//             // Empty table to avoid duplicates
-//             $('#table-data').html("");
-//             for (x in tick) {
-//                 var reimb = tick[x].reimb;
-//                 var status = tick[x].status;
-//                 var type = tick[x].type;
-//                 var resolver = tick[x].resolver;
-//                 var name = "Unresolved";
-//                 if (resolver != null) {
-//                     name = `${resolver.firstName} ${resolver.lastName}`;
-//                 }
-//                 var timeResolved = "";
-//                 if (reimb.resolved != null) {
-//                     timeResolved = reimb.resolved;
-//                 }
-//                 var rowData = `<td>${reimb.reimbId}</td>
-//                 <td>${status}</td>
-//                 <td id="reimb-type">${type}</td>
-//                 <td id="reimb-amount">${reimb.amount}</td>
-//                 <td>${reimb.submitted}</td>
-//                 <td>${timeResolved}</td>
-//                 <td>${name}</td>`;
-//                 // console.log(rowData);
-//                 // Create table row element
-//                 var tableRow = document.createElement("tr");
-//                 // Insert rowData into this element
-//                 tableRow.innerHTML = rowData;
-//                 // append the element to the table
-//                 $('#table-data').append(tableRow);
-//             }
-//             // initialize datatable
-//             $('#reimb-table').DataTable();
-//         }
-//     }
-//     xhr.open("GET", "getemployeetickets", true);
-//     xhr.send();
-// }
-
-// function getAllTicketInfo() {
-//     var xhr = new XMLHttpRequest();
-//     xhr.onreadystatechange = function () {
-//         if (xhr.readyState == 4 && xhr.status == 200) {
-//             var tick = JSON.parse(xhr.responseText);
-//             for (x in tick) {
-//                 var reimb = tick[x].reimb;
-//                 var status = tick[x].status;
-//                 var type = tick[x].type;
-//                 var author = tick[x].author;
-//                 var resolver = tick[x].resolver;
-//                 if (author != null) {
-//                     authorName = `${author.firstName} ${author.lastName}`;
-//                 } else authorName = "Error";
-//                 if (resolver != null) {
-//                     resolverName = `${resolver.firstName} ${resolver.lastName}`;
-//                 } else resolverName = "N/A";
-//                 var timeResolved = "";
-//                 if (reimb.resolved != null) {
-//                     timeResolved = reimb.resolved;
-//                 }
-//                 var rowData = `<td>${reimb.reimbId}</td>
-//                     <td>${authorName}</td>
-//                     <td id="reimb-status">${status}</td>
-//                     <td id="reimb-type">${type}</td>
-//                     <td id="reimb-amount">${reimb.amount}</td>
-//                     <td>${reimb.submitted}</td>
-//                     <td>${timeResolved}</td>
-//                     <td>${resolverName}</td>`;
-//                 // console.log(rowData);
-//                 // Create table row element
-//                 var tableRow = document.createElement("tr");
-//                 // Insert rowData into this element
-//                 tableRow.innerHTML = rowData;
-//                 // append the element to the table
-//                 $('#table-data').append(tableRow);
-//             }
-//             // initialize datatable
-//             $('#reimb-table').DataTable();
-//         }
-//     }
-//     xhr.open("GET", "getemployeetickets", true);
-//     xhr.send();
-// }

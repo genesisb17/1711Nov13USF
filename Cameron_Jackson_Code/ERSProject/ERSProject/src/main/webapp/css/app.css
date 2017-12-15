@@ -21,4 +21,8 @@ body {
     ~ .invalid-feedback {
       display: block;
     }
-  }
+}
+
+.tabulator-paginator {
+    color: #008cba;
+}

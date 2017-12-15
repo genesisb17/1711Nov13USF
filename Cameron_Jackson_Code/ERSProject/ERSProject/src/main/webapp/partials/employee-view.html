@@ -1,18 +1,17 @@
 <div class="mx-auto">
-    <br/>
+    <h3>Your Reimbursements</h3>
+    <hr/>
     <div class="row justify-content-between">
-        <div class="col-4">
-            <h3>Reimbursements</h3>
-            <!-- <button class="btn btn-link" id=""></button> -->
+        <div class="col-auto">
+            <nav class="nav nav-tabs" id="tablefilters">
+                <button class="btn btn-link nav-link active" id="showpending">Show Pending</button>
+                <button class="btn btn-link nav-link" id="showresolved">Show Resolved</button>
+                <button class="btn btn-link nav-link" id="showall">Show All</button>
+            </nav>
         </div>
-        <div class="col-3 text-right">
-            <button class="btn btn-link" data-toggle="modal" 
-            data-target="#create-ticket-modal" 
-            id="create-ticket">Create Ticket</button>
+        <div class="col-auto text-right">
+            <button class="btn btn-link" data-toggle="modal" data-target="#create-ticket-modal" id="create-ticket">Create Ticket</button>
         </div>
     </div>
-    <hr/>
     <div id="reimb-table"></div>
-    <br>
 </div>
-<br><br>

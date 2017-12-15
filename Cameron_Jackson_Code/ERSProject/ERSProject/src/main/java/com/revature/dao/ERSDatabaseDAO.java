@@ -275,7 +275,6 @@ public class ERSDatabaseDAO implements ERSDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-
 		return reimb;
 	}
 
@@ -342,8 +341,8 @@ public class ERSDatabaseDAO implements ERSDAO {
 	public Reimbursement addTicket(Reimbursement newTicket) {
 		String sql = "INSERT INTO ERS_REIMBURSEMENT (REIMB_AMOUNT, REIMB_DESCRIPTION, REIMB_RECEIPT,\r\n" + 
 				"REIMB_AUTHOR, REIMB_STATUS_ID, REIMB_TYPE_ID) VALUES (?,?,?,?,?,?)";
-		String[] keys = {DB_KEY_REIMBID};
-
+		String[] keys = {DB_KEY_REIMBID, DB_KEY_SUBMITTED};
+		Reimbursement r = null;
 
 		try (Connection conn = ConnectionFactory.getInstance().getConnection();
 				PreparedStatement ps = conn.prepareStatement(sql, keys);) {
@@ -359,15 +358,16 @@ public class ERSDatabaseDAO implements ERSDAO {
 			if (rows > 0) {
 				try (ResultSet rs = ps.getGeneratedKeys();) {
 					while (rs.next()) {
-
-						newTicket.setReimbId(rs.getInt(1));
+						conn.commit();
+						r = new Reimbursement();
+						r = getTicket(rs.getInt(1));
 					}
 				}
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return newTicket;
+		return r;
 	}
 
 	@Override

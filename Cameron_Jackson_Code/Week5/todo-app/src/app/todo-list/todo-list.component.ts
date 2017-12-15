@@ -32,6 +32,10 @@ export class TodoListComponent implements OnInit {
     this.toggleComplete.emit(todo);
   }
 
+  todoDeleted(){
+    
+  }
+
   constructor() { }
 
   ngOnInit() {

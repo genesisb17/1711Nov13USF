@@ -6,6 +6,7 @@ import { Observable } from 'rxjs/Observable';
 // lazy collections of multiple values over time
 // * cancellable
 
+// API_URL - stored as an enviroment var = localhost:3000
 const API_URL = environment.apiUrl;
 const httpOptions = {
   headers: new HttpHeaders({
@@ -43,6 +44,6 @@ export class ApiService {
   //DELETE /todos/id
   public deleteTodo(todo: Todo | number) {
     const id = typeof todo === 'number' ? todo : todo.id;
-    return this.http.delete<Todo>(API_URL+'/todos');
+    return this.http.delete<Todo>(API_URL+'/todos/'+id, httpOptions);
   }
 }

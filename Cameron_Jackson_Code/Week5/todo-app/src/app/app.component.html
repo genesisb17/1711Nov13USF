@@ -1,8 +1,1 @@
-<section>
-  <hr>
-  <app-todo-list-header (add)="onAddTodo($event)"></app-todo-list-header>
-  <app-todo-list [todos]="todos" (remove)="onRemoveTodo($event)" 
-  (toggleComplete)="onToggleTodoComplete($event)"></app-todo-list>
-</section>
-
-<app-todo-list-footer [todos]="todos"></app-todo-list-footer>
+<router-outlet></router-outlet>

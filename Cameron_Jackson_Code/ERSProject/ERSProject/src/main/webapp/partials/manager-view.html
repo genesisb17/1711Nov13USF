@@ -1,28 +1,44 @@
 <div class="mx-auto">
-    <br/>
-    <div class="row justify-content-between">
-        <div class="col-4">
-            <h3>Reimbursements</h3>
-            <!-- <button class="btn btn-link" id=""></button> -->
+    <div id="all-reimbs">
+        <div class="row justify-content-between">
+            <div class="col-4">
+                <h3>All Reimbursements</h3>
+            </div>
+            <div class="col-auto">
+                <button class="btn btn-link" id="show-user">Click here to view your reimbursements</button>
+            </div>
         </div>
+        <hr/>
+        <nav class="nav nav-tabs" id="tablefilters">
+            <button class="btn btn-link nav-link active" id="showpending">Show Pending</button>
+            <button class="btn btn-link nav-link" id="showresolved">Show Resolved</button>
+            <button class="btn btn-link nav-link" id="showall">Show All</button>
+        </nav>
+        <div id="reimb-table-manager"></div>
     </div>
-    <hr/>
-    <div id="reimb-table-manager"></div>
-    <br>
-    <div class="row justify-content-between">
-        <div class="col-4">
-            <h3>Your Tickets</h3>
-            <!-- <button class="btn btn-link" id=""></button> -->
+    <div id="user-reimbs">
+        <div class="row justify-content-between">
+            <div class="col-4">
+                <h3>Your Reimbursements</h3>
+            </div>
+            <div class="col-auto" id="manager-view">
+                <button class="btn btn-link" id="show-all">Click here for manager view</button>
+            </div>
         </div>
-        <div class="col-3 text-right">
-            <button class="btn btn-link" data-toggle="modal" 
-            data-target="#create-ticket-modal" 
-            id="create-ticket">Create Ticket</button>
+        <hr/>
+        <div class="row justify-content-between">
+            <div class="col-auto">
+                <nav class="nav nav-tabs" id="tablefilters">
+                    <button class="btn btn-link nav-link active" id="showpending">Show Pending</button>
+                    <button class="btn btn-link nav-link" id="showresolved">Show Resolved</button>
+                    <button class="btn btn-link nav-link" id="showall">Show All</button>
+                </nav>
+            </div>
+            <div class="col-auto text-right">
+                <button class="btn btn-link" data-toggle="modal" data-target="#create-ticket-modal" id="create-ticket">Create Ticket</button>
+            </div>
         </div>
+        <div id="reimb-table"></div>
     </div>
-    <hr/>
-    <div id="reimb-table"></div>
     <br>
 </div>
-<br>
-<br>

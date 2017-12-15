@@ -102,4 +102,11 @@ public class ReimbDTO {
 		this.resolver = resolver;
 	}
 
+	@Override
+	public String toString() {
+		return "ReimbDTO [reimbId=" + reimbId + ", amount=" + amount + ", submitted=" + submitted + ", resolved="
+				+ resolved + ", description=" + description + ", author=" + author + ", resolver=" + resolver
+				+ ", status=" + status + ", type=" + type + "]";
+	}
+
 }

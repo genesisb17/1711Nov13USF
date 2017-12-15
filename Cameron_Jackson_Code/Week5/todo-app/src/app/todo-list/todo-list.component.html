@@ -1,4 +1,4 @@
-<section class="main" *ngIf="todos.length > 0">
+<section class="main" *ngIf="todos.length > 0" (todoDeleted)="reloadTodos()">
   <ul class="todo-list">
     <li *ngFor="let todo of todos" [class.completed]="todo.complete">
       <div class="view">

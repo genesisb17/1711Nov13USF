@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.revature.dto.ReimbDTO;
 import com.revature.pojos.Reimbursement;
 import com.revature.pojos.Users;
 import com.revature.service.ERSService;
@@ -40,9 +41,20 @@ public class CreateTicketServlet extends HttpServlet {
 		ticket.setAuthor(u.getUserId());
 		ticket.setStatusId(ReimbursementStatus.PENDING.ordinal()+1);
 //		System.out.println(ticket);
-		Reimbursement newTicket = service.addTicket(ticket);
+		Reimbursement r = new Reimbursement();
+		r = service.addTicket(ticket);
+//		System.out.println("Create Ticket servlet: " + newTicket);
+		String authorStr = u.getFirstName() + " " + u.getLastName();
+		String resolverStr = null;
+		Users resolver = service.getUser(r.getResolver());
+		if (resolver != null) 
+			resolverStr = resolver.getFirstName() + " " + resolver.getLastName();
+		ReimbDTO rdto = new ReimbDTO(r.getReimbId(), r.getAmount(), r.getSubmitted(), 
+						r.getResolved(), r.getDescription(), authorStr, resolverStr, 
+						service.getStatus(r.getStatusId()), service.getType(r.getTypeId()));
+//		System.out.println("create ticket: "+ rdto);
 		PrintWriter out = resp.getWriter();
 		resp.setContentType("application/json");
-		out.println(mapper.writeValueAsString(newTicket));
+		out.println(mapper.writeValueAsString(rdto));
 	}
 }
