@@ -303,44 +303,44 @@ function loadUserInfo(){
 				pass = pass.concat("*")
 			}
 			document.getElementById('userInfo').innerHTML = `
-			<div id="uInfoInner" style="border:solid; border-radius:25px; padding:8px; border-color:bg-primary; background-color: #eee; margin:auto; width:50%; min-width:320px; max-width:450px;">
-					<div id="first" style="width: 100%; clear:both; height:28px;">
+			<div id="uInfoInner" style="border:solid; border-width: 1px;border-radius:25px; padding:8px; border-color:bg-primary; background-color: #eee; margin:auto; width:50%; min-width:320px; max-width:450px;">
+					<div id="first" style="width: 100%; clear:both; height:28px; margin-top:5px; margin-left:6px; margin-bottom:10px;">
 					<div id="firstnameText" style="float:left;">First name: ${user.firstname} </div> 
 					<button id="editFirst" class="btn btn-link btn-sm" style="font-size:10px; color:red; padding-bottom:6px;">Edit</button>
 					<label for="newFirstname" id="fnlabel" style="float:left; margin-bottom:0;">First name: </label> 
 					<input type="text" class="form-control" id="newFirstname" placeholder="${user.firstname}" style="width: 200px; font-size:18px; padding: 0 0 0 4px;">
 					</div> 
 					
-					<div id="last" style="width: 100%; clear:both; height:28px;">
+					<div id="last" style="width: 100%; clear:both; height:28px; margin-left:6px; margin-bottom:10px;">
 					<div id="lastnameText" style="float:left;">Last name: ${user.lastname}</div> 
 					<button id="editLast" class="btn btn-link btn-sm" style="font-size:10px; color:red; padding-bottom:6px;">Edit</button>
 					<label for="newLastname" id="lnlabel" style="float:left; margin-bottom:0; clear: both;">Last name: </label> 
 					<input type="text" class="form-control" id="newLastname" placeholder="${user.lastname}" style="width: 200px; font-size:18px; padding: 0 0 0 4px;">
 					</div>
 					
-					<div id="email" style="width: 100%; clear:both; height:28px;">
+					<div id="email" style="width: 100%; clear:both; height:28px; margin-left:6px; margin-bottom:10px;">
 					<div id="emailText" style="float:left;">Email: ${user.email} </div> 
 					<button id="editEmail" class="btn btn-link btn-sm" style="font-size:10px; color:red; padding-bottom:6px;">Edit</button>
 					<label for="newEmail" id="emaillabel" style="float:left; margin-bottom:0; clear: both;" >Email: </label> 
 					<input type="text" class="form-control" id="newEmail" placeholder="${user.email}" style="width: 200px; font-size:18px; padding: 0 0 0 4px;">
 					</div> 
 					
-					<div id="roleText" style="float:left; width: 100%; clear:both;  height:28px;">Role: ${user.roleStr} </div>
+					<div id="roleText" style="float:left; width: 100%; clear:both; height:28px; margin-left:6px; margin-bottom:10px;">Role: ${user.roleStr} </div>
 					
-					<div id="username" style="width: 100%; clear:both; height:28px;">
+					<div id="username" style="width: 100%; clear:both; height:28px; margin-left:6px; margin-bottom:10px;">
 					<div id="usernameText" style="float:left;">Username: ${user.username} </div>
 					<button id="editUsername" class="btn btn-link btn-sm" style="font-size:10px; color:red; padding-bottom:6px;">Edit</button>
 					<label for="newUsername" id="usernamelabel" style="float:left; margin-bottom:0; clear: both; ">Username: </label> 
 					<input type="text" class="form-control" id="newUsername" placeholder="${user.username}" style="width: 200px; font-size:18px; padding: 0 0 0 4px;">
 					</div> 
 					
-					<div id="password" style="width: 100%; clear:both; height:28px;">
+					<div id="password" style="width: 100%; clear:both; height:28px; margin-left:6px; margin-bottom:5px;">
 					<div id="passwordText" style="float:left; padding-right: 8px;"> Password: ${pass} </div>
 					<button id="showPassword" class="btn btn-default btn-sm" style="font-size:10px; color:bg-primary; padding-bottom:6px; width: 40px; float:left;">Show</button>
 					<button id="hidePassword" class="btn btn-default btn-sm" style="font-size:10px; color:bg-primary; padding-bottom:6px; width: 40px; float:left;">Hide</button>
 					<button id="editPassword" class="btn btn-link btn-sm" style="font-size:10px; color:red; padding-bottom:6px;">Edit</button>
 					<label for="newPassword" id="passwordlabel" style="float:left; margin-bottom:0; clear: both;">Password: </label> 
-					<input type="text" class="form-control" id="newPassword" placeholder="${user.password}" style="width: 200px; font-size:18px; padding: 0 0 0 4px;">
+					<input type="password" class="form-control" id="newPassword" style="width: 200px; font-size:18px; padding: 0 0 0 4px;">
 					</div>
 			</div>`;
 			$('#hidePassword').hide();
@@ -355,12 +355,12 @@ function loadUserInfo(){
 				$('#fnlabel').show();
 			});
 			$('#newFirstname').keyup(function(event) {
-				var first = $('#newFirstname').val();
 			    if (event.keyCode === 13) {
 			    	$('#firstnameText').show();
 					$('#editFirst').show();
 					$('#newFirstname').hide();
 					$('#fnlabel').hide();
+					updateUser("firstname", $('#newFirstname').val())
 			    }
 			});
 			// Lastname stuff
@@ -644,7 +644,10 @@ function updateReimbursement(){
 // ////////////////////////////////////////////////// Profile
 // ///////////////////////////////////////////////////
 
-function updateUser(){
+function updateUser(command, value){
+	var userUpdate = [command, value];
+	var uuJSON = JSON.stringify(userUpdate);
+	console.log(userUpdate);
 	var xhr = new XMLHttpRequest();
 	xhr.onreadystatechange = function(){
 		console.log("CHANGEUSER" + xhr.readyState);
@@ -656,11 +659,12 @@ function updateUser(){
 			}
 			else {
 				alert(`Profile has been updated!`);
+				loadUserInfo();
 			}
 		}
 	}
 	xhr.open("POST", "updateUser", true);
-	xhr.send();
+	xhr.send(uuJSON);
 }
 
 // ////////////////////////////////////////////////// Logout

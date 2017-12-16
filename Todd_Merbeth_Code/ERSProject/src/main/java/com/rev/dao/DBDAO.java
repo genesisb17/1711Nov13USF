@@ -425,19 +425,10 @@ public class DBDAO implements DAO {
 			ps.setString(5, newUser.getEmail());
 			ps.setInt(6, newUser.getRole());
 			ps.setInt(7, u_id);
-			ResultSet rs = ps.executeQuery();
-			while (rs.next()) {
-				User temp = new User();
-				temp.setId(rs.getInt(1));
-				temp.setFirstname(rs.getString(2));
-				temp.setLastname(rs.getString(3));
-				temp.setUsername(rs.getString(4));
-				temp.setPassword(rs.getString(5));
-				temp.setEmail(rs.getString(6));
-				temp.setRole(rs.getInt(7));
-				temp.setRoleStr(getUser_Role(temp.getRole()));
+			int rows = ps.executeUpdate();
+			if (rows != 0) {
 				conn.commit();
-				return temp;
+				return newUser;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

@@ -30,12 +30,36 @@ public class UpdateUserServlet extends HttpServlet {
 		}
 		ObjectMapper mapper = new ObjectMapper();
 
-		User newUser = mapper.readValue(json, User.class);
-		
+		String[] change = mapper.readValue(json, String[].class);
+
 		User oldUser = (User) req.getSession().getAttribute("user");
+		User newUser = oldUser;
 		int id = oldUser.getId();
-		
+
+		switch (change[0]) {
+		case "firstname":
+			newUser.setFirstname(change[1]);
+			break;
+		case "lastname":
+			newUser.setLastname(change[1]);
+			break;
+		case "email":
+			newUser.setEmail(change[1]);
+			break;
+		case "username":
+			newUser.setUsername(change[1]);
+			break;
+		case "password":
+			newUser.setPassword(change[1]);
+			break;
+		default: 
+			newUser = null;
+		}	
 		User result = service.updateUser(newUser, id);
+		
+		if (result != null) {
+			req.getSession().setAttribute("user", result);
+		}
 
 		PrintWriter out = resp.getWriter();
 
