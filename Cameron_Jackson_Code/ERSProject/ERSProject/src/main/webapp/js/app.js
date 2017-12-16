@@ -126,11 +126,11 @@ $(document).on('click', '#showpending', function () {
     if ($("#all-reimbs").is(":visible")) {
         $("#reimb-table-manager").tabulator("setFilter", "status", "=", "PENDING");
         $("#reimb-table-manager").tabulator("clearSort");
-        $("#reimb-table-manager").tabulator("setSort", "submitted", "asc");
+        $("#reimb-table-manager").tabulator("setSort", "submitted", "desc");
     } else {
         $("#reimb-table").tabulator("setFilter", "status", "=", "PENDING");
         $("#reimb-table").tabulator("clearSort");
-        $("#reimb-table").tabulator("setSort", "submitted", "asc");
+        $("#reimb-table").tabulator("setSort", "submitted", "desc");
     }
     $("#tablefilters .active").removeClass('active');
     $("#showpending").addClass('active');
@@ -139,11 +139,11 @@ $(document).on('click', '#showresolved', function () {
     if ($("#all-reimbs").is(":visible")) {
         $("#reimb-table-manager").tabulator("setFilter", "status", "!=", "PENDING");
         $("#reimb-table-manager").tabulator("clearSort");
-        $("#reimb-table-manager").tabulator("setSort", "resolved", "asc");
+        $("#reimb-table-manager").tabulator("setSort", "resolved", "desc");
     } else {
         $("#reimb-table").tabulator("setFilter", "status", "!=", "PENDING");
         $("#reimb-table").tabulator("clearSort");
-        $("#reimb-table").tabulator("setSort", "resolved", "asc");
+        $("#reimb-table").tabulator("setSort", "resolved", "desc");
     }
     $("#tablefilters .active").removeClass('active');
     $("#showresolved").addClass('active');
@@ -205,6 +205,8 @@ function loadMainPage() {
     var xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function () {
         if (xhr.readyState == 4 && xhr.status == 200) {
+            $('body').css('background-image',"none");
+            $('body').css('background-color',"white");
             $('#appview').html(xhr.responseText);
             loadLogoutModal();
             loadCreateTicket();
@@ -219,6 +221,8 @@ function loadMainPageMini() {
     var xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function () {
         if (xhr.readyState == 4 && xhr.status == 200) {
+            $('body').css('background-image',"none");
+            $('body').css('background-color',"white");
             $('#appview').html(xhr.responseText);
             loadLogoutModal();
         }
@@ -322,8 +326,9 @@ function login() {
         if (xhr.readyState == 4 && xhr.status == 200) {
             var currUser = JSON.parse(xhr.responseText);
             if (currUser == null) {
+                $('#login-input').addClass('was-validated');
                 $('.message').show();
-                $('#message').html("Invalid username or password");
+                $('#invalid-password').html("Invalid username or password");
                 $('#password').val("");
             } else {
                 loadMainPage();
@@ -341,6 +346,7 @@ function logout() {
     var xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function () {
         if (xhr.readyState == 4 && xhr.status == 200) {
+            $('body').css('background-image', "url(\"images/fistbumpworkspace.jpg\")");
             loadLoginPage();
         }
     }
@@ -540,7 +546,7 @@ function getEmployeeTicketInfo() {
         paginationSize: 8,
         persistentLayout: true,
         persistentLayoutID: "alltickets",
-        selectable: 1,
+        selectable: 0,
         columns: [
             { title: "Ticket #:", field: "reimbId" },
             { title: "Status:", field: "status" },
@@ -567,7 +573,7 @@ function getEmployeeTicketInfo() {
     $("#reimb-table").tabulator("setData", '/ERSProject/getemployeetickets');
     $("#reimb-table").tabulator("setFilter", "status", "=", "PENDING");
     $("#reimb-table").tabulator("clearSort");
-    $("#reimb-table").tabulator("setSort", "submitted", "asc");
+    $("#reimb-table").tabulator("setSort", "submitted", "desc");
     // console.log("getEmployeeTickets");
 }
 
@@ -587,7 +593,6 @@ function getAllTicketInfo() {
     var statusEditor = function (cell, onRendered, success, cancel) {
         var editor = $(`
         <select>
-        <option value=''></option>
         <option value='PENDING'>PENDING</option>
         <option value='APPROVED'>APPROVED</option>
         <option value='DENIED'>DENIED</option>
@@ -616,6 +621,13 @@ function getAllTicketInfo() {
         });
         return editor;
     };
+    var statusCheck = function(cell) {
+        if (cell.getValue() == 'PENDING') {
+            return true;
+        } else {
+            return false;
+        }
+    };
     $("#reimb-table-manager").tabulator({
         height: 400,
         index: "reimbId",
@@ -624,11 +636,11 @@ function getAllTicketInfo() {
         paginationSize: 8,
         persistentLayout: true,
         persistentLayoutID: "alltickets",
-        selectable: 1,
+        selectable: 0,
         columns: [
             { title: "Ticket #:", field: "reimbId" },
             { title: "Author:", field: "author" },
-            { title: "Status:", field: "status", editor: statusEditor },
+            { title: "Status:", field: "status", editor: statusEditor, editable: statusCheck },
             { title: "Type:", field: "type" },
             { title: "Amount:", field: "amount", formatter: "money" },
             { title: "Description:", field: "description" },
@@ -651,6 +663,6 @@ function getAllTicketInfo() {
     $("#reimb-table-manager").tabulator("setData", '/ERSProject/getalltickets');
     $("#reimb-table-manager").tabulator("setFilter", "status", "=", "PENDING");
     $("#reimb-table-manager").tabulator("clearSort");
-    $("#reimb-table-manager").tabulator("setSort", "submitted", "asc");
+    $("#reimb-table-manager").tabulator("setSort", "submitted", "desc");
     // $("#reimb-table").tabulator("setData", '/ERSProject/getemployeetickets');
 }
