@@ -1,49 +1,228 @@
 // ---------------------------------------------------------------------------
-// 1. Listen for Button click events - (Login or Register)
+// 0. Session Variables & Required Global Variables
 // ---------------------------------------------------------------------------
 var sessionUser;
 var sessionReimb;
-var userlogin;
-var userPassword;
-var toSend;
-var json;
+var sessionUpdateReimb;
 
+var status;
+var type;
+var submitted;
+var resolved;
+var receipt;
+var resolver;
+
+
+
+// ---------------------------------------------------------------------------
+// 1. Listen for Button click events - (Login or Register)
+// ---------------------------------------------------------------------------
 window.onload = function() 
-{
-	$('#loginBtn').on('click', loginFunc);
+{	
 	$('#registerBtn').on('click', registerFunc);
+	$('#loginBtn').on('click', loginFunc);
+	$('#logoutBtn').on('click', logoutFunc);
 }
 
 
 
 //----------------------------------------------------------------------------
-// 2. Login
+// 1. Register
+//----------------------------------------------------------------------------
+function registerFunc()
+{
+	let un = $('#username').val();
+	let pw = $('#password').val();
+	let fn = $('#firstname').val();
+	let ln = $('#lastname').val();
+	let ue = $('#useremail').val();
+	let ur = $('.selectpicker').val();
+	
+	let validUsername;
+	let validPassword;
+	let validFirstName;
+	let validLastName;
+	let validEmail;
+	let validRole;
+	
+	if ($('#myselect option:selected').text() == "User")
+		ur = 1;
+	else if ($('#myselect option:selected').text() == "Manager")
+		ur = 2;
+	else
+		ur = 0;
+	
+	
+	// Beginning of Validate Input -------------------------
+	if (un == "")
+	{
+		$('#userNameError').show();
+		validUsername = false;
+	}
+	else
+	{
+		$('#userNameError').hide();
+		validUsername = true;
+	}
+	
+	if (pw == "")
+	{
+		$('#userPassError').show();
+		validPassword = false;
+	}
+	else
+	{
+		$('#userPassError').hide();
+		validPassword = true;
+	}
+	
+	if (fn == "")
+	{
+		$('#userFNError').show();
+		validFirstName = false;
+	}
+	else
+	{
+		$('#userFNError').hide();
+		validFirstName = true;
+	}
+	
+	if (ln == "")
+	{
+		$('#userLNError').show();
+		validLastName = false;
+	}
+	else
+	{
+		$('#userLNError').hide();
+		validLastName = true;
+	}
+	
+	if (ue == "")
+	{
+		$('#userEmailError').show();
+		validEmail = false;
+	}
+	else
+	{
+		$('#userEmailError').hide();
+		validEmail = true;
+	}
+	
+	if (ur == 0)
+	{
+		$('#userRoleError').show();
+		validRole = false;
+	}
+	else
+	{
+		$('#userRoleError').hide();
+		validRole = true;
+	}
+	// End of Validate Input -------------------------------
+	
+	if (((validUsername && validPassword) && validEmail) && (validRole && (validFirstName && validLastName)))
+	{
+		var user =
+		{
+			userId: 0,
+			userName: un,
+			passWord: pw,
+			firstName: fn,
+			lastName: ln,
+			userEmail: ue,
+			roleId: ur
+		};
+	
+		var userJson = JSON.stringify(user);
+	
+		var xhr = new XMLHttpRequest();
+		xhr.open("POST","RegisterServlet",true);
+		xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+		xhr.send(userJson);
+		xhr.onreadystatechange = function()
+		{
+			if(xhr.readyState == 4 &&  xhr.status == 200)
+			{			
+				if (xhr.responseText == "incorrect")
+				{
+					alert("User and email already exists! Please try again.");
+					location.reload();
+				}
+				else
+				{
+					alert("Successful Registration. Please login.");
+					location.reload();
+				}
+			}
+		}
+	}
+	else
+	{
+		// Not working?
+		document.getElementById('useremail').focus();
+	}
+}
+
+
+
+//----------------------------------------------------------------------------
+// 3. Login
 //----------------------------------------------------------------------------
 function loginFunc()
-{
-	// 1. Get input values from html file according to their id's
-	userlogin = $('#loginUsername').val();
-	userPassword = $('#loginPassword').val();
+{	
+	let userlogin = $('#loginUsername').val();
+	let userPassword = $('#loginPassword').val();
+	let validUsername;
+	let validPassword;
 	
-	// 2. Assign the input values to a string array
-	toSend = [userlogin, userPassword];
-	
-	// 3. Stringify the array into a json string
-	json = JSON.stringify(toSend);
-	
-	// 4. Create a new XMLHttpRequest to GetUserInfoServlet to send the json string
-	//    for processing and retreive the user information from the database
-	var xhr = new XMLHttpRequest();
-	xhr.open("POST", "GetUserInfoServlet", true);
-	xhr.send(json);
-	xhr.onreadystatechange = function() 
+	if (userlogin == "") 
 	{
-		if (xhr.readyState == 4 && xhr.status == 200) 
+		$('#loginError').show();
+		validUsername = false;
+	}
+	else
+	{
+		$('#loginError').hide();
+		validUsername = true;
+	}
+	
+	if (userPassword == "")
+	{
+		$('#passwordError').show();
+		validPassword = false;
+	}
+	else
+	{
+		$('#passwordError').hide();
+		validPassword = true;
+	}
+	
+	if (validUsername && validPassword)
+	{
+		var toSend = [userlogin, userPassword];
+		var loginJson = JSON.stringify(toSend);
+	
+		var xhr = new XMLHttpRequest();	
+		xhr.open("POST", "LoginServlet", true);
+		xhr.send(loginJson);
+		xhr.onreadystatechange = function() 
 		{
-			sessionUser = JSON.parse(xhr.responseText);
-			loadView("GetHeader.view", "headerView");
-			loadView("GetMenu.view", "menuView");
-			loadView("GetContent.view", "contentView");
+			if (xhr.readyState == 4 && xhr.status == 200) 
+			{
+				if (xhr.responseText == "incorrect")
+				{
+					alert("You have entered incorrect information. Please try again.");
+					location.reload();
+				}
+				else
+				{
+					sessionUser = JSON.parse(xhr.responseText);
+					loadView("GetHeader.view", "headerView");
+					loadView("GetMenu.view", "menuView");
+					loadView("GetContent.view", "contentView");
+				}
+			}
 		}
 	}
 }
@@ -51,29 +230,29 @@ function loginFunc()
 
 
 //----------------------------------------------------------------------------
-// 3. Load new views according to arguments (page and id)
+// 4. Load new views according to arguments (page and id)
 //----------------------------------------------------------------------------
 function loadView(page, id)
 {
 	var xhr = new XMLHttpRequest();
 	xhr.open("GET", page, true);
 	xhr.send();
-	xhr.onreadystatechange = function() 
+	xhr.onreadystatechange = function()
 	{
 		if (xhr.readyState == 4 && xhr.status == 200) 
 		{
 			document.getElementById(id).innerHTML = xhr.responseText;
 			if (page == "GetHeader.view")
 			{
+				$('#logoutBtn').show();
 				$('#sessionUser').html(sessionUser.firstName);
 			}
 			else if (page == "GetMenu.view")
-			{
 				loadRequests();
-			}
 			else if (page == "GetContent.view")
 			{
 				$('#newRequestContent').hide();
+				$('#updateRequestContent').hide();
 			}
 		}
 	}
@@ -82,148 +261,414 @@ function loadView(page, id)
 
 
 //----------------------------------------------------------------------------
-// 3. loadRequests
+// 5. loadRequests
 //----------------------------------------------------------------------------
 function loadRequests()
-{	
-	$('#viewRequests').prop('disabled', true);
-	$('#createNewRequest').prop('disabled', false);
-	$('#createNewRequest').on('click', loadNewRequest);
+{
+	let inUserView;
+	let inManagerView;
 	
-	sessionReimb = 
+	// Manage user role controls
+	if (sessionUser.roleId == 2)
+		$('#createNewRequestBtn').hide();
+	
+	$('#viewRequestsBtn').prop('disabled', true);
+	$('#createNewRequestBtn').prop('disabled', false);
+	$('#createNewRequestBtn').on('click', loadNewRequest);
+	
+	// Ajax call to get list of reimbursements
+	var xhr = new XMLHttpRequest();
+	xhr.open("GET", "GetReimbListServlet", true);
+	xhr.send();
+	xhr.onreadystatechange = function() 
+	{	
+		if (xhr.readyState == 4 && xhr.status == 200) 
+		{
+			$("table tbody").html("");
+			
+			var reimbs = [];
+			var jsonArray = JSON.parse(xhr.responseText);
+			
+			if (jsonArray == null)
+				submitNewRequest();
+			else
+			{
+				for(var i = 0; i < jsonArray.length; i++)
+					reimbs.push(jsonArray[i]);
+			
+				for (var i = 0; i < reimbs.length; i++)
+				{
+					//---------------------------------------------------
+					// Formatting Data for Human Readability
+					//---------------------------------------------------
+				
+					// Status
+					if (reimbs[i].reimbStatusId == 1)
+						status = "Pending";
+					else if (reimbs[i].reimbStatusId == 2)
+						status = "Approved";
+					else if (reimbs[i].reimbStatusId == 3)
+						status = "Denied";
+
+					// Type	
+					if (reimbs[i].reimbTypeId == 1)
+						type = "Lodging";
+					else if (reimbs[i].reimbTypeId == 2)
+						type = "Travel";
+					else if (reimbs[i].reimbTypeId == 3)
+						type = "Food";
+					else if (reimbs[i].reimbTypeId == 4)
+						type = "Other";
+				
+					// Submitted
+					submitted = reimbs[i].reimbSubmitted.substring(0,19);
+				
+					// Resolved
+					if  (reimbs[i].reimbResolved == null)
+						resolved = "No";
+					else
+						resolved = reimbs[i].reimbResolved.substring(0,19);
+				
+					// Receipt		
+					if (reimbs[i].reimbReceipt == null)
+						receipt = "None";
+				
+					// Resolver
+					if (reimbs[i].reimbResolver == 0)
+						resolver = "None";
+					else
+						resolver = reimbs[i].reimbResolver;
+				
+
+					// Role
+					//---------------------------------------------------
+					if (sessionUser.roleId == 1)
+					{
+						inUserView = true;
+						inManagerView = false;
+						$('#managerViews').hide();
+					
+						var markup = 					   "<tr><td>" + 
+							reimbs[i].reimbId 			+ "</td><td>" + 
+							"$"+reimbs[i].reimbAmount 	+ "</td><td>" +
+							status 						+ "</td><td>" + 
+							type 						+ "</td><td>" +
+							submitted					+ "</td><td>" + 
+							resolved				 	+ "</td><td>" +
+							resolver 					+ "</td><td>" +
+							reimbs[i].reimbDescription	+ "</td><td>" +
+							receipt				 		+ "</td></tr>"+
+							$("#userPastViews tbody").append(markup);
+					}
+					//---------------------------------------------------
+					else if (sessionUser.roleId == 2)
+					{
+						inManagerView = true;
+						inUserView = false;
+						$('#userPastViews').hide();
+						
+						var markup = 					   "<tr><td>" + 
+							reimbs[i].reimbId 			+ "</td><td>" +
+							"$"+reimbs[i].reimbAmount 	+ "</td><td>" +
+							reimbs[i].reimbAuthor       + "</td><td>" +
+							status 						+ "</td><td>" + 
+							type 						+ "</td><td>" +
+							submitted					+ "</td><td>" + 
+							resolved				 	+ "</td><td>" +
+							resolver 					+ "</td><td>" +
+							receipt				 		+ "</td><td>" +
+							"<button id='statBtn' class='btn btn-sm btn-custom'>Update</button></td></tr>" +
+							$("#managerViews tbody").append(markup);
+					}
+				}
+				
+				if (inUserView)
+				{
+					inManagerView = false;
+					
+					$(document).ready(function()
+					{
+						$('#userPastViews').DataTable();
+						$('select').addClass('mdb-select');
+					});
+				}
+				else if (inManagerView)
+				{
+					inUserView = false;
+					
+					$(document).ready(function() 
+					{
+						$('#managerViews').DataTable();	    
+						$('select').addClass('mdb-select');
+					});
+			
+					$('body').on('click', '#statBtn', function ()
+					{		    	
+						let self=$(this);
+						let rowIndex = self.closest('tr').index();
+						let table = $('#managerViews tbody')[0];
+						let cell = table.rows[rowIndex].cells[0];
+						let reimbId = $(cell).text();
+		    	
+						updateRequest(reimbId);
+						console.log("In body click" + reimbId);
+					});
+				}
+			}
+		}
+	}
+}
+
+
+
+//----------------------------------------------------------------------------
+// 6. Load New Request
+//----------------------------------------------------------------------------
+function loadNewRequest()
+{
+	$('#viewRequestsBtn').prop('disabled', false);
+	$('#createNewRequestBtn').prop('disabled', true);
+	
+	$('#requestsContent').hide();
+	$('#newRequestContent').show();
+	$('#updateRequestContent').hide();
+	
+	$('#viewRequestsBtn').on('click', viewRequests);
+	$('#submitNewReqBtn').on('click', submitNewRequest);
+}
+
+
+
+//----------------------------------------------------------------------------
+// 7. View Requests
+//----------------------------------------------------------------------------
+function viewRequests()
+{	
+	$('#viewRequestsBtn').prop('disabled', true);
+	$('#createNewRequestBtn').prop('disabled', false);
+	
+	$('#requestsContent').show();
+	$('#newRequestContent').hide();
+	$('#updateRequestContent').hide();
+	
+	$('#createNewRequestBtn').on('click', loadNewRequest);
+}
+
+
+
+//----------------------------------------------------------------------------
+// 8. Submit New Request
+//----------------------------------------------------------------------------
+function submitNewRequest()
+{	
+	var newReimbType = $('#reimbType').val();
+	var newReimbAmount = $('#reimbAmount').val();
+	var newReimbDesc = $('#reimbDesc').val();
+	
+	switch(newReimbType)
+	{
+		case "Lodging":
+			newReimbType = 1;
+		break;
+		case "Travel":
+			newReimbType = 2;
+		break;
+		case "Food":
+			newReimbType = 3;
+		break;
+		case "Other":
+			newReimbType = 4;
+		break;
+		default:
+			newReimbType = 1;
+	}
+
+	var newReimb =
 	{
 		reimbId: 0,
+		reimbAmount: newReimbAmount,
+		reimbAuthor: sessionUser.userId,
+		reimbResolver: null,
+		reimbStatusId: 0,
+		reimbTypeId: newReimbType,
+		reimbSubmitted: "",
+		reimbResolved: 0,
+		reimbDescription: newReimbDesc,
+		reimbReceipt: null
+	}
+	
+	var newReimbJson = JSON.stringify(newReimb);
+	
+	var xhr = new XMLHttpRequest();
+	xhr.open("POST", "PostReimbServlet", true);
+	xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+	xhr.send(newReimbJson);
+	xhr.onreadystatechange = function()
+	{
+		if(xhr.readyState == 4 &&  xhr.status == 200)
+		{
+			loadView("GetMenu.view", "menuView");
+			loadView("GetContent.view", "contentView");
+		}
+	}
+	
+}
+
+
+
+//----------------------------------------------------------------------------
+// 9. Update Request
+//----------------------------------------------------------------------------
+function updateRequest(id)
+{	
+	$('#viewRequestsBtn').prop('disabled', false);
+	$('#createNewRequestBtn').prop('disabled', false);
+	
+	$('#viewRequestsBtn').on('click', viewRequests);
+	$('#createNewRequestBtn').on('click', loadNewRequest);
+	
+	id = parseInt(id);
+	
+	var reimb =
+	{
+		reimbId: id,
 		reimbAmount: 0.0,
 		reimbAuthor: 0,
 		reimbStatusId: 0,
 		reimbTypeId: 0,
-		reimbSumbitted: "",
+		reimbSubmitted: "",
 		reimbResolved: 0,
 		reimbResolver: null,
 		reimbDescription: "",
 		reimbReceipt: null
 	}
 	
+	var updateJson = JSON.stringify(reimb);
+	
 	var xhr = new XMLHttpRequest();
-	xhr.open("GET", "GetReimbServlet", true);
-	xhr.send(json);
+	xhr.open("POST", "GetReimbInfoServlet", true);
+	xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+	xhr.send(updateJson);
+	xhr.onreadystatechange = function()
+	{
+		if(xhr.readyState == 4 &&  xhr.status == 200)
+		{
+			sessionUpdateReimb = JSON.parse(xhr.responseText);
+			
+			//---------------------------------------------------
+			// Formatting Data for Human Readability
+			//---------------------------------------------------
+			
+			// Status
+			if (sessionUpdateReimb.reimbStatusId == 2)
+				status = "Approved";
+			else if (sessionUpdateReimb.reimbStatusId == 3)
+				status = "Denied";
+			else if (sessionUpdateReimb.reimbStatusId == 1)
+				status="Pending";
+			
+			// Type	
+			if (sessionUpdateReimb.reimbStatusTypeId == 1)
+				type = "Lodging";
+			else if (sessionUpdateReimb.reimbStatusTypeId == 2)
+				type = "Travel";
+			else if (sessionUpdateReimb.reimbStatusTypeId == 3)
+				type = "Food";
+			else if (sessionUpdateReimb.reimbStatusTypeId == 4)
+				type = "Other";
+			
+			// Submitted
+			submitted = sessionUpdateReimb.reimbSubmitted.substring(0,19);
+			
+			// Resolved
+			if  (sessionUpdateReimb.reimbResolved == null)
+				resolved = "No";
+			else
+				resolved = sessionUpdateReimb.reimbResolved.substring(0,19);
+			
+			// Receipt
+			if (sessionUpdateReimb.reimbReceipt == null)
+				receipt = "None";
+			//---------------------------------------------------
+			
+			$('#viewRequestsBtn').prop('disabled', false);
+			$('#createNewRequestBtn').prop('disabled', false);
+			
+			$('#requestsContent').hide();
+			$('#newRequestContent').hide();
+			$('#updateRequestContent').show();
+			$('#userPastViews').hide();
+			
+			$('#idDetail').html(sessionUpdateReimb.reimbId);
+			$('#amountDetail').html("$"+sessionUpdateReimb.reimbAmount);
+			$('#authorDetail').html(sessionUpdateReimb.reimbAuthor);
+			$('#statusDetail').html(status);
+			$('#typeDetail').html(type);
+			$('#submittedDetail').html(submitted);
+			$('#resolvedDetail').html(resolved);
+			$('#resolverDetail').html(sessionUpdateReimb.reimbResolver);
+			$('#descDetail').html(sessionUpdateReimb.reimbDescription);
+			$('#receiptDetail').html(receipt);
+			
+			$('#updateDetailsBtn').on('click', alertDetails);
+		}
+	}
+	
+}
+
+
+
+//----------------------------------------------------------------------------
+// 10. Alert Details
+//----------------------------------------------------------------------------
+function alertDetails() 
+{	
+	var selectedOption = $('input[name=resolveAction]:checked').val();
+	
+	if (selectedOption == "Approve")
+		sessionUpdateReimb.reimbStatusId = 2;
+	else if (selectedOption == "Deny")
+		sessionUpdateReimb.reimbStatusId = 3;
+	else if (selectedOption == "Pending")
+		sessionUpdateReimb.reimbStatusId = 1;
+		
+	var reimbJson = JSON.stringify(sessionUpdateReimb);
+	
+	var xhr = new XMLHttpRequest();
+	xhr.open("POST", "UpdateReimbServlet", true);
+	xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+	console.log("IN ALERT DETAILS " + reimbJson);
+	xhr.send(reimbJson);
+	xhr.onreadystatechange = function()
+	{
+		if(xhr.readyState == 4 &&  xhr.status == 200)
+		{
+			loadView("GetMenu.view", "menuView");
+			loadView("GetContent.view", "contentView");
+		}
+	}
+	
+}
+
+
+
+
+//----------------------------------------------------------------------------
+// Y. Logout
+//----------------------------------------------------------------------------
+function logoutFunc()
+{
+	alert(sessionUser.userId);
+	
+	var xhr = new XMLHttpRequest();
+	xhr.open("GET", "LogoutServlet", true);
+	xhr.send();
 	xhr.onreadystatechange = function() 
 	{	
 		if (xhr.readyState == 4 && xhr.status == 200) 
 		{
-			var reimbs = [];
-			var jsonArray = JSON.parse(xhr.responseText);
-			for(var i = 0; i < jsonArray.length; i++) {
-			    reimbs.push(jsonArray[i]);
-			}
-			
-			for (var i = 0; i < reimbs.length; i++)
-			{
-				var markup = 					   "<tr><td>" + 
-					reimbs[i].reimbId 			+ "</td><td>" + 
-					reimbs[i].reimbAmount 		+ "</td><td>" +
-					reimbs[i].reimbAuthor 		+ "</td><td>" +
-					reimbs[i].reimbStatusId 	+ "</td><td>" + 
-					reimbs[i].reimbTypeId 		+ "</td><td>" +
-					reimbs[i].reimbSubmitted 	+ "</td><td>" + 
-					reimbs[i].reimbResolved 	+ "</td><td>" +
-					reimbs[i].reimbResolver 	+ "</td><td>" +
-					reimbs[i].reimbDescription 	+ "</td><td>" + 
-					reimbs[i].reimbReceipt 		+ "</td></tr>";
-	            $("table tbody").append(markup);
-			}
-			
-			$(document).ready(function() {
-			    $('#pastViews').DataTable();
-			    $('select').addClass('mdb-select');
-			    $('.mdb-select').material_select();
-			});
+			alert("Log out Successful");
+			location.reload();
 		}
 	}
 }
-
-
-
-//----------------------------------------------------------------------------
-// 4. Load New Request
-//----------------------------------------------------------------------------
-function loadNewRequest()
-{
-	$('#viewRequests').prop('disabled', false);
-	$('#createNewRequest').prop('disabled', true);
-	$('#requestsContent').hide();
-	$('#newRequestContent').show();
-	$('#viewRequests').on('click', viewRequests);
-}
-
-
-
-//----------------------------------------------------------------------------
-// 5. View Requests
-//----------------------------------------------------------------------------
-function viewRequests()
-{	
-	$('#viewRequests').prop('disabled', true);
-	$('#createNewRequest').prop('disabled', false);	
-	$('#requestsContent').show();
-	$('#newRequestContent').hide();
-	$('#createNewRequest').on('click', loadNewRequest);
-}
-
-
-
-//----------------------------------------------------------------------------
-// 5. Register
-//----------------------------------------------------------------------------
-function registerFunc() 
-{
-	// 1. Get input values from html file according to their id's
-	var un = $('#username').val();
-	var pw = $('#password').val();
-	var fn = $('#firstname').val();
-	var ln = $('#lastname').val();
-	var ue = $('#useremail').val();
-	var ur = $('.selectpicker').val();
-	var ur;
-	
-	if ($('#myselect option:selected').text() == "User") 
-		ur = 1;
-	else
-		ur = 2;
-	
-	// 2. Create an object with fields identical to the user pojo and assign
-	//    the input values from step 1 into the object
-	var user = 
-	{
-			userId: 0,
-			userName: un,
-			passWord: pw,
-			firstName: fn, 
-			lastName: ln,
-			userEmail: ue,
-			roleId: ur
-	};
-	
-	// 3. Stringify the new user object into a json string
-	var userJSON = JSON.stringify(user);
-	
-	// 4. Create a new XMLHttpRequest to RegisterServlet to send the json string
-	//    for processing and further persist the user into the database
-	var xhr = new XMLHttpRequest();	
-	xhr.open("POST","RegisterServlet",true);
-	xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-	xhr.send(userJSON);
-	xhr.onreadystatechange = function() 
-	{
-		if(xhr.readyState == 4 &&  xhr.status == 200)
-			;
-	};
-	
-	// 5. Load the new views upon successful registration
-	// loadView("GetHeader.view", "headerView");
-	// loadView("GetMenu.view", "menuView");
-	// loadView("GetContent.view", "contentView");
-}
-
-
-

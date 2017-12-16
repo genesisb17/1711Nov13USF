@@ -11,6 +11,8 @@ public interface UserDAO
 	public User addUser(User user);
 
 	public User getUser(User user);
+	
+	public User getUserById(int userId);
 
 	public void deleteUser(int user_id);
 }

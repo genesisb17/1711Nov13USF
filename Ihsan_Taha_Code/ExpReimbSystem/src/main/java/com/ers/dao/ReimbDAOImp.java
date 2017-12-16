@@ -154,9 +154,42 @@ public class ReimbDAOImp implements ReimbDAO
 	}
 
 	@Override
-	public Reimbursement getReimb(int remb_id)
+	public Reimbursement getReimb(int reimbId)
 	{
-		return null;
+
+		Reimbursement temp = new Reimbursement();
+		
+		try (Connection conn = ConnectionFactory.getInstance().getConnection();)
+		{
+			String sql = "SELECT * FROM ERS_REIMBURSEMENT WHERE REIMB_ID = ?";
+			
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setInt(1, reimbId);
+			ResultSet rs = ps.executeQuery();
+
+			while (rs.next())
+			{
+				temp.setReimbId(rs.getInt(1));
+				temp.setReimbAmount(rs.getDouble(2));
+				temp.setReimbSubmitted(rs.getString(3));
+				temp.setReimbResolved(rs.getString(4));
+				temp.setReimbDescription(rs.getString(5));
+				temp.setReimbReceipt(rs.getBlob(6));
+				temp.setReimbAuthor(rs.getInt(7));
+				temp.setReimbResolver(rs.getInt(8));
+				temp.setReimbStatusId(rs.getInt(9));
+				temp.setReimbTypeId(rs.getInt(10));
+			}
+		} catch (SQLException e)
+		{
+			// e.printStackTrace();
+		}
+		
+		if (temp.getReimbId() != 0)
+
+			return temp;
+		else
+			return null;
 	}
 
 	@Override

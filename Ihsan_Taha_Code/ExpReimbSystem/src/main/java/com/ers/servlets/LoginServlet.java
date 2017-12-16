@@ -10,42 +10,49 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.ers.pojos.User;
 import com.ers.util.Service;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-@WebServlet("/RegisterServlet")
-public class RegisterServlet extends HttpServlet
+@WebServlet("/LoginServlet")
+public class LoginServlet extends HttpServlet
 {
-	static Service service = new Service();
-
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
 		BufferedReader br = new BufferedReader(new InputStreamReader(request.getInputStream()));
-		
 		String json = "";
-		
 		if (br != null)
 			json = br.readLine();
 
 		ObjectMapper mapper = new ObjectMapper();
-		User user = mapper.readValue(json, User.class);
-		user = service.addUser(user);
-		
+		String[] userInfo = mapper.readValue(json, String[].class);
+
+		String username = userInfo[0];
+		String password = userInfo[1];
+
+		Service service = new Service();
+		User user = new User();
+		user.setUserName(username);
+		user.setPassWord(password);
+		user = service.getUser(user);
+
 		PrintWriter out = response.getWriter();
 		response.setContentType("application/json");
 		
 		if (user != null)
 		{
-			System.out.println("Successful Registration.");
-			json = "success";
+			HttpSession session = request.getSession();
+			session.setAttribute("user", user);
+
+			mapper = new ObjectMapper();
+			json = mapper.writeValueAsString(user);
 			out.write(json);
-		}
+		} 
 		else
 		{
-			System.out.println("User already exists.");
 			json = "incorrect";
 			out.write(json);
 		}

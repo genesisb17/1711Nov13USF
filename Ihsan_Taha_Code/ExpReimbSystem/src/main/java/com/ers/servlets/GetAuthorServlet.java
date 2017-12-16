@@ -10,44 +10,48 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import com.ers.pojos.Author;
+import com.ers.pojos.Reimbursement;
 import com.ers.pojos.User;
 import com.ers.util.Service;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-@WebServlet("/RegisterServlet")
-public class RegisterServlet extends HttpServlet
+@WebServlet("/GetAuthorServlet")
+public class GetAuthorServlet extends HttpServlet
 {
-	static Service service = new Service();
-
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
-	{
+	{	
+		System.out.println("In GetAuthorServlet");
+		
 		BufferedReader br = new BufferedReader(new InputStreamReader(request.getInputStream()));
-		
+
 		String json = "";
-		
+
 		if (br != null)
 			json = br.readLine();
 
 		ObjectMapper mapper = new ObjectMapper();
-		User user = mapper.readValue(json, User.class);
-		user = service.addUser(user);
+		Author author = mapper.readValue(json, Author.class);
+
+		System.out.println(author.getAuthorId());
 		
+		Service service = new Service();
+		User user = service.getUserById(author.getAuthorId());
+
+		author.setAuthorName(user.getFirstName());
+		
+		System.out.println(author.getAuthorName());
+		
+		HttpSession sessionReimb = request.getSession();
+		sessionReimb.setAttribute("author", author);
+
+		json = mapper.writeValueAsString(author);
+
 		PrintWriter out = response.getWriter();
 		response.setContentType("application/json");
-		
-		if (user != null)
-		{
-			System.out.println("Successful Registration.");
-			json = "success";
-			out.write(json);
-		}
-		else
-		{
-			System.out.println("User already exists.");
-			json = "incorrect";
-			out.write(json);
-		}
+		out.write(json);
 	}
 }

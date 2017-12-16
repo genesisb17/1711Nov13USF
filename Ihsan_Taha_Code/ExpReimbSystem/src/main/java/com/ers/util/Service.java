@@ -31,6 +31,11 @@ public class Service
 	{
 		return userDao.getUser(user);
 	}
+	
+	public User getUserById(int userId)
+	{
+		return userDao.getUserById(userId);
+	}
 
 	public void deleteUser(int user_id)
 	{

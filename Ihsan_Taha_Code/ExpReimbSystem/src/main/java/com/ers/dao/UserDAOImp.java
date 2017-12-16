@@ -54,6 +54,8 @@ public class UserDAOImp implements UserDAO
 	{
 		try (Connection conn = ConnectionFactory.getInstance().getConnection();)
 		{
+			System.out.println("In addUser, before sql call: " + user.toString());
+			
 			conn.setAutoCommit(false);
 			String sql = "INSERT INTO ERS_USERS (ERS_USERNAME, ERS_PASSWORD, USER_FIRSTNAME, USER_LASTNAME, USER_EMAIL, USER_ROLE_ID) VALUES (?,?,?,?,?,?)";
 			String[] key = new String[1];
@@ -68,26 +70,31 @@ public class UserDAOImp implements UserDAO
 			ps.setString(5, user.getUserEmail());
 			ps.setInt(6, user.getRoleId());
 
-			ps.executeUpdate();
+			int rows = ps.executeUpdate();
 
-			
-			  int rows = ps.executeUpdate();
-			  
-			  if (rows != 0) { ResultSet rs = ps.getGeneratedKeys(); while (rs.next()) {
-			  user.setUserId(rs.getInt(1)); user.setUserName(rs.getString(2));
-			  user.setPassWord(rs.getString(3)); user.setFirstName(rs.getString(4));
-			  user.setLastName(rs.getString(5)); user.setUserEmail(rs.getString(6));
-			  user.setRoleId(rs.getInt(7)); }
-			  
-			  conn.commit(); }
-			 
+			if (rows != 0)
+			{
+				ResultSet rs = ps.getGeneratedKeys();
+				while (rs.next())
+				{
+					user.setUserId(rs.getInt(1));
+					user.setUserName(rs.getString(2));
+					user.setPassWord(rs.getString(3));
+					user.setFirstName(rs.getString(4));
+					user.setLastName(rs.getString(5));
+					user.setUserEmail(rs.getString(6));
+					user.setRoleId(rs.getInt(7));
+				}
+
+				conn.commit();
+			}
 
 		} catch (SQLException e)
 		{
-			//e.printStackTrace();
+			// e.printStackTrace();
 		}
-		
-		System.out.println(user.getUserId());
+
+		System.out.println("In add user, after sql call: " + user.toString());
 
 		if (user.getUserId() != 0)
 			return user;
@@ -104,6 +111,39 @@ public class UserDAOImp implements UserDAO
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setString(1, user.getUserName());
 			ps.setString(2, user.getPassWord());
+			ResultSet rs = ps.executeQuery();
+
+			while (rs.next())
+			{
+				user.setUserId(rs.getInt(1));
+				user.setUserName(rs.getString(2));
+				user.setPassWord(rs.getString(3));
+				user.setFirstName(rs.getString(4));
+				user.setLastName(rs.getString(5));
+				user.setUserEmail(rs.getString(6));
+				user.setRoleId(rs.getInt(7));
+			}
+		} catch (SQLException e)
+		{
+			e.printStackTrace();
+		}
+
+		if (user.getUserId() != 0)
+			return user;
+		else
+			return null;
+	}
+
+	@Override
+	public User getUserById(int userId)
+	{
+		User user = new User();
+
+		try (Connection conn = ConnectionFactory.getInstance().getConnection();)
+		{
+			String sql = "SELECT * FROM ERS_USERS WHERE ERS_USERS_ID = ?";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setInt(1, userId);
 			ResultSet rs = ps.executeQuery();
 
 			while (rs.next())

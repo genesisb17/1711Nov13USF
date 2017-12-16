@@ -34,6 +34,7 @@
 						class="sr-only">(current)</span></a></li>
 				<li class="nav-item"><a class="nav-link" href="#">About</a></li>
 				<li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
+				<li class="nav-item"><a class="nav-link" href="#" id="logoutBtn" style="display:none">Logout</a></li>
 			</ul>
 		</div>
 	</nav>
@@ -70,41 +71,69 @@
 			<!-- *************************************************************************** -->
 			<div class="col-md-3 form-control m-1 section-color">
 				<div id="menuView">
+				<form>
 					<br />
 					<h3 class="custom-color" style="text-align: center">Login</h3>
 					<hr />
 					<input class="form-control" type="text" id="loginUsername" placeholder="Username"/>
+					<div id="loginError" class="form-control alert-danger" style="display:none">
+						Please enter a username.
+					</div>
 					<br />
 					<input class="form-control" type="password" id="loginPassword" placeholder="Password"/>
+					<div id="passwordError" class="form-control alert-danger" style="display:none">
+						Please enter a password.
+					</div>
 					<br />
 					<button class="form-control btn-custom" id="loginBtn">Login</button>
 					<br />
+				</form>
 					<h6 class="text-muted" style="text-align: center">Not registered?</h6>
   					<button class="form-control btn-custom"data-toggle="collapse" data-target="#collapseSubmit" aria-expanded="false" aria-controls="collapseSubmit">
     					Sign Up!
   					</button>
+  				<form>
   					<br />
 					<div class="collapse" id="collapseSubmit">				
 						<hr />
 						<input class="form-control" type="text" id="username" placeholder="Username"/>
+						<div id="userNameError" class="form-control alert-danger" style="display:none">
+							Please enter a username.
+						</div>
 						<br />
 						<input  class="form-control" type="password" id="password" placeholder="Password"/>
+						<div id="userPassError" class="form-control alert-danger" style="display:none">
+							Please enter a password.
+						</div>						
 						<br />
 						<input class="form-control" type="text" id="firstname" placeholder="First Name"/>
+						<div id="userFNError" class="form-control alert-danger" style="display:none">
+							Please enter a first name.
+						</div>
 						<br />
 						<input class="form-control" type="text" id="lastname" placeholder="Last Name"/>
+						<div id="userLNError" class="form-control alert-danger" style="display:none">
+							Please enter a last name.
+						</div>
 						<br />
 						<input class="form-control" type="email" id="useremail" placeholder="Email" />
+						<div id="userEmailError" class="form-control alert-danger" style="display:none">
+							Please enter an email.
+						</div>
 						<br />	
 						<select class="selectpicker form-control" id="myselect" required="">
 							<option disabled="" selected="">Select User Role</option>
   							<option>User</option>
   							<option>Manager</option>
 						</select>
+						<div id="userRoleError" class="form-control alert-danger" style="display:none">
+							Please select a role.
+						</div>
 						<br />
 						<button class="form-control btn-custom" id="registerBtn">Register</button>
 						<br />
 					</div>
+				</form>
 				</div>
 			</div>
 			
@@ -148,12 +177,12 @@
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
 	<!-- *************************************************************************** -->
 	<script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
-	<!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script> -->
+	
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
 	<script src="bootstrap/js/bootstrap.min.js"></script>
 	<script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
 	<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script>
-        
+    
 	<script src="js/exp_app.js"></script>
 
 </body>
