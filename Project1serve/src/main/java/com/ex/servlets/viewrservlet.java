@@ -66,9 +66,9 @@ public class viewrservlet extends HttpServlet
 		out.println("<style>\r\n" + 
 				"	body\r\n" + 
 				"	{		\r\n" + 
-				"	    padding-right: 30px;\r\n" + 
+				"	    padding-right: 60px;\r\n" + 
 				"	    padding-bottom: 50px;\r\n" + 
-				"	    padding-left: 80px;\r\n" + 
+				"	    padding-left: 130px;\r\n" + 
 				"	   	background-color:#ADD8E6;\r\n" + 
 				"	    \r\n" + 
 				"	}" + 

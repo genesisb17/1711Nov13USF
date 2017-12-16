@@ -9,7 +9,7 @@ window.onload = function()
 	loadHome();
 	$('#home').on('click',loadHome);
 	$('#profile').on('click', loadProfile);
-	$('#hello').on('click', viewReimb);
+	$('#viewr').on('click', viewReimb);
 }
 
 function loadHome()
@@ -21,10 +21,11 @@ function loadHome()
 		{
 			document.getElementById('view').innerHTML = xhr.responseText;
 		}
-	}	
+	}	d
 	xhr.open("GET", "getHomeView" , true);
 	xhr.send();
 }
+
 
 
 function viewReimb()
