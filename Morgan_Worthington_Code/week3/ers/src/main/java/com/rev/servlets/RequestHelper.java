@@ -5,7 +5,6 @@ import javax.servlet.http.HttpServletResponse;
 
 public class RequestHelper {
 	public String process(HttpServletRequest req, HttpServletResponse resp) {
-		System.out.println("[LOG] Processing request with helper : " + req.getRequestURI());
 		String partial="";
 		switch(req.getRequestURI()){
 		case "/ers/login.view":{

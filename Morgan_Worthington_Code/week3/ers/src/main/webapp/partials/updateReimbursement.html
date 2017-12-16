@@ -1,0 +1,66 @@
+<h4>Update Reimbursement</h4>
+<table class="table">
+<tr><th>I.D.</th><th>Amount</th><th>Submitted</th><th>Description</th><th>Author</th><th>Type</th></tr>
+<tr id="toUpdate"></tr>
+</table>
+<input type="button" class="btn btn-dark" id="approve" value="Approve">
+<input type="button" class="btn btn-dark" id="deny" value="Deny">
+<input type="button" class="btn btn-dark" id="cancel" value="Cancel">
+
+<script>
+
+updateRow();
+$("#approve").on('click',function(){
+	var id=$("#id").html();
+	var newStat=2;
+	resolveReimb(newStat);
+});
+
+$("#deny").on('click',function(){
+	var id=$("#id").html();
+	var newStat=3;
+	resolveReimb(newStat);
+});
+
+$("#cancel").on('click',function(){
+	sendToProfile();
+});
+
+function updateRow(){
+	var xhr= new XMLHttpRequest();
+	xhr.onreadystatechange=function(){
+		if(xhr.status==200 && xhr.readyState==4){
+			row=xhr.responseText;
+			$("#toUpdate").html(row);
+		}
+	}
+	xhr.open("GET","rowToResolve",true);
+	xhr.send();
+};
+
+
+function resolveReimb(status){
+	var xhr= new XMLHttpRequest();
+	xhr.onreadystatechange=function(){
+		if(xhr.status==200 && xhr.readyState==4){
+			console.log("Reimbursement Resolved");
+			sendToProfile();
+		}
+	}
+	//make servlet to send to resolve
+	xhr.open("POST","resolve",true);
+	xhr.send(status);
+};
+
+function sendToProfile(){
+	var xhr=new XMLHttpRequest();
+	xhr.onreadystatechange=function(){
+		if(xhr.status==200 && xhr.readyState==4){
+			profilePage=xhr.responseText;
+			$("#view").html(profilePage);
+		}
+	}
+	xhr.open("GET","profile.view",true);
+	xhr.send();
+};
+</script>

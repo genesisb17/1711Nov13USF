@@ -4,6 +4,8 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { CoursesComponent } from './courses.component';
+import { PasswordComponent } from './password/password.component';
+import { PasswordModule } from './password/password.module';
 
 
 @NgModule({
@@ -12,7 +14,8 @@ import { CoursesComponent } from './courses.component';
     CoursesComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    PasswordModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,14 +1,16 @@
 <h1 align="center">Expense Reimbursements System</h1>
 <h4 id="welcome" align="center"></h4>
-<h4>Reimbursements</h4>
+<h4 id="chosen">View requests by status:</h4>
 
 <input type="button" class="btn btn-dark" id="pending" value="Pending">
-<input type="button" class="btn btn-dark" id="resolved" value="Resolved">
-<table id="table_id" class="display">
+<input type="button" class="btn btn-dark" id="accepted" value="Approved">
+<input type="button" class="btn btn-dark" id="denied" value="Denied">
+<br>
+<h6 id="manageInstructions"></h6>
+<table id="table_id" class="table">
 <thead id="col_names">
 </thead>
 <tbody id="rows">
-<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
 </tbody>
 </table>
 <input type="button" class="btn btn-dark" id="newreimb" value="Add New">
@@ -16,22 +18,32 @@
 <script>
 var user;
 getUserInfo();
-console.log(user);
 var firstname=user.firstname;
 var role=user.role;
-console.log(firstname);
-$("#welcome").html(`Welcome ${firstname}`);
-getTableHead(role);
-//$('#table_id').DataTable();
+$("#welcome").html(`Welcome ${firstname}. `+'<input type="button" class="btn btn-dark" id="logout" value="Log Out">');
 
+getTableHead(role);
 $("#newreimb").on('click',sendToNewReimbursement);
+$("#logout").on('click',logout);
 $("#pending").on('click',function(){
 	var rStatus="pending";
 	getRows(role,rStatus);
+	$("#chosen").html("Pending Reimbursements");
+	if(role==1){
+		$("#manageInstructions").html('Click on a pending request to resolve.');
+	}
 });
-$("#resolved").on('click',function(){
-	var rStatus="resolved";
+$("#accepted").on('click',function(){
+	var rStatus="accepted";
 	getRows(role,rStatus);
+	$("#chosen").html("Accepted Reimbursements");
+	$("#manageInstructions").html('');
+});
+$("#denied").on('click',function(){
+	var rStatus="denied";
+	getRows(role,rStatus);
+	$("#chosen").html("Denied Reimbursements");
+	$("#manageInstructions").html('');
 });
 
 function getUserInfo(){
@@ -39,10 +51,7 @@ function getUserInfo(){
 	xhr.onreadystatechange=function(){
 		if(xhr.status==200 && xhr.readyState==4){
 			var userJson=xhr.responseText;
-			console.log(userJson);
 			user=JSON.parse(userJson);
-			console.log("inside AJAX request");
-			console.log(user);
 		}
 	}
 	xhr.open("GET","getSessionInfo",false);
@@ -69,7 +78,7 @@ function getTableHead(role){
 	}
 	xhr.open("POST","getTableHead",true);
 	xhr.send(role);
-}
+};
 
 function getRows(role, status){
 	var xhr=new XMLHttpRequest();
@@ -86,5 +95,29 @@ function getRows(role, status){
 	}
 	xhr.open("POST","populateRows",false);
 	xhr.send(json);
-}
+};
+
+function updateReimbursement(rId){
+	var xhr=new XMLHttpRequest();
+	xhr.onreadystatechange=function(){
+		if(xhr.status==200 && xhr.readyState==4){
+			var resolveReimb=xhr.responseText;
+			console.log(rId);
+			$("#view").html(resolveReimb);
+		}
+	}
+	xhr.open("POST","updateReimbursement",true);
+	xhr.send(rId);
+};
+
+function logout(){
+	var xhr= new XMLHttpRequest();
+	xhr.onreadystatechange=function(){
+		if(xhr.status==200 && xhr.readyState==4){
+			sendToLogin();
+		}
+	}
+	xhr.open("GET","logout",true);
+	xhr.send();
+};
 </script>

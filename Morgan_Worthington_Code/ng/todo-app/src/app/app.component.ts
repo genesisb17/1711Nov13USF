@@ -11,6 +11,7 @@ import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
+  
   /*
     Ask DI (dependency injection) system to inject the dependency associated 
     with our DI token 'tododataservice' and assign it a property.

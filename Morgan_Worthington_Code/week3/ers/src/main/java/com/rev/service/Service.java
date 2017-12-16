@@ -58,4 +58,12 @@ public class Service {
 		return dao.getUserById(id);
 	}
 	
+	public Reimbursement getReimbursementById(int id) {
+		return dao.getReimbById(id);
+	}
+	
+	public void updateReimbursement(int rId, int newStatus, int resolver) {
+		dao.updateStatus(rId, newStatus, resolver);
+	}
+	
 }

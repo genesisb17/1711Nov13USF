@@ -14,5 +14,5 @@ public interface DAO {
 	ArrayList<User> getUsers();
 	void addNewUser(String[] userInfo);
 	void addNewReimbursement(String[] reimbInfo);
-	void updateStatus(Reimbursement r, int newStatus, int resolver);
+	void updateStatus(int rId, int newStatus, int resolver);
 }

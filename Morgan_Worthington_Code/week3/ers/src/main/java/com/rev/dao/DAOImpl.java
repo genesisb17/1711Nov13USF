@@ -1,14 +1,18 @@
 package com.rev.dao;
 
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 import com.rev.pojos.Reimbursement;
 import com.rev.pojos.User;
 import com.rev.util.ConnectionFactory;
+
+import oracle.jdbc.OracleTypes;
 
 public class DAOImpl implements DAO {
 	
@@ -74,7 +78,7 @@ public class DAOImpl implements DAO {
 				reimb.setSubmitted(rs.getString(3));
 				reimb.setResolved(rs.getString(4));
 				reimb.setDescription(rs.getString(5));
-				reimb.setReceipt(rs.getString(6));
+				reimb.setReceipt("");
 				reimb.setAuthor(rs.getInt(7));
 				reimb.setResolver(rs.getInt(8));
 				reimb.setStatusId(rs.getInt(9));
@@ -102,7 +106,7 @@ public class DAOImpl implements DAO {
 				temp.setSubmitted(rs.getString(3));
 				temp.setResolved(rs.getString(4));
 				temp.setDescription(rs.getString(5));
-				temp.setReceipt(rs.getString(6));
+				temp.setReceipt("");
 				temp.setAuthor(rs.getInt(7));
 				temp.setResolver(rs.getInt(8));
 				temp.setStatusId(rs.getInt(9));
@@ -122,8 +126,9 @@ public class DAOImpl implements DAO {
 		
 		try(Connection conn=ConnectionFactory.getInstance().getConnection()){
 			String sql="SELECT * FROM ERS_REIMBURSEMENT";
-			PreparedStatement ps=conn.prepareStatement(sql); 
-			ResultSet rs=ps.executeQuery();
+			Statement statement=conn.createStatement();
+			statement.execute(sql);
+			ResultSet rs=statement.getResultSet();
 			while(rs.next()) {
 				Reimbursement temp=new Reimbursement();
 				temp.setId(rs.getInt(1));
@@ -131,7 +136,7 @@ public class DAOImpl implements DAO {
 				temp.setSubmitted(rs.getString(3));
 				temp.setResolved(rs.getString(4));
 				temp.setDescription(rs.getString(5));
-				temp.setReceipt(rs.getString(6));
+				temp.setReceipt("");
 				temp.setAuthor(rs.getInt(7));
 				temp.setResolver(rs.getInt(8));
 				temp.setStatusId(rs.getInt(9));
@@ -150,9 +155,15 @@ public class DAOImpl implements DAO {
 		ArrayList<User> users=new ArrayList<>();
 		
 		try(Connection conn=ConnectionFactory.getInstance().getConnection()){
-			String sql="SELECT * FROM ERS_USERS";
-			PreparedStatement ps=conn.prepareStatement(sql); 
-			ResultSet rs=ps.executeQuery();
+//			String sql="SELECT * FROM ERS_USERS";
+//			PreparedStatement ps=conn.prepareStatement(sql); 
+//			ResultSet rs=ps.executeQuery();
+			
+			CallableStatement cs=conn.prepareCall("{CALL GET_USERS(?)}");
+			cs.registerOutParameter(1, OracleTypes.CURSOR);
+			cs.execute();
+			ResultSet rs=(ResultSet) cs.getObject(1);
+			
 			while(rs.next()) {
 				User temp=new User();
 				temp.setId(rs.getInt(1));
@@ -195,8 +206,6 @@ public class DAOImpl implements DAO {
 		}
 	}
 
-	//double amount, String description, int author, int typeId
-	
 	@Override
 	public void addNewReimbursement(String[] reimbInfo) {
 		try(Connection conn=ConnectionFactory.getInstance().getConnection()){
@@ -221,14 +230,14 @@ public class DAOImpl implements DAO {
 	}
 
 	@Override
-	public void updateStatus(Reimbursement r, int newStatus, int resolver) {
+	public void updateStatus(int rId, int newStatus, int resolver) {
 		try(Connection conn=ConnectionFactory.getInstance().getConnection()){
 			String sql="UPDATE ERS_REIMBURSEMENT SET REIMB_STATUS_ID = ?, REIMB_RESOLVER = ?"
 					+ " WHERE REIMB_ID = ?";
 			PreparedStatement ps=conn.prepareStatement(sql);
 			ps.setInt(1, newStatus);
 			ps.setInt(2, resolver);
-			ps.setInt(3, r.getId());
+			ps.setInt(3, rId);
 			ps.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();

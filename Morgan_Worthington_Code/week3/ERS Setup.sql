@@ -132,3 +132,13 @@ BEGIN
 SELECT CURRENT_TIMESTAMP INTO :NEW.REIMB_RESOLVED FROM DUAL;
 END;
 /
+
+/*******************************************************************************
+   Stored Procedures
+********************************************************************************/
+CREATE OR REPLACE PROCEDURE GET_USERS(USERS OUT SYS_REFCURSOR)
+AS
+BEGIN
+OPEN USERS FOR
+SELECT * FROM ERS_USERS;
+END;
