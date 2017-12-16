@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { TestComponent } from './test/test.component';
 import { CoursesComponent } from './test/courses.component';
 import { CourseComponent } from './course/course.component';
+import { PasswordComponent } from './password/password.component';
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import { CourseComponent } from './course/course.component';
     AppComponent,
     TestComponent,
     CoursesComponent,
-    CourseComponent
+    CourseComponent,
+    PasswordComponent
   ],
   imports: [
     BrowserModule

@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -39,9 +40,7 @@ public class updateservlet extends HttpServlet
 		}
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
-		out.println("<form name =\"viewr\" action =\"viewr\" method=\"Post\">");
-		out.println("<input type=\"text\" name=\"rid\" id =\"rid\">");
-		out.println("<input type =\"submit\">");
-		out.println("</form>");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("viewr");
+		dispatcher.forward( request, response );
 	}
 }

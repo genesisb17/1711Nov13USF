@@ -9,6 +9,7 @@ import com.rev.pojo.User;
 public class Service 
 {
 	static DAO dao = new FileDao();
+	
 	public String getUserById(int i)
 	{
 		return dao.getUserById(i);
@@ -30,6 +31,11 @@ public class Service
 	{
 		dao.addReimbursements(amount,Description, uid,statusid,typeid,uid2);
 	}
+	void Updatetype(int id, String type)
+	{
+		dao.Updatetype(id, type);
+	}
+	
 	public void addRStatus(String s)
 	{
 		dao.addRStatus(s);

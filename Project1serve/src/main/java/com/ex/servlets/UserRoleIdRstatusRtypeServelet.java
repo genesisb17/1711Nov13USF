@@ -3,6 +3,7 @@ package com.ex.servlets;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -48,6 +49,7 @@ public class UserRoleIdRstatusRtypeServelet extends HttpServlet
 		service.addReimbursements(a,desc, u.getUid(), s, t, u.getUid());
 		//cannot be the same id
 		PrintWriter out = response.getWriter();
-		//to select a reimbursement simply creat and r object and add it to the session.
+		RequestDispatcher dispatcher = request.getRequestDispatcher("viewr");
+		dispatcher.forward( request, response );		//to select a reimbursement simply creat and r object and add it to the session.
 	}
 }

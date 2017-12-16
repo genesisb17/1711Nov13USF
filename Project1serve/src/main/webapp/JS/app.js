@@ -37,15 +37,14 @@ function viewReimb()
 			document.getElementById('view').innerHTML = xhr.responseText;
 		}
 	}	
-	xhr.open("GET", "getHomeView" , true);
+	xhr.open("POST", "viewr" , true);
 	xhr.send();
 }
 
 function loadProfile()
 {
 	var xhr = new XMLHttpRequest();
-	xhr.open("GET", "getProfileView" , true);
-	xhr.send();
+
 	xhr.onreadystatechange = function()
 	{
 		if(xhr.readyState == 4 && xhr.status == 200)
@@ -54,14 +53,15 @@ function loadProfile()
 			loadProfileInfo();
 		}
 	}
+	xhr.open("GET", "getProfileView" , true);
+	xhr.send();
 }
 
 function loadProfileInfo()
 {
 	var xhr = new XMLHttpRequest();
 	
-	xhr.open("GET","getUserInfo", true);
-	xhr.send();
+
 	
 	xhr.onreadystatechange = function()
 	{
@@ -73,4 +73,6 @@ function loadProfileInfo()
 			return sessionUser;
 		}
 	}
+	xhr.open("GET","getUserInfo", true);
+	xhr.send();
 }

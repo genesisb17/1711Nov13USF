@@ -27,4 +27,5 @@ public interface DAO
 	int findmax();
 	int findmax1();
 	String getUserById(int i);
+	void Updatetype(int id, String type);
 }

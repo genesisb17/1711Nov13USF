@@ -27,9 +27,9 @@ public class viewrservlet extends HttpServlet
 		User u1 = (User)session.getAttribute("user");
 		ArrayList <R> a = new ArrayList<R>();
 		a = service.getReimbursements(u.getUsername(), u.getPassword());
-
 		session.setAttribute("Array",a);
 		String filter = request.getParameter("filter");
+		String name = request.getParameter("name");
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
 		int i;
@@ -59,20 +59,26 @@ public class viewrservlet extends HttpServlet
 				"		<form name =\"viewr\" action =\"viewr\" method=\"Post\">\r\n" + 
 				"		Filter results\r\n" + 
 				"		<input class = \"form-control\" type = \"text\" name = \"filter\" id = \"filter\">\r\n" + 
+				"		<input class = \"form-control\" type = \"text\" name = \"name\" id = \"name\">\r\n" + 
 				"		<input class = \"form-control\" type =\"submit\">\r\n" + 
 				"		</form>"
 				   );
 		out.println("<style>\r\n" + 
 				"	body\r\n" + 
 				"	{		\r\n" + 
-				"	    background-color:#ADD8E6\r\n" + 
-				"	}\r\n" + 
+				"	    padding-right: 30px;\r\n" + 
+				"	    padding-bottom: 50px;\r\n" + 
+				"	    padding-left: 80px;\r\n" + 
+				"	   	background-color:#ADD8E6;\r\n" + 
+				"	    \r\n" + 
+				"	}" + 
 				"	table\r\n" + 
 				"	{		\r\n" + 
 				"	    background-color:white\r\n" + 
 				"	}\r\n" + 
 				"\r\n" + 
 				"</style>");
+		String test1;
 		if(u.getUser_Role_Id()==13)
 		{
 		out.println("what is the id number you want to change??<br>");
@@ -83,6 +89,16 @@ public class viewrservlet extends HttpServlet
 		out.println("<input class =\"form-control\"  type =\"submit\">");
 		out.println("</form>");
 		}
+/*		else
+		{
+			out.println("what is the id number you want to change the type??<br>");
+			out.println("<form name =\"update\" action =\"update\" method=\"Post\">");
+			out.println("<input class =\"form-control\" type=\"text\" name=\"rid\" id =\"rid\">");
+			out.println("<br>status<br>");
+			out.println("<input class =\"form-control\" type=\"text\" name=\"ristype\" id =\"ristype\">");
+			out.println("<input class =\"form-control\"  type =\"submit\">");
+			out.println("</form>");
+		}*/
 		if(u.getUser_Role_Id()==13)
 		{
 						out.println("<table style=\"width:100%\" class=\"table .table-striped\">");
@@ -99,7 +115,6 @@ public class viewrservlet extends HttpServlet
 					);
 			for(i=0;i<a.size();i++)
 			{
-				
 				if(filter.equals(""))
 				{
 					s = service.getRStatus(a.get(i).getREIMB_STATUS_ID());
@@ -131,6 +146,8 @@ public class viewrservlet extends HttpServlet
 				else
 				{
 					test = service.getRStatus(a.get(i).getREIMB_STATUS_ID());
+					test1 = service.getUserById(a.get(i).getU_ID());
+					
 					if(filter.equals(test))
 					{
 						if(a.get(i).getReimb_id()!=22||a.get(i).getReimb_id()!=41||a.get(i).getReimb_id()!=21)

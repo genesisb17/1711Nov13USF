@@ -382,6 +382,28 @@ public class FileDao implements DAO
 	}
 	
 	@Override
+	public void Updatetype(int id,String type)
+	{
+		// TODO Auto-generated method stub
+		try (Connection conn = ConnectionFactory.getInstance().getConnection()) 
+		{
+			// add submit date and approved date to it.
+			conn.setAutoCommit(false);
+			String sql = "update ERSREIMBURSEMENTSTATUS set REIMB_STATUS = ? where REIMB_STATUS_ID=?";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setString(1, type);
+			ps.setInt(2, id);
+			ps.executeUpdate();
+			conn.commit();
+			conn.close();
+		}
+		catch (SQLException e) 
+		{
+			// TODO Auto-generated catch block
+			System.out.println("Failed to save reimbursement");
+		}
+	}
+	@Override
 	public void UpdateStatus(int id,String status)
 	{
 		// TODO Auto-generated method stub
