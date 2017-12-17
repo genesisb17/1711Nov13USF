@@ -59,7 +59,6 @@ public class viewrservlet extends HttpServlet
 				"		<form name =\"viewr\" action =\"viewr\" method=\"Post\">\r\n" + 
 				"		Filter results\r\n" + 
 				"		<input class = \"form-control\" type = \"text\" name = \"filter\" id = \"filter\">\r\n" + 
-				"		<input class = \"form-control\" type = \"text\" name = \"name\" id = \"name\">\r\n" + 
 				"		<input class = \"form-control\" type =\"submit\">\r\n" + 
 				"		</form>"
 				   );
@@ -115,7 +114,7 @@ public class viewrservlet extends HttpServlet
 					);
 			for(i=0;i<a.size();i++)
 			{
-				if(filter.equals(""))
+				if(filter.equals("")||filter.equals(null))
 				{
 					s = service.getRStatus(a.get(i).getREIMB_STATUS_ID());
 					if(a.get(i).getReimb_id()!=22||a.get(i).getReimb_id()!=41||a.get(i).getReimb_id()!=21)
@@ -206,7 +205,7 @@ public class viewrservlet extends HttpServlet
 						);
 				for(i=0;i<a.size();i++)
 				{
-					if(filter.equals(""))
+					if(filter.equals("")||filter.equals(null))
 					{
 						if(a.get(i).getReimb_id()!=22||a.get(i).getReimb_id()!=41||a.get(i).getReimb_id()!=21)
 						{

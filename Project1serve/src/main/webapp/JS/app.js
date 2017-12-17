@@ -1,4 +1,4 @@
-/**
+/*
  * main page of the application. thinking about creating a pseudo 
  * 	"admin" role based on a userame and password of admin for demo 
  * 	purposes 
@@ -21,12 +21,10 @@ function loadHome()
 		{
 			document.getElementById('view').innerHTML = xhr.responseText;
 		}
-	}	d
+	}
 	xhr.open("GET", "getHomeView" , true);
 	xhr.send();
 }
-
-
 
 function viewReimb()
 {
@@ -51,7 +49,6 @@ function loadProfile()
 		if(xhr.readyState == 4 && xhr.status == 200)
 		{
 			document.getElementById('view').innerHTML = xhr.responseText;//partials/profile.html	
-			loadProfileInfo();
 		}
 	}
 	xhr.open("GET", "getProfileView" , true);

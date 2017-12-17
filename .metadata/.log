@@ -6184,3 +6184,682 @@ java.lang.IllegalArgumentException: Version 8.0 of project facet jst.appclient d
 
 !ENTRY org.eclipse.m2e.logback.appender 2 0 2017-12-16 13:03:29.158
 !MESSAGE Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+!SESSION 2017-12-16 13:17:55.371 -----------------------------------------------
+eclipse.buildId=4.7.1.M20171009-0410
+java.version=1.8.0_144
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.jee.product
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.jee.product
+
+!ENTRY org.eclipse.egit.ui 2 0 2017-12-16 13:20:32.079
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\Bruce Wayne'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY org.eclipse.jst.j2ee 4 0 2017-12-16 13:27:46.187
+!MESSAGE Plugin org.eclipse.jst.jee, extension org.eclipse.jst.j2ee.J2EEModelProvider
+Version 8.0 of project facet jst.ear does not exist.
+
+!ENTRY org.eclipse.jst.j2ee 4 0 2017-12-16 13:27:46.508
+!MESSAGE Version 8.0 of project facet jst.ear does not exist.
+!STACK 0
+java.lang.IllegalArgumentException: Version 8.0 of project facet jst.ear does not exist.
+	at org.eclipse.wst.common.project.facet.core.util.internal.Versionable.getVersion(Versionable.java:80)
+	at org.eclipse.wst.common.project.facet.core.internal.ProjectFacet.getVersion(ProjectFacet.java:1)
+	at org.eclipse.jst.j2ee.model.J2EEModelProviderRegistry.readElement(J2EEModelProviderRegistry.java:85)
+	at org.eclipse.wst.common.core.util.RegistryReader.internalReadElement(RegistryReader.java:81)
+	at org.eclipse.wst.common.core.util.RegistryReader.readRegistry(RegistryReader.java:122)
+	at org.eclipse.jst.j2ee.model.J2EEModelProviderRegistry.getInstance(J2EEModelProviderRegistry.java:43)
+	at org.eclipse.jst.j2ee.model.ModelProviderManager.initProviders(ModelProviderManager.java:262)
+	at org.eclipse.jst.j2ee.model.ModelProviderManager.getProviders(ModelProviderManager.java:338)
+	at org.eclipse.jst.j2ee.model.ModelProviderManager.getProvider(ModelProviderManager.java:223)
+	at org.eclipse.jst.j2ee.model.ModelProviderManager.getModelProvider(ModelProviderManager.java:93)
+	at org.eclipse.jst.j2ee.model.ModelProviderManager.getModelProvider(ModelProviderManager.java:281)
+	at org.eclipse.jst.jee.ui.internal.navigator.JEE5ContentProvider.getCachedModelProvider(JEE5ContentProvider.java:76)
+	at org.eclipse.jst.jee.ui.internal.navigator.Web25ContentProvider.getNewContentProviderInstance(Web25ContentProvider.java:69)
+	at org.eclipse.jst.jee.ui.internal.navigator.LoadingJeeDDJob.run(LoadingJeeDDJob.java:50)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:56)
+
+!ENTRY org.eclipse.jst.j2ee 4 0 2017-12-16 13:27:47.135
+!MESSAGE Plugin org.eclipse.jst.jee, extension org.eclipse.jst.j2ee.J2EEModelProvider
+Version 8.0 of project facet jst.appclient does not exist.
+
+!ENTRY org.eclipse.jst.j2ee 4 0 2017-12-16 13:27:47.222
+!MESSAGE Version 8.0 of project facet jst.appclient does not exist.
+!STACK 0
+java.lang.IllegalArgumentException: Version 8.0 of project facet jst.appclient does not exist.
+	at org.eclipse.wst.common.project.facet.core.util.internal.Versionable.getVersion(Versionable.java:80)
+	at org.eclipse.wst.common.project.facet.core.internal.ProjectFacet.getVersion(ProjectFacet.java:1)
+	at org.eclipse.jst.j2ee.model.J2EEModelProviderRegistry.readElement(J2EEModelProviderRegistry.java:85)
+	at org.eclipse.wst.common.core.util.RegistryReader.internalReadElement(RegistryReader.java:81)
+	at org.eclipse.wst.common.core.util.RegistryReader.readRegistry(RegistryReader.java:122)
+	at org.eclipse.jst.j2ee.model.J2EEModelProviderRegistry.getInstance(J2EEModelProviderRegistry.java:43)
+	at org.eclipse.jst.j2ee.model.ModelProviderManager.initProviders(ModelProviderManager.java:262)
+	at org.eclipse.jst.j2ee.model.ModelProviderManager.getProviders(ModelProviderManager.java:338)
+	at org.eclipse.jst.j2ee.model.ModelProviderManager.getProvider(ModelProviderManager.java:223)
+	at org.eclipse.jst.j2ee.model.ModelProviderManager.getModelProvider(ModelProviderManager.java:93)
+	at org.eclipse.jst.j2ee.model.ModelProviderManager.getModelProvider(ModelProviderManager.java:281)
+	at org.eclipse.jst.jee.ui.internal.navigator.JEE5ContentProvider.getCachedModelProvider(JEE5ContentProvider.java:76)
+	at org.eclipse.jst.jee.ui.internal.navigator.Web25ContentProvider.getNewContentProviderInstance(Web25ContentProvider.java:69)
+	at org.eclipse.jst.jee.ui.internal.navigator.LoadingJeeDDJob.run(LoadingJeeDDJob.java:50)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:56)
+!SESSION 2017-12-16 14:34:16.578 -----------------------------------------------
+eclipse.buildId=4.7.1.M20171009-0410
+java.version=1.8.0_144
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.jee.product
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.jee.product
+
+!ENTRY com.genuitec.eclipse.theming.core 4 0 2017-12-16 14:34:56.996
+!MESSAGE <null>
+!STACK 0
+Unexpected token END OF FILE at position 688128.
+	at org.json.simple.parser.JSONParser.parse(JSONParser.java:257)
+	at org.json.simple.parser.JSONParser.parse(JSONParser.java:92)
+	at com.genuitec.eclipse.theming.core.services.ImageReplacementService.loadReplacements(ImageReplacementService.java:135)
+	at com.genuitec.eclipse.theming.core.services.ImageReplacementService.<init>(ImageReplacementService.java:72)
+	at com.genuitec.eclipse.theming.core.services.ImageReplacementService.<clinit>(ImageReplacementService.java:38)
+	at com.genuitec.eclipse.theming.core.internal.images.URLImageDescriptorWeaver.weave(URLImageDescriptorWeaver.java:43)
+	at com.genuitec.eclipse.theming.core.AbstractWeaverExtension.weave(AbstractWeaverExtension.java:51)
+	at com.genuitec.eclipse.patches.internal.InstrumentationManager$WeavingExtension.weave(InstrumentationManager.java:405)
+	at com.genuitec.eclipse.patches.internal.InstrumentationManager.weave(InstrumentationManager.java:308)
+	at com.genuitec.eclipse.patches.internal.InstrumentationWeaver.weave(InstrumentationWeaver.java:15)
+	at org.eclipse.osgi.internal.weaving.WovenClassImpl.call(WovenClassImpl.java:163)
+	at org.eclipse.osgi.internal.serviceregistry.ServiceRegistry.notifyHookPrivileged(ServiceRegistry.java:1298)
+	at org.eclipse.osgi.internal.serviceregistry.ServiceRegistry.notifyHooksPrivileged(ServiceRegistry.java:1278)
+	at org.eclipse.osgi.internal.weaving.WovenClassImpl.callHooks(WovenClassImpl.java:255)
+	at org.eclipse.osgi.internal.weaving.WeavingHookConfigurator.processClass(WeavingHookConfigurator.java:67)
+	at org.eclipse.osgi.internal.loader.classpath.ClasspathManager.processClass(ClasspathManager.java:674)
+	at org.eclipse.osgi.internal.loader.classpath.ClasspathManager.defineClass(ClasspathManager.java:645)
+	at org.eclipse.osgi.internal.loader.classpath.ClasspathManager.findClassImpl(ClasspathManager.java:578)
+	at org.eclipse.osgi.internal.loader.classpath.ClasspathManager.findLocalClassImpl(ClasspathManager.java:538)
+	at org.eclipse.osgi.internal.loader.classpath.ClasspathManager.findLocalClass(ClasspathManager.java:525)
+	at org.eclipse.osgi.internal.loader.ModuleClassLoader.findLocalClass(ModuleClassLoader.java:328)
+	at org.eclipse.osgi.internal.loader.BundleLoader.findLocalClass(BundleLoader.java:368)
+	at org.eclipse.osgi.internal.loader.BundleLoader.findClassInternal(BundleLoader.java:446)
+	at org.eclipse.osgi.internal.loader.BundleLoader.findClass(BundleLoader.java:395)
+	at org.eclipse.osgi.internal.loader.BundleLoader.findClass(BundleLoader.java:387)
+	at org.eclipse.osgi.internal.loader.ModuleClassLoader.loadClass(ModuleClassLoader.java:150)
+	at java.lang.ClassLoader.loadClass(Unknown Source)
+	at org.eclipse.ui.internal.BrandingProperties.getImages(BrandingProperties.java:123)
+	at org.eclipse.ui.internal.ProductProperties.getWindowImages(ProductProperties.java:319)
+	at org.eclipse.ui.internal.ProductInfo.getWindowImages(ProductInfo.java:96)
+	at org.eclipse.ui.internal.WorkbenchPlugin.getWindowImages(WorkbenchPlugin.java:1061)
+	at org.eclipse.ui.internal.Workbench.initializeImages(Workbench.java:1838)
+	at org.eclipse.ui.internal.Workbench.createDisplay(Workbench.java:792)
+	at org.eclipse.ui.PlatformUI.createDisplay(PlatformUI.java:160)
+	at org.eclipse.ui.internal.ide.application.IDEApplication.createDisplay(IDEApplication.java:181)
+	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:124)
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:196)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:134)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:104)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:388)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:243)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:653)
+	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:590)
+	at org.eclipse.equinox.launcher.Main.run(Main.java:1499)
+
+!ENTRY org.eclipse.egit.ui 2 0 2017-12-16 14:45:32.184
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\Bruce Wayne'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2017-12-16 14:56:24.564
+!MESSAGE Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2017-12-16 14:56:24.725
+!MESSAGE Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2017-12-16 14:56:38.110
+!MESSAGE Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2017-12-16 14:56:38.512
+!MESSAGE Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2017-12-16 14:57:01.757
+!MESSAGE Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2017-12-16 14:57:02.436
+!MESSAGE Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2017-12-16 14:57:29.680
+!MESSAGE Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2017-12-16 14:57:30.321
+!MESSAGE Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2017-12-16 14:58:19.994
+!MESSAGE Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2017-12-16 14:58:20.317
+!MESSAGE Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.jst.j2ee 4 0 2017-12-16 15:06:30.239
+!MESSAGE Plugin org.eclipse.jst.jee, extension org.eclipse.jst.j2ee.J2EEModelProvider
+Version 8.0 of project facet jst.ear does not exist.
+
+!ENTRY org.eclipse.jst.j2ee 4 0 2017-12-16 15:06:30.495
+!MESSAGE Version 8.0 of project facet jst.ear does not exist.
+!STACK 0
+java.lang.IllegalArgumentException: Version 8.0 of project facet jst.ear does not exist.
+	at org.eclipse.wst.common.project.facet.core.util.internal.Versionable.getVersion(Versionable.java:80)
+	at org.eclipse.wst.common.project.facet.core.internal.ProjectFacet.getVersion(ProjectFacet.java:1)
+	at org.eclipse.jst.j2ee.model.J2EEModelProviderRegistry.readElement(J2EEModelProviderRegistry.java:85)
+	at org.eclipse.wst.common.core.util.RegistryReader.internalReadElement(RegistryReader.java:81)
+	at org.eclipse.wst.common.core.util.RegistryReader.readRegistry(RegistryReader.java:122)
+	at org.eclipse.jst.j2ee.model.J2EEModelProviderRegistry.getInstance(J2EEModelProviderRegistry.java:43)
+	at org.eclipse.jst.j2ee.model.ModelProviderManager.initProviders(ModelProviderManager.java:262)
+	at org.eclipse.jst.j2ee.model.ModelProviderManager.getProviders(ModelProviderManager.java:338)
+	at org.eclipse.jst.j2ee.model.ModelProviderManager.getProvider(ModelProviderManager.java:223)
+	at org.eclipse.jst.j2ee.model.ModelProviderManager.getModelProvider(ModelProviderManager.java:93)
+	at org.eclipse.jst.j2ee.model.ModelProviderManager.getModelProvider(ModelProviderManager.java:281)
+	at org.eclipse.jst.jee.ui.internal.navigator.JEE5ContentProvider.getCachedModelProvider(JEE5ContentProvider.java:76)
+	at org.eclipse.jst.jee.ui.internal.navigator.Web25ContentProvider.getNewContentProviderInstance(Web25ContentProvider.java:69)
+	at org.eclipse.jst.jee.ui.internal.navigator.LoadingJeeDDJob.run(LoadingJeeDDJob.java:50)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:56)
+
+!ENTRY org.eclipse.jst.j2ee 4 0 2017-12-16 15:06:30.775
+!MESSAGE Plugin org.eclipse.jst.jee, extension org.eclipse.jst.j2ee.J2EEModelProvider
+Version 8.0 of project facet jst.appclient does not exist.
+
+!ENTRY org.eclipse.jst.j2ee 4 0 2017-12-16 15:06:30.921
+!MESSAGE Version 8.0 of project facet jst.appclient does not exist.
+!STACK 0
+java.lang.IllegalArgumentException: Version 8.0 of project facet jst.appclient does not exist.
+	at org.eclipse.wst.common.project.facet.core.util.internal.Versionable.getVersion(Versionable.java:80)
+	at org.eclipse.wst.common.project.facet.core.internal.ProjectFacet.getVersion(ProjectFacet.java:1)
+	at org.eclipse.jst.j2ee.model.J2EEModelProviderRegistry.readElement(J2EEModelProviderRegistry.java:85)
+	at org.eclipse.wst.common.core.util.RegistryReader.internalReadElement(RegistryReader.java:81)
+	at org.eclipse.wst.common.core.util.RegistryReader.readRegistry(RegistryReader.java:122)
+	at org.eclipse.jst.j2ee.model.J2EEModelProviderRegistry.getInstance(J2EEModelProviderRegistry.java:43)
+	at org.eclipse.jst.j2ee.model.ModelProviderManager.initProviders(ModelProviderManager.java:262)
+	at org.eclipse.jst.j2ee.model.ModelProviderManager.getProviders(ModelProviderManager.java:338)
+	at org.eclipse.jst.j2ee.model.ModelProviderManager.getProvider(ModelProviderManager.java:223)
+	at org.eclipse.jst.j2ee.model.ModelProviderManager.getModelProvider(ModelProviderManager.java:93)
+	at org.eclipse.jst.j2ee.model.ModelProviderManager.getModelProvider(ModelProviderManager.java:281)
+	at org.eclipse.jst.jee.ui.internal.navigator.JEE5ContentProvider.getCachedModelProvider(JEE5ContentProvider.java:76)
+	at org.eclipse.jst.jee.ui.internal.navigator.Web25ContentProvider.getNewContentProviderInstance(Web25ContentProvider.java:69)
+	at org.eclipse.jst.jee.ui.internal.navigator.LoadingJeeDDJob.run(LoadingJeeDDJob.java:50)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:56)
+!SESSION 2017-12-16 15:08:40.032 -----------------------------------------------
+eclipse.buildId=4.7.1.M20171009-0410
+java.version=1.8.0_144
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.jee.product
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.jee.product
+
+!ENTRY org.eclipse.egit.ui 2 0 2017-12-16 15:13:16.576
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\Bruce Wayne'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2017-12-16 15:13:24.743
+!MESSAGE Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2017-12-16 15:13:25.072
+!MESSAGE Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2017-12-16 15:13:34.802
+!MESSAGE Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2017-12-16 15:13:34.984
+!MESSAGE Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2017-12-16 15:13:45.589
+!MESSAGE Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2017-12-16 15:13:46.343
+!MESSAGE Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2017-12-16 15:13:48.439
+!MESSAGE Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2017-12-16 15:13:48.791
+!MESSAGE Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.jst.j2ee 4 0 2017-12-16 15:13:55.700
+!MESSAGE Plugin org.eclipse.jst.jee, extension org.eclipse.jst.j2ee.J2EEModelProvider
+Version 8.0 of project facet jst.ear does not exist.
+
+!ENTRY org.eclipse.jst.j2ee 4 0 2017-12-16 15:13:55.887
+!MESSAGE Version 8.0 of project facet jst.ear does not exist.
+!STACK 0
+java.lang.IllegalArgumentException: Version 8.0 of project facet jst.ear does not exist.
+	at org.eclipse.wst.common.project.facet.core.util.internal.Versionable.getVersion(Versionable.java:80)
+	at org.eclipse.wst.common.project.facet.core.internal.ProjectFacet.getVersion(ProjectFacet.java:1)
+	at org.eclipse.jst.j2ee.model.J2EEModelProviderRegistry.readElement(J2EEModelProviderRegistry.java:85)
+	at org.eclipse.wst.common.core.util.RegistryReader.internalReadElement(RegistryReader.java:81)
+	at org.eclipse.wst.common.core.util.RegistryReader.readRegistry(RegistryReader.java:122)
+	at org.eclipse.jst.j2ee.model.J2EEModelProviderRegistry.getInstance(J2EEModelProviderRegistry.java:43)
+	at org.eclipse.jst.j2ee.model.ModelProviderManager.initProviders(ModelProviderManager.java:262)
+	at org.eclipse.jst.j2ee.model.ModelProviderManager.getProviders(ModelProviderManager.java:338)
+	at org.eclipse.jst.j2ee.model.ModelProviderManager.getProvider(ModelProviderManager.java:223)
+	at org.eclipse.jst.j2ee.model.ModelProviderManager.getModelProvider(ModelProviderManager.java:93)
+	at org.eclipse.jst.j2ee.model.ModelProviderManager.getModelProvider(ModelProviderManager.java:281)
+	at org.eclipse.jst.jee.ui.internal.navigator.JEE5ContentProvider.getCachedModelProvider(JEE5ContentProvider.java:76)
+	at org.eclipse.jst.jee.ui.internal.navigator.Web25ContentProvider.getNewContentProviderInstance(Web25ContentProvider.java:69)
+	at org.eclipse.jst.jee.ui.internal.navigator.LoadingJeeDDJob.run(LoadingJeeDDJob.java:50)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:56)
+
+!ENTRY org.eclipse.jst.j2ee 4 0 2017-12-16 15:13:56.378
+!MESSAGE Plugin org.eclipse.jst.jee, extension org.eclipse.jst.j2ee.J2EEModelProvider
+Version 8.0 of project facet jst.appclient does not exist.
+
+!ENTRY org.eclipse.jst.j2ee 4 0 2017-12-16 15:13:57.413
+!MESSAGE Version 8.0 of project facet jst.appclient does not exist.
+!STACK 0
+java.lang.IllegalArgumentException: Version 8.0 of project facet jst.appclient does not exist.
+	at org.eclipse.wst.common.project.facet.core.util.internal.Versionable.getVersion(Versionable.java:80)
+	at org.eclipse.wst.common.project.facet.core.internal.ProjectFacet.getVersion(ProjectFacet.java:1)
+	at org.eclipse.jst.j2ee.model.J2EEModelProviderRegistry.readElement(J2EEModelProviderRegistry.java:85)
+	at org.eclipse.wst.common.core.util.RegistryReader.internalReadElement(RegistryReader.java:81)
+	at org.eclipse.wst.common.core.util.RegistryReader.readRegistry(RegistryReader.java:122)
+	at org.eclipse.jst.j2ee.model.J2EEModelProviderRegistry.getInstance(J2EEModelProviderRegistry.java:43)
+	at org.eclipse.jst.j2ee.model.ModelProviderManager.initProviders(ModelProviderManager.java:262)
+	at org.eclipse.jst.j2ee.model.ModelProviderManager.getProviders(ModelProviderManager.java:338)
+	at org.eclipse.jst.j2ee.model.ModelProviderManager.getProvider(ModelProviderManager.java:223)
+	at org.eclipse.jst.j2ee.model.ModelProviderManager.getModelProvider(ModelProviderManager.java:93)
+	at org.eclipse.jst.j2ee.model.ModelProviderManager.getModelProvider(ModelProviderManager.java:281)
+	at org.eclipse.jst.jee.ui.internal.navigator.JEE5ContentProvider.getCachedModelProvider(JEE5ContentProvider.java:76)
+	at org.eclipse.jst.jee.ui.internal.navigator.Web25ContentProvider.getNewContentProviderInstance(Web25ContentProvider.java:69)
+	at org.eclipse.jst.jee.ui.internal.navigator.LoadingJeeDDJob.run(LoadingJeeDDJob.java:50)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:56)
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2017-12-16 15:23:10.347
+!MESSAGE Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2017-12-16 15:23:10.594
+!MESSAGE Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+!SESSION 2017-12-16 16:38:04.687 -----------------------------------------------
+eclipse.buildId=4.7.1.M20171009-0410
+java.version=1.8.0_144
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.jee.product
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.jee.product
+
+!ENTRY org.eclipse.egit.ui 2 0 2017-12-16 16:41:17.886
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\Bruce Wayne'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY com.genuitec.eclipse.core 4 0 2017-12-16 16:41:44.231
+!MESSAGE www.genuitec.com
+!STACK 0
+java.net.UnknownHostException: www.genuitec.com
+	at java.net.AbstractPlainSocketImpl.connect(Unknown Source)
+	at java.net.PlainSocketImpl.connect(Unknown Source)
+	at java.net.SocksSocketImpl.connect(Unknown Source)
+	at java.net.Socket.connect(Unknown Source)
+	at sun.security.ssl.SSLSocketImpl.connect(Unknown Source)
+	at sun.net.NetworkClient.doConnect(Unknown Source)
+	at sun.net.www.http.HttpClient.openServer(Unknown Source)
+	at sun.net.www.http.HttpClient.openServer(Unknown Source)
+	at sun.net.www.protocol.https.HttpsClient.<init>(Unknown Source)
+	at sun.net.www.protocol.https.HttpsClient.New(Unknown Source)
+	at sun.net.www.protocol.https.AbstractDelegateHttpsURLConnection.getNewHttpClient(Unknown Source)
+	at sun.net.www.protocol.http.HttpURLConnection.plainConnect0(Unknown Source)
+	at sun.net.www.protocol.http.HttpURLConnection.plainConnect(Unknown Source)
+	at sun.net.www.protocol.https.AbstractDelegateHttpsURLConnection.connect(Unknown Source)
+	at sun.net.www.protocol.https.HttpsURLConnectionImpl.connect(Unknown Source)
+	at com.genuitec.eclipse.core.account.internal.GenuitecAccountManagerImpl$_A.A(Unknown Source)
+	at com.genuitec.eclipse.core.account.internal.GenuitecAccountManagerImpl$_A.run(Unknown Source)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:56)
+
+!ENTRY org.eclipse.jst.j2ee 4 0 2017-12-16 17:01:32.141
+!MESSAGE Plugin org.eclipse.jst.jee, extension org.eclipse.jst.j2ee.J2EEModelProvider
+Version 8.0 of project facet jst.ear does not exist.
+
+!ENTRY org.eclipse.jst.j2ee 4 0 2017-12-16 17:01:32.218
+!MESSAGE Version 8.0 of project facet jst.ear does not exist.
+!STACK 0
+java.lang.IllegalArgumentException: Version 8.0 of project facet jst.ear does not exist.
+	at org.eclipse.wst.common.project.facet.core.util.internal.Versionable.getVersion(Versionable.java:80)
+	at org.eclipse.wst.common.project.facet.core.internal.ProjectFacet.getVersion(ProjectFacet.java:1)
+	at org.eclipse.jst.j2ee.model.J2EEModelProviderRegistry.readElement(J2EEModelProviderRegistry.java:85)
+	at org.eclipse.wst.common.core.util.RegistryReader.internalReadElement(RegistryReader.java:81)
+	at org.eclipse.wst.common.core.util.RegistryReader.readRegistry(RegistryReader.java:122)
+	at org.eclipse.jst.j2ee.model.J2EEModelProviderRegistry.getInstance(J2EEModelProviderRegistry.java:43)
+	at org.eclipse.jst.j2ee.model.ModelProviderManager.initProviders(ModelProviderManager.java:262)
+	at org.eclipse.jst.j2ee.model.ModelProviderManager.getProviders(ModelProviderManager.java:338)
+	at org.eclipse.jst.j2ee.model.ModelProviderManager.getProvider(ModelProviderManager.java:223)
+	at org.eclipse.jst.j2ee.model.ModelProviderManager.getModelProvider(ModelProviderManager.java:93)
+	at org.eclipse.jst.j2ee.model.ModelProviderManager.getModelProvider(ModelProviderManager.java:281)
+	at org.eclipse.jst.jee.ui.internal.navigator.JEE5ContentProvider.getCachedModelProvider(JEE5ContentProvider.java:76)
+	at org.eclipse.jst.jee.ui.internal.navigator.Web25ContentProvider.getNewContentProviderInstance(Web25ContentProvider.java:69)
+	at org.eclipse.jst.jee.ui.internal.navigator.LoadingJeeDDJob.run(LoadingJeeDDJob.java:50)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:56)
+
+!ENTRY org.eclipse.jst.j2ee 4 0 2017-12-16 17:01:32.509
+!MESSAGE Plugin org.eclipse.jst.jee, extension org.eclipse.jst.j2ee.J2EEModelProvider
+Version 8.0 of project facet jst.appclient does not exist.
+
+!ENTRY org.eclipse.jst.j2ee 4 0 2017-12-16 17:01:32.606
+!MESSAGE Version 8.0 of project facet jst.appclient does not exist.
+!STACK 0
+java.lang.IllegalArgumentException: Version 8.0 of project facet jst.appclient does not exist.
+	at org.eclipse.wst.common.project.facet.core.util.internal.Versionable.getVersion(Versionable.java:80)
+	at org.eclipse.wst.common.project.facet.core.internal.ProjectFacet.getVersion(ProjectFacet.java:1)
+	at org.eclipse.jst.j2ee.model.J2EEModelProviderRegistry.readElement(J2EEModelProviderRegistry.java:85)
+	at org.eclipse.wst.common.core.util.RegistryReader.internalReadElement(RegistryReader.java:81)
+	at org.eclipse.wst.common.core.util.RegistryReader.readRegistry(RegistryReader.java:122)
+	at org.eclipse.jst.j2ee.model.J2EEModelProviderRegistry.getInstance(J2EEModelProviderRegistry.java:43)
+	at org.eclipse.jst.j2ee.model.ModelProviderManager.initProviders(ModelProviderManager.java:262)
+	at org.eclipse.jst.j2ee.model.ModelProviderManager.getProviders(ModelProviderManager.java:338)
+	at org.eclipse.jst.j2ee.model.ModelProviderManager.getProvider(ModelProviderManager.java:223)
+	at org.eclipse.jst.j2ee.model.ModelProviderManager.getModelProvider(ModelProviderManager.java:93)
+	at org.eclipse.jst.j2ee.model.ModelProviderManager.getModelProvider(ModelProviderManager.java:281)
+	at org.eclipse.jst.jee.ui.internal.navigator.JEE5ContentProvider.getCachedModelProvider(JEE5ContentProvider.java:76)
+	at org.eclipse.jst.jee.ui.internal.navigator.Web25ContentProvider.getNewContentProviderInstance(Web25ContentProvider.java:69)
+	at org.eclipse.jst.jee.ui.internal.navigator.LoadingJeeDDJob.run(LoadingJeeDDJob.java:50)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:56)
+
+!ENTRY org.eclipse.equinox.p2.transport.ecf 4 1006 2017-12-16 17:01:41.735
+!MESSAGE Unknown Host: http://download.eclipse.org/usssdk/updates/compositeContent.xml
+!STACK 0
+java.net.UnknownHostException: download.eclipse.org
+	at java.net.InetAddress.getAllByName0(Unknown Source)
+	at java.net.InetAddress.getAllByName(Unknown Source)
+	at java.net.InetAddress.getAllByName(Unknown Source)
+	at org.apache.http.impl.conn.SystemDefaultDnsResolver.resolve(SystemDefaultDnsResolver.java:45)
+	at org.apache.http.impl.conn.DefaultClientConnectionOperator.resolveHostname(DefaultClientConnectionOperator.java:262)
+	at org.apache.http.impl.conn.DefaultClientConnectionOperator.openConnection(DefaultClientConnectionOperator.java:161)
+	at org.apache.http.impl.conn.ManagedClientConnectionImpl.open(ManagedClientConnectionImpl.java:328)
+	at org.apache.http.impl.client.DefaultRequestDirector.tryConnect(DefaultRequestDirector.java:612)
+	at org.apache.http.impl.client.DefaultRequestDirector.execute(DefaultRequestDirector.java:447)
+	at org.apache.http.impl.client.AbstractHttpClient.doExecute(AbstractHttpClient.java:884)
+	at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:82)
+	at org.eclipse.ecf.provider.filetransfer.httpclient4.HttpClientFileSystemBrowser.runRequest(HttpClientFileSystemBrowser.java:263)
+	at org.eclipse.ecf.provider.filetransfer.browse.AbstractFileSystemBrowser$DirectoryJob.run(AbstractFileSystemBrowser.java:69)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:56)
+
+!ENTRY org.eclipse.equinox.p2.transport.ecf 4 1006 2017-12-16 17:01:41.987
+!MESSAGE Unknown Host: http://download.eclipse.org/oomph/uss/updates/latest/compositeContent.xml
+!STACK 0
+java.net.UnknownHostException: download.eclipse.org
+	at java.net.InetAddress.getAllByName0(Unknown Source)
+	at java.net.InetAddress.getAllByName(Unknown Source)
+	at java.net.InetAddress.getAllByName(Unknown Source)
+	at org.apache.http.impl.conn.SystemDefaultDnsResolver.resolve(SystemDefaultDnsResolver.java:45)
+	at org.apache.http.impl.conn.DefaultClientConnectionOperator.resolveHostname(DefaultClientConnectionOperator.java:262)
+	at org.apache.http.impl.conn.DefaultClientConnectionOperator.openConnection(DefaultClientConnectionOperator.java:161)
+	at org.apache.http.impl.conn.ManagedClientConnectionImpl.open(ManagedClientConnectionImpl.java:328)
+	at org.apache.http.impl.client.DefaultRequestDirector.tryConnect(DefaultRequestDirector.java:612)
+	at org.apache.http.impl.client.DefaultRequestDirector.execute(DefaultRequestDirector.java:447)
+	at org.apache.http.impl.client.AbstractHttpClient.doExecute(AbstractHttpClient.java:884)
+	at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:82)
+	at org.eclipse.ecf.provider.filetransfer.httpclient4.HttpClientFileSystemBrowser.runRequest(HttpClientFileSystemBrowser.java:263)
+	at org.eclipse.ecf.provider.filetransfer.browse.AbstractFileSystemBrowser$DirectoryJob.run(AbstractFileSystemBrowser.java:69)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:56)
+
+!ENTRY org.eclipse.equinox.p2.transport.ecf 4 1006 2017-12-16 17:01:42.340
+!MESSAGE Unknown Host: http://download.eclipse.org/releases/oxygen/compositeContent.xml
+!STACK 0
+java.net.UnknownHostException: download.eclipse.org
+	at java.net.InetAddress.getAllByName0(Unknown Source)
+	at java.net.InetAddress.getAllByName(Unknown Source)
+	at java.net.InetAddress.getAllByName(Unknown Source)
+	at org.apache.http.impl.conn.SystemDefaultDnsResolver.resolve(SystemDefaultDnsResolver.java:45)
+	at org.apache.http.impl.conn.DefaultClientConnectionOperator.resolveHostname(DefaultClientConnectionOperator.java:262)
+	at org.apache.http.impl.conn.DefaultClientConnectionOperator.openConnection(DefaultClientConnectionOperator.java:161)
+	at org.apache.http.impl.conn.ManagedClientConnectionImpl.open(ManagedClientConnectionImpl.java:328)
+	at org.apache.http.impl.client.DefaultRequestDirector.tryConnect(DefaultRequestDirector.java:612)
+	at org.apache.http.impl.client.DefaultRequestDirector.execute(DefaultRequestDirector.java:447)
+	at org.apache.http.impl.client.AbstractHttpClient.doExecute(AbstractHttpClient.java:884)
+	at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:82)
+	at org.eclipse.ecf.provider.filetransfer.httpclient4.HttpClientFileSystemBrowser.runRequest(HttpClientFileSystemBrowser.java:263)
+	at org.eclipse.ecf.provider.filetransfer.browse.AbstractFileSystemBrowser$DirectoryJob.run(AbstractFileSystemBrowser.java:69)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:56)
+
+!ENTRY org.eclipse.equinox.p2.transport.ecf 4 1006 2017-12-16 17:01:42.642
+!MESSAGE Unknown Host: http://download.eclipse.org/buildship/updates/e47/releases/2.x/compositeContent.xml
+!STACK 0
+java.net.UnknownHostException: download.eclipse.org
+	at java.net.InetAddress.getAllByName0(Unknown Source)
+	at java.net.InetAddress.getAllByName(Unknown Source)
+	at java.net.InetAddress.getAllByName(Unknown Source)
+	at org.apache.http.impl.conn.SystemDefaultDnsResolver.resolve(SystemDefaultDnsResolver.java:45)
+	at org.apache.http.impl.conn.DefaultClientConnectionOperator.resolveHostname(DefaultClientConnectionOperator.java:262)
+	at org.apache.http.impl.conn.DefaultClientConnectionOperator.openConnection(DefaultClientConnectionOperator.java:161)
+	at org.apache.http.impl.conn.ManagedClientConnectionImpl.open(ManagedClientConnectionImpl.java:328)
+	at org.apache.http.impl.client.DefaultRequestDirector.tryConnect(DefaultRequestDirector.java:612)
+	at org.apache.http.impl.client.DefaultRequestDirector.execute(DefaultRequestDirector.java:447)
+	at org.apache.http.impl.client.AbstractHttpClient.doExecute(AbstractHttpClient.java:884)
+	at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:82)
+	at org.eclipse.ecf.provider.filetransfer.httpclient4.HttpClientFileSystemBrowser.runRequest(HttpClientFileSystemBrowser.java:263)
+	at org.eclipse.ecf.provider.filetransfer.browse.AbstractFileSystemBrowser$DirectoryJob.run(AbstractFileSystemBrowser.java:69)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:56)
+
+!ENTRY org.eclipse.equinox.p2.transport.ecf 4 1006 2017-12-16 17:01:42.896
+!MESSAGE Unknown Host: http://download.eclipse.org/eclipse/updates/4.7/compositeContent.xml
+!STACK 0
+java.net.UnknownHostException: download.eclipse.org
+	at java.net.InetAddress.getAllByName0(Unknown Source)
+	at java.net.InetAddress.getAllByName(Unknown Source)
+	at java.net.InetAddress.getAllByName(Unknown Source)
+	at org.apache.http.impl.conn.SystemDefaultDnsResolver.resolve(SystemDefaultDnsResolver.java:45)
+	at org.apache.http.impl.conn.DefaultClientConnectionOperator.resolveHostname(DefaultClientConnectionOperator.java:262)
+	at org.apache.http.impl.conn.DefaultClientConnectionOperator.openConnection(DefaultClientConnectionOperator.java:161)
+	at org.apache.http.impl.conn.ManagedClientConnectionImpl.open(ManagedClientConnectionImpl.java:328)
+	at org.apache.http.impl.client.DefaultRequestDirector.tryConnect(DefaultRequestDirector.java:612)
+	at org.apache.http.impl.client.DefaultRequestDirector.execute(DefaultRequestDirector.java:447)
+	at org.apache.http.impl.client.AbstractHttpClient.doExecute(AbstractHttpClient.java:884)
+	at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:82)
+	at org.eclipse.ecf.provider.filetransfer.httpclient4.HttpClientFileSystemBrowser.runRequest(HttpClientFileSystemBrowser.java:263)
+	at org.eclipse.ecf.provider.filetransfer.browse.AbstractFileSystemBrowser$DirectoryJob.run(AbstractFileSystemBrowser.java:69)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:56)
+
+!ENTRY org.eclipse.equinox.p2.transport.ecf 4 1006 2017-12-16 17:01:43.097
+!MESSAGE Unknown Host: http://www.genuitec.com/updates/webclipse/oxygen/compositeContent.xml
+!STACK 0
+java.net.UnknownHostException: www.genuitec.com
+	at java.net.InetAddress.getAllByName0(Unknown Source)
+	at java.net.InetAddress.getAllByName(Unknown Source)
+	at java.net.InetAddress.getAllByName(Unknown Source)
+	at org.apache.http.impl.conn.SystemDefaultDnsResolver.resolve(SystemDefaultDnsResolver.java:45)
+	at org.apache.http.impl.conn.DefaultClientConnectionOperator.resolveHostname(DefaultClientConnectionOperator.java:262)
+	at org.apache.http.impl.conn.DefaultClientConnectionOperator.openConnection(DefaultClientConnectionOperator.java:161)
+	at org.apache.http.impl.conn.ManagedClientConnectionImpl.open(ManagedClientConnectionImpl.java:328)
+	at org.apache.http.impl.client.DefaultRequestDirector.tryConnect(DefaultRequestDirector.java:612)
+	at org.apache.http.impl.client.DefaultRequestDirector.execute(DefaultRequestDirector.java:447)
+	at org.apache.http.impl.client.AbstractHttpClient.doExecute(AbstractHttpClient.java:884)
+	at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:82)
+	at org.eclipse.ecf.provider.filetransfer.httpclient4.HttpClientFileSystemBrowser.runRequest(HttpClientFileSystemBrowser.java:263)
+	at org.eclipse.ecf.provider.filetransfer.browse.AbstractFileSystemBrowser$DirectoryJob.run(AbstractFileSystemBrowser.java:69)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:56)
+
+!ENTRY org.eclipse.equinox.p2.transport.ecf 4 1006 2017-12-16 17:01:43.332
+!MESSAGE Unknown Host: http://download.eclipse.org/webtools/repository/neon/compositeContent.xml
+!STACK 0
+java.net.UnknownHostException: download.eclipse.org
+	at java.net.InetAddress.getAllByName0(Unknown Source)
+	at java.net.InetAddress.getAllByName(Unknown Source)
+	at java.net.InetAddress.getAllByName(Unknown Source)
+	at org.apache.http.impl.conn.SystemDefaultDnsResolver.resolve(SystemDefaultDnsResolver.java:45)
+	at org.apache.http.impl.conn.DefaultClientConnectionOperator.resolveHostname(DefaultClientConnectionOperator.java:262)
+	at org.apache.http.impl.conn.DefaultClientConnectionOperator.openConnection(DefaultClientConnectionOperator.java:161)
+	at org.apache.http.impl.conn.ManagedClientConnectionImpl.open(ManagedClientConnectionImpl.java:328)
+	at org.apache.http.impl.client.DefaultRequestDirector.tryConnect(DefaultRequestDirector.java:612)
+	at org.apache.http.impl.client.DefaultRequestDirector.execute(DefaultRequestDirector.java:447)
+	at org.apache.http.impl.client.AbstractHttpClient.doExecute(AbstractHttpClient.java:884)
+	at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:82)
+	at org.eclipse.ecf.provider.filetransfer.httpclient4.HttpClientFileSystemBrowser.runRequest(HttpClientFileSystemBrowser.java:263)
+	at org.eclipse.ecf.provider.filetransfer.browse.AbstractFileSystemBrowser$DirectoryJob.run(AbstractFileSystemBrowser.java:69)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:56)
+
+!ENTRY org.eclipse.equinox.p2.transport.ecf 4 1006 2017-12-16 17:01:43.672
+!MESSAGE Unknown Host: http://download.oracle.com/otn_software/oepe/12.2.1.6/oxygen/repository/dependencies/compositeContent.xml
+!STACK 0
+java.net.UnknownHostException: download.oracle.com
+	at java.net.InetAddress.getAllByName0(Unknown Source)
+	at java.net.InetAddress.getAllByName(Unknown Source)
+	at java.net.InetAddress.getAllByName(Unknown Source)
+	at org.apache.http.impl.conn.SystemDefaultDnsResolver.resolve(SystemDefaultDnsResolver.java:45)
+	at org.apache.http.impl.conn.DefaultClientConnectionOperator.resolveHostname(DefaultClientConnectionOperator.java:262)
+	at org.apache.http.impl.conn.DefaultClientConnectionOperator.openConnection(DefaultClientConnectionOperator.java:161)
+	at org.apache.http.impl.conn.ManagedClientConnectionImpl.open(ManagedClientConnectionImpl.java:328)
+	at org.apache.http.impl.client.DefaultRequestDirector.tryConnect(DefaultRequestDirector.java:612)
+	at org.apache.http.impl.client.DefaultRequestDirector.execute(DefaultRequestDirector.java:447)
+	at org.apache.http.impl.client.AbstractHttpClient.doExecute(AbstractHttpClient.java:884)
+	at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:82)
+	at org.eclipse.ecf.provider.filetransfer.httpclient4.HttpClientFileSystemBrowser.runRequest(HttpClientFileSystemBrowser.java:263)
+	at org.eclipse.ecf.provider.filetransfer.browse.AbstractFileSystemBrowser$DirectoryJob.run(AbstractFileSystemBrowser.java:69)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:56)
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2017-12-16 17:02:52.759
+!MESSAGE Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2017-12-16 17:02:52.930
+!MESSAGE Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.jface.text 2 0 2017-12-16 17:03:11.428
+!MESSAGE Duplicate template id: 'org.eclipse.wst.xslt.templates.xpath.number'
+
+!ENTRY org.eclipse.jface.text 2 0 2017-12-16 17:03:11.511
+!MESSAGE Duplicate template id: 'org.eclipse.wst.xslt.templates.xpath.round'
+
+!ENTRY org.eclipse.recommenders.models.rcp 1 11 2017-12-16 17:03:16.230
+!MESSAGE The model index service was accessed either before it started or after it finished running.
+!STACK 0
+org.eclipse.recommenders.utils.Logs$LogTraceException
+	at org.eclipse.recommenders.utils.Logs$LogTraceException.newTrace(Logs.java:381)
+	at org.eclipse.recommenders.utils.Logs.log(Logs.java:134)
+	at org.eclipse.recommenders.utils.Logs.log(Logs.java:126)
+	at org.eclipse.recommenders.internal.models.rcp.EclipseModelIndex.suggest(EclipseModelIndex.java:211)
+	at org.eclipse.recommenders.models.SimpleModelProvider.acquireModel(SimpleModelProvider.java:70)
+	at org.eclipse.recommenders.models.PoolingModelProvider.access$0(PoolingModelProvider.java:1)
+	at org.eclipse.recommenders.models.PoolingModelProvider$ModelPoolFactoryMediator.makeObject(PoolingModelProvider.java:96)
+	at org.eclipse.recommenders.models.PoolingModelProvider$ModelPoolFactoryMediator.makeObject(PoolingModelProvider.java:1)
+	at org.apache.commons.pool.impl.GenericKeyedObjectPool.borrowObject(GenericKeyedObjectPool.java:1220)
+	at org.eclipse.recommenders.models.PoolingModelProvider.acquireModel(PoolingModelProvider.java:67)
+	at org.eclipse.recommenders.internal.calls.rcp.RcpCallModelProvider.acquireModel(RcpCallModelProvider.java:65)
+	at org.eclipse.recommenders.internal.calls.rcp.RcpCallModelProvider.acquireModel(RcpCallModelProvider.java:1)
+	at org.eclipse.recommenders.internal.models.rcp.PrefetchModelArchiveJob.run(PrefetchModelArchiveJob.java:43)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:56)
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2017-12-16 17:04:00.923
+!MESSAGE Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2017-12-16 17:04:01.201
+!MESSAGE Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2017-12-16 17:14:14.902
+!MESSAGE Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2017-12-16 17:14:14.913
+!MESSAGE Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2017-12-16 17:21:05.480
+!MESSAGE Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2017-12-16 17:21:05.580
+!MESSAGE Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY tern.eclipse.ide.core 4 0 2017-12-16 17:31:20.682
+!MESSAGE Cannot start node process.
+!STACK 0
+tern.TernException: Cannot start node process.
+	at tern.eclipse.ide.internal.core.resources.IDETernFileUploader$1.onError(IDETernFileUploader.java:133)
+	at tern.server.nodejs.NodejsTernServer.request(NodejsTernServer.java:261)
+	at tern.eclipse.ide.internal.core.resources.IDETernFileUploader.run(IDETernFileUploader.java:124)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:56)
+Caused by: tern.server.nodejs.process.NodejsProcessException: Cannot start node process.
+	at tern.server.nodejs.process.AbstractNodejsProcess.waitOnStartNodejs(AbstractNodejsProcess.java:130)
+	at tern.server.nodejs.process.AbstractNodejsProcess.start(AbstractNodejsProcess.java:95)
+	at tern.server.nodejs.NodejsTernServer.getBaseURL(NodejsTernServer.java:335)
+	at tern.server.nodejs.NodejsTernServer.makeRequest(NodejsTernServer.java:268)
+	at tern.server.nodejs.NodejsTernServer.request(NodejsTernServer.java:255)
+	... 2 more
+
+!ENTRY com.genuitec.eclipse.javascript.tern 4 0 2017-12-16 17:31:21.927
+!MESSAGE Error while loading outline for file src/main/webapp/JS/app.js
+!STACK 0
+tern.TernException: Connection refused: connect
+	at tern.server.DefaultResponseHandler.getData(DefaultResponseHandler.java:54)
+	at tern.server.protocol.TernResultsProcessorsFactory.makeRequestAndProcess(TernResultsProcessorsFactory.java:46)
+	at tern.eclipse.ide.internal.core.resources.IDETernServerAsyncReqProcessor.processRequest(IDETernServerAsyncReqProcessor.java:50)
+	at tern.server.AbstractTernServer.request(AbstractTernServer.java:218)
+	at tern.resources.TernProject.request(TernProject.java:644)
+	at tern.resources.TernProject.request(TernProject.java:632)
+	at com.genuitec.eclipse.javascript.tern.outline.RefreshOutlineJob.run(RefreshOutlineJob.java:64)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:56)
+Caused by: java.net.ConnectException: Connection refused: connect
+	at java.net.DualStackPlainSocketImpl.connect0(Native Method)
+	at java.net.DualStackPlainSocketImpl.socketConnect(Unknown Source)
+	at java.net.AbstractPlainSocketImpl.doConnect(Unknown Source)
+	at java.net.AbstractPlainSocketImpl.connectToAddress(Unknown Source)
+	at java.net.AbstractPlainSocketImpl.connect(Unknown Source)
+	at java.net.PlainSocketImpl.connect(Unknown Source)
+	at java.net.SocksSocketImpl.connect(Unknown Source)
+	at java.net.Socket.connect(Unknown Source)
+	at org.apache.http.conn.scheme.PlainSocketFactory.connectSocket(PlainSocketFactory.java:120)
+	at org.apache.http.impl.conn.DefaultClientConnectionOperator.openConnection(DefaultClientConnectionOperator.java:179)
+	at org.apache.http.impl.conn.ManagedClientConnectionImpl.open(ManagedClientConnectionImpl.java:328)
+	at org.apache.http.impl.client.DefaultRequestDirector.tryExecute(DefaultRequestDirector.java:675)
+	at org.apache.http.impl.client.DefaultRequestDirector.execute(DefaultRequestDirector.java:488)
+	at org.apache.http.impl.client.AbstractHttpClient.doExecute(AbstractHttpClient.java:884)
+	at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:82)
+	at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:107)
+	at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:55)
+	at tern.server.nodejs.NodejsTernHelper.makeRequest(NodejsTernHelper.java:82)
+	at tern.server.nodejs.NodejsTernServer.makeRequest(NodejsTernServer.java:297)
+	at tern.server.nodejs.NodejsTernServer.request(NodejsTernServer.java:255)
+	at tern.server.protocol.TernResultsProcessorsFactory.makeRequestAndProcess(TernResultsProcessorsFactory.java:45)
+	... 6 more
+
+!ENTRY com.genuitec.eclipse.javascript.tern 4 0 2017-12-16 17:31:22.025
+!MESSAGE Error while loading outline for file src/main/webapp/JS/login.js
+!STACK 0
+tern.TernException: Connection refused: connect
+	at tern.server.DefaultResponseHandler.getData(DefaultResponseHandler.java:54)
+	at tern.server.protocol.TernResultsProcessorsFactory.makeRequestAndProcess(TernResultsProcessorsFactory.java:46)
+	at tern.eclipse.ide.internal.core.resources.IDETernServerAsyncReqProcessor.processRequest(IDETernServerAsyncReqProcessor.java:50)
+	at tern.server.AbstractTernServer.request(AbstractTernServer.java:218)
+	at tern.resources.TernProject.request(TernProject.java:644)
+	at tern.resources.TernProject.request(TernProject.java:632)
+	at com.genuitec.eclipse.javascript.tern.outline.RefreshOutlineJob.run(RefreshOutlineJob.java:64)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:56)
+Caused by: java.net.ConnectException: Connection refused: connect
+	at java.net.DualStackPlainSocketImpl.connect0(Native Method)
+	at java.net.DualStackPlainSocketImpl.socketConnect(Unknown Source)
+	at java.net.AbstractPlainSocketImpl.doConnect(Unknown Source)
+	at java.net.AbstractPlainSocketImpl.connectToAddress(Unknown Source)
+	at java.net.AbstractPlainSocketImpl.connect(Unknown Source)
+	at java.net.PlainSocketImpl.connect(Unknown Source)
+	at java.net.SocksSocketImpl.connect(Unknown Source)
+	at java.net.Socket.connect(Unknown Source)
+	at org.apache.http.conn.scheme.PlainSocketFactory.connectSocket(PlainSocketFactory.java:120)
+	at org.apache.http.impl.conn.DefaultClientConnectionOperator.openConnection(DefaultClientConnectionOperator.java:179)
+	at org.apache.http.impl.conn.ManagedClientConnectionImpl.open(ManagedClientConnectionImpl.java:328)
+	at org.apache.http.impl.client.DefaultRequestDirector.tryExecute(DefaultRequestDirector.java:675)
+	at org.apache.http.impl.client.DefaultRequestDirector.execute(DefaultRequestDirector.java:488)
+	at org.apache.http.impl.client.AbstractHttpClient.doExecute(AbstractHttpClient.java:884)
+	at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:82)
+	at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:107)
+	at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:55)
+	at tern.server.nodejs.NodejsTernHelper.makeRequest(NodejsTernHelper.java:82)
+	at tern.server.nodejs.NodejsTernServer.makeRequest(NodejsTernServer.java:297)
+	at tern.server.nodejs.NodejsTernServer.request(NodejsTernServer.java:255)
+	at tern.server.protocol.TernResultsProcessorsFactory.makeRequestAndProcess(TernResultsProcessorsFactory.java:45)
+	... 6 more
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2017-12-16 17:31:42.728
+!MESSAGE Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2017-12-16 17:31:42.846
+!MESSAGE Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!

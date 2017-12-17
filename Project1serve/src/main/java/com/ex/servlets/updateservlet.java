@@ -33,9 +33,11 @@ public class updateservlet extends HttpServlet
 		{
 			if(j==a.get(k).getReimb_id())
 			{
-
+				if(status.equals("pending")||status.equals("success")||status.equals("denied")) 
+				{
 					service.UpdateStatus(a.get(k).getREIMB_STATUS_ID(),status);
 					service.UpdateReimb(a.get(k).getReimb_id(), u.getUid());
+				}
 			}
 		}
 		response.setContentType("text/html");
