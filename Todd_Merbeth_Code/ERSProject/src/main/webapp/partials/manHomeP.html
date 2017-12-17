@@ -1,6 +1,4 @@
 <div>
-	<h1>Home</h1>
-	Welcome to your home page
 	<h2>Reimbursement Requests:</h2>
 	<div id="reimbursements">
 		<table id="allReimbs" class="display dataTable" cellspacing="0"
@@ -22,9 +20,13 @@
 			</tbody>
 		</table>
 	</div>
-	<br> <br>
-	<div id="selected"></div>
-	<div id="reqStatus"></div>
-	<div class="alert alert-danger" id="updateError">Please select approve or deny to update the reimbursement</div>
-	<button id="updateStatus" class="btn btn-primary">Update Status</button>
+	<div id="changeReimbursementContainer" style="margin: auto; margin-bottom: 5px; text-align:center; border:solid; border-width:1px; border-radius: 25px; width: 35%; max-width: 400px; min-width:360px;">
+		<label for="selected" id="sLabel">Selected Reimbursement: </label>
+		<div id="selected" style="display: inline;"></div>
+		<div id="reqStatus"></div>
+		<div class="alert alert-danger" id="updateError">Please select
+			approve or deny to update the reimbursement</div>
+		<button id="updateStatus" style="margin-bottom: 4px; "class="btn btn-primary">Update
+			Status</button>
+	</div>
 </div>

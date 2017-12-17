@@ -34,8 +34,6 @@ function login(){
 	var json1 = [username, password];
 	var json = JSON.stringify(json1);
 	
-	console.log(json);
-	
 	// AJAX stuff
 	var xhr = new XMLHttpRequest();
 	// ReadyState = 0, Client has been created. open() not called yet.
@@ -253,11 +251,14 @@ function loadEmployeeHome(){
 function loadEmployeeReimbursements(){
 	var xhr = new XMLHttpRequest();
 	xhr.onreadystatechange = function(){
-		console.log(xhr.readyState);
+		console.log("LOADEMPREIMBS " + xhr.readyState);
 		if(xhr.readyState == 4 && xhr.status == 200){
 			var reimbursements = JSON.parse(xhr.responseText);
-			$("#userReimbsBody tr").remove(); 
+			$("#userReimbsBody tr").remove();
 			for (var i=0; i<reimbursements.length; i++){
+				if(reimbursements[i].description == null){
+					reimbursements[i].description = "";
+				}
 				var line = 
 						`<tr>
 							<td> ${reimbursements[i].id} </td>
@@ -356,11 +357,13 @@ function loadUserInfo(){
 			});
 			$('#newFirstname').keyup(function(event) {
 			    if (event.keyCode === 13) {
+			    	if($('#newFirstname').val != ''){
+			    		updateUser("firstname", $('#newFirstname').val());
+			    	}
 			    	$('#firstnameText').show();
-					$('#editFirst').show();
-					$('#newFirstname').hide();
-					$('#fnlabel').hide();
-					updateUser("firstname", $('#newFirstname').val())
+			    	$('#editFirst').show();
+			    	$('#newFirstname').hide();
+			    	$('#fnlabel').hide();
 			    }
 			});
 			// Lastname stuff
@@ -374,6 +377,9 @@ function loadUserInfo(){
 			});
 			$('#newLastname').keyup(function(event) {
 			    if (event.keyCode === 13) {
+			    	if($('#newLastname').val != null){
+			    		updateUser("lastname", $('#newLastname').val());
+			    	}
 			    	$('#lastnameText').show();
 					$('#editLast').show();
 					$('#newLastname').hide();
@@ -391,6 +397,9 @@ function loadUserInfo(){
 			});
 			$('#newEmail').keyup(function(event) {
 			    if (event.keyCode === 13) {
+			    	if($('#newEmail').val != null){
+			    		updateUser("email", $('#newEmail').val());
+			    	}
 			    	$('#emailText').show();
 					$('#editEmail').show();
 					$('#newEmail').hide();
@@ -408,6 +417,9 @@ function loadUserInfo(){
 			});
 			$('#newUsername').keyup(function(event) {
 			    if (event.keyCode === 13) {
+			    	if($('#newUsername').val != null){
+			    		updateUser("username", $('#newUsername').val());
+			    	}
 			    	$('#usernameText').show();
 					$('#editUsername').show();
 					$('#newUsername').hide();
@@ -427,6 +439,9 @@ function loadUserInfo(){
 			});
 			$('#newPassword').keyup(function(event) {
 			    if (event.keyCode === 13) {
+			    	if($('#newPassword').val != null){
+			    		updateUser("password", $('#newPassword').val());
+			    	}
 			    	$('#passwordText').show();
 					$('#editPassword').show();
 					$('#newPassword').hide();
@@ -491,9 +506,6 @@ function sendRequest() {
 // $('#errmessage').show();
 // }
 // else {
-	console.log(amountInput);
-	console.log(type);
-	console.log(desc);
 		var reimbursement = {
 				id : 0,
 				amount : amountInput,
@@ -522,7 +534,6 @@ function sendRequest() {
 					alert("Error creating request");
 				}
 				else{
-					console.log("added new request");
 					alert("Success! New reimbursement request has been added!");
 					loadEmployeeHome();
 				}
@@ -543,6 +554,8 @@ function loadManagerHome(){
 		if(xhr.readyState == 4 && xhr.status == 200){
 			document.getElementById('view').innerHTML = xhr.responseText;
 			$('#updateError').hide();
+			$('#changeReimbursementContainer').hide();
+			$('#sLabel').hide();
 			loadAllReimbursements();
 			loadRStatusOptions();
 		}
@@ -559,6 +572,15 @@ function loadAllReimbursements(){
 		if(xhr.readyState == 4 && xhr.status == 200){
 			var reimbursements = JSON.parse(xhr.responseText);
 			for (var i=0; i<reimbursements.length; i++){
+				if(reimbursements[i].resolved == null){
+					reimbursements[i].resolved = "";
+				}
+				if(reimbursements[i].description == null){
+					reimbursements[i].description = "";
+				}
+				if(reimbursements[i].resolverStr == null){
+					reimbursements[i].resolverStr = "";
+				}
 				var line = 
 						`<tr>
 							<td> ${reimbursements[i].id} </td>
@@ -606,6 +628,8 @@ function loadRStatusOptions(){
 }
 function addTableClicks(reimbursements) {
     $("#allReimbs tr").click(function() {
+    	$('#changeReimbursementContainer').show();
+    	$('#sLabel').show();
     	document.getElementById('selected').innerHTML = this.getElementsByTagName("td")[0].innerHTML;
     	$('#reqStatus').show();
     	$('#updateStatus').show();

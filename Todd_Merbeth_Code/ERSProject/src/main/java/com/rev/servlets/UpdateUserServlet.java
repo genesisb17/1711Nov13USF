@@ -33,7 +33,7 @@ public class UpdateUserServlet extends HttpServlet {
 		String[] change = mapper.readValue(json, String[].class);
 
 		User oldUser = (User) req.getSession().getAttribute("user");
-		User newUser = oldUser;
+		User newUser = new User(oldUser.getId(), oldUser.getUsername(), oldUser.getPassword(), oldUser.getFirstname(), oldUser.getLastname(), oldUser.getEmail(), oldUser.getRole(), oldUser.getRoleStr());
 		int id = oldUser.getId();
 
 		switch (change[0]) {
