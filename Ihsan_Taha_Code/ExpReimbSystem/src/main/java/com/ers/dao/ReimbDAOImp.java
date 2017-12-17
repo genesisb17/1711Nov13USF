@@ -21,7 +21,7 @@ public class ReimbDAOImp implements ReimbDAO
 
 		try (Connection conn = ConnectionFactory.getInstance().getConnection())
 		{
-			String sql = "SELECT * FROM ERS_REIMBURSEMENT WHERE REIMB_RESOLVED IS NULL";
+			String sql = "SELECT * FROM ERS_REIMBURSEMENT";
 			Statement stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery(sql);
 
@@ -147,7 +147,6 @@ public class ReimbDAOImp implements ReimbDAO
 		}
 
 		if (reimb.getReimbId() != 0)
-
 			return reimb;
 		else
 			return null;

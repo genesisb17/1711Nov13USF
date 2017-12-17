@@ -54,7 +54,7 @@
 	<h5 id="contentHeader" class="custom-color" style="text-align: center; margin-top: 10px">Fill out a new Reimbursement Request Form</h5>
 	<hr />
 	<br />
-
+	
 		<select class="selectpicker form-control" id="reimbType" required="">
         	<option disabled="" selected="">Select Reimbursement Type</option>
   			<option>Lodging</option>
@@ -62,16 +62,26 @@
   			<option>Food</option>
   			<option>Other</option>
 		</select>
+		<div id="reimbTypeError" class="form-control alert-danger" style="display:none">
+			Please enter a reimbursement type.
+		</div>		
 		<br />
 		<input class="form-control" type="number" id="reimbAmount" placeholder="Amount"/>
+		<div id="reimbAmountError" class="form-control alert-danger" style="display:none">
+			Please enter amount for reimbursement.
+		</div>		
 		<br />
 		<textarea class="form-control" id="reimbDesc" placeholder="Description" maxlength="300" style="resize: none; max-height: 500px"/></textarea>
+		<div id="reimbDescError" class="form-control alert-danger" style="display:none">
+			Please enter a description for your reimbursement.
+		</div>			
 		<br />
 		<label for="file">Upload receipt</label>
 		<input type="file" name="file" id="file" class="inputfile form-control-file" style="cursor: pointer"/>
 		<br />	
 		<button class="form-control btn-custom" id="submitNewReqBtn" style="width: 245px">Submit Request</button>
 		<br />
+	
 
 </div>
 
@@ -90,7 +100,7 @@
 			<h6>Type:</h6>			
 			<h6>Submitted:</h6>		
 			<h6>Resolved:</h6>		
-			<h6>Resolver:</h6>		
+			<h6>Resolver ID:</h6>		
 			<h6>Description:</h6>	
 			<h6>Recipt:</h6>		
 			<h6>Action:</h6>		

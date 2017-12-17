@@ -10,7 +10,7 @@ public class RequestHelper
 {
 	public String process(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
-		//System.out.println(request.getRequestURI());
+		System.out.println(request.getRequestURI());
 
 		switch (request.getRequestURI())
 		{
@@ -20,8 +20,6 @@ public class RequestHelper
 			return "partials/userFunctions.html";
 		case "/ExpReimbSystem/GetContent.view":
 			return "partials/userContent.html";
-		case "/ExpReimbSystem/GetReimbDetails.view":
-			return "partials/reimbDetails.html";
 		}
 		return null;
 	}

@@ -5,6 +5,9 @@ var sessionUser;
 var sessionReimb;
 var sessionUpdateReimb;
 
+var sessionAuthor;
+var sessionAuthors;
+
 var status;
 var type;
 var submitted;
@@ -109,6 +112,16 @@ function registerFunc()
 		validEmail = true;
 	}
 	
+	if (ur == 2)
+	{
+		let managerCode = prompt("Please enter the manager code: ");
+		if (managerCode != "abcde")
+		{
+			alert("You have entered an invalid manager code. Please try again.");
+			location.reload();
+		}
+	}
+	
 	if (ur == 0)
 	{
 		$('#userRoleError').show();
@@ -159,7 +172,6 @@ function registerFunc()
 	}
 	else
 	{
-		// Not working?
 		document.getElementById('useremail').focus();
 	}
 }
@@ -260,6 +272,37 @@ function loadView(page, id)
 
 
 
+//------------------------------------------------------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------------------------------------------------------------
+function getAuthor(aId)
+{
+	var author =
+	{
+		authorId: aId,
+		authorName: "",
+	}
+	
+	var authorJson = JSON.stringify(author);
+	
+	var xhr = new XMLHttpRequest();
+	xhr.open("POST", "GetAuthorServlet", true);
+	xhr.send(authorJson);
+	xhr.onreadystatechange = function()
+	{
+		if(xhr.readyState == 4 &&  xhr.status == 200)
+		{
+			sessionAuthor = JSON.parse(xhr.responseText);
+			sessionAuthors.push(sessionAuthor);
+		}
+	} 
+}
+//------------------------------------------------------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
 //----------------------------------------------------------------------------
 // 5. loadRequests
 //----------------------------------------------------------------------------
@@ -287,6 +330,7 @@ function loadRequests()
 			$("table tbody").html("");
 			
 			var reimbs = [];
+			sessionAuthors = [];
 			var jsonArray = JSON.parse(xhr.responseText);
 			
 			if (jsonArray == null)
@@ -295,13 +339,19 @@ function loadRequests()
 			{
 				for(var i = 0; i < jsonArray.length; i++)
 					reimbs.push(jsonArray[i]);
+				
+				if (sessionUser.roleId == 2)
+				{
+					for (var i = 0; i < reimbs.length; i++)
+						getAuthor(reimbs[i].reimbAuthor);
+				}
 			
 				for (var i = 0; i < reimbs.length; i++)
 				{
 					//---------------------------------------------------
 					// Formatting Data for Human Readability
 					//---------------------------------------------------
-				
+					
 					// Status
 					if (reimbs[i].reimbStatusId == 1)
 						status = "Pending";
@@ -348,16 +398,16 @@ function loadRequests()
 						inManagerView = false;
 						$('#managerViews').hide();
 					
-						var markup = 					   "<tr><td>" + 
-							reimbs[i].reimbId 			+ "</td><td>" + 
-							"$"+reimbs[i].reimbAmount 	+ "</td><td>" +
-							status 						+ "</td><td>" + 
-							type 						+ "</td><td>" +
-							submitted					+ "</td><td>" + 
-							resolved				 	+ "</td><td>" +
-							resolver 					+ "</td><td>" +
-							reimbs[i].reimbDescription	+ "</td><td>" +
-							receipt				 		+ "</td></tr>"+
+						var markup = 					    "<tr><td>" + 
+							reimbs[i].reimbId 			 + "</td><td>" + 
+							"$"+reimbs[i].reimbAmount 	 + "</td><td>" +
+							status 						 + "</td><td>" + 
+							type 						 + "</td><td>" +
+							submitted					 + "</td><td>" + 
+							resolved				 	 + "</td><td>" +
+							resolver 					 + "</td><td>" +
+							reimbs[i].reimbDescription	 + "</td><td>" +
+							receipt				 		 + "</td></tr>"+
 							$("#userPastViews tbody").append(markup);
 					}
 					//---------------------------------------------------
@@ -411,7 +461,7 @@ function loadRequests()
 						let reimbId = $(cell).text();
 		    	
 						updateRequest(reimbId);
-						console.log("In body click" + reimbId);
+						console.log("In body click " + reimbId);
 					});
 				}
 			}
@@ -461,54 +511,94 @@ function viewRequests()
 //----------------------------------------------------------------------------
 function submitNewRequest()
 {	
-	var newReimbType = $('#reimbType').val();
-	var newReimbAmount = $('#reimbAmount').val();
-	var newReimbDesc = $('#reimbDesc').val();
+	let newReimbType = $('#reimbType option:selected').text();
+	let newReimbAmount = $('#reimbAmount').val();
+	let newReimbDesc = $('#reimbDesc').val();
 	
-	switch(newReimbType)
+	let validReimbType;
+	let validReimbAmount;
+	let validReimbDesc;
+	
+	if (newReimbType == "Select Reimbursement Type") 
 	{
-		case "Lodging":
-			newReimbType = 1;
-		break;
-		case "Travel":
-			newReimbType = 2;
-		break;
-		case "Food":
-			newReimbType = 3;
-		break;
-		case "Other":
-			newReimbType = 4;
-		break;
-		default:
-			newReimbType = 1;
+		$('#reimbTypeError').show();
+		validReimbType = false;
 	}
-
-	var newReimb =
+	else
 	{
-		reimbId: 0,
-		reimbAmount: newReimbAmount,
-		reimbAuthor: sessionUser.userId,
-		reimbResolver: null,
-		reimbStatusId: 0,
-		reimbTypeId: newReimbType,
-		reimbSubmitted: "",
-		reimbResolved: 0,
-		reimbDescription: newReimbDesc,
-		reimbReceipt: null
+		$('#reimbTypeError').hide();
+		validReimbType = true;
 	}
 	
-	var newReimbJson = JSON.stringify(newReimb);
-	
-	var xhr = new XMLHttpRequest();
-	xhr.open("POST", "PostReimbServlet", true);
-	xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-	xhr.send(newReimbJson);
-	xhr.onreadystatechange = function()
+	if (newReimbAmount == "")
 	{
-		if(xhr.readyState == 4 &&  xhr.status == 200)
+		$('#reimbAmountError').show();
+		validReimbAmount = false;
+	}
+	else
+	{
+		$('#reimbAmountError').hide();
+		validReimbAmount = true;
+	}
+	
+	if (newReimbDesc == "")
+	{
+		$('#reimbDescError').show();
+		validReimbDesc = false;
+	}
+	else
+	{
+		$('#reimbDescError').hide();
+		validReimbDesc = true;
+	}
+	
+	if ((validReimbType && validReimbAmount) && (validReimbDesc)) {
+		
+		switch(newReimbType)
 		{
-			loadView("GetMenu.view", "menuView");
-			loadView("GetContent.view", "contentView");
+			case "Lodging":
+				newReimbType = 1;
+				break;
+			case "Travel":
+				newReimbType = 2;
+				break;
+			case "Food":
+				newReimbType = 3;
+				break;
+			case "Other":
+				newReimbType = 4;
+				break;
+			default:
+				newReimbType = 1;
+		}
+
+		var newReimb =
+		{
+			reimbId: 0,
+			reimbAmount: newReimbAmount,
+			reimbAuthor: sessionUser.userId,
+			reimbResolver: null,
+			reimbStatusId: 0,
+			reimbTypeId: newReimbType,
+			reimbSubmitted: "",
+			reimbResolved: 0,
+			reimbDescription: newReimbDesc,
+			reimbReceipt: null
+		}
+	
+		var newReimbJson = JSON.stringify(newReimb);
+	
+		var xhr = new XMLHttpRequest();
+		xhr.open("POST", "PostReimbServlet", true);
+		xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+		xhr.send(newReimbJson);
+		xhr.onreadystatechange = function()
+		{
+			if(xhr.readyState == 4 &&  xhr.status == 200)
+			{
+				loadView("GetMenu.view", "menuView");
+				loadView("GetContent.view", "contentView");
+			}
 		}
 	}
 	
@@ -558,6 +648,32 @@ function updateRequest(id)
 			//---------------------------------------------------
 			// Formatting Data for Human Readability
 			//---------------------------------------------------
+			let author;
+			let resolver;
+			
+			// Author/Resolver
+			if (sessionUser.roleId == 2)
+			{
+				for (var i = 0; i < sessionAuthors.length; i++)
+				{
+					if (sessionAuthors[i].authorId == sessionUpdateReimb.reimbAuthor)
+						author = sessionAuthors[i].authorName;
+					/*
+					 if (sessionAuthors[i].authorId == sessionUpdateReimb.reimbResolver)
+						resolver = sessionAuthors[i].authorName;
+					 else if (sessionUpdateReimb.reimbResolver == 0)
+						resolver = "None";
+					*/
+					resolver = sessionUpdateReimb.reimbResolver;
+					if (resolver == 0)
+						resolver = "None";
+				}
+			}
+			else
+			{
+				author = sessionUpdateReimb.reimbAuthor;
+				resolver = sessionUpdateReimb.reimbResolver;
+			}
 			
 			// Status
 			if (sessionUpdateReimb.reimbStatusId == 2)
@@ -601,16 +717,16 @@ function updateRequest(id)
 			
 			$('#idDetail').html(sessionUpdateReimb.reimbId);
 			$('#amountDetail').html("$"+sessionUpdateReimb.reimbAmount);
-			$('#authorDetail').html(sessionUpdateReimb.reimbAuthor);
+			$('#authorDetail').html(author);
 			$('#statusDetail').html(status);
 			$('#typeDetail').html(type);
 			$('#submittedDetail').html(submitted);
 			$('#resolvedDetail').html(resolved);
-			$('#resolverDetail').html(sessionUpdateReimb.reimbResolver);
+			$('#resolverDetail').html(resolver);
 			$('#descDetail').html(sessionUpdateReimb.reimbDescription);
 			$('#receiptDetail').html(receipt);
 			
-			$('#updateDetailsBtn').on('click', alertDetails);
+			$('#updateDetailsBtn').on('click', updateStatus);
 		}
 	}
 	
@@ -621,7 +737,7 @@ function updateRequest(id)
 //----------------------------------------------------------------------------
 // 10. Alert Details
 //----------------------------------------------------------------------------
-function alertDetails() 
+function updateStatus() 
 {	
 	var selectedOption = $('input[name=resolveAction]:checked').val();
 	
@@ -637,7 +753,6 @@ function alertDetails()
 	var xhr = new XMLHttpRequest();
 	xhr.open("POST", "UpdateReimbServlet", true);
 	xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-	console.log("IN ALERT DETAILS " + reimbJson);
 	xhr.send(reimbJson);
 	xhr.onreadystatechange = function()
 	{
@@ -658,8 +773,6 @@ function alertDetails()
 //----------------------------------------------------------------------------
 function logoutFunc()
 {
-	alert(sessionUser.userId);
-	
 	var xhr = new XMLHttpRequest();
 	xhr.open("GET", "LogoutServlet", true);
 	xhr.send();

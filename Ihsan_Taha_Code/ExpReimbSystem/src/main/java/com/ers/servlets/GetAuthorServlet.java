@@ -23,9 +23,7 @@ public class GetAuthorServlet extends HttpServlet
 {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
-	{	
-		System.out.println("In GetAuthorServlet");
-		
+	{			
 		BufferedReader br = new BufferedReader(new InputStreamReader(request.getInputStream()));
 
 		String json = "";
@@ -35,19 +33,13 @@ public class GetAuthorServlet extends HttpServlet
 
 		ObjectMapper mapper = new ObjectMapper();
 		Author author = mapper.readValue(json, Author.class);
-
-		System.out.println(author.getAuthorId());
 		
 		Service service = new Service();
 		User user = service.getUserById(author.getAuthorId());
 
-		author.setAuthorName(user.getFirstName());
+		author.setAuthorName(user.getFirstName() + " " + user.getLastName());
 		
-		System.out.println(author.getAuthorName());
-		
-		HttpSession sessionReimb = request.getSession();
-		sessionReimb.setAttribute("author", author);
-
+		mapper = new ObjectMapper();
 		json = mapper.writeValueAsString(author);
 
 		PrintWriter out = response.getWriter();

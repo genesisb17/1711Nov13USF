@@ -24,25 +24,19 @@ public class PostReimbServlet extends HttpServlet
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
-		System.out.println("In Submit");
 		BufferedReader br = new BufferedReader(new InputStreamReader(request.getInputStream()));
-		
+
 		String json = "";
-		
+
 		if (br != null)
 			json = br.readLine();
 
 		ObjectMapper mapper = new ObjectMapper();
 		Reimbursement reimb = mapper.readValue(json, Reimbursement.class);
-		
+
 		HttpSession session = request.getSession();
 		User user = (User) session.getAttribute("user");
-		
-		reimb = service.addReimb(user, reimb);
-		
-		if (reimb != null)
-			System.out.println("Successful Reimbursement");
-		else
-			System.out.println("Error, could not enter new request.");
+
+		service.addReimb(user, reimb);
 	}
 }

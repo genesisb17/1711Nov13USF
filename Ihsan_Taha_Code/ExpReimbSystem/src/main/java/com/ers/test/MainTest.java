@@ -13,7 +13,7 @@ public class MainTest
 	{
 		// 1. Test add user
 		
-		  user.setUserName("jack_morris"); user.setPassWord("12345");
+		/*  user.setUserName("jack_morris"); user.setPassWord("12345");
 		  user.setFirstName("Jack"); user.setLastName("Morris");
 		  user.setUserEmail("jack_morris@gmail.com"); user.setRoleId(1);
 		  
@@ -30,7 +30,7 @@ public class MainTest
 		  {
 			  System.out.println("In MainTest, after succedding to add user: " + user.toString());
 		  }
-		  
+		*/  
 		 
 
 		// 2. Test get user by username and password
@@ -90,10 +90,10 @@ public class MainTest
 		*/
 		  
 		// Z. Test get user by user id
-		// int i = 8;
-		// manager = service.getUserById(i);
+		 int i = 8;
+		 manager = service.getUserById(i);
 		
-		// System.out.println(manager.toString());
+		 System.out.println(manager.toString());
 
 	}
 

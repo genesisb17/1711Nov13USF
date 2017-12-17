@@ -22,13 +22,16 @@ public class GetReimbListServlet extends HttpServlet
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
+		Service service = new Service();
 		ArrayList<Reimbursement> reimbs = new ArrayList<>();
 
 		HttpSession sessionUser = request.getSession();
 		User user = (User) sessionUser.getAttribute("user");
 
-		Service service = new Service();
-		reimbs = service.getReimbByUser(user);
+		if (user.getRoleId() == 1)
+			reimbs = service.getReimbByUser(user);
+		else
+			reimbs = service.getAllReimb();
 
 		HttpSession sessionReimbList = request.getSession();
 		sessionReimbList.setAttribute("reimbs", reimbs);

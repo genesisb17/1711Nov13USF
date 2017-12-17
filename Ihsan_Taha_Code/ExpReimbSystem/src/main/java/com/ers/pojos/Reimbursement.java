@@ -1,5 +1,6 @@
 package com.ers.pojos;
 
+import java.io.Serializable;
 import java.sql.Blob;
 
 public class Reimbursement

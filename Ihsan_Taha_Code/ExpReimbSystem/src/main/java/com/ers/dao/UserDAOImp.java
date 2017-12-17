@@ -53,9 +53,7 @@ public class UserDAOImp implements UserDAO
 	public User addUser(User user)
 	{
 		try (Connection conn = ConnectionFactory.getInstance().getConnection();)
-		{
-			System.out.println("In addUser, before sql call: " + user.toString());
-			
+		{	
 			conn.setAutoCommit(false);
 			String sql = "INSERT INTO ERS_USERS (ERS_USERNAME, ERS_PASSWORD, USER_FIRSTNAME, USER_LASTNAME, USER_EMAIL, USER_ROLE_ID) VALUES (?,?,?,?,?,?)";
 			String[] key = new String[1];
@@ -93,8 +91,6 @@ public class UserDAOImp implements UserDAO
 		{
 			// e.printStackTrace();
 		}
-
-		System.out.println("In add user, after sql call: " + user.toString());
 
 		if (user.getUserId() != 0)
 			return user;
@@ -138,7 +134,7 @@ public class UserDAOImp implements UserDAO
 	public User getUserById(int userId)
 	{
 		User user = new User();
-
+		
 		try (Connection conn = ConnectionFactory.getInstance().getConnection();)
 		{
 			String sql = "SELECT * FROM ERS_USERS WHERE ERS_USERS_ID = ?";
@@ -160,7 +156,7 @@ public class UserDAOImp implements UserDAO
 		{
 			e.printStackTrace();
 		}
-
+		
 		if (user.getUserId() != 0)
 			return user;
 		else

@@ -25,18 +25,18 @@ public class UpdateReimbServlet extends HttpServlet
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
 		BufferedReader br = new BufferedReader(new InputStreamReader(request.getInputStream()));
-		
+
 		String json = "";
-		
+
 		if (br != null)
 			json = br.readLine();
 
 		ObjectMapper mapper = new ObjectMapper();
 		Reimbursement reimb = mapper.readValue(json, Reimbursement.class);
-		
+
 		HttpSession session = request.getSession();
 		User user = (User) session.getAttribute("user");
-		
+
 		service.updateReimbByManager(user, reimb.getReimbStatusId(), reimb.getReimbId());
 	}
 }
