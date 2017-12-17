@@ -1,0 +1,131 @@
+<br>
+<div class="media">
+  <img class="d-flex mr-3" src="images/reimbLogo.png" width="50" href="#">
+  <div class="media-body">
+    <h6 class="mt-0">Expense Reimbursement<br>Home</h6>
+  </div>
+</div>
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-success float-right" data-toggle="modal" data-target="#reimbModal">Submit Reimbursement</button>
+
+<!-- Sumbit Reimb Modal -->
+<div class="modal fade" id="reimbModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Reimbursement Request Form</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      <div class="form-group">
+  		<label for="typeSel"><b>Reimbursement Type (select one):<a class="text-danger">*</a></b></label>
+  		<select class="form-control" id="typeSel">
+  			<option></option>
+    		<option value=1001>Lodging</option>
+    		<option value=1002>Travel</option>
+    		<option value=1003>Food</option>
+    		<option value=1004>Other</option>
+  		</select>
+		</div>
+		<div class="input-group">
+			<label for="amount"><b>Total Amount:<a class="text-danger">*</a></b></label>
+  			<span class="input-group-addon">$</span>
+  			<input type="number" class="form-control" min="0" id="amount">
+		</div>
+      	<div class="form-group">
+ 			<label for="description"><b>Description (date, details, etc):</b></label>
+ 			<textarea class="form-control" rows="5" id="description"></textarea>
+		</div>
+		<div class="alert alert-danger" role="alert" id="message"></div>
+		<div class="form-group">
+			<b><a class="text-danger">*</a> Required</b>
+			</div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-success" id="submitReimb">Submit</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Approval Modal -->
+<div class="modal fade" id="authorizeModal" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="ModalLabel">Reimbursement Request Form</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      <p id="requesterInfo"></p>
+      <div class="form-group">
+  		<label for="authSel"><b>Approval Status (select one):<a class="text-danger">*</a></b></label>
+  		<select class="form-control" id="authSel">
+  			<option></option>
+    		<option value=200>Approve</option>
+    		<option value=300>Deny</option>
+  		</select>
+		</div>
+
+		<div class="alert alert-danger" role="alert" id="approvalMessage"></div>
+		<div class="form-group">
+			<b><a class="text-danger">*</a> Required</b>
+			</div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-success" id="authorized">Submit</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Completed Modal -->
+<div class="modal fade" id="completedModal" tabindex="-1" role="dialog" aria-labelledby="attModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="attModalLabel"><a class="text-danger">***Attention***</a></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      	<p><b>This request has already been resolved.</b></p>
+      	<p><b>Please approve the PENDING request(s).</b></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-success" data-dismiss="modal">OK</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Not authorize Modal if the reimbAuthor == manager -->
+<div class="modal fade" id="notAuthorizeModal" tabindex="-1" role="dialog" aria-labelledby="attagainModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="attagainModalLabel"><a class="text-danger">***Attention***</a></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      	<p><b>You cannot approve your own request.</b></p>
+      	<p><b>Please approve other PENDING request(s).</b></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-success" data-dismiss="modal">OK</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<br><br><br><br>
+<div id="tableview"></div>

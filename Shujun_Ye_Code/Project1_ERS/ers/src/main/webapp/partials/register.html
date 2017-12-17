@@ -1,0 +1,65 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-success ">
+	<a class="navbar-brand" href="#">Expense Reimbursement System</a>
+</nav>
+
+<div class="row">
+	<div class="col-md-3"></div>
+
+	<div class="col-md-6">
+		<p class="text-center"><h3>Sign up for our Expense Reimbursement System</h3></p>
+		<p class="text-center"><b>Already registered? <a href=# class="text-danger" id="dirLogin">Login here.</a></b></p>			
+
+		<div class="form-group">
+			<b>First Name<a class="text-danger">*</a></b><br><Input type="text"
+			class ="form-control" id="firstname" placeholder="First Name"/>
+		</div>
+		
+		<div class="form-group">
+			<b>Last Name<a class="text-danger">*</a></b><br><Input type="text"
+			class ="form-control" id="lastname" placeholder="Last Name"/>
+		</div>
+		
+		<div class="form-group">
+			<b>Email<a class="text-danger">*</a></b><br><Input type="text"
+			class ="form-control" id="email" placeholder="Email"/>
+		</div>
+		
+		<div class="form-group">
+			<b>Username<a class="text-danger">*</a></b><br><Input type="text"
+			class ="form-control" id="username" placeholder="Username"/>
+			<div class="help-block">Must be 5-15 characters in length. Underscore (_), numbers, and letters are valid characters. Underscore cannot be the last character. Case is not sensitive.</div>
+		</div>
+		
+		<div class="form-group">
+			<b>Password<a class="text-danger">*</a></b><br><Input type="password"
+			class ="form-control" id="password" placeholder="Password"/>
+			<div class="help-block">Password must contain at least one number and one uppercase and lowercase letter, and must be 6-15 characters in length.</div>
+		</div>
+		
+		<!-- If password/username is wrong, this alert will show -->
+		<div class="alert alert-danger" role="alert" id="message"></div>
+		
+		<div class="form-group">
+			<b>Position<a class="text-danger">*</a></b><br>
+			<label class="radio-inline"><input type="radio" name="optradio" id="role" value=1>EMPLOYEE</label>
+			<label class="radio-inline"><input type="radio" name="optradio" id="role" value=2>MANAGER</label><br>
+		</div>
+		
+		<div class="form-group">
+			<b><a class="text-danger">*</a> Required</b>
+		</div>
+		
+		<p class="text-center">
+			<button type="button" class="btn btn-outline-success pull-right" id="signup">Sign Up</button>
+		</p>
+	</div>
+
+	<div class="col-md-3"></div>
+	
+</div>
+
+
+	
+		
+	
+	

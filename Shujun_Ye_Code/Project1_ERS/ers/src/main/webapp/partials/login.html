@@ -1,0 +1,52 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-success ">
+	<a class="navbar-brand" href="#">Expense Reimbursement System</a>
+</nav>
+
+<div class="container">
+	<div class="row">
+		<img src="images/login.jpg" class="img-fluid"
+			style="width: 100%; height: 200px; opacity: 0.5;">
+	</div>
+	<br>
+
+	<div class="row">
+		<div class="col-md-3"></div>
+
+		<div class="col-md-6">
+			<p class="text-center">
+				<b>Login with registered username</b>
+			</p>
+			<br>
+
+			<div class="form-group">
+				<b>Username <a class="text-danger">*</a></b><Input
+					type="text" class="form-control" id="username"
+					placeholder="Username" />
+			</div>
+
+			<div class="form-group">
+				<b>Password <a class="text-danger">*</a></b><Input
+					type="password" class="form-control" id="password"
+					placeholder="Password" />
+			</div>
+
+			<!-- If password/username is wrong, this alert will show -->
+			<div class="alert alert-danger" role="alert" id="message"></div>
+
+			<div class="form-group">
+				<b><a class="text-danger">*</a> Required</b>
+			</div>
+			<p class="text-center">
+				<button type="button" class="btn btn-outline-success pull-right"
+					id="login">LOG IN</button>
+			</p>
+		</div>
+
+		<div class="col-md-3"></div>
+	</div>
+
+	<p class="text-center">
+		<b>Don't have an account? <a href=# class="text-danger"
+			id="register">Sign up!</a></b>
+	</p>
+</div>

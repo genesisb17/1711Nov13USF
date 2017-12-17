@@ -1,0 +1,60 @@
+<div id="profile">
+	<div class="container">
+		<br>
+		<!-- Might change to good morning/afternoon/ later -->
+		<b>Welcome, <a id="userfirstname"></a>!</b>
+		<br>
+		<br>
+		<div class="row">
+			<div class="col-md-3">
+				<img src="images/profile.png" class="img-fluid"
+					style="width: 100%">
+			</div>
+			<div class="col-md-8 text-dark bg-light">
+				<br>
+				<div class="row">
+					<div class="col-md-4">
+						<p>Username:</p>
+						<p>Full Name:</p>
+						<p>Email Address:</p>
+						<p>Position:</p>
+						<p>Employee ID:</p>
+					</div>
+					<div class="col-md-8">
+						<p id="user">test</p>
+						<p id="fullname">test</p>
+						<p id="emailaddress">test</p>
+						<p id="position">test</p>
+						<p id="userId">test</p>
+					</div>
+				</div>
+				<hr>
+				<p>Password</p>
+				<div class="row">
+					<div class="col-md-4">
+						<a>Current Password</a>
+						<div class="form-group">
+							<Input type="password" class="form-control" id="oldpass" />
+						</div>
+					</div>
+					<div class="col-md-4">
+						<a>New Password</a>
+						<div class="form-group">
+							<Input type="password" class="form-control" id="newpass"/>
+						</div>
+					</div>
+					<div class="col-md-4">
+						<a>Retype Password</a>
+						<div class="form-group">
+							<Input type="password" class="form-control" id="repass" />
+						</div>
+					</div>
+				</div>
+				<div class="alert alert-danger" role="alert" id="message"></div>
+				<button type="button" class="btn btn-outline-success pull-right"
+					id="reset">Reset Password</button>
+			</div>
+			<div class="col-md-1"></div>
+		</div>
+	</div>
+</div>
