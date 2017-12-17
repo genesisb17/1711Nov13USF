@@ -4,6 +4,7 @@ import { AccountService } from './account.service';
 import { User } from './types/user.type';
 import { Reimbursement } from './types/reimbursement.type';
 import { Observable } from 'rxjs/Observable';
+import { Subject } from 'rxjs/Subject';
 
 @Injectable()
 export class ReimbursementService {
@@ -13,21 +14,19 @@ export class ReimbursementService {
   getReimbursements() {
 
     if (this.account.getcurrentUser().role == 1) {
-      return this.http.get<Reimbursement[]>("http://localhost:9999/ER/reimbursements/user");
+      return this.http.get<Reimbursement[]>("http://localhost:9999/ER/reimbursements/user", {withCredentials: true});
     } else {
-      return this.http.get<Reimbursement[]>("http://localhost:9999/ER/reimbursements/all");
+      return this.http.get<Reimbursement[]>("http://localhost:9999/ER/reimbursements/all", {withCredentials: true});
     }
   }
 
   addReimbursement(r: Reimbursement) {
-    this.http.post<Reimbursement>("http://localhost:9999/ER/reimbursement/add", r, { withCredentials: true }).subscribe(res => {
-
-    });
+    return this.http.post<Reimbursement>("http://localhost:9999/ER/reimbursements/add", r, { withCredentials: true });
   }
 
   updateReimbursement(r: Reimbursement) {
     if (this.account.getcurrentUser().role === 2) {
-
+      return this.http.post<Reimbursement>("http://localhost:9999/ER/reimbursements/update", r, { withCredentials: true });
     }
   }
 }

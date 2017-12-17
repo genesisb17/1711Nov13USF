@@ -1,7 +1,14 @@
-<div class="row" (click)="detail()">
+<div class="row">
   <div class="col">{{reimbursement.id}}</div>
-  <div class="col">{{reimbursement.status}}</div>
+  <div class="col">{{reimbursement.authorName}}</div>
+  <div class="col">{{dateTimeToString(reimbursement.submitted)}}</div>
+  <div class="col">{{statusString(reimbursement.status)}}</div>
   <div class="col">{{reimbursement.amount}}</div>
-  <div class="col">{{reimbursement.type}}</div>
+  <div class="col">{{typeString(reimbursement.type)}}</div>
   <div class="col">{{reimbursement.description}}</div>
+  <div class="col">{{dateTimeToString(reimbursement.resolved)}}</div>
+  <div class="col">{{reimbursement.resolverName}}</div>
+  <div class="col text-center vmiddle" *ngIf="currentUser.role == 2">
+    <button class="btn btn-primary vmiddle" (click)="updateReimbursement()">Process</button>
+  </div>
 </div>

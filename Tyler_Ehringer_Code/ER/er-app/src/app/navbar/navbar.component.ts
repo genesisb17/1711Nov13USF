@@ -3,6 +3,8 @@ import { AccountService } from '../account.service';
 import { User } from '../types/user.type';
 import * as $ from 'jquery';
 import { Router } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { LoginComponent } from '../login/login.component';
 
 @Component({
   selector: 'app-navbar',
@@ -16,7 +18,7 @@ export class NavbarComponent implements OnInit {
 
   private isLoggedIn = false;
 
-  constructor(private account: AccountService, private router: Router) {
+  constructor(private account: AccountService, private router: Router, private modal: NgbModal) {
 
    }
 
@@ -41,6 +43,15 @@ export class NavbarComponent implements OnInit {
     this.router.navigate(["landing"]);
   }
 
-
+  home() {
+    if (this.account.isLoggedIn()) {
+      this.router.navigate(["reimbursements"]);
+    } else {
+      this.router.navigate(["landing"]);
+    }
+  }
+  openLogin() {
+    this.modal.open(LoginComponent);
+}
 
 }

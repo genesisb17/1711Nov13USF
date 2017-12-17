@@ -1,0 +1,34 @@
+<div class="card">
+  <div class="card-block">
+    <h2 class="card-title text-center">Profile</h2>
+    <div class="card-text">
+      <div class="row">
+        <p class="col-3 text-right">Name: </p>
+        <p class="col-8 text-left">{{user.fname + " " + user.lname}}</p>
+        </div>
+        <div class="row">
+          <p class="col-3 text-right">Role: </p>
+          <p class="col-8 text-left">{{user.role == 1 ? "Employee" : "Manager"}}</p>
+        </div>
+        <div class="row">
+          <label for="email" class="col-3 text-right">Email: </label>
+          <input class="col-8" tpe="text" name="email" [(ngModel)]="user.email">
+        </div>
+        <div class="row">
+          <label for="username" class="col-3 text-right">Username:</label>
+          <input class="col-8" type="text" name="username" [(ngModel)]="user.username">
+        </div>
+        <div class="row padded">
+          <div class="col-4"></div>
+          <div class="col">
+            <button class="btn btn-primary" (click)="changePassword()">Change Password</button>
+          </div>
+          <div class="col">
+            <button class="btn btn-primary" (click)="save()">Save</button>
+          </div>
+          <div class="col-4"></div>
+        </div>
+      </div>
+    </div>
+
+  </div>

@@ -20,6 +20,9 @@ public class LoginController extends BaseController {
 		case "login":
 			login(req, resp);
 			break;
+		case "update":
+			update(req, resp);
+			break;
 		default:
 			break;
 		}
@@ -34,6 +37,19 @@ public class LoginController extends BaseController {
 			break;
 		default:
 			break;
+		}
+	}
+	
+	private void update(HttpServletRequest req, HttpServletResponse resp) {
+		User u = new User();
+		try {
+			u = mapper.readValue(Util.getJson(req.getInputStream()), User.class);
+			service.updateUser(u);
+			req.getSession().removeAttribute("user");
+			req.getSession().setAttribute("user", u);
+			resp.getWriter().write(mapper.writeValueAsString(u));
+		}catch(IOException | SQLException e) {
+			e.printStackTrace();
 		}
 	}
 

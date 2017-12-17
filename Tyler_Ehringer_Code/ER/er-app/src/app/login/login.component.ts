@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AccountService } from '../account.service';
 import * as $ from 'jquery';
 import { Router } from '@angular/router';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +15,7 @@ export class LoginComponent implements OnInit {
   private password: string;
   private loginResult = "";
 
-  constructor(private account: AccountService, private router: Router) { }
+  constructor(private amodal: NgbActiveModal, private account: AccountService, private router: Router) { }
 
   ngOnInit() {
 
@@ -26,7 +27,8 @@ export class LoginComponent implements OnInit {
         this.loginResult = "Your username and password did not match";
       } else {
         this.loginResult = "";
-        this.router.navigate(["home"]);
+        this.router.navigate(["reimbursements"]);
+        this.amodal.close();
       }
     })
   }
@@ -39,5 +41,7 @@ export class LoginComponent implements OnInit {
 
   login() {
     this.account.login(this.username, this.password);
+    
+
   }
 }

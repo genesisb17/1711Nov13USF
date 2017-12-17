@@ -1,0 +1,48 @@
+<div class="card">
+  <div class="card-block">
+    <h2 class="card-title text-center">Reimbursement {{reimbursement.id}}</h2>
+    <div class="card-text">
+      <div class="row">
+        <div class="col-3 text-right">Author: </div>
+        <div class="col-6">{{reimbursement.authorName}}</div>
+      </div>
+      <div class="row">
+        <div class="col-3 text-right">Submitted: </div>
+        <div class="col-6">{{dateTimeToString(reimbursement.submitted)}}</div>
+      </div>
+      <div class="row">
+        <div class="col-3 text-right">Type: </div>
+        <div class="col-6">{{typeString(reimbursement.type)}}</div>
+      </div>
+      <div class="row">
+        <label class="col-3 text-right">Amount:</label>
+        <input class="col-6" size="8" type="number" [(ngModel)]="reimbursement.amount">
+      </div>
+      <div class="form-group row vmiddle">
+        <label class="col-3 text-right col-form-label">Status</label>
+        <div class="col-3">
+          <label for="status1" class="form-label">Pending</label>
+          <input type="radio" class="status" name="status" id="status1" value=1 checked>
+        </div>
+        <div class="col-3">
+          <label for="status2" class="form-label">Approved</label>
+          <input type="radio" class="status" name="status" id="status2" value=2>
+        </div>
+        <div class="col-3">
+          <label for="status3" class="form-label">Denied</label>
+          <input type="radio" class="status" name="status" id="status3" value=3>
+        </div>
+      </div>
+      <div class="row">
+        <label class="col-3 text-right">Description:</label>
+<textarea [(ngModel)]="reimbursement.description" placeholder="Description" rows="3" cols="35"></textarea>        
+<!-- <input class="col-6" type="text" [(ngModel)]="reimbursement.description"> -->
+      </div>
+      <div class="row text-center">
+      <button class="offset-5 btn btn-success" (click)="submit()">Submit</button>
+
+      </div>
+
+    </div>
+  </div>
+</div>

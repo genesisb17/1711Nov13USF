@@ -3,40 +3,23 @@
     <h2 class="card-title">Login</h2>
     <div class="card-text">
       <div class="form-group row">
-        <label for="username" class="col-2 col-form-label">Username</label>
-        <div class="col-8">
-          <input #username (keyup)="updateUsername(username.value)" type="text" class="form-control" placeholder="Username">
+        <!-- <label for="username" class="col-2 col-form-label">Username</label> -->
+        <div class="col">
+          <input #username (keyup)="updateUsername(username.value)" type="text" class="form-control" placeholder="Username" autofocus="autofocus">
         </div>
       </div>
       <div class="form-group row">
-        <label for="password" class="col-2 col-form-label">Password</label>
-        <div class="col-8">
+        <!-- <label for="password" class="col-2 col-form-label">Password</label> -->
+        <div class="col">
           <input #password (keyup)="updatePassword(password.value)" type="password" class="form-control" placeholder="Password">
         </div>
       </div>
+      <div class="row">
+        <p class="col-8" style="color:red">{{loginResult}}</p>
+      </div>
       <div class="form-group row">
-        <div class="col-1 offset-2">
-          <button id="loginButton" class="btn btn-primary">Login</button>
-        </div>
-        <div class="col offset-1">
-          <div class="form-group row">
-            <div class="col">
-              <label for="createAccountButton" class="form'label">Don't have an account?</label>
-              <button id="createAccountButton" class="btn btn-success" routerLink="/register">Create Account</button>
-            </div>
-          </div>
-          <div class="form-group row">
-            <div class="col">
-              <label for="retreivePasswordButton" class="form'label">Forgot your password?</label>
-              <button id="retreivePasswordButton" class="btn btn-muted">Retrieve Password</button>
-            </div>
-          </div>
-          <div class="form-group row">
-            <div class="col">
-              <label for="retreiveUsernameButton" class="form'label">Forgot your username?</label>
-              <button id="retreiveUsernameButton" class="btn btn-muted">Retrieve Username</button>
-            </div>
-          </div>
+        <div class="col">
+          <button id="loginButton" class="btn btn-primary" (click)="login()">Login</button>
         </div>
       </div>
     </div>

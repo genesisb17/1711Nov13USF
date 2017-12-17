@@ -10,6 +10,8 @@ public interface DAO {
 	public boolean hasUsername(String username) throws SQLException;
 
 	public boolean hasEMail(String email) throws SQLException;
+	
+	public User updateUser(User u) throws SQLException;
 
 	public User addUser(User u) throws SQLException;
 

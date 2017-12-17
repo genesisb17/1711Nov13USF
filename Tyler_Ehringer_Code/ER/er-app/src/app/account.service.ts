@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { User } from './types/user.type'
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { Subject } from 'rxjs/Subject';
 
 @Injectable()
 export class AccountService {
@@ -20,9 +21,9 @@ export class AccountService {
         if (resp.id != 0) {
           this.currentUser = resp;
           this.loggedIn = true;
-          this.loginSubscribers.forEach(f => f(this.loggedIn, this.currentUser));
-          this.router.navigate(["home"]);
+          this.router.navigate(["reimbursements"]);
         }
+        this.loginSubscribers.forEach(f => f(this.loggedIn, this.currentUser));
       });
   }
 
@@ -52,5 +53,13 @@ export class AccountService {
   getcurrentUser = () => { return this.currentUser; }
 
   isLoggedIn = () => { return this.loggedIn; }
+
+  updateUser(u: User) {
+    this.http.post("http://localhost:9999/ER/login/update", u, { withCredentials: true })
+      .subscribe(resp => {
+
+      })
+    this.currentUser = u;
+  }
 
 }

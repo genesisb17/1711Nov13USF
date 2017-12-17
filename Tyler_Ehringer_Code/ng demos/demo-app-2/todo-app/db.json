@@ -1,0 +1,24 @@
+{
+  "todos": [
+    {
+      "id": 1,
+      "title": "Help Matt",
+      "complete": false
+    },
+    {
+      "id": 2,
+      "title": "Have Dinner",
+      "complete": false
+    },
+    {
+      "id": 3,
+      "title": "Eat Cake",
+      "complete": true
+    },
+    {
+      "id": 4,
+      "title": "Marshallize",
+      "complete": false
+    }
+  ]
+}

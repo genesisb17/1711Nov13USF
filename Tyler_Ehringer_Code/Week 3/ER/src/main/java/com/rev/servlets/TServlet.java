@@ -28,16 +28,17 @@ public class TServlet extends DefaultServlet{
 	/*
 	 *  post /er/login/login              --login, ([username: string, password: string])
 	 *  get  /er/login/logout             --logout, ()
+	 *  post  /er/login/update            --update user info, (u: User)
 	 *  
 	 *  get  /er/reimbursements/all       --get all reimbursements (manager), ()
 	 *  get  /er/reimbursements/user      --get user's reimbursements (employee), ()
 	 *  post /er/reimbursements/add       --create new reimbursement (employee), (r: Reimbursement)
 	 *  post /er/reimbursements/update     --update reimbursement (manager), (r: Reimbursement, resolverId: number, status: number, appendDescription: string)
 	 *  
-	 *  post /er/register/new             --create new user
-	 *  post /er/register/update          --update user info
-	 *  get  /er/register/username        --is username taken
-	 *  get  /er/register/email           --is email taken
+	 *  post /er/register/new             --create new user, (u: User)
+	 *  post /er/register/update          --update user info (u: User)
+	 *  get  /er/register/username        --is username taken, ()
+	 *  get  /er/register/email           --is email taken, ()
 	 *  
 	 *  
 	 */

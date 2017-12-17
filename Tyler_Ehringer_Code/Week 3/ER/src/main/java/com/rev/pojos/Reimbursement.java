@@ -8,12 +8,32 @@ public class Reimbursement {
 	private int id, authorId, resolverId, status, type;
 	private double amount;
 	private Timestamp submitted, resolved;
-	private String description;
+	private String description, authorName, resolverName;
 	private Image receipt;
 
 	public static final int STATUS_PENDING = 1;
 	public static final int STATUS_APPROVED = 2;
 	public static final int STATUS_DENIED = 3;
+
+	public String getAuthorName() {
+		return authorName;
+	}
+
+	public Reimbursement() {
+		super();
+	}
+
+	public void setAuthorName(String authorName) {
+		this.authorName = authorName;
+	}
+
+	public String getResolverName() {
+		return resolverName;
+	}
+
+	public void setResolverName(String resolverName) {
+		this.resolverName = resolverName;
+	}
 
 	public static final int TYPE_LODGING = 1;
 	public static final int TYPE_TRAVEL = 2;

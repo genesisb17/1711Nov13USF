@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { LoginComponent } from '../login/login.component';
+
 
 @Component({
   selector: 'app-landing',
@@ -7,9 +10,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LandingComponent implements OnInit {
 
-  constructor() { }
+  constructor(private modal: NgbModal) { }
 
   ngOnInit() {
+  }
+
+  openLogin() {
+    this.modal.open(LoginComponent);
   }
 
 }

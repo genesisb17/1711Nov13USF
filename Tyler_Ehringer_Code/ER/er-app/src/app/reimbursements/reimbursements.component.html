@@ -1,8 +1,52 @@
-<h2>Current Reimbursements</h2>
-<div class="row">
-  <div class="col">ID</div>
-  <div class="col">Status</div>
-  <div class="col">Amount</div>
-  <div class="col">Type</div>
-  <div class="col">Description</div>
+<!-- <app-create-reimbursement *ngIf="currentUser.role == 1" (newReimbursement)="addReimbursement($event)"></app-create-reimbursement> -->
+<div class="card text-center">
+  <div class="card-block">
+    <h2 class="card-title">Reimbursements</h2>
+    <div class="card-text">
+      <div class="row">
+        <div class="col">Filter:
+          <div class="btn-group col-3" data-toggle="buttons">
+            <label class="btn-primary" ngbButtonLabel (click)="togglePending()">
+              <input type="checkbox" ngbButton> Pending
+            </label>
+            <label class="btn-primary" ngbButtonLabel (click)="toggleApproved()">
+              <input type="checkbox" ngbButton> Approved
+            </label>
+            <label class="btn-primary" ngbButtonLabel (click)="toggleDenied()">
+              <input type="checkbox" ngbButton> Denied
+            </label>
+          </div>
+        </div>
+        <div class="col">Order:
+          <button class="btn btn-primary" (click)="sort('submitted')">Submitted</button>
+          <button class="btn btn-primary" (click)="sort('amount')">Amount</button>
+          <button class="btn btn-primary" (click)="sort('authorName')">Author</button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">ID</div>
+        <div class="col">Employee</div>
+        <div class="col">Created</div>
+        <div class="col">Status</div>
+        <div class="col">Amount</div>
+        <div class="col">Type</div>
+        <div class="col">Description</div>
+        <div class="col">Resolved</div>
+        <div class="col">Resolver</div>
+        <div class="col" *ngIf="currentUser.role == 2">Actions</div>
+      </div>
+      <app-reimbursement *ngFor="let reimb of currentPage" [reimbursement]="reimb" (update)="updateReimbursement($event)"></app-reimbursement>
+      <div class="row paginator">
+        <div class="col-2">
+          <button *ngIf="currentUser.role == 1" class="btn btn-primary" (click)="openNewReimbursement()">New Reimbursement</button>
+        </div>
+        <div class="col-8">
+          <ngb-pagination class="d-flex justify-content-center" [collectionSize]="reimbursements.length" [pageSize]="itemsPerPage"
+            [(page)]="page" [directionLinks]="false" [maxSize]="5" (pageChange)="changePage($event)"></ngb-pagination>
+        </div>
+        <div class="col-2">
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

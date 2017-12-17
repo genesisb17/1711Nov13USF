@@ -86,15 +86,20 @@ public class DAOImplementation implements DAO {
 		List<Reimbursement> l = new ArrayList<>();
 		try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
 			PreparedStatement ps = conn.prepareStatement(
-					"select reimb_id, reimb_amount, reimb_submitted, reimb_resolved, reimb_description, reimb_author, "
-							+ "reimb_resolver, reimb_status_id, reimb_type_id from ers_reimbursement where reimb_author = ?");
+					"select r.reimb_id, r.reimb_amount, r.reimb_submitted, r.reimb_resolved, r.reimb_description, r.reimb_author, "
+							+ "r.reimb_resolver, r.reimb_status_id, r.reimb_type_id, u1.user_first_name || ' ' || u1.user_last_name as authorname, "
+							+ "u2.user_first_name || ' ' || u2.user_last_name as resolvername from ers_reimbursement r inner join ers_users u1 on "
+							+ "r.reimb_author = u1.ers_users_id left join ers_users u2 on r.reimb_resolver = u2.ers_users_id where reimb_author = ?");
 			ps.setInt(1, userId);
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
-				l.add(new Reimbursement(rs.getInt("reimb_id"), rs.getInt("reimb_author"), rs.getInt("reimb_resolver"),
+				Reimbursement r = new Reimbursement(rs.getInt("reimb_id"), rs.getInt("reimb_author"), rs.getInt("reimb_resolver"),
 						rs.getInt("reimb_status_id"), rs.getInt("reimb_type_id"), rs.getDouble("reimb_amount"),
 						rs.getTimestamp("reimb_submitted"), rs.getTimestamp("reimb_resolved"),
-						rs.getString("reimb_description"), null));
+						rs.getString("reimb_description"), null);
+				r.setResolverName(rs.getString("resolvername"));
+				r.setAuthorName(rs.getString("authorname"));
+				l.add(r);
 			}
 		}
 		return l;
@@ -105,13 +110,18 @@ public class DAOImplementation implements DAO {
 		List<Reimbursement> l = new ArrayList<>();
 		try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
 			ResultSet rs = conn.createStatement().executeQuery(
-					"select reimb_id, reimb_amount, reimb_submitted, reimb_resolved, reimb_description, reimb_author, "
-							+ "reimb_resolver, reimb_status_id, reimb_type_id from ers_reimbursement");
+					"select r.reimb_id, r.reimb_amount, r.reimb_submitted, r.reimb_resolved, r.reimb_description, r.reimb_author, "
+							+ "r.reimb_resolver, r.reimb_status_id, r.reimb_type_id, u1.user_first_name || ' ' || u1.user_last_name as authorname, "
+							+ "u2.user_first_name || ' ' || u2.user_last_name as resolvername from ers_reimbursement r inner join ers_users u1 on"
+							+ " r.reimb_author = u1.ers_users_id left join ers_users u2 on r.reimb_resolver = u2.ers_users_id");
 			while (rs.next()) {
-				l.add(new Reimbursement(rs.getInt("reimb_id"), rs.getInt("reimb_author"), rs.getInt("reimb_resolver"),
+				Reimbursement r = new Reimbursement(rs.getInt("reimb_id"), rs.getInt("reimb_author"), rs.getInt("reimb_resolver"),
 						rs.getInt("reimb_status_id"), rs.getInt("reimb_type_id"), rs.getDouble("reimb_amount"),
 						rs.getTimestamp("reimb_submitted"), rs.getTimestamp("reimb_resolved"),
-						rs.getString("reimb_description"), null));
+						rs.getString("reimb_description"), null);
+				r.setResolverName(rs.getString("resolvername"));
+				r.setAuthorName(rs.getString("authorname"));
+				l.add(r);
 			}
 		}
 		return l;
@@ -137,19 +147,31 @@ public class DAOImplementation implements DAO {
 		}
 		return u;
 	}
+	
+	@Override
+	public User updateUser(User u) throws SQLException{
+		try(Connection conn = ConnectionFactory.getInstance().getConnection()){
+			PreparedStatement ps = conn.prepareStatement("update ers_users set ers_username = ?, ers_password = ?, user_email = ? where ers_users_id = ?");
+			ps.setString(1, u.getUsername());
+			ps.setString(2, u.getPassword());
+			ps.setString(3, u.getEmail());
+			ps.setInt(4, u.getId());
+			ps.executeUpdate();
+		}
+		return u;
+	}
 
 	@Override
 	public Reimbursement addReimbursement(Reimbursement r) throws SQLException {
 		try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
 			String[] keys = { "reimb_id", "reimb_status_id", "reimb_submitted" };
 			PreparedStatement ps = conn.prepareStatement("insert into ers_reimbursement (reimb_amount, "
-					+ "reimb_description, reimb_author, reimb_resolver, reimb_type_id) values (?, ?, ?, ?, ?)",
+					+ "reimb_description, reimb_author, reimb_type_id) values (?, ?, ?, ?)",
 					keys);
 			ps.setDouble(1, r.getAmount());
 			ps.setString(2, r.getDescription());
 			ps.setInt(3, r.getAuthorId());
-			ps.setInt(4, r.getResolverId());
-			ps.setInt(5, r.getType());
+			ps.setInt(4, r.getType());
 			ps.executeUpdate();
 			ResultSet rs = ps.getGeneratedKeys();
 			if (rs.next()) {
@@ -167,8 +189,7 @@ public class DAOImplementation implements DAO {
 		try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
 			String[] keys = { "reimb_resolved" };
 			PreparedStatement ps = conn.prepareStatement(
-					"update ers_reimbursement set (reimb_resolver = ?, reimb_status_id = ?, "
-							+ "reimb_description = ? where reimb_id = ?",
+					"update ers_reimbursement set reimb_resolver = ?, reimb_status_id = ?, reimb_description = ? where reimb_id = ?",
 					keys);
 			ps.setInt(1, r.getResolverId());
 			ps.setInt(2, r.getStatus());

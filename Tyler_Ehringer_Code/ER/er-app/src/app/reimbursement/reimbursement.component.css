@@ -1,0 +1,10 @@
+.col{
+    border-top: 1px solid rgb(175, 175, 175);
+    border-bottom: 1px solid rgb(175, 175, 175);
+    border-left: 1px solid rgb(228, 228, 228);
+    border-right: 1px solid rgb(228, 228, 228);
+}
+.vmiddle{
+    display: flex;
+    align-items: center;
+}

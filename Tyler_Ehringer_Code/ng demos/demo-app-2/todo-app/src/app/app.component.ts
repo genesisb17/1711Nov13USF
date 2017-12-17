@@ -18,9 +18,8 @@ export class AppComponent {
     this.tds.toggleTodoComplete(todo);
   }
 
-  addTodo() {
-    this.tds.addTodo(this.newTodo);
-    this.newTodo = new Todo();
+  onAddTodo(todo) {
+    this.tds.addTodo(todo);
   }
 
   get todos() {

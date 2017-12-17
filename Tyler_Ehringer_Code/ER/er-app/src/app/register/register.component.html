@@ -5,7 +5,7 @@
       <div class="form-group row">
         <div class="col">
           <div class="row">
-            <label for="username" class="col-3 col-form-label">Username</label>
+            <label for="username" class="col-3 col-form-label text-right">Username</label>
             <div class="col-8">
               <input type="text" #username (keyup)="updateUsername(username.value)" (blur)="usernameBlur()" class="form-control" placeholder="Username">
             </div>
@@ -16,7 +16,7 @@
         </div>
       </div>
       <div class="form-group row">
-        <label for="password" class="col-3 col-form-label">Password</label>
+        <label for="password" class="col-3 col-form-label text-right">Password</label>
         <div class="col-8">
           <input type="password" #password1 (keyup)="updatePassword1(password1.value)" (blur)="passwordBlur()" class="form-control"
             placeholder="Password">
@@ -26,7 +26,7 @@
         <p class="text-danger" id="passwordFormatWarning"></p>
       </div>
       <div class="form-group row">
-        <label for="confirmPassword" class="col-3 col-form-label">Confirm Password</label>
+        <label for="confirmPassword" class="col-3 col-form-label text-right">Confirm Password</label>
         <div class="col-8">
           <input type="password" #password2 (keyup)="updatePassword2(password2.value)" (blur)="passwordBlur()" class="form-control"
             placeholder="Password">
@@ -36,9 +36,9 @@
         <p class="col text-danger">{{passwordWarning}}</p>
       </div>
       <div class="form-group row">
-        <label class="col-3 col-form-label">Position</label>
+        <label class="col-3 col-form-label text-right">Position</label>
         <div class="col-4">
-          <label for="role1" class="col-form-label">Employee</label>
+          <label for="role1" class="col-form-label text-right">Employee</label>
           <input type="radio" class="role" name="role" id="role1" value="1" checked>
 
         </div>
@@ -49,7 +49,7 @@
       </div>
 
       <div class="form-group row">
-        <label for="email" class="col-3 col-form-label">Email</label>
+        <label for="email" class="col-3 col-form-label text-right">Email</label>
         <div class="col-8">
           <input type="text" #email (keyup)="updateEmail(email.value)" (blur)="emailBlur()" class="form-control" placeholder="Email">
         </div>
@@ -58,19 +58,19 @@
         <p class="col text-danger">{{emailWarning}}</p>
       </div>
       <div class="form-group row">
-        <label for="email" class="col-3 col-form-label">First Name</label>
+        <label for="email" class="col-3 col-form-label text-right">First Name</label>
         <div class="col-8">
           <input type="text" #firstName (keyup)="updateFirstname(firstName.value)" class="form-control" placeholder="First Name">
         </div>
       </div>
       <div class="form-group row">
-        <label for="email" class="col-3 col-form-label">Last Name</label>
+        <label for="email" class="col-3 col-form-label text-right">Last Name</label>
         <div class="col-8">
           <input type="text" #lastName (keyup)="updateLastname(lastName.value)" class="form-control" placeholder="Last Name">
         </div>
       </div>
       <div class="form-group-row">
-        <button id="createAccountButton" class="btn btn-success offset-5" (click)="submit()">Create Account</button>
+        <button id="createAccountButton" class="btn btn-primary offset-5" (click)="submit()">Create Account</button>
       </div>
     </div>
   </div>

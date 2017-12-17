@@ -5,18 +5,11 @@
 
   </header>
 
-  <input class="new-todo" placeholder="What needs to be done?" autofocus="" [(ngModel)]="newTodo.title" (keyup.enter)="addTodo()">
+  <!-- <input class="new-todo" placeholder="What needs to be done?" autofocus="" [(ngModel)]="newTodo.title" (keyup.enter)="addTodo()"> -->
 
-  <section *ngIf="todos.length > 0">
-    <ul>
-      <li *ngFor="let todo of todos" [class.completed]="todo.complete">
-        <input type="checkbox" (click)="toggleTodoComplete(todo)" [checked]="todo.complete">
-        <label>{{todo.title}}</label>
-        <button (click)="removeTodo(todo)">Remove</button>
-      </li>
-    </ul>
+  <app-todo-list-header (add)="onAddTodo($event)"></app-todo-list-header>
 
-  </section>
+  <app-todo-list [todos]="todos" (remove)="removeTodo($event)" (toggleComplete)="toggleTodoComplete($event)"></app-todo-list>
 
   <footer *ngIf="todos.length > 0">
     <h4><strong>{{todos.length}}</strong> {{todos.length == 1 ? 'item' : 'items'}}</h4>

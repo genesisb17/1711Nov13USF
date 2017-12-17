@@ -1,0 +1,7 @@
+<section *ngIf="todos.length > 0">
+  <ul>
+    <app-todo-element *ngFor="let todo of todos" [todo]="todo" (remove)="removeTodo($event)"
+    (complete)="toggleTodoComplete($event)"></app-todo-element>
+  </ul>
+
+</section>

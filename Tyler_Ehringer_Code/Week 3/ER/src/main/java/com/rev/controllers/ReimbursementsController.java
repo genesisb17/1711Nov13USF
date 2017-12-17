@@ -74,6 +74,9 @@ public class ReimbursementsController extends BaseController {
 			User u = (User) req.getSession().getAttribute("user");
 			if (u != null && u.getRole() == User.ROLE_MANAGER) {
 				mapper.writeValue(resp.getWriter(), service.getReimbursements());
+//				String s = mapper.writeValueAsString(service.getReimbursements());
+//				System.out.println(s);
+//				resp.getWriter().write(s);
 			}
 		} catch (SQLException | IOException e) {
 			e.printStackTrace();
