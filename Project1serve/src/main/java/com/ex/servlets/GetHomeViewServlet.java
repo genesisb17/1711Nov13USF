@@ -26,7 +26,7 @@ public class GetHomeViewServlet extends HttpServlet
 		User u = (User)session.getAttribute("user");	
 		req.getRequestDispatcher("partials/home.html").forward(req, resp);
 		ArrayList<R> a = new ArrayList<R>();
-		/*a  = service.getReimbursements(u.getUsername(), u.getPassword());
+		/*
 		
 		PrintWriter out = resp.getWriter();
 		for(int i = 0;i<a.size();i++)
