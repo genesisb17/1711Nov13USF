@@ -117,6 +117,8 @@ public class viewrservlet extends HttpServlet
 				if(filter.equals("")||filter.equals(null))
 				{
 					s = service.getRStatus(a.get(i).getREIMB_STATUS_ID());
+					if(!s.equals("notthis"))
+					{
 					if(a.get(i).getReimb_id()!=22||a.get(i).getReimb_id()!=41||a.get(i).getReimb_id()!=21)
 					{
 					out.println("<tr>");
@@ -141,6 +143,7 @@ public class viewrservlet extends HttpServlet
 						count = count++;
 					}
 					}
+					}
 				}	
 				else
 				{
@@ -149,6 +152,8 @@ public class viewrservlet extends HttpServlet
 					
 					if(filter.equals(test))
 					{
+						if(!test.equals("notthis"))
+						{
 						if(a.get(i).getReimb_id()!=22||a.get(i).getReimb_id()!=41||a.get(i).getReimb_id()!=21)
 						{
 						out.println("<tr>");
@@ -172,6 +177,7 @@ public class viewrservlet extends HttpServlet
 						if(s.equals("pending"))
 						{
 							count = count++;
+						}
 						}
 						}
 					}
@@ -210,6 +216,8 @@ public class viewrservlet extends HttpServlet
 						if(a.get(i).getReimb_id()!=22||a.get(i).getReimb_id()!=41||a.get(i).getReimb_id()!=21)
 						{
 							s = service.getRStatus(a.get(i).getREIMB_STATUS_ID());
+							if(!s.equals("notthis"))
+							{
 							out.println("<tr>");
 							out.println("<td>");
 							out.println(a.get(i).getReimb_id());
@@ -227,6 +235,7 @@ public class viewrservlet extends HttpServlet
 							out.println(s);
 							out.println("</td>");
 							out.println("</tr>");
+							}
 					
 						}
 					}
@@ -237,6 +246,8 @@ public class viewrservlet extends HttpServlet
 						{
 							if(a.get(i).getReimb_id()!=22)
 							{
+								if(!test.equals("notthis"))
+								{
 								out.println("<tr>");
 								s = service.getRStatus(a.get(i).getREIMB_STATUS_ID());
 								out.println("<td>");
@@ -255,7 +266,7 @@ public class viewrservlet extends HttpServlet
 								out.println(s);
 								out.println("</td>");
 								out.println("</tr>");
-						
+								}
 							}
 						}
 					}
