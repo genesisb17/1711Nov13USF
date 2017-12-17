@@ -1,4 +1,4 @@
-/*package com.reimb.servlets;
+package com.reimb.servlets;
 
 
 // re tool reimb add for this one // as both will take in uid 
@@ -20,11 +20,31 @@ import javax.servlet.http.HttpSession;
 
 
 
-@WebServlet("reimbUpd")
+@WebServlet("/reeimbUpd")
 public class reimbUpd extends HttpServlet {
 
 
 	static Service service = new Service();
 
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, java.io.IOException {
+		HttpSession session = request.getSession();
+		User ogU = (User)session.getAttribute("user");
+		if(ogU.getRole()==0) // only work if admin yeaaaaah 
+		{
+		BufferedReader br = 
+				new BufferedReader(new InputStreamReader(request.getInputStream()));
+		String json = "";
+		if (br != null) {
+			json = br.readLine();
+		}
+		ObjectMapper mapper = new ObjectMapper();
+		Reimburse reimb = (Reimburse)mapper.readValue(json, Reimburse.class);
+
+		
+		reimb.setResolver(ogU.getId());
+		
+		service.updateReim(reimb);
+		}
+	}
+
 }
-*/

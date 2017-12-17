@@ -1,54 +1,64 @@
-/**
- * crie.js
- */
 
 window.onload = function(){
+
 	$('#message').hide();
 	$('#login').on('click',login);
 	$('#register').on('click', register);
-	
 }
 
+$('document').ready(function(){
+	logout();// logout page will direct user here and log them out ....so just make sure the user isn't stored here jah
+
+});
+
+
+function logout(){
+
+	var xhr = new XMLHttpRequest();
+	xhr.open('GET', 'logout', true);
+	xhr.onprogress = function () {
+	};
+	xhr.onload = function () {
+	};
+	xhr.send(null);
+
+
+
+};
+
+
 function login(){
-	
+
 	var username = $('#username').val().trim();
 	var password = $('#password').val().trim();
 	var toSend = [username, password];
-
-	
-	
 	var json = JSON.stringify(toSend);
-	console.log(json);
-	
 	var xhr = new XMLHttpRequest(); 	
 	console.log(xhr.readyState);
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState == 4 && xhr.status==200){
-			console.log("in xhr callback" + xhr.responseText);
 			var user = JSON.parse(xhr.responseText);
-			$('#message').show();
-			if(user == null){
-				$('#message').html("Invalid user") ;
+			if(user.username == null){
+				$('#message').show();
+				$('#message').html("Login Failed") ;
 			}
-			else if(user.id == 0){
-				$('#message').html( "Invalid password");
+			if(user.id == 0){
+				$('#message').show();
+				$('#message').html( "Login Failed");
 			}
 			else{
 				if(user.role==0)
-				window.location.replace('admin.html');
+					window.location.replace('admin.html');
 				if(user.role==1)
-				window.location.replace('members.html');
-				//console.log("success!");
+					window.location.replace('members.html');
 			}
 		}
 	};
-	
+
 	xhr.open("POST","login", true);
-	console.log(xhr.readyState);
 	xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-	console.log("AFTER HEADER " + xhr.readyState);
 	xhr.send(json);
-	
+
 
 }
 

@@ -22,18 +22,25 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @WebServlet("/viewTable")
 public class viewTables extends HttpServlet {
 	static Service service = new Service();
-	
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, java.io.IOException {
-	    System.out.println("Please Viewtables servlet");
-	    
-	    HttpSession session = request.getSession();
-	    User ogU = (User)session.getAttribute("user");
-	    ArrayList<Reimburse> temp= service.usersRiembs(ogU);
-	    PrintWriter out = response.getWriter();
-	    response.setContentType("application/json");
-	    ObjectMapper mapper = new ObjectMapper();
-	    String ticketsJSON = mapper.writeValueAsString(temp);
-	    System.out.println(ticketsJSON);
-	    out.write(ticketsJSON);
-	  }	
+		
+		try{
+			if(request.getSession(false) != null){//if session exists. 
+				HttpSession session = request.getSession(false);
+				User ogU = (User)session.getAttribute("user");
+				if(ogU.getRole()==1) // only work if user yeaaaaah 
+				{
+
+					ArrayList<Reimburse> temp= service.usersRiembs(ogU);
+					PrintWriter out = response.getWriter();
+					response.setContentType("application/json");
+					ObjectMapper mapper = new ObjectMapper();
+					String ticketsJSON = mapper.writeValueAsString(temp);
+					out.write(ticketsJSON);
+				}
+			}
+		}catch (NullPointerException e){
+		}
+	}
 }

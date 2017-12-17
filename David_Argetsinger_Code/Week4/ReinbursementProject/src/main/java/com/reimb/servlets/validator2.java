@@ -29,16 +29,13 @@ public class validator2 extends HttpServlet {
 		}
 
 		ObjectMapper mapper = new ObjectMapper();
-		// this is messy and wrong! 
-		// remake first servlet to be modular and the find user method to be modular as well! 
 		String[] userInfo = mapper.readValue(json, String[].class);
 		String email = userInfo[0]; 
-		//System.out.println("we think email is in validator  " +email );
 
 		User temp = service.findUserEmail(email);
 		
 		if(temp.getId() == 0){ // if invalid user, obj = null
-			System.out.println("temp is null");	
+			
 		}
 		else{// valid credentials
 			HttpSession session = req.getSession();

@@ -1,19 +1,24 @@
 
-
-
-//perhaps a reload button to check if admin or another user has changed ticket stsus
-
 window.onload = function(){
-	//$('#update').on('click', add);
-	$('#riembNum').blur(validId);
 	$('#update').attr("disabled",true);
-
-}
-
-$('document').ready(function(){
 	id=[]; // used to check for valid id's
 	table();
 
+}
+ 
+
+$('document').ready(function(){
+	$('#example').click(function(event) {
+		if(event.originalEvent.path[1].className=="clickables"){
+			{
+				if(event.originalEvent.path[0].id=="accept")
+				update(event.originalEvent.path[1].id,1);
+				if(event.originalEvent.path[0].id=="deny")
+				update(event.originalEvent.path[1].id,2);
+			}
+		}
+
+	});
 
 });
 
@@ -21,42 +26,18 @@ $('document').ready(function(){
 
 
 
-
-function validId(){
-
-	var idNum = $(`#riembNum`).val();
-//	console.log(" id is : " +  id);
-//	console.log("id numb is : " + idNum)
-//	console.log(" is it id.includes ? "+ id.some(a=>a==idNum))
-	if (id.some(a=>a==idNum)) {
-		$(`#amountmessage`).html("uhh vali2d");
-		$('#update').attr("disabled",false	);
-	}
-	else	{
-		//console.log("ids"+id);
-		$(`#amountmessage`).html("Only a valid request # is accepted");
-		$('#update').attr("disabled",true);
-	}
-}
-
-
-
-
-function update(){
-	var id = $(`#riembNum`).val();
-	var typ = $(`#type`).val();
+function update(id,typ){
 	var reimburse = {
 			id: id,
 			amount: null,
 			submitted: null,
 			resolved: null, 
-			desc: des, 
+			desc: null, 
 			receipt:null,
 			author:null,
 			resolver:null, //needs to be YOU make sure grabbed from session 
 			status:null,
 			type: typ
-
 	};
 
 	var json = JSON.stringify(reimburse);
@@ -66,93 +47,54 @@ function update(){
 	console.log(xhr.readyState);
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState == 4 && xhr.status==200){
-			console.log("in xhr callback" + xhr.responseText);
-			console.log("i tried, now crie");
+			window.location.replace('admin.html');
+
 		}
 	};
 
-
-
-	xhr.open("POST","reimbUpd", true); // goes to the register servlet! 
+	xhr.open("POST","reeimbUpd", true);  
 	xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 	xhr.send(json);
-	console.log("good luck m8 off to the servlet");
+
 
 }
 
-
-
-
-
 function table(){
-
 	$.get( "viewAdminTable", function( data ) {
-		//alert( "Load was performed." );
+		let resol="";
+		let res="";
 		var dataSet=[];
 		for(let i = 0 ; i < data.length;i++){
+			if(data[i].resolver==null)
+			{
+				res=`<span class="clickables" id="${ data[i].id }"><button id="accept" type="button" class="btn btn-primary"	 style="background-color: #86C4B8">accept!</button><button style="background-color: #BA967B" id="deny" type="button" class="btn btn-primary">deny!</button></span>`;	
+			}else{
+				res=data[i].resolver;
+			}
+			if(data[i].resolver==null)
+			{
+				resol=String("</span>")
+			}else{
+				resol=String(data[i].resolved+"</span>")
+			}
+
 
 			id.push(data[i].id)
 			dataSet[i]=[
-			            data[i].id
-			            ,statusConv(data[i].status)
-			            ,typeConv(data[i].type)
+			            i
+			            ,data[i].fname
+			            ,data[i].lname
+			            ,data[i].rstatus
 			            ,String("$"+data[i].amount.toFixed(2))
-			            ,data[i].author
-			            ,data[i].submitted
-			            ,data[i].resolved
-			            ,data[i].desc];
+			            ,data[i].desc
+			            ,data[i].rtype
+			            ,data[i].date
+			            ,res
+			            ,resol
+			            ];
 		}
-		console.log(data);
-
 		table1(dataSet);
-
-
-
-
 	});
-	/*	
-	var xhr = new XMLHttpRequest(); 	
-	console.log(xhr.readyState);
-	xhr.onreadystatechange = function(){
-		if(xhr.readyState == 4 && xhr.status==200){
-			console.log("in xhr callback tables" + xhr.responseText);
-			var accounts=JSON.parse(xhr.responseText);
-
-		}
-	};
-	xhr.open("POST","viewTable", true);
-	console.log(xhr.readyState);
-	xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-	console.log("AFTER HEADER " + xhr.readyState);
-	//xhr.send(json);
-	 */
-};
-
-
-function statusConv(status){
-	switch (status) {
-	case 0:
-		return("pending");
-		break;
-	case 1:
-		return("approved");
-	case 2:
-		return("Denied");
-	}
-
-};
-function typeConv(status){
-	switch (status) {
-	case 0:
-		return("lodging");
-		break;
-	case 1:
-		return("travel");
-	case 2:
-		return("food");
-	case 3:
-		return("other");
-	}
 
 };
 
@@ -161,23 +103,19 @@ function table1(dataSet){
 	$('#example').DataTable( {
 		data: dataSet,
 		columns: [
+
 		          { title: "Request#" },
-		          { title: "Status" },
-		          { title: "Type" },
+		          { title: "FirstName" },
+		          { title: "LastName" },
+		          { title: "Reuqest Status#" },
 		          { title: "Amount" },
-		          { title: "User#" },
-		          { title: "Submitted" },
-		          { title: "Resolved" },
-		          { title: "Desc" }
+		          { title: "Desc" },
+		          { title: "Type" },
+		          { title: "date" },
+		          { title: "Resolver" },
+		          { title: "Resolved" }
 		          ]
 
 	}
-	
-
-
 	);
 };
-
-
-
-
