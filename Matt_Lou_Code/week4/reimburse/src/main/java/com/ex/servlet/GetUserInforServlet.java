@@ -24,8 +24,7 @@ public class GetUserInforServlet extends HttpServlet{
 		
 		HttpSession session = req.getSession();
 		Users user = (Users)session.getAttribute("user");
-		System.out.println(user);
-		
+
 		if(user != null) {
 			ObjectMapper mapper = new ObjectMapper();
 			String json = mapper.writeValueAsString(user);

@@ -3,6 +3,7 @@ package com.ex.servlet;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -33,6 +34,18 @@ public class RegisterServlet extends HttpServlet{
 		ObjectMapper mapper = new ObjectMapper();
 		Users user = mapper.readValue(json, Users.class);
 		user = service.addUser(user);
+		
+		if(user == null) {
+			System.out.println("failed to register user");
+		} else {
+			PrintWriter out = resp.getWriter();
+			resp.setContentType("application/json");
+			
+			String userJSON = mapper.writeValueAsString(user);
+
+			
+			out.write(userJSON);
+		}
 		
 		
 	}

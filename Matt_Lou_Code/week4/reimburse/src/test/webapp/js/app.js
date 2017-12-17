@@ -3,75 +3,87 @@
  */
 var store = [];
 window.onload = function(){
-	//loadHome();
-	//$('#home').on('click',loadHome);
+
 	$('#profile').on('click', getProfilePage);
 	$('#logout').on('click', logout);
-	//$('#request').on('click', request);
-	//---------------------------------------------
-	//$('#2').on('click', updateApprove);
-	console.log("below #2");
-	//$('#3').on('click', updateDeny);
-	//---------------------------------------------
-	
+	$(document).on('click', 'button[id]', function(e) {
+		var id = event.path[2].cells[0].innerText;
+		  if ($(this).closest("#" + this.id).length) {
+		    e.preventDefault();
+		    
+		    if(this.id == 2){
+		    	updateApprove(id);
+		    	
+		    } else if(this.id == 3){
+		    	updateDeny(id);
+		    }
+		  }
+	});
 }
-console.log("after window on loads");
 
 
 // load the data into the table when the document is ready, 
 // note that appendData cannot be called with just $('#data').appendData();
-//$(document).ready(appendData);
+$(document).ready(appendData);
 
-$(document).ready(function(){
-	appendData();
-	//$('#2').on('click', updateApprove);
+function updateDeny(id){
+	// 3 for Deny
+	var status = 3;
 	
-});
-
-
-function updateApprove(){
-	var status = $('#2').attr('id');
-	console.log("inside update approve");
-	console.log(status);
-	var toSend = {
-		reimb_id: 0,
-		status_id: status,
-		resolver: 0	
-	}
-	console.log(toSend);
+	// 0 for author_id that will be passed in at java side
+	var toSend = [0, status, id]
 	var json = JSON.stringify(toSend);
-	
 	
 	var xhr = new XMLHttpRequest();
 	xhr.onreadystatechange = function(){
 		if(xhr.status == 200 && xhr.readyState == 4){
-			console.log(xhr.responseText);
+			window.location.replace("manager.html");
 		}
 	}
-	xhr.open("POST","updateservlet", true);
+	xhr.open("POST","updatestatusservlet", true);
+	xhr.send(json);
+}
+
+function updateApprove(id){
+	// 2 for approval
+	var status = 2;
+	// 0 for author_id that will be passed in at Java side
+	/*
+	 * id selected from the row of the table and getting that reimbursement id
+	 */
+	var toSend = [0, status, id]
+	var json = JSON.stringify(toSend);
+	
+	var xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function(){
+		if(xhr.status == 200 && xhr.readyState == 4){
+			window.location.replace("manager.html");
+		}
+	}
+	xhr.open("POST","updatestatusservlet", true);
 	xhr.send(json);
 }
 
 function getProfilePage(){
-	var xhr = new XMLHttpRequest();
-	console.log("here");
-	xhr.onreadystatechange = function(){
-		if(xhr.readyState == 4 && xhr.status == 200) {
-			console.log(xhr.responseText);
-			var user = JSON.parse(xhr.responseText);
-		
-			location.assign("profile.html");
-			//document.write(user.firstname);
-			//document.write(user.lastname);
-//			$('#firstname').append(user.firstname);
-//			$('#lastname').append(user.lastname);
-		}
-		$('#firstname').append(user.firstname);
-		$('#lastname').append(user.lastname);
-		
-	}
-	xhr.open("GET", "getUserInfo", true)
-	xhr.send();
+	window.location.replace("profile.html");
+//	var xhr = new XMLHttpRequest();
+//	xhr.onreadystatechange = function(){
+//		if(xhr.readyState == 4 && xhr.status == 200) {
+//			console.log(xhr.responseText);
+//			var user = JSON.parse(xhr.responseText);
+//		
+//			window.location.replace("profile.html");
+//			//document.write(user.firstname);
+//			//document.write(user.lastname);
+////			$('#firstname').append(user.firstname);
+////			$('#lastname').append(user.lastname);
+//		}
+//		$('#firstname').append(user.firstname);
+//		$('#lastname').append(user.lastname);
+//		
+//	}
+//	xhr.open("GET", "getUserInfo", true)
+//	xhr.send();
 }
 
 function logout() {
@@ -118,12 +130,6 @@ function description(x){
 }
 
 function resolve(x) {
-//	switch(x){
-//	case null:
-//		//return "Pending";
-//		console.log("it is null");
-//		return "hi";
-//	}
 	if(x === 0) {
 		return "Pending";
 	} else{
@@ -154,13 +160,14 @@ function appendData(){
 				var dataset = new Array();
 				dataset.push(data[i].reimb_id);
 				dataset.push("$" + String(data[i].amount));
-				dataset.push(String(data[i].submitted));
-				dataset.push(String(timeResolve(data[i].resolved)));
+				dataset.push(data[i].first_name);
+				dataset.push(data[i].last_name);
 				dataset.push(String(description(data[i].description)));
-				dataset.push(String(data[i].author));
 				dataset.push(String(resolve(data[i].resolver)));
 				dataset.push(String(status(data[i].status_id)));
 				dataset.push(String(type(data[i].type_id)));
+				dataset.push(String(data[i].submitted));
+				dataset.push(String(timeResolve(data[i].resolved)));
 				store.push(dataset);
 			}
 			
@@ -170,16 +177,16 @@ function appendData(){
 			    	columns: [
 			    		{title: "Id"},
 			    		{title: "amount" },
-			    		{title: "submitted" },
-			    		{title: "resolved" },
+			    		{title: "First Name"},
+			    		{title: "Last Name"},
 			    		{title: "description" },
-			    		{title: "author" },
 			    		{title: "resolver" },
 			    		{title: "status" },
-			    		{title: "type" }
+			    		{title: "type" },
+			    		{title: "submitted" },
+			    		{title: "resolved" }
 			    	]
 			    });
-			    $("#2").onclick = updateApprove;
 			});
 			
 //			for(var i = 0; i < data.length; i++){
@@ -200,48 +207,6 @@ function appendData(){
 	xhr.open("POST", "datatable", true);
 	xhr.send();
 }
-
-//
-//function loadHome(){
-//	var xhr = new XMLHttpRequest();
-//	xhr.onreadystatechange = function(){
-//		if(xhr.readyState == 4 && xhr.status == 200){
-//			document.getElementById('view').innerHTML = xhr.responseText;				
-//		}
-//	}	
-//	xhr.open("GET", "getHomeView" , true);
-//	xhr.send();
-//}
-//
-//function loadProfile(){
-//	var xhr = new XMLHttpRequest();
-//	xhr.open("GET", "getProfileView" , true);
-//	xhr.send();
-//	xhr.onreadystatechange = function(){
-//		if(xhr.readyState == 4 && xhr.status == 200){
-//			//partials/profile.html
-//			document.getElementById('view').innerHTML = xhr.responseText;	
-//			loadProfileInfo();
-//		}
-//	}
-//}
-//
-//
-//function loadProfileInfo(){
-//	var xhr = new XMLHttpRequest();
-//	
-//	xhr.open("GET","getUserInfo", true);
-//	xhr.send();
-//	
-//	xhr.onreadystatechange = function(){
-//		if(xhr.readyState == 4 && xhr.status == 200){
-//			console.log(xhr.responseText);
-//			var sessionUser = JSON.parse(xhr.responseText);
-//			$("#name").html(sessionUser.firstname);
-//		}
-//	}
-//}
-
 
 
 

@@ -23,3 +23,7 @@ textarea {
 .green{
 	color: green;
 }
+
+.errorMessage{
+	color: red;
+}

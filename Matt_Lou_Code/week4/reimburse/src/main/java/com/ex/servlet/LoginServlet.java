@@ -54,7 +54,6 @@ public class LoginServlet extends HttpServlet{
 		resp.setContentType("application/json");
 		
 		String userJSON = mapper.writeValueAsString(user);
-		System.out.println("JSON: " + userJSON);
 		
 		out.write(userJSON);
 

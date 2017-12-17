@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.rev.pojos.Reimbursement;
+import com.rev.pojos.ReimbursementNames;
 import com.rev.service.Service;
 
 @WebServlet("/datatable")
@@ -24,21 +25,18 @@ public class DataTableServlet extends HttpServlet{
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 		throws ServletException, IOException {
 		
-		Reimbursement reimb = new Reimbursement();
+		ReimbursementNames reimb = new ReimbursementNames();
 		
-		ArrayList<Reimbursement> data = service.getdata();
+		ArrayList<ReimbursementNames> data = service.getdata();
 		PrintWriter out = resp.getWriter();
 		
 		resp.setContentType("application/json");
-		
-		System.out.println("in datatable servlet before json" + data);
-	
 		
 		ObjectMapper mapper = new ObjectMapper();
 		DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm a z");
 		mapper.setDateFormat(df);
 		String json = mapper.writeValueAsString(data);
-		System.out.println(json);
+
 		out.write(json);
 	}
 }

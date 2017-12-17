@@ -5,7 +5,7 @@
 
 window.onload = function(){
 	console.log("in on load");
-	//$("#register-submit").on("click", register);
+	$('#profile').on("click", loadProfile);
 	$('#submit').on("click", submitRequest);
 	$('#viewrequest').on("click", viewRequest);
 	$('#logout').on("click", logout);
@@ -14,6 +14,10 @@ window.onload = function(){
 //	console.log("in load ");
 //	$('#submit').click(submitRequest);
 //});
+
+function loadProfile(){
+	window.location.replace("profile.html");
+}
 
 
 function logout() {
@@ -29,18 +33,21 @@ function logout() {
 }
 
 function viewRequest(){
-	var xhr = new XMLHttpRequest();
-	xhr.open("GET", "viewrequest" ,true)
-	xhr.send();
-	xhr.onreadystatechange = function(){
-		if(xhr.readystate == 4 && xhr.status == 200) {
-			console.log("going to another page");
-		}
-	}
+	
+	window.location.replace("viewrequest.html");
+//	console.log("in view request");
+//	var xhr = new XMLHttpRequest();
+//	
+//	xhr.open("GET", "viewrequest" ,true)
+//	xhr.send();
+//	xhr.onreadystatechange = function(){
+//		if(xhr.readyState == 4 && xhr.status == 200) {
+//			window.location.replace("viewrequest.html");
+//		}
+//	}
 }
 
 function submitRequest(){
-	console.log("in submit function");
 	var amount = $('#amount').val();
 	var description = $('#description').val();
 	var type_id = $('#selectTypeId').find('.active').find('input').attr('id');
@@ -56,10 +63,9 @@ function submitRequest(){
 	var xhr = new XMLHttpRequest();
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState == 4 && xhr.status==200){
-			console.log("add reimbursement");
+			alert("Your reimbursement has been submitted");
 		}
 	};
-		
 	xhr.open("POST", "submitrequest", true);
 	xhr.send(json);
 }

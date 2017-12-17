@@ -143,6 +143,8 @@ SELECT LOCALTIMESTAMP INTO :new.REIMB_RESOLVED FROM DUAL;
 END;
 /
 
+
+
 select * from ERS_USER_ROLES;
 SELECT * FROM ERS_REIMBURSEMENT_TYPE;
 SELECT * FROM ERS_REIMBURSEMENT_STATUS;
@@ -183,7 +185,40 @@ VALUES('mattyboy1', '123', 'matt', 'lou', 'matty@gmail.com', '2');
 delete ers_users where ers_username = '1234';
 commit;
 
+--INNER JOIN table2 ON table1.column_name = table2.column_name;
+select reimb_id, reimb_amount, reimb_submitted, reimb_resolved, reimb_description, 
+reimb_author, reimb_resolver, reimb_status_id, reimb_type_id 
+from ers_reimbursement
+inner join ers_users on ers_reimbursement.reimb_author = ers_users.ers_users_id;
 
+select * from ers_reimbursement
+inner join ers_users
+on ers_reimbursement.reimb_author = ers_users.ERS_USERS_ID;
 
+select reimb.reimb_id, reimb.reimb_amount, reimb.reimb_submitted, reimb.reimb_resolved, 
+reimb.reimb_description, reimb.reimb_author, reimb.reimb_resolver, reimb.reimb_status_id, 
+reimb.reimb_type_id, u.user_first_name, u.user_last_name
+from ers_reimbursement reimb
+inner join ers_users u
+on reimb.reimb_author = u.ers_users_id;
+
+select * from ers_reimbursement;
+select * from ers_users;
+commit;
+
+update ERS_REIMBURSEMENT 
+set REIMB_RESOLVER = 3, REIMB_STATUS_ID = 2 
+where REIMB_ID = 35;
+
+select reimb.reimb_id, reimb.reimb_amount, reimb.reimb_submitted,
+reimb.reimb_resolved, reimb.reimb_description,
+reimb.reimb_status_id, reimb.reimb_type_id,
+u.user_first_name, u.user_last_name from ers_reimbursement reimb 
+inner join ers_users u on reimb.reimb_author = u.ers_users_id 
+where u.ERS_USERS_ID=2;
+
+update ers_users set user_first_name = 'Matty', 
+user_last_name = 'Lou', user_email = 'yay@yahoo.com'
+where ers_users_id = 19;
 
 

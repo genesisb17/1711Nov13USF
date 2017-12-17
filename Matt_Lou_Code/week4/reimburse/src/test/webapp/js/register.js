@@ -2,6 +2,7 @@
  * 
  */
 
+
 window.onload = function(){
 	$("#register-submit").on("click", register);
 	$('#email-message').hide();
@@ -13,7 +14,7 @@ window.onload = function(){
 $(document).ready(function(){
 	$('#email').blur(validateEmail);
 	$('#username').blur(validateUsername);
-	//$('#confirm-password').blur(validatePassword);
+	$('#confirm-password').on( "keyup", validatePassword);
 });
 
 function register(){
@@ -42,15 +43,17 @@ function register(){
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState == 4 && xhr.status==200){
 			console.log("added user");
+			console.log(xhr.responseText);
+			alert("Success! Please login using your credentials");
+			//window.location.replace('index.html');
 		}
 	};
 	
-	xhr.open("POST","register", true);
+	xhr.open("POST", "register", true);
 	xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 	xhr.send(userJSON);
 	$('#message').hide();
-	alert("Success! Please login using your credentials");
-	window.location.replace('landing.html');
+	
 }
 
 
@@ -120,15 +123,16 @@ function validateUsername(){
 }
 
 function validatePassword(){
-	var password = $('password').val();
-	var confirmPassword = $('confirm-password').val();
+	var password = $('#password').val();
+	var confirmPassword = $('#confirm-password').val();
+	console.log("in validate pass");
 	if(password != confirmPassword){
 		$('#password-message').show();
 		$('#password-message').html("Password does not match.");
-		$('#register').attr("disabled",true);
+		$('#register').attr("disabled", true);
 	}
 	else{
-		$('#register').attr("disabled",false);
+		$('#register').attr("disabled", false);
 		$('#password-message').hide();
 	}
 	

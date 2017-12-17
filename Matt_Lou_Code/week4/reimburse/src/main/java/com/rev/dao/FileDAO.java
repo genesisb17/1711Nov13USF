@@ -9,6 +9,7 @@ import java.util.ArrayList;
 
 import com.ex.util.ConnectionFactory;
 import com.rev.pojos.Reimbursement;
+import com.rev.pojos.ReimbursementNames;
 import com.rev.pojos.Users;
 
 public class FileDAO implements DAO{
@@ -34,9 +35,15 @@ public class FileDAO implements DAO{
 			int row = ps.executeUpdate();
 			if(row != 0) {
 				connect.commit();
-				System.out.println("in sql3");
+				user.setEmail(u.getEmail());
+				user.setFirstname(u.getFirstname());
+				user.setLastname(u.getLastname());
+				user.setPassword(u.getPassword());
+				user.setUsername(u.getUsername());
+				user.setPassword(u.getPassword());	
 				return user;
 			}
+			
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -44,6 +51,7 @@ public class FileDAO implements DAO{
 		return null;
 	}
 	
+
 	public Users getUser(String username) {
 		Users user = new Users();
 		try(Connection connect = ConnectionFactory.getInstance().getConnection()){
@@ -70,67 +78,66 @@ public class FileDAO implements DAO{
 		return user;
 	}
 
-	public Users update(Users u, Reimbursement reimb) {
-		
-//		UPDATE ERS_REIMBURSEMENT
-//		SET REIMB_RESOLVER = 2, REIMB_STATUS_ID = 2
-//		WHERE REIMB_ID = 2;
-		
-		Users user = new Users();
-		
+	/*
+	 * function that updates the status of the reimbursement;
+	 * ex) from pending(1) to (2)approved or (3) denied
+	 * based on the reimb_id and who resolved it shown as the ID
+	 */
+	public void update(int user_id, int status_id, int reimb_id) {
+
 		try(Connection connect = ConnectionFactory.getInstance().getConnection()){
-			/*******************************************/
-			String sqlUpdate = "update ERS_REIMBURSEMENT set REIMB_RESOLVER = ?, 				REIMB_STATUS_ID = ? where REIMB_ID = ?";
+			
+			connect.setAutoCommit(false);
+
+			String sqlUpdate = "update ERS_REIMBURSEMENT set REIMB_RESOLVER = ?, "
+					+ "REIMB_STATUS_ID = ? where REIMB_ID = ?";
 			PreparedStatement prepStatement = connect.prepareStatement(sqlUpdate);
-			prepStatement.setInt(1, u.getUsers_id());
-			prepStatement.setInt(2, reimb.getStatus_id());
-			prepStatement.setInt(3, reimb.getReimb_id());
+			prepStatement.setInt(1, user_id);
+			prepStatement.setInt(2, status_id);
+			prepStatement.setInt(3, reimb_id);
 			prepStatement.executeUpdate();
 			
+			connect.commit();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return user;
 	}
 	
-	public ArrayList<Reimbursement> getTable(){
-		ArrayList<Reimbursement> arr = new ArrayList<Reimbursement>();
+	/*
+	 * function to show the table for the manager, grab all the information from
+	 * reimbursement table and join with user table (so it could get the firstname
+	 * and lastname of the author who submitted the reimbursement
+	 */
+	
+	public ArrayList<ReimbursementNames> getTable(){
+		ArrayList<ReimbursementNames> arr = new ArrayList<ReimbursementNames>();
 		Users user = new Users();
 		
 		try(Connection connect = ConnectionFactory.getInstance().getConnection()){
-			String sql = "select reimb_id, reimb_amount, reimb_submitted, reimb_resolved, "
-					+ "reimb_description, reimb_author, reimb_resolver, " + 
-					"reimb_status_id, reimb_type_id from ers_reimbursement";
-			String sql2 = "select user_first_name, user_last_name from ers_users, "
-					+ "where ers_users_id = ?";
-			
+			String sql = "select reimb.reimb_id, reimb.reimb_amount, reimb.reimb_submitted,"
+					+ " reimb.reimb_resolved, reimb.reimb_description, reimb.reimb_author,"
+					+ " reimb.reimb_resolver, reimb.reimb_status_id, reimb.reimb_type_id,"
+					+ " u.user_first_name, u.user_last_name from ers_reimbursement reimb "
+					+ "inner join ers_users u on reimb.reimb_author = u.ers_users_id";
 			// statement to select firstname and lastname from reimbursement author id
-			PreparedStatement prepared = connect.prepareStatement(sql2);
 			
 			Statement state = connect.createStatement();
 			ResultSet rs = state.executeQuery(sql);
-			
-			
-			// get the authorId from the reimbursement table and execute preparedStatement
-			// to get the first name and last name of the author.
-			prepared.setInt(1, rs.getInt(7));
-			ResultSet rs2 = prepared.executeQuery();
-			
-			
+
 			while(rs.next()) {
-				Reimbursement reimb = new Reimbursement();
+				ReimbursementNames reimb = new ReimbursementNames();
 				reimb.setReimb_id(rs.getInt(1));
 				reimb.setAmount(rs.getDouble(2));
 				reimb.setSubmitted(rs.getTimestamp(3));
 				reimb.setResolved(rs.getTimestamp(4));
 				reimb.setDescription(rs.getString(5));
-				//reimb.setAuthor_name(rs2.getString(columnIndex));
+				reimb.setAuthor(rs.getInt(6));
 				reimb.setResolver(rs.getInt(7));
 				reimb.setStatus_id(rs.getInt(8));
 				reimb.setType_id(rs.getInt(9));
+				reimb.setFirst_name(rs.getString(10));
+				reimb.setLast_name(rs.getString(11));
 				arr.add(reimb);
-				//System.out.println(reimb.getResolved());
-				//System.out.println(reimb.getSubmitted());
 			}
 			
 			

@@ -24,10 +24,10 @@ public class SubmitRequest extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) 
 		throws ServletException, IOException {
-		System.out.println("here");
+
 		
 		BufferedReader br = new BufferedReader(new InputStreamReader(req.getInputStream()));
-		System.out.println("after bufferedreader");
+
 		String json = "";
 		
 		if(br != null) {
@@ -35,10 +35,7 @@ public class SubmitRequest extends HttpServlet{
 		}
 		HttpSession session = req.getSession(false);
 		Users user = (Users) session.getAttribute("user");
-		//System.out.println(user.toString());
-		System.out.println("in submit request, " + user.getUsers_id());
-		
-		System.out.println("submit request servlet");
+
 		ObjectMapper mapper = new ObjectMapper();
 		Reimbursement reimburse = mapper.readValue(json, Reimbursement.class);
 

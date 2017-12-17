@@ -25,8 +25,7 @@ public class LogoutServlet extends HttpServlet{
 		
 		HttpSession session = req.getSession(false);
 		Users user = (Users)(session.getAttribute("user"));
-		System.out.println(user.getFirstname());
-		System.out.println(user.getEmail());
+
 //		if(session != null) {
 //			session.removeAttribute("user");		
 //			session.invalidate();
@@ -35,11 +34,8 @@ public class LogoutServlet extends HttpServlet{
 //		}
 		session.removeAttribute("user");		
 		session.invalidate();
-		System.out.println("session invalidated");
-		System.out.println(user.getFirstname());
-		System.out.println(user.getEmail());
+
 		resp.sendRedirect("index.html");
-		
 	}
 }
 

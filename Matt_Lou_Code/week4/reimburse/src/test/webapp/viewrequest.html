@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Manager</title>
+<title>Employee Requests</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
@@ -16,7 +16,7 @@
 <link rel="stylesheet" type="text/css" href="css/style.css">
 <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
 <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
-<script src="js/app.js"></script>
+<script src="js/viewrequest.js"></script>
 
 </head>
 <body>
@@ -24,7 +24,7 @@
 <div class="w3-top">
   <div class="w3-bar w3-red w3-card w3-left-align w3-large">
     <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-red" href="javascript:void(0);" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
-    <a class="w3-bar-item w3-button w3-padding-large w3-white">Home</a>
+    <a id="home" class="w3-bar-item w3-button w3-padding-large w3-white">Home</a>
     <a id="profile" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Profile</a>
     <a id="logout" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white align-right">Log out</a>
   </div>
@@ -33,22 +33,17 @@
   <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium w3-large">
     <a href="#" class="w3-bar-item w3-button w3-padding-large">Link 1</a>
     <a href="#" class="w3-bar-item w3-button w3-padding-large">Link 2</a>
-    <a href="#" class="w3-bar-item w3-button w3-padding-large">Link 3</a>
     <a class="w3-bar-item w3-button w3-padding-large align-right">Log out</a>
   </div>
 </div>
 
 <!-- Header -->
-<header id=profile-data class="w3-container w3-red w3-center" style="padding:128px 16px">
-	<div id='firstname'>
-		<span id='lastname'></span>
-	</div>
-	<div>
-		<h1>hello</h1>
-	</div>
-	
- 	
+<header class="w3-container w3-sand w3-center" style="padding:128px 16px">
+<div class="container">
+  <table id="example" class="display" width="100%" style="color: black">
   
+  </table>
+</div>
 </header>
 
 
@@ -81,9 +76,6 @@ function myFunction() {
     }
 }
 </script>
-<!-- <div id="appview">
-	hi
-</div>
- -->
+
 </body>
 </html>

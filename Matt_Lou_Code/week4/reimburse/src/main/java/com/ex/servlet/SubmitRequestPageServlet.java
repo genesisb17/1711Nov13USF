@@ -16,7 +16,7 @@ public class SubmitRequestPageServlet extends HttpServlet{
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
 		
-			System.out.println("in forward submit request.");
+		
 			HttpSession session = request.getSession();
 			Users user = (Users)session.getAttribute("user");
 			
