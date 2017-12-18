@@ -2,6 +2,8 @@
  * 
  */
 
+var tableData;
+
 window.onload = function() {
 	// $('#message').hide();
 	$('#login').on('click', login);
@@ -23,7 +25,7 @@ function login() {
 	xhr.send(json);
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState == 4 && xhr.status == 200) {
-			//console.log("in xhr callback" + xhr.responseText);
+			// console.log("in xhr callback" + xhr.responseText);
 			var user = JSON.parse(xhr.responseText);
 			console.log(user);
 			if (user === null) {
@@ -35,9 +37,9 @@ function login() {
 			} else {
 				// $('#message').html(`Welcome ${user.firstname}`) ;
 				console.log("good combo!");
-				loadMain()
+				loadMain();
 				// window.location.replace('LoginSuccess.html');
-				getUserInfo();
+
 			}
 		}
 	}
@@ -52,6 +54,7 @@ function loadMain() {
 			document.getElementById('view').innerHTML = xhr.responseText;
 			// $('#home').on('click',loadHome);
 			// $('#profile').on('click', loadProfile);
+			getUserInfo();
 		}
 	}
 	xhr.open("GET", "main.view", true);
@@ -65,7 +68,7 @@ function getUserInfo() {
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState == 4 && xhr.status == 200) {
 			console.log(xhr.responseText);
-			document.getElementById('mainview').innerHTML = xhr.responseText;
+			document.getElementById('view').innerHTML = xhr.responseText;
 			getUserInfoHelper();
 		}
 	}
@@ -84,6 +87,12 @@ function getUserInfoHelper() {
 			$("#lname").html(sessionUser.lastName);
 			$('#submittedReimb').on('click', getReimbByAuthor);
 			$('#persistReimb').on('click', createReimb);
+			$('#pendingReimb').on('click', getPendingReimbs);
+			$('#logout').on('click', logout);
+			$('#allReimb').on('click', getAllReimbs);
+			$('#resolveReimb').on('click', resolveReimb);
+			createManagerTable();
+			createAuthorTable();
 		}
 	}
 }
@@ -95,7 +104,38 @@ function getReimbByAuthor() {
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState == 4 && xhr.status == 200) {
 			// console.log(xhr.responseText);
+			var rData = JSON.parse(xhr.responseText);
+			var Data = xhr.responseText;
+			
 			document.getElementById('reimbs').innerHTML = xhr.responseText;
+		}
+	}
+}
+
+function getPendingReimbs() {
+	console.log("in getPendingReimbs function");
+	var xhr = new XMLHttpRequest();
+	xhr.open("GET", "getPendingReimbs", true);
+	xhr.send();
+	xhr.onreadystatechange = function() {
+		if (xhr.readyState == 4 && xhr.status == 200) {
+			// console.log(xhr.responseText);
+			document.getElementById('getPending').innerHTML = xhr.responseText;
+		}
+	}
+}
+
+function getAllReimbs() {
+	var xhr = new XMLHttpRequest();
+	xhr.open("GET", "getAllReimbs", true);
+	xhr.send();
+	xhr.onreadystatechange = function() {
+		if (xhr.readyState == 4 && xhr.status == 200) {
+			// console.log(xhr.responseText);
+			var rData = JSON.parse(xhr.responseText);
+			var Data = xhr.responseText;
+			
+			//document.getElementById('reimbs').innerHTML = xhr.responseText;
 		}
 	}
 }
@@ -175,7 +215,7 @@ function createReimb() {
 	var a = $('#amount').val();
 	var rt = $('#reimbType').val();
 	var d = $('#reimbDescription').val();
-	//var aid = sessionUser.userID;
+	// var aid = sessionUser.userID;
 
 	switch (rt) {
 	case "Lodging":
@@ -204,7 +244,7 @@ function createReimb() {
 		statusID : 21,
 		typeID : rt
 	};
-	
+
 	var rJSON = JSON.stringify(reimbursement);
 
 	var xhr = new XMLHttpRequest();
@@ -220,3 +260,141 @@ function createReimb() {
 	xhr.send(rJSON);
 
 }
+
+function logout() {
+	var xhr = new XMLHttpRequest();
+	xhr.open("GET", "logoutFromSession", true);
+	xhr.send();
+	xhr.onreadystatechange = function() {
+		if (xhr.readyState == 4 && xhr.status == 200) {
+			console.log("logging out");
+			loadHome();
+
+		}
+	}
+
+}
+
+function resolveReimb() {
+	console.log("in function resolveReimb");
+	var resolvedID = $('#reimbID').val();
+	var resolvedStatus = $('#reimbStatus').val();
+
+	if (resolvedStatus == "Approve") {
+		resolvedStatus = 22;
+	} else {
+		resolvedStatus = 23;
+	}
+
+	var reimbursement = {
+		reimbID : resolvedID,
+		amount : 0,
+		submitted : null,
+		resolved : null,
+		description : null,
+		receipt : null,
+		author : 0,
+		resolver : 0,
+		statusID : resolvedStatus,
+		typeID : 0
+	};
+	var rrJSON = JSON.stringify(reimbursement);
+
+	var xhr = new XMLHttpRequest();
+	xhr.open("POST", "resolve", true);
+	xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	xhr.send(rrJSON);
+	xhr.onreadystatechange = function() {
+		if (xhr.readyState == 4 && xhr.status == 200) {
+			console.log("resolving reimbursement");
+			var resolution = JSON.parse(xhr.responseText);
+			if (resolution === null) {
+				$('#resolveMessage').html("Invalid Reimbursement ID");
+				console.log("bad RID!");
+			} else {
+				$('#resolveMessage').html("Reimbursement Resolved");
+				console.log("good RID!");
+			}
+		}
+	}
+}
+
+function createAuthorTable(){
+	console.log("in getAllReimbs function");
+	var xhr = new XMLHttpRequest();
+	xhr.open("GET", "getReimbByAuthor", true);
+	xhr.send();
+    var allReimbs = [];
+
+	xhr.onreadystatechange = function() {
+		if (xhr.readyState == 4 && xhr.status == 200) {
+			// console.log(xhr.responseText);
+			var Data = JSON.parse(xhr.responseText);
+			console.log(Data.length);
+			console.log(Data);
+			
+			for (di = 0; di < Data.length; ++di){
+                allReimbs[di] = [Data[di].submitted, Data[di].amount, Data[di].type, 
+					Data[di].description, Data[di].status, Data[di].resolved];
+
+			}
+        	console.log(allReimbs);
+			for (var tdi = 0; tdi < allReimbs.length; tdi++){
+				console.log("for loop" + tdi);
+			}
+			$('#user_table').DataTable( {
+		        data: allReimbs,
+		        columns: [
+		            { title: "Submitted" },
+		            { title: "Amount" },
+		            { title: "Type" },
+		            { title: "Description" },
+		            { title: "Status" },
+		            { title: "Resolved" }
+		        ]
+		    } );
+		}
+	}
+}
+
+function createManagerTable(){
+	console.log("in getAllReimbs function");
+	var xhr = new XMLHttpRequest();
+	xhr.open("GET", "managerTable", true);
+	xhr.send();
+    var allReimbs = [];
+
+	xhr.onreadystatechange = function() {
+		if (xhr.readyState == 4 && xhr.status == 200) {
+			// console.log(xhr.responseText);
+			//document.getElementById('getAll').innerHTML = xhr.responseText;
+			var Data = JSON.parse(xhr.responseText);
+			console.log(Data.length);
+			console.log(Data);
+			
+			for (di = 0; di < Data.length; ++di){
+                allReimbs[di] = [Data[di].reimbursementID, Data[di].authorName,  Data[di].submitted, 
+                	Data[di].amount, Data[di].type, Data[di].description, Data[di].status, Data[di].resolved];
+
+			}
+        	console.log(allReimbs);
+			for (var tdi = 0; tdi < allReimbs.length; tdi++){
+				console.log("for loop" + tdi);
+			}
+			$('#manager_table').DataTable( {
+		        data: allReimbs,
+		        columns: [
+		            { title: "Reimbursement ID" },
+		            { title: "Author" },
+		            { title: "Submitted" },
+		            { title: "Amount" },
+		            { title: "Type" },
+		            { title: "Description" },
+		            { title: "Status" },
+		            { title: "Resolved" }
+		        ]
+		    } );
+		}
+	}
+}
+

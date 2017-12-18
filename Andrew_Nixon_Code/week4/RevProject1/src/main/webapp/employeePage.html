@@ -3,7 +3,7 @@
 	<h4>
 		Welcome, <span id="fname"></span> <span id="lname"></span>
 	</h4>
-	<h4>You are NOT Financial manager</h4>
+	<h4>You are NOT a Financial manager</h4>
 	<p>
 		<button id="submittedReimb" class="btn btn-primary" type="button"
 			data-toggle="collapse" data-target="#collapseExample"
@@ -12,7 +12,24 @@
 	</p>
 	<div class="collapse" id="collapseExample">
 		<div class="card card-body" id="reimbs">loading...</div>
+		<br>
+		<table id="user_table" class="display">
+			<thead>
+				<tr>
+					<th>Submitted</th>
+					<th>Amount</th>
+					<th>Type</th>
+					<th>Description</th>
+					<th>Status</th>
+					<th>Resolved</th>
+				</tr>
+			</thead>
+			<tbody></tbody>
+		</table>
+		<br>
+		
 	</div>
+	
 	<p>
 		<button id="showNewReimb" class="btn btn-primary" type="button"
 			data-toggle="collapse" data-target="#collapseNewReimb"
@@ -23,19 +40,21 @@
 		<div class="card card-body" id="newReimb">
 			<input type="number" id="amount" placeholder="Amount"> <br>
 			<div class="form-group">
-				<label for="reimbType">Reimbursement Type</label> 
-				<select	class="form-control" id="reimbType">
+				<label for="reimbType">Reimbursement Type</label> <select
+					class="form-control" id="reimbType">
 					<option>Lodging</option>
 					<option>Travel</option>
 					<option>Food</option>
 					<option>Other</option>
 				</select>
-			</div> <br>
-			<input type="text" id="reimbDescription" placeholder="Description(optional)">
-			<br>
+			</div>
+			<br> <input type="text" id="reimbDescription"
+				placeholder="Description(optional)"> <br>
 			<button id="persistReimb" class="btn btn-primary">Log In</button>
 		</div>
 	</div>
+	<br>
+	<button id="logout" class="btn btn-secondary">Log Out</button>
 
 
 	<!-- what do i need to put in here?

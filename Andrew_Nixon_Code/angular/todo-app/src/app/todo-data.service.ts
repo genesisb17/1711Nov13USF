@@ -1,57 +1,45 @@
 import { Injectable } from '@angular/core';
 import { Todo } from './todo';
+import { ApiService } from './api.service';
+import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class TodoDataService {
-  //placeholder for last id used
-  lastID: number = 0;
-  todos: Todo[] = [];
-  constructor() { }
 
-  /*
-  here we are starting our simulation for our api.
-  */
-
-  //simulating POST /todos
-  addTodo(todo: Todo): TodoDataService{
-    if(!todo.id){
-      todo.id = ++this.lastID;
-    }
-    this.todos.push(todo);
-    return this;
+  constructor(
+    private api: ApiService
+  ) {
   }
 
-  //simulate DELETE /todos/:id
-  deleteTodoByID(id: number): TodoDataService{
-    this.todos = this.todos.filter(todo => todo.id !==id);
-    return this;
+  // Simulate POST /todos
+  addTodo(todo: Todo): Observable<Todo> {
+    return this.api.createTodo(todo);
   }
 
-  //sim GET /todos/:id
-  getTodoByID(id: number): Todo{
-    return this.todos.filter(todo=>todo.id === id).pop();
+  // Simulate DELETE /todos/:id
+  deleteTodoById(todoId: number): Observable<Todo> {
+    return this.api.deleteTodoById(todoId);
   }
 
-  //simulate PUT /todos/:id
-  updateTodoByID(id: number, values: {}): Todo{
-    let todo = this.getTodoByID(id);
-    if(!todo) return null;
-    Object.assign(todo, values);
-    return todo;
+  // Simulate PUT /todos/:id
+  updateTodo(todo: Todo): Observable<Todo> {
+    return this.api.updateTodo(todo);
   }
 
-  //sim GET /todos
-  getAllTodos(): Todo[]{
-    return this.todos;
+  // Simulate GET /todos
+  getAllTodos(): Observable<Todo[]> {
+    return this.api.getAllTodos();
   }
 
-toggleTodoComplete(todo: Todo){
-  let updatedTodo = this.updateTodoByID(
-    todo.id, {complete: !todo.complete}
-  );
-  return updatedTodo;
-  //if(todo.done) todo.done = false
-  //else todo.done = true;
-}
+  // Simulate GET /todos/:id
+  getTodoById(todoId: number): Observable<Todo> {
+    return this.api.getTodoById(todoId);
+  }
+
+  // Toggle complete
+  toggleTodoComplete(todo: Todo) {
+    todo.complete = !todo.complete;
+    return this.api.updateTodo(todo);
+  }
 
 }

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import com.rev.dao.DAO;
 import com.rev.dao.DAOimp;
+import com.rev.dtos.ManagerReimbursementsDTO;
 import com.rev.pojos.ERSUser;
 import com.rev.pojos.Reimbursement;
 
@@ -29,9 +30,29 @@ public class Service {
 	}
 
 	public Reimbursement addReimbursement(Reimbursement r) {
-		//can fix later by getting more generated keys...probably confirm with genesis
+		//can enhance later by getting more generated keys...probably confirm with genesis
 		Reimbursement temp = dao.addReimbursement(r);
 		return dao.getReimbursementByID(temp.getReimbID());
+	}
+
+	public ArrayList<Reimbursement> getReimbsByStatus(int i) {
+		return dao.getReimbursementsByStatus(i);
+	}
+
+	public ArrayList<Reimbursement> getAllReumbs() {
+		return dao.getReimbursements();
+	}
+
+	public Reimbursement validateReimbursement(int reimbID) {
+		return dao.getReimbursementByID(reimbID);
+	}
+
+	public Reimbursement resolve(int reimbID, int userID, int statusID) {
+		return dao.resolveReimb(reimbID, userID, statusID);
+	}
+
+	public ArrayList<ManagerReimbursementsDTO> getManagerReimbursements() {
+		return dao.getManagerReimbursements();
 	}
 	
 	

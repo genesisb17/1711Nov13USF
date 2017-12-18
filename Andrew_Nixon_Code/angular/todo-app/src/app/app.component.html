@@ -1,25 +1,7 @@
-<section>
-  <header>
-    <h1>Todos</h1>
-    <input class="new-todo"
-    placeholder="what needs to be done?";
-    autofocus= ""
-    [(ngModel)] = "newTodo.title"
-    (keyup.enter) ="addTodo()">
-  </header>
-  <section class="main" *ngIf="todos.length>0">
-    <ul>
-      <li *ngFor = "let todo of todos" [class.completed]="todo.complete">
-       <input type="checkbox" (click="toggleTodoComplete(todo)") [checked]="todo.complete">
-       <label>{{todo.title}}</label>
-      </li>
-    </ul>
-  </section>
-  
 
-  <footer *ngIf="todos.length > 0">
-    <h4><strong>{{todos.length}}</strong> {{todos.length == 1 ? 'item': 'items'}}</h4>
-  </footer>
-</section>
+<app-todo-list-header (add)="onAddTodo($event)"></app-todo-list-header>
 
+ <app-todo-list [todos] = "todos" (remove)="onRemoveTodo($event)"
+ (toggleComplete)="onToggleTodoComplete($event)"></app-todo-list>
 
+<app-todo-list-footer [todos] = "todos"></app-todo-list-footer>

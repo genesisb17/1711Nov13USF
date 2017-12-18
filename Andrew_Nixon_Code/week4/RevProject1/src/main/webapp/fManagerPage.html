@@ -1,15 +1,57 @@
 
-
 <div>
-<h4>Welcome, <span id="fname"></span> <span id="lname"></span></h4>
-<h4>You are a Financial manager</h4>
-<!-- what do i need to put in here?
-	What can financial managers do?
-	1)they can view all reimbursements
-	2)filter request by status
-	3)approve/deny requests -->
-
-
+	<h4>
+		Welcome, <span id="fname"></span> <span id="lname"></span>
+	</h4>
+	<h4>You are a Financial manager</h4>
+	<p>
+		<button id="allReimb" class="btn btn-primary" type="button"
+			data-toggle="collapse" data-target="#collapseAllReimb"
+			aria-expanded="false" aria-controls="collapseAllReimb">Get Reimbursements</button>
+	</p>
+	<div class="collapse" id="collapseAllReimb">
+		<table id="manager_table" class="display">
+			<thead>
+				<tr>
+					<th>Reimbursement ID</th>
+					<th>Author</th>
+					<th>Submitted</th>
+					<th>Amount</th>
+					<th>Type</th>
+					<th>Description</th>
+					<th>Status</th>
+					<th>Resolved</th>
+				</tr>
+			</thead>
+			<tbody></tbody>
+		</table>
+		<br>
+	</div>
+	<p>
+		<button id="showReviewReimb" class="btn btn-primary" type="button"
+			data-toggle="collapse" data-target="#collapseReviewReimb"
+			aria-expanded="false" aria-controls="collapseReviewReimb">
+			Resolve Reimbursement</button>
+	</p>
+	<div class="collapse" id="collapseReviewReimb">
+		<div class="card card-body" id="ReviewReimb">
+			<input type="text" id="reimbID" placeholder="Reimbursement ID">
+			<br>
+			<div class="form-group">
+				<label for="reimbStatus">Approve/Deny</label> <select
+					class="form-control" id="reimbStatus">
+					<option>Approve</option>
+					<option>Deny</option>
+				</select>
+			</div>
+			<br>
+			<button id="resolveReimb" class="btn btn-primary">Resolve
+				Reimbursement</button>
+			<br>
+			<div class="alert alert-info" id="resolveMessage"></div>
+		</div>
+		<br>
+	</div>
+	<br>
+	<button id="logout" class="btn btn-secondary">Log Out</button>
 </div>
-
-

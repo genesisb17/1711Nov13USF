@@ -1,0 +1,24 @@
+{
+  "todos": [
+    {
+      "id": 1,
+      "title": "Read SitePoint article",
+      "complete": false
+    },
+    {
+      "id": 2,
+      "title": "Clean inbox",
+      "complete": false
+    },
+    {
+      "id": 3,
+      "title": "Make restaurant reservation",
+      "complete": false
+    },
+    {
+      "title": "something",
+      "complete": true,
+      "id": 4
+    }
+  ]
+}
