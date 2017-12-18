@@ -44,13 +44,13 @@ public class CreateAccountServlet extends HttpServlet{
 		// 3. Convert received JSON to String array
 		Users u = mapper.readValue(json, Users.class);
 		
-		String[] message = new String[1];
+		String[] message = new String[2];
 		Users newUser = null;
 		// 4. Validate
 		if(service.userExists(u.getUsername()))
 			message[0] = "An account with that username exists";
-		else if(!service.uniqueEmail(u.getEmail()))
-			message[0] = "An account with that email already exists";
+		if(!service.uniqueEmail(u.getEmail()))
+			message[1] = "An account with that email already exists";
 		else {
 			// 5. add to database
 			newUser = service.createAccount(u);

@@ -11,6 +11,7 @@ import com.revature.types.UserRoles;
 public interface ERSDAO {
 	// User related functions
 	public Users getUserByUsername(String username);
+	public Users getUserByEmail(String email);
 	public Users getUserById(int userId);
 	public ArrayList<Users> getAllUsers();
 	public UserRoles getRole(int roleId);

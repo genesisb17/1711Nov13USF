@@ -39,6 +39,32 @@ public class ERSDatabaseDAO implements ERSDAO {
 	static final String DB_KEY_TYPE = "REIMB_TYPE";
 	static final String DB_KEY_ROLE = "USER_ROLE";
 
+	@Override
+	public Users getUserByEmail(String email) {
+		Users u = null;
+		String selectUsers = "select * from ers_users where user_email = ?";		
+		try (Connection conn = ConnectionFactory.getInstance().getConnection();
+				PreparedStatement su = conn.prepareStatement(selectUsers);) {
+			su.setString(1, email);
+			try (ResultSet userSet = su.executeQuery();) {
+				while (userSet.next()) { // make sure result set isn't empty
+					// add to user object
+					u = new Users();
+					u.setUserId(userSet.getInt(DB_KEY_USERID));
+					u.setUsername(userSet.getString(DB_KEY_USERNAME));
+					u.setPassword(userSet.getString(DB_KEY_PASSWORD));
+					u.setFirstName(userSet.getString(DB_KEY_FIRSTNAME));
+					u.setLastName(userSet.getString(DB_KEY_LASTNAME));
+					u.setEmail(userSet.getString(DB_KEY_EMAIL));
+					u.setRoleId(userSet.getInt(DB_KEY_ROLEID));
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return u;
+	}
 
 	@Override
 	public Users getUserByUsername(String username) {

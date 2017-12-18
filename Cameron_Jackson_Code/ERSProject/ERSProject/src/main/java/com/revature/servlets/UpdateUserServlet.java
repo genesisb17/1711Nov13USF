@@ -36,33 +36,58 @@ public class UpdateUserServlet extends HttpServlet {
 		HttpSession session = req.getSession();
 		Users currUser = (Users)session.getAttribute("user");
 		UserDTO userInfo = mapper.readValue(json, UserDTO.class);
-		String cPassword = userInfo.getMessage()[0];
-		Users newUser = null;
+		Users newUser = userInfo.getUser(); // hasn't been sent to database yet
+		Users updatedUser = null; // get the user object returned from db commit
+		String[] message = new String[3];
+		Boolean error = false;
 		
 		// make sure that username, password, and email aren't null otherwise
 		// values will get wiped in database
-		userInfo.getUser().setUserId(currUser.getUserId());
-		if (userInfo.getUser().getEmail() == null)
-			userInfo.getUser().setEmail(currUser.getEmail());
+		newUser.setUserId(currUser.getUserId());
+		if (newUser.getEmail() == null)
+			newUser.setEmail(currUser.getEmail());
 		
-		if (userInfo.getUser().getUsername() == null)
-			userInfo.getUser().setUsername(currUser.getUsername());
+		if (newUser.getUsername() == null)
+			newUser.setUsername(currUser.getUsername());
 		
-		if (userInfo.getUser().getPassword() == null)
-			userInfo.getUser().setPassword(currUser.getPassword());
+		if (newUser.getPassword() == null)
+			newUser.setPassword(currUser.getPassword());
 		
-		if (!cPassword.equals("")) {
-			if (service.correctPassword(currUser.getUsername(), cPassword)) {
-				newUser = new Users();
-				newUser = service.updateAccount(userInfo.getUser(), currUser.getUsername(), cPassword);
+		// handle cases of username or email belonging to a different user
+		Users testEmail;
+		testEmail = new Users();
+		testEmail = service.getUserByEmail(newUser.getEmail());
+		if (testEmail != null) {
+			if (!testEmail.getUserId().equals(currUser.getUserId())) {
+				error = true;
+				message[0] = "Email belongs to another user";
 			}
-		} else {
-			newUser = new Users();
-			newUser = service.updateAccount(userInfo.getUser(), currUser.getUsername(), currUser.getPassword()); 
 		}
+		Users testUsername;
+		testUsername = new Users();
+		testUsername = service.getUserByUsername(newUser.getUsername());
+		if (testUsername != null) {
+			if (!testUsername.getUserId().equals(currUser.getUserId())) {
+				error = true;
+				message[1] = "Username belongs to another user";
+			} 
+		}
+		// handle case of incorrect password
+		if (!service.correctPassword(currUser.getUsername(), userInfo.getMessage()[0])) {
+			error = true;
+			message[2] = "Password is incorrect";
+		}
+		
+		if (!error) {
+			updatedUser = new Users();
+			updatedUser = service.updateAccount(newUser);
+		}
+		
+		UserDTO updatedInfo = new UserDTO(updatedUser, message);
 		PrintWriter out = resp.getWriter();
 		resp.setContentType("application/json");
-		session.setAttribute("user", newUser);
-		out.print(mapper.writeValueAsString(newUser));
+		if (updatedUser != null)
+			session.setAttribute("user", updatedUser);
+		out.print(mapper.writeValueAsString(updatedInfo));
 	}
 }

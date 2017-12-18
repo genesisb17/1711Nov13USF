@@ -8,6 +8,7 @@
             <button class="btn btn-warning up-btn" type="button" id="up-email-btn">Change</button>
         </span>
     </div>
+    <div class="invalid-feedback-custom" id="invalid-email"></div>
     <br>
     <label>Username</label>
     <div class="input-group">
@@ -16,7 +17,13 @@
             <button class="btn btn-warning up-btn" type="button" id="up-username-btn">Change</button>
         </span>
     </div>
+    <div class="invalid-feedback-custom" id="invalid-username"></div>
     <br>
+    <div class="flex-column" id="up-verify-password">
+        <label>Please Enter your password to proceed</label>
+        <input type="password" class="form-control ma-password" placeholder="Password" required>
+        <div class="invalid-feedback" id="invalid-verify-password"></div>
+    </div>
     <label>Password</label>
     <div class="input-group">
         <input type="password" class="form-control ma-input" id="up-password" placeholder="Password" readonly required>
@@ -27,21 +34,12 @@
     <br>
     <div id="up-confirm-password">
         <input type="password" class="form-control ma-password" placeholder="Confirm Password" required>
-    </div>
-    <div id="up-verify-password">
-        <label>Please Enter your password to proceed</label>
-        <input type="password" class="form-control ma-password" placeholder="Password" required>
+        <div class="invalid-feedback" id="invalid-confirm-password"></div>
     </div>
     <br>
-    <div class="row">
-        <div class="col-auto">
-            <button class="btn btn-secondary" id="ma-cancel">Cancel</button>
-        </div>
-        <div class="col-auto">
-            <button class="btn btn-success" id="ma-submit">Submit</button>
-        </div>
-        <div class="col-auto">
-            <button class="btn btn-link" id="return-tickets">Return to reimbursements</button>
-        </div>
+    <div class="flex-row">
+        <button class="btn btn-secondary" id="ma-cancel">Cancel</button>
+        <button class="btn btn-success ml-1" id="ma-submit">Submit</button>
+        <button class="btn btn-link ml-auto" id="return-tickets">Return to reimbursements</button>
     </div>
 </div>

@@ -32,42 +32,33 @@ $(document).on('input', '.ma-password', function () {
     $('#ma-submit').attr('disabled', false);
 });
 $(document).on('click', '.up-btn', function () {
-    // $(this).attr('class', 'btn btn-warning up-btn');
     $(this).html('Cancel');
     $(this).attr('class', 'btn btn-danger up-btn-cancel');
+    $('#up-verify-password').show();
     if ($(this).attr('id') == "up-email-btn") {
         $('#up-email').attr('readonly', false);
-        $('#up-confirm-password').hide();
-        $('#up-verify-password').show();
     } else if ($(this).attr('id') == "up-username-btn") {
         $('#up-username').attr('readonly', false);
-        $('#up-confirm-password').hide();
-        $('#up-verify-password').show();
     }
     // This is for if the password change button gets pressed
     if ($(this).attr('id') == "up-password-btn") {
         $('#up-password').attr('readonly', false);
         $('#up-confirm-password').show();
-        $('#up-verify-password').hide();
+        $('#up-password').val("");
+        $('#up-verify-password input').focus();
     }
-    // This is for if a button other than the password change gets pressed
-    // but the password change button was previously pressed and never 
-    // cancelled
-    if (!$('#up-password').is('[readonly]')) {
-        $('#up-confirm-password').show();
-        $('#up-verify-password').hide();
-    } else {
-        $('#up-confirm-password').hide();
-        $('#up-verify-password').show();
-    }
-    // $('#ma-submit').attr('disabled', false);
+    $('#ma-submit').attr('disabled', false);
 });
 $(document).on('click', '.up-btn-cancel', function () {
     $(this).html('Change');
     $(this).attr('class', 'btn btn-warning up-btn');
     if ($(this).attr('id') == "up-email-btn") {
+        $('#invalid-email').html("");
+        $('#invalid-email').hide();
         $('#up-email').attr('readonly', true);
     } else if ($(this).attr('id') == "up-username-btn") {
+        $('#invalid-username').html("");
+        $('#invalid-username').hide();
         $('#up-username').attr('readonly', true);
     } else if ($(this).attr('id') == "up-password-btn") {
         $('#up-password').attr('readonly', true);
@@ -81,7 +72,7 @@ $(document).on('click', '.up-btn-cancel', function () {
             $('#up-verify-password').show();
         } else {
             $('#up-confirm-password').show();
-            $('#up-verify-password').hide();
+            $('#up-verify-password').show();
         }
         $('#ma-submit').attr('disabled', false);
     } else {
@@ -158,8 +149,8 @@ $(document).on('click', '#showresolved', function () {
         $('#reimb-table-manager').tabulator('addFilter', nameFilter);
         $("#reimb-table-manager").tabulator("clearSort");
         $("#reimb-table-manager").tabulator("setSort", "resolved", "desc");
-        $("#tablefilters .active").removeClass('active');
-        $("#showresolved").addClass('active');
+        $("#all-reimbs #tablefilters .active").removeClass('active');
+        $("#all-reimbs #showresolved").addClass('active');
     } else {
         $("#reimb-table").tabulator("setFilter", resolvedFilter);
         $("#reimb-table").tabulator("clearSort");
@@ -167,7 +158,6 @@ $(document).on('click', '#showresolved', function () {
         $("#user-reimbs #tablefilters .active").removeClass('active');
         $("#user-reimbs #showresolved").addClass('active');
     }
-
 });
 
 function filterUpdater() {
@@ -345,6 +335,8 @@ function loadManageAccount() {
             $('#view').html(xhr.responseText);
             $('#up-confirm-password').hide();
             $('#up-verify-password').hide();
+            $('#invalid-email').hide();
+            $('#invalid-username').hide();
             getAccountInfo();
 
         }
@@ -371,8 +363,7 @@ function login() {
         if (xhr.readyState == 4 && xhr.status == 200) {
             var currUser = JSON.parse(xhr.responseText);
             if (currUser == null) {
-                $('#login-input').addClass('was-validated');
-                $('.message').show();
+                // $('.message').show();
                 $('#invalid-password').html("Invalid username or password");
                 $('#password').val("");
             } else {
@@ -419,35 +410,46 @@ function updateAccount() {
 
     xhr.onreadystatechange = function () {
         if (xhr.readyState == 4 && xhr.status == 200) {
-            var user = JSON.parse(xhr.responseText);
-            if (user != null) {
+            var ui = JSON.parse(xhr.responseText);
+            var user = ui.user;
+            var message = ui.message;
+            if (user == null) {
+                if (message[0] != null) {
+                    $('#up-email').val("");
+                    $('#up-email').val("");
+                    $('#invalid-email').show();
+                    $('#invalid-email').html(message[0]);
+                }
+                if (message[1] != null) {
+                    $('#up-username').val("");
+                    $('#invalid-username').show();
+                    $('#invalid-username').html(message[1]);
+                }
+                if (message[2] != null) {
+                    $('#invalid-verify-password').html(message[2]);
+                }
+                $('#up-verify-password input').val("");
+            } else {
                 loadManageAccount();
-                // $('#up-confirm-password').hide();
-                // $('#up-verify-password').hide();
-
-                // $('#up-email').val(user.email);
-                // $('#up-username').val(user.username);
-                // $('#up-password').val(user.password);
-                // $('.ma-input').attr('readonly', true);
-                // $('#ma-submit').attr('disabled', true);
             }
         }
     }
 
-    if ($('#up-confirm-password').is(':visible') && ($('#up-confirm-password input').val() == $('#up-password').val())) {
-        var updatedUserInfo = {
-            user: updatedUser,
-            message: [""]
-        }
-        xhr.open("POST", "updateaccount", true);
-        xhr.send(JSON.stringify(updatedUserInfo));
-    } else if ($('#up-verify-password').is(':visible')) {
+    if (($('#up-confirm-password').is(':visible') &&
+        ($('#up-confirm-password input').val() == $('#up-password').val())) ||
+        !$('#up-confirm-password').is(':visible')) {
         var updatedUserInfo = {
             user: updatedUser,
             message: [$('#up-verify-password input').val()]
         }
         xhr.open("POST", "updateaccount", true);
         xhr.send(JSON.stringify(updatedUserInfo));
+    } else {
+        $('#up-confirm-password input').val("");
+        $('#up-password').val("");
+        $('#up-verify-password input').val("");
+        $('#up-verify-password input').focus();
+        $('#invalid-confirm-password').html("Passwords do not match");
     }
 }
 
@@ -477,9 +479,14 @@ function createAccount() {
             var currUser = ui.user;
             var message = ui.message;
             if (currUser == null) {
-                $('.bad-username').show();
-                $('#bad-username').html(ui.message[0]);
-                $('#username').val("");
+                if (message[0] != null) {
+                    $('#username').val("");
+                    $('#invalid-username').html(message[0])
+                }
+                if (message[1] != null) {
+                    $('#email').val("");
+                    $('#invalid-email').html(message[1]);
+                }
                 $('#password').val("");
                 $('#confirm-password').val("");
             } else {
@@ -488,15 +495,17 @@ function createAccount() {
         }
     }
 
-    if (user.password != $('#confirm-password').val()) {
-        $('.bad-password').show();
-        $('#bad-password').html("Password and Confirm password do not match");
-        $('#password').val("");
-        $('#confirm-password').val("");
-    } else {
+    if (user.username != "" && user.password != "" &&
+        user.firstName != "" && user.lastName != "" &&
+        user.email != "" && $('#confirm-password').val() != "" &&
+        $('#confirm-password').val() == user.password) {
         var userString = JSON.stringify(user);
         xhr.open("POST", "createAccount", true);
         xhr.send(userString);
+    } else if ($('#confirm-password').val() != user.password) {
+        $('#password').val("");
+        $('#confirm-password').val("");
+        $('#invalid-confirm-password').html("Password and confirm password do not match.");
     }
 }
 
@@ -588,8 +597,6 @@ function getEmployeeTicketInfo() {
         layout: 'fitColumns',
         pagination: "local",
         paginationSize: 8,
-        persistentLayout: true,
-        persistentLayoutID: "alltickets",
         selectable: 0,
         columns: [
             { title: "Ticket #:", field: "reimbId" },
@@ -618,7 +625,7 @@ function getEmployeeTicketInfo() {
     $("#reimb-table").tabulator("setFilter", pendingFilter);
     $("#reimb-table").tabulator("clearSort");
     $("#reimb-table").tabulator("setSort", "submitted", "desc");
-    $("#namefilter").keyup(updateFilter);
+    // filterUpdater();
     // console.log("getEmployeeTickets");
 }
 
