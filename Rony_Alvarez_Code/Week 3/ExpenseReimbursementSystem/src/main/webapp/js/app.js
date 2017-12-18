@@ -93,21 +93,45 @@ function getAllTickets() {
 }
 
 function newTicketModal() {
-
-	$("#dialog").dialog({
-		autoOpen : false,
-		show : {
-			effect : "scale",
-			duration : 300
-		},
-		hide : {
-			effect : "scale",
-			duration : 300
-		}
-	});
-
+	
 	$("#opener").on("click", function() {
-		$("#dialog").dialog("open");
+		openReimDialog();
 	});
 
 }
+
+function newReimModalAJAX() {
+	
+	var reimamount = document.getElementById("reimamount").value;
+	var reimdesc = document.getElementById("reimdesc").value;
+	var reimtype = document.getElementById("reimtype").value;
+	
+	//console.log(reimamount +", "+ reimdesc +", "+ reimtype);
+	
+	$.ajax({
+        url:'NewReimbursement',
+        data:{"amount":reimamount, "description": reimdesc, "type": reimtype},
+        type:'post',
+        cache:false,
+        success:function(data){ 
+        	
+        	//console.log("success!");
+        	closeDialog();
+        	location.reload();
+        	
+        },
+        error:function(){
+        	console.log("Error. appmanager.js line 175.");
+        }
+     });
+	
+};
+
+function openReimDialog() {
+	Avgrund.show( "#reim-popup" );
+}
+
+function closeDialog() {
+	Avgrund.hide();
+}
+

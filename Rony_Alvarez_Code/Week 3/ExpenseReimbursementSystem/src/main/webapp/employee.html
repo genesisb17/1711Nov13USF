@@ -2,7 +2,12 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Banking App!</title>
+
+<title>Revature - ERS</title>
+
+<link rel="icon"
+	href="https://3g4d13k75x47q7v53surz1gi-wpengine.netdna-ssl.com/wp-content/themes/revature/imgs/favicon_192.png">
+
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
 	integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb"
@@ -21,7 +26,6 @@
 
 <link rel="stylesheet" href="css/main.css">
 <link rel="stylesheet" href="css/employee.css">
-<link rel="stylesheet" href="css/editor.dataTables.min.css">
 
 <!-- Default Theme -->
 <!--1 <link rel="stylesheet"
@@ -46,15 +50,20 @@
 <script type="text/javascript" src="//code.jquery.com/jquery-1.12.4.js"></script>
 <script type="text/javascript"
 	src="https://cdn.datatables.net/r/ju-1.11.4/jqc-1.11.3,dt-1.10.8/datatables.min.js"></script>
-	
-	
-	<script src="https://cdn.datatables.net/buttons/1.5.0/js/dataTables.buttons.min.js"></script>
-	<script src="https://cdn.datatables.net/select/1.2.4/js/dataTables.select.min.js"></script>
-	<script src="js/dataTables.editor.min.js"></script>
+
+
+<script
+	src="https://cdn.datatables.net/buttons/1.5.0/js/dataTables.buttons.min.js"></script>
+<script
+	src="https://cdn.datatables.net/select/1.2.4/js/dataTables.select.min.js"></script>
+<script src="js/dataTables.editor.min.js"></script>
 
 <link
 	href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300"
 	rel="stylesheet">
+
+<link rel="stylesheet" href="css/demo.css">
+<link rel="stylesheet" href="css/avgrund.css">
 
 <!-- <link href="https://fonts.googleapis.com/css?family=Cormorant+Garamond" rel="stylesheet">
  -->
@@ -110,24 +119,31 @@
 
 			<br>
 
-			<div id="dialog" title="New Ticket">
-				<form name="newrequest" action="" method="get">
+			<aside id="reim-popup" class="avgrund-popup" style="top: 33%;">
+				
+				<h2>New Reimbursement</h2>
 
-					<br> <input type="number" name="amount" placeholder="Amount"
-						class="form-control"> <br>
-					<textarea name="description" placeholder="Description"
-						class="form-control"></textarea>
-					<br> <select name="type"
-						class="form-control dropdown-toggle dropdown-toggle-split">
-						<option value="lodging">Lodging</option>
-						<option value="travel">Travel</option>
-						<option value="food">Food</option>
-						<option value="other">Other</option>
-					</select><br> <input type="submit" value="Submit"
-						class="btn btn-primary btn-block"> <br>
+				<small>Please enter the information below.</small> 
+				
+				<br>
+				
+				<input type="number" id="reimamount" name="amount" placeholder="Amount"
+					class="form-control"> <br>
+				<textarea name="description" id="reimdesc" placeholder="Description"
+					class="form-control"></textarea><br> 
+				<select name="type" id="reimtype"
+					class="form-control dropdown-toggle dropdown-toggle-split">
+					<option value="lodging">Lodging</option>
+					<option value="travel">Travel</option>
+					<option value="food">Food</option>
+					<option value="other">Other</option>
+				</select><br> 
+				<input type="submit" onclick="javascript:newReimModalAJAX();" value="Submit"
+					class="btn btn-primary btn-block"> <br>
 
-				</form>
-			</div>
+			</aside>
+			
+			<div class="avgrund-cover"></div>
 
 			<br> <br>
 
@@ -136,5 +152,6 @@
 	</div>
 
 	<script src="js/app.js"></script>
+	<script type="text/javascript" src="js/avgrund.js"></script>
 </body>
 </html>

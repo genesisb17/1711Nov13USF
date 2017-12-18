@@ -9,29 +9,28 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import dao.DAO;
-import dao.FileDAO;
 import pojos.User;
+import service.Service;
 
 @WebServlet("/login")
 public class Login extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     
-	static DAO dao = new FileDAO();
+	Service service = new Service();
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 		
-		int login = dao.login(username, password);
+		int login = service.login(username, password);
 		
 		String redirectTo;
 		
 		if(login == 1) {
 			
 			// get the user information
-			User temp = dao.getUserByUsername(username);
+			User temp = service.getUserByUsername(username);
 			
 			// persist this user and reimbursement data to the session to be accessed throughout servlets and js
 			HttpSession session = request.getSession();
@@ -43,8 +42,7 @@ public class Login extends HttpServlet {
 			} else {
 				redirectTo = "employee.html";
 			}
-			
-			
+					
 		} else {
 			
 			redirectTo = "loginerror.html";

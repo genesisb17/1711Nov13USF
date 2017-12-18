@@ -14,23 +14,22 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
-import dao.DAO;
-import dao.FileDAO;
 import pojos.Reimbursement;
 import pojos.User;
+import service.Service;
 
 public class AllTicketsManager extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		DAO dao = new FileDAO();
+		Service service = new Service();
 
 		// get user from session
 		User user = (User) request.getSession(false).getAttribute("user");
 		
 		// get the user reimbursements
-		ArrayList<Reimbursement> reim = dao.getAllReimbursements(user.getUsername());
+		ArrayList<Reimbursement> reim = service.getAllReimbursements(user.getUsername());
 		
 		// create the json object
 		response.setContentType("application/json");

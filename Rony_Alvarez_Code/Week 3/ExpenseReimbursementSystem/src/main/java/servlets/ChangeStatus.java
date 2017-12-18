@@ -1,23 +1,13 @@
 package servlets;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
-
-import dao.DAO;
-import dao.FileDAO;
-import pojos.User;
-import pojos.UserReimbursement;
+import service.Service;
 
 public class ChangeStatus extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -25,15 +15,15 @@ public class ChangeStatus extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		DAO dao = new FileDAO();
+		/*DAO dao = new FileDAO();
 		
 		// get user from cache
 		User user = (User) request.getSession(false).getAttribute("user");
 		
-		String status = request.getParameter("status");
+		String status = request.getParameter("name");
 		
 		// call the updateStatus function
-		dao.updateStatus(user.getId());
+		//dao.updateStatus(user.getId());
 		
 		
 		
@@ -49,16 +39,38 @@ public class ChangeStatus extends HttpServlet {
 		jsonObject.add("data", jarray);
 
 		out.print(jsonObject.toString());
-		out.flush();
+		out.flush();*/
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		String status = request.getParameter("Status");
-		System.out.println(status);
+		Service service = new Service();
 		
-		//doGet(request, response);
+		int id = Integer.parseInt(request.getParameter("id"));
+		String status = request.getParameter("status");
+		//System.out.println(id + ", " +status);
+		
+		int statusid = 0;
+		
+		switch(status) {
+		
+		case "pending":
+			statusid = 1;
+			break;
+		case "approved":
+			statusid = 2;
+			break;
+		case "denied":
+			statusid = 3;
+			break;
+		
+		}
+		
+		//System.out.println(id + ", " + statusid);
+		service.updateStatus(id, statusid);
+		
+		
 	}
 
 }

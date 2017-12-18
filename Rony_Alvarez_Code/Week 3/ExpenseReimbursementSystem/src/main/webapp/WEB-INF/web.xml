@@ -80,4 +80,24 @@
     <servlet-name>ChangeStatus</servlet-name>
     <url-pattern>/ChangeStatus</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>NewReimbursement</display-name>
+    <servlet-name>NewReimbursement</servlet-name>
+    <servlet-class>servlets.NewReimbursement</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>NewReimbursement</servlet-name>
+    <url-pattern>/NewReimbursement</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>NewUser</display-name>
+    <servlet-name>NewUser</servlet-name>
+    <servlet-class>servlets.NewUser</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>NewUser</servlet-name>
+    <url-pattern>/NewUser</url-pattern>
+  </servlet-mapping>
 </web-app>

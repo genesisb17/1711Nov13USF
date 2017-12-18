@@ -2,7 +2,12 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Banking App!</title>
+
+<title>Revature - ERS</title>
+
+<link rel="icon"
+	href="https://3g4d13k75x47q7v53surz1gi-wpengine.netdna-ssl.com/wp-content/themes/revature/imgs/favicon_192.png">
+
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
 	integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb"
@@ -50,6 +55,9 @@
 	href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300"
 	rel="stylesheet">
 
+<link rel="stylesheet" href="css/demo.css">
+<link rel="stylesheet" href="css/avgrund.css">
+
 <!-- <link href="https://fonts.googleapis.com/css?family=Cormorant+Garamond" rel="stylesheet">
  -->
 </head>
@@ -68,8 +76,7 @@
 			<li id="logout" class="navButtons"><a>Logout</a></li>
 		</ul>
 
-		<div
-			style="margin-left: 15%; margin-right: 2%; padding-top: 3%; padding-bottom: 1%; padding-left: 16px; padding-right: 16px;">
+		<div style="margin-left: 15%; margin-right: 2%; padding-top: 3%; padding-bottom: 1%; padding-left: 16px; padding-right: 16px;">
 
 			<div style="float: left;">
 				<h2>Ticket History</h2>
@@ -80,8 +87,7 @@
 					Request</button>
 			</div>
 
-			<br>
-			<br>
+			<br> <br>
 
 			<hr>
 
@@ -106,43 +112,50 @@
 
 			<br>
 
-			<div id="dialog" title="New Ticket">
-				<form name="newrequest" action="" method="get">
+			<aside id="default-popup" class="avgrund-popup">
+				
+				<h2>Update Status</h2>
 
-					<br> <input type="number" name="amount" placeholder="Amount"
-						class="form-control"> <br>
-					<textarea name="description" placeholder="Description"
-						class="form-control"></textarea>
-					<br> <select name="type"
-						class="form-control dropdown-toggle dropdown-toggle-split">
-						<option value="lodging">Lodging</option>
-						<option value="travel">Travel</option>
-						<option value="food">Food</option>
-						<option value="other">Other</option>
-					</select><br> <input type="submit" value="Submit"
-						class="btn btn-primary btn-block"> <br>
+				<small>Select the new status from the dropdown list.</small> <br>
 
-				</form>
-			</div>
-			
-			<div id="updatedialog" title="Update Status" >
-				<div>
-					
-					<select name="status"
-						class="form-control dropdown-toggle dropdown-toggle-split">
-						<option value="pending">PENDING</option>
-						<option value="approved">APPROVED</option>
-						<option value="denied">DENIED</option>
-					</select>
+				<select name="status" id="statusdrop"
+					class="form-control dropdown-toggle dropdown-toggle-split">
+					<option value="pending">PENDING</option>
+					<option value="approved">APPROVED</option>
+					<option value="denied">DENIED</option>
+				</select> <br>
 
-					<br>
+				<button type="submit" onclick="updateStatusModalAJAX();"
+					class="other">Submit</button>
+				<button onclick="javascript:closeDialog();">Close</button>
 
-					<button type="submit" value="Submit"
-						class="btn btn-primary btn-block"></button>
-					<br>
-					
-				</div>
-			</div>
+			</aside>
+
+			<aside id="reim-popup" class="avgrund-popup" style="top: 33%;">
+				
+				<h2>New Reimbursement</h2>
+
+				<small>Please enter the information below.</small> 
+				
+				<br>
+				
+				<input type="number" id="reimamount" name="amount" placeholder="Amount"
+					class="form-control"> <br>
+				<textarea name="description" id="reimdesc" placeholder="Description"
+					class="form-control"></textarea><br> 
+				<select name="type" id="reimtype"
+					class="form-control dropdown-toggle dropdown-toggle-split">
+					<option value="lodging">Lodging</option>
+					<option value="travel">Travel</option>
+					<option value="food">Food</option>
+					<option value="other">Other</option>
+				</select><br> 
+				<input type="submit" onclick="javascript:newReimModalAJAX();" value="Submit"
+					class="btn btn-primary btn-block"> <br>
+
+			</aside>
+
+			<div class="avgrund-cover"></div>
 
 			<br> <br>
 
@@ -151,5 +164,6 @@
 	</div>
 
 	<script src="js/appmanager.js"></script>
+	<script type="text/javascript" src="js/avgrund.js"></script>
 </body>
 </html>

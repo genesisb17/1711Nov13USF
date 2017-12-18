@@ -15,10 +15,9 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
-import dao.DAO;
-import dao.FileDAO;
 import pojos.User;
 import pojos.UserReimbursement;
+import service.Service;
 
 @WebServlet("/getAllTickets")
 public class AllTickets extends HttpServlet {
@@ -27,17 +26,18 @@ public class AllTickets extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		DAO dao = new FileDAO();
+		Service service = new Service();
 
 		// get user from session
 		User user = (User) request.getSession(false).getAttribute("user");
 		
 		// get the user reimbursements
-		ArrayList<UserReimbursement> userreim = dao.getUserReimbursements(user.getId());
+		ArrayList<UserReimbursement> userreim = service.getUserReimbursements(user.getId());
 		
 		// create the json object
 		response.setContentType("application/json");
 		PrintWriter out = response.getWriter();
+		
 		
 		Gson gson = new GsonBuilder().serializeNulls().create();
 		JsonArray jarray = gson.toJsonTree(userreim).getAsJsonArray();

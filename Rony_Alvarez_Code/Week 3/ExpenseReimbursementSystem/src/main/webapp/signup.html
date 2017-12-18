@@ -28,6 +28,8 @@
 	crossorigin="anonymous"></script>
 
 <link rel="stylesheet" href="css/main.css">
+<link href="//cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.3.26/theme-default.min.css"
+    rel="stylesheet" type="text/css" />
 
 </head>
 
@@ -50,20 +52,34 @@
 
 						<br>
 
-						<form name="signup" action="SignupServlet" method="post">
+						<form name="signup" action="NewUser" method="post">
 
 							<input type="text" name="username" placeholder="Username"
-								class="form-control"> <br> <input type="password"
-								name="password" placeholder="Password" class="form-control">
-							<br> <input type="text" name="firstname"
-								placeholder="First Name" class="form-control"> <br>
+								class="form-control"
+								data-validation="length alphanumeric"
+								data-validation-length="3-12"
+								data-validation-error-msg="User name has to be an alphanumeric value (3-12 chars)"> <br> 
+							<input type="password"
+								name="password" placeholder="Password" class="form-control"
+								data-validation="strength" 
+		 						data-validation-strength="1"> <br> 
+							<input type="text" name="firstname"
+								placeholder="First Name" class="form-control"
+								data-validation="length alphanumeric"
+								data-validation-length="3-12"
+								data-validation-error-msg="First name has to be an alphanumeric value (3-12 chars)"> <br>
 							<input type="text" name="lastname" placeholder="Last Name"
-								class="form-control"> <br> <input type="email"
-								name="email" placeholder="Email" class="form-control"> <br>
-							<select name="role" class="form-control dropdown-toggle dropdown-toggle-split">
+								class="form-control"
+								data-validation="length alphanumeric"
+								data-validation-length="3-12"
+								data-validation-error-msg="Last name has to be an alphanumeric value (3-12 chars)"> <br> 
+							<input type="email"
+								name="email" placeholder="Email" class="form-control"
+								data-validation="email"> <br>
+							<!-- <select name="role" class="form-control dropdown-toggle dropdown-toggle-split">
 								<option value="employee">Employee</option>
 								<option value="admin">Manager</option>
-							</select> <br> <input type="submit" value="Sign up!"
+							</select> <br> --> <input type="submit" value="Sign up!"
 								class="btn btn-primary btn-block"> <br>
 							<p class="form-bottom-text">
 								Already a member? <a href="login.html">Log in</a>
@@ -81,6 +97,15 @@
 	</div>
 
 	<script src="js/main.js"></script>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script
+		src="//cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.3.26/jquery.form-validator.min.js"></script>
+	<script>
+		$.validate({
+			modules : 'location, date, security, file',
+			/* errorMessagePosition : 'inline', */
+		});
+	</script>
 
 </body>
 

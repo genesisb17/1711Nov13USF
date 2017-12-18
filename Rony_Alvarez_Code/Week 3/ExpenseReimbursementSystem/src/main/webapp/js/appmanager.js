@@ -68,6 +68,8 @@ function logout() {
 
 };
 
+var data;
+
 function getAllTicketsManager() {
 
 	var table = $('#example')
@@ -75,6 +77,7 @@ function getAllTicketsManager() {
 					{
 						paging: true,
 						sort: true,
+						/*scrollY: "400px",*/
 						search: true,
 						"ajax" : {
 							"url" : "http://localhost:9999/ExpenseReimbursementSystem/AllTicketsManager",
@@ -101,10 +104,11 @@ function getAllTicketsManager() {
 	
 	// Activate the inline editor on click of a table cell
 	$('#example tbody').on( 'click', 'tr', function () {
-	    var data = table.row( this ).data();
-	    console.log(data);
+	    var datas = table.row( this ).data();
+	    data = datas.id;
+	    //console.log(data.status);
 	    
-	    $("#updatedialog").dialog("open");
+	    openDialog();
 	    
 	} );
 
@@ -128,42 +132,71 @@ function updateStatusModal() {
 
 function updateStatusModalAJAX() {
 	
-	// Create XMLHttpRequest Object
-	var xhr = new XMLHttpRequest();
+	var status = document.getElementById("statusdrop").value;
+	//console.log(data + " " + status)
+	
+	$.ajax({
+        url:'ChangeStatus',
+        data:{"status":status, "id": data},
+        type:'post',
+        cache:false,
+        success:function(data){ 
+        	
+        	closeDialog();
+        	location.reload();
+        	//getAllTicketsManager();
+        },
+        error:function(){
+        	console.log("Error. appmanager.js line 145.");
+        }
+     });
+	
+};
 
-	// Callback function
-	xhr.onreadystatechange = function() {
-		if (xhr.readyState == 4 && xhr.status == 200) {
-			location.reload();
-		}
-	}
-
-	// Open the request
-	xhr.open("POST", "ChangeStatus", true);
-
-	// Send the request
-	xhr.send();
+function newReimModalAJAX() {
+	
+	var reimamount = document.getElementById("reimamount").value;
+	var reimdesc = document.getElementById("reimdesc").value;
+	var reimtype = document.getElementById("reimtype").value;
+	
+	//console.log(reimamount +", "+ reimdesc +", "+ reimtype);
+	
+	$.ajax({
+        url:'NewReimbursement',
+        data:{"amount":reimamount, "description": reimdesc, "type": reimtype},
+        type:'post',
+        cache:false,
+        success:function(data){ 
+        	
+        	//console.log("success!");
+        	closeDialog();
+        	location.reload();
+        	
+        },
+        error:function(){
+        	console.log("Error. appmanager.js line 175.");
+        }
+     });
 	
 };
 
 function newTicketModal() {
-
-	$("#dialog").dialog({
-		autoOpen : false,
-		show : {
-			effect : "scale",
-			duration : 300
-		},
-		hide : {
-			effect : "scale",
-			duration : 300
-		}
-	});
-
+	
 	$("#opener").on("click", function() {
-		$("#dialog").dialog("open");
+		openReimDialog();
 	});
 
 }
 
+function openDialog() {
+	Avgrund.show( "#default-popup" );
+}
+
+function openReimDialog() {
+	Avgrund.show( "#reim-popup" );
+}
+
+function closeDialog() {
+	Avgrund.hide();
+}
 
