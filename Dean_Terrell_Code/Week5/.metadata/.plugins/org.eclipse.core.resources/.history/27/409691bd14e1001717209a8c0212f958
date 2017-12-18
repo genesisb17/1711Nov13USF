@@ -1,0 +1,15 @@
+package com.ex.beans;
+
+import java.util.Set;
+
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="TRANSCRIPT")
+public class Transcript {
+
+	private int id;
+	private Set<Course> courses;
+	private
+}

@@ -25,15 +25,29 @@ public class FrontController extends HttpServlet{
 		case "/newBank/profile.view": {
 			return "partials/profile.html";
 		}
+		case "/newBank/profile2.view": {
+			return "partials/profile2.html";
+		}
 		case "/newBank/home.view": {
-			System.out.println("Returning home view!");
 			return "partials/home.html";
+		}
+		case "/newBank/home2.view": {
+			return "partials/home2.html";
+		}
+		case "/newBank/reimb.view": {
+			return "partials/reimb.html";
 		}
 		case "/newBank/register.view": {
 			return "register.html";
 		}
-		case "/newBank/app.view": {
-			return "app.html";
+		case "/newBank/app1.view": {
+			return "app1.html";
+		}
+		case "/newBank/app2.view": {
+			return "app2.html";
+		}
+		case "/newBank/login.view": {
+			return "login.html";
 		}
 		}
 		System.out.println("Improper process request	");

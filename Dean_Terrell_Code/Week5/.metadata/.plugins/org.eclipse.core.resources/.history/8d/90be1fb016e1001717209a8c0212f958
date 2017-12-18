@@ -1,0 +1,27 @@
+package com.ex.beans;
+
+import java.util.Set;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinColumns;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="TRANSCRIPT")
+public class Transcript {
+	
+	@Id
+	@Column(name="TRANSCRIPT_ID")
+	@SequenceGenerator(name = "TRANSCRIPT_ID_SEQ", sequenceName = "TRANSCRIPT_ID_SEQ")
+	@GeneratedValue(generator = "TRANSCRIPT_ID_SEQ", strategy = GenerationType.SEQUENCE)
+	private int id;
+	
+	@JoinColumns(value = { @JoinColumn })
+	private Set<Course> courses;
+}

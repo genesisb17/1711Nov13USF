@@ -2,6 +2,8 @@ package com.real.servlets;
 
 import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -16,11 +18,6 @@ public class LogoutServlet extends HttpServlet{
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		System.out.println("Logging out user");
-		if(req.getSession(false) == null) {
-			//req.getSession returns the current HttpSession, if there is none
-			// bool value of true would create session
-			resp.sendRedirect("app.html");
-		}
 		
 		HttpSession session = req.getSession(false);
 		if(session != null) {
@@ -28,6 +25,8 @@ public class LogoutServlet extends HttpServlet{
 			session.invalidate();
 			System.out.println("Session invalidated!");
 		}
-		resp.sendRedirect("app.html");
+		ServletContext context= getServletContext();
+		RequestDispatcher rd= context.getRequestDispatcher("/landing.html");
+		rd.include(req, resp);
 	}
 }

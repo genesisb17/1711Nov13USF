@@ -1,0 +1,10 @@
+package com.ex.beans;
+
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="COURSES")
+public class Course {
+
+}

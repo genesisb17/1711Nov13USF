@@ -4,9 +4,12 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+
 import com.real.util.ConnectionFactory;
 import com.real.dao.DAO;
 import com.real.dao.FileDAO;
+import com.real.pojos.TableRow;
 import com.real.pojos.User;
 
 public class Service {
@@ -19,6 +22,12 @@ public class Service {
 			return null;
 		}
 		dao.addUser(u);
+		return u;
+	}
+	
+	public User addReimbursement(User u, String[] rb) {
+		dao.addReimbursement(u, rb);
+		
 		return u;
 	}
 	
@@ -50,9 +59,13 @@ public class Service {
 		}
 		return false;
 	}
+
+	public ArrayList<TableRow> getReimbursements(User user) {
+		return dao.getReimbursements(user);
+	}
 	
-	public void updateBalance(User u, double newValue) {
-		dao.updateBalance(u, newValue);
+	public void updateReimbursement(String[] vals) {
+		dao.updateReimbursement(vals);
 	}
 	
 }

@@ -1,16 +1,4 @@
-<section>
-<header class="header">
-  <h1>Todos</h1>
-  <input class="new-todo" placeholder="What needs to be done?"
-  autofocus = "" [(ngModel)]="newTodo.title" (keyup.enter)="addTodo()">
-</header>
-  
-<section class="main" *ngIf="todos.length>0">
-  <ul>
-    <li *ngFor = "let todo of todos">
-      {{todo.title}}
-    </li>
-  </ul>
-</section>
-  
-</section>
+<app-todo-list-header (add)="onAddTodo($event)"></app-todo-list-header>
+<app-todo-list [todos] = "todos" (remove)="onRemoveTodo($event)"
+ (toggleComplete)="onToggleTodoComplete($event)"></app-todo-list>
+<app-todo-footer [todos] = "todos"></app-todo-footer>

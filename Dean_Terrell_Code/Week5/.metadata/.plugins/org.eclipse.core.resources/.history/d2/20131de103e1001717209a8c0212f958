@@ -1,0 +1,13 @@
+package com.ex.test;
+
+import com.ex.beans.Student;
+import com.ex.dao.hipDao;
+
+public class Test {
+	
+	Student s = new Student(5, "Hi", "Guy", "mrguy@bamthisanEMAIL.com");
+	
+	hipDao dao = new hipDao();
+	
+	dao.addStudent(s);
+}

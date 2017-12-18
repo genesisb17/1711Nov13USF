@@ -1,0 +1,41 @@
+package com.ex.dao;
+
+import java.util.List;
+
+import org.hibernate.Criteria;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
+import com.ex.beans.Student;
+import com.ex.util.ConnectionUtil;
+
+public class hipDao {
+
+	public void addStudent(Student student) {
+		Session session = ConnectionUtil.getSession();
+		try {
+			Transaction tx = session.beginTransaction();
+			session.save(student);
+			tx.commit();
+		}
+		finally {
+			session.close();
+		}
+	}
+	
+	/*
+	 * CRITERIA API
+	 * - Criteria is a simplified API for retrieving entities
+	 * by composing Criteria objects. This is a very convenient
+	 * approach for functionality like "search" where
+	 * there is a variable number of conditions to be placed
+	 *  upon the result set
+	 */
+	public List<Student> getAllStudents() {
+		Session session = ConnectionUtil.getSession();
+		Criteria criteria = session.createCriteria(Student.class);
+		List<Student> students = criteria.list();
+		session.close();
+		return students;
+	}
+}

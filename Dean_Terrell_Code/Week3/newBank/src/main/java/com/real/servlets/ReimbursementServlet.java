@@ -33,10 +33,11 @@ public class ReimbursementServlet extends HttpServlet{
 		}
 		HttpSession session = req.getSession();
 		User user = (User)session.getAttribute("user");
-		
+		System.out.println(user);
 		ObjectMapper mapper = new ObjectMapper();
 		
-		User u = mapper.readValue(json, User.class);
-		u = service.addUser(u);
+		String[] vals = mapper.readValue(json, String[].class);
+		
+		service.addReimbursement(user, vals);
 	}
 }

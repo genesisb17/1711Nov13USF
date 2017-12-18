@@ -20,7 +20,6 @@ public class GetUserInfoServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-		System.out.println("In user info servlet");
 		//Service service = new Service();
 		
 		HttpSession session = req.getSession();

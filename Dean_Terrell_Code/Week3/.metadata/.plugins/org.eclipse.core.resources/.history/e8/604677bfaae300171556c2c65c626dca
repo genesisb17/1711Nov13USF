@@ -1,0 +1,30 @@
+<div class="container"> <br> <br> <br> <br>
+	<div class="row">
+		<div class="col"></div>
+		<div class="col-5">
+			<h2>Reimbursement Request Form</h2> <br>
+			<font size="+1">
+			<select class="custom-select" id="type">
+				<option selected>Choose a reimbursement type</option>
+				<option value="1">Lodging</option>
+				<option value="2">Travel</option>
+				<option value="3">Food</option>
+				<option value="4">Other</option>
+			</select> <br> <br>
+			<strong>Reimbursement amount:</strong><label class="sr-only"
+				for="inlineFormInputGroupUsername2">Reimbursement amount</label>
+			<div class="input-group mb-2 mr-sm-2 mb-sm-0">
+				<div class="input-group-addon">$</div>
+				<input type="text" class="form-control" id="amount" placeholder="">
+			</div> <br>
+			<label for="exampleFormControlTextarea1"><strong>Describe
+				the details of your reimbursement request:</strong></label>
+			<textarea class="form-control" id="description" rows="3"></textarea>
+			<br>
+			<button type="button" id="submit" class="btn btn-primary">Submit
+				request</button>
+			</font>
+		</div>
+		<div class="col"></div>
+	</div>
+</div>

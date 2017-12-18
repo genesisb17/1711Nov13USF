@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Encapsulate field &apos;com.ex.beans.Student.transcript&apos; in &apos;com.ex.beans.Student&apos;&#x0D;&#x0A;- Original project: &apos;hibIntro&apos;&#x0D;&#x0A;- Original element: &apos;com.ex.beans.Student.transcript&apos;&#x0D;&#x0A;- Getter method name: &apos;getTranscript&apos;&#x0D;&#x0A;- Setter method name: &apos;setTranscript&apos;&#x0D;&#x0A;- Field visibility: &apos;public&apos;&#x0D;&#x0A;- Use getter and setter methods in declaring type" comments="false" declaring="true" description="Encapsulate field &apos;transcript&apos;" flags="589830" getter="getTranscript" id="org.eclipse.jdt.ui.self.encapsulate" input="/src\/main\/java&lt;com.ex.beans{Student.java[Student^transcript" insertion="10" setter="setTranscript" stamp="1513286039628" version="1.0" visibility="1"/>
+</session>

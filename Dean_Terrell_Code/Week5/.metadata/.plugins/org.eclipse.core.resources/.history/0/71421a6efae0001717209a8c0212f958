@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="hibIntro">
+        <wb-resource deploy-path="/" source-path="/src/main/webapp"/>
+        <property name="context-root" value="hibIntro"/>
+        <property name="java-output-path" value="/hibIntro/target/classes"/>
+    </wb-module>
+</project-modules>

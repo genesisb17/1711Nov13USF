@@ -1,0 +1,6 @@
+<div>
+<h1>Profile</h1>
+<h2>Welcome, <span id="name"></span></h2>
+</div>
+
+<div id="user_table"></div>

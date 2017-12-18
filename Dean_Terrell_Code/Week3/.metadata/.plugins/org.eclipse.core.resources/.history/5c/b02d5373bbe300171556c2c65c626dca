@@ -1,0 +1,30 @@
+<div id="landing"> <br> <br>
+	  <img style="border-radius: 100%; display: block; margin: auto; width: 21%;" src="https://i.imgur.com/cqWYG0L.jpg" alt="Avatar">
+	<div class="container">
+  <div class="row">
+    <div class="main">
+    <br>
+      <h3>Log In</h3>
+      <form role="form">
+        <div class="form-group">
+          <label for="inputUsernameEmail"><h5>Username or email</h5></label>
+          <input type="text" class="form-control" id="username">
+        </div>
+        <div class="form-group">
+          <label for="inputPassword">Password</label>
+          <input type="password" class="form-control" id="pass">
+        </div>
+        <div class="alert alert-info" id="message" ></div>
+        <button type="button" class="btn btn btn-primary" id ="login">
+          Log In
+        </button>
+        <button type="button" class="btn btn btn-primary" id = "register">
+          Register
+        </button>
+      </form>
+    
+    </div>
+    
+  </div>
+</div>
+</div>

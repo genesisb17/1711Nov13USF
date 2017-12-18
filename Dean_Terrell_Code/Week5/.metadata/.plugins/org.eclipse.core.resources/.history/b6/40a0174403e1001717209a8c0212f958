@@ -1,0 +1,10 @@
+package com.ex.dao;
+
+import com.ex.beans.Student;
+
+public class hipDao {
+
+	public void addStudent(Student student) {
+		Session session = ConnectionUtil.getSession();
+	}
+}
