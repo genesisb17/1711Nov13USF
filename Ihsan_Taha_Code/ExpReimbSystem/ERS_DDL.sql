@@ -1,0 +1,100 @@
+
+/*******************************************************************************
+  Expense Reimbursement System Database - Version 1.0
+  Script: ERS.sql
+  Description: Creates the ERS database.
+  DB Server: Oracle
+  Author: Ihsan Taha
+/*******************************************************************************
+
+/*******************************************************************************
+  Drop database if it exists
+/******************************************************************************/
+DROP USER ers CASCADE;
+
+/*******************************************************************************
+  Create database
+*******************************************************************************/
+CREATE USER ers
+IDENTIFIED BY p4ssw0rd
+DEFAULT TABLESPACE users
+TEMPORARY TABLESPACE temp
+QUOTA 10M ON users;
+
+GRANT connect to ers;
+GRANT resource to ers;
+GRANT create session TO ers;
+GRANT create table TO ers;
+GRANT create view TO ers;
+
+conn ers/p4ssw0rd
+
+/*******************************************************************************
+  Create Tables
+*******************************************************************************/
+CREATE TABLE ERS_USER_ROLES
+(
+  ERS_USER_ROLE_ID NUMBER NOT NULL,
+  USER_ROLE VARCHAR2(10) NOT NULL,
+  CONSTRAINT PK_ERS_USER_ROLES PRIMARY KEY (ERS_USER_ROLE_ID)
+);
+
+CREATE TABLE ERS_REIMBURSEMENT_TYPE
+(
+  REIMB_TYPE_ID NUMBER NOT NULL,
+  REIMB_TYPE VARCHAR2(10) NOT NULL,
+  CONSTRAINT PK_ERS_REIMBURSEMENT_TYPE PRIMARY KEY (REIMB_TYPE_ID)
+);
+
+CREATE TABLE ERS_REIMBURSEMENT_STATUS
+(
+  REIMB_STATUS_ID NUMBER NOT NULL,
+  REIMB_TYPE VARCHAR2(10) NOT NULL,
+  CONSTRAINT PK_ERS_REIMBURSEMENT_STATUS PRIMARY KEY (REIMB_STATUS_ID)
+);
+
+CREATE TABLE ERS_USERS
+(
+  ERS_USERS_ID NUMBER NOT NULL,
+  ERS_USERNAME VARCHAR2(50) NOT NULL,
+  ERS_PASSWORD VARCHAR2(50) NOT NULL,
+  USER_FIRSTNAME VARCHAR(100) NOT NULL,
+  USER_LASTNAME VARCHAR(100) NOT NULL,
+  USER_EMAIL VARCHAR2(150) NOT NULL,
+  USER_ROLE_ID NUMBER NOT NULL,
+  CONSTRAINT PK_ERS_USERS PRIMARY KEY (ERS_USERS_ID),
+  CONSTRAINT UC_USERNAME_EMAIL UNIQUE (ERS_USERNAME, USER_EMAIL)
+);
+
+CREATE TABLE ERS_REIMBURSEMENT
+(
+  REIMB_ID NUMBER NOT NULL,
+  REIMB_AMOUNT NUMBER NOT NULL,
+  REIMB_SUBMITTED TIMESTAMP NOT NULL,
+  REIMB_RESOLVED TIMESTAMP,
+  REIMB_DESCRIPTION VARCHAR2(250),
+  REIMB_RECEIPT BLOB,
+  REIMB_AUTHOR NUMBER NOT NULL,
+  REIMB_RESOLVER NUMBER,
+  REIMB_STATUS_ID NUMBER NOT NULL,
+  REIMB_TYPE_ID NUMBER NOT NULL,
+  CONSTRAINT PK_ERS_REIMBURSEMENT PRIMARY KEY (REIMB_ID)
+);
+
+/*******************************************************************************
+  Create Foreign Keys
+*******************************************************************************/
+ALTER TABLE ERS_USERS ADD CONSTRAINT FK_USER_ROLES
+  FOREIGN KEY (USER_ROLE_ID) REFERENCES ERS_USER_ROLES (ERS_USER_ROLE_ID);
+--
+ALTER TABLE ERS_REIMBURSEMENT ADD CONSTRAINT FK_USERS_AUTHOR
+  FOREIGN KEY (REIMB_AUTHOR) REFERENCES ERS_USERS (ERS_USERS_ID);
+  
+ALTER TABLE ERS_REIMBURSEMENT ADD CONSTRAINT FK_USERS_RESOLVER
+  FOREIGN KEY (REIMB_RESOLVER) REFERENCES ERS_USERS (ERS_USERS_ID);
+  
+ALTER TABLE ERS_REIMBURSEMENT ADD CONSTRAINT FK_REIMBURSEMENT_STATUS
+  FOREIGN KEY (REIMB_STATUS_ID) REFERENCES ERS_REIMBURSEMENT_STATUS (REIMB_STATUS_ID);
+  
+ALTER TABLE ERS_REIMBURSEMENT ADD CONSTRAINT FK_REIMBURSEMENT_TYPE
+  FOREIGN KEY (REIMB_TYPE_ID) REFERENCES ERS_REIMBURSEMENT_TYPE (REIMB_TYPE_ID);

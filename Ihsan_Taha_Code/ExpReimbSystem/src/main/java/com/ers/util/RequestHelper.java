@@ -20,6 +20,8 @@ public class RequestHelper
 			return "partials/userFunctions.html";
 		case "/ExpReimbSystem/GetContent.view":
 			return "partials/userContent.html";
+		case "/ExpReimbSystem/GetUpdateContent.view":
+			return "partials/updateContent.html";
 		}
 		return null;
 	}

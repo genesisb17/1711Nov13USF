@@ -1,5 +1,6 @@
 package com.ers.dao;
 
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -11,6 +12,8 @@ import com.ers.pojos.Reimbursement;
 import com.ers.pojos.User;
 import com.ers.util.ConnectionFactory;
 
+import oracle.jdbc.internal.OracleTypes;
+
 public class ReimbDAOImp implements ReimbDAO
 {
 
@@ -21,9 +24,14 @@ public class ReimbDAOImp implements ReimbDAO
 
 		try (Connection conn = ConnectionFactory.getInstance().getConnection())
 		{
-			String sql = "SELECT * FROM ERS_REIMBURSEMENT";
-			Statement stmt = conn.createStatement();
-			ResultSet rs = stmt.executeQuery(sql);
+			// String sql = "SELECT * FROM ERS_REIMBURSEMENT";
+			// Statement stmt = conn.createStatement();
+			// ResultSet rs = stmt.executeQuery(sql);
+			
+			CallableStatement cs = conn.prepareCall("{CALL GET_REIMBURSEMENTS(?)}");
+			cs.registerOutParameter(1,  OracleTypes.CURSOR);
+			cs.execute();
+			ResultSet rs = (ResultSet) cs.getObject(1);
 
 			while (rs.next())
 			{

@@ -15,7 +15,9 @@ var resolved;
 var receipt;
 var resolver;
 
-
+//**********
+var reimbId;
+//**********
 
 // ---------------------------------------------------------------------------
 // 1. Listen for Button click events - (Login or Register)
@@ -266,14 +268,23 @@ function loadView(page, id)
 				$('#newRequestContent').hide();
 				$('#updateRequestContent').hide();
 			}
+			//**********
+			else if (page == "GetUpdateContent.view")
+			{
+				$('#newRequestContent').hide();
+				$('#updateRequestContent').hide();
+				updateRequest(reimbId);
+			}
+			//**********
 		}
 	}
 }
 
 
 
-
-//----------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------------------------------------------------------------
 function getAuthor(aId)
 {
 	var author =
@@ -296,6 +307,9 @@ function getAuthor(aId)
 		}
 	} 
 }
+//------------------------------------------------------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 
@@ -336,11 +350,11 @@ function loadRequests()
 				for(var i = 0; i < jsonArray.length; i++)
 					reimbs.push(jsonArray[i]);
 				
-				if (sessionUser.roleId == 2)
+				/*if (sessionUser.roleId == 2)
 				{
 					for (var i = 0; i < reimbs.length; i++)
 						getAuthor(reimbs[i].reimbAuthor);
-				}
+				}*/
 			
 				for (var i = 0; i < reimbs.length; i++)
 				{
@@ -454,9 +468,12 @@ function loadRequests()
 						let rowIndex = self.closest('tr').index();
 						let table = $('#managerViews tbody')[0];
 						let cell = table.rows[rowIndex].cells[0];
-						let reimbId = $(cell).text();
+						reimbId = $(cell).text();
 		    	
-						updateRequest(reimbId);
+						//**********
+						loadView("GetUpdateContent.view", "contentView");
+						//updateRequest(reimbId);
+						//**********
 						console.log("In body click " + reimbId);
 					});
 				}
@@ -648,28 +665,28 @@ function updateRequest(id)
 			let resolver;
 			
 			// Author/Resolver
-			if (sessionUser.roleId == 2)
-			{
-				for (var i = 0; i < sessionAuthors.length; i++)
-				{
-					if (sessionAuthors[i].authorId == sessionUpdateReimb.reimbAuthor)
-						author = sessionAuthors[i].authorName;
-					/*
-					 if (sessionAuthors[i].authorId == sessionUpdateReimb.reimbResolver)
-						resolver = sessionAuthors[i].authorName;
-					 else if (sessionUpdateReimb.reimbResolver == 0)
-						resolver = "None";
-					*/
-					resolver = sessionUpdateReimb.reimbResolver;
-					if (resolver == 0)
-						resolver = "None";
-				}
-			}
-			else
-			{
+			//if (sessionUser.roleId == 2)
+			//{
+				//for (var i = 0; i < sessionAuthors.length; i++)
+				//{
+				//	if (sessionAuthors[i].authorId == sessionUpdateReimb.reimbAuthor)
+				//		author = sessionAuthors[i].authorName;
+				//	/*
+				//	 if (sessionAuthors[i].authorId == sessionUpdateReimb.reimbResolver)
+				//		resolver = sessionAuthors[i].authorName;
+				//	 else if (sessionUpdateReimb.reimbResolver == 0)
+				//		resolver = "None";
+				//	*/
+				//	resolver = sessionUpdateReimb.reimbResolver;
+				//	if (resolver == 0)
+				//		resolver = "None";
+				//}
+			//}
+			//else
+			//{
 				author = sessionUpdateReimb.reimbAuthor;
 				resolver = sessionUpdateReimb.reimbResolver;
-			}
+			//}
 			
 			// Status
 			if (sessionUpdateReimb.reimbStatusId == 2)
@@ -765,7 +782,7 @@ function updateStatus()
 
 
 //----------------------------------------------------------------------------
-// X. Logout
+// Y. Logout
 //----------------------------------------------------------------------------
 function logoutFunc()
 {
