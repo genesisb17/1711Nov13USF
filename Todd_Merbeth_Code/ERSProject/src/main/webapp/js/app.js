@@ -100,7 +100,7 @@ function checkUsername(){
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState == 4 && xhr.status==200){
 			var exist = xhr.responseText;
-			console.log(exist);
+//			console.log(exist);
 			if(exist.length==4){
 				$('#umessage').html(`Username: '${username}' is already taken! Please try another.`);
 				$('#umessage').show();
@@ -122,7 +122,7 @@ function checkEmail(){
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState == 4 && xhr.status==200){
 			var exist = xhr.responseText;
-			console.log(exist);
+//			console.log(exist);
 			if(exist.length==4){
 				$('#emessage').html(`Email: '${email}' is already in use for an account! Please try another or log into your account.`);
 				$('#emessage').show();
@@ -193,7 +193,7 @@ function register(){
 		if ($('#role').is(":checked")){
 			r = 2;
 		}
-		console.log(r);
+//		console.log(r);
 		var user = {
 				id: 0,
 				username: username,
@@ -652,7 +652,7 @@ function checkUsernameProfile(){
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState == 4 && xhr.status==200){
 			var exist = xhr.responseText;
-			console.log(exist);
+//			console.log(exist);
 			if(exist.length==4){
 				$('#usernameText').hide();
 				$('#editUsername').hide();
@@ -684,7 +684,7 @@ function checkEmailProfile(){
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState == 4 && xhr.status==200){
 			var exist = xhr.responseText;
-			console.log(exist);
+//			console.log(exist);
 			if(exist.length==4){
 				$('#emailText').hide();
 				$('#editEmail').hide();
@@ -744,12 +744,12 @@ function loadRTypeInfo(){
 }
 function sendRequest() {
 	var amountInput = $('#reqAmount').val();
-	console.log($('#reqAmount').val());
+//	console.log($('#reqAmount').val());
 	var type = $('#reqType option:selected').val();
-	console.log($('#reqType option:selected').val());
+//	console.log($('#reqType option:selected').val());
 	var desc = $('#reqDescription').val();	
-	console.log($('#reqDescription').val());
-    if(amountInput == "" || type == ""){
+//	console.log($('#reqDescription').val());
+    if(amountInput == "" || isNaN(amountInput) || type == ""){
     	$('#errmessage').show();
     }
     else {
@@ -868,7 +868,7 @@ function loadRStatusOptions(){
 		console.log("LOADREQUESTINFO " + xhr.readyState);
 		if(xhr.readyState == 4 && xhr.status == 200){
 			var status = JSON.parse(xhr.responseText);
-			console.log(status);
+//			console.log(status);
 			var str = '<label for="statusSelect">Change Status to: </label><select id="statusSelect"><option disabled selected value> -- select an option -- </option>';
 			for (let i = 1; i < status.length; i++){
 				var line = `<option value="${status[i].id}">${status[i].status}</option>`;
@@ -886,7 +886,6 @@ function loadRStatusOptions(){
 }
 function addTableClicks(reimbursements) {
     $("#allReimbs tr").click(function() {
-    	console.log(this.getElementsByTagName("td")[8].innerHTML);
     	if(this.getElementsByTagName("td")[8].innerHTML == "Pending"){
 	    	$('#changeReimbursementContainer').show();
 	    	$('#sLabel').show();
@@ -920,7 +919,7 @@ function updateReimbursement(){
 			console.log("ATTEMPTINGUPDATE " + xhr.readyState);
 			if(xhr.readyState == 4 && xhr.status==200){
 				var result = JSON.parse(xhr.responseText);
-				console.log(result);
+//				console.log(result);
 				if (result == null){
 					alert(`Error updating reimbursement status`);
 				}
@@ -940,25 +939,29 @@ function updateReimbursement(){
 
 function updateUser(command, value){
 	var userUpdate = [command, value];
-	var uuJSON = JSON.stringify(userUpdate);
-	console.log(userUpdate);
-	var xhr = new XMLHttpRequest();
-	xhr.onreadystatechange = function(){
-		console.log("CHANGEUSER" + xhr.readyState);
-		if(xhr.readyState == 4 && xhr.status == 200){
-			var result = JSON.parse(xhr.responseText);
-			console.log(result);
-			if (result == null){
-				alert(`Error updating profile`);
-			}
-			else {
-				alert(`Profile has been updated!`);
-				loadUserInfo();
+	console.log(value);
+	if(value.length > 0){
+		var uuJSON = JSON.stringify(userUpdate);
+	//	console.log(userUpdate);
+		var xhr = new XMLHttpRequest();
+		xhr.onreadystatechange = function(){
+			console.log("CHANGEUSER" + xhr.readyState);
+			if(xhr.readyState == 4 && xhr.status == 200){
+				var result = JSON.parse(xhr.responseText);
+	//			console.log(result);
+				if (result == null){
+					alert(`Error updating profile`);
+				}
+				else {
+					alert(`Profile has been updated!`);
+					loadUserInfo();
+				}
 			}
 		}
+		xhr.open("POST", "updateUser", true);
+		xhr.send(uuJSON);
 	}
-	xhr.open("POST", "updateUser", true);
-	xhr.send(uuJSON);
+	else {alert(`Error updating profile`);}
 }
 
 // ////////////////////////////////////////////////// Logout

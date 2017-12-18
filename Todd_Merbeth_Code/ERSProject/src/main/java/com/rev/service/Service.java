@@ -33,6 +33,9 @@ public class Service {
 	}
 	
 	public User addUser(User user) {
+		if(dao.checkUsername(user.getUsername()) == true || dao.checkEmail(user.getEmail()) == true) {
+			return null;
+		}
 		return dao.addUser(user);
 	}
 	

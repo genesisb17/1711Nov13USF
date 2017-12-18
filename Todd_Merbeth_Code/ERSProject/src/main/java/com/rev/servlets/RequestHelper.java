@@ -7,7 +7,7 @@ public class RequestHelper {
 	
 	public String process(HttpServletRequest req, HttpServletResponse resp) {
 		
-		System.out.println("In process method");
+//		System.out.println("In process method");
 		switch (req.getRequestURI()) {
 		case "/ERSProject/employeeProfile.view": {
 			return "partials/empProfile.html";
