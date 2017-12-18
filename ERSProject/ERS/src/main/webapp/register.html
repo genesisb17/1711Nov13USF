@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
+
 <meta charset="ISO-8859-1">
-<title>Log In/Registration</title>
+<title>Registration</title>
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
 	integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb"
 	crossorigin="anonymous">
-
+<link rel="shortcut icon" type="image/png" href="js/Wicked_Website_Icon.png" />
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
 	integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
 	crossorigin="anonymous"></script>
@@ -22,23 +23,44 @@
 
 </head>
 <body>
-<h1>Registration</h1>
+<br><br><br>
+<div class="row">
+<div class="col-sm-4"></div>
+<div class="col-sm-4">
+<h3 class="text-center">Expense Reimbursement System Registration</h3>
+</div>
+<div class="col-sm-4"></div>
+</div>
+<br>
+
 	<!--  <p>Choose one option from the dropdown list</p>
 	<select id="who">
 		<option value ="Employee">Employee</option>
 		<option value="Finance">Finance Manager</option>
 	</select><br> -->
-	<input type="text" id="fn" placeholder="First Name"> <br>
-	<input type="text" id="ln" placeholder="Last Name"> <br>
-	<input type ="text" id="email" placeholder="Email"><br>
-		<div  id="emailmessage"></div>
-	<input type="text" id="username" placeholder="Username"> <br>
-		<div  id="usernamemessage" ></div>
-	<input type="password" id="pass" placeholder="password"><br>
-	<br>
-	<button id="register">Register</button>
-	<br>
 	
+<div class="row">
+<div class="col-sm-4"></div>
+<div align="center" class="col-sm-4">
+	<input type="text" class="form-control" id="fn" placeholder="First Name"> <br>
+	<input type="text" class="form-control" id="ln" placeholder="Last Name"> <br>
+	<input type="text" class="form-control" id="email" placeholder="Email"><br>
+		
+	<input type="text" class="form-control" id="username" placeholder="Username"> <br>
+		
+	<input type="password" class="form-control" id="pass" placeholder="password"><br>
+
+	<div  id="emailmessage" class="alert alert-danger text-center" ></div> 
+	<div  id="usernamemessage" class="alert alert-danger text-center" ></div> 
+	<div id="passwordmessage" class="alert alert-danger text-center" ></div>
+	<div  id="typemessage" class="alert alert-info text-center font-italic" >All fields are required, Email and Username must be unique and more than 6 characters!</div> 
+	<button id="register" class=" btn btn-dark">Register</button>
+	<br>
+</div>
+<div class="col-sm-4">
+</div>
+</div>
+<br>
 	<script src="js/register.js"></script>
 </body>
 </html>

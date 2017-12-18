@@ -12,6 +12,6 @@ import javax.servlet.http.HttpServletResponse;
 public class GetHomeViewServlet extends HttpServlet{
 
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		req.getRequestDispatcher("partials/home.html").forward(req,resp);
+		req.getRequestDispatcher("partials/homeSession.html").forward(req,resp);
 	}
 }

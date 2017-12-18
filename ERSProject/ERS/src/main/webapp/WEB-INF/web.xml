@@ -2,7 +2,7 @@
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
   <display-name>ERS</display-name>
   <welcome-file-list>
-    <welcome-file>index.html</welcome-file>
+    <welcome-file>home.html</welcome-file>
     <welcome-file>index.htm</welcome-file>
     <welcome-file>index.jsp</welcome-file>
     <welcome-file>default.html</welcome-file>
@@ -39,8 +39,72 @@
   	<url-pattern>/validator</url-pattern>
   </servlet-mapping>
   
+  <servlet>
+  	<servlet-name>LoadViewFC</servlet-name>
+  	<servlet-class>servlets.GetViewServlet</servlet-class>
+  </servlet>
   
+  <servlet-mapping>
+  	<servlet-name>LoadViewFC</servlet-name>
+  	<url-pattern>*.view</url-pattern>
+  </servlet-mapping>
   
+ 
+  <servlet>
+  	<servlet-name>enterServlet</servlet-name>
+  	<servlet-class>servlets.EnterServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>enterServlet</servlet-name>
+  	<url-pattern>/enterServlet</url-pattern>
+  </servlet-mapping>
   
+  <servlet>
+  	<servlet-name>reimburseMe</servlet-name>
+  	<servlet-class>servlets.submitRequestServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>reimburseMe</servlet-name>
+  	<url-pattern>/reimburseMe</url-pattern>
+  </servlet-mapping>
+  <servlet>
+  	<servlet-name>welcomeServlet</servlet-name>
+  	<servlet-class>servlets.WelcomeServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>welcomeServlet</servlet-name>
+  	<url-pattern>/welcomeServlet</url-pattern>
+  </servlet-mapping>
   
-  </web-app>
+  <servlet>
+  	<servlet-name>updateProfile</servlet-name>
+  	<servlet-class>servlets.UpdateProfile</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>updateProfile</servlet-name>
+  	<url-pattern>/updateProfile</url-pattern>
+  </servlet-mapping>
+
+  
+  <servlet>
+  	<servlet-name>passwordVerify</servlet-name>
+  	<servlet-class>servlets.PasswordVerify</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>passwordVerify</servlet-name>
+  	<url-pattern>/passwordVerify</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>updatePassword</servlet-name>
+  	<servlet-class>servlets.UpdatePassword</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>updatePassword</servlet-name>
+  	<url-pattern>/updatePassword</url-pattern>
+  </servlet-mapping>
+  
+    </web-app>

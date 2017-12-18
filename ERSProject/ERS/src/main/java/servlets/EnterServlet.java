@@ -5,27 +5,21 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import pojos.User;
-import main.Service;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import main.Service;
+import pojos.User;
 
-public class LoginServlet extends HttpServlet{
+public class EnterServlet extends HttpServlet {
 	static Service service = new Service();
-
-	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) 
-			throws ServletException, IOException {
-		System.out.println("in login servlet");
-
-		
+	protected void doPost(HttpServletRequest req, HttpServletResponse rep) throws ServletException, IOException {
 		// 1. get received JSON data from request
 		BufferedReader br = 
 				new BufferedReader(new InputStreamReader(req.getInputStream()));
@@ -46,20 +40,19 @@ public class LoginServlet extends HttpServlet{
 		
 		
 		User temp = service.validateUser(username, password); // get user by uname
-		
-		if(temp.getId() == 0){ // if invalid user, obj = null
-			System.out.println("temp is null");	
-		}
-		else{// valid credentials
+		if(temp.getId() != 0) {
 			HttpSession session = req.getSession();
-			session.setAttribute("User", temp);//persist this user to the session to be accessed throughout servlets
+			session.setAttribute("user", temp);
+			System.out.println("Before entering welcome servlet");
+			RequestDispatcher rd = req.getRequestDispatcher("welcomeServlet");
+			rd.forward(req, rep);
 		}
-		PrintWriter out = resp.getWriter();
-		resp.setContentType("application/json");
-		
-		String userJSON = mapper.writeValueAsString(temp);
-		
-		out.write(userJSON);   
+		else {
+			System.out.println("In else statment of EnterServlet");
+			PrintWriter out = rep.getWriter();
+			rep.setContentType("application/json");
+			String userJSON = mapper.writeValueAsString(temp);
+			out.write(userJSON);   
+		}
 	}
-
 }

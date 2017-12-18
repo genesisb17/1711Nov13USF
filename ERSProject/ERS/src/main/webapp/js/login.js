@@ -4,54 +4,45 @@
 
 window.onload = function(){
 	$('#message').hide();
-	$('#login').on('click',login);
+//	$('#login').on('click',login);
 	$('#register').on('click', register);
-	
+	$('#login').on('click',controller);
 }
-
-function login(){
-//	alert("logging in");
+function controller(){
 	var username = $('#username').val();
 	var password = $('#pass').val();
-	
-	var toSend = [username, password];
-
-	
-	
-	var json = JSON.stringify(toSend);
-	console.log(json);
-	
-	var xhr = new XMLHttpRequest();
-//	console.log(xhr.readyState);
-	xhr.onreadystatechange = function(){
-		if(xhr.readyState == 4 && xhr.status==200){
-		//	console.log("in xhr callback" + xhr.responseText);
-			var user = JSON.parse(xhr.responseText);
-			console.log(user);
-			if(user.firstname===null)
-				console.log(user.firstname);
-			$('#message').show();
-			if(user.firstname == null){
-				$('#message').html("Invalid user") ;
-			//	window.location.replace('login.html');
-			}
-			else{
-				$('#message').html(`Welcome ${user.firstname}`) ;
-				console.log("success!");
+	if(username.length == 0 || password.length ==0){
+		$('#message').show();
+		$('#message').html("Username or Password cannot be empty. Try Again.");
+	}
+	else{
+		var toSend =[username,password];
+		var json = JSON.stringify(toSend);
+		var xhr = new XMLHttpRequest();
+		xhr.onreadystatechange = function(){
+			if(xhr.readyState == 4 && xhr.status == 200){
+				console.log("ready state check");
+				var user = JSON.parse(xhr.responseText)
+				if(user.id !=0){
+					window.location.assign("home.html");
+					document.getElementById('view').innerHTML = "<h2> yoooo </h2>";
+				}
+				else{
+				$('#message').show();
+				$('#message').html("Invalid user");
+				}
 			}
 		}
-	};
+		xhr.open("POST","enterServlet", true);
+		xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+		xhr.send(json);
 	
-	xhr.open("POST","login", true);
-	//console.log(xhr.readyState);
-	xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-//	console.log("AFTER HEADER " + xhr.readyState);
-	xhr.send(json);
-	$('#message').hide();
-	window.location.replace('home.html')
+	}
+	
 
 }
 
 function register(){
-	window.location.replace('register.html');
+	//create servlet that will forward to
+	window.location.assign('register.html');
 }
