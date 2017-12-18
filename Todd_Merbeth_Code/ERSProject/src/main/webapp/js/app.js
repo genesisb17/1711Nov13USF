@@ -275,10 +275,11 @@ function loadEmployeeReimbursements(){
 				else {
 					status = `<td> ${reimbursements[i].statusStr}</td>`;
 				}
+				var amount = Number(reimbursements[i].amount).toFixed(2);
 				var line = 
 						`<tr>
 							<td> ${reimbursements[i].id} </td>
-							<td> $${reimbursements[i].amount} </td>
+							<td> $${amount} </td>
 							<td> ${reimbursements[i].submitted} </td>
 							<td> ${reimbursements[i].description} </td>
 							<td> ${reimbursements[i].typeStr} </td>
@@ -729,7 +730,7 @@ function loadRTypeInfo(){
 		console.log("LOADREQUESTINFO " + xhr.readyState);
 		if(xhr.readyState == 4 && xhr.status == 200){
 			var rTypes = JSON.parse(xhr.responseText);
-			var str = '<label for="reqType">Type: </label><select id="reqType"><option disabled selected value> -- select an option -- </option>';
+			var str = '<label for="reqType" style="margin-right:4px;">Type: </label><select id="reqType"><option disabled selected value> -- select an option -- </option>';
 			for (let i = 0; i < rTypes.length; i++){
 				var line = `<option value="${rTypes[i].r_id}">${rTypes[i].r_type}</option>`;
 				str = str.concat(line);
@@ -837,10 +838,11 @@ function loadAllReimbursements(){
 				else {
 					status = `<td>${reimbursements[i].statusStr}</td>`;
 				}
+				var amount = Number(reimbursements[i].amount).toFixed(2);
 				var line = 
 						`<tr>
 							<td> ${reimbursements[i].id} </td>
-							<td> $${reimbursements[i].amount} </td>
+							<td> $${amount} </td>
 							<td> ${reimbursements[i].submitted} </td>
 							<td> ${reimbursements[i].resolved} </td>
 							<td> ${reimbursements[i].description} </td>
