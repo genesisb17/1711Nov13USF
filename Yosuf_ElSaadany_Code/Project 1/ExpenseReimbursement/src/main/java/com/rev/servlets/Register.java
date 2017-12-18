@@ -55,12 +55,9 @@ public class Register extends HttpServlet{
 		u.setEmail(email);
 		u.setUserRole(userrole);
 				
-		System.out.println(u.toString());
-		int temp = empservice.Register(u);
-	
-		//HttpSession session = req.getSession();
-		//session.setAttribute("user", temp);//persist this user to the session to be accessed throughout servlets
-		
+		User temp = new User();
+		temp = empservice.Register(u);
+				
 		PrintWriter out = resp.getWriter();
 		resp.setContentType("application/json");		
 		String userJSON = mapper.writeValueAsString(temp);

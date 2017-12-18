@@ -8,7 +8,7 @@ window.onload = function(){
 var username;
 var password;
 
-function login(){
+function login() {
 	$('#message').hide();
 	username = $('#username').val();
 	password = $('#password').val();
@@ -31,7 +31,7 @@ function login(){
 			var user = JSON.parse(xhr.responseText);
 			if(user == null){
 				$('#message').show();
-				$('#message').html("Invalid username or password");
+				$('#message').html("Invalid Credentials");
 				 $(function() {
 				        setTimeout(function() {
 				            $("#message").hide('blind', {}, 500)

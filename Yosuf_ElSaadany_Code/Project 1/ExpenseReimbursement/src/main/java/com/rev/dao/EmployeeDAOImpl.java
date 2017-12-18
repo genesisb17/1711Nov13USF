@@ -42,20 +42,27 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 	}
 
 	@Override
-	public int Register(User u) {
+	public User Register(User u) {
+		User user = new User();
 		try(Connection conn = ConnectionFactory.getInstance().getConnection()){
 			// Get User ID
-			User user = new User();
 			String sql = "select * from users";
 			PreparedStatement ps = conn.prepareStatement(sql);
-			ResultSet rs = ps.executeQuery();
-			if(rs.next()) {
+			ResultSet rs = ps.executeQuery();		
+			
+			while(rs.next()) {
 				user.setUsername(rs.getString("USERNAME"));
 				user.setEmail(rs.getString("EMAIL"));
+				
+				if(user.getEmail().equals(u.getEmail())) {
+					user.setEmail(null);
+					return user;
+				}
+				if(user.getUsername().equals(u.getUsername())) {
+					user.setUsername(null);
+					return user;
+				}
 			}
-			
-			if(user.getUsername().equals(u.getUsername()) || user.getEmail().equals(u.getEmail()))
-				return 0;
 			
 			String sql3 = "select USER_SEQ.NEXTVAL from dual";
 			PreparedStatement pst1 = conn.prepareStatement(sql3);
@@ -81,11 +88,12 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return 1;
+		return user;
 	}
 
 	@Override
 	public User UpdateInfo(User newuser, User olduser) {
+		User temp = new User();
 		try(Connection conn = ConnectionFactory.getInstance().getConnection()){
 			
 			System.out.println("THE OLD USER IS: " + olduser.toString());
@@ -103,6 +111,29 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 				newuser.setEmail(olduser.getEmail());
 			
 			newuser.setUserRole(olduser.getUserRole());
+			
+			System.out.println("THE NEW USER AFTER IS: " + newuser.toString());
+			
+			/*String sql1 = "select * from users";
+			PreparedStatement ps1 = conn.prepareStatement(sql1);
+			ResultSet rs = ps1.executeQuery();
+			
+			while(rs.next()) {
+				temp.setUsername(rs.getString("USERNAME"));
+				temp.setEmail(rs.getString("EMAIL"));
+				
+				System.out.println("THE NEW USER IS: " + newuser.toString());
+				
+				if(temp.getUsername().equals(newuser.getUsername())) {
+					temp.setUsername(null);
+					return temp;
+				}
+				
+				if(temp.getEmail().equals(newuser.getEmail())) {
+					temp.setEmail(null);
+					return temp;
+				}
+			}*/
 			
 			String sql = "update users set username = ?, password = ?, first_name = ?,"
 					+ " last_name = ?, email = ? where username = ?";
@@ -224,5 +255,4 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 	}
 
 }
-
 

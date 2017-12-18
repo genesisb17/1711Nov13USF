@@ -41,15 +41,11 @@ public class EmployeeService {
 		return y;
 	}
 	
-	public int Register(User u) {
+	public User Register(User u) {
 		System.out.println(u.toString());
-		int x = empdao.Register(u);
-		if(x == 0) {
-			return 0;
-		}
-		else {
-			return 1;
-		}
+		User x = new User();
+		x = empdao.Register(u);
+		return x;
 	}
 	
 	public User Update(User newuser, User olduser) {
