@@ -9,11 +9,20 @@
             </div>
         </div>
         <hr/>
-        <nav class="nav nav-tabs" id="tablefilters">
-            <button class="btn btn-link nav-link active" id="showpending">Show Pending</button>
-            <button class="btn btn-link nav-link" id="showresolved">Show Resolved</button>
-            <button class="btn btn-link nav-link" id="showall">Show All</button>
-        </nav>
+        <ul class="nav nav-tabs flex-row" id="tablefilters">
+            <li class="nav-item">
+                <button class="btn btn-link nav-link active" id="showpending">Show Pending</button>
+            </li>
+            <li class="nav-item">
+                <button class="btn btn-link nav-link" id="showresolved">Show Resolved</button>
+            </li>
+            <li class="nav-item">
+                <button class="btn btn-link nav-link" id="showall">Show All</button>
+            </li>
+            <div class="form-inline ml-auto">
+                <input type="text" class="form-control" id="namefilter" />
+            </div>
+        </ul>
         <div id="reimb-table-manager"></div>
     </div>
     <div id="user-reimbs">
@@ -26,18 +35,20 @@
             </div>
         </div>
         <hr/>
-        <div class="row justify-content-between">
-            <div class="col-auto">
-                <nav class="nav nav-tabs" id="tablefilters">
-                    <button class="btn btn-link nav-link active" id="showpending">Show Pending</button>
-                    <button class="btn btn-link nav-link" id="showresolved">Show Resolved</button>
-                    <button class="btn btn-link nav-link" id="showall">Show All</button>
-                </nav>
-            </div>
-            <div class="col-auto text-right">
+        <ul class="nav nav-tabs flex-row" id="tablefilters">
+            <li class="nav-item">
+                <button class="btn btn-link nav-link active" id="showpending">Show Pending</button>
+            </li>
+            <li class="nav-item">
+                <button class="btn btn-link nav-link" id="showresolved">Show Resolved</button>
+            </li>
+            <li class="nav-item">
+                <button class="btn btn-link nav-link" id="showall">Show All</button>
+            </li>
+            <div class="form-inline ml-auto">
                 <button class="btn btn-link" data-toggle="modal" data-target="#create-ticket-modal" id="create-ticket">Create Ticket</button>
             </div>
-        </div>
+        </ul>
         <div id="reimb-table"></div>
     </div>
     <br>

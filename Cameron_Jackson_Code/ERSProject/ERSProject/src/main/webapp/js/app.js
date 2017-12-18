@@ -5,6 +5,10 @@ window.onload = function () {
     loadPage();
 };
 
+var pendingFilter = [{ field: "status", type: "=", value: "PENDING" }];
+var resolvedFilter = [{ field: "status", type: "!=", value: "PENDING" }];
+var nameFilter = [{ field: "author", type: "like", value: "" }];
+
 $(document).on('click', '#new-users', loadCA);
 $(document).on('click', '#returning-users', loadLogin);
 $(document).on('click', '#login', login);
@@ -88,13 +92,19 @@ $(document).on('click', '.up-btn-cancel', function () {
 $(document).on('click', '#show-user', function () {
     $("#all-reimbs").hide();
     $("#user-reimbs").show();
-    $("#reimb-table").tabulator("setData");
+    $("#reimb-table").tabulator("setFilter", pendingFilter);
+    $("#reimb-table").tabulator("clearSort");
+    $("#reimb-table").tabulator("setSort", "submitted", "desc");
+    // $("#reimb-table").tabulator("setData");
     // getEmployeeTicketInfo();
 });
 $(document).on('click', '#show-all', function () {
     $("#all-reimbs").show();
     $("#user-reimbs").hide();
-    $("#reimb-table-manager").tabulator("setData");
+    $("#reimb-table-manager").tabulator("setFilter", pendingFilter);
+    $("#reimb-table-manager").tabulator("clearSort");
+    $("#reimb-table-manager").tabulator("setSort", "submitted", "desc");
+    // $("#reimb-table-manager").tabulator("setData");
     // getAllTicketInfo();
 });
 $(document).on('shown.bs.modal', '#create-ticket-modal', function () {
@@ -110,44 +120,78 @@ $(document).on('shown.bs.modal', '#logoutModal', function () {
 $(document).on('click', '#showall', function () {
     if ($("#all-reimbs").is(":visible")) {
         $("#reimb-table-manager").tabulator("clearFilter");
+        nameFilter[0].value = $('#namefilter').val();
+        $('#reimb-table-manager').tabulator('addFilter', nameFilter);
         $("#reimb-table-manager").tabulator("clearSort");
         $("#reimb-table-manager").tabulator("setSort", "reimbId", "asc");
+        $("#all-reimbs #tablefilters .active").removeClass('active');
+        $("#all-reimbs #showall").addClass('active');
     }
     else {
         $("#reimb-table").tabulator("clearFilter");
         $("#reimb-table").tabulator("clearSort");
         $("#reimb-table").tabulator("setSort", "reimbId", "asc");
+        $("#user-reimbs #tablefilters .active").removeClass('active');
+        $("#user-reimbs #showall").addClass('active');
     }
-    $("#tablefilters .active").removeClass('active');
-    $("#showall").addClass('active');
-
 });
 $(document).on('click', '#showpending', function () {
     if ($("#all-reimbs").is(":visible")) {
-        $("#reimb-table-manager").tabulator("setFilter", "status", "=", "PENDING");
+        $("#reimb-table-manager").tabulator("setFilter", pendingFilter);
+        nameFilter[0].value = $('#namefilter').val();
+        $('#reimb-table-manager').tabulator('addFilter', nameFilter);
         $("#reimb-table-manager").tabulator("clearSort");
         $("#reimb-table-manager").tabulator("setSort", "submitted", "desc");
+        $("#all-reimbs #tablefilters .active").removeClass('active');
+        $("#all-reimbs #showpending").addClass('active');
     } else {
-        $("#reimb-table").tabulator("setFilter", "status", "=", "PENDING");
+        $("#reimb-table").tabulator("setFilter", pendingFilter);
         $("#reimb-table").tabulator("clearSort");
         $("#reimb-table").tabulator("setSort", "submitted", "desc");
+        $("#user-reimbs #tablefilters .active").removeClass('active');
+        $("#user-reimbs #showpending").addClass('active');
     }
-    $("#tablefilters .active").removeClass('active');
-    $("#showpending").addClass('active');
 });
 $(document).on('click', '#showresolved', function () {
     if ($("#all-reimbs").is(":visible")) {
-        $("#reimb-table-manager").tabulator("setFilter", "status", "!=", "PENDING");
+        $("#reimb-table-manager").tabulator("setFilter", resolvedFilter);
+        $('#reimb-table-manager').tabulator('addFilter', nameFilter);
         $("#reimb-table-manager").tabulator("clearSort");
         $("#reimb-table-manager").tabulator("setSort", "resolved", "desc");
+        $("#tablefilters .active").removeClass('active');
+        $("#showresolved").addClass('active');
     } else {
-        $("#reimb-table").tabulator("setFilter", "status", "!=", "PENDING");
+        $("#reimb-table").tabulator("setFilter", resolvedFilter);
         $("#reimb-table").tabulator("clearSort");
         $("#reimb-table").tabulator("setSort", "resolved", "desc");
+        $("#user-reimbs #tablefilters .active").removeClass('active');
+        $("#user-reimbs #showresolved").addClass('active');
     }
-    $("#tablefilters .active").removeClass('active');
-    $("#showresolved").addClass('active');
+
 });
+
+function filterUpdater() {
+    let input = document.getElementById('namefilter');
+    let timeout = null;
+    let prevFilter = {}
+
+    let handleChange = function () {
+        if (input.value != "")
+            $('#reimb-table-manager').tabulator('removeFilter', prevFilter);
+        prevFilter = nameFilter;
+        nameFilter[0].value = input.value;
+
+        $('#reimb-table-manager').tabulator('addFilter', nameFilter);
+    }
+
+    let eventHandler = function () {
+        if (timeout) clearTimeout(timeout);
+        timeout = setTimeout(handleChange, 50);
+    }
+
+    input.onkeydown = input.onkeyup = input.onclick = eventHandler;
+}
+
 /**
  * This function will be a get request to check where the user is in the page
  * if this is first login, it will load the login page.
@@ -182,6 +226,7 @@ function loadLoginPage() {
     var xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function () {
         if (xhr.readyState == 4 && xhr.status == 200) {
+            $('body').css('background-image', "url(\"images/fistbumpworkspace.jpg\")");
             $('#appview').html(xhr.responseText);
             loadLogin();
         }
@@ -205,8 +250,8 @@ function loadMainPage() {
     var xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function () {
         if (xhr.readyState == 4 && xhr.status == 200) {
-            $('body').css('background-image',"none");
-            $('body').css('background-color',"white");
+            $('body').css('background-image', "none");
+            $('body').css('background-color', "white");
             $('#appview').html(xhr.responseText);
             loadLogoutModal();
             loadCreateTicket();
@@ -221,8 +266,8 @@ function loadMainPageMini() {
     var xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function () {
         if (xhr.readyState == 4 && xhr.status == 200) {
-            $('body').css('background-image',"none");
-            $('body').css('background-color',"white");
+            $('body').css('background-image', "none");
+            $('body').css('background-color', "white");
             $('#appview').html(xhr.responseText);
             loadLogoutModal();
         }
@@ -346,7 +391,6 @@ function logout() {
     var xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function () {
         if (xhr.readyState == 4 && xhr.status == 200) {
-            $('body').css('background-image', "url(\"images/fistbumpworkspace.jpg\")");
             loadLoginPage();
         }
     }
@@ -377,7 +421,7 @@ function updateAccount() {
         if (xhr.readyState == 4 && xhr.status == 200) {
             var user = JSON.parse(xhr.responseText);
             if (user != null) {
-                loadManageAccount()
+                loadManageAccount();
                 // $('#up-confirm-password').hide();
                 // $('#up-verify-password').hide();
 
@@ -569,11 +613,12 @@ function getEmployeeTicketInfo() {
             return response; //return the tableData peroperty of a response json object
         }
     });
-    // $("#reimb-table").tabulator("setFilter", "status", "like");
+    // let filter = [{field:"status", type:"=", value:"PENDING"}];
     $("#reimb-table").tabulator("setData", '/ERSProject/getemployeetickets');
-    $("#reimb-table").tabulator("setFilter", "status", "=", "PENDING");
+    $("#reimb-table").tabulator("setFilter", pendingFilter);
     $("#reimb-table").tabulator("clearSort");
     $("#reimb-table").tabulator("setSort", "submitted", "desc");
+    $("#namefilter").keyup(updateFilter);
     // console.log("getEmployeeTickets");
 }
 
@@ -582,7 +627,9 @@ function resolveTicket(id, status) {
     var xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function () {
         if (xhr.readyState == 4 && xhr.status == 200) {
+            let currentFilter = $("#reimb-table-manager").tabulator("getFilters");
             $("#reimb-table-manager").tabulator("setData", '/ERSProject/getalltickets');
+            $("#reimb-table-manager").tabulator("setFilter", currentFilter);
         }
     }
     xhr.open("POST", "resolveticket", true);
@@ -613,7 +660,6 @@ function getAllTicketInfo() {
         });
 
         var row = cell.getRow().getData();
-        console.log(row.reimbId);
         editor.on("change blur", function (e) {
             success(editor.val());
             if (currentVal != editor.val())
@@ -621,7 +667,7 @@ function getAllTicketInfo() {
         });
         return editor;
     };
-    var statusCheck = function(cell) {
+    var statusCheck = function (cell) {
         if (cell.getValue() == 'PENDING') {
             return true;
         } else {
@@ -631,11 +677,9 @@ function getAllTicketInfo() {
     $("#reimb-table-manager").tabulator({
         height: 400,
         index: "reimbId",
-        layout: 'fitDataFill',
+        layout: 'fitColumns',
         pagination: "local",
         paginationSize: 8,
-        persistentLayout: true,
-        persistentLayoutID: "alltickets",
         selectable: 0,
         columns: [
             { title: "Ticket #:", field: "reimbId" },
@@ -660,9 +704,11 @@ function getAllTicketInfo() {
             return response; //return the tableData peroperty of a response json object
         }
     });
+
     $("#reimb-table-manager").tabulator("setData", '/ERSProject/getalltickets');
-    $("#reimb-table-manager").tabulator("setFilter", "status", "=", "PENDING");
+    $("#reimb-table-manager").tabulator("setFilter", pendingFilter);
     $("#reimb-table-manager").tabulator("clearSort");
     $("#reimb-table-manager").tabulator("setSort", "submitted", "desc");
+    filterUpdater();
     // $("#reimb-table").tabulator("setData", '/ERSProject/getemployeetickets');
 }
