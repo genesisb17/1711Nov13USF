@@ -1,10 +1,17 @@
 <div id="newRequestBody">
-	<h1>Create A New Reimbursement Request</h1>
-	<label for="reqAmount">Amount: $</label><input type="text" class="form-control" id="reqAmount" style="width:120px;" placeholder="Enter amount"> <br>
-	<div id="reqType"></div><br>
-	<label for="reqDesciption">Description: </label>
-	<textarea id="reqDescription" rows="5" cols="20" placeholder="Decribe the reasoning behind your request (optional)"></textarea>
-	<div class="alert alert-danger" id="errmessage">Please fill all requirements</div>
-	<br>
-	<button id="createRequest" class="btn btn-primary">Create Request</button>
+	<h2 style="text-align: center; margin-bottom:20px;">Create New Reimbursement Request</h2>
+	<div class="container" style="margin: auto; box-shadow: 4px 8px 6px #888888; text-align:center; width:400px; border:solid; border-width:1px; border-radius: 25px;">
+		<label for="reqAmount">Amount: $</label><input type="text"
+			class="form-control" id="reqAmount" style="display:inline; margin-top: 10px; width: 80px;"
+			placeholder="0.00"> <br>
+		<div id="reqType1" style="margin-top: 10px;"></div>
+		<label for="reqDesciption">Description: </label>
+		<textarea id="reqDescription" style="display:inline;vertical-align:middle; margin-bottom:15px;" rows="2" cols="30"
+			placeholder="Decribe the reasoning behind your request (optional)"></textarea>
+		<div class="alert alert-danger" id="errmessage">Please fill all
+			requirements</div>
+		<br>
+		<button id="createRequest" style="text-align:center; margin-bottom:15px;" class="btn btn-primary">Create
+			Request</button>
+	</div>
 </div>

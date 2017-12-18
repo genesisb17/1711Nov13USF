@@ -1,15 +1,16 @@
 
-<div id="registerBody">
-	<input type="text" id="fn" placeholder="First Name"> <br>
-	<input type="text" id="ln" placeholder="Last Name"> <br> <input
-		type="text" id="username" placeholder="Username"> <br>
-	<div class="alert alert-danger" id="umessage"></div>
-	<input type="password" id="pass" placeholder="password"><br>
-	<input type="text" id="email" placeholder="Email"> <br> 
+<div id="registerBody" style="text-align:center; margin:auto; width:25%;">
+	<h2>Register</h2>
+	<input type="text" id="fn" placeholder="First Name" style="margin-top:10px;" class="form-control">
+	<input type="text" id="ln" placeholder="Last Name" style="margin-top:10px;" class="form-control">
+	<input type="text" id="email" placeholder="Email" style="margin-top:10px;" class="form-control">
 	<div class="alert alert-danger" id="emessage"></div>
-	<label for="role">Manager</label><input id="role" type="checkbox">
+	<input type="text" id="username" placeholder="Username" style="margin-top:10px;" class="form-control">
+	<div class="alert alert-danger" id="umessage"></div>
+	<input type="password" id="pass" placeholder="password" style="margin-top:10px;" class="form-control">
+	<label for="role" style="margin-top:10px;">Manager: </label><input id="role" style="margin-left: 8px;" type="checkbox">
 	<br>
 	<div class="alert alert-danger" id="emptymessage">"Please fill all requirements to create your account."</div>
-	<button id="registerRegister">Register</button>
-	<button id="registerCancel">Cancel</button>
+	<button id="registerRegister" style="margin-top:10px;" class="btn btn-primary">Register</button>
+	<button id="registerCancel" style="margin-top:10px; margin-left:8px;" class="btn btn-primary">Cancel</button>
 </div>

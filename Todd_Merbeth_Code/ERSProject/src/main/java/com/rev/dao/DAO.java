@@ -16,6 +16,8 @@ public interface DAO {
 	
 	public ArrayList<R_Type> getAllRTypes();
 	
+	public boolean deleteReimbursement(int id);
+	
 	//For managers
 	public ArrayList<Reimbursement> getReimbursements();
 	

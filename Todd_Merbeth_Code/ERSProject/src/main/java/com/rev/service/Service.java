@@ -72,4 +72,11 @@ public class Service {
 	public User updateUser(User newUser, int u_id) {
 		return dao.updateUser(newUser, u_id);
 	}
+	
+	public boolean deleteReimbursement(int id) {
+		if(dao.getReimbursement(id) != null) {
+			return dao.deleteReimbursement(id);
+		}
+		else return false;
+	}
 }

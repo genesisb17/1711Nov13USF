@@ -257,7 +257,23 @@ function loadEmployeeReimbursements(){
 			$("#userReimbsBody tr").remove();
 			for (var i=0; i<reimbursements.length; i++){
 				if(reimbursements[i].description == null){
-					reimbursements[i].description = "";
+					reimbursements[i].description = "None";
+				}
+				var button = "";
+				if(reimbursements[i].statusStr == "Pending"){
+					button = `<button id="${reimbursements[i].id}" style="padding: 0 5px 0 5px;" class="btn btn-danger btn-sm">X</button>`;
+				}
+				else {
+					button = " ";
+				}
+				if(reimbursements[i].statusStr == "Approved"){
+					status = `<td style="color:#32CD32"> ${reimbursements[i].statusStr}</td>`;
+				}
+				else if(reimbursements[i].statusStr == "Denied"){
+					status = `<td style="color:red"> ${reimbursements[i].statusStr}</td>`;
+				}
+				else {
+					status = `<td> ${reimbursements[i].statusStr}</td>`;
 				}
 				var line = 
 						`<tr>
@@ -266,17 +282,43 @@ function loadEmployeeReimbursements(){
 							<td> ${reimbursements[i].submitted} </td>
 							<td> ${reimbursements[i].description} </td>
 							<td> ${reimbursements[i].typeStr} </td>
-							<td> ${reimbursements[i].statusStr}</td>
+							${status}
+							<td> ${button} </td>
 						</tr>`;
 				$('#userReimbsBody').append(line);
 			}
 			$(document).ready(function(){
 			    $('#userReimbs').DataTable();
 			});
+			$('#userReimbsBody .btn').click(function() {
+				let id = this.id;
+				deleteReimbursement(id);
+			});
+//			document.getElementById("userReimbs tr").each(function() {
+//				if(this.)
+//			});
 		}
 	}
 	xhr.open("GET", "employeeReimbursements", true);
 	xhr.send();	
+}
+
+function deleteReimbursement(id){
+	var curId = id;
+	var xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function(){
+	console.log("DELETEREIMBURSEMENT" + xhr.readyState);
+		if(xhr.readyState == 4 && xhr.status == 200){
+			var result = JSON.parse(xhr.responseText);
+			if(result == true){
+				alert("Request deleted");
+				loadEmployeeHome();
+				return;
+			}
+		}
+	}
+	xhr.open("POST", "deleteReimbursement", true);
+	xhr.send(curId);
 }
 
 function loadEmployeeProfile(){
@@ -304,56 +346,81 @@ function loadUserInfo(){
 				pass = pass.concat("*")
 			}
 			document.getElementById('userInfo').innerHTML = `
-			<div id="uInfoInner" style="border:solid; border-width: 1px;border-radius:25px; padding:8px; border-color:bg-primary; background-color: #eee; margin:auto; width:50%; min-width:320px; max-width:450px;">
+			<div id="uInfoInner" style="border:solid; border-width: 1px; border-radius:25px; padding:8px; border-color:bg-primary; background-color: #eee; box-shadow: 4px 8px 6px #888888; margin:auto; width:50%; min-width:320px; max-width:450px;">
 					<div id="first" style="width: 100%; clear:both; height:28px; margin-top:5px; margin-left:6px; margin-bottom:10px;">
 					<div id="firstnameText" style="float:left;">First name: ${user.firstname} </div> 
 					<button id="editFirst" class="btn btn-link btn-sm" style="font-size:10px; color:red; padding-bottom:6px;">Edit</button>
+					<button id="cancelFirstname" class="btn btn-link btn-sm" style="font-size:10px; color:red; padding-bottom:6px;">Cancel</button>
 					<label for="newFirstname" id="fnlabel" style="float:left; margin-bottom:0;">First name: </label> 
-					<input type="text" class="form-control" id="newFirstname" placeholder="${user.firstname}" style="width: 200px; font-size:18px; padding: 0 0 0 4px;">
+					<input type="text" class="form-control" id="newFirstname" placeholder="${user.firstname}" style="float:left; width: 200px; font-size:18px; padding: 0 0 0 4px;">
 					</div> 
 					
 					<div id="last" style="width: 100%; clear:both; height:28px; margin-left:6px; margin-bottom:10px;">
 					<div id="lastnameText" style="float:left;">Last name: ${user.lastname}</div> 
 					<button id="editLast" class="btn btn-link btn-sm" style="font-size:10px; color:red; padding-bottom:6px;">Edit</button>
+					<button id="cancelLastname" class="btn btn-link btn-sm" style="font-size:10px; color:red; padding-bottom:6px;">Cancel</button>
 					<label for="newLastname" id="lnlabel" style="float:left; margin-bottom:0; clear: both;">Last name: </label> 
-					<input type="text" class="form-control" id="newLastname" placeholder="${user.lastname}" style="width: 200px; font-size:18px; padding: 0 0 0 4px;">
+					<input type="text" class="form-control" id="newLastname" placeholder="${user.lastname}" style="float:left; width: 200px; font-size:18px; padding: 0 0 0 4px;">
 					</div>
 					
 					<div id="email" style="width: 100%; clear:both; height:28px; margin-left:6px; margin-bottom:10px;">
 					<div id="emailText" style="float:left;">Email: ${user.email} </div> 
 					<button id="editEmail" class="btn btn-link btn-sm" style="font-size:10px; color:red; padding-bottom:6px;">Edit</button>
+					<button id="cancelEmail" class="btn btn-link btn-sm" style="font-size:10px; color:red; padding-bottom:6px;">Cancel</button>
 					<label for="newEmail" id="emaillabel" style="float:left; margin-bottom:0; clear: both;" >Email: </label> 
-					<input type="text" class="form-control" id="newEmail" placeholder="${user.email}" style="width: 200px; font-size:18px; padding: 0 0 0 4px;">
+					<input type="text" class="form-control" id="newEmail" placeholder="${user.email}" style="float:left; width: 200px; font-size:18px; padding: 0 0 0 4px;">
 					</div> 
+					<div class="alert alert-danger" id="emessage"></div>
 					
 					<div id="roleText" style="float:left; width: 100%; clear:both; height:28px; margin-left:6px; margin-bottom:10px;">Role: ${user.roleStr} </div>
 					
 					<div id="username" style="width: 100%; clear:both; height:28px; margin-left:6px; margin-bottom:10px;">
 					<div id="usernameText" style="float:left;">Username: ${user.username} </div>
 					<button id="editUsername" class="btn btn-link btn-sm" style="font-size:10px; color:red; padding-bottom:6px;">Edit</button>
+					<button id="cancelUsername" class="btn btn-link btn-sm" style="font-size:10px; color:red; padding-bottom:6px;">Cancel</button>
 					<label for="newUsername" id="usernamelabel" style="float:left; margin-bottom:0; clear: both; ">Username: </label> 
-					<input type="text" class="form-control" id="newUsername" placeholder="${user.username}" style="width: 200px; font-size:18px; padding: 0 0 0 4px;">
-					</div> 
+					<input type="text" class="form-control" id="newUsername" placeholder="${user.username}" style="float:left; width: 200px; font-size:18px; padding: 0 0 0 4px;">
+					</div>
+					<div class="alert alert-danger" id="umessage"></div>
 					
 					<div id="password" style="width: 100%; clear:both; height:28px; margin-left:6px; margin-bottom:5px;">
-					<div id="passwordText" style="float:left; padding-right: 8px;"> Password: ${pass} </div>
+					<div id="passwordText" style="float:left; padding-right: 8px;">Password: ${pass}</div>
 					<button id="showPassword" class="btn btn-default btn-sm" style="font-size:10px; color:bg-primary; padding-bottom:6px; width: 40px; float:left;">Show</button>
 					<button id="hidePassword" class="btn btn-default btn-sm" style="font-size:10px; color:bg-primary; padding-bottom:6px; width: 40px; float:left;">Hide</button>
 					<button id="editPassword" class="btn btn-link btn-sm" style="font-size:10px; color:red; padding-bottom:6px;">Edit</button>
+					<button id="cancelPassword" class="btn btn-link btn-sm" style="font-size:10px; color:red; padding-bottom:6px;">Cancel</button>
 					<label for="newPassword" id="passwordlabel" style="float:left; margin-bottom:0; clear: both;">Password: </label> 
-					<input type="password" class="form-control" id="newPassword" style="width: 200px; font-size:18px; padding: 0 0 0 4px;">
+					<input type="password" class="form-control" id="newPassword" style="float:left; width: 200px; font-size:18px; padding: 0 0 0 4px;">
 					</div>
 			</div>`;
 			$('#hidePassword').hide();
-			
+			$('#umessage').hide();
+			$('#emessage').hide();
 			// Firstname stuff
 			$('#newFirstname').hide();
 			$('#fnlabel').hide();
+			$('#cancelFirstname').hide();
 			$('#editFirst').click(function() {
 				$('#firstnameText').hide();
 				$('#editFirst').hide();
+				$('#cancelFirstname').show();
 				$('#newFirstname').show();
 				$('#fnlabel').show();
+		    	$('#editLast').hide();
+		    	$('#editEmail').hide();
+		    	$('#editUsername').hide();
+		    	$('#editPassword').hide();
+			});
+			$('#cancelFirstname').click(function() {
+		    	$('#firstnameText').show();
+				$('#cancelFirstname').hide();
+		    	$('#editFirst').show();
+		    	$('#newFirstname').hide();
+		    	$('#fnlabel').hide();
+		    	$('#editLast').show();
+		    	$('#editEmail').show();
+		    	$('#editUsername').show();
+		    	$('#editPassword').show();
 			});
 			$('#newFirstname').keyup(function(event) {
 			    if (event.keyCode === 13) {
@@ -361,19 +428,41 @@ function loadUserInfo(){
 			    		updateUser("firstname", $('#newFirstname').val());
 			    	}
 			    	$('#firstnameText').show();
+					$('#cancelFirstname').hide();
 			    	$('#editFirst').show();
 			    	$('#newFirstname').hide();
 			    	$('#fnlabel').hide();
+			    	$('#editLast').show();
+			    	$('#editEmail').show();
+			    	$('#editUsername').show();
+			    	$('#editPassword').show();
 			    }
 			});
 			// Lastname stuff
 			$('#newLastname').hide();
 			$('#lnlabel').hide();
+			$('#cancelLastname').hide();
 			$('#editLast').click(function() {
 				$('#lastnameText').hide();
 				$('#editLast').hide();
+				$('#cancelLastname').show();
 				$('#newLastname').show();
 				$('#lnlabel').show();
+		    	$('#editFirst').hide();
+		    	$('#editEmail').hide();
+		    	$('#editUsername').hide();
+		    	$('#editPassword').hide();
+			});
+			$('#cancelLastname').click(function() {
+				$('#lastnameText').show();
+				$('#cancelLastname').hide();
+				$('#editLast').show();
+				$('#newLastname').hide();
+				$('#lnlabel').hide();
+		    	$('#editFirst').show();
+		    	$('#editEmail').show();
+		    	$('#editUsername').show();
+		    	$('#editPassword').show();
 			});
 			$('#newLastname').keyup(function(event) {
 			    if (event.keyCode === 13) {
@@ -381,61 +470,139 @@ function loadUserInfo(){
 			    		updateUser("lastname", $('#newLastname').val());
 			    	}
 			    	$('#lastnameText').show();
+					$('#cancelLastname').hide();
 					$('#editLast').show();
 					$('#newLastname').hide();
 					$('#lnlabel').hide();
+			    	$('#editFirst').show();
+			    	$('#editEmail').show();
+			    	$('#editUsername').show();
+			    	$('#editPassword').show();
 			    }
 			});
 			// Email stuff
 			$('#newEmail').hide();
 			$('#emaillabel').hide();
+			$('#cancelEmail').hide();
 			$('#editEmail').click(function() {
 				$('#emailText').hide();
 				$('#editEmail').hide();
+				$('#cancelEmail').show();
 				$('#newEmail').show();
 				$('#emaillabel').show();
+		    	$('#editFirst').hide();
+		    	$('#editLast').hide();
+		    	$('#editUsername').hide();
+		    	$('#editPassword').hide();
+			});
+			$('#cancelEmail').click(function() {
+		    	$('#emailText').show();
+				$('#cancelEmail').hide();
+				$('#editEmail').show();
+				$('#newEmail').hide();
+				$('#emaillabel').hide();
+		    	$('#editFirst').show();
+		    	$('#editLast').show();
+		    	$('#editUsername').show();
+		    	$('#editPassword').show();
+		    	$('#emessage').hide();
 			});
 			$('#newEmail').keyup(function(event) {
 			    if (event.keyCode === 13) {
-			    	if($('#newEmail').val != null){
-			    		updateUser("email", $('#newEmail').val());
-			    	}
 			    	$('#emailText').show();
+					$('#cancelEmail').hide();
 					$('#editEmail').show();
 					$('#newEmail').hide();
 					$('#emaillabel').hide();
+			    	$('#editFirst').show();
+			    	$('#editLast').show();
+			    	$('#editUsername').show();
+			    	$('#editPassword').show();
+			    	if($('#newEmail').val != null){
+			    		checkEmailProfile();
+			    	}
 			    }
 			});
 			// Username
 			$('#newUsername').hide();
 			$('#usernamelabel').hide();
+			$('#cancelUsername').hide();
 			$('#editUsername').click(function() {
 				$('#usernameText').hide();
 				$('#editUsername').hide();
+				$('#cancelUsername').show();
 				$('#newUsername').show();
 				$('#usernamelabel').show();
+		    	$('#editFirst').hide();
+		    	$('#editLast').hide();
+		    	$('#editEmail').hide();
+		    	$('#editPassword').hide();
+			});
+			$('#cancelUsername').click(function() {
+		    	$('#usernameText').show();
+				$('#cancelUsername').hide();
+				$('#editUsername').show();
+				$('#newUsername').hide();
+				$('#usernamelabel').hide();
+		    	$('#editFirst').show();
+		    	$('#editLast').show();
+		    	$('#editEmail').show();
+		    	$('#editPassword').show();
+		    	$('#umessage').hide();
 			});
 			$('#newUsername').keyup(function(event) {
 			    if (event.keyCode === 13) {
-			    	if($('#newUsername').val != null){
-			    		updateUser("username", $('#newUsername').val());
-			    	}
 			    	$('#usernameText').show();
+					$('#cancelUsername').hide();
 					$('#editUsername').show();
 					$('#newUsername').hide();
 					$('#usernamelabel').hide();
+			    	$('#editFirst').show();
+			    	$('#editLast').show();
+			    	$('#editEmail').show();
+			    	$('#editPassword').show();
+			    	if($('#newUsername').val != null){
+			    		checkUsernameProfile();
+			    	}
 			    }
 			});
 			// Password stuff
 			$('#newPassword').hide();
 			$('#passwordlabel').hide();
+			$('#cancelPassword').hide();
 			$('#editPassword').click(function() {
 				$('#passwordText').hide();
 				$('#editPassword').hide();
+				$('#cancelPassword').show();
 				$('#newPassword').show();
 				$('#passwordlabel').show();
 				$('#showPassword').hide();
 				$('#hidePassword').hide();
+				$('#usernamelabel').hide();
+		    	$('#editFirst').hide();
+		    	$('#editLast').hide();
+		    	$('#editEmail').hide();
+		    	$('#editUsername').hide();
+			});
+			$('#cancelPassword').click(function() {
+		    	$('#passwordText').show();
+		    	$('#cancelPassword').hide();
+				$('#editPassword').show();
+				$('#newPassword').hide();
+				$('#passwordlabel').hide();
+				$('#usernamelabel').hide();
+		    	$('#editFirst').show();
+		    	$('#editLast').show();
+		    	$('#editEmail').show();
+		    	$('#editUsername').show();
+				if(document.getElementById('passwordText').innerHTML == `Password: ${pass}`){
+					$('#hidePassword').hide();
+					$('#showPassword').show();
+				}
+				else {
+					$('#hidePassword').show();
+					$('#showPassword').hide();
+				}
 			});
 			$('#newPassword').keyup(function(event) {
 			    if (event.keyCode === 13) {
@@ -443,11 +610,23 @@ function loadUserInfo(){
 			    		updateUser("password", $('#newPassword').val());
 			    	}
 			    	$('#passwordText').show();
+			    	$('#cancelPassword').hide();
 					$('#editPassword').show();
 					$('#newPassword').hide();
 					$('#passwordlabel').hide();
-					$('#hidePassword').hide();
-					$('#showPassword').show();
+					$('#usernamelabel').hide();
+			    	$('#editFirst').show();
+			    	$('#editLast').show();
+			    	$('#editEmail').show();
+			    	$('#editUsername').show();
+					if(document.getElementById('passwordText').innerHTML == `Password: ${pass}`){
+						$('#hidePassword').hide();
+						$('#showPassword').show();
+					}
+					else {
+						$('#hidePassword').show();
+						$('#showPassword').hide();
+					}
 			    }
 			});
 			$("#showPassword").click(function() {
@@ -464,6 +643,70 @@ function loadUserInfo(){
 	}
 	xhr.open("GET", "employeeInfo", true);
 	xhr.send();	
+}
+function checkUsernameProfile(){
+	var username = $('#newUsername').val();
+	var json = JSON.stringify(username);
+	var xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState == 4 && xhr.status==200){
+			var exist = xhr.responseText;
+			console.log(exist);
+			if(exist.length==4){
+				$('#usernameText').hide();
+				$('#editUsername').hide();
+				$('#cancelUsername').show();
+				$('#newUsername').show();
+				$('#usernamelabel').show();
+		    	$('#editFirst').hide();
+		    	$('#editLast').hide();
+		    	$('#editEmail').hide();
+		    	$('#editPassword').hide();
+				$('#umessage').html(`Username: '${username}' is already taken! Please try another.`);
+				$('#umessage').show();
+			}
+			else {
+				$('#umessage').hide();
+				updateUser("username", $('#newUsername').val());
+				}
+		}
+	};
+	
+	xhr.open("POST","checkUsername", true);
+	xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+	xhr.send(json);
+}
+function checkEmailProfile(){
+	var email = $('#newEmail').val();
+	var json = JSON.stringify(email);
+	var xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState == 4 && xhr.status==200){
+			var exist = xhr.responseText;
+			console.log(exist);
+			if(exist.length==4){
+				$('#emailText').hide();
+				$('#editEmail').hide();
+				$('#cancelEmail').show();
+				$('#newEmail').show();
+				$('#emaillabel').show();
+		    	$('#editFirst').hide();
+		    	$('#editLast').hide();
+		    	$('#editUsername').hide();
+		    	$('#editPassword').hide();
+				$('#emessage').html(`Email: '${email}' is already in use for an account! Please try another.`);
+				$('#emessage').show();
+			}
+			else {
+				$('#emessage').hide();
+				updateUser("email", $('#newEmail').val());
+				}
+		}
+	};
+	
+	xhr.open("POST","checkEmail", true);
+	xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+	xhr.send(json);
 }
 
 function loadNewRequest(){
@@ -486,13 +729,13 @@ function loadRTypeInfo(){
 		console.log("LOADREQUESTINFO " + xhr.readyState);
 		if(xhr.readyState == 4 && xhr.status == 200){
 			var rTypes = JSON.parse(xhr.responseText);
-			var str = '<label for="reqType">Type:  </label><select id="reqType"><option disabled selected value> -- select an option -- </option>';
+			var str = '<label for="reqType">Type: </label><select id="reqType"><option disabled selected value> -- select an option -- </option>';
 			for (let i = 0; i < rTypes.length; i++){
 				var line = `<option value="${rTypes[i].r_id}">${rTypes[i].r_type}</option>`;
 				str = str.concat(line);
 			}
 			str = str.concat("</select>");
-			document.getElementById('reqType').innerHTML = str;
+			document.getElementById('reqType1').innerHTML = str;
 		}
 	}
 	xhr.open("GET", "reimbursementTypes", true);
@@ -500,12 +743,16 @@ function loadRTypeInfo(){
 }
 function sendRequest() {
 	var amountInput = $('#reqAmount').val();
+	console.log($('#reqAmount').val());
 	var type = $('#reqType option:selected').val();
+	console.log($('#reqType option:selected').val());
 	var desc = $('#reqDescription').val();	
-// if(amount == "" || type == undefined){
-// $('#errmessage').show();
-// }
-// else {
+	console.log($('#reqDescription').val());
+    if(amountInput == "" || type == ""){
+    	$('#errmessage').show();
+    }
+    else {
+    	$('#errmessage').hide();
 		var reimbursement = {
 				id : 0,
 				amount : amountInput,
@@ -543,7 +790,7 @@ function sendRequest() {
 		xhr.open("POST","newReimbursement", true);
 		xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 		xhr.send(reimbJSON);
-// }
+ }
 }
 // ////////////////////////////////////////////////// Manager
 // //////////////////////////////////////////////////
@@ -573,13 +820,22 @@ function loadAllReimbursements(){
 			var reimbursements = JSON.parse(xhr.responseText);
 			for (var i=0; i<reimbursements.length; i++){
 				if(reimbursements[i].resolved == null){
-					reimbursements[i].resolved = "";
+					reimbursements[i].resolved = "N/A";
 				}
 				if(reimbursements[i].description == null){
-					reimbursements[i].description = "";
+					reimbursements[i].description = "None";
 				}
 				if(reimbursements[i].resolverStr == null){
-					reimbursements[i].resolverStr = "";
+					reimbursements[i].resolverStr = "N/A";
+				}
+				if(reimbursements[i].statusStr == "Approved"){
+					status = `<td style="color:#32CD32">${reimbursements[i].statusStr}</td>`;
+				}
+				else if(reimbursements[i].statusStr == "Denied"){
+					status = `<td style="color:red">${reimbursements[i].statusStr}</td>`;
+				}
+				else {
+					status = `<td>${reimbursements[i].statusStr}</td>`;
 				}
 				var line = 
 						`<tr>
@@ -591,7 +847,7 @@ function loadAllReimbursements(){
 							<td> ${reimbursements[i].authorStr} </td>
 							<td> ${reimbursements[i].resolverStr} </td>
 							<td> ${reimbursements[i].typeStr} </td>
-							<td> ${reimbursements[i].statusStr}</td>
+							${status}
 						</tr>`;
 				$('#allReimbsBody').append(line);
 			}
@@ -628,20 +884,32 @@ function loadRStatusOptions(){
 }
 function addTableClicks(reimbursements) {
     $("#allReimbs tr").click(function() {
-    	$('#changeReimbursementContainer').show();
-    	$('#sLabel').show();
-    	document.getElementById('selected').innerHTML = this.getElementsByTagName("td")[0].innerHTML;
-    	$('#reqStatus').show();
-    	$('#updateStatus').show();
+    	console.log(this.getElementsByTagName("td")[8].innerHTML);
+    	if(this.getElementsByTagName("td")[8].innerHTML == "Pending"){
+	    	$('#changeReimbursementContainer').show();
+	    	$('#sLabel').show();
+	    	document.getElementById('selected').innerHTML = this.getElementsByTagName("td")[0].innerHTML;
+	    	$('#reqStatus').show();
+	    	$('#updateStatus').show();
+	    	$('#updateError').hide();
+    	}
+    	else{
+    		$('#changeReimbursementContainer').hide();
+    		$('#sLabel').hide();
+    		$('#reqStatus').hide();
+	    	$('#updateStatus').hide();
+    	}
     });
 }
 function updateReimbursement(){
 	var index = document.getElementById('selected').innerHTML;
 	var status = $('#reqStatus option:selected').val();
 	if(status == ""){
+		document.getElementById('updateError').innerHTML = "Please select either Approved or Denied for the selected reimbursement";
 		$('#updateError').show();
 	}
 	else {
+		$('#updateError').hide();
 		var arr = [index, status];
 		var arrJSON = JSON.stringify(arr);
 		

@@ -10,6 +10,8 @@
 <link rel="stylesheet" src="style.css" />
 <link rel="stylesheet" type="text/css"
 	href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
+<link rel="stylesheet"
+	src="C:/Users/toddm/Desktop/fontawesome-free-5.0.1/web-fonts-with-css/css/font-awesome.min.css">
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
 	integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
 	crossorigin="anonymous"></script>
@@ -23,9 +25,40 @@
 	crossorigin="anonymous"></script>
 <script type="text/javascript" language="javascript"
 	src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<style>
+.btn-primary {
+	box-shadow: 2px 4px 3px #888888;
+}
+
+.form-control {
+	box-shadow: 2px 4px 3px #888888;
+}
+
+.container {
+	background-color: #eee;
+}
+
+textarea {
+	box-shadow: 2px 4px 3px #888888;
+}
+
+#reqType {
+	box-shadow: 2px 4px 3px #888888;
+}
+table{
+	border:solid; 
+	border-width:1px;
+	border-radius:25px 25px 0 0;
+}
+label{
+	font-weight:bold;
+}
+</style>
 </head>
-<body>
-	<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+<body
+	style="background-image: url('https://cdn-images-1.medium.com/max/1600/1*MiwWIWoucFA5TLSN5C67ag.jpeg'); background-repeat: repeat;">
+	<nav style="box-shadow: 0px 5px 2px grey;"
+		class="navbar navbar-expand-lg navbar-dark bg-primary">
 		<a class="navbar-brand" href="#">ERS</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
 			data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup"
@@ -34,8 +67,8 @@
 		</button>
 		<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
 			<div class="navbar-nav">
-				<a class="nav-item nav-link" id="ehome" href="#">Home</a> <a
-					class="nav-item nav-link" id="mhome" href="#">Home</a> <a
+				<a class="nav-item nav-link" id="ehome" href="#">My Requests</a> <a
+					class="nav-item nav-link" id="mhome" href="#">Reimbursements</a> <a
 					class="nav-item nav-link" id="enewreq" href="#">New Request</a> <a
 					class="nav-item nav-link" id="eprofile" href="#">My Profile</a> <a
 					class="nav-item nav-link" id="mprofile" href="#">My Profile</a> <a
@@ -43,7 +76,7 @@
 			</div>
 		</div>
 	</nav>
-
+	<br>
 	<div id="view"></div>
 
 	<script src="js/app.js"></script>

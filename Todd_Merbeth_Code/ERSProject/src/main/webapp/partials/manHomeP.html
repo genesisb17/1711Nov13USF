@@ -1,8 +1,8 @@
 <div>
 	<h2>Reimbursement Requests:</h2>
-	<div id="reimbursements">
+	<div id="reimbursements" style="width: 90%; margin: auto;">
 		<table id="allReimbs" class="display dataTable" cellspacing="0"
-			width="100%" role="grid">
+			style="text-align: center;" role="grid">
 			<thead>
 				<tr>
 					<th class="sorting_asc" tabindex="0">ID</th>
@@ -20,13 +20,15 @@
 			</tbody>
 		</table>
 	</div>
-	<div id="changeReimbursementContainer" style="margin: auto; margin-bottom: 5px; text-align:center; border:solid; border-width:1px; border-radius: 25px; width: 35%; max-width: 400px; min-width:360px;">
-		<label for="selected" id="sLabel">Selected Reimbursement: </label>
+	<div id="changeReimbursementContainer"
+		style="margin: auto; font-size: 18px; margin-bottom: 10px; text-align: center; border: solid; border-width: 1px; border-radius: 25px; width: 35%; background-color: #eee; max-width: 400px; min-width: 360px;">
+		<label for="selected" style="margin-top: 10px; margin-right: 5px;"
+			id="sLabel">Selected Reimbursement: </label>
 		<div id="selected" style="display: inline;"></div>
 		<div id="reqStatus"></div>
-		<div class="alert alert-danger" id="updateError">Please select
-			approve or deny to update the reimbursement</div>
-		<button id="updateStatus" style="margin-bottom: 4px; "class="btn btn-primary">Update
+		<div class="alert alert-danger" id="updateError"></div>
+		<button id="updateStatus"
+			style="margin-bottom: 10px; margin-top: 8px;" class="btn btn-primary">Update
 			Status</button>
 	</div>
 </div>

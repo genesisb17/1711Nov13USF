@@ -435,4 +435,21 @@ public class DBDAO implements DAO {
 		}
 		return null;
 	}
+	
+	public boolean deleteReimbursement(int id) {
+		try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
+			conn.setAutoCommit(false); // Set to false to make sure it has properly changed
+			String sql = "delete from reimbursement where r_id = ?";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setInt(1, id);
+			int rows = ps.executeUpdate();
+			if (rows != 0) {
+				conn.commit();
+				return true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
 }
