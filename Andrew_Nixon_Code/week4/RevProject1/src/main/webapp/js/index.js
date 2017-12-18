@@ -5,15 +5,12 @@
 var tableData;
 
 window.onload = function() {
-	// $('#message').hide();
 	$('#login').on('click', login);
 	$('#register').on('click', loadRegister);
 
 }
 
 function login() {
-	// window.location.replace('LoginSuccess.html');
-	// 1. check if user name is in database.
 	var username = $('#username').val();
 	var password = $('#password').val();
 	var toSend = [ username, password ];
@@ -25,20 +22,13 @@ function login() {
 	xhr.send(json);
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState == 4 && xhr.status == 200) {
-			// console.log("in xhr callback" + xhr.responseText);
 			var user = JSON.parse(xhr.responseText);
-			console.log(user);
 			if (user === null) {
 				$('#message').html("Invalid user");
-				console.log("bad name!");
 			} else if (user.userID === -1) {
 				$('#message').html("Invalid password");
-				console.log("bad pass!");
 			} else {
-				// $('#message').html(`Welcome ${user.firstname}`) ;
-				console.log("good combo!");
 				loadMain();
-				// window.location.replace('LoginSuccess.html');
 
 			}
 		}
@@ -46,14 +36,10 @@ function login() {
 }
 
 function loadMain() {
-	console.log("in function loadMain")
 	var xhr = new XMLHttpRequest();
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState == 4 && xhr.status == 200) {
-			// window.location.replace(xhr.responseText);
 			document.getElementById('view').innerHTML = xhr.responseText;
-			// $('#home').on('click',loadHome);
-			// $('#profile').on('click', loadProfile);
 			getUserInfo();
 		}
 	}
@@ -67,7 +53,6 @@ function getUserInfo() {
 	xhr.send();
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState == 4 && xhr.status == 200) {
-			console.log(xhr.responseText);
 			document.getElementById('view').innerHTML = xhr.responseText;
 			getUserInfoHelper();
 		}
@@ -80,9 +65,7 @@ function getUserInfoHelper() {
 	xhr.send();
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState == 4 && xhr.status == 200) {
-			console.log(xhr.responseText);
 			var sessionUser = JSON.parse(xhr.responseText);
-			// console.log(sessionUser.firstName);
 			$("#fname").html(sessionUser.firstName);
 			$("#lname").html(sessionUser.lastName);
 			$('#submittedReimb').on('click', getReimbByAuthor);
@@ -103,7 +86,6 @@ function getReimbByAuthor() {
 	xhr.send();
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState == 4 && xhr.status == 200) {
-			// console.log(xhr.responseText);
 			var rData = JSON.parse(xhr.responseText);
 			var Data = xhr.responseText;
 			
@@ -113,13 +95,11 @@ function getReimbByAuthor() {
 }
 
 function getPendingReimbs() {
-	console.log("in getPendingReimbs function");
 	var xhr = new XMLHttpRequest();
 	xhr.open("GET", "getPendingReimbs", true);
 	xhr.send();
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState == 4 && xhr.status == 200) {
-			// console.log(xhr.responseText);
 			document.getElementById('getPending').innerHTML = xhr.responseText;
 		}
 	}
@@ -131,17 +111,13 @@ function getAllReimbs() {
 	xhr.send();
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState == 4 && xhr.status == 200) {
-			// console.log(xhr.responseText);
 			var rData = JSON.parse(xhr.responseText);
 			var Data = xhr.responseText;
-			
-			//document.getElementById('reimbs').innerHTML = xhr.responseText;
 		}
 	}
 }
 
 function loadRegister() {
-	console.log("in function loadRegister")
 	var xhr = new XMLHttpRequest();
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState == 4 && xhr.status == 200) {
@@ -180,11 +156,9 @@ function createUser() {
 	};
 	var userJSON = JSON.stringify(user);
 
-	console.log("in function createUser")
 	var xhr = new XMLHttpRequest();
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState == 4 && xhr.status == 200) {
-			console.log("user registered");
 			loadHome();
 
 		}
@@ -196,11 +170,9 @@ function createUser() {
 }
 
 function loadHome() {
-	console.log("in function loadHome")
 	var xhr = new XMLHttpRequest();
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState == 4 && xhr.status == 200) {
-			// window.location.replace(xhr.responseText);
 			document.getElementById('view').innerHTML = xhr.responseText;
 			$('#login').on('click', login);
 			$('#register').on('click', loadRegister);
@@ -211,11 +183,9 @@ function loadHome() {
 }
 
 function createReimb() {
-	console.log("in function createReimb");
 	var a = $('#amount').val();
 	var rt = $('#reimbType').val();
 	var d = $('#reimbDescription').val();
-	// var aid = sessionUser.userID;
 
 	switch (rt) {
 	case "Lodging":
@@ -250,7 +220,6 @@ function createReimb() {
 	var xhr = new XMLHttpRequest();
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState == 4 && xhr.status == 200) {
-			console.log("reimburement added");
 
 		}
 	}
@@ -267,7 +236,6 @@ function logout() {
 	xhr.send();
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState == 4 && xhr.status == 200) {
-			console.log("logging out");
 			loadHome();
 
 		}
@@ -276,7 +244,6 @@ function logout() {
 }
 
 function resolveReimb() {
-	console.log("in function resolveReimb");
 	var resolvedID = $('#reimbID').val();
 	var resolvedStatus = $('#reimbStatus').val();
 
@@ -306,21 +273,20 @@ function resolveReimb() {
 	xhr.send(rrJSON);
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState == 4 && xhr.status == 200) {
-			console.log("resolving reimbursement");
 			var resolution = JSON.parse(xhr.responseText);
 			if (resolution === null) {
-				$('#resolveMessage').html("Invalid Reimbursement ID");
-				console.log("bad RID!");
-			} else {
-				$('#resolveMessage').html("Reimbursement Resolved");
-				console.log("good RID!");
+				$('#resolveMessage').html("Failure: Invalid Reimbursement ID");
+			}else if (resolution.reimbID === -1) {
+				$('#resolveMessage').html("Failure: Reimbursement arleady resolved.");
+			} 
+			else {
+				$('#resolveMessage').html("Success: Reimbursement Resolved");
 			}
 		}
 	}
 }
 
 function createAuthorTable(){
-	console.log("in getAllReimbs function");
 	var xhr = new XMLHttpRequest();
 	xhr.open("GET", "getReimbByAuthor", true);
 	xhr.send();
@@ -328,19 +294,12 @@ function createAuthorTable(){
 
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState == 4 && xhr.status == 200) {
-			// console.log(xhr.responseText);
 			var Data = JSON.parse(xhr.responseText);
-			console.log(Data.length);
-			console.log(Data);
 			
 			for (di = 0; di < Data.length; ++di){
                 allReimbs[di] = [Data[di].submitted, Data[di].amount, Data[di].type, 
 					Data[di].description, Data[di].status, Data[di].resolved];
 
-			}
-        	console.log(allReimbs);
-			for (var tdi = 0; tdi < allReimbs.length; tdi++){
-				console.log("for loop" + tdi);
 			}
 			$('#user_table').DataTable( {
 		        data: allReimbs,
@@ -358,7 +317,6 @@ function createAuthorTable(){
 }
 
 function createManagerTable(){
-	console.log("in getAllReimbs function");
 	var xhr = new XMLHttpRequest();
 	xhr.open("GET", "managerTable", true);
 	xhr.send();
@@ -366,20 +324,12 @@ function createManagerTable(){
 
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState == 4 && xhr.status == 200) {
-			// console.log(xhr.responseText);
-			//document.getElementById('getAll').innerHTML = xhr.responseText;
 			var Data = JSON.parse(xhr.responseText);
-			console.log(Data.length);
-			console.log(Data);
 			
 			for (di = 0; di < Data.length; ++di){
                 allReimbs[di] = [Data[di].reimbursementID, Data[di].authorName,  Data[di].submitted, 
                 	Data[di].amount, Data[di].type, Data[di].description, Data[di].status, Data[di].resolved];
 
-			}
-        	console.log(allReimbs);
-			for (var tdi = 0; tdi < allReimbs.length; tdi++){
-				console.log("for loop" + tdi);
 			}
 			$('#manager_table').DataTable( {
 		        data: allReimbs,

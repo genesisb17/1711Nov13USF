@@ -23,29 +23,21 @@ public class UserLoginServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) 
 			throws ServletException, IOException {
-		System.out.println("inside UserLoginServlet");
 		BufferedReader br = new BufferedReader(new InputStreamReader(req.getInputStream()));
 		String json = "";
 		if(br != null){
 			json = br.readLine();
 		}
-		System.out.println("JSON STRING: " + json);
 		ObjectMapper mapper = new ObjectMapper();
 		String[] userInfo = mapper.readValue(json, String[].class);
 		String username = userInfo[0];
 		String password = userInfo[1];
-		ERSUser temp = service.checkUsernameExists(username); // get user by uname
-		System.out.println(temp.toString());
+		ERSUser temp = service.checkUsernameExists(username); 
 		
 		if(temp.getUserID() == 0) {
 			temp = null;
-			System.out.println("invalid username");
 		}
-		//else if(temp.getPassword() != password) {
 		else if(!temp.getPassword().equals(password)) {
-			System.out.println("invalid password");
-			//temp = null;
-			//temp.setUserid(0);
 			temp.nullifyUser();
 		}	
 		else {
@@ -57,7 +49,6 @@ public class UserLoginServlet extends HttpServlet {
 		resp.setContentType("application/json");
 		
 		String userJSON = mapper.writeValueAsString(temp);
-		//System.out.println("JSON: " + userJSON);
 		out.write(userJSON);
 	}
 	

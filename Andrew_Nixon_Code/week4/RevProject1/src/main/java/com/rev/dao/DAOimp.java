@@ -88,8 +88,8 @@ public class DAOimp implements DAO {
 				r.setReceipt(rs.getBlob(6));
 				r.setAuthor(rs.getInt(7));
 				r.setResolver(rs.getInt(8));
-				r.setStatusID(rs.getInt(9));
-				r.setTypeID(rs.getInt(10));
+				r.setStatusID(rs.getInt(10));
+				r.setTypeID(rs.getInt(9));
 			}
 
 		} catch (SQLException e) {
@@ -219,7 +219,7 @@ public class DAOimp implements DAO {
 			ps.executeUpdate();
 			ResultSet pk = ps.getGeneratedKeys();
 			while (pk.next()) {
-				reimb.setReimbID(pk.getInt(1)); // setUserID(pk.getInt(1));
+				reimb.setReimbID(pk.getInt(1));
 			}
 
 			conn.commit();
@@ -343,15 +343,12 @@ public class DAOimp implements DAO {
 	@Override
 	public Reimbursement resolveReimb(int reimbID, int resolverID, int statusID) {
 		try(Connection connect = ConnectionFactory.getInstance().getConnection();){
-//			String sql = "{call get_all_artists(?)}";
 			String sql = "{call resolve_reimb(?, ?, ?)}";
 			
 			CallableStatement cs = connect.prepareCall(sql);
 			cs.setInt(1, reimbID);
 			cs.setInt(2, resolverID);
-			cs.setInt(3, statusID);
-			//cs.registerOutParameter(1, OracleTypes.CURSOR);
-			
+			cs.setInt(3, statusID);			
 			cs.execute();
 						
 		} catch (SQLException e) {
@@ -391,102 +388,5 @@ public class DAOimp implements DAO {
 
 		return reimbursements;
 	}
-
-//	@Override
-//	public ArrayList<Artist> getArtists() {
-//
-//		ArrayList<Artist> artists = new ArrayList<>();
-//
-//		try (Connection conn = ConnectionFactory.getInstance().getConnection();) {
-//			String sql = "select * from artist";
-//			Statement statement = conn.createStatement();
-//			ResultSet rs = statement.executeQuery(sql);
-//
-//			while (rs.next()) {
-//				Artist temp = new Artist();
-//				temp.setId(rs.getInt("ARTISTID"));
-//				temp.setName(rs.getString(2));
-//				artists.add(temp);
-//			}
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		}
-//
-//		return artists;
-//	}
-//
-//	@Override
-//	public Artist getArtistById(int id) {
-//		Artist art = new Artist();
-//
-//		try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
-//			String sql = "select * from artist where artistid = ?";
-//			PreparedStatement ps = conn.prepareStatement(sql);
-//			ps.setInt(1, id);
-//			ResultSet info = ps.executeQuery();
-//
-//			while (info.next()) {
-//				art.setId(info.getInt(1));
-//				art.setName(info.getString(2));
-//			}
-//
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		}
-//
-//		return art;
-//	}
-//
-//	@Override public Artist addArtist(String name) {
-//	  
-//	  Artist art = new Artist(); try(Connection conn =
-//	  ConnectionFactory.getInstance().getConnection()){ conn.setAutoCommit(false);
-//	  String sql = "insert into artist (Name) values (?)"; String[] key = new
-//	  String[1]; key[0] = "artistid";
-//	  
-//	  PreparedStatement ps = conn.prepareStatement(sql, key); ps.setString(1,
-//	  name); int rows = ps.executeUpdate(); if(rows!=0){
-//	  
-//	  ResultSet pk = ps.getGeneratedKeys(); while(pk.next()){
-//	  art.setId(pk.getInt(1)); } art.setName(name); conn.commit(); } } catch
-//	  (SQLException e) { // TODO Auto-generated catch block e.printStackTrace(); }
-//	  return art; }
-//
-//	@Override
-//	public void updateArtist(int id, String name) {
-//		try (Connection conn = ConnectionFactory.getInstance().getConnection();) {
-//			conn.setAutoCommit(false);
-//			String sql = "update artist set name = ? where artistid = ?";
-//			PreparedStatement ps = conn.prepareStatement(sql);
-//			ps.setString(1, name);
-//			ps.setInt(2, id);
-//			ps.executeUpdate(); // System.out.println(rows); conn.commit(); // art =
-//			getArtistById(id);
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		}
-//
-//	}
-//	@Override
-//	public List<Artist> getArtistsStoredProc() {
-//		List<Artist> artists = new ArrayList<>();
-//		try(Connection connect = ConnectionFactory.getInstance().getConnection();){
-//			String sql = "{call get_all_artists(?)}";
-//			
-//			CallableStatement cs = connect.prepareCall(sql);
-//			cs.registerOutParameter(1, OracleTypes.CURSOR);
-//			
-//			cs.execute();
-//			
-//			ResultSet rs = (ResultSet) cs.getObject(1);
-//			while(rs.next()){
-//				artists.add(new Artist(rs.getInt(1),rs.getString(2)));
-//			}
-//			
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		}
-//		return artists;
-//	}
 
 }

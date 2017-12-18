@@ -23,7 +23,6 @@ public class ResolveServlet extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		System.out.println("inside ResolveServlet");
 		BufferedReader br = new BufferedReader(new InputStreamReader(req.getInputStream()));
 		String json = "";
 		if(br != null){
@@ -36,16 +35,19 @@ public class ResolveServlet extends HttpServlet {
 		ERSUser user = (ERSUser) session.getAttribute("user");
 		if(temp.getReimbID() == 0) {
 			temp = null;
-			System.out.println("invalid username");
 		}
 		else {
-			temp = service.resolve(r.getReimbID(), user.getUserID(), r.getStatusID() );
+			if (temp.getStatusID() != 21) {
+				temp.setReimbID(-1);
+			}
+			else {
+				temp = service.resolve(r.getReimbID(), user.getUserID(), r.getStatusID() );
+			}
 		}
 		PrintWriter out = resp.getWriter();
 		resp.setContentType("application/json");
 		
 		String reimbJSON = mapper.writeValueAsString(temp);
-		//System.out.println("JSON: " + userJSON);
 		out.write(reimbJSON);
 
 	}
