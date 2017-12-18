@@ -331,7 +331,12 @@ function loadRequests()
 			var jsonArray = JSON.parse(xhr.responseText);
 			
 			if (jsonArray == null)
-				submitNewRequest();
+			{
+				$('#viewRequestsBtn').hide();
+				$('#managerViews').hide();
+				$('#userPastViews').html("You have no data yet. Please create a new reimbursement.");
+			}
+		
 			else
 			{
 				for(var i = 0; i < jsonArray.length; i++)
