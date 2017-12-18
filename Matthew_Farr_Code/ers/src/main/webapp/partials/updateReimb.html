@@ -1,0 +1,18 @@
+<div>
+
+	<h1>Update Reimbursement</h1>
+	<div class="form-group">
+		<label for="reimbursementId">Reimbursement Id:</label> <br>
+		<input type="number" id="reimbursementId" min="100" step="1"> <br>
+		<label for="reimbStatus">Reimbursement Status: </label> 
+		<select class="form-control" id="reimbStatus">
+			<option>Approved</option>
+			<option>Denied</option>
+		</select> <br>
+		<button type="submit" class="btn btn-primary" id="submit"
+			onclick="updateReimbursement()">Submit</button>
+	</div>
+
+	<div class="alert alert-info" id="message"></div>
+
+</div>

@@ -1,0 +1,21 @@
+<div>
+
+	<h1>Submit Reimbursement</h1>
+	<div class="form-group">
+		<label for="amount">Amount: </label>
+		<input class="form-control" type="number" id="amount" step="0.01" min="0.01"> <br>
+		<label for="description">Description: </label>
+		<input class="form-control" type="text" id="description"> <br>
+		<label for="reimbType">Reimbursement Type: </label> 
+		<select class="form-control" id="reimbType"> 
+			<option>Travel</option>
+			<option>Lodging</option>
+			<option>Food</option>
+			<option>Other</option>
+		</select> <br>
+		<button type="submit" class="btn btn-primary" id="submit" onclick="submitReimbursement()">Submit</button>
+	</div>
+	
+	<div class="alert alert-info" id="message"></div>
+
+</div>
