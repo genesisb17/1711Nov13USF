@@ -62,7 +62,7 @@ public class RegisterServlet extends HttpServlet
 		u1.setUsername(name);
 		u1.setPassword(password);
 		u1.setEmail(email);
-		service.adders_users(u1.getUsername(), u1.getPassword(), first, last, email, role);
+		service.adders_users(name,password, first, last, email, role);
 		//service.geters_users(u1.getUsername(), u1.getPassword());
 		PrintWriter out = response.getWriter();
 		out.println(u1.getLastname()+" "+u1.getFirstname());
