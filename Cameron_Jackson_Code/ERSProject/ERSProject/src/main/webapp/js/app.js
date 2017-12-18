@@ -375,6 +375,9 @@ function login() {
     if (user.username != "" && user.password != "") {
         xhr.open("POST", "login", true);
         xhr.send(text);
+    } else {
+        $('#invalid-username').html("Please enter a username");
+        $('#invalid-password').html("Please enter a password");
     }
 }
 
@@ -454,8 +457,6 @@ function updateAccount() {
 }
 
 function createAccount() {
-    $('.bad-username').hide(); // Refactor this 
-    $('.bad-password').hide(); // * 
     var user = {
         userId: 0,
         username: $('#username').val(),
@@ -502,7 +503,13 @@ function createAccount() {
         var userString = JSON.stringify(user);
         xhr.open("POST", "createAccount", true);
         xhr.send(userString);
-    } else if ($('#confirm-password').val() != user.password) {
+    } 
+    if (user.username == "" || user.password == "" ||
+    user.firstName == "" || user.lastName == "" ||
+    user.email == "" || $('#confirm-password').val() == "") {
+        $('#invalid-confirm-password').html("Fields can't be blank");
+    }
+    if ($('#confirm-password').val() != user.password) {
         $('#password').val("");
         $('#confirm-password').val("");
         $('#invalid-confirm-password').html("Password and confirm password do not match.");
