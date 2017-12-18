@@ -117,6 +117,7 @@ function registerFunc()
 		let managerCode = prompt("Please enter the manager code: ");
 		if (managerCode != "abcde")
 		{
+			validUsername = false;
 			alert("You have entered an invalid manager code. Please try again.");
 			location.reload();
 		}
