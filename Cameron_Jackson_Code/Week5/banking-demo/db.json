@@ -2,21 +2,143 @@
     "users": [
         {
             "id": 1,
-            "name": "Bob Finkle",
-            "username": "bfinkle",
+            "firstname": "Dyan",
+            "lastname": "O' Culligan",
+            "username": "doculligan0",
             "password": "password"
         },
         {
             "id": 2,
-            "name": "Sally Sue",
-            "username": "ssue",
+            "firstname": "Sheffie",
+            "lastname": "Voice",
+            "username": "svoice1",
             "password": "password"
         },
         {
             "id": 3,
-            "name": "John Doe",
-            "username": "jdoe",
+            "firstname": "Ara",
+            "lastname": "Mulvey",
+            "username": "amulvey2",
             "password": "password"
+        },
+        {
+            "id": 4,
+            "firstname": "Corey",
+            "lastname": "Thelwll",
+            "username": "cthelwll3",
+            "password": "password"
+        },
+        {
+            "id": 5,
+            "firstname": "Ian",
+            "lastname": "Bick",
+            "username": "ibick4",
+            "password": "password"
+        },
+        {
+            "id": 6,
+            "firstname": "Nicky",
+            "lastname": "McGinty",
+            "username": "nmcginty5",
+            "password": "password"
+        },
+        {
+            "id": 7,
+            "firstname": "Gare",
+            "lastname": "Wooldridge",
+            "username": "gwooldridge6",
+            "password": "password"
+        },
+        {
+            "id": 8,
+            "firstname": "Godfree",
+            "lastname": "Jobey",
+            "username": "gjobey7",
+            "password": "password"
+        },
+        {
+            "id": 9,
+            "firstname": "Grantham",
+            "lastname": "Tripett",
+            "username": "gtripett8",
+            "password": "password"
+        },
+        {
+            "id": 10,
+            "firstname": "Otho",
+            "lastname": "Carruthers",
+            "username": "ocarruthers9",
+            "password": "password"
+        }
+    ],
+    "accounts": [
+        {
+            "id": 1,
+            "userId": 3,
+            "amount": "$9.00",
+            "accTypeId": 1
+        },
+        {
+            "id": 2,
+            "userId": 3,
+            "amount": "$3.20",
+            "accTypeId": 1
+        },
+        {
+            "id": 3,
+            "userId": 6,
+            "amount": "$5.84",
+            "accTypeId": 2
+        },
+        {
+            "id": 4,
+            "userId": 2,
+            "amount": "$8.39",
+            "accTypeId": 1
+        },
+        {
+            "id": 5,
+            "userId": 2,
+            "amount": "$8.75",
+            "accTypeId": 2
+        },
+        {
+            "id": 6,
+            "userId": 5,
+            "amount": "$0.78",
+            "accTypeId": 1
+        },
+        {
+            "id": 7,
+            "userId": 3,
+            "amount": "$0.29",
+            "accTypeId": 1
+        },
+        {
+            "id": 8,
+            "userId": 10,
+            "amount": "$8.41",
+            "accTypeId": 2
+        },
+        {
+            "id": 9,
+            "userId": 3,
+            "amount": "$7.01",
+            "accTypeId": 1
+        },
+        {
+            "id": 10,
+            "userId": 6,
+            "amount": "$7.25",
+            "accTypeId": 2
+        }
+    ],
+    "accountTypes": [
+        {
+            "accType": "CHECKING"
+        },
+        {
+            "accType": "SAVING"
         }
     ]
 }

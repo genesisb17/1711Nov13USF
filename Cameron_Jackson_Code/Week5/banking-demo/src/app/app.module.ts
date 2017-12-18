@@ -8,6 +8,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import { LandingComponent } from './landing/landing.component';
+import { AppRoutingModule } from './/app-routing.module';
+import { UserApiService } from './user-api.service';
 
 
 @NgModule({
@@ -17,9 +19,9 @@ import { LandingComponent } from './landing/landing.component';
     LandingComponent
   ],
   imports: [
-    BrowserModule, HttpClientModule, FormsModule
+    BrowserModule, HttpClientModule, FormsModule, AppRoutingModule
   ],
-  providers: [LoginService],
+  providers: [LoginService, UserApiService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

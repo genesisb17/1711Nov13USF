@@ -1,3 +1,8 @@
-<input type="text" [(ngModel)]="username" placeholder="Username">
-<input type="password" [(ngModel)]="password" placeholder="Password">
-<button (click)="login()">Login</button>
+<div style="text-align:center">
+    <h1>
+      Welcome to {{ title }}!
+    </h1>
+    <input type="text" [(ngModel)]="username" placeholder="Username">
+    <input type="password" [(ngModel)]="password" placeholder="Password">
+    <button (click)="login()" routerLink="/landing">Login</button>
+  </div>

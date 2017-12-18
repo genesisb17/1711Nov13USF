@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { User } from '../user';
+import { LoginService } from '../login.service';
 
 @Component({
   selector: 'app-landing',
@@ -6,10 +8,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./landing.component.css']
 })
 export class LandingComponent implements OnInit {
+  currUser: User;
 
-  constructor() { }
+  constructor(private loginService: LoginService) { }
 
   ngOnInit() {
+    console.log(this.loginService.currentUser);
   }
 
 }
