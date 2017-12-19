@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { User } from '../user';
 import { LoginService } from '../login.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-landing',
@@ -8,12 +9,21 @@ import { LoginService } from '../login.service';
   styleUrls: ['./landing.component.css']
 })
 export class LandingComponent implements OnInit {
-  currUser: User;
+  currentUser: User;
 
-  constructor(private loginService: LoginService) { }
+  constructor(
+    private loginService: LoginService,
+    private router: Router) { }
 
   ngOnInit() {
-    console.log(this.loginService.currentUser);
+    let userStr: string = localStorage.getItem('currentUser');
+    this.currentUser = new User();
+    this.currentUser = JSON.parse(userStr);
+  }
+
+  logout() {
+    this.loginService.logout();
+    this.router.navigate(["login"]);
   }
 
 }

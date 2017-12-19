@@ -18,12 +18,14 @@ export class LoginComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit() {
-    this.loginService.subscribeToLogin(() => {
-      this.router.navigate(["landing"]);
-    });
+    // this.loginService.subscribeToLogin(() => {
+    //   this.router.navigate(["landing"]);
+    // });
   }
 
   login() {
-    this.loginService.login(this.username, this.password);
+    this.loginService.login(this.username, this.password).subscribe((data) => {
+      this.router.navigate(["landing"]);
+    });
   }
 }
