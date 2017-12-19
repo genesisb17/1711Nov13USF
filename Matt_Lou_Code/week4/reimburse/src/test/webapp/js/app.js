@@ -3,14 +3,25 @@
  */
 var store = [];
 window.onload = function(){
-
+	
 	$('#profile').on('click', getProfilePage);
 	$('#logout').on('click', logout);
+	/*
+	 * in order to grab the reimbursement Id from the datatable(), console.log(event)
+	 * to get the event path that will "see" the innerText of the reimbursement
+	 * for this case: it goes event -> path[2] -> cells[0] -> innerText, this value
+	 * is the table data of the first element in the dataTable(), each row will grab 
+	 * that specific row's first table data, which is the reimbursement id
+	 */
+	/*
+	 * the closest selects the button and get "closest" ancestor element, returning 0
+	 * or 1 element, if it does return, the if statement = 1 will be true, running the
+	 * 
+	 */
 	$(document).on('click', 'button[id]', function(e) {
 		var id = event.path[2].cells[0].innerText;
 		  if ($(this).closest("#" + this.id).length) {
-		    e.preventDefault();
-		    
+			  e.preventDefault();
 		    if(this.id == 2){
 		    	updateApprove(id);
 		    	
