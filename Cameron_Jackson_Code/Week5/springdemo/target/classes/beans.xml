@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- Defining our XML namespace: default space for our beans.xml. The namespace 
+		acts as a library for the properties that we can use to create and inject 
+		into a bean. xmlns:si - XML schema Instance/ Schema location - we give this 
+		to our XML file for context sensitive help inside of our app. makes sure 
+		that we have both well formed and valid XML. -->
+
+	<bean id="helloWorld" class="com.ex.beans.HelloWorld">
+		<property name="message" value="Hello Spring! This is a dependency injection!"/>
+		<constructor-arg type="java.lang.String" value="testing constructor injection"/>
+	</bean>
+	
+
+</beans>
+
