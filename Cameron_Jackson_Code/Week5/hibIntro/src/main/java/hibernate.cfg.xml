@@ -23,5 +23,7 @@
 		<mapping class="com.ex.beans.Course"/>
 		<mapping class="com.ex.beans.Transcript"/>
 		<mapping class="com.ex.beans.Instructor"/>
+		
+		<mapping resource="com/ex/beans/Product.hbm.xml"/>
 	</session-factory>
 </hibernate-configuration>

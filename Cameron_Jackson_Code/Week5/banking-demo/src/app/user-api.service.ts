@@ -17,16 +17,21 @@ export class UserApiService {
   constructor(private http: HttpClient) { }
 
   getAllUsers(): Observable<User[]> {
-    return this.http.get<User[]>(this.API_URL);
+    return this.http.get<User[]>(`${this.API_URL}/users`);
   }
 
   getUser(id: number): Observable<User> {
-      let url = this.API_URL + "/" + id;
+      let url = `${this.API_URL}/users/${id}`;
       return this.http.get<User>(url);
   }
 
   addUser(user: User) {
-    this.http.post(this.API_URL, user, httpOptions);
+    return this.http.post(`${this.API_URL}/users`, {
+      firstname: user.firstname,
+      lastname: user.lastname,
+      username: user.username,
+      password: user.password
+    }, httpOptions);
   }
 
   

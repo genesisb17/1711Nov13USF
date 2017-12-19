@@ -10,13 +10,17 @@ import { LoginComponent } from './login/login.component';
 import { LandingComponent } from './landing/landing.component';
 import { AppRoutingModule } from './/app-routing.module';
 import { UserApiService } from './user-api.service';
+import { NavComponent } from './nav/nav.component';
+import { RegistrationComponent } from './registration/registration.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    LandingComponent
+    LandingComponent,
+    NavComponent,
+    RegistrationComponent
   ],
   imports: [
     BrowserModule, HttpClientModule, FormsModule, AppRoutingModule

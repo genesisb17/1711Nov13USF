@@ -3,6 +3,7 @@ package com.ex.test;
 
 import java.util.List;
 
+import com.ex.beans.Product;
 import com.ex.beans.Student;
 import com.ex.dao.HibDao;
 
@@ -28,5 +29,10 @@ public class Test {
 //		for (Student s : students) {
 //			System.out.println(s);
 //		}
+		
+		Product p = new Product();
+		p.setPrice(2.33);
+		p.setProdName("Groceries");
+		dao.addProduct(p);
 	}
 }
