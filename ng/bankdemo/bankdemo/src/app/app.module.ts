@@ -9,6 +9,8 @@ import { FormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import { LandingComponent } from './landing/landing.component'
 import { RouterModule, Routes} from '@angular/router';
+import { UserService } from './user.service';
+import { RegisterComponent } from './register/register.component';
 
 const routes: Routes=[
   {
@@ -18,6 +20,10 @@ const routes: Routes=[
   {
     path: 'logged',
     component: LandingComponent
+  }, 
+  {
+    path: 'register',
+    component: RegisterComponent
   }
 ]
 
@@ -25,12 +31,13 @@ const routes: Routes=[
   declarations: [
     AppComponent,
     LoginComponent,
-    LandingComponent
+    LandingComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule, HttpClientModule, FormsModule, RouterModule.forRoot(routes)
   ],
-  providers: [LoginService],
+  providers: [LoginService, UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

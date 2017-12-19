@@ -23,23 +23,27 @@ export class ApiService {
 
   //POST /todos
   public createTodo(todo: Todo){
-    return this.http.post<Todo>(API_URL+'/todos', todo, httpOptions);
+    return this.http.
+    post<Todo>(API_URL+'/todos', todo, httpOptions);
   }
 
   //GET /todos/id
   public getTodoById(todoId: number){
-    return this.http.get<Todo>(API_URL+'/todos/'+todoId);
+    return this.http.
+    get<Todo>(API_URL+'/todos/'+todoId);
   }
 
   //PUT /todos/id
   public updateTodo(todo: Todo){
-    return this.http.put<Todo>(API_URL+'/todos/'+todo.id, todo,httpOptions); 
+    return this.http
+    .put<Todo>(API_URL+'/todos/'+todo.id, todo,httpOptions); 
   }
 
   //DELETE /todos/id
   public deleteTodoById(todoId: number){
     console.log('in delete todo -- service.ts');
-    return this.http.delete(API_URL+'/todos/'+todoId);
+    return this.http
+    .delete(API_URL+'/todos/'+todoId);
   }
 }
 
