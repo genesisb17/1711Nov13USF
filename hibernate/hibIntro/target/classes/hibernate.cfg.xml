@@ -22,6 +22,7 @@
 	<mapping class="com.ex.beans.Instructor"/>
 	<mapping class="com.ex.beans.Course"/>
 	
+	<mapping resource="com/ex/beans/Product.hbm.xml"/>
 	
 </session-factory>
 

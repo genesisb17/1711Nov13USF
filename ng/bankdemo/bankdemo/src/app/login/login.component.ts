@@ -16,13 +16,17 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.lgService.subscribeToLogin(()=>{
-      this.router.navigate(["logged"])
+      this.router.navigate([""])
     }
   );
   }
 
   login(){
-    this.lgService.login(this.username, this.pass);
+    this.lgService.validate(this.username, this.pass);
+  }
+
+  register(){
+    this.router.navigate(["register"])
   }
 
 }
