@@ -19,10 +19,8 @@ public class GetUserInfoServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) 
 			throws ServletException, IOException {
-		System.out.println("In user info servlet doGet");
 		HttpSession session = req.getSession();
 		ERSUser user = (ERSUser) session.getAttribute("user");
-		System.out.println(user);
 
 		if (user != null) {
 			ObjectMapper mapper = new ObjectMapper();

@@ -36,6 +36,12 @@ public class RequestHelper {
 			}
 
 		}
+		case "/RevProject1/employeePage.view":{
+			return "employeePage.html";
+		}
+		case "/RevProject1/fManagerPage.view":{
+			return "fManagerPage.html";
+		}
 		}
 		return null;
 	}

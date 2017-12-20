@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans>
+	<bean id="helloWorld" class="com.ex.beans.HelloWorld">
+		<property name="message" value ="Hello Spring! This is Dependency injection!" />
+	</bean>
+</beans>

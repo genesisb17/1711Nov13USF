@@ -18,9 +18,9 @@ import org.hibernate.Session;
 import com.ex.util.ConnectionUtil;
 
 
-@NamedQueries({ 
-	@NamedQuery(name = "findInstructorByIdHQL", query = "from Inscructor i where i.id = :id"),
-	@NamedQuery(name = "findInstructorByNameHQL", query = "from Inscructor i where name = :name") })
+//@NamedQueries({ 
+//	@NamedQuery(name = "findInstructorByIdHQL", query = "from Inscructor i where i.id = :id"),
+//	@NamedQuery(name = "findInstructorByNameHQL", query = "from Inscructor i where name = :name") })
 
 @Entity
 @Table(name = "INSCRUTORS")
@@ -66,11 +66,11 @@ public class Instructor {
 		return "Instructor [id=" + id + ", name=" + name + "]";
 	}
 	
-	public List<Instructor> inscructorByName(String like){
-		Session session = ConnectionUtil.getSession();
-		Query query = session.getNamedQuery("findInstructorByIdHQL").setString("name", like);
-		List<Instructor> i = query.list();
-		return i;
-	}
+//	public List<Instructor> inscructorByName(String like){
+//		Session session = ConnectionUtil.getSession();
+//		Query query = session.getNamedQuery("findInstructorByIdHQL").setString("name", like);
+//		List<Instructor> i = query.list();
+//		return i;
+//	}
 
 }

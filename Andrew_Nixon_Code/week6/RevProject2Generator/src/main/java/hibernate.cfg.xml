@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+		"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+		"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+	<session-factory>
+		<property name="hibernate.dialect">
+			org.hibernate.dialect.Oracle10gDialect</property>
+		<!-- Need to change below-->
+		<property name="hibernate.connection.driver_class">
+			oracle.jdbc.driver.OracleDriver</property>
+		<property name="hibernate.connection.username">demo</property>
+		<property name="hibernate.connection.password">demo</property>
+		<property name="hibernate.connection.url">
+			jdbc:oracle:thin:@localhost:1521:xe</property>
+		<!-- Need to change above-->
+			
+
+		<property name="hibernate.hbm2ddl.auto">create</property>
+		<property name="show_sql">true</property>
+
+		<mapping class="com.ex.beans.Appointment" />
+		<mapping class="com.ex.beans.Barber" />
+		<mapping class="com.ex.beans.HarborReview" />
+		<mapping class="com.ex.beans.HarborUser" />
+		<mapping class="com.ex.beans.PriceList" />
+		<mapping class="com.ex.beans.ServiceLocation" />
+		<mapping class="com.ex.beans.StylingService" />
+
+	</session-factory>
+
+</hibernate-configuration>

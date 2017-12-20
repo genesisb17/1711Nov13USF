@@ -22,8 +22,7 @@ public class GetPendingServlet extends HttpServlet{
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//		HttpSession session = req.getSession();
-//		ERSUser user = (ERSUser) session.getAttribute("user");
+
 		ArrayList<Reimbursement> reimbs = service.getReimbsByStatus(21);
 		
 		ObjectMapper mapper = new ObjectMapper();
@@ -32,14 +31,7 @@ public class GetPendingServlet extends HttpServlet{
 		PrintWriter out = resp.getWriter();
 		resp.setContentType("application/json");
 		out.write(json);
-		
-//		//if ((user != null) && (reimbs != null) && (!reimbs.isEmpty())) {
-//		if ((user != null)) {
-//			
-//		} //else if ((user != null) && (reimbs != null) && (reimbs.isEmpty())){} 
-//		else {
-//			resp.setStatus(418);
-//		}
+
 	}
 
 }

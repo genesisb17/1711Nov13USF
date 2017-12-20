@@ -28,6 +28,7 @@ function login() {
 			} else if (user.userID === -1) {
 				$('#message').html("Invalid password");
 			} else {
+				console.log("loading main");
 				loadMain();
 
 			}
@@ -36,11 +37,12 @@ function login() {
 }
 
 function loadMain() {
+	console.log("in loadMain")
 	var xhr = new XMLHttpRequest();
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState == 4 && xhr.status == 200) {
-			document.getElementById('view').innerHTML = xhr.responseText;
 			getUserInfo();
+			document.getElementById('view').innerHTML = xhr.responseText;
 		}
 	}
 	xhr.open("GET", "main.view", true);
@@ -53,10 +55,34 @@ function getUserInfo() {
 	xhr.send();
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState == 4 && xhr.status == 200) {
-			document.getElementById('view').innerHTML = xhr.responseText;
 			getUserInfoHelper();
+			document.getElementById('view').innerHTML = xhr.responseText;
 		}
 	}
+}
+
+function loadEmployee() {
+	var xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function() {
+		if (xhr.readyState == 4 && xhr.status == 200) {
+			document.getElementById('view').innerHTML = xhr.responseText;
+			getUserInfo();
+		}
+	}
+	xhr.open("GET", "employeePage.view", true);
+	xhr.send();
+}
+
+function loadManager() {
+	var xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function() {
+		if (xhr.readyState == 4 && xhr.status == 200) {
+			document.getElementById('view').innerHTML = xhr.responseText;
+			getUserInfo();
+		}
+	}
+	xhr.open("GET", "employeePage.view", true);
+	xhr.send();
 }
 
 function getUserInfoHelper() {
@@ -89,7 +115,7 @@ function getReimbByAuthor() {
 			var rData = JSON.parse(xhr.responseText);
 			var Data = xhr.responseText;
 			
-			document.getElementById('reimbs').innerHTML = xhr.responseText;
+			//document.getElementById('reimbs').innerHTML = xhr.responseText;
 		}
 	}
 }

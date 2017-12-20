@@ -14,7 +14,6 @@ public class LogoutServlet extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        System.out.println("Inside LogoutServlet");
 		HttpSession session = req.getSession();
         session.invalidate();
 
