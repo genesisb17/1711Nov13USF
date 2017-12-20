@@ -15,6 +15,10 @@ public class Test {
 		b.setName("Pooh");
 		b.setColor("yellow");
 		dao.buildABear(b);
+		
+		
+		
+		ac.close();
 	}
 
 }
