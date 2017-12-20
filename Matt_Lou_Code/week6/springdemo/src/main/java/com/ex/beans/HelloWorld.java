@@ -21,7 +21,7 @@ public class HelloWorld {
 
 	public HelloWorld(String test) {
 		super();
-		System.out.println("IN TEST CONSTRUCTOR");
+		System.out.println("IN HELLO WORLD TEST CONSTRUCTOR");
 		
 		this.test = test;
 	}

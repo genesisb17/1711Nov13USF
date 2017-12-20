@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd">
 <!-- Defining our XML namespace default space for our beans.xml;
 The namespace acts as a library for the properties that we can use
 to create and inject into a bean
@@ -9,12 +11,34 @@ xmlns:si - XML schema instance/ Schema location - we give this to
 our XML file for context sensitive hekp inside of our app makes sure
 that we have both well formed and valid XML 
  -->
- <bean id="helloWorld" class="com.ex.beans.HelloWorld">
- <property name="message" 
- 	value="Hello Spring! This is dependency injection!" />
- <constructor-arg type="java.lang.String" value="testing constructor injection"/>
+ 
+ <!-- hellobeans(parent) has a helloworld child bean -->
+ <bean id="beanbean" class="com.ex.beans.HelloBeans">
+ 	<property name="hello">
+ 		<bean id="helloWorld" class="com.ex.beans.HelloWorld">
+ 			<property name="message" 
+ 				value="Hello Spring! This is dependency injection!" />
+ 			<constructor-arg type="java.lang.String" 
+ 				value="testing constructor injection"/>
+ 		</bean>
+ 	</property>
  </bean>
  
+ <!-- AUTOWIRED BEANS (to check existing bean, go to Namespaces tab 
+ then check context box, you will be able to see Beans graph)-->
+<!--  <bean id="employee" class="com.ex.autowire.Employee" autowire="byName">
+    ref="department" refers to referene to another bean
+ 	<property name="department" ref="department" />
+ 	<property name="name" value="Genesis" />
+ </bean>
+ 
+ <bean id="department" class="com.ex.autowire.Department">
+ 	<property name="name" value="TechTeam"/>
+ </bean> -->
+ 
+ <!--  AUTOWIRE WITH ANNOTATIONS -->
+ <context:annotation-config/>
+ <context:component-scan base-package="com.ex.autowire"/> 
 </beans>
 
 <!-- 
