@@ -1,0 +1,45 @@
+<!-- apply formGroup directive to associate this DOM 
+    form with the "form" field of our component -->
+<form [formGroup]="form" (ngSubmit)="login()">
+        <div *ngIf="form.errors"class="alert alert-danger">Invalid login credentials!</div>
+    <!-- User formGroupName to nest form controls -->
+    <div formGroupName="account">
+        <div class="form-group">
+            <label for="username">Username</label>
+            <!-- apply formControlName directive to associate this DOM
+                input with the "username" key in the "form" field of our
+                component -->
+            <input 
+                formControlName="username"
+                id="username" 
+                type="text" 
+                class="form-control">
+                <!-- using the "pending" property of our "username" FormControl object
+                    we can display message to the user while the asynchronous request
+                    is processing -->
+                <div *ngIf="username.pending">Checking username availability...</div>
+
+                <!-- To add validation to a reactive form, assign one or more 
+                    Validators (validator functions) when creating a form control object,
+                    then in the template use a div to render error/validation messages -->
+                <div *ngIf="username.touched && username.invalid" class="alert alert-danger">
+                    <div *ngIf="username.errors.required">Username is required</div>
+                    <div *ngIf="username.errors.minlength">Username should be a minimum of {{ username.errors.minlength.requiredLength }}</div>
+                    <div *ngIf="username.errors.cannotContainSpace">Username cannot contain spaces!</div>
+                    <div *ngIf="username.errors.shouldBeUnique">Username is already taken!</div>
+                </div>
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <!-- apply formControlName directive to associate this DOM
+                input with the "password" key in the "form" field of our
+                component -->
+            <input 
+                formControlName="password"
+                id="password" 
+                type="text" 
+                class="form-control">
+        </div>
+    </div>
+    <button class="btn btn-primary" type="submit">Sign Up</button>
+</form>

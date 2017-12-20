@@ -1,0 +1,42 @@
+<form #f="ngForm" (ngSumbit)="submit(f)">
+  <div ngModelGroup="newCourse" #newCourse="ngModelGroup">
+    <div class="form-group">
+      <label for="courseTitle">Course name</label>
+      <input required
+             minlength="5"
+             maxlength="35"
+             ngModel name="courseTitle"
+             #courseTitle="ngModel"
+             (change)="log(courseTitle)"
+             type="text"
+             class="form-control"
+             id="courseTitle"
+             placeholder="Please enter the title of your course">
+            <div class="alert alert-danger" *ngIf="courseTitle.touched && !courseTitle.valid">
+              <div *ngIf="courseTitle.errors.required">A course title is required!</div>
+              <div *ngIf="courseTitle.errors.minlength.requiredLength">Course titles must be at least 5 characters!</div>
+            </div><br>
+            <div class="form-group">
+              <label for="courseCategory">
+                <select required
+                        ngModel name="courseCategory" 
+                        class="form-control"
+                        id="courseCategory">
+                  <option value="">Please make a selection</option>
+                  <option *ngFor="let category of categories" 
+                          [value]="category.id"> {{ category.name }} </option>
+                </select>
+              </label>
+            </div>
+    </div>
+  </div>
+  <div class="checkbox">
+    <label>
+      <input type="checkbox" ngModel name="hasGuarantee">30-day money-back guarantee
+    </label>
+  </div>
+  <p>
+    {{ f.value | json }}
+  </p>
+  <button class="btn btn-primary" [disabled]="!f.valid">Submit</button>
+</form>
