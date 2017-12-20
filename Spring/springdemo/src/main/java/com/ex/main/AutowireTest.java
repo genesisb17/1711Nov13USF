@@ -53,17 +53,18 @@ public class AutowireTest {
 	 * 
 	 * for more info check: https://howtodoinjava.com/spring/spring-core/spring-beans-autowiring-concepts/
 	 */
-
 	public static void main(String[] args) {
 		ApplicationContext context =
 				new ClassPathXmlApplicationContext("beans.xml");
 		
 		Employee e = (Employee) context.getBean("employee");
 		Employee e2 = (Employee) context.getBean("employee");
-		e.getDept().setName("TEST DEPT");
-	
+		Employee e3 = (Employee) context.getBean("employee");
+		e.getDept().setName("TEST DEPT 1");
+		e2.getDept().setName("TEST 2");
+		e3.getDept().setName(e.getDept().getName());
 		e.getName();
+		e.getDept();
 		e2.getDept();
 	}
-
 }
