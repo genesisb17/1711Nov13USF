@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:context="http://www.springframework.org/schema/context"
-	xmlns:tx="http://www.springframework.org/schema/tx"
-	xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:jdbc="http://www.springframework.org/schema/jdbc"
 	xsi:schemaLocation="http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-4.2.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd
@@ -13,45 +11,59 @@
 		into a bean xmlns:si - XML schema Instance/ Schema location - we give this 
 		to our XML file for context sensitive help inside of our app makes sure that 
 		we have both well formed and valid XML -->
-<!-- 
-	<bean id="beanbean" class="com.ex.beans.HelloBeans">
-		<property name="hello">
-			<bean id="helloWorld" class="com.ex.beans.HelloWorld">
-				<property name="message"
-					value="Hello Spring! This is dependency injection!" />
-				<constructor-arg type="java.lang.String"
-					value="testing constructor injection" />
-			</bean>
+	<!-- <bean id="beanbean" class="com.ex.beans.HelloBeans"> <property name="hello"> 
+		<bean id="helloWorld" class="com.ex.beans.HelloWorld"> <property name="message" 
+		value="Hello Spring! This is dependency injection!" /> <constructor-arg type="java.lang.String" 
+		value="testing constructor injection" /> </bean> </property> </bean> -->
+	<!-- AUTOWIRED BEANS -->
+	<!-- <bean id="employee" class="com.ex.autowire.Employee" autowire="byName"> 
+		<property name="test" ref="deptBean"/> <property name="name" value="Genesis"/> 
+		</bean> <bean id="deptBean" class="com.ex.autowire.Department"> <property 
+		name="name" value="TechTeam"/> </bean> -->
+
+	<!-- AUTOWIRE WITH ANNOTATIONS -->
+	<context:annotation-config />
+	<context:component-scan base-package="com.ex" />
+
+	<!-- ORM -->
+
+	<!-- enable @Transactional -->
+	<tx:annotation-driven />
+
+	<!-- DATA SOURCE BEAN, dbcp = db connection pool, not the only 
+	data source bean to implement but a good option -->
+	<bean id="myDataSource" class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
+		<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe" />
+		<property name="username" value="demo" />
+		<property name="password" value="demo" />
+	</bean>
+
+	<!-- SESSION FACTORY BEAN -->
+	<bean id="mySessionFactory"
+		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		<property name="dataSource" ref="myDataSource" />
+		<property name="packagesToScan" value="com.ex.orm" />
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</prop>
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.format_sql">true</prop>
+				<prop key="hibernate.hbm2ddl.auto">create</prop>
+			</props>
 		</property>
 	</bean>
-	 -->
-	<!--  AUTOWIRED BEANS -->
-<!-- 	<bean id="employee" class="com.ex.autowire.Employee" autowire="byName">
-		<property name="test" ref="deptBean"/>
-		<property name="name" value="Genesis"/>
+
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+		<property name="sessionFactory" ref="mySessionFactory"></property>
 	</bean>
-	
-	<bean id="deptBean" class="com.ex.autowire.Department">
-		<property name="name" value="TechTeam"/>
-	</bean> -->
-	
-	<!-- AUTOWIRE WITH ANNOTATIONS -->
-	<context:annotation-config/>
-	<context:component-scan base-package="com.ex.autowire"/>
-	
-	<!--  ORM  -->
-	
-	<!--  enable @Transactional -->
-	<tx:annotation-driven />
-	
-	<!--  DATA SOURCE -->
-	<bean id="myDataSource"	 class="org.apache.commons.dbcp.BasicDataSource">
-		<property name="driverClassName"></property>
-		<property name="url"></property>
-		<property name="username"></property>
-		<property name="password"></property>
+
+	<bean id="myDao" class="com.ex.orm.ORMDao">
+			<property name="sessionFactory" ref="mySessionFactory"></property> 
 	</bean>
-	
+
+
 </beans>
 
 <!-- The above is a spring bean configuration file It is an XML file that 

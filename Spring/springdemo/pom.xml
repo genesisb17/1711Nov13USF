@@ -50,15 +50,21 @@
 		</dependency>
 		<!-- if you need to reinstall the jdbc jar to your .m2 folder open cmd 
 			prompt, cd into jars folder or wherever you have the jar installed, run the 
-			following mvn install:install-file -Dfile=ojdbc7.jar 
-			-DgroupId=com.oracle 
+			following mvn install:install-file -Dfile=ojdbc7.jar -DgroupId=com.oracle 
 			-DartifactId=ojdbc7 -Dversion=11.2.0 -Dpackaging=jar -->
 		<dependency>
 			<groupId>com.oracle</groupId>
 			<artifactId>ojdbc7</artifactId>
 			<version>11.2.0</version>
 		</dependency>
-
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-entitymanager</artifactId>
+		</dependency>
 
 
 	</dependencies>
