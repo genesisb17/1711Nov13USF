@@ -1,5 +1,10 @@
 package com.ex.main;
 
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+import com.ex.autowire.Employee;
+
 public class AutowireTest {
 	/*
 	 * In the Spring Framework, setting bean dependencies
@@ -30,6 +35,7 @@ public class AutowireTest {
 	 *  bean definition in configuration file. If such bean is 
 	 *  found, it is injected in property. If no such bean is 
 	 *  found, a error is raised.
+	 *  
 	 * constructor -  Autowiring by constructor is similar to 
 	 * 	byType, but applies to constructor arguments. In autowire
 	 *  enabled bean, it will look for class type of constructor 
@@ -37,6 +43,7 @@ public class AutowireTest {
 	 *  constructor arguments. Please note that if there isn’t 
 	 *  exactly one bean of the constructor argument type in the
 	 *  container, a fatal error is raised.
+	 *  
 	 * autodetect - Autowiring by autodetect uses either of two 
 	 * 	modes i.e. constructor or byType modes. First it will 
 	 * 	try to look for valid constructor with arguments, If 
@@ -48,8 +55,15 @@ public class AutowireTest {
 	 */
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
+		ApplicationContext context =
+				new ClassPathXmlApplicationContext("beans.xml");
+		
+		Employee e = (Employee) context.getBean("employee");
+		Employee e2 = (Employee) context.getBean("employee");
+		e.getDept().setName("TEST DEPT");
+	
+		e.getName();
+		e2.getDept();
 	}
 
 }

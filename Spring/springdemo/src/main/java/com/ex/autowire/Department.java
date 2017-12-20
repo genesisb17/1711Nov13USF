@@ -1,5 +1,8 @@
 package com.ex.autowire;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class Department {
 	
 	private String name;

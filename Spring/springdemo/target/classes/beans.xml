@@ -9,7 +9,7 @@
 		into a bean xmlns:si - XML schema Instance/ Schema location - we give this 
 		to our XML file for context sensitive help inside of our app makes sure that 
 		we have both well formed and valid XML -->
-
+<!-- 
 	<bean id="beanbean" class="com.ex.beans.HelloBeans">
 		<property name="hello">
 			<bean id="helloWorld" class="com.ex.beans.HelloWorld">
@@ -20,14 +20,20 @@
 			</bean>
 		</property>
 	</bean>
-	
+	 -->
 	<!--  AUTOWIRED BEANS -->
-	
-	
-	<bean id="dept" class="com.ex.autowire.Department">
-		<property name="name" value="TechTeam"/>
+<!-- 	<bean id="employee" class="com.ex.autowire.Employee" autowire="byName">
+		<property name="test" ref="deptBean"/>
+		<property name="name" value="Genesis"/>
 	</bean>
 	
+	<bean id="deptBean" class="com.ex.autowire.Department">
+		<property name="name" value="TechTeam"/>
+	</bean> -->
+	
+	<!-- AUTOWIRE WITH ANNOTATIONS -->
+	<context:annotation-config/>
+	<context:component-scan base-package="com.ex.autowire"/>
 	
 </beans>
 
