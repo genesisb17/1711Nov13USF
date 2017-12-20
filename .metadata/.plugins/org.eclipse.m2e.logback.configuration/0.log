@@ -13886,3 +13886,52 @@ Caused by: org.apache.maven.model.building.ModelBuildingException: 1 problem was
 2017-12-20 12:31:30,559 [Worker-12] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
 2017-12-20 12:31:30,562 [Worker-12] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
 2017-12-20 12:31:30,586 [Worker-12] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Bruce Wayne\my_git_repos\1711Nov13USF\BankSQL6\src\test\resources
+2017-12-20 12:39:17,946 [Worker-18] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-20 12:39:17,951 [Worker-18] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2017-12-20 12:39:17,954 [Worker-18] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-12-20 12:39:17,956 [Worker-18] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-20 12:39:17,966 [Worker-18] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Bruce Wayne\Desktop\spring-in-5-steps\src\test\resources
+2017-12-20 12:41:02,169 [Worker-4] INFO  c.g.t.t.d.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
+2017-12-20 12:41:09,934 [Worker-0] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.rev:Bank:0.0.1-SNAPSHOT @ C:\Users\Bruce Wayne\my_git_repos\1711Nov13USF\BankSQL6\pom.xml.
+2017-12-20 12:41:11,768 [Worker-1] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.rev:Bank:0.0.1-SNAPSHOT @ C:\Users\Bruce Wayne\my_git_repos\1711Nov13USF\BankSQL6\pom.xml.
+2017-12-20 12:41:15,398 [Worker-0] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.in28minutes.spring.basics:spring-in-5-steps:0.0.1-SNAPSHOT @ C:\Users\Bruce Wayne\Desktop\spring-in-5-steps\pom.xml.
+2017-12-20 12:41:15,968 [Worker-1] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-12-20 12:41:15,987 [Worker-1] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 2 resources
+2017-12-20 12:41:15,995 [Worker-1] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-12-20 12:41:16,005 [Worker-1] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Bruce Wayne\my_git_repos\1711Nov13USF\BankSQL6\src\test\resources
+2017-12-20 12:41:18,264 [Worker-5] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.rev:Bank:0.0.1-SNAPSHOT @ C:\Users\Bruce Wayne\my_git_repos\1711Nov13USF\BankSQL6\pom.xml.
+2017-12-20 12:41:19,019 [Worker-5] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.in28minutes.spring.basics:spring-in-5-steps:0.0.1-SNAPSHOT @ C:\Users\Bruce Wayne\Desktop\spring-in-5-steps\pom.xml.
+2017-12-20 12:41:20,473 [Worker-12] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-12-20 12:41:20,507 [Worker-12] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-12-20 12:41:20,511 [Worker-12] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-12-20 12:41:20,540 [Worker-12] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Bruce Wayne\my_git_repos\1711Nov13USF\BankSQL6\src\test\resources
+2017-12-20 12:41:21,417 [Worker-12] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-20 12:41:21,418 [Worker-12] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2017-12-20 12:41:21,444 [Worker-12] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-12-20 12:41:21,448 [Worker-12] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-12-20 12:41:21,448 [Worker-12] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Bruce Wayne\Desktop\spring-in-5-steps\src\test\resources
+2017-12-20 12:41:42,373 [Worker-7] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.maven.ide.eclipse.wtp.WarLifecycleMapping lifecycle mapping for MavenProject: com.ex:springdemo:0.0.1-SNAPSHOT @ C:\Users\Bruce Wayne\my_git_repos\1711Nov13USF\springdemo\pom.xml.
+2017-12-20 12:41:44,247 [Worker-7] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /springdemo/src/main/java
+2017-12-20 12:41:44,255 [Worker-7] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /springdemo/src/main/resources
+2017-12-20 12:41:44,262 [Worker-7] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /springdemo/src/test/java
+2017-12-20 12:41:46,556 [Worker-7] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Imported and configured 1 project(s) in 4 sec
+2017-12-20 12:41:49,020 [Worker-8] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-12-20 12:41:49,047 [Worker-8] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2017-12-20 12:41:49,097 [Worker-8] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-12-20 12:41:49,121 [Worker-8] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Bruce Wayne\my_git_repos\1711Nov13USF\springdemo\src\test\resources
+2017-12-20 12:49:00,045 [Worker-12] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-12-20 12:49:00,054 [Worker-12] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2017-12-20 12:49:00,059 [Worker-12] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-12-20 12:49:00,068 [Worker-12] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Bruce Wayne\my_git_repos\1711Nov13USF\springdemo\src\test\resources
+2017-12-20 12:54:47,033 [Worker-32] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-12-20 12:54:47,118 [Worker-32] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2017-12-20 12:54:47,127 [Worker-32] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-12-20 12:54:47,140 [Worker-32] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Bruce Wayne\my_git_repos\1711Nov13USF\springdemo\src\test\resources
+2017-12-20 12:54:59,182 [Worker-32] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-12-20 12:54:59,206 [Worker-32] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2017-12-20 12:54:59,217 [Worker-32] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-12-20 12:54:59,231 [Worker-32] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Bruce Wayne\my_git_repos\1711Nov13USF\springdemo\src\test\resources
+2017-12-20 12:55:24,627 [Worker-34] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-12-20 12:55:24,639 [Worker-34] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2017-12-20 12:55:24,645 [Worker-34] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-12-20 12:55:24,652 [Worker-34] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Bruce Wayne\my_git_repos\1711Nov13USF\springdemo\src\test\resources

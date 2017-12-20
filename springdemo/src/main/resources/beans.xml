@@ -35,8 +35,8 @@
 	<bean id="myDataSource" class="org.apache.commons.dbcp.BasicDataSource">
 		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
 		<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe" />
-		<property name="username" value="demo" />
-		<property name="password" value="demo" />
+		<property name="username" value="Banking" />
+		<property name="password" value="p4ssw0rd" />
 	</bean>
 
 	<!-- SESSION FACTORY BEAN -->
