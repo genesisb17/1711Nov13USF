@@ -2,16 +2,17 @@ package com.revature.ers.pojos;
 
 public enum Type {
 	
-	BUSINESS, TRAVEL, MEDICAL;
+	LODGING, TRAVEL, FOOD, OTHER;
 	
 	@Override
 	public String toString() {
 		
 		switch(this) {
 		
-			case BUSINESS:	return "business";
+			case LODGING:	return "lodging";
 			case TRAVEL:	return "travel";
-			case MEDICAL:	return "medical";
+			case FOOD:		return "food";
+			case OTHER:		return "other";
 			default:		return "";
 			
 		}

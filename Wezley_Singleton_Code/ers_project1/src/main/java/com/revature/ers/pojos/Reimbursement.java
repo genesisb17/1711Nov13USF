@@ -171,4 +171,19 @@ public class Reimbursement {
 	public void setTypeId(int typeId) {
 		this.typeId = typeId;
 	}
+	
+	@Override
+	public String toString() {
+		return "+----------------------------------+" +
+			   "\nReimbursement Id: " + this.reimbursementId +
+			   "\nAmount: " + this.amount +
+			   "\nTime resolved: " + this.timeResolved + 
+			   "\nDescription: " + this.description +
+			   "\nReceipt: " + this.receipt +
+			   "\nAuthor Id: " + this.authorId +
+			   "\nResolver Id: " + this.resolverId +
+			   "\nStatus:" + this.statusId +
+			   "\nType: " + this.typeId +
+			   "\n+----------------------------------+";
+	}
 }
