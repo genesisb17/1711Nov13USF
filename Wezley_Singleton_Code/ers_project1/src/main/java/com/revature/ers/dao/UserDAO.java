@@ -13,5 +13,8 @@ public interface UserDAO {
 	ArrayList<User> getAllUsers();
 	ArrayList<User> getUsersByRole(int roleId);
 	User updateUser(int userId, User user);
+	User updateUsernameByUserId(int userId, String username);
+	User updateEmailAddressByUserId(int userId, String emailAddress);
+	User updatePasswordByUserId(int userId, String password);
 	
 }

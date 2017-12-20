@@ -9,11 +9,14 @@ public interface ReimbursementDAO {
 	Reimbursement addReimbursement(Reimbursement newReimbursement);
 	Reimbursement getReimbursementById(int reimbursementId);
 	ArrayList<Reimbursement> getAllReimbursements();
-	ArrayList<Reimbursement> getReimbursementsByAuthor(int authorId);
-	ArrayList<Reimbursement> getReimbursementsByResolver(int resolverId);
-	ArrayList<Reimbursement> getReimbursementsByType(int typeId);
-	ArrayList<Reimbursement> getReimbursementByStatus(int statusId);
+	ArrayList<Reimbursement> getReimbursementsByAuthorId(int authorId);
+	ArrayList<Reimbursement> getPendingReimbursementsByAuthorId(int authorId);
+	ArrayList<Reimbursement> getResolvedReimbursementsByAuthorId(int authorId);
+	ArrayList<Reimbursement> getReimbursementsByResolverId(int resolverId);
+	ArrayList<Reimbursement> getReimbursementsByTypeId(int typeId);
+	ArrayList<Reimbursement> getReimbursementByStatusId(int statusId);
 	Reimbursement updateReimbursement(int reimbursementId, Reimbursement reimbursement);
-	void removeReimbursement(int reimbursementId);
+	Reimbursement updateReimbursementStatusById(int reimbursementId, int statusId, int resolverId);
+	void closeReimbursement(int reimbursementId);
 
 }

@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 
 import com.revature.ers.pojos.Reimbursement;
@@ -14,14 +15,16 @@ public class ReimbursementDAOImpl implements ReimbursementDAO {
 
 	@Override
 	public Reimbursement addReimbursement(Reimbursement newReimbursement) {
-		
+
 		Reimbursement reimbursement = new Reimbursement();
-		
+
 		try(Connection conn = ConnectionFactory.getInstance().getConnection();) {
-		
+
+			conn.setAutoCommit(false);
+
 			String sql = "INSERT INTO ers_reimbursements (reimb_amount, reimb_resolved, reimb_description, reimb_receipt, "
 					+ "reimb_author, reimb_resolver, reimb_statusId, reimb_typeId) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-			
+
 			String[] key = new String[9];
 			key[0] = "reimb_id";
 			key[1] = "reimb_amount";
@@ -32,7 +35,7 @@ public class ReimbursementDAOImpl implements ReimbursementDAO {
 			key[6] = "reimb_resolver";
 			key[7] = "reimb_statusId";
 			key[8] = "reimb_typeId";
-			
+
 			PreparedStatement pstmt = conn.prepareStatement(sql, key);
 			pstmt.setDouble(1, newReimbursement.getAmount());
 			pstmt.setTimestamp(2, newReimbursement.getTimeResolved());
@@ -42,17 +45,17 @@ public class ReimbursementDAOImpl implements ReimbursementDAO {
 			pstmt.setInt(6, newReimbursement.getResolverId());
 			pstmt.setInt(7, newReimbursement.getStatusId());
 			pstmt.setInt(8, newReimbursement.getTypeId());
-			
+
 			int rowsUpdated = pstmt.executeUpdate();
-			
+
 			ResultSet rs = pstmt.getGeneratedKeys();
-			
+
 			if(rowsUpdated != 0) {
-				
+
 				while(rs.next()) {
 					reimbursement.setReimbursementId(rs.getInt(1));
 				}
-				
+
 				reimbursement.setAmount(newReimbursement.getAmount());
 				reimbursement.setTimeResolved(newReimbursement.getTimeResolved());
 				reimbursement.setDescription(newReimbursement.getDescription());
@@ -61,31 +64,35 @@ public class ReimbursementDAOImpl implements ReimbursementDAO {
 				reimbursement.setResolverId(newReimbursement.getResolverId());
 				reimbursement.setStatusId(newReimbursement.getStatusId());
 				reimbursement.setTypeId(newReimbursement.getTypeId());
-				
+
 				conn.commit();
 			}
+
+			else {
+				reimbursement = null;
+			}
 		} 
-		
+
 		catch (SQLException sqle) {
 			sqle.printStackTrace();
 		}
-		
+
 		return reimbursement;
 	}
 
 	@Override
 	public Reimbursement getReimbursementById(int reimbursementId) {
-		
+
 		Reimbursement reimbursement = new Reimbursement();
-		
+
 		try(Connection conn = ConnectionFactory.getInstance().getConnection();) {
-			
+
 			String sql = "SELECT * FROM ers_reimbursements WHERE reimb_id = ?";
-			
+
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, reimbursementId);
 			ResultSet rs = pstmt.executeQuery();
-			
+
 			while(rs.next()) {
 				reimbursement.setReimbursementId(rs.getInt(1));
 				reimbursement.setAmount(rs.getDouble(2));
@@ -98,26 +105,26 @@ public class ReimbursementDAOImpl implements ReimbursementDAO {
 				reimbursement.setTypeId(rs.getInt(9));
 			}
 		} 
-		
+
 		catch (SQLException sqle) {
 			sqle.printStackTrace();
 		}
-		
+
 		return reimbursement;
 	}
 
 	@Override
 	public ArrayList<Reimbursement> getAllReimbursements() {
-		
+
 		ArrayList<Reimbursement> reimbursements = new ArrayList<Reimbursement>();
-		
+
 		try(Connection conn = ConnectionFactory.getInstance().getConnection();) {
-			
+
 			String sql = "SELECT * FROM ers_reimbursements";
-			
+
 			Statement stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery(sql);
-			
+
 			while(rs.next()) {
 				Reimbursement temp = new Reimbursement();
 				temp.setReimbursementId(rs.getInt(1));
@@ -131,29 +138,29 @@ public class ReimbursementDAOImpl implements ReimbursementDAO {
 				temp.setTypeId(rs.getInt(9));
 				reimbursements.add(temp);
 			}
-			
+
 		} 
-		
+
 		catch (SQLException sqle) {
 			sqle.printStackTrace();
 		}
-		
+
 		return reimbursements;
 	}
 
 	@Override
-	public ArrayList<Reimbursement> getReimbursementsByAuthor(int authorId) {
-		
+	public ArrayList<Reimbursement> getReimbursementsByAuthorId(int authorId) {
+
 		ArrayList<Reimbursement> reimbursements = new ArrayList<Reimbursement>();
-		
+
 		try(Connection conn = ConnectionFactory.getInstance().getConnection();) {
-			
+
 			String sql = "SELECT * FROM ers_reimbursements WHERE reimb_author = ?";
-			
+
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, authorId);
 			ResultSet rs = pstmt.executeQuery();
-			
+
 			while(rs.next()) {
 				Reimbursement temp = new Reimbursement();
 				temp.setReimbursementId(rs.getInt(1));
@@ -167,30 +174,104 @@ public class ReimbursementDAOImpl implements ReimbursementDAO {
 				temp.setTypeId(rs.getInt(9));
 				reimbursements.add(temp);
 			}
-			
+
 		} 
-		
+
 		catch (SQLException sqle) {
 			sqle.printStackTrace();
 		}
-		
+
 		return reimbursements;
-		
+
 	}
 
 	@Override
-	public ArrayList<Reimbursement> getReimbursementsByResolver(int resolverId) {
-		
+	public ArrayList<Reimbursement> getPendingReimbursementsByAuthorId(int authorId) {
+
 		ArrayList<Reimbursement> reimbursements = new ArrayList<Reimbursement>();
-		
+
 		try(Connection conn = ConnectionFactory.getInstance().getConnection();) {
-			
+
+			String sql = "SELECT * FROM ers_reimbursements WHERE reimb_author = ? AND reimb_statusid = 3";
+
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, authorId);
+			ResultSet rs = pstmt.executeQuery();
+
+			while(rs.next()) {
+				Reimbursement temp = new Reimbursement();
+				temp.setReimbursementId(rs.getInt(1));
+				temp.setAmount(rs.getDouble(2));
+				temp.setTimeResolved(rs.getTimestamp(3));
+				temp.setDescription(rs.getString(4));
+				temp.setReceipt(rs.getBytes(5));
+				temp.setAuthorId(rs.getInt(6));
+				temp.setResolverId(rs.getInt(7));
+				temp.setStatusId(rs.getInt(8));
+				temp.setTypeId(rs.getInt(9));
+				reimbursements.add(temp);
+			}
+
+		} 
+
+		catch (SQLException sqle) {
+			sqle.printStackTrace();
+		}
+
+		return reimbursements;
+
+	}
+
+	@Override
+	public ArrayList<Reimbursement> getResolvedReimbursementsByAuthorId(int authorId) {
+
+		ArrayList<Reimbursement> reimbursements = new ArrayList<Reimbursement>();
+
+		try(Connection conn = ConnectionFactory.getInstance().getConnection();) {
+
+			String sql = "SELECT * FROM ers_reimbursements WHERE reimb_author = ? AND reimb_statusid < 3";
+
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, authorId);
+			ResultSet rs = pstmt.executeQuery();
+
+			while(rs.next()) {
+				Reimbursement temp = new Reimbursement();
+				temp.setReimbursementId(rs.getInt(1));
+				temp.setAmount(rs.getDouble(2));
+				temp.setTimeResolved(rs.getTimestamp(3));
+				temp.setDescription(rs.getString(4));
+				temp.setReceipt(rs.getBytes(5));
+				temp.setAuthorId(rs.getInt(6));
+				temp.setResolverId(rs.getInt(7));
+				temp.setStatusId(rs.getInt(8));
+				temp.setTypeId(rs.getInt(9));
+				reimbursements.add(temp);
+			}
+
+		} 
+
+		catch (SQLException sqle) {
+			sqle.printStackTrace();
+		}
+
+		return reimbursements;
+
+	}
+
+	@Override
+	public ArrayList<Reimbursement> getReimbursementsByResolverId(int resolverId) {
+
+		ArrayList<Reimbursement> reimbursements = new ArrayList<Reimbursement>();
+
+		try(Connection conn = ConnectionFactory.getInstance().getConnection();) {
+
 			String sql = "SELECT * FROM ers_reimbursements WHERE reimb_resolver = ?";
-			
+
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, resolverId);
 			ResultSet rs = pstmt.executeQuery();
-			
+
 			while(rs.next()) {
 				Reimbursement temp = new Reimbursement();
 				temp.setReimbursementId(rs.getInt(1));
@@ -204,29 +285,29 @@ public class ReimbursementDAOImpl implements ReimbursementDAO {
 				temp.setTypeId(rs.getInt(9));
 				reimbursements.add(temp);
 			}
-			
+
 		} 
-		
+
 		catch (SQLException sqle) {
 			sqle.printStackTrace();
 		}
-		
+
 		return reimbursements;
 	}
 
 	@Override
-	public ArrayList<Reimbursement> getReimbursementsByType(int typeId) {
-		
+	public ArrayList<Reimbursement> getReimbursementsByTypeId(int typeId) {
+
 		ArrayList<Reimbursement> reimbursements = new ArrayList<Reimbursement>();
-		
+
 		try(Connection conn = ConnectionFactory.getInstance().getConnection();) {
-			
+
 			String sql = "SELECT * FROM ers_reimbursements WHERE reimb_typeId = ?";
-			
+
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, typeId);
 			ResultSet rs = pstmt.executeQuery();
-			
+
 			while(rs.next()) {
 				Reimbursement temp = new Reimbursement();
 				temp.setReimbursementId(rs.getInt(1));
@@ -240,29 +321,29 @@ public class ReimbursementDAOImpl implements ReimbursementDAO {
 				temp.setTypeId(rs.getInt(9));
 				reimbursements.add(temp);
 			}
-			
+
 		} 
-		
+
 		catch (SQLException sqle) {
 			sqle.printStackTrace();
 		}
-		
+
 		return reimbursements;
 	}
 
 	@Override
-	public ArrayList<Reimbursement> getReimbursementByStatus(int statusId) {
-		
+	public ArrayList<Reimbursement> getReimbursementByStatusId(int statusId) {
+
 		ArrayList<Reimbursement> reimbursements = new ArrayList<Reimbursement>();
-		
+
 		try(Connection conn = ConnectionFactory.getInstance().getConnection();) {
-			
+
 			String sql = "SELECT * FROM ers_reimbursements WHERE reimb_statusId = ?";
-			
+
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, statusId);
 			ResultSet rs = pstmt.executeQuery();
-			
+
 			while(rs.next()) {
 				Reimbursement temp = new Reimbursement();
 				temp.setReimbursementId(rs.getInt(1));
@@ -277,26 +358,26 @@ public class ReimbursementDAOImpl implements ReimbursementDAO {
 				reimbursements.add(temp);
 			}
 		} 
-		
+
 		catch (SQLException sqle) {
 			sqle.printStackTrace();
 		}
-		
+
 		return reimbursements;
 	}
 
 	@Override
 	public Reimbursement updateReimbursement(int reimbursementId, Reimbursement reimbursement) {
-		
+
 		Reimbursement updatedReimbursement = null;
-		
+
 		try(Connection conn = ConnectionFactory.getInstance().getConnection();) {
-			
+
 			conn.setAutoCommit(false);
-			
+
 			String sql = "UPDATE ers_reimbursements SET reimb_amount = ?, reimb_resolved = ?, reimb_description = ?, reimb_receipt = ?, "
 					+ "reimb_author = ?, reimb_resolver = ?, reimb_statusId = ?, reimb_typeId = ? WHERE reimb_id = ?";
-			
+
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setDouble(1, reimbursement.getAmount());
 			pstmt.setTimestamp(2, reimbursement.getTimeResolved());
@@ -307,42 +388,76 @@ public class ReimbursementDAOImpl implements ReimbursementDAO {
 			pstmt.setInt(7, reimbursement.getStatusId());
 			pstmt.setInt(8, reimbursement.getTypeId());
 			pstmt.setInt(9, reimbursementId);
-			
+
 			int rowsUpdated = pstmt.executeUpdate();
 
 			if(rowsUpdated != 0) {
 				conn.commit();
 				updatedReimbursement = getReimbursementById(reimbursementId);
 			}
-			
+
 		} 
-		
+
 		catch (SQLException sqle) {
 			sqle.printStackTrace();
 		}
-		
+
 		return updatedReimbursement;
-		
+
 	}
 
 	@Override
-	public void removeReimbursement(int reimbursementId) {
+	public Reimbursement updateReimbursementStatusById(int reimbursementId, int statusId, int resolverId) {
 		
-		try (Connection conn = ConnectionFactory.getInstance().getConnection();) {
-			
+		Reimbursement updatedReimbursement = null;
+		Timestamp currentTime = new Timestamp(System.currentTimeMillis());
+
+		try(Connection conn = ConnectionFactory.getInstance().getConnection();) {
+
 			conn.setAutoCommit(false);
-			
-			String sql = "DELETE FROM ers_reimbursement WHERE reimb_id = ?";
-			
+
+			String sql = "UPDATE ers_reimbursements SET reimb_resolved = ?, reimb_resolver = ?, reimb_statusId = ? WHERE reimb_id = ?";
+
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt.setTimestamp(1, currentTime);
+			pstmt.setInt(2, resolverId);
+			pstmt.setInt(3, statusId);
+			pstmt.setInt(4, reimbursementId);
+
+			int rowsUpdated = pstmt.executeUpdate();
+
+			if(rowsUpdated != 0) {
+				conn.commit();
+				updatedReimbursement = getReimbursementById(reimbursementId);
+			}
+
+		} 
+
+		catch (SQLException sqle) {
+			sqle.printStackTrace();
+		}
+
+		return updatedReimbursement;
+	}
+
+	@Override
+	public void closeReimbursement(int reimbursementId) {
+
+		try (Connection conn = ConnectionFactory.getInstance().getConnection();) {
+
+			conn.setAutoCommit(false);
+
+			String sql = "UPDATE ers_reimbursements SET reimb_statusId = 4, reimb_resolver = reimb_author WHERE reimb_id = ?";
+
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, reimbursementId);
 			int rowsUpdated = pstmt.executeUpdate();
-			
+
 			if (rowsUpdated != 0) {
 				conn.commit();
 			}
 		} 
-		
+
 		catch (SQLException sqle) {
 			sqle.printStackTrace();
 		}

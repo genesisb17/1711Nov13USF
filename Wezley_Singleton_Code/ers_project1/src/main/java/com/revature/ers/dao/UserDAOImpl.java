@@ -15,25 +15,21 @@ public class UserDAOImpl implements UserDAO {
 	@Override
 	public User addUser(User newUser) {
 
+		System.out.println("[LOG] - In UserDAOImpl - addUser()...");
+		System.out.println(newUser);
+		
 		User user = new User();
 
 		try(Connection conn = ConnectionFactory.getInstance().getConnection();) {
 
+			System.out.println("[LOG] - Inside try-block of UserDAOImpl.addUser()...");
+			
 			conn.setAutoCommit(false);
 
 			String sql = "INSERT INTO ers_users (ers_username, ers_password, user_firstname, user_lastname, user_emailaddress, user_role_id) "
 					+ "VALUES (?, ?, ?, ?, ?, ?)";
 
-			String[] key = new String[7];
-			key[0] = "ers_userid";
-			key[1] = "ers_username";
-			key[2] = "ers_password";
-			key[3] = "user_firstname";
-			key[4] = "user_lastname";
-			key[5] = "user_emailaddress";
-			key[6] = "user_role_id";
-
-			PreparedStatement pstmt = conn.prepareStatement(sql, key);
+			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, newUser.getUsername());
 			pstmt.setString(2, newUser.getPassword());
 			pstmt.setString(3, newUser.getFirstName());
@@ -41,24 +37,15 @@ public class UserDAOImpl implements UserDAO {
 			pstmt.setString(5, newUser.getEmailAddress());
 			pstmt.setInt(6, newUser.getRoleId());
 
+			System.out.println("[LOG] - PreparedStatement loaded, preparing to execute update...");
 			int rowsUpdated = pstmt.executeUpdate();
-
-			ResultSet rs = pstmt.getGeneratedKeys();
 
 			if(rowsUpdated != 0) {
 				
-				while(rs.next()) {
-					user.setUserId(rs.getInt(1));
-				}
-
-				user.setUsername(newUser.getUsername());
-				user.setPassword(newUser.getPassword());
-				user.setFirstName(newUser.getFirstName());
-				user.setLastName(newUser.getLastName());
-				user.setEmailAddress(newUser.getEmailAddress());
-				user.setRoleId(newUser.getRoleId());
-
 				conn.commit();
+				user = getUserByUsername(newUser.getUsername());
+
+				System.out.println("[LOG] - New user created! Id: " + user.getUserId());
 			}
 		} 
 
@@ -238,7 +225,7 @@ public class UserDAOImpl implements UserDAO {
 			conn.setAutoCommit(false);
 
 			String sql = "UPDATE ers_users SET ers_username = ?, ers_password = ?, user_firstname = ?, user_lastname = ?, "
-					+ "user_emailaddress = ?, user_roleid = ? WHERE u_id = ?";
+					+ "user_emailaddress = ?, user_roleid = ? WHERE ers_userid = ?";
 
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, user.getUsername());
@@ -248,6 +235,96 @@ public class UserDAOImpl implements UserDAO {
 			pstmt.setString(5, user.getEmailAddress());
 			pstmt.setInt(6, user.getRoleId());
 			pstmt.setInt(7, userId);
+
+			int rowsUpdated = pstmt.executeUpdate();
+
+			if(rowsUpdated != 0) {
+				conn.commit();
+				updatedUser = getUserById(userId);
+			}
+		}
+
+		catch (SQLException sqle) {
+			sqle.printStackTrace();
+		}
+
+		return updatedUser;
+	}
+	
+	@Override
+	public User updateUsernameByUserId(int userId, String username) {
+
+		User updatedUser = null;
+
+		try(Connection conn = ConnectionFactory.getInstance().getConnection();) {
+
+			conn.setAutoCommit(false);
+
+			String sql = "UPDATE ers_users SET ers_username = ? WHERE ers_userid = ?";
+
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, username);
+			pstmt.setInt(2, userId);
+
+			int rowsUpdated = pstmt.executeUpdate();
+
+			if(rowsUpdated != 0) {
+				conn.commit();
+				updatedUser = getUserById(userId);
+			}
+		}
+
+		catch (SQLException sqle) {
+			sqle.printStackTrace();
+		}
+
+		return updatedUser;
+	}
+	
+	@Override
+	public User updateEmailAddressByUserId(int userId, String emailAddress) {
+
+		User updatedUser = null;
+
+		try(Connection conn = ConnectionFactory.getInstance().getConnection();) {
+
+			conn.setAutoCommit(false);
+
+			String sql = "UPDATE ers_users SET user_emailaddress = ? WHERE ers_userid = ?";
+
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, emailAddress);
+			pstmt.setInt(2, userId);
+
+			int rowsUpdated = pstmt.executeUpdate();
+
+			if(rowsUpdated != 0) {
+				conn.commit();
+				updatedUser = getUserById(userId);
+			}
+		}
+
+		catch (SQLException sqle) {
+			sqle.printStackTrace();
+		}
+
+		return updatedUser;
+	}
+	
+	@Override
+	public User updatePasswordByUserId(int userId, String password) {
+
+		User updatedUser = null;
+
+		try(Connection conn = ConnectionFactory.getInstance().getConnection();) {
+
+			conn.setAutoCommit(false);
+
+			String sql = "UPDATE ers_users SET ers_password = ? WHERE ers_userid = ?";
+
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, password);
+			pstmt.setInt(2, userId);
 
 			int rowsUpdated = pstmt.executeUpdate();
 

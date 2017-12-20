@@ -20,7 +20,9 @@ public class ReimbursementStatusDAOImpl implements ReimbursementStatusDAO {
 		
 		try (Connection conn = ConnectionFactory.getInstance().getConnection();) {
 			
-			String sql = "INSERT INTO ers_reimbursement_status (reimb_statusId) VALUES (?)";
+			conn.setAutoCommit(false);
+			
+			String sql = "INSERT INTO ers_reimbursement_status (reimb_status) VALUES (?)";
 			
 			String[] key = new String[2];
 			key[0] = "reimb_statusId";
