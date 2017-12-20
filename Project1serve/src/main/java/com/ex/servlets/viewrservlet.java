@@ -114,7 +114,7 @@ public class viewrservlet extends HttpServlet
 					);
 			for(i=0;i<a.size();i++)
 			{
-				if(filter.equals("")||filter.equals(null))
+				if(filter.equals(""))
 				{
 					s = service.getRStatus(a.get(i).getREIMB_STATUS_ID());
 					if(!s.equals("notthis"))
@@ -211,7 +211,7 @@ public class viewrservlet extends HttpServlet
 						);
 				for(i=0;i<a.size();i++)
 				{
-					if(filter.equals("")||filter.equals(null))
+					if(filter.equals(""))
 					{
 						if(a.get(i).getReimb_id()!=22||a.get(i).getReimb_id()!=41||a.get(i).getReimb_id()!=21)
 						{

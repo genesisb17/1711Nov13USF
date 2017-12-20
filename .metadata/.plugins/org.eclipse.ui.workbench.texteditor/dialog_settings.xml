@@ -5,6 +5,7 @@
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
+			<item value="springdemo"/>
 			<item value="update"/>
 			<item value="name.equ"/>
 			<item value="getu"/>
@@ -12,7 +13,6 @@
 			<item value="rid"/>
 			<item value="get"/>
 			<item value="arraylist"/>
-			<item value="status"/>
 		</list>
 		<list key="replacehistory">
 		</list>

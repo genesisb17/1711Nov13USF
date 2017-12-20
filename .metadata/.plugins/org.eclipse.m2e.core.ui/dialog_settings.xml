@@ -2,13 +2,21 @@
 <section name="Workbench">
 	<section name="MavenProjectWizardArtifactPage">
 		<list key="groupId">
+			<item value="io.javabrains.springbootquickstart"/>
 			<item value="com.ex"/>
 			<item value="com.web"/>
 			<item value="com.revature"/>
 		</list>
 		<list key="name">
+			<item value="Java Brains Course api"/>
+			<item value="Java Brains Course Api"/>
+			<item value="Java Brain Course API"/>
+			<item value="HelloSpring"/>
 		</list>
 		<list key="artifactId">
+			<item value="course-api1"/>
+			<item value="course-api"/>
+			<item value="springdemo"/>
 			<item value="helloServlets"/>
 			<item value="HelloServer1"/>
 			<item value="HelloSever"/>
@@ -44,6 +52,20 @@
 		<item value="78" key="y"/>
 		<item value="529" key="height"/>
 	</section>
+	<section name="MavenProjectImportWizardPage">
+		<list key="rootDirectory">
+			<item value="C:\Users\Bruce Wayne\Desktop\spring-in-5-steps"/>
+			<item value="C:\Users\Bruce Wayne\Downloads\spring-in-5-steps"/>
+		</list>
+		<list key="projectNameTemplate">
+			<item value="[artifactId]"/>
+			<item value="[artifactId]-TRUNK"/>
+			<item value="[artifactId]-[version]"/>
+			<item value="[groupId].[artifactId]"/>
+			<item value="[groupId].[artifactId]-[version]"/>
+			<item value="[name]"/>
+		</list>
+	</section>
 	<section name="MavenProjectWizardArchetypePage">
 		<item value="All Catalogs" key="catalog"/>
 		<list key="projectNameTemplate">
@@ -57,6 +79,8 @@
 	</section>
 	<section name="MavenProjectWizardLocationPage">
 		<list key="location">
+			<item value="C:\Users\Bruce Wayne\Desktop\spring-in-5-steps"/>
+			<item value="C:\Users\Bruce Wayne\my_git_repos\1711Nov13USF\Project1serve"/>
 			<item value="C:\Users\Bruce Wayne\my_git_repos\1711Nov13USF\Project1\src\main\resources\application.properties"/>
 			<item value="C:\Users\Bruce Wayne\my_git_repos\1711Nov13USF\HelloSever\pom.xml"/>
 			<item value="C:\Users\Bruce Wayne\my_git_repos\1711Nov13USF\HelloWeb\WebContent\IntrotoJquery.html"/>
