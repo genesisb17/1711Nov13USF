@@ -6,6 +6,21 @@ import org.hibernate.cfg.Configuration;
 
 public class ConnectionUtil {
 	
+//	private static SessionFactory sessionFactoryCreator() {
+//		try {
+//			URL r1 = ConnectionUtil.class.getResource("/hibernate.cfg.xml");
+//			Configuration configuration = new Configuration();
+//			configuration.configure(r1);
+//			serviceRegistry = new ServiceRegistryBuilder()
+//					.applySettings(configuration.getProperties()).buil
+//			return cofiguration.buildSessionFactory(serviceRegistry);
+//		} catch(Throwable ex) {
+//			// make sure you log the exception, as it might be swallowed
+//			System.err.print("Initial SessionFactory creation failed." + ex);
+//			throw new ExceptionInInitializerError(ex);
+//		}
+//	}
+	
 	@SuppressWarnings("deprecation")
 	private static SessionFactory sessionFactory =
 			new Configuration().configure().buildSessionFactory();
