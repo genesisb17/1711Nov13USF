@@ -1,0 +1,20 @@
+<div id="openTicket-container">
+	<h2>Edit Existing Expense Reimbursement Ticket</h2><hr>
+	<strong>Reimbursement Id:</strong> <span id="ticketId"></span><br><br>
+	<strong>Reimbursement Type</strong><br> 
+	<select id="editTicket-type">
+		<option value="lodging">Lodging</option>
+		<option value="travel">Travel</option>
+		<option value="food">Food</option>
+		<option value="other">Other</option>
+	</select> 
+	<br><br> 
+	<strong>Reimbursement Amount</strong> <br> $<input
+		type="number" name="username" placeholder="Amount" required="required"
+		class="form-control" id="editTicket-amount" /><br>
+	<br> <strong>Reimbursement Description</strong><br>
+	<textarea id="editTicket-description"></textarea>
+	<br><br>
+	<button class="btn btn-primary" id="updateTicket-btn">Update Ticket</button>&nbsp;&nbsp;
+	<button class="btn btn-primary" id="goBack-btn">Go Back</button>
+</div>

@@ -1,0 +1,71 @@
+/*wrapper element so column padding doesn't affect fixed header background*/
+.scroll-window-wrapper {
+	position: relative;
+}
+/* element containing the table */
+.scroll-window {]
+	height: 20rem;
+	overflow-x: hidden;
+	overflow-y: scroll;
+	border: solid 1px;
+}
+
+.scroll-window table {
+	margin-bottom: 0;
+}
+
+/*fixed header background*/
+.scroll-window:before {
+	content: "";
+	position: absolute;
+	width: 100%;
+	height: 2.5rem;
+	display: table;
+	z-index: 10;
+	background: rgba(170, 170, 170, 0.8);
+}
+
+/*the actual fixed header*/
+table.fixed-header th div {
+	position: absolute;
+	margin-top: -.5rem;
+	z-index: 11;
+	color: #333;
+}
+
+table.fixed-header  thead tr {
+	height: 2.5rem;
+	width: 55px;
+}
+
+.user-list {
+	width: 100%;
+}
+
+.user-list	td.text-right {
+	width: 16rem;
+}
+
+/*-----experimental scrollbar styles-----*/
+/* line 199, ../scss/main.scss */
+#bodywrap ::-webkit-scrollbar {
+	width: 1rem;
+}
+/* line 202, ../scss/main.scss */
+#bodywrap ::-webkit-scrollbar-button {
+	/* width:1rem;*/
+	
+}
+/* line 205, ../scss/main.scss */
+#bodywrap ::-webkit-scrollbar-track {
+	background-color: #eaeaea;
+	border-left: 1px solid #ccc;
+}
+/* line 212, ../scss/main.scss */
+#bodywrap ::-webkit-scrollbar-thumb {
+	background-color: #ccc;
+}
+/* line 215, ../scss/main.scss */
+#bodywrap ::-webkit-scrollbar-thumb:hover {
+	background-color: #aaa;
+}
