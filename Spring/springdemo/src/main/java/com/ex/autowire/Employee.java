@@ -1,16 +1,18 @@
 package com.ex.autowire;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 /*
  * Annotations from org.springframework.stereotype
  * aka stereotype annotations
  * @Component - use for any bean
- * @Service - buisiness logicn layer. does NOT indicate a web service
+ * @Service - buisiness login layer. does NOT indicate a web service
  * @Repository - DAO layer
  */
 @Component
+@Scope("prototype")
 public class Employee {
 	
 	private String name;

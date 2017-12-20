@@ -2,8 +2,12 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:context="http://www.springframework.org/schema/context"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd">
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+	xsi:schemaLocation="http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-4.2.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.2.xsd">
 	<!-- Defining our XML namespace : default space for our beans.xml. The namespace 
 		acts as a library for the properties that we can use to create and inject 
 		into a bean xmlns:si - XML schema Instance/ Schema location - we give this 
@@ -34,6 +38,19 @@
 	<!-- AUTOWIRE WITH ANNOTATIONS -->
 	<context:annotation-config/>
 	<context:component-scan base-package="com.ex.autowire"/>
+	
+	<!--  ORM  -->
+	
+	<!--  enable @Transactional -->
+	<tx:annotation-driven />
+	
+	<!--  DATA SOURCE -->
+	<bean id="myDataSource"	 class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName"></property>
+		<property name="url"></property>
+		<property name="username"></property>
+		<property name="password"></property>
+	</bean>
 	
 </beans>
 
