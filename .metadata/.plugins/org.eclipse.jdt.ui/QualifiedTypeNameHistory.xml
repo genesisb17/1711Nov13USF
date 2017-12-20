@@ -46,4 +46,7 @@
 <fullyQualifiedTypeName name="org.hibernate.annotations.Cache"/>
 <fullyQualifiedTypeName name="com.in28minutes.spring.basics.springin5steps.BinarySearchimpl"/>
 <fullyQualifiedTypeName name="org.springframework.stereotype.Component"/>
+<fullyQualifiedTypeName name="org.hibernate.annotations.Entity"/>
+<fullyQualifiedTypeName name="org.hibernate.annotations.Table"/>
+<fullyQualifiedTypeName name="java.io.Serializable"/>
 </qualifiedTypeNameHistroy>

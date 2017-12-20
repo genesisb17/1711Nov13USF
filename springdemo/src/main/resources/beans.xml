@@ -11,16 +11,14 @@ give this to our XML file for context sensitive help
 inside of our app makes sure that we have both well formed
 and valid XML.
 -->
-<bean id ="beanbean" class="com.ex.beans.HelloBeans">
+<!-- <bean id ="beanbean" class="com.ex.beans.HelloBeans">
 <property name="hello">
 
 <bean id="helloWorld" class="com.ex.beans.HelloWorld">
 	<!-- property is used to assign variables -->
-
+<!-- 
 <property name="message" 
 value="Hello Spring!! This is dependency Injection!"/>
-<!-- sets the constructors value -->
-
 <constructor-arg type="java.lang.String" value="testing constructor Injection"/>
 </bean>
 </property>
@@ -37,11 +35,32 @@ value="Hello Spring!! This is dependency Injection!"/>
 	<property name="name" value="techTeam"/>
 
 </bean>
-
+-->
 
 <context:annotation-config/>
 <context:component-scan base-package="com.ex.autowire"/>
+<tx:annotation-driven/>
+<bean id="myDataSource" class="org.apache.commons.dbcp.BasicDataSource">
+	<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"></property>
+	<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"></property>
+	<property name="username" value ="demo"></property>
+	<property name="password" value="demo"></property>
+</bean>
+<bean id="mySessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+<property name="dataSource" ref="myDataSource"></property>
+<property name="packagesToScan" value="com.ex"></property>
+<property name="hibernateProperties"></property>
+<props>
+	<prop key="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</prop>
+	<prop key="hibernate.show_sql">true</prop>
+	<prop key="hibernate.format_sql">true</prop>
+	<prop key="hibernate.hbm2ddl.auto">create</prop>
+</props>
+</bean>
 
+<bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+<property name="sessionFactory"></property>
+</bean>
 
 
 </beans>
