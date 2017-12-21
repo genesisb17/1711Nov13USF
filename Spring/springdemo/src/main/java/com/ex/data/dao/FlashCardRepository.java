@@ -9,4 +9,6 @@ import com.ex.data.domain.FlashCard;
 public interface FlashCardRepository extends JpaRepository<FlashCard, Integer> {
 
 	public FlashCard findFlashCardByQuestion(String question);
+	
+	
 }
