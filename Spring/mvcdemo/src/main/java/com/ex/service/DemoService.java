@@ -37,5 +37,14 @@ public class DemoService {
 		cards.add(fc);
 		return fc;
 	}
+	
+	public FlashCard update(FlashCard fc) {
+		int id = fc.getId();
+		FlashCard old = getById(id);
+		if(old == null) {return null;}
+		old.setQuestion(fc.getQuestion());
+		old.setAnswer(fc.getAnswer());
+		return old;
+	}
 
 }
