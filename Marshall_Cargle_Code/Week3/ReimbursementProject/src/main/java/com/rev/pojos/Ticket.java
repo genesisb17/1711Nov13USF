@@ -17,7 +17,7 @@ public class Ticket {
 		super();
 	}
 
-	public Ticket(int ticket_ID, int amount, Timestamp submitted, Timestamp resolved, String description, int author_ID,
+	public Ticket(int ticket_ID, double amount, Timestamp submitted, Timestamp resolved, String description, int author_ID,
 			Integer resolver_ID, int status_ID, int type_ID) {
 		super();
 		this.ticket_ID = ticket_ID;
@@ -43,7 +43,7 @@ public class Ticket {
 		return amount;
 	}
 
-	public void setAmount(int amount) {
+	public void setAmount(double amount) {
 		this.amount = amount;
 	}
 

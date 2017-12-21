@@ -8,8 +8,8 @@ public class SpecTicket {
 	String lastName;
 	String email;
 	double amount;
-	Timestamp submitted;
-	Timestamp resolved;
+	String submitted;
+	String resolved;
 	String description;
 	String resolver;
 	String status;
@@ -19,7 +19,7 @@ public class SpecTicket {
 	}
 
 	public SpecTicket(int ticket_id, String firstName, String lastName, String email, double amount,
-			Timestamp submitted, Timestamp resolved, String description, String resolver, String status, String type) {
+			String submitted, String resolved, String description, String resolver, String status, String type) {
 		super();
 		this.ticket_id = ticket_id;
 		this.firstName = firstName;
@@ -74,19 +74,19 @@ public class SpecTicket {
 		this.amount = amount;
 	}
 
-	public Timestamp getSubmitted() {
+	public String getSubmitted() {
 		return submitted;
 	}
 
-	public void setSubmitted(Timestamp submitted) {
+	public void setSubmitted(String submitted) {
 		this.submitted = submitted;
 	}
 
-	public Timestamp getResolved() {
+	public String getResolved() {
 		return resolved;
 	}
 
-	public void setResolved(Timestamp resolved) {
+	public void setResolved(String resolved) {
 		this.resolved = resolved;
 	}
 

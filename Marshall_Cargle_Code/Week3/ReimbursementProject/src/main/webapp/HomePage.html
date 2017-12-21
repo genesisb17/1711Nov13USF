@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="css/style.css">
+<meta charset="ISO-8859-1">
+<title>MaxwellCo.</title>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
+	integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb"
+	crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+	integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+	crossorigin="anonymous"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"
+	integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh"
+	crossorigin="anonymous"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"
+	integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
+	crossorigin="anonymous"></script>
+<script
+  src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"
+  integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30="
+  crossorigin="anonymous"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/tabulator/3.2.2/css/tabulator.min.css" rel="stylesheet">
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tabulator/3.2.2/js/tabulator.min.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/tabulator/3.3.2/css/tabulator_modern.min.css" rel="stylesheet">
+</head>
+<body>
+
+	<nav class="navbar navbar-expand-lg navbar-light bg-color1">
+		<a class="navbar-brand" href="#">MaxwellCo.</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse"
+			data-target="#navbarSupportedContent"
+			aria-controls="navbarSupportedContent" aria-expanded="false"
+			aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item active"><a class="nav-link" href="#">Home</a>
+				</li>
+				<li class="nav-item"><a class="nav-link" href="#"
+					id="myProfile">My Profile</a></li>
+				<li class="nav-item"><a class="nav-link" href="#" id="logout">Logout</a></li>
+			</ul>
+			<span class="navbar-text" id="name"></span>
+		</div>
+
+	</nav>
+
+	<div id="fade" class="overlay"></div>
+	<div style="padding-top: 3%; padding-left: 3%">
+	<button type="button" class="btn btn-primary text"
+		style="float: left;">Submit a Ticket</button></div>
+	<div class="popup">
+		<div>
+			<!-- input stuff and submit buttons stuff goes here -->
+			<h3 style="text-align: center">Submit a Ticket</h3>
+			<form style="text-align: center">
+				<br> <input type="text" class="form-control" id="amount"
+					placeholder="Amount"> <br>
+				<div class="form-group">
+					<textarea class="form-control" id="description" rows="3"
+						placeholder="Description of Ticket" value="Left Blank"></textarea>
+				</div>
+				<br>
+				<div class="form-check form-check-inline">
+					<label class="form-check-label"> <input
+						class="form-check-input" type="radio" name="radio"
+						id="inlineRadio1" value="0"> Lodging
+					</label>
+				</div>
+				<div class="form-check form-check-inline">
+					<label class="form-check-label"> <input
+						class="form-check-input" type="radio" name="radio"
+						id="inlineRadio2" value="1"> Travel
+					</label>
+				</div>
+				<div class="form-check form-check-inline">
+					<label class="form-check-label"> <input
+						class="form-check-input" type="radio" name="radio"
+						id="inlineRadio3" value="2"> Food
+					</label>
+				</div>
+				<div class="form-check form-check-inline">
+					<label class="form-check-label"> <input
+						class="form-check-input" type="radio" name="radio"
+						id="inlineRadio1" value="3"> Other
+					</label>
+				</div>
+
+				<br> <br>
+				<button type="button" class="btn btn-primary text" id="submit">Submit</button>
+			</form>
+		</div>
+		<a class='popup-close' href="#">Close</a>
+	</div>
+
+	<!-- INSERT TABLE HERE -->
+	<div style="text-align:center; padding-top: 5%; padding-left: 3%; padding-right: 3%">
+	<div id="example-table"></div>
+	</div>
+	<script src="js/HomePage.js"></script>
+</body>
+</html>

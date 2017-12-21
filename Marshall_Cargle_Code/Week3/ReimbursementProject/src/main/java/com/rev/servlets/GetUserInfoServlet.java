@@ -5,6 +5,7 @@ import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -13,26 +14,19 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.rev.pojos.User;
 
 @WebServlet("/getUserInfo")
-public class GetUserInfoServlet {
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		System.out.println("In user info servlet doGet");
-	//	Service service = new Service();
-		
+public class GetUserInfoServlet extends HttpServlet {
+	
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {		
 		HttpSession session = req.getSession();
 		User user = (User)session.getAttribute("user");
-		System.out.println(user);
+		ObjectMapper mapper = new ObjectMapper();
+		PrintWriter out = resp.getWriter();
+		System.out.println("IN GET USER SERVLET");
+		resp.setContentType("application/json");
+		String userJSON = mapper.writeValueAsString(user);
+		System.out.println("JSON: " + userJSON);
+		out.write(userJSON);
 		
-		if(user!=null){
-			ObjectMapper mapper = new ObjectMapper();
-			String json = mapper.writeValueAsString(user);
-			
-			PrintWriter out = resp.getWriter();
-			resp.setContentType("application/json");
-			out.write(json);
-		}
-		else{
-			resp.setStatus(418);
-		}
-	
 	}
 }

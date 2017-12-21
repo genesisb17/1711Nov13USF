@@ -5,19 +5,20 @@ import { Todo } from './todo';
 export class TodoDataService {
   //placeholder for last id to simulate auto incrementing
   lastId: number = 0;
-
   todos: Todo[] = [];
-  
+
+
   constructor() { }
 
   /* Here we are starting our simulation of an api to do
-    basic tasks for our to do list. The following functions will
-    add the todo object (restricted to being of type Tedo) and
-    return the current intance of the TodoDataService. This is
+    basic tasks for our to do list. The following function will
+    add the todo object (restricted to being of type Todo) and 
+    return the current instance of the TodoDataService. This is 
     useful for many reasons, including the fact that it allows us
-    to chain method calls from an instance of the service.
+    to chain method calls from an instance of the service
   */
 
+  // simulating POST /todos
   addTodo(todo: Todo): TodoDataService{
     if(!todo.id){
       todo.id = ++this.lastId;
@@ -26,8 +27,8 @@ export class TodoDataService {
     return this;
   }
 
-  //simulate DELETE /todos/:id
-  deleteTodoById(id:number): TodoDataService{
+  // simulate DELETE /todos/:id
+  deleteTodoById(id: number): TodoDataService{
     this.todos = this.todos.filter(todo => todo.id !==id);
     return this;
   }
@@ -37,14 +38,15 @@ export class TodoDataService {
     return this.todos.filter(todo=>todo.id === id).pop();
   }
 
-  //simulate PUT /todos:id
-  updateTodoById(id:number, values: Object = {}): Todo{
+  //simulate PUT /todos/:id
+  updateTodoById(id: number, values: {}): Todo{
     let todo = this.getTodoById(id);
     if(!todo) return null;
     Object.assign(todo, values);
     return todo;
   }
 
+  //simulate GET /todos
   getAllTodos(): Todo[]{
     return this.todos;
   }
@@ -54,12 +56,13 @@ export class TodoDataService {
       todo.id , {complete: !todo.complete});
       return updatedTodo;
   }
+
 }
 
 /*
-Here we do introduce some new concepts in terms of
+Here we do introduce some new concepts in terms of 
 arrow notation, filters, specified return types, etc
 
 HOWEVER: the main takeaway is that we have centralized
-our biz logic (didnt finish these notes in time)
+our biz logic in one place -- the service
 */

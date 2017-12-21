@@ -19,11 +19,11 @@ public class runReimbursement {
 	}
 
 	static void run() {
-		Timestamp t=new Timestamp(System.currentTimeMillis());
+		//Timestamp t=new Timestamp(System.currentTimeMillis());
 		//User u = new User();
 		//Ticket l=new Ticket(1, 50, t, null, null, 21, 0, 1, 1);
-		Ticket o=new Ticket(1234, 50, t, null, "", 40, null, 0, 0);
-		Ticket z=new Ticket(, , submitted, resolved, description, author_ID, resolver_ID, status_ID, type_ID);
+		//Ticket o=new Ticket(1234, 50, t, null, "", 40, null, 0, 0);
+		//Ticket z=new Ticket(, , submitted, resolved, description, author_ID, resolver_ID, status_ID, type_ID);
 		/*Scanner scan = new Scanner(System.in);
 		System.out.println("Enter Username");
 		String username = scan.nextLine();
@@ -40,10 +40,11 @@ public class runReimbursement {
 		service.addUser(u);*/
 		//System.out.println(sdf.format(t.getTime()));
 		//service.addTicket(l);
-		/*List<SpecTicket> testing = new ArrayList<>();
-		testing=service.getTickets();
+		List<SpecTicket> testing = new ArrayList<>();
+		testing=service.getUserTickets(21);
 		for(SpecTicket a:testing)
-			System.out.println(a.toString());*/
-		System.out.println(o.toString());
+			System.out.println(a.toString());
+		//System.out.println(o.toString());
+		//System.out.println(service.SetPassword("as", "asd", "hello"));
 	}
 }

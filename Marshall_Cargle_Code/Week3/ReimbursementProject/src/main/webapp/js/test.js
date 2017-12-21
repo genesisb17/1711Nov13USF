@@ -1,4 +1,5 @@
 window.onload = function() {
+	alert("testing");
 	$('#register').on('click', register);
 	$('#loginButton').on('click', login);
 }
@@ -20,7 +21,6 @@ function register() {
 		role : 0
 	};
 	var userJSON = JSON.stringify(user);
-	alert("testing");
 	var xhr = new XMLHttpRequest();
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState == 4 && xhr.status == 200) {
@@ -66,7 +66,7 @@ function login(){
 				$('#header').html("Invalid Login");
 				$('#notice').show();
 			}else{
-				window.location.replace('landing.html');
+				window.location.replace('HomePage.html');
 			}
 		}
 	};

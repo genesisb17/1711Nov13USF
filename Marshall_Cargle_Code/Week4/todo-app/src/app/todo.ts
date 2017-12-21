@@ -1,19 +1,21 @@
 export class Todo {
-    // our todo class has three instance properties
+    // our todo class has three instance properties 
     id: number;
-    title: string = '';
+    title: string ='';
     complete: boolean = false;
 
-    /* we are adding constructor logic that lets us specify property values
-    during instantiation so taht we can easily create new todo instances like:
+    /*  We are adding constructor logic that lets us specify property values
+    during instantiation so that we can easily create new todo instances like:
 
-        let todo=new Todo({
+        let todo = new Todo({
             title:'Finish Project 1',
-            complete:false
+            complete: false
         });
 
     */
     constructor(values: Object = {}){
         Object.assign(this,values);
     }
+
 }
+

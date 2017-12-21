@@ -1,5 +1,6 @@
 package com.rev.dao;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 import com.rev.pojos.SpecTicket;
@@ -11,7 +12,8 @@ public interface DAO {
 	Ticket addTicket(Ticket t);
 	User getUser(String Email, String password);
 	List<SpecTicket> getTickets();
-	User setAccount(User u);
-	Ticket setTicket(Ticket t);
+	String setAccount(int id, String email, String firstname, String lastname);
+	void setTicket(int ticket_id, int resolver_id, Timestamp t, int status);
 	String SetPassword(String email, String oldPass, String newPass);
+	List<SpecTicket> getUserTickets(int id);
 }
