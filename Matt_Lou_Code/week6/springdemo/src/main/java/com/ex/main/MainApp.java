@@ -23,7 +23,7 @@ import com.ex.beans.HelloWorld;
  *		-applicationContext (new) the child class, eagerly loads beans
  */
 public class MainApp {
-	
+
 	public static void main(String[] args) {
 		ApplicationContext context =
 				new ClassPathXmlApplicationContext("beans.xml");

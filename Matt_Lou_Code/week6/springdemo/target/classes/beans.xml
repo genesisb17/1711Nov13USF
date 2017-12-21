@@ -2,8 +2,14 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:context="http://www.springframework.org/schema/context"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd">
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+	xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+	xsi:schemaLocation="http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-4.2.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd
+		http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa-1.8.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.2.xsd">
 <!-- Defining our XML namespace default space for our beans.xml;
 The namespace acts as a library for the properties that we can use
 to create and inject into a bean
@@ -13,7 +19,7 @@ that we have both well formed and valid XML
  -->
  
  <!-- hellobeans(parent) has a helloworld child bean -->
- <bean id="beanbean" class="com.ex.beans.HelloBeans">
+<!--  <bean id="beanbean" class="com.ex.beans.HelloBeans">
  	<property name="hello">
  		<bean id="helloWorld" class="com.ex.beans.HelloWorld">
  			<property name="message" 
@@ -22,23 +28,95 @@ that we have both well formed and valid XML
  				value="testing constructor injection"/>
  		</bean>
  	</property>
- </bean>
- 
- <!-- AUTOWIRED BEANS (to check existing bean, go to Namespaces tab 
- then check context box, you will be able to see Beans graph)-->
-<!--  <bean id="employee" class="com.ex.autowire.Employee" autowire="byName">
-    ref="department" refers to referene to another bean
- 	<property name="department" ref="department" />
- 	<property name="name" value="Genesis" />
- </bean>
- 
- <bean id="department" class="com.ex.autowire.Department">
- 	<property name="name" value="TechTeam"/>
  </bean> -->
  
- <!--  AUTOWIRE WITH ANNOTATIONS -->
- <context:annotation-config/>
- <context:component-scan base-package="com.ex.autowire"/> 
+	 <!-- AUTOWIRED BEANS (to check existing bean, go to Namespaces tab 
+	 then check context box, you will be able to see Beans graph)-->
+	<!--  <bean id="employee" class="com.ex.autowire.Employee" autowire="byName">
+	    ref="department" refers to referene to another bean
+	 	<property name="department" ref="department" />
+	 	<property name="name" value="Genesis" />
+	 </bean>
+	 
+	 <bean id="department" class="com.ex.autowire.Department">
+	 	<property name="name" value="TechTeam"/>
+	 </bean> -->
+	 
+	 <!--  AUTOWIRE WITH ANNOTATIONS -->
+	 <context:annotation-config/>
+	 <context:component-scan base-package="com.ex"/> 
+	 
+	 <!-- ORM -->
+	 
+	 <!-- enable @Transactional -->
+	<tx:annotation-driven />
+	 
+	 <!-- DATA SOURCE -->
+ 	<bean id="myDataSource" class="org.apache.commons.dbcp.BasicDataSource">
+ 		<property name="driverClassName" 
+ 			value="oracle.jdbc.driver.OracleDriver"></property>
+ 		<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"></property>
+ 		<property name="username" value="chinook"></property>
+ 		<property name="password" value="p4ssw0rd"></property>
+ 	</bean>
+ 	
+ 	<!-- SESSION FACTORY BEAN -->
+ 	<bean id="mySessionFactory" 
+ 		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+ 		<property name="dataSource" ref="myDataSource" />
+ 		<property name="packagesToScan" value="com.ex.orm" />
+ 		<property name="hibernateProperties">
+ 			<props>
+ 				<prop key="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</prop>
+                <prop key="hibernate.show_sql">true</prop>
+                <prop key="hibernate.format_sql">true</prop>
+                <prop key="hibernate.hbm2ddl.auto">create</prop>
+ 			</props>
+ 		</property>
+ 	</bean>
+ 	
+ 	<!-- <bean id="transactionManager"
+ 		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+ 		<property name="sessionFactory" ref="mySessionFactory"></property>
+ 	</bean> -->
+ 	
+ 	<bean id="myDao" class="com.ex.orm.ORMDao">
+ 		<property name="sessionFactory" ref="mySessionFactory"></property>
+ 	</bean>
+ 	
+ 	<!--********************** SPRING DATA *************************** -->
+ 	
+ 	<!--     Because Spring Data doesn't natively support Hibernate (But it does support JPA) -->
+
+<!--     Because we use Hibernate -->
+   <bean id="hibernateJpaVendorAdapter" 
+   		class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+   </bean>
+   
+<!--     Because Spring Data doesn't natively support Hibernate (But it does support JPA) -->
+   <bean id="entityManagerFactory" 
+   		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+   		<property name="dataSource" ref="myDataSource" />
+   		<property name="packagesToScan" value="com.ex.data" />
+   		<property name="jpaVendorAdapter" ref="hibernateJpaVendorAdapter" />
+   		<property name="jpaProperties">
+   			<props>
+ 				<prop key="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</prop>
+                <prop key="hibernate.show_sql">true</prop>
+                <prop key="hibernate.format_sql">true</prop>
+                <prop key="hibernate.hbm2ddl.auto">create</prop>
+ 			</props>
+   		</property>
+   </bean>
+   
+   <bean id="transactionManager"
+		class="org.springframework.orm.jpa.JpaTransactionManager">
+   		<property name="entityManagerFactory" ref="entityManagerFactory"/>		
+   </bean>
+   
+   <!-- LOCATE REPOSITORY AKA DAO INTERFACE -->
+   <jpa:repositories base-package="com.ex.data" />
+   
 </beans>
 
 <!-- 

@@ -1,6 +1,7 @@
 package com.ex.autowire;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 /*
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Component;
  * @Repository - DAO layer
  */
 @Component
+@Scope("prototype")
 public class Employee {
 	
 	private String name;
