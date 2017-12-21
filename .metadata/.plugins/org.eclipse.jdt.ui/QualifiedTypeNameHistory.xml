@@ -25,7 +25,6 @@
 <fullyQualifiedTypeName name="java.sql.CallableStatement"/>
 <fullyQualifiedTypeName name="java.sql.Types"/>
 <fullyQualifiedTypeName name="java.awt.List"/>
-<fullyQualifiedTypeName name="java.util.List"/>
 <fullyQualifiedTypeName name="oracle.jdbc.OracleTypes"/>
 <fullyQualifiedTypeName name="com.rev.pojo.R"/>
 <fullyQualifiedTypeName name="javax.servlet.GenericServlet"/>
@@ -46,7 +45,13 @@
 <fullyQualifiedTypeName name="org.hibernate.annotations.Cache"/>
 <fullyQualifiedTypeName name="com.in28minutes.spring.basics.springin5steps.BinarySearchimpl"/>
 <fullyQualifiedTypeName name="org.springframework.stereotype.Component"/>
+<fullyQualifiedTypeName name="java.io.Serializable"/>
 <fullyQualifiedTypeName name="org.hibernate.annotations.Entity"/>
 <fullyQualifiedTypeName name="org.hibernate.annotations.Table"/>
-<fullyQualifiedTypeName name="java.io.Serializable"/>
+<fullyQualifiedTypeName name="javax.persistence.Entity"/>
+<fullyQualifiedTypeName name="javax.persistence.Table"/>
+<fullyQualifiedTypeName name="javax.persistence.Id"/>
+<fullyQualifiedTypeName name="java.util.List"/>
+<fullyQualifiedTypeName name="javax.transaction.Transactional"/>
+<fullyQualifiedTypeName name="org.springframework.context.annotation.AnnotationConfigApplicationContext"/>
 </qualifiedTypeNameHistroy>

@@ -28,6 +28,7 @@
 	<!-- ORM -->
 
 	<!-- enable @Transactional -->
+	
 	<tx:annotation-driven />
 
 	<!-- DATA SOURCE BEAN, dbcp = db connection pool, not the only 
@@ -63,8 +64,27 @@
 			<property name="sessionFactory" ref="mySessionFactory"></property> 
 	</bean>
 
-
+	<!-- SPRING DATA!!!!!! -->
+<bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+	<property name="dataSource" ref="mydataSource"/>
+	<property name="packagesToScan" value="com.ex.data"/>
+			<property name="jpaProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</prop>
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.format_sql">true</prop>
+				<prop key="hibernate.hbm2ddl.auto">create</prop>
+			</props>
+		</property>	
+</bean>
+<bean id="transactionManager"
+class="org.springframework.orm.jpa.JpaTransactionManager">
+<property name="entityManagerFactory" ref="entityManagerFactory"/>
+</bean>
+<jpa:repositories base-package="com.ex.data"></jpa:repositories>
 </beans>
+
+
 
 <!-- The above is a spring bean configuration file It is an XML file that 
 	that acts as a cement that glues the beans, i.e. the classes together. This 

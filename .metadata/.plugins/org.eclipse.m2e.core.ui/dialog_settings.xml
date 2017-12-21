@@ -2,6 +2,7 @@
 <section name="Workbench">
 	<section name="MavenProjectWizardArtifactPage">
 		<list key="groupId">
+			<item value="hellospring"/>
 			<item value="io.javabrains.springbootquickstart"/>
 			<item value="com.ex"/>
 			<item value="com.web"/>
@@ -14,6 +15,7 @@
 			<item value="HelloSpring"/>
 		</list>
 		<list key="artifactId">
+			<item value="hellospring"/>
 			<item value="course-api1"/>
 			<item value="course-api"/>
 			<item value="springdemo"/>
@@ -54,6 +56,8 @@
 	</section>
 	<section name="MavenProjectImportWizardPage">
 		<list key="rootDirectory">
+			<item value="C:\Users\Bruce Wayne\Desktop\spring2"/>
+			<item value="C:\Users\Bruce Wayne\Desktop\springdemo2"/>
 			<item value="C:\Users\Bruce Wayne\my_git_repos\1711Nov13USF\springdemo"/>
 			<item value="C:\Users\Bruce Wayne\Desktop\Spring\springdemo"/>
 			<item value="C:\Users\Bruce Wayne\Desktop\spring-in-5-steps"/>
@@ -81,6 +85,7 @@
 	</section>
 	<section name="MavenProjectWizardLocationPage">
 		<list key="location">
+			<item value="C:\Users\Bruce Wayne\my_git_repos\1711Nov13USF\hib"/>
 			<item value="C:\Users\Bruce Wayne\Desktop\spring-in-5-steps"/>
 			<item value="C:\Users\Bruce Wayne\my_git_repos\1711Nov13USF\Project1serve"/>
 			<item value="C:\Users\Bruce Wayne\my_git_repos\1711Nov13USF\Project1\src\main\resources\application.properties"/>
