@@ -2,6 +2,7 @@
 <section name="Workbench">
 	<section name="MavenProjectWizardArtifactPage">
 		<list key="groupId">
+			<item value="nbcdemo"/>
 			<item value="hellospring"/>
 			<item value="io.javabrains.springbootquickstart"/>
 			<item value="com.ex"/>
@@ -9,12 +10,14 @@
 			<item value="com.revature"/>
 		</list>
 		<list key="name">
+			<item value="nbcdemo"/>
 			<item value="Java Brains Course api"/>
 			<item value="Java Brains Course Api"/>
 			<item value="Java Brain Course API"/>
 			<item value="HelloSpring"/>
 		</list>
 		<list key="artifactId">
+			<item value="nbcdemo"/>
 			<item value="hellospring"/>
 			<item value="course-api1"/>
 			<item value="course-api"/>
