@@ -1,6 +1,6 @@
 package com.ex.test;
 
-import com.ex.beans.Student;
+import com.ex.beans.Product;
 import com.ex.dao.HibDao;
 
 public class Test {
@@ -8,10 +8,12 @@ public class Test {
 	public static void main(String[] args ) {
 		
 		HibDao dao = new HibDao();
-		Student s = new Student("todd", "merbeth", "tm@email");
-		dao.addStudent(s);
+		Product p = new Product();
+		p.setPrice(10.00);
+		p.setProdName("Book");
+		dao.addProduct(p);
 		
-		System.out.println(dao.getAllStudents().toString());
+		
 	}
 	
 }

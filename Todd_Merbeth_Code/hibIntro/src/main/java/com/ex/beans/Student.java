@@ -11,8 +11,12 @@ import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+
 @Entity
 @Table(name="HIP_STUDENTS")
+@Cache(usage=CacheConcurrencyStrategy.READ_WRITE, region="student")
 public class Student {
 	
 	@Id
