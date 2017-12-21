@@ -46,5 +46,9 @@ public class DemoService {
 		old.setAnswer(fc.getAnswer());
 		return old;
 	}
+	
+	public void delete(int id) {
+		cards.removeIf(fc->id==fc.getId());
+	}
 
 }

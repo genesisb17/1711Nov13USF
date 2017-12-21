@@ -47,6 +47,13 @@ public class FlashCardRestController {
 		if(card==null) return new ResponseEntity<FlashCard>(HttpStatus.NOT_FOUND);
 		else{return new ResponseEntity<FlashCard>(card, HttpStatus.OK);}
 	}
+	
+	@RequestMapping(value="/{id}", method=RequestMethod.DELETE)
+	public ResponseEntity<FlashCard> delete(@PathVariable int id){
+		service.delete(id);
+		return new ResponseEntity<FlashCard>( HttpStatus.OK);
+	}
+	
 
 
 
