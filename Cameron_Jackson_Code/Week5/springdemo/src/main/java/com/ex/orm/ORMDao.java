@@ -17,7 +17,7 @@ public class ORMDao {
 
 	public void setSessionFactory(SessionFactory sf) {
 		this.sf = sf;
-	}
+	} 
 	
 	@Transactional(readOnly=false)
 	public void buildABear(Bear bear) {
