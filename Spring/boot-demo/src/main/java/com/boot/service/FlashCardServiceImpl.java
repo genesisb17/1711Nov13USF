@@ -17,6 +17,7 @@ public class FlashCardServiceImpl implements FlashCardService {
 	@Autowired
 	private FlashCardRepository fcRepo;
 	
+	
 	public void addFlashCard(FlashCard fc) {
 		fcRepo.save(fc);
 	}

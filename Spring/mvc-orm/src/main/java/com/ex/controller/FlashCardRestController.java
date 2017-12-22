@@ -19,7 +19,7 @@ public class FlashCardRestController {
 	ApplicationContext context;
 
 	@Autowired
-	Dao dao;
+	Dao dao; // in real life. do nnot use dao inside of controller 
 	
 	static {
 		System.out.println("in rest conroller");
@@ -29,6 +29,7 @@ public class FlashCardRestController {
 	public void addFC(@RequestBody FlashCard fc){
 		dao.addFc(fc);
 	}
+	
 	@RequestMapping(method = RequestMethod.GET,  produces=MediaType.APPLICATION_JSON_VALUE)
 	public String test() {
 		return "TEST";
