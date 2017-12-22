@@ -2,30 +2,10 @@
 <section name="Workbench">
 	<section name="MavenProjectWizardArtifactPage">
 		<list key="groupId">
-			<item value="nbcdemo"/>
-			<item value="hellospring"/>
-			<item value="io.javabrains.springbootquickstart"/>
-			<item value="com.ex"/>
-			<item value="com.web"/>
-			<item value="com.revature"/>
 		</list>
 		<list key="name">
-			<item value="nbcdemo"/>
-			<item value="Java Brains Course api"/>
-			<item value="Java Brains Course Api"/>
-			<item value="Java Brain Course API"/>
-			<item value="HelloSpring"/>
 		</list>
 		<list key="artifactId">
-			<item value="nbcdemo"/>
-			<item value="hellospring"/>
-			<item value="course-api1"/>
-			<item value="course-api"/>
-			<item value="springdemo"/>
-			<item value="helloServlets"/>
-			<item value="HelloServer1"/>
-			<item value="HelloSever"/>
-			<item value="HelloServers"/>
 		</list>
 		<list key="projectNameTemplate">
 			<item value="[artifactId]"/>
@@ -59,6 +39,7 @@
 	</section>
 	<section name="MavenProjectImportWizardPage">
 		<list key="rootDirectory">
+			<item value="C:\Users\Bruce Wayne\Desktop\mvc--data"/>
 			<item value="C:\Users\Bruce Wayne\Desktop\spring2"/>
 			<item value="C:\Users\Bruce Wayne\Desktop\springdemo2"/>
 			<item value="C:\Users\Bruce Wayne\my_git_repos\1711Nov13USF\springdemo"/>
@@ -88,6 +69,7 @@
 	</section>
 	<section name="MavenProjectWizardLocationPage">
 		<list key="location">
+			<item value="C:\Users\Bruce Wayne\Desktop\mvc--data\src\main\java\com\ex\controllers\FlashCardRestController.java"/>
 			<item value="C:\Users\Bruce Wayne\my_git_repos\1711Nov13USF\hib"/>
 			<item value="C:\Users\Bruce Wayne\Desktop\spring-in-5-steps"/>
 			<item value="C:\Users\Bruce Wayne\my_git_repos\1711Nov13USF\Project1serve"/>
@@ -112,10 +94,13 @@
 	</section>
 	<section name="Maven2ProjectWizardArchifactPage">
 		<list key="package">
+			<item value="com.springboot1"/>
 		</list>
 		<list key="groupId">
+			<item value="com.boot"/>
 		</list>
 		<list key="artifactId">
+			<item value="springboot1"/>
 		</list>
 		<list key="projectNameTemplate">
 			<item value="[artifactId]"/>
