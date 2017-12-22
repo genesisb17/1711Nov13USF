@@ -2,6 +2,8 @@ package com.ex.controllers;
 
 import java.util.List;
 
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ex.service.FlashCardService;
 import com.ex.domain.FlashCard;
 import com.ex.service.DemoService;
 
@@ -23,6 +26,12 @@ public class FlashCardRestController {
 	static {
 		System.out.println("in flashcard controller");
 	}
+	
+	static ApplicationContext context = 
+			new ClassPathXmlApplicationContext("beans.xml");
+	
+	static FlashCardService fcService 
+	= (FlashCardService) context.getBean("flashCardServiceImpl");
 
 	@RequestMapping(value="/{id}", method = RequestMethod.GET,  produces=MediaType.APPLICATION_JSON_VALUE)
 	public FlashCard getById(@PathVariable int id) {
@@ -32,13 +41,12 @@ public class FlashCardRestController {
 	
 	@RequestMapping(method = RequestMethod.GET,  produces=MediaType.APPLICATION_JSON_VALUE)
 	public List<FlashCard> getAll(){
-		return service.getAll();
+		return fcService.findAllFlashCards();
 	}
 	
 	@RequestMapping(method=RequestMethod.POST, consumes=MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
-	public FlashCard addFC(@RequestBody FlashCard fc){
-		fc = service.addCard(fc);
-		return fc;
+	public void addFC(@RequestBody FlashCard fc){
+		fcService.addFlashCard(fc);
 	}
 	
 	@RequestMapping(method=RequestMethod.PUT,consumes=MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
@@ -54,7 +62,4 @@ public class FlashCardRestController {
 		return new ResponseEntity<FlashCard>( HttpStatus.OK);
 	}
 	
-
-
-
 }
