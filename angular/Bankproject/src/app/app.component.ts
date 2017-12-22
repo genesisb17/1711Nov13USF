@@ -9,9 +9,5 @@ import {enableProdMode} from '@angular/core';
 })
 export class AppComponent {
   title = 'app';
-  GotoUpdate()
-  {
-    enableProdMode();
-    console.log("hooray");
-  }
+  
 }

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <servers>
-  <server auto-publish-setting="2" auto-publish-time="1" configuration-id="/Servers/Tomcat v8.5 Server at localhost-config" deployDir="wtpwebapps" hostname="localhost" id="Tomcat v8.5 Server at localhost" name="Tomcat v8.5 Server at localhost" runtime-id="Apache Tomcat v8.5" server-type="org.eclipse.jst.server.tomcat.85" server-type-id="org.eclipse.jst.server.tomcat.85" start-timeout="180" stop-timeout="45" testEnvironment="true" timestamp="9">
-    <list key="modules" value0="nbcdemo::org.eclipse.jst.jee.server:nbcdemo::jst.web::2.5"/>
+  <server auto-publish-setting="2" auto-publish-time="1" configuration-id="/Servers/Tomcat v8.5 Server at localhost-config" deployDir="wtpwebapps" hostname="localhost" id="Tomcat v8.5 Server at localhost" name="Tomcat v8.5 Server at localhost" runtime-id="Apache Tomcat v8.5" server-type="org.eclipse.jst.server.tomcat.85" server-type-id="org.eclipse.jst.server.tomcat.85" start-timeout="180" stop-timeout="45" testEnvironment="true" timestamp="11">
+    <list key="modules" value0="mvc-data::org.eclipse.jst.jee.server:mvc-data::jst.web::2.5"/>
   </server>
 </servers>
