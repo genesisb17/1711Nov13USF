@@ -21,28 +21,28 @@ import javax.persistence.Table;
  * 
  * Check HibDAO for how these are called
  */
-//in HQL
-@NamedQueries({
-	@NamedQuery(
-			name="findInstructorByIdHQL",
-			query="from Instructor i where i.id= :id"
-			),
-	@NamedQuery(
-			name="findInstructorByNameHQL",
-			query="from instructor i where name like :name"
-			)
-})
-
-//in native SQL
-@NamedNativeQueries({
-	@NamedNativeQuery(
-			name="findInstructorByIdSQL",
-			query="select * from instructors where inst_id = :id"),
-	@NamedNativeQuery(
-			name="findInstructorsByNameSQL",
-			query="select * from instructors where instructor_name like :name"
-			)
-})
+////in HQL
+//@NamedQueries({
+//	@NamedQuery(
+//			name="findInstructorByIdHQL",
+//			query="from Instructor i where i.id= :id"
+//			),
+//	@NamedQuery(
+//			name="findInstructorByNameHQL",
+//			query="from instructor i where name like :name"
+//			)
+//})
+//
+////in native SQL
+//@NamedNativeQueries({
+//	@NamedNativeQuery(
+//			name="findInstructorByIdSQL",
+//			query="select * from instructors where inst_id = :id"),
+//	@NamedNativeQuery(
+//			name="findInstructorsByNameSQL",
+//			query="select * from instructors where instructor_name like :name"
+//			)
+//})
 
 @Entity
 @Table(name="HIP_INSTRUCTORS")

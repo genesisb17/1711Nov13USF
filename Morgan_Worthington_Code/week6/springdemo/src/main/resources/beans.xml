@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+	xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+	xsi:schemaLocation="http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-4.2.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd
+		http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa-1.8.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.2.xsd">
+<!-- Defining our XML namespace : default space for our beans.xml.
+The namespace acts as a library for the properties that we can use
+to create and inject into a bean
+xmlns:si - XML schema Instance/ Schema location - we give this to our XML file for context
+sensitive help inside of our app
+makes sure that we have both well formed and valid XML
+-->
+
+<!-- <bean id="beanbean" class="com.ex.beans.HelloBeans">
+	<property name="hello">
+		<bean id="helloWorld" class="com.ex.beans.HelloWorld">
+			<property name="message" 
+				value="Hello Spring! This is dependency injection!"/>
+			<constructor-arg type="java.language.String" 
+				value="testing constructor injection"/>
+		</bean>
+	</property>
+</bean> -->
+
+<!-- AUTOWIRED BEANS -->
+<!-- <bean id="employee" class="com.ex.autowire.Employee" autowire="byName"> -->
+<!-- 	<property name="test" ref="deptBean"/> -->
+<!-- 	<property name="name" value="Genesis"/> -->
+<!-- </bean> -->
+
+<!-- <bean id="deptBean" class="com.ex.autowire.Department"> -->
+<!-- 	<property name="name" value="TechTeam"/> -->
+<!-- </bean> -->
+	
+	<!-- AUTOWIRE WITH ANNOTATIONS -->
+	<context:annotation-config/>
+	<context:component-scan base-package="com.ex"/>
+	
+	<!-- ORM -->
+	
+	<!-- enable @Transactional -->
+	<tx:annotation-driven />
+	
+	<!-- DATA SOURCE BEAN -->
+	<bean id="myDataSource" class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
+		<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"/>
+		<property name="username" value="chinook"/>
+		<property name="password" value="p4ssw0rd"/>
+	</bean>
+	
+	<!-- SESSION FACTORY BEAN -->
+	<bean id="mySessionFactory" 
+		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		<property name="dataSource" ref="myDataSource"/>
+		<property name="packagesToScan" value="com.ex.orm"></property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</prop>
+                <prop key="hibernate.show_sql">true</prop>
+                <prop key="hibernate.format_sql">true</prop>
+                <prop key="hibernate.hbm2ddl.auto">update
+                </prop>
+			</props>
+		</property>
+	</bean>
+	
+<!-- 	<bean id="transactionManager" 
+		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+		<property name="sessionFactory" ref="mySessionFactory"></property>
+	</bean> -->
+	
+	<bean id="myDao" class="com.ex.orm.ORMDao">
+		<property name="sessionFactory" ref="mySessionFactory"></property>
+	</bean>
+	
+	<!-- SPRING DATA!!! -->
+	<!--     Because we use Hibernate -->
+   <bean id="hibernateJpaVendorAdapter" 
+   		class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter"></bean>
+   
+<!--     Because Spring Data doesn't natively support Hibernate (But it does support JPA) -->
+   <bean id="entityManagerFactory"  
+   		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+   		<property name="dataSource" ref="myDataSource"/>
+   		<property name="packagesToScan" value="com.ex.data"/>
+   		<property name="jpaVendorAdapter" ref="hibernateJpaVendorAdapter"/>
+   		<property name="jpaProperties">
+   			<props>
+   				<prop key="hibernate.dialect">
+   				org.hibernate.dialect.Oracle10gDialect</prop>
+   				<prop key="hibernate.show_sql">true</prop>
+   				<prop key="hibernate.format_sql">true</prop>
+   				<prop key="hibernate.hbm2ddl.auto">create</prop>
+   			</props>
+   		</property>
+   </bean>
+   
+   <!-- Because tx are cool -->
+   <bean id="transactionManager"
+   		class="org.springframework.orm.jpa.JpaTransactionManager">
+   		<property name="entityManagerFactory" ref="entityManagerFactory"/>
+   </bean>
+   
+   <!-- LOCATE REPOSITORY AKA DAO INTERFACE -->
+   
+   <jpa:repositories base-package="com.ex.data"/>
+</beans>
+
+<!-- 
+The above is a spring bean configuration file
+It is an XML file that acts as a cement that glues the beans, i.e. the classes together.
+This file needs to be created under the src directory. Usually developers name this file
+as Beans.xml, but you can choose any name you like. You have to make sure that this file
+is available in CLASSPATH and use the same name in the main application while creating
+an application context as shown in MainApp.java file. the Beans.xml is used to assign
+unique IDs to different beans and to control the creation of objects with different
+values without impacting any of the Spring source files. For example, using the following
+file you can pass any value for "message" variable and you can print different values of
+message without ... (rest is on github master repository) -->

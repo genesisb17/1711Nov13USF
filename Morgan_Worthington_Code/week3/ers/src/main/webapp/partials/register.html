@@ -25,10 +25,12 @@ User role:
 <br>
 <br>
 <input type="button" class="btn btn-dark" id="register" value="Register">
+<input type="button" class="btn btn-dark" id="cancel" value="Cancel">
 <h4 id="notification" align="center"></h4>
 
 <script>
 $("#register").on('click',checkValid);
+$("#cancel").on('click',sendToLogin);
 
 function checkValid(){
 	var fn=$("#firstname").val();

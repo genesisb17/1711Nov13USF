@@ -10,6 +10,7 @@ import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
 
 import com.ex.beans.Instructor;
+import com.ex.beans.Product;
 import com.ex.beans.Student;
 import com.ex.beans.Transcript;
 import com.ex.util.ConnectionUtil;
@@ -35,6 +36,19 @@ public class HibDao {
 			session.close();
 		}
 		return student;
+	}
+	
+	public void addProduct(Product p) {
+		Session session=ConnectionUtil.getSession();
+		
+		try {
+			Transaction tx= (Transaction) session.beginTransaction();
+			session.save(p);
+			tx.commit();
+		}
+		finally {
+			session.close();
+		}
 	}
 	
 	/*

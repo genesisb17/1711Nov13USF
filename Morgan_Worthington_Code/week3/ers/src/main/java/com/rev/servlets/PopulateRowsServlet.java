@@ -88,7 +88,7 @@ public class PopulateRowsServlet extends HttpServlet {
 					strType="Food";
 					break;
 				case 4:
-					strType="other";
+					strType="Other";
 					break;
 				}
 				
@@ -106,7 +106,13 @@ public class PopulateRowsServlet extends HttpServlet {
 				if(role.equals("1")) {
 					tRow+="<td>"+r.getAmount()+"</td>";
 					tRow+="<td>"+r.getSubmitted()+"</td>";
-					tRow+="<td>"+r.getResolved()+"</td>";
+					
+					if(stat==1) {
+						tRow+="<td> -- </td>";
+					} else {
+						tRow+="<td>"+r.getResolved()+"</td>";
+					}
+					
 					tRow+="<td>"+r.getDescription()+"</td>";
 					tRow+="<td>"+authName+"</td>";
 					tRow+="<td>"+resName+"</td>";
@@ -114,7 +120,13 @@ public class PopulateRowsServlet extends HttpServlet {
 				} else {
 					tRow+="<td>"+r.getAmount()+"</td>";
 					tRow+="<td>"+r.getSubmitted()+"</td>";
-					tRow+="<td>"+r.getResolved()+"</td>";
+					
+					if(stat==1) {
+						tRow+="<td> -- </td>";
+					} else {
+						tRow+="<td>"+r.getResolved()+"</td>";
+					}
+					
 					tRow+="<td>"+r.getDescription()+"</td>";
 					tRow+="<td>"+resName+"</td>";
 					tRow+="<td>"+strType+"</td>";

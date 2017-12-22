@@ -19,9 +19,11 @@
 <br>
 <br>
 <input type="button" class="btn btn-dark" id="addReimbursement" value="Add Reimbursement">
+<input type="button" class="btn btn-dark" id="cancel" value="Cancel">
 
 <script>
 $("#addReimbursement").on('click',addNewReimbursement);
+$("#cancel").on('click',sendToProfile);
 
 function addNewReimbursement(){
 	var amount=$("#amount").val();

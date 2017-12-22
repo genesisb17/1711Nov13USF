@@ -21,13 +21,25 @@
 		jdbc:oracle:thin:@localhost:1521:xe
 	</property>
 	
-	<property name="hibernate.hbm2ddl.auto">update</property>
+	<property name="hibernate.hbm2ddl.auto">create</property>
 	<property name="show_sql">true</property>
+	<!-- Region factor class is used to define the factory class for second level caching. -->
+	<property name="hibernate.cache.region.factory_class">
+	org.hibernate.cache.ehcache.EhCacheRegionFactory
+	</property>
+	<!-- enable second level and query cache -->
+	<property name="hibernate.cache.use_second_level_cache">
+	true </property>
+	<!-- used to define the EH Cache config file location -->
+	<property name="net.sf.ehcache.configurationResourceName">
+	/myehcache.xml</property>
 	
 	<mapping class="com.ex.beans.Student"/>
 	<mapping class="com.ex.beans.Course"/>
 	<mapping class="com.ex.beans.Transcript"/>
 	<mapping class="com.ex.beans.Instructor"/>
+	
+	<mapping resource="com/ex/beans/Product.hbm.xml"/>
 	
 	
 </session-factory>

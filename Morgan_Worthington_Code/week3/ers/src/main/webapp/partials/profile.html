@@ -20,7 +20,7 @@ var user;
 getUserInfo();
 var firstname=user.firstname;
 var role=user.role;
-$("#welcome").html(`Welcome ${firstname}. `+'<input type="button" class="btn btn-dark" id="logout" value="Log Out">');
+$("#welcome").html(`Welcome ${firstname}!   `+'<input type="button" class="btn btn-dark" id="logout" value="Log Out">');
 
 getTableHead(role);
 $("#newreimb").on('click',sendToNewReimbursement);
@@ -36,7 +36,7 @@ $("#pending").on('click',function(){
 $("#accepted").on('click',function(){
 	var rStatus="accepted";
 	getRows(role,rStatus);
-	$("#chosen").html("Accepted Reimbursements");
+	$("#chosen").html("Approved Reimbursements");
 	$("#manageInstructions").html('');
 });
 $("#denied").on('click',function(){
