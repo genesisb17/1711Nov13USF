@@ -11,6 +11,7 @@ export class LoginService {
   CurrentUser: User;
 
   subscribers: Function[] = [];
+  
 
   constructor(private http: HttpClient) { }
 
