@@ -2,10 +2,13 @@
 <section name="Workbench">
 	<section name="MavenProjectWizardArtifactPage">
 		<list key="groupId">
+			<item value="aopdemo"/>
 		</list>
 		<list key="name">
+			<item value="aopdemo"/>
 		</list>
 		<list key="artifactId">
+			<item value="aopdemo"/>
 		</list>
 		<list key="projectNameTemplate">
 			<item value="[artifactId]"/>
@@ -39,6 +42,7 @@
 	</section>
 	<section name="MavenProjectImportWizardPage">
 		<list key="rootDirectory">
+			<item value="C:\Users\Bruce Wayne\Desktop\boot-demo"/>
 			<item value="C:\Users\Bruce Wayne\Desktop\mvc--data"/>
 			<item value="C:\Users\Bruce Wayne\Desktop\spring2"/>
 			<item value="C:\Users\Bruce Wayne\Desktop\springdemo2"/>
@@ -94,13 +98,10 @@
 	</section>
 	<section name="Maven2ProjectWizardArchifactPage">
 		<list key="package">
-			<item value="com.springboot1"/>
 		</list>
 		<list key="groupId">
-			<item value="com.boot"/>
 		</list>
 		<list key="artifactId">
-			<item value="springboot1"/>
 		</list>
 		<list key="projectNameTemplate">
 			<item value="[artifactId]"/>
