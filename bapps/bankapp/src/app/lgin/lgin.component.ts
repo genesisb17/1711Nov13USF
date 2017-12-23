@@ -14,13 +14,16 @@ export class LginComponent implements OnInit {
 
   ngOnInit() 
   {
+
     this.LoginService.subscribeToLogin(()=>
     {
       alert("you logged in");
     });
+
   }
   login()
   {
     this.LoginService.login(this.username,this.password);
   }
+
 }

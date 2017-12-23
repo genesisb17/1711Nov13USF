@@ -6,12 +6,16 @@ import { AppComponent } from './app.component';
 import { LoginService } from './login.service';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
-import { LginComponent } from './lgin/lgin.component'
+import { LginComponent } from './lgin/lgin.component';
+import { RegisterComponent } from './register/register.component';
+import { ViewComponent } from './view/view.component'
 
 @NgModule({
   declarations: [
     AppComponent,
-    LginComponent
+    LginComponent,
+    RegisterComponent,
+    ViewComponent
   ],
   imports: [
     BrowserModule,

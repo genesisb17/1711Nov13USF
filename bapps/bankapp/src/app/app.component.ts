@@ -7,5 +7,14 @@ import { Component } from '@angular/core';
 })
 export class AppComponent 
 {
-  title = 'app';
+  inLogin: boolean = true;
+  inRegister: boolean;
+  showRegister() {
+    this.inLogin = false;
+    this.inRegister = true;
+  }
+  showLogin() {
+    this.inLogin = true;
+    this.inRegister = false;
+  }
 }

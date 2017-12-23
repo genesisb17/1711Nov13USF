@@ -1,3 +1,6 @@
 <input type = "text" [(ngModel)]="username" placeholder="username">
+<br>
 <input type = "text" [(ngModel)]="password" placeholder="password">
-<button (click)="login()">Login</button>
+<br>
+<button [ngStyle]="{backgroundColor: inLogin? 'rgb(50, 150, 125)' : 'rgb(205, 225, 215)'}" class="btn simploy-bgcolor simploy-tab" (click)="showLogin()">Login</button>
+<app-view [ngStyle]="{display: inView ? 'block' : 'none'}"></app-view>

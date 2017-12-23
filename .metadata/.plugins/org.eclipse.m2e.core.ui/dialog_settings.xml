@@ -2,12 +2,18 @@
 <section name="Workbench">
 	<section name="MavenProjectWizardArtifactPage">
 		<list key="groupId">
+			<item value="bank2"/>
+			<item value="banking"/>
 			<item value="aopdemo"/>
 		</list>
 		<list key="name">
+			<item value="bank2"/>
+			<item value="banking"/>
 			<item value="aopdemo"/>
 		</list>
 		<list key="artifactId">
+			<item value="bank2"/>
+			<item value="banking"/>
 			<item value="aopdemo"/>
 		</list>
 		<list key="projectNameTemplate">
@@ -42,6 +48,8 @@
 	</section>
 	<section name="MavenProjectImportWizardPage">
 		<list key="rootDirectory">
+			<item value="C:\Users\Bruce Wayne\Desktop\Spring\springboot"/>
+			<item value="C:\Users\Bruce Wayne\Desktop\Spring\boot-demo"/>
 			<item value="C:\Users\Bruce Wayne\Desktop\Spring\mvc-orm"/>
 			<item value="C:\Users\Bruce Wayne\Desktop\boot-demo"/>
 			<item value="C:\Users\Bruce Wayne\Desktop\mvc--data"/>
@@ -74,6 +82,7 @@
 	</section>
 	<section name="MavenProjectWizardLocationPage">
 		<list key="location">
+			<item value="C:\Users\Bruce Wayne\Desktop\Spring\springboot\src\test\java"/>
 			<item value="C:\Users\Bruce Wayne\Desktop\mvc--data\src\main\java\com\ex\controllers\FlashCardRestController.java"/>
 			<item value="C:\Users\Bruce Wayne\my_git_repos\1711Nov13USF\hib"/>
 			<item value="C:\Users\Bruce Wayne\Desktop\spring-in-5-steps"/>

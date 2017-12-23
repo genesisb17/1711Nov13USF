@@ -1,1 +1,8 @@
-<app-lgin></app-lgin>
+
+
+<button [ngStyle]="{backgroundColor: inRegister? 'rgb(205, 225, 215)' : 'rgb(50, 150, 125)'}" class="btn simploy-bgcolor simploy-tab" (click)="showRegister()">Register</button>
+<button [ngStyle]="{backgroundColor: inLogin? 'rgb(50, 150, 125)' : 'rgb(205, 225, 215)'}" class="btn simploy-bgcolor simploy-tab" (click)="showLogin()">Login</button>
+
+<app-lgin [ngStyle]="{display: inLogin ? 'block' : 'none'}"></app-lgin>
+
+<app-register [ngStyle]="{display: inRegister ? 'block' : 'none'}"></app-register>
