@@ -2,6 +2,8 @@ package com.ex.controllers;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ex.domain.FlashCard;
 import com.ex.service.DemoService;
+import com.ex.service.FlashCardService;
 
 
 @RestController
@@ -20,10 +23,23 @@ import com.ex.service.DemoService;
 public class FlashCardRestController {
 	
 	static DemoService service =new DemoService();
+	
+
 	static {
 		System.out.println("in flashcard controller");
+		
 	}
+	
 
+	@Autowired
+	ApplicationContext context;
+	
+	FlashCardService fcService = (FlashCardService) context.getBean("flashCardServiceImpl");
+	
+	public FlashCardRestController() {
+		System.out.println("IN REST CONTROLLER CONSTRUCTOR");
+	}
+	
 	@RequestMapping(value="/{id}", method = RequestMethod.GET,  produces=MediaType.APPLICATION_JSON_VALUE)
 	public FlashCard getById(@PathVariable int id) {
 		System.out.println("in get by id");
@@ -32,13 +48,15 @@ public class FlashCardRestController {
 	
 	@RequestMapping(method = RequestMethod.GET,  produces=MediaType.APPLICATION_JSON_VALUE)
 	public List<FlashCard> getAll(){
-		return service.getAll();
+	//return service.getAll();
+		return fcService.findAllFlashCards();
 	}
 	
-	@RequestMapping(method=RequestMethod.POST, consumes=MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
-	public FlashCard addFC(@RequestBody FlashCard fc){
-		fc = service.addCard(fc);
-		return fc;
+	@RequestMapping(method=RequestMethod.POST, consumes=MediaType.APPLICATION_JSON_VALUE)
+	public void addFC(@RequestBody FlashCard fc){
+		//fc = service.addCard(fc);
+		fcService.addFlashCard(fc);
+	//	return fc;
 	}
 	
 	@RequestMapping(method=RequestMethod.PUT,consumes=MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
