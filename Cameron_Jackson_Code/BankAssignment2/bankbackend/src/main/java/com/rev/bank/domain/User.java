@@ -32,27 +32,32 @@ public class User {
 	
 	@Column(name="PASS", nullable=false)
 	private String password;
+	
+	@Column(name="BALANCE")
+	private Double balance;
 
 	public User() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public User(String firstname, String lastname, String username, String password) {
+	public User(String firstname, String lastname, String username, String password, Double balance) {
 		super();
 		this.firstname = firstname;
 		this.lastname = lastname;
 		this.username = username;
 		this.password = password;
+		this.balance = balance;
 	}
 
-	public User(Integer userId, String firstname, String lastname, String username, String password) {
+	public User(Integer userId, String firstname, String lastname, String username, String password, Double balance) {
 		super();
 		this.userId = userId;
 		this.firstname = firstname;
 		this.lastname = lastname;
 		this.username = username;
 		this.password = password;
+		this.balance = balance;
 	}
 
 	public Integer getUserId() {
@@ -95,9 +100,18 @@ public class User {
 		this.password = password;
 	}
 
+	public Double getBalance() {
+		return balance;
+	}
+
+	public void setBalance(Double balance) {
+		this.balance = balance;
+	}
+
 	@Override
 	public String toString() {
 		return "User [userId=" + userId + ", firstname=" + firstname + ", lastname=" + lastname + ", username="
-				+ username + ", password=" + password + "]";
+				+ username + ", password=" + password + ", balance=" + balance + "]";
 	}
+
 }
