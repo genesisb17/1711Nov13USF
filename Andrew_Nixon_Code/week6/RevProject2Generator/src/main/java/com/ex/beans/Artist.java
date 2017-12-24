@@ -5,10 +5,10 @@ import java.util.Set;
 import javax.persistence.Entity;
 
 @Entity
-public class Barber {
+public class Artist {
 	
 	private int barberId;
-	private Set<ServiceLocation> serviceLocations;
+	private Set<Shop> serviceLocations;
 	private int userId;
 
 }

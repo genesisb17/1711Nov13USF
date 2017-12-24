@@ -1,6 +1,8 @@
 package com.ex.beans;
 
-public class HarborUser {
+import java.util.Set;
+
+public class Client {
 	
 	private int userId;
 	private String firstName;
@@ -8,8 +10,9 @@ public class HarborUser {
 	private String username;
 	private String password;
 	private String email;
-	private int roleId;
+	//private int roleId;
 	private double xCoordinate;
-	private double yCoordinate;;
+	private double yCoordinate;
+	private Set<Appointment> appointments;
 
 }

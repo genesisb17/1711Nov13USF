@@ -7,9 +7,16 @@ public class HelloWorld {
 	
 	public HelloWorld() {
 		System.out.println("in empty constructor");
+	}	
+
+	public HelloWorld(String test) {
+		super();
+		System.out.println("IN TEST CONSTRUCTOR");
+		this.test = test;
 	}
 
 	public String getMessage() {
+		System.out.println("MESSAGE:" + message);
 		return message;
 	}
 
@@ -18,6 +25,7 @@ public class HelloWorld {
 	}
 
 	public String getTest() {
+		System.out.println("TEST:" + test);
 		return test;
 	}
 
@@ -30,6 +38,9 @@ public class HelloWorld {
 	}
 	
 	public void destroy() {
-		System.out.println("destroying bean");
+		System.out.println("destroy");
 	}
+	
+	
+
 }

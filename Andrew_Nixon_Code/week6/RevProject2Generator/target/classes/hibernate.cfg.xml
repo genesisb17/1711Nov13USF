@@ -12,6 +12,7 @@
 			oracle.jdbc.driver.OracleDriver</property>
 		<property name="hibernate.connection.username">demo</property>
 		<property name="hibernate.connection.password">demo</property>
+		
 		<property name="hibernate.connection.url">
 			jdbc:oracle:thin:@localhost:1521:xe</property>
 		<!-- Need to change above-->
@@ -21,7 +22,6 @@
 		<property name="show_sql">true</property>
 
 		<mapping class="com.ex.beans.Appointment" />
-		<mapping class="com.ex.beans.Barber" />
 		<mapping class="com.ex.beans.HarborReview" />
 		<mapping class="com.ex.beans.HarborUser" />
 		<mapping class="com.ex.beans.PriceList" />

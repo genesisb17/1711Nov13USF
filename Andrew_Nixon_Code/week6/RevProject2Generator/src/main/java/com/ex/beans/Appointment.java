@@ -17,8 +17,8 @@ public class Appointment {
 	
 	@Id
 	@Column(name="APPNTMNT_ID")
-	@SequenceGenerator(name="A_ID_SEQ", sequenceName="A_ID_SEQ")
-	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="A_ID_SEQ")
+	@SequenceGenerator(name="A_SEQ", sequenceName="A_ID_SEQ")
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="A_SEQ")
 	private int appointmentId;
 	
 	@Column(name="APPNTMNT_DATE", nullable = false)
@@ -26,6 +26,7 @@ public class Appointment {
 	
 	@Column(name="APPNTMNT_START", nullable = false)
 	private Time startTime;
+	
 	@Column(name="APPNTMNT_END", nullable = false)
 	private Time endTime;
 	
