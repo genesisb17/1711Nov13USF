@@ -1,0 +1,4 @@
+<nav *ngIf='loggedIn'>
+  {{currentUser.firstname}} {{currentUser.lastname}}
+  <button class="btn btn-link" (click)="logout()">logout</button>
+</nav>

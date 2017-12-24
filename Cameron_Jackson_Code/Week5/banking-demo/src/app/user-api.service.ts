@@ -26,7 +26,7 @@ export class UserApiService {
   }
 
   addUser(user: User) {
-    return this.http.post(`${this.API_URL}/users`, {
+    return this.http.post<User>(`${this.API_URL}/users`, {
       firstname: user.firstname,
       lastname: user.lastname,  
       username: user.username,
