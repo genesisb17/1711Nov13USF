@@ -1,0 +1,7 @@
+com\ex\domain\FlashCard.class
+com\ex\service\DemoService.class
+com\ex\service\FlashCardService.class
+com\ex\service\FlashCardServiceImpl.class
+com\ex\dao\FlashCardRepository.class
+com\ex\controllers\FlashCardRestController.class
+com\ex\controllers\TestController.class

@@ -85,7 +85,7 @@
 	<bean id="entityManagerFactory"
 		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
 		<property name="dataSource" ref="myDataSource" />
-		<property name="packagesToScan" value="com.ex.data" />
+		<property name="packagesToScan" value="com.ex" />
 		<property name="jpaVendorAdapter" ref="hibernateJpaVendorAdapter" />
 		<property name="jpaProperties">
 			<props>
@@ -106,7 +106,7 @@
 
 	<!-- LOCATE REPOSITORY AKA DAO INTERFACE -->
 
-	<jpa:repositories base-package="com.ex.data" />
+	<jpa:repositories base-package="com.ex" />
 </beans>
 
 <!-- The above is a spring bean configuration file It is an XML file that 
