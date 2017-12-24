@@ -8,10 +8,10 @@ export class LoginService {
 
   constructor(private uas: UserApiService) { }
 
-  login(username: string, password: string) {
-    return this.uas.getUserByUsernameAndPassword(username.toLowerCase(), password.toLowerCase())
-      .map((user) => {
-        localStorage.setItem("currentUser", JSON.stringify(user));
+  login(user: User) {
+    return this.uas.getUserByUsernameAndPassword(user)
+      .map((u) => {
+        localStorage.setItem("currentUser", JSON.stringify(u));
         return user;
       });
   }

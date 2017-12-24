@@ -11,6 +11,7 @@ import { RegistrationComponent } from './registration/registration.component';
 import { LandingComponent } from './landing/landing.component';
 import { NavComponent } from './nav/nav.component';
 import { HttpClientModule } from '@angular/common/http';
+import { ProfileService } from './profile.service';
 
 
 @NgModule({
@@ -27,7 +28,7 @@ import { HttpClientModule } from '@angular/common/http';
     AppRoutingModule,
     FormsModule
   ],
-  providers: [UserApiService, LoginService],
+  providers: [UserApiService, LoginService, ProfileService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

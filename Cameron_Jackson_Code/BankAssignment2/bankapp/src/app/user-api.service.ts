@@ -24,22 +24,16 @@ export class UserApiService {
     return this.http.get<User>(`${apiUrl}/${id}`);
   }
 
-  getUserByUsername(username: string): Observable<User> {
-    let user = {
-      username: username
-    }
-    return this.http.post<User>(`${apiUrl}/username`, httpOptions);
+  getUserByUsername(user: User): Observable<User> {
+
+    return this.http.post<User>(`${apiUrl}/username`, user, httpOptions);
   }
 
-  getUserByUsernameAndPassword(username: string, password: string): Observable<User> {
-    let user = {
-      username: username,
-      password: password
-    }
-    return this.http.post<User>(`${apiUrl}/verify`, httpOptions);
+  getUserByUsernameAndPassword(user: User): Observable<User> {
+    return this.http.post<User>(`${apiUrl}/verify`, user, httpOptions);
   }
 
   updateUser(user: User): Observable<User> {
-    return this.http.post<User>(`${apiUrl}`, httpOptions);
+    return this.http.post<User>(`${apiUrl}`, user, httpOptions);
   }
 }

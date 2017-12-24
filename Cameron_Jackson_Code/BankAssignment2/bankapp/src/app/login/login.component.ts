@@ -21,7 +21,15 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    this.loginService.login(this.username, this.password)
+    let user = {
+      userId: null,
+      firstname: null,
+      lastname: null,
+      username: this.username,
+      password: this.password,
+      balance: null
+    }
+    this.loginService.login(user)
       .subscribe((data) => {
         this.router.navigate(["landing"]);
       });

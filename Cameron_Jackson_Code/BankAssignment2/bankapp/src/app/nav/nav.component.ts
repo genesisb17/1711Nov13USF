@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../user';
 import { LoginService } from '../login.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-nav',
@@ -11,7 +12,10 @@ export class NavComponent implements OnInit {
   currentUser: User;
   loggedIn: boolean = false;
 
-  constructor(private loginService: LoginService) { }
+  constructor(
+    private loginService: LoginService,
+    private router: Router
+  ) { }
 
   ngOnInit() {
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
@@ -19,9 +23,10 @@ export class NavComponent implements OnInit {
       this.loggedIn = true;
     }
   }
-
+  
   logout() {
     this.loginService.logout();
+    this.router.navigate(["login"]);
   }
 
 }
