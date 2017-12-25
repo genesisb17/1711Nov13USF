@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { User } from '../user';
 import { LoginService } from '../login.service';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'app-nav',
@@ -10,7 +11,7 @@ import { Router } from '@angular/router';
 })
 export class NavComponent implements OnInit {
   currentUser: User;
-  loggedIn: boolean = false;
+  isLoggedIn$: Observable<boolean>;
 
   constructor(
     private loginService: LoginService,
@@ -18,10 +19,9 @@ export class NavComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    if (this.currentUser != null) {
-      this.loggedIn = true;
-    }
+    this.isLoggedIn$ = this.loginService.isLoggedIn;
+    if (this.isLoggedIn$)
+      this.currentUser = JSON.parse(localStorage.getItem("currentUser"));
   }
   
   logout() {

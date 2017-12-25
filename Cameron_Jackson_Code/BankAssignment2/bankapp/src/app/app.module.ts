@@ -12,6 +12,7 @@ import { LandingComponent } from './landing/landing.component';
 import { NavComponent } from './nav/nav.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ProfileService } from './profile.service';
+import { AuthGuard } from './auth.guard';
 
 
 @NgModule({
@@ -28,7 +29,7 @@ import { ProfileService } from './profile.service';
     AppRoutingModule,
     FormsModule
   ],
-  providers: [UserApiService, LoginService, ProfileService],
+  providers: [UserApiService, LoginService, ProfileService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
