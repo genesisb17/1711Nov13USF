@@ -1,0 +1,66 @@
+
+
+
+
+
+<!-- <h1>Registration</h1>
+	<input type="text" id="fn" placeholder="First Name" required> <br>
+	<input type="text" id="ln" placeholder="Last Name" required> <br>
+	<div class="alert alert-danger" id="regi_names_message" ></div>
+	<input type="text" id="un" placeholder="Username" required> <br>
+	<div class="alert alert-danger" id="regi_usern_message" ></div>
+	<input type="text" id="em" placeholder="User Email" required> <br>
+	<div class="alert alert-danger" id="regi_email_message" ></div>	
+	<input type="password" id="pw" placeholder="Password" required><br>
+	<input type="password" id="vpw" placeholder="Validate password" required><br>
+	<div class="alert alert-danger" id="regi_pass_message" ></div>
+	<br>
+	<div class="form-check">
+        <label class="form-check-label">
+            <input class="form-check-input" id="manager-box" type="checkbox" value=""> Managerial Staff
+        </label>
+    </div>
+	<button id="create_user">Register</button>
+	<br>-->
+	
+<form class="container" id="needs-validation" novalidate>
+  <div class="form-group">
+    <div class="col-md-6 mb-3">
+      <label for="fn">First name</label>
+      <input type="text" class="form-control" id="fn" placeholder="First name" required>
+      <div class="invalid-feedback" id="fn_message"></div>
+    </div>
+    <div class="col-md-6 mb-3">
+      <label for="ln">Last name</label>
+      <input type="text" class="form-control" id="ln" placeholder="Last name" required>
+      <div class="invalid-feedback" id="ln_message"></div>>
+    </div>
+    <div class="col-md-6 mb-3">
+      <label for="un">User name</label>
+      <input type="text" class="form-control" id="un" placeholder="User name" required>
+      <div class="invalid-feedback" id="un_message"></div>
+    </div>
+  </div>
+  <div class="form">
+    <div class="col-md-6 mb-3">
+      <label for="em" class="control-label">Email</label>
+    <input type="email" class="form-control" id="em" 
+    placeholder="Email" data-error="Invalid Email" required>
+      <div class="invalid-feedback" id="em_message">
+      </div>
+    </div>
+  </div>
+  <br><br>
+	<div class="form-group">
+    <label for="pw" class="control-label">Password</label>
+    <div class="form-inline row">
+      <div class="col-md-6 mb-3">
+        <input type="password"  class="form-control" id="pw" placeholder="Password" required>
+        <div class="help-block"></div>
+      </div>
+    </div>
+  </div>
+  <br><br>
+  <button class="btn btn-primary" type="submit" id="create_user">Register</button>
+</form>
+	

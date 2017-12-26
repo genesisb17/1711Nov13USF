@@ -4,4 +4,12 @@
   <welcome-file-list>
     <welcome-file>landing.html</welcome-file>
   </welcome-file-list>
+  <servlet>
+    <servlet-name>ViewsServlet</servlet-name>
+    <servlet-class>com.ERS.servlets.ViewsServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ViewsServlet</servlet-name>
+    <url-pattern>*.view</url-pattern>
+  </servlet-mapping>
 </web-app>

@@ -2,35 +2,38 @@ package com.ERS.pojos;
 
 import java.sql.Date;
 
+import oracle.sql.TIMESTAMP;
+
 public class Reimbursement {
 	int reimbursment_id;
 	double amount;
 	String description;
 	boolean resolved;
-	
-	//replace with date object
-	Date submitted;
-	int resolver;
-	
-	Enum<REIMBURSEMENT_TYPE> type;
-	Enum<REIMBURSEMENT_STATUS> status;
-	//receipt
+	String resolvedD;
+	String submittedD;
+	Integer resolver;
+	int type;
+	int status;
+
 	
 	
-	
+	public Reimbursement() {};
 	public Reimbursement(int reimbursment_id, 
-			double amount, 
-			boolean resolved, 
-			String description,
-			Enum<REIMBURSEMENT_TYPE> type, 
-			Enum<REIMBURSEMENT_STATUS> status) {
+			double amount,
+			String description, 
+			String resolvedD,
+			String submittedD,
+			Integer resolver,
+			int type, 
+			int status) {
 		super();
 		this.reimbursment_id = reimbursment_id;
 		this.amount = amount;
 		this.description = description;
-		this.resolved = resolved;
 		this.type = type;
 		this.status = status;
+		this.resolvedD = resolvedD;
+		this.submittedD = submittedD;
 	}
 	public Reimbursement(Reimbursement r) {
 		this.reimbursment_id = r.reimbursment_id;
@@ -40,8 +43,15 @@ public class Reimbursement {
 		this.type = r.type;
 		this.status = r.status;
 		this.resolver = r.resolver;
-		this.submitted = r.submitted;
+		this.submittedD = r.submittedD;
 	}
+	
+	public Reimbursement(double a, int t, String d) {
+		this.amount = a;
+		this.type = t;
+		this.description = d;
+	}
+	
 	
 	public int getReimbursment_id() {
 		return reimbursment_id;
@@ -67,32 +77,49 @@ public class Reimbursement {
 	public void setResolved(boolean resolved) {
 		this.resolved = resolved;
 	}
-	public Date getSubmitted() {
-		return submitted;
+	public String getSubmitted() {
+		return submittedD;
 	}
-	public void setSubmitted(Date date) {
-		this.submitted = date;
+	public void setSubmitted(String date) {
+		this.submittedD = date;
 	}
 	public int getResolver() {
 		return resolver;
 	}
-	public void setResolver(int resolver) {
+	public void setResolver(Integer resolver) {
 		this.resolver = resolver;
 	}
-	public Enum<REIMBURSEMENT_TYPE> getType() {
+	public int getType() {
 		return type;
 	}
-	public void setType(Enum<REIMBURSEMENT_TYPE> type) {
+	public void setType(Integer type) {
 		this.type = type;
 	}
-	public Enum<REIMBURSEMENT_STATUS> getStatus() {
+	public int getStatus() {
 		return status;
 	}
-	public void setStatus(Enum<REIMBURSEMENT_STATUS> status) {
+	public void setStatus(int status) {
 		this.status = status;
+	}
+	public String getResolvedD() {
+		return resolvedD;
+	}
+	public void setResolvedD(String resolvedD) {
+		this.resolvedD = resolvedD;
+	}
+	public String getSubmittedD() {
+		return submittedD;
+	}
+	public void setSubmittedD(String submittedD) {
+		this.submittedD = submittedD;
+	}
+	@Override
+	public String toString() {
+		return "Reimbursement [reimbursment_id=" + reimbursment_id + ", amount=" + amount + ", description="
+				+ description + ", resolved=" + resolved + ", resolvedD=" + resolvedD + ", submittedD=" + submittedD
+				+ ", resolver=" + resolver + ", type=" + type + ", status=" + status + "]";
 	}
 	
 	
-	//receipt
 
 }

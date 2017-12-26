@@ -1,13 +1,13 @@
 package com.ERS.pojos;
 
-public class User implements Cloneable{
+public class User{
 	private Integer user_id;
 	private String username;
 	private String password;
 	private String firstname;
 	private String lastname;
 	private String email;
-	private Enum<USER_ROLE> role;
+	private Boolean role;
 	
 	public User() 
 	{
@@ -23,7 +23,7 @@ public class User implements Cloneable{
 		this.user_id = u.getUser_id();
 	}
 	
-	public User(int user_id, String username, String firstname, String lastname, String email, Enum<USER_ROLE> role) {
+	public User(int user_id, String username, String firstname, String lastname, String email, Boolean role) {
 		super();
 		this.user_id = user_id;
 		this.username = username;
@@ -63,10 +63,10 @@ public class User implements Cloneable{
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public Enum<USER_ROLE> getRole() {
+	public Boolean getRole() {
 		return role;
 	}
-	public void setRole(Enum<USER_ROLE> role) {
+	public void setRole(Boolean role) {
 		this.role = role;
 	}
 
@@ -77,7 +77,17 @@ public class User implements Cloneable{
 	public void setPassword(String password) {
 		this.password = password;
 	}
-
+	
+	public void clearData() {
+		this.user_id = 0;
+		this.username = null;
+		this.firstname = null;
+		this.lastname = null;
+		this.email = null;
+		this.role = null;
+		this.password = null;
+	}
+	
 	@Override
 	public String toString() {
 		return "User [user_id=" + user_id + ", username=" + username + ", password=" + password + ", firstname="

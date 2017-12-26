@@ -57,9 +57,9 @@ public class UserDAO_Impl implements UserDAO{
 	
 
 	@Override
-	public User getUser(String username) {
+	public User getUserbyUN(String username) {
 		User user = new User();
-		//user.setUser_id(-1);
+		user.setUser_id(-1);
 		try(Connection conn = 
 				ConnectionFactory.getInstance().getConnection();){
 			//conn.setAutoCommit(false);
@@ -73,18 +73,25 @@ public class UserDAO_Impl implements UserDAO{
 			//int id = 0;
 			
 			//if(rows !=0) {
-			ResultSet pk = ps.executeQuery();
+			ResultSet rs = ps.executeQuery();
 			System.out.println("before while");
-			while(pk.next()) {
-				System.out.println("in while");
-			//	id = pk.getInt(1);
-				user.setUser_id(pk.getInt("ERS_USERS_ID"));
-				user.setFirstname(pk.getString("USER_FIRST_NAME"));
-				user.setLastname(pk.getString("USER_LAST_NAME"));
-				user.setUsername(pk.getString("ERS_USERNAME"));
-				user.setPassword(pk.getString("ERS_PASSWORD"));
-				user.setEmail(pk.getString("USER_EMAIL"));
-				user.setRole((pk.getInt("USER_ROLE_ID") == 0 ? USER_ROLE.EMPLOYEE : USER_ROLE.MANAGER));
+			
+			//isBeforeFirst returns false if no rows
+			if(!rs.isBeforeFirst()) {
+				user = null;
+			}
+			else {
+				while(rs.next()) {
+					System.out.println("in while");
+				//	id = pk.getInt(1);
+					user.setUser_id(rs.getInt("ERS_USERS_ID"));
+					user.setFirstname(rs.getString("USER_FIRST_NAME"));
+					user.setLastname(rs.getString("USER_LAST_NAME"));
+					user.setUsername(rs.getString("ERS_USERNAME"));
+					user.setPassword(rs.getString("ERS_PASSWORD"));
+					user.setEmail(rs.getString("USER_EMAIL"));
+					user.setRole((rs.getInt("USER_ROLE_ID") == 0 ? false : true));
+				}
 			}
 				//conn.commit();
 			//}
@@ -97,6 +104,52 @@ public class UserDAO_Impl implements UserDAO{
 		return user;
 	}
 	
+	public User getUserbyEMAIL(String email) {
+		User user = new User();
+		user.setUser_id(-1);
+		try(Connection conn = 
+				ConnectionFactory.getInstance().getConnection();){
+			//conn.setAutoCommit(false);
+			
+			String sql = "select * from ERS_USERS "
+					+ "where USER_EMAIL = (?)";
+			System.out.println("inDAO email = " + email);
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setString(1, email);
+			//int rows = ps.executeUpdate();
+			//int id = 0;
+			
+			//if(rows !=0) {
+			ResultSet rs = ps.executeQuery();
+			System.out.println("before while");
+			
+			//isBeforeFirst returns false if no rows
+			if(!rs.isBeforeFirst()) {
+				user = null;
+			}
+			else {
+				while(rs.next()) {
+					System.out.println("in while");
+				//	id = pk.getInt(1);
+					user.setUser_id(rs.getInt("ERS_USERS_ID"));
+					user.setFirstname(rs.getString("USER_FIRST_NAME"));
+					user.setLastname(rs.getString("USER_LAST_NAME"));
+					user.setUsername(rs.getString("ERS_USERNAME"));
+					user.setPassword(rs.getString("ERS_PASSWORD"));
+					user.setEmail(rs.getString("USER_EMAIL"));
+					user.setRole((rs.getInt("USER_ROLE_ID") == 0 ? false : true));
+				}
+			}
+				//conn.commit();
+			//}
+			
+		
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return user;
+	}
 
 	@Override
 	public ArrayList<User> getAllUsers() {

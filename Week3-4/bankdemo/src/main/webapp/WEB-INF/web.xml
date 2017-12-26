@@ -3,6 +3,7 @@
   <display-name>bankdemo</display-name>
   <welcome-file-list>
     <welcome-file>landing.html</welcome-file>
+    <welcome-file>landing.htm</welcome-file>
   </welcome-file-list>
   
   <servlet>

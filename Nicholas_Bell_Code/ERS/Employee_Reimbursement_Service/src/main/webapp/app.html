@@ -1,0 +1,149 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+	<span id="nav-title" class="navbar-brand mb-0 h1"></span>
+	<button class="navbar-toggler" type="button" data-toggle="collapse"
+		data-target="#navbarText" aria-controls="navbarText"
+		aria-expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	</button>
+	<div class="collapse navbar-collapse" id="navbarText">
+
+		<a id="nav-new" class="btn btn-success" href="#" role="button"
+			data-toggle="modal" data-target="#ticketmod">New Ticket</a> 
+		<!-- <a id="nav-profile" class="btn btn-info" href="#" role="button"
+			data-toggle="modal" data-target="#promodal">My Profile</a>  -->
+		<a id="nav-logout" class="btn btn-dark" href="#" role="button"
+			data-toggle="modal" data-target="#logmodal">Logout</a>
+
+	</div>
+	<div class="modal fade" id="ticketmod" tabindex="-1" role="dialog"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">New
+						Reimbursement</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Cancel">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<form>
+						<div class="form-group">
+							<label for="new-amount" class="col-form-label">Amount:</label> <input
+								type="number" class="form-control" id="new-amount"
+								placeholder="0.00" step="0.01">
+						</div>
+						<div class="form-group">
+							<label for="description" class="col-form-label">Message:</label>
+							<textarea class="form-control" id="description" rows="2"
+								cols="50"></textarea>
+						</div>
+					</form>
+				</div>
+				<div>
+					<label class="container">Lodging <input id="lodge-button"
+						type="radio" checked="checked" name="type" value="L"> <span
+						class="checkmark"></span>
+					</label> <label class="container">Travel <input id="travel-button"
+						type="radio" name="type" value="T"> <span class="checkmark"></span>
+					</label> <label class="container">Food <input id="food-button"
+						type="radio" name="type" value="F"> <span class="checkmark"></span>
+					</label> <label class="container">Other <input id="other-button"
+						type="radio" name="type" value="O"> <span class="checkmark"></span>
+					</label>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary"
+						data-dismiss="modal">Cancel</button>
+					<button type="button" id="sub-new" class="btn btn-primary" data-dismiss="modal">Submit</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- <div class="modal fade" id="promodal" tabindex="-1" role="dialog"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">My Profile</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Cancel">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<form>
+						<div class="form-group">
+							<label for="new-firstname" class="col-form-label">First Name:</label> <input
+								type="number" class="form-control" id="new-firstname">
+						</div>
+						
+						<div class="form-group">
+							<label for="new-lastname" class="col-form-label">Last Name:</label> <input
+								type="number" class="form-control" id="new-lastname">
+						</div>
+						<div class="form-group">
+							<label for="new-email" class="col-form-label">Email:</label> <input
+								type="number" class="form-control" id="new-email">
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary"
+						data-dismiss="modal">Cancel</button>
+					<button type="button" id="sub-profile " class="btn btn-primary" data-dismiss="modal">Submit Changes</button>
+				</div>
+			</div>
+		</div>
+	</div>-->
+
+	<div class="modal fade" id="logmodal" tabindex="-1" role="dialog"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Logout of Session</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Cancel">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					Are you sure you want to log out?
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary"
+						data-dismiss="modal">Cancel</button>
+					<button type="button" id="sub-logout" class="btn btn-danger" data-dismiss="modal">Logout</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="modal fade" id="resmodal" tabindex="-1" role="dialog"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Reimbursement Resolution</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Cancel">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					Approve or Deny Reimbursement
+				</div>
+				<div class="modal-footer">
+				<button type="button" id="approve" class="btn btn-success" data-dismiss="modal">Approve</button>
+				<button type="button" id="deny" class="btn btn-warning" data-dismiss="modal">Deny</button>
+					<button type="button" class="btn btn-secondary"
+						data-dismiss="modal">Cancel</button>
+					
+				</div>
+			</div>
+		</div>
+	</div>
+</nav>
