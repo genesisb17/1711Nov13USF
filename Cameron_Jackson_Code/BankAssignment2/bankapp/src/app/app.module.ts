@@ -13,6 +13,7 @@ import { NavComponent } from './nav/nav.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ProfileService } from './profile.service';
 import { AuthGuard } from './auth.guard';
+import { AsyncLocalStorageModule } from 'angular-async-local-storage';
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import { AuthGuard } from './auth.guard';
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    AsyncLocalStorageModule
   ],
   providers: [UserApiService, LoginService, ProfileService, AuthGuard],
   bootstrap: [AppComponent]

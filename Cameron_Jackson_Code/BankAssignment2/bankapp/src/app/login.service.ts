@@ -2,37 +2,45 @@ import { Injectable } from '@angular/core';
 import { UserApiService } from './user-api.service';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/share';
 import { User } from './user';
+import { Observable } from 'rxjs/Observable';
+import { AsyncLocalStorage } from 'angular-async-local-storage';
 
 @Injectable()
 export class LoginService {
 
-  private loggedIn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  loggedIn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
-  constructor(private uas: UserApiService) { }
+  constructor(
+    private uas: UserApiService,
+    private localStorage: AsyncLocalStorage
+  ) { }
 
-  get isLoggedIn() {
-    return this.loggedIn.asObservable();
+  isLoggedIn(): Observable<boolean> {
+    return this.loggedIn.asObservable().share();
   }
 
-  login(user: User) {
+  login(user: User): Observable<User> {
     return this.uas.getUserByUsernameAndPassword(user)
       .map((u) => {
-        localStorage.setItem("currentUser", JSON.stringify(u));
+        this.localStorage.setItem("currentUser", u).subscribe(() => {});
         this.loggedIn.next(true);
         return u;
       });
   }
 
-  register(user: User) {
+  register(user: User): Observable<User> {
     return this.uas.updateUser(user).map((u) => {
-      localStorage.setItem("currentUser", JSON.stringify(u));
+      this.localStorage.setItem("currentUser", u).subscribe(() => {});
       this.loggedIn.next(true);
       return u;
     });
   }
 
   logout() {
-    localStorage.removeItem("currentUser");
+    this.localStorage.removeItem("currentUser").subscribe(() => {});
+    this.loggedIn.next(false);
   }
+
 }

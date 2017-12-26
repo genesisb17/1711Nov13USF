@@ -1,5 +1,5 @@
-<nav *ngIf='isLoggedIn$ | async'>
-  {{currentUser.firstname}} {{currentUser.lastname}}
+<nav *ngIf='isLoggedIn | async'>
+  {{firstname}} {{lastname}}
   <button class="btn btn-link" (click)="profile()">profile</button>
   <button class="btn btn-link" (click)="logout()">logout</button>
 </nav>
