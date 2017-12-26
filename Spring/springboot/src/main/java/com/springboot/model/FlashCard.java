@@ -64,6 +64,12 @@ public class FlashCard {
 		this.answer = answer;
 	}
 	
+	@Override
+	public String toString() {
+		return "FlashCard [id=" + id + ", question=" + question + ", answer=" + answer + "]";
+	}
+	
+	
 	
 
 }

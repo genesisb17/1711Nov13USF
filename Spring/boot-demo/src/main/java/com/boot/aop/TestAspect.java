@@ -1,11 +1,8 @@
 package com.boot.aop;
 
 import org.aspectj.lang.JoinPoint;
-<<<<<<< HEAD
-=======
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.AfterThrowing;
->>>>>>> master
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.springframework.stereotype.Component;
@@ -13,12 +10,12 @@ import org.springframework.stereotype.Component;
 @Aspect
 @Component
 public class TestAspect {
-<<<<<<< HEAD
+
 	@Before("execution(* com.boot.controller.*.add* (..))")
 	public void testBefore(JoinPoint jp) {
 		System.out.println("PRINT BEFORE " + jp.getSignature().getName());
 	}
-=======
+
 	
 	@Before	("execution(* com.boot.controller.*.* (..))&&args(str,..)")
 	public void testBefore(JoinPoint jp, String str) {
@@ -38,8 +35,4 @@ public class TestAspect {
 		
 	}
 	
-
-	
-
->>>>>>> master
 }
