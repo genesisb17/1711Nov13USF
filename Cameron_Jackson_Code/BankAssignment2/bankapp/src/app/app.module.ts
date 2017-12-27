@@ -11,9 +11,9 @@ import { RegistrationComponent } from './registration/registration.component';
 import { LandingComponent } from './landing/landing.component';
 import { NavComponent } from './nav/nav.component';
 import { HttpClientModule } from '@angular/common/http';
-import { ProfileService } from './profile.service';
 import { AuthGuard } from './auth.guard';
 import { AsyncLocalStorageModule } from 'angular-async-local-storage';
+import { ProfileComponent } from './profile/profile.component';
 
 
 @NgModule({
@@ -22,16 +22,17 @@ import { AsyncLocalStorageModule } from 'angular-async-local-storage';
     LoginComponent,
     RegistrationComponent,
     LandingComponent,
-    NavComponent
+    NavComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
     FormsModule,
-    AsyncLocalStorageModule
+    AsyncLocalStorageModule,
   ],
-  providers: [UserApiService, LoginService, ProfileService, AuthGuard],
+  providers: [UserApiService, LoginService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -10,16 +10,18 @@ import { Router } from '@angular/router';
 })
 export class LandingComponent implements OnInit {
   currentUser: User;
-  
+
   constructor(
     private loginService: LoginService,
     private router: Router
-  ) { }
+  ) {
+    this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+  }
 
   ngOnInit() {
-    let userStr: string = localStorage.getItem('currentUser');
-    this.currentUser = new User();
-    this.currentUser = JSON.parse(userStr);
+    // let userStr: string = localStorage.getItem('currentUser');
+    // this.currentUser = new User();
+    // this.currentUser = JSON.parse(userStr);
   }
 
   logout() {

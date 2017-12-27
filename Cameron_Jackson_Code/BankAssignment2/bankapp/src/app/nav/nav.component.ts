@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { User } from '../user';
 import { LoginService } from '../login.service';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/share';
 import { AsyncLocalStorage } from 'angular-async-local-storage';
 
 @Component({
@@ -11,9 +12,8 @@ import { AsyncLocalStorage } from 'angular-async-local-storage';
   styleUrls: ['./nav.component.css']
 })
 export class NavComponent implements OnInit {
-  firstname: string;
-  lastname: string;
-  isLoggedIn: Observable<boolean>;
+  @Input()
+  currentUser: User;
 
   constructor(
     private loginService: LoginService,
@@ -22,22 +22,12 @@ export class NavComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    // this.isLoggedIn$ = this.loginService.isLoggedIn;
-    this.isLoggedIn = this.loginService.isLoggedIn();
-    this.localStorage.getItem<User>("currentUser").subscribe((user) => {
-      this.firstname = user.firstname;
-      this.lastname = user.lastname;
-    });
-    this.loginService.loggedIn.next(true);
-    // if (this.isLoggedIn) {
-
-    // }
 
   }
 
   logout() {
     this.loginService.logout();
+    this.localStorage.removeItem("currentUser");
     this.router.navigate(["login"]);
   }
-
 }

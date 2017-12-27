@@ -1,3 +1,5 @@
-<p>
-  landing works!
-</p>
+<app-nav [currentUser]="currentUser"></app-nav>
+<div>
+  <h2>Your Account: </h2>
+  <p>Balance: {{currentUser.balance | currency}}</p>
+</div>

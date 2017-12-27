@@ -23,23 +23,27 @@ export class LoginService {
 
   login(user: User): Observable<User> {
     return this.uas.getUserByUsernameAndPassword(user)
-      .map((u) => {
-        this.localStorage.setItem("currentUser", u).subscribe(() => {});
+      .map((user) => {
+        localStorage.setItem("currentUser", JSON.stringify(user));
         this.loggedIn.next(true);
-        return u;
+        return user;
       });
   }
 
   register(user: User): Observable<User> {
     return this.uas.updateUser(user).map((u) => {
-      this.localStorage.setItem("currentUser", u).subscribe(() => {});
+      localStorage.setItem("currentUser", JSON.stringify(user));
       this.loggedIn.next(true);
       return u;
     });
   }
 
+  update(user: User): Observable<User> {
+    return this.uas.updateUser(user);
+  }
+
   logout() {
-    this.localStorage.removeItem("currentUser").subscribe(() => {});
+    localStorage.removeItem("currentUser");
     this.loggedIn.next(false);
   }
 

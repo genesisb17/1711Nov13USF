@@ -1,6 +1,7 @@
 package com.rev.bank.service;
 
 import java.util.List;
+import java.util.Random;
 
 import javax.transaction.Transactional;
 
@@ -39,6 +40,13 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public User updateUser(User user) {
+		Random rand = new Random();
+		if (user.getBalance() == null) {
+			int d = rand.nextInt(1000) + 1;
+			int f = rand.nextInt(99);
+			double randomBal = d + (f/100);
+			user.setBalance(randomBal);
+		}
 		return uRepo.save(user);
 	}
 
