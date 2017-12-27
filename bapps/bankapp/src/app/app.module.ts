@@ -4,11 +4,11 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { LoginService } from './login.service';
-import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { LginComponent } from './lgin/lgin.component';
 import { RegisterComponent } from './register/register.component';
 import { ViewComponent } from './view/view.component'
+import { HttpModule } from '@angular/http/src/http_module';
 
 @NgModule({
   declarations: [
@@ -17,10 +17,11 @@ import { ViewComponent } from './view/view.component'
     RegisterComponent,
     ViewComponent
   ],
-  imports: [
+  imports: 
+  [
     BrowserModule,
-    HttpClientModule,
-    FormsModule
+    FormsModule,
+    HttpModule
   ],
   providers: [LoginService],
   bootstrap: [AppComponent]

@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
-
+import { Component,OnInit } from '@angular/core';
+import { UserdataService } from './userdata.service';
+import {Http,Response} from '@angular/http';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -16,5 +17,9 @@ export class AppComponent
   showLogin() {
     this.inLogin = true;
     this.inRegister = false;
+  }
+  u=[]
+  ngOnInit()
+  {
   }
 }

@@ -6,6 +6,7 @@ import { LoginService } from '../login.service';
   templateUrl: './lgin.component.html',
   styleUrls: ['./lgin.component.css']
 })
+
 export class LginComponent implements OnInit {
 
   password:string;
