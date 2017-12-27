@@ -1,0 +1,16 @@
+<div>
+  <h2>Hello {{u.username}}</h2>
+  <div>
+    <label>First Name:</label>
+    <input class="input" type="text" [(ngModel)]="u.fname">
+  </div>
+  <div>
+    <label>Last Name</label>
+    <input class="input" type="text" [(ngModel)]="u.lname">
+  </div>
+  <div>
+    <button class="button" (click)="submit()">Submit</button>
+    <button class="button" (click)="logout()">Logout</button>
+    <button class="button" (click)="account()">Account</button>
+  </div>
+</div>

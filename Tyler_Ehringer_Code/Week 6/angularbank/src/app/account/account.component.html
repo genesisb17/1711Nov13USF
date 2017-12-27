@@ -1,0 +1,27 @@
+<div>
+  <p>Welcome {{u.username}}</p>
+  <p>Current Balance: ${{u.balance | number:'1.2-2'}}</p>
+  <div>
+    <label>Transaction: </label>
+    <select [(ngModel)]="action">
+      <option value="deposit" selected>Deposit</option>
+      <option value="withdraw">Withdraw</option>
+    </select>
+  </div>
+  <div>
+    <label>Amount: $</label>
+    <input type="number" class="input" [(ngModel)]="amount" min="0.00" step="0.01" placeholder="0.00">
+  </div>
+  <div>
+    <p>{{message}}</p>
+  </div>
+  <div>
+    <button class="button" (click)="deposit()">Submit</button>
+  </div>
+  <div>
+    <button class="button" (click)="logout()">Logout</button>
+  </div>
+  <div>
+    <button class="button" (click)="profile()">Profile</button>
+  </div>
+</div>

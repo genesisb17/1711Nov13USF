@@ -1,0 +1,23 @@
+<div>
+  <div>
+    <input type="text" class="input" [(ngModel)]="username" (blur)="usernameBlur()" placeholder="Username">
+    <p>{{usernameMessage}}</p>
+  </div>
+  <div>
+    <input type="password" class="input" [(ngModel)]="password1" (blur)="passwordBlur()" placeholder="Password">
+  </div>
+  <div>
+    <input type="password" class="input" [(ngModel)]="password2" (blur)="passwordBlur()" placeholder="Confirm Password">
+    <p>{{passwordMessage}}</p>
+  </div>
+  <div>
+    <input type="text" class="input" [(ngModel)]="fname" placeholder="First Name">
+  </div>
+  <div>
+    <input type="text" class="input" [(ngModel)]="lname" placeholder="Last Name">
+  </div>
+  <div>
+    <button class="button" (click)="register()">Register</button>
+    <button class="button" (click)="login()">Login</button>
+  </div>
+</div>
