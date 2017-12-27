@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 })
 export class LandingComponent implements OnInit {
   currentUser: User;
+  balance: number;
 
   constructor(
     private loginService: LoginService,
@@ -22,6 +23,12 @@ export class LandingComponent implements OnInit {
     // let userStr: string = localStorage.getItem('currentUser');
     // this.currentUser = new User();
     // this.currentUser = JSON.parse(userStr);
+  }
+
+  update() {
+    this.loginService.update(this.currentUser).subscribe((user) => {
+      localStorage.setItem('currentUser', JSON.stringify(user));
+    });
   }
 
   logout() {

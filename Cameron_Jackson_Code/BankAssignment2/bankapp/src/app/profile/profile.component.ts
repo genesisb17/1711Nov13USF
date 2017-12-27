@@ -35,12 +35,12 @@ export class ProfileComponent implements OnInit {
 
   update() {
     let user = {
-      userId: this.userId,
+      userId: this.userId, // unbound
       firstname: this.firstname,
       lastname: this.lastname,
       username: this.username,
       password: this.password,
-      balance: this.balance
+      balance: this.balance // unbound
     }
     this.loginService.update(user).subscribe((user) => {
       localStorage.setItem('currentUser', JSON.stringify(user));

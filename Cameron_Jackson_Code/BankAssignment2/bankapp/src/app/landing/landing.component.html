@@ -2,4 +2,9 @@
 <div>
   <h2>Your Account: </h2>
   <p>Balance: {{currentUser.balance | currency}}</p>
+  <br>
+  <input type="currency" 
+    [(ngModel)]="currentUser.balance"
+    (keyup.enter)="update()"
+    placeholder="Balance">
 </div>
