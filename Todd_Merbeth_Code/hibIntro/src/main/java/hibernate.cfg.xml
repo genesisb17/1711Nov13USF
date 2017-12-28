@@ -20,7 +20,7 @@
 		<!-- enable second level and query cache -->
 		<property name="hibernate.cache.use_second_level_cache">true</property>
 		
-		<!-- Used to define the EH Cache conig file location -->
+		<!-- Used to define the EH Cache config file location -->
 		<property name="net.sf.ehcache.configurationResourceName">/myehcache.xml</property>
 		
 		<mapping class="com.ex.beans.Student"/> <!-- Add any object classes used to the mapping -->

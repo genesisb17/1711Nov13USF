@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
  * Annotations from org.springframework.stereotype
  * aka stereotype annotations
  * @Component - use for any bean
- * @Service - buisiness login layer. does NOT indicate a web service
+ * @Service - business login layer. does NOT indicate a web service
  * @Repository - DAO layer
  */
 @Component
