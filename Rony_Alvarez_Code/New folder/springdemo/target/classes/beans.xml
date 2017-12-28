@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+	xsi:schemaLocation="http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-4.2.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.2.xsd">
+
+	<!-- <bean id="beanbean" class="com.ex.beans.HelloBeans"> <property name="hello"> 
+		<bean id="helloWorld" class="com.ex.beans.HelloWorld"> <property name="message" 
+		value="Hello Spring! This is dependency injection!" /> <constructor-arg type="java.lang.String" 
+		value="testing constructor injection" /> </bean> </property> </bean> -->
+	<!-- AUTOWIRE BEANS -->
+
+	<!-- <bean id="employee" class="com.ex.autowire.Employee" autowire="byName"> 
+		<property name="dept" ref="dept"/> <property name="name" value="Genesis"/> 
+		</bean> <bean id="dept" class="com.ex.autowire.Department"> <property name="name" 
+		value="TechTeam"></property> </bean> -->
+
+	<context:annotation-config />
+	<context:component-scan base-package="com.ex" />
+
+	<!-- ORM -->
+
+	<!-- enable @Transactional -->
+	<tx:annotation-driven />
+
+	<!-- DATA SOURCE -->
+	<bean id="myDataSource" class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"></property>
+		<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"></property>
+		<property name="username" value="chinook"></property>
+		<property name="password" value="p4ssw0rd"></property>
+	</bean>
+
+	<!-- SESSION FACTORY BEAN -->
+	<bean id="mySessionFactory"
+		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		<property name="dataSource" ref="myDataSource" />
+		<property name="packagesToScan" value="com.ex.orm" />
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</prop>
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.format_sql">true</prop>
+				<prop key="hibernate.hbm2ddl.auto">create</prop>
+			</props>
+		</property>
+	</bean>
+
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+		<property name="sessionFactory" ref="mySessionFactory"></property>
+	</bean>
+l
+	<bean id="myDao" class="com.ex.orm.ORMDao">
+		<property name="sessionFactory" ref="mySessionFactory"></property>
+	</bean>
+
+
+
+</beans>
+
+
+
+
+
+
+

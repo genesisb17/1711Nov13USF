@@ -1,0 +1,41 @@
+<img src="../../assets/images/bank_logo.png" class="login_bank_logo" >
+
+<br>
+<br>
+<br>
+
+<form (ngSubmit)="processRegister()" class="example-form" style="margin-top: 3%;">
+  <mat-form-field class="example-full-width">
+    <input matInput name="firstname" placeholder="FirstName" required
+    [(ngModel)]="user.firstname">
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <input matInput name="lastname" placeholder="Lastname" required
+    [(ngModel)]="user.lastname">
+  </mat-form-field>
+  
+  <mat-form-field class="example-full-width">
+    <input matInput name="email" placeholder="Email" required
+    [(ngModel)]="user.email">
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <input type="password" matInput name="password" placeholder="Password" required
+    [(ngModel)]="user.password">
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <input type="number" matInput name="balance" placeholder="Balance" required
+    [(ngModel)]="user.balance">
+  </mat-form-field>
+
+  <br>
+
+  <button type="submit" class="suit_and_tie">LOGIN</button>
+
+  <br>
+
+  <p>Already a member? <a routerLink="/login" class="loginLink">Login!</a></p>
+
+</form>

@@ -1,0 +1,33 @@
+<div style="background-color: #DC4C46; height: 220px; width: 100%;">
+  <h4 style="padding-top: 110px; color: white; font-size: 1.8em;">{{user.balance |  currency:'USD':true:'1.2-2'}}</h4>
+</div>
+
+<br>
+<br>
+
+<mat-form-field class="example-full-width">
+<input matInput name="Your First Name" placeholder="Your First Name" value="{{user.firstname}}" required >
+</mat-form-field>
+
+<br>
+
+<mat-form-field class="example-full-width">
+<input matInput name="Your Last Name" placeholder="Your Last Name" value="{{user.lastname}}" required>
+</mat-form-field>
+
+<br>
+
+<mat-form-field class="example-full-width">
+  <input matInput name="Your Email Name" placeholder="Email" value="{{user.email}}" required>
+</mat-form-field>
+
+<br>
+
+<mat-form-field class="example-full-width">
+  <input matInput name="Your Password" placeholder="Password" value="{{user.password}}" required>
+</mat-form-field>
+
+<br>
+<br>
+
+<button (click)="logout()" >Logout</button>

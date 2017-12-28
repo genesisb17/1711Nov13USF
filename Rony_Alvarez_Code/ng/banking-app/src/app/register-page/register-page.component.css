@@ -1,0 +1,47 @@
+.login_bank_logo {
+    text-align: center;
+    margin-top: 30%;
+    width: 60%;
+  }
+  
+  .loginLink {
+    text-decoration: none;
+  }
+  
+  .example-form {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+  }
+  
+  .example-full-width {
+    width: 100%;
+  }
+    
+  .example-full-width {
+    width: 80%;
+  }
+  
+  .suit_and_tie {
+    color: white;
+    font-size: 20px;
+    font-family: helvetica;
+    text-decoration: none;
+    border: 1px solid white;
+    border-radius: 20px;
+    transition-duration: .2s;
+    -webkit-transition-duration: .2s;
+    -moz-transition-duration: .2s;
+    background-color: red;
+    padding: 4px 30px;
+    width: 80%;
+  }
+    
+  .suit_and_tie:hover {
+    color: lightskyblue;
+    background-color: white;
+    transition-duration: .2s;
+    -webkit-transition-duration: .2s;
+    -moz-transition-duration: .2s;
+    cursor: pointer;
+  }

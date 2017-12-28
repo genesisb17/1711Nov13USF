@@ -1,0 +1,28 @@
+<img src="../../assets/images/bank_logo.png" class="login_bank_logo" >
+
+<br>
+<br>
+<br>
+
+<form (ngSubmit)="processForm()" class="example-form" style="margin-top: 30%;">
+  <mat-form-field class="example-full-width">
+    <input matInput name="email" placeholder="Email" value="ronyalvarez@gmail.com" required 
+    [(ngModel)]="user.email">
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <input type="password" matInput name="password" placeholder="Password" value="Password"
+    [(ngModel)]="user.password">
+  </mat-form-field>
+
+  <br>
+
+  <button type="submit" class="suit_and_tie">LOGIN</button>
+
+  <br>
+
+  <p>Don't have an account? <a routerLink="/register" class="loginLink">Sign up!</a></p>
+
+  <p style="color: red;" *ngIf="valid">Incorrect credentials, please try again!</p>
+
+</form>
