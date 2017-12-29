@@ -1,3 +1,13 @@
-<p>
-  logged in!
-</p>
+<div class="container">
+    <h1>{{"Hello " + this.account.firstname + " " + this.account.lastname + "!"}}</h1>
+    <p>Your current balance: ${{this.account.balance}}</p>
+    <div>
+        <input class="form-control" type="number" [(ngModel)]="deposit">
+        <button class="btn btn-primary" (click)="makeDeposit()">Deposit</button>
+    </div>
+    <div>
+        <input class="form-control" type="number" [(ngModel)]="withdraw">
+        <button class="btn btn-primary" (click)="makeWithdrawal()">Withdraw</button>
+    </div>
+    <button class="btn btn-primary" id="logout" (click)="doLogout()">Logout</button>
+</div>

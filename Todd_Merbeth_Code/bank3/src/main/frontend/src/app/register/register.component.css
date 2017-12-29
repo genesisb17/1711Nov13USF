@@ -1,0 +1,9 @@
+.container{
+    width:50%;
+    text-align: center;
+    margin-top: 30vh;
+}
+input{
+    margin:auto;
+    width:40%;
+}

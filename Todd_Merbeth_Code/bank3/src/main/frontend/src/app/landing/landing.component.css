@@ -1,0 +1,25 @@
+.container{
+    text-align: center;
+    margin:auto;
+    margin-top: 20vh;
+}
+
+input{
+    margin: auto;
+    margin-top: 10px;
+    width: 100px;
+    display: inline;
+}
+
+.btn{
+    display: inline;
+    width: 94px;
+    height: 40px;
+    margin-top: 0;
+}
+
+#logout{
+    display: block;
+    margin:auto;
+    margin-top: 50px;
+}

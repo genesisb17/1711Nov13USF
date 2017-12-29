@@ -11,11 +11,12 @@ import { RegisterComponent } from './register/register.component';
 import { LoginService } from './login.service';
 import { LandingComponent } from './landing/landing.component';
 import { RegisterService } from './register.service';
+import { UpdateAccountService } from './update-account.service';
 
 const routes: Routes = [
   { path: "", component: LoginComponent },
   { path: "login", component: LoginComponent },
-  { path: "landing", component: LandingComponent },
+  { path: "landing", component: LandingComponent, canActivate: [LoginService] },
   { path: "register", component: RegisterComponent }
 ];
 
@@ -32,7 +33,7 @@ const routes: Routes = [
     FormsModule,
     RouterModule.forRoot(routes)
   ],
-  providers: [LoginService, RegisterService],
+  providers: [LoginService, RegisterService, UpdateAccountService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

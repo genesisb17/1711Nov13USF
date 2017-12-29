@@ -7,7 +7,7 @@ import { environment } from '../environments/environment';
 import { Account } from './account';
 
 @Injectable()
-export class RegisterService implements CanActivate {
+export class RegisterService {
 
   public registerSubject = new BehaviorSubject<Account>(null);
 
@@ -17,9 +17,5 @@ export class RegisterService implements CanActivate {
     this.http.post<Account>(environment.apiUrl + "/add", [firstname, lastname, email, username, password]).subscribe(acc => {
       if (acc) this.registerSubject.next(acc);
     })
-  }
-
-  canActivate() {
-    return this.registerSubject.getValue() != null;
   }
 }

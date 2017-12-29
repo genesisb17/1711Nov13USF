@@ -6,12 +6,12 @@ import com.bank3.model.Account;
 
 public interface AccountService {
 
-	public void addAccount(Account account);
+	public Account addAccount(Account account);
 	public List<Account> findAllAccounts();
 	public Account findAccountById(Integer id);
 	public Account login(String username, String password);
-	public void deposit(Account account);
-	public void withdraw(Account account);
+	public Account deposit(int id, double amount);
+	public Account withdraw(int id, double amount);
 //	public Account findAccountByUsernameAndPassword(String username, String password);
 //	public boolean updateAccountBalance(Account account, Double amount);
 }

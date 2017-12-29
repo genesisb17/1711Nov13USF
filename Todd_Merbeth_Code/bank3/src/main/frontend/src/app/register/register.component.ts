@@ -17,20 +17,18 @@ export class RegisterComponent implements OnInit {
   username: string = '';
   password: string = '';
 
-  constructor(private registerService: RegisterService, private router: Router) { }
+  constructor(private registerService: RegisterService, private loginService: LoginService, private router: Router) { }
 
   ngOnInit() {
-    this.registerService.registerSubject.subscribe(acc => {
-      if (acc == null){
-        console.log("Error creating account");
-      }
-      else {
-        this.router.navigate(["login"]);
-      }
-    });
   }
 
   register() {
+    this.registerService.registerSubject.subscribe(acc => {
+      if (acc != null) {
+        console.log("register routing");
+        this.router.navigate(["login"]);
+      }
+    });
     if (this.firstname.length > 0 && this.lastname.length > 0 && this.email.length > 0 && this.username.length > 0 && this.password.length > 0) {
       this.registerService.register(this.firstname, this.lastname, this.email, this.username, this.password);
     }

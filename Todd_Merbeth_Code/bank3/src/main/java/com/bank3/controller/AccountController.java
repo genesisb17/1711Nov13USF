@@ -22,9 +22,10 @@ public class AccountController {
 	
 	@CrossOrigin
 	@RequestMapping(value="/add", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public void addAccount(@RequestBody String[] data) {
+	public Account addAccount(@RequestBody String[] data) {
 		Account acc = new Account(data[0], data[1], data[2], data[3], data[4]);
 		service.addAccount(acc);
+		return acc;
 	}
 	
 	@CrossOrigin
@@ -41,13 +42,13 @@ public class AccountController {
 	
 	@CrossOrigin
 	@RequestMapping(value="/deposit", method=RequestMethod.POST, consumes=MediaType.APPLICATION_JSON_VALUE)
-	public void deposit(@RequestBody Account acc) {
-		service.deposit(acc);
+	public Account deposit(@RequestBody String[] data) {
+		return service.deposit(Integer.parseInt(data[0]), Double.parseDouble(data[1]));
 	}
 	
 	@CrossOrigin
 	@RequestMapping(value="/withdraw", method=RequestMethod.POST, consumes=MediaType.APPLICATION_JSON_VALUE)
-	public void withdraw(@RequestBody Account acc) {
-		service.withdraw(acc);
+	public Account withdraw(@RequestBody String[] data) {
+		return service.withdraw(Integer.parseInt(data[0]), Double.parseDouble(data[1]));
 	}
 }

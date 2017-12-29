@@ -15,17 +15,14 @@ export class LoginComponent implements OnInit {
   constructor(private loginService: LoginService, private router: Router) { }
 
   ngOnInit() {
-    this.loginService.loginSubject.subscribe(acc => {
-      if (acc == null) {
-        console.log("Invalid login");
-      }
-      else {
-        this.router.navigate(["landing"]);
-      }
-    });
   }
 
   login() {
+    this.loginService.loginSubject.subscribe(acc => {
+      if (acc != null) {
+        this.router.navigate(["landing"]);
+      }
+    });
     if (this.username.length > 0 && this.password.length > 0) {
       this.loginService.login(this.username, this.password);
     }

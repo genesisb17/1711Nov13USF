@@ -1,7 +1,10 @@
-<input type="text" [(ngModel)]="firstname" placeholder="firstname">
-<input type="text" [(ngModel)]="lastname" placeholder="lastname">
-<input type="text" [(ngModel)]="email" placeholder="email">
-<input type="text" [(ngModel)]="username" placeholder="username">
-<input type="text" [(ngModel)]="password" placeholder="password">
-<button (click)="register()">Register</button>
-<button (click)="back()">Back</button>
+<div class="container">
+    <h1>Register</h1>
+    <input class="form-control" type="text" [(ngModel)]="firstname" placeholder="firstname">
+    <input class="form-control" type="text" [(ngModel)]="lastname" placeholder="lastname">
+    <input class="form-control" type="text" [(ngModel)]="email" placeholder="email">
+    <input class="form-control" type="text" [(ngModel)]="username" placeholder="username">
+    <input class="form-control" type="text" [(ngModel)]="password" placeholder="password">
+    <button class="btn btn-primary" (click)="register()">Register</button>
+    <button class="btn btn-primary" (click)="back()">Back</button>
+</div>

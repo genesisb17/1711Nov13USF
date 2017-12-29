@@ -16,9 +16,10 @@ public class accountServiceImpl implements AccountService {
 	@Autowired
 	public AccountRepository accRepo;
 
-	public void addAccount(Account account) {
+	public Account addAccount(Account account) {
 		System.out.println("service saving " + account);
 		accRepo.save(account);
+		return account;
 	}
 	
 	public Account login(String username, String password) {
@@ -36,18 +37,23 @@ public class accountServiceImpl implements AccountService {
 	}
 
 	@Override
-	public void deposit(Account account) {
-		Account acc = accRepo.findOne(account.getId());
-		acc.setBalance(acc.getBalance() + account.getBalance());
+	public Account deposit(int id, double amount) {
+		System.out.println(id + "   " + amount);
+		Account acc = accRepo.findOne(id);
+		acc.setBalance(acc.getBalance() + amount);
 		accRepo.save(acc);
+		return acc;
+	}
+	
+	@Override
+	public Account withdraw(int id, double amount) {
+		Account acc = accRepo.findOne(id);
+		acc.setBalance(acc.getBalance() - amount);
+		accRepo.save(acc);
+		return acc;
 	}
 
-	@Override
-	public void withdraw(Account account) {
-		Account acc = accRepo.findOne(account.getId());
-		acc.setBalance(acc.getBalance() - account.getBalance());
-		accRepo.save(acc);
-	}
+
 
 	// @Override
 	// public boolean updateAccountBalance(Account account, Double amount) {

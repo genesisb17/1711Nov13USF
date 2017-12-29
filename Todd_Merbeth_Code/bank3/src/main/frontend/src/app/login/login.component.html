@@ -1,4 +1,7 @@
-<input type="text" [(ngModel)]="username" placeholder="username">
-<input type="text" [(ngModel)]="password" placeholder="password">
-<button (click)="login()">Login</button>
-<button (click)="register()">Register</button>
+<div class="container">
+    <h1>Bank3</h1>
+    <input class="form-control" type="text" [(ngModel)]="username" placeholder="username">
+    <input class="form-control" type="password" [(ngModel)]="password" placeholder="password">
+    <button class="btn btn-primary" (click)="login()">Login</button>
+    <button class="btn btn-primary" (click)="register()">Register</button>
+</div>
