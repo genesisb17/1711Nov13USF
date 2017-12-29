@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from '../login.service';
 import { Router } from '@angular/router';
+import { User } from '../user';
 
 @Component({
   selector: 'app-login',
@@ -22,7 +23,7 @@ export class LoginComponent implements OnInit {
 
   login(){
     if(this.username.length > 0 && this.password.length > 0){
-      this.loginService.login(this.username, this.password);
+      return this.loginService.login(this.username, this.password);
     }
   }
 }

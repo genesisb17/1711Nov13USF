@@ -9,17 +9,23 @@ import { FormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import { LandingComponent } from './landing/landing.component';
 import { RouterModule, Routes } from '@angular/router';
+import { RegisterComponent } from './register/register.component';
+import { RegisterService } from './register.service';
+import { UpdateService } from './update.service';
+import { BalanceService } from './balance.service';
 
 const routes: Routes = [
-  { path: "", component: LoginComponent },
-  { path: "landing", component: LandingComponent }
+  { path: "login", component: LoginComponent },
+  { path: "landing", component: LandingComponent },
+  { path: "register", component: RegisterComponent},
 ]
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    LandingComponent
+    LandingComponent,
+    RegisterComponent
     
   ],
   imports: [
@@ -28,7 +34,7 @@ const routes: Routes = [
     FormsModule,
     RouterModule.forRoot(routes)
   ],
-  providers: [LoginService],
+  providers: [LoginService, RegisterService, UpdateService, BalanceService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

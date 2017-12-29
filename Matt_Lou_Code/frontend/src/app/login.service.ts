@@ -51,7 +51,16 @@ export class LoginService {
       password: password
     })
       .subscribe(users => {
-        console.log(users);
+        localStorage.setItem("user", JSON.stringify({
+          firstname: users[0].firstname,
+          lastname: users[0].lastname,
+          email: users[0].email,
+          user_id: users[0].user_id,
+          username: users[0].username,
+          password: users[0].password,
+          balance: users[0].balance
+        }));
+       
         let filteredUsers = users.filter(user => {
           return (user.username.toLowerCase() == username.toLowerCase() &&
           user.password == password)
@@ -71,6 +80,10 @@ export class LoginService {
 
   subscribeToLogin(f: Function){
     this.subscribers.push(f);
+  }
+
+  logout(){
+    localStorage.removeItem('user');
   }
 
 }

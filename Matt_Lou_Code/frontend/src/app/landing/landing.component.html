@@ -1,1 +1,25 @@
-<h1> YOU LOGGED IN </h1>
+<h1>Welcome to MattyBoy's Bank App</h1>
+
+<h5>First name: {{firstname}}</h5>
+
+<h5>Last name: {{lastname}}</h5>
+<h5>Email: {{email}}</h5>
+<h5>Balance: {{balance}}</h5>
+
+<input name="firstname" type="text" [(ngModel)]="model.firstname" placeholder="First name">
+<input name="lastname" type="text" [(ngModel)]="model.lastname" placeholder="lastname">
+<input name="email" type="text" [(ngModel)]="model.email" placeholder="email">
+<input name="password" type="text" [(ngModel)]="model.password" placeholder="password">
+<button (click)="updateUser()">Update information</button>
+<br><br>
+<input name="balance" type="number" [(ngModel)]="changeBalance" placeholder="Enter Balance">
+
+<button (click)="withdraw()">Withdraw</button>
+<br>
+<button (click)="deposit()">Deposit</button>
+
+<br><br><br><br>
+<button (click)="logout()">Logout</button>
+
+
+
