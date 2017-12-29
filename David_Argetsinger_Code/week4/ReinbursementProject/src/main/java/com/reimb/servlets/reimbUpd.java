@@ -29,8 +29,7 @@ public class reimbUpd extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, java.io.IOException {
 		HttpSession session = request.getSession();
 		User ogU = (User)session.getAttribute("user");
-		if(ogU.getRole()==0) // only work if admin yeaaaaah 
-		{
+
 		BufferedReader br = 
 				new BufferedReader(new InputStreamReader(request.getInputStream()));
 		String json = "";
@@ -40,11 +39,11 @@ public class reimbUpd extends HttpServlet {
 		ObjectMapper mapper = new ObjectMapper();
 		Reimburse reimb = (Reimburse)mapper.readValue(json, Reimburse.class);
 
-		
+
 		reimb.setResolver(ogU.getId());
-		
+
 		service.updateReim(reimb);
-		}
+
 	}
 
 }

@@ -34,7 +34,6 @@ function login(){
 	var toSend = [username, password];
 	var json = JSON.stringify(toSend);
 	var xhr = new XMLHttpRequest(); 	
-	console.log(xhr.readyState);
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState == 4 && xhr.status==200){
 			var user = JSON.parse(xhr.responseText);

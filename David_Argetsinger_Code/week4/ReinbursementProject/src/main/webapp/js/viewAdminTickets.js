@@ -67,7 +67,7 @@ function table(){
 		for(let i = 0 ; i < data.length;i++){
 			if(data[i].resolver==null)
 			{
-				res=`<span class="clickables" id="${ data[i].id }"><button id="accept" type="button" class="btn btn-primary"	 style="background-color: #86C4B8">accept!</button><button style="background-color: #BA967B" id="deny" type="button" class="btn btn-primary">deny!</button></span>`;	
+				res=`<span class="clickables" id="${ data[i].id }"><button id="accept" type="button" class="btn btn-primary"	 style="background-color: #86C4B8">accept!</button><button style="background-color: #BA967Be" id="deny" type="button" class="btn btn-primary">deny!</button></span>`;	
 			}else{
 				res=data[i].resolver;
 			}
@@ -99,7 +99,6 @@ function table(){
 };
 
 function table1(dataSet){
-	console.log(dataSet);
 	$('#example').DataTable( {
 		data: dataSet,
 		columns: [

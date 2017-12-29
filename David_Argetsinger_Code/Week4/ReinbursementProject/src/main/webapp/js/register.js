@@ -17,9 +17,9 @@ var emailcheck = false;
 //checks role type 
 function validRole(){
 	var role = $(`#role`).val().trim();
-	console.log(role);
+	//console.log(role);
 	if (isNaN(role) || role < 0 || role > 1) {
-		$(`#rolemessage`).html("only 1 or 2 are valid current input will default to 1");
+		$(`#rolemessage`).html("only 0 or 1 are valid current input will default to 1");
 		$(`#rolemessage`).show();
 	}
 	else	{
@@ -35,7 +35,7 @@ function validateEmail(){
 
 	xhr.onreadystatechange=function(){
 		if(xhr.readyState==4 && xhr.status==200){
-			console.log("in xhr callback "+xhr.responseText)
+			//console.log("in xhr callback "+xhr.responseText)
 			var user =JSON.parse(xhr.responseText);
 			$(`#emailmessage`).show();
 			if(user.email !=null){
@@ -64,7 +64,7 @@ function validateUsername(){
 	var xhr= new XMLHttpRequest();
 	xhr.onreadystatechange=function(){
 		if(xhr.readyState==4&&xhr.status==200){
-			console.log("in the xhr callback for username val "+ xhr.responseText);
+			//console.log("in the xhr callback for username val "+ xhr.responseText);
 			var user = JSON.parse(xhr.responseText);
 			$(`#usernamemessage`).show();
 			if(user.username!=null){
@@ -90,34 +90,37 @@ function validateUsername(){
 function register(){
 	if($('#username').val().trim()==""){
 		alert("Enter your username");
-	return }
+	return; }
 	if($('#fn').val().trim()==""){
 		alert("Enter your First name");
-	return }
+	return; }
 	if($('#ln').val().trim()==""){
 		alert("Enter your Last name");
-	return }
+	return; }
   if(logincheck == false){
 		alert("Please Check your username");
-		return }
+		return; }
  if($(`#emai2l`).val().trim()==""){
 		alert("Please Enter your email");
-		return }
+		return; }
  if(emailcheck==false){
 		alert("Please Check your email");
-		return }
+		return; }
  if($('#pass').val().trim()==""){
 		alert("Please enter your password");
-		return }
-
+		return; }
+ if($(`#role`).val().trim()==""){
+		alert("Please enter your Role");
+		return; }
+ 
 	var fitname = $(`#fn`).val().trim();
 	var latname = $(`#ln`).val().trim();
 	var emil = $(`#emai2l`).val().trim();
 	var usrname = $('#username').val().trim();
 	var pasword = $('#pass').val().trim();
-	var roe;
-	if (isNaN(role) || role < 0 || role > 1)
-		roe =$(`#role`).val();
+	var  roe=parseInt($(`#role`).val());
+	if (roe==0)
+		roe=roe;
 	else
 		roe=1;
 	var user = {

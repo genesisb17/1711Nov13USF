@@ -1,10 +1,13 @@
 package com.ex.beans;
 
 import javax.persistence.*;
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 @Entity
 // can use entity to mark it as a table entitiy 
 @Table(name="HIP_STUDENTS")
+@Cache(usage=CacheConcurrencyStrategy.READ_WRITE,region="student")
 public class Student {
 	
 	
