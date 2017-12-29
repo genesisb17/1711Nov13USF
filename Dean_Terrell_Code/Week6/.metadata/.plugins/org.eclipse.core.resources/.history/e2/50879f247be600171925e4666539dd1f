@@ -1,0 +1,46 @@
+package com.real.domain;
+
+import java.text.SimpleDateFormat;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+
+import org.springframework.stereotype.Component;
+
+@Component
+@Entity
+@Table(name="STUDYSESSION")
+public class StudySession {
+
+	@Id
+	@Column(name="SESSION_ID")
+	@SequenceGenerator(allocationSize=1, name="sessionSeq", sequenceName="SESSION_SEQ")
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="sessionSeq")
+	private Integer id;
+	
+	@JoinColumn(name="AUTHOR_ID")
+	@OneToOne(fetch=FetchType.EAGER)
+	private Integer author_id;
+	
+	@Column(name="NAME")
+	private String name;
+	
+	@Column(name="LOCATION")
+	private String location;
+	
+	private static final SimpleDateFormat sdf = new SimpleDateFormat("MM.dd.HH.mm");
+	@Column(name="TIME")
+	private String name;
+	
+	@Column(name="DESCRIPTION")
+	private String ;
+	
+}

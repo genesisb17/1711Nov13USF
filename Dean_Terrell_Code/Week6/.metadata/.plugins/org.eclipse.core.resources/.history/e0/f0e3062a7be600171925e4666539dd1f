@@ -1,0 +1,30 @@
+package com.real.domain;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+
+import org.springframework.stereotype.Component;
+
+@Component
+@Entity
+@Table(name="QA")
+public class QA {
+
+	@Id
+	@Column(name="QA_ID")
+	@SequenceGenerator(allocationSize=1, name="qaSeq", sequenceName="QA_SEQ")
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="qaSeq")
+	private Integer id;
+	
+	@JoinColumn(name="STUDYSET_ID")
+	@OneToOne(fetch=FetchType.EAGER)
+	private Integer studySet_id;
+}

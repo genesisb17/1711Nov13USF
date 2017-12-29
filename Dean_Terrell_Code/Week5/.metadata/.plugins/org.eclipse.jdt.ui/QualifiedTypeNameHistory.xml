@@ -29,4 +29,8 @@
 <fullyQualifiedTypeName name="javax.persistence.ManyToMany"/>
 <fullyQualifiedTypeName name="javax.persistence.JoinTable"/>
 <fullyQualifiedTypeName name="com.ex.beans.Transcript"/>
+<fullyQualifiedTypeName name="com.ex.beans.Product"/>
+<fullyQualifiedTypeName name="org.hibernate.service.ServiceRegistry"/>
+<fullyQualifiedTypeName name="org.hibernate.annotations.Cache"/>
+<fullyQualifiedTypeName name="org.hibernate.annotations.CacheConcurrencyStrategy"/>
 </qualifiedTypeNameHistroy>

@@ -1,0 +1,11 @@
+package com.ex.aoptest;
+
+public class Main {
+	
+	public static void main(String[] args) {
+		
+		Methods test = new Methods();
+		test.hasABCDE();
+		test.addtest();
+	}
+}

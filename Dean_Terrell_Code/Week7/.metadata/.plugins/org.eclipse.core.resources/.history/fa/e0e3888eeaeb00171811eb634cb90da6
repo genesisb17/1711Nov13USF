@@ -1,0 +1,14 @@
+package com.rev.soap;
+
+import javax.jws.WebService;
+
+@WebService(endpointInterface="com.rev.soap.HelloWorld")
+public class HelloWorldImpl implements HelloWorld{
+
+	@Override
+	public String sayHi(String text) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

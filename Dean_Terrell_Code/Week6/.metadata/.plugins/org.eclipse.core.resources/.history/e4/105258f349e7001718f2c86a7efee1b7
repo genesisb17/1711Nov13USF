@@ -1,0 +1,7 @@
+package com.ex.aoptest;
+
+public class Main {
+	Methods test = new Methods();
+	
+	test.addtest();
+}

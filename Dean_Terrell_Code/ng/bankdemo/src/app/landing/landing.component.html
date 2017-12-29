@@ -1,0 +1,8 @@
+<h2>Hi {{user.username | uppercase}}, your balance is: ${{user.balance}}</h2>
+
+<input type="number" [(ngModel)]="withAmount" placeholder="$0.00">
+<button (click)="withdraw()">Withdraw</button>
+
+<input type="number" [(ngModel)]="depAmount" placeholder="$0.00">
+<button (click)="deposit()">Deposit</button> <br> <br>
+<button (click)="goBack()">Logout</button>

@@ -8,6 +8,7 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
 
+import com.ex.beans.Product;
 import com.ex.beans.Student;
 import com.ex.beans.Transcript;
 import com.ex.util.ConnectionUtil;
@@ -33,6 +34,23 @@ public class hipDao {
 		return student;
 	}
 	
+	public void addProduct(Product p) {
+		Session session = ConnectionUtil.getSession();
+		//Transcript script = new Transcript();
+		try {
+			Transaction tx = session.beginTransaction();
+			//int scriptId = (Integer)session.save(script);
+			//script.setId(scriptId);
+			//p.setTranscript(script);
+			
+			session.save(p);
+			//p.setId(studId);
+			tx.commit();
+		}
+		finally {
+			session.close();
+		}
+	}
 	/*
 	 * CRITERIA API
 	 * - Criteria is a simplified API for retrieving entities

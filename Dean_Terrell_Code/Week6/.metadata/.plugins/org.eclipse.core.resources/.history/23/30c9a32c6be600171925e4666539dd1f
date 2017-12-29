@@ -1,0 +1,36 @@
+package com.real.domain;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+
+import org.springframework.stereotype.Component;
+
+@Component
+@Entity
+@Table(name="USERS")
+public class User {
+
+	@Id
+	@Column(name="USER_ID")
+	@SequenceGenerator(allocationSize=1, name="userSeq", sequenceName="USER_SEQ")
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="userSeq")
+	private Integer id;
+	
+	@Column(name="user_firstname")
+	private String firstname;
+	
+	@Column(name="user_lastname")
+	private String lastname;
+	
+	@Column(name="user_email")
+	private String email;
+	
+	@Column(name="user_password")
+	private String password;
+	
+}

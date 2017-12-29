@@ -1,0 +1,6 @@
+package com.springboot.controllers;
+
+@RestController
+public class HomeController {
+
+}

@@ -1,0 +1,35 @@
+package com.ex.service;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import com.ex.domain.FlashCard;
+
+
+public class DemoService {
+	
+	private int count = 0;
+	static ArrayList<FlashCard> cards;
+	static {
+		cards = new ArrayList();
+		cards.add(new FlashCard(1, "test", "answer"));
+		cards.add(new FlashCard(2, "a question", "an answer"));
+		cards.add(new FlashCard(3, "what is 2+2?", "minus 1 that's 3 quick maffs"));
+	}
+	
+	public List<FlashCard> getAll() {
+		return cards;
+	}
+	
+	public FlashCard getById(int id) {
+		for(FlashCard fc : cards)
+			if(fc.getId()==id)
+				return fc;
+		return null;
+	}
+	public FlashCard addCard(FlashCard fc) {
+		fc.setID(++count);
+		cards.add(fc);
+		return fc;
+	}
+}

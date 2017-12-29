@@ -1,8 +1,0 @@
-@CHARSET "ISO-8859-1";
-
-  #app1 {
-    background-image: url("https://images.freecreatives.com/wp-content/uploads/2016/04/Blurred-Web-Backgrounds-HD-Wallpaper.jpg");
-    font-size: 12px;
-    position: absolute;
-    top: 0; right: 0; bottom: 0; left: 0;
-  }

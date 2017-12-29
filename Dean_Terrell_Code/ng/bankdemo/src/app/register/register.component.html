@@ -1,0 +1,14 @@
+<div class="container">
+        <div class="login-container">
+                <div id="output"></div>
+                <div class="form-box">
+                    <form action="" method="">
+                        <input name="user" [(ngModel)]="username" type="text" placeholder="username">
+                        <input name="password" type="password" [(ngModel)]="pass" placeholder="password">
+                        <button (click)="register()" class="btn btn-info btn-block login">Register</button>
+                        <button (click)="goBack()" class="btn btn-info btn-block login">Back to Login</button> <br>
+                        {{message}}
+                    </form>
+                </div>
+            </div> 
+    </div>

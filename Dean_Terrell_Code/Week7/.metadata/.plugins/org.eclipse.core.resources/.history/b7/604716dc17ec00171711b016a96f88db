@@ -1,0 +1,17 @@
+package com.rev.app;
+
+import org.apache.cxf.jaxws.JaxWsProxyFactoryBean;
+
+public class AppService {
+
+	public static void main(String[] args) {
+		String servername = "http://localhost";
+		String port = "9999";
+		String app = "soapinClient";
+		String apiEndpoint = "helloWorld";
+		
+		String url = servername + ":" + port + "/" + app + "/" + apiEndpoint;
+		
+		JaxWsProxyFactoryBean beanFactory = new JaxWsProxyFactoryBean();
+	}
+}

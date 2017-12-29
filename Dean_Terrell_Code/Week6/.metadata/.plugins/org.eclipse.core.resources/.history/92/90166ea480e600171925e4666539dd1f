@@ -1,0 +1,18 @@
+package com.ex.controllers;
+
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.ex.domain.FlashCard;
+import com.ex.service.DemoService;
+
+@RestController
+@RequestMapping("flashcard")
+public class FlashCardRestController {
+	
+	static DemoService service = new DemoService();
+	public FlashCard getById(int id) {
+		return 
+	}
+
+}

@@ -1,0 +1,14 @@
+package com.springboot;
+
+/**
+ * Hello world!
+ *
+ */
+public class App 
+{
+	@RequestMapping("/")
+    public static void main( String[] args )
+    {
+        return "Welcome to Spring boot!";
+    }
+}

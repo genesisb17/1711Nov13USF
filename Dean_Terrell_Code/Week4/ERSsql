@@ -144,7 +144,6 @@ VALUES('deant', '123', 'Dean', 'Terrell', 'donnvann@gmail.com', 1);
 
 UPDATE REIMBURSEMENT SET REIMB_STATUS_ID = 1 WHERE REIMB_ID = 101;
 select * from reimbursement;
-
 select reimb_id, reimb_status, reimb_amount, reimb_type, trunc(reimb_submitted, 'MI'), reimb_description, first_name, last_name
 from reimbursement inner join reimbursement_status on reimbursement.reimb_status_id = reimbursement_status.reimb_status_id
 inner join reimbursement_type on reimbursement.reimb_type_id = reimbursement_type.reimb_type_id 

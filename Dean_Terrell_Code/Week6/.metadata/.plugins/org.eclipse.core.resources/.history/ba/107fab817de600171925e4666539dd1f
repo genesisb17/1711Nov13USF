@@ -1,0 +1,11 @@
+package com.ex.service;
+
+import java.util.ArrayList;
+import com.ex.domain.FlashCard;
+public class DemoService {
+
+	static ArrayList<Flashcard> cards;
+	static {
+		
+	}
+}
