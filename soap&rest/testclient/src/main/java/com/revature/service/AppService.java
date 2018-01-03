@@ -11,10 +11,10 @@ public class AppService {
 		 * Setup for ApacheCXF SOAP Client 
 		 * 
 		 */
-		String servername="http://localhost";
-		String port = "8085";
-		String app = "test";
-		String apiEndpoint = "HelloWorld";
+		String servername="http://172.16.19.194";
+		String port = "8021";
+		String app = "soapservice";
+		String apiEndpoint = "helloWorld";
 		
 		String url = servername + ":" + port + "/" + app + "/" + apiEndpoint;
 	//	String serviceURL = "http://localhost:8050/soapservicedemo/HelloWorld";
