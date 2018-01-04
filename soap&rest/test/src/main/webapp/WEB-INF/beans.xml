@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:jaxws="http://cxf.apache.org/jaxws"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+	xsi:schemaLocation="http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd
+		http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-4.2.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.1.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.2.xsd">
+
+<!-- 
+		What is apache cxf?
+	SOAP Framework: Apache Crossfire
+ -->
+
+<import resource="classpath:META-INF/cxf/cxf.xml"/>
+
+<jaxws:endpoint id="helloWorld"
+		implementor="com.test.soap.HelloWorldImpl"
+		address="/HelloWorld"/>
+		
+		<!-- AUTOWIRE WITH ANNOTATIONS -->
+<context:annotation-config />
+<context:component-scan base-package="com.test" />
+
+	<!-- ORM -->
+
+	<!-- enable @Transactional -->
+	<tx:annotation-driven />
+
+	<!-- DATA SOURCE BEAN, dbcp = db connection pool, not the only data source 
+		bean to implement but a good option -->
+	<bean id="myDataSource" class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
+		<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe" />
+		<property name="username" value="demo" />
+		<property name="password" value="demo" />
+	</bean>
+
+	<!-- SESSION FACTORY BEAN -->
+	<bean id="mySessionFactory"
+		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		<property name="dataSource" ref="myDataSource" />
+		<property name="packagesToScan" value="com.test.orm" />
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</prop>
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.format_sql">true</prop>
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
+			</props>
+		</property>
+	</bean>
+
+<bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager"> 
+		<property name="sessionFactory" ref="mySessionFactory"></property> </bean>
+
+	<bean id="myDao" class="com.test.orm.dao">
+		<property name="sessionFactory" ref="mySessionFactory"></property>
+	</bean>
+
+
+</beans>
