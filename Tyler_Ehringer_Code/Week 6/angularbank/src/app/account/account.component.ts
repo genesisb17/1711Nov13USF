@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 export class AccountComponent implements OnInit {
 
   u: User;
-  amount: number = 0;
+  amount: number = 0.00;
   action: string = "deposit";
 
   message = "";
@@ -24,15 +24,18 @@ export class AccountComponent implements OnInit {
   }
 
   deposit() {
-    if (this.amount > 0) {
+    if (this.action == "withdraw" && this.amount > this.user.user.getValue().balance) {
+      this.message = "Cannot withdraw more than your current balance";
+    } else if (this.amount > 0) {
       this.user.deposit(this.u.id, this.action == "deposit" ? this.amount : -this.amount);
+      this.message = "";
     } else {
       this.message = "You must " + this.action + " an amount greater than $0.00";
     }
   }
 
   logout() {
-    this.user.logout();
+    this.user.logout(); 
   }
 
   profile() {

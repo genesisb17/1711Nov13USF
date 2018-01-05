@@ -22,7 +22,8 @@ export class LoginComponent implements OnInit {
       } else {
         this.message = "Your username and password do not match";
       }
-    })
+    });
+    this.message = "";
   }
 
   login() {

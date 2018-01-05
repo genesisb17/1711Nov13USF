@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+	xsi:schemaLocation="http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-4.2.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.2.xsd">
+
+	<!-- <bean id="beanbean" class="com.ex.beans.HelloBeans"> <property name="hello"> 
+		<bean id="helloWorld" class="com.ex.beans.HelloWorld"> <property name="message" 
+		value="Hello Spring! This is 
+		
+		adependency injection!" /> <constructor-arg 
+		type="java.lang.String" value="testing constructor injection" /> </bean> 
+		</property> </bean> Autowired beans <bean id="employee" class="com.ex.autowire.Employee" 
+		autowire="byName"> <property name="dept" ref="deptBean"/> <property name="name" 
+		value="Genesis"/> </bean> <bean id="deptBean" class="com.ex.autowire.Department"> 
+		<property name="name" value="Logistics" /> </bean> -->
+
+
+	<context:annotation-config />
+	<context:component-scan base-package="com.ex" />
+
+	<tx:annotation-driven />
+
+	<bean id="myDataSource" class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
+		<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe" />
+		<property name="username" value="Chinook" />
+		<property name="password" value="p4ssw0rd" />
+	</bean>
+
+	<!-- <bean id="mySessionFactory"
+		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		<property name="dataSource" ref="myDataSource" />
+		<property name="packagesToScan" value="com.ex.orm" />
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</prop>
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.format_sql">true</prop>
+				<prop key="hibernate.hbm2ddl.auto">create</prop>
+			</props>
+		</property>
+	</bean> -->
+
+	<!-- <bean id="transactionManager"
+		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+		<property name="sessionFactory" ref="mySessionFactory" />
+	</bean> -->
+
+	<bean id="myDao" class="com.ex.orm.ORMDao">
+		<property name="sessionFactory" ref="mySessionFactory" />
+	</bean>
+
+	<!-- Because Spring Data doesn't natively support Hibernate (But it does 
+		support JPA) -->
+
+	<!-- Because we use Hibernate -->
+	<bean id="hibernateJpaVendorAdapter"
+		class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+	</bean>
+
+	<!-- Because Spring Data doesn't natively support Hibernate (But it does 
+		support JPA) -->
+	<bean id="entityManagerFactory"
+		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+		<property name="dataSource" ref="myDataSource" />
+		<property name="packagesToScan" ref="com.ex.data" />
+		<property name="jpaProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</prop>
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.format_sql">true</prop>
+				<prop key="hibernate.hbm2ddl.auto">create</prop>
+			</props>
+		</property>
+	</bean>
+
+</beans>
+
+
+
+
+
+<!-- 
+spring data configuration
+
+1. setup dependencies in pom.xml
+2. create beans.xml (application context configuration)
+	a.  data source bean
+	
+	b.  entity manager fatory bean
+	c. transaction manager
+	d. repository
+
+
+ -->
+
+
+
+
+
+
+
+
+
+
+
+
+

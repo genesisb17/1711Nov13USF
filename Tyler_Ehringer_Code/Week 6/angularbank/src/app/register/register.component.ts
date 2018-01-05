@@ -28,9 +28,11 @@ export class RegisterComponent implements OnInit {
   }
 
   usernameBlur() {
-    this.user.usernameAvailable(this.username).subscribe(b => {
-      this.usernameMessage = b ? "" : "That username is already taken";
-    });
+    if (this.username) {
+      this.user.usernameAvailable(this.username).subscribe(b => {
+        this.usernameMessage = b ? "" : "That username is already taken";
+      });
+    } else this.usernameMessage = "";
   }
 
   passwordBlur() {
@@ -40,12 +42,13 @@ export class RegisterComponent implements OnInit {
   }
 
   register() {
-    if (!(this.usernameMessage || this.passwordMessage)) {
+    if (!(this.usernameMessage || this.passwordMessage) && this.username &&
+      this.password1 && this.fname && this.lname) {
       this.user.register(new User({
         username: this.username, password: this.password1,
         fname: this.fname, lname: this.lname
       }));
-    }
+    } else alert("You must enter all information before submitting.");
   }
 
   login() {

@@ -12,11 +12,11 @@ import { ProfileComponent } from './profile/profile.component';
 import { AccountComponent } from './account/account.component';
 
 const routes: Routes = [
-  {path: "", redirectTo: "/login", pathMatch: "full"},
+  { path: "", redirectTo: "/login", pathMatch: "full" },
   { path: "login", component: LoginComponent },
   { path: "register", component: RegisterComponent },
-  { path: "profile", component: ProfileComponent },
-  {path: "account", component: AccountComponent}
+  { path: "profile", component: ProfileComponent, canActivate: [UserService] },
+  { path: "account", component: AccountComponent, canActivate: [UserService] }
 ];
 
 @NgModule({
