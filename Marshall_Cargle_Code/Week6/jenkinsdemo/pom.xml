@@ -14,7 +14,7 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
 <build>
-        <finalName>jenkinsdemo</finalName>
+        <finalName>jenkinsdemoapi</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
