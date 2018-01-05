@@ -1,0 +1,455 @@
+@import url("https://fonts.googleapis.com/css?family=Lato:100,300,400");
+@import url("https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css");
+.login .group input[type="text"], .login .group input[type="password"] {
+  width: 100%;
+  border: none;
+  color: #aaabb0;
+  padding: 14px 10px 14px 45px;
+  margin-top: 20px;
+  background: #33374a;
+  z-index: 2;
+  font-family: "Lato", sans-serif;
+  font-size: 12px;
+  letter-spacing: 1px;
+  position: relative;
+}
+.login .group input[type="text"]:focus + label::before, .login .group input[type="password"]:focus + label::before {
+  width: 100%;
+}
+
+.register .group input[type="text"], .register .group input[type="password"] {
+  width: 100%;
+  border: none;
+  color: #ffffff;
+  padding: 14px 10px 14px 45px;
+  margin-top: 20px;
+  background: #f47471;
+  z-index: 2;
+  font-family: "Lato", sans-serif;
+  font-weight: 300;
+  font-size: 12px;
+  letter-spacing: 1px;
+  position: relative;
+}
+.register .group input[type="text"]::-webkit-input-placeholder, .register .group input[type="password"]::-webkit-input-placeholder {
+  color: #ffffff;
+}
+.register .group input[type="text"]:-ms-input-placeholder, .register .group input[type="password"]:-ms-input-placeholder {
+  color: #ffffff;
+}
+.register .group input[type="text"]::-ms-input-placeholder, .register .group input[type="password"]::-ms-input-placeholder {
+  color: #ffffff;
+}
+.register .group input[type="text"]::placeholder, .register .group input[type="password"]::placeholder {
+  color: #ffffff;
+}
+.register .group input[type="text"]:focus + label::before, .register .group input[type="password"]:focus + label::before {
+  width: 100%;
+}
+
+.panel .login input[type="submit"], .panel .register input[type="submit"] {
+  -ms-flex-item-align: start;
+      align-self: flex-start;
+  margin-top: 20px;
+  padding: 10px 0;
+  width: 150px;
+  background: transparent;
+  border-radius: 0 50px 50px 0;
+  border-left: none !important;
+  letter-spacing: 1px;
+  cursor: pointer;
+}
+
+@-webkit-keyframes loginOpen {
+  0% {
+    -webkit-transform: translateX(140px);
+            transform: translateX(140px);
+  }
+  50% {
+    -webkit-transform: translateX(-145px);
+            transform: translateX(-145px);
+  }
+  100% {
+    -webkit-transform: translateX(140px);
+            transform: translateX(140px);
+    z-index: -1;
+  }
+}
+
+@keyframes loginOpen {
+  0% {
+    -webkit-transform: translateX(140px);
+            transform: translateX(140px);
+  }
+  50% {
+    -webkit-transform: translateX(-145px);
+            transform: translateX(-145px);
+  }
+  100% {
+    -webkit-transform: translateX(140px);
+            transform: translateX(140px);
+    z-index: -1;
+  }
+}
+@-webkit-keyframes registerOpen {
+  0% {
+    -webkit-transform: translateX(-140px);
+            transform: translateX(-140px);
+  }
+  50% {
+    -webkit-transform: translateX(145px);
+            transform: translateX(145px);
+  }
+  100% {
+    -webkit-transform: translateX(-140px);
+            transform: translateX(-140px);
+  }
+}
+@keyframes registerOpen {
+  0% {
+    -webkit-transform: translateX(-140px);
+            transform: translateX(-140px);
+  }
+  50% {
+    -webkit-transform: translateX(145px);
+            transform: translateX(145px);
+  }
+  100% {
+    -webkit-transform: translateX(-140px);
+            transform: translateX(-140px);
+  }
+}
+@-webkit-keyframes loginClose {
+  0% {
+    -webkit-transform: translateX(140px);
+            transform: translateX(140px);
+    z-index: -1;
+  }
+  50% {
+    -webkit-transform: translateX(-145px);
+            transform: translateX(-145px);
+  }
+  100% {
+    -webkit-transform: translateX(140px);
+            transform: translateX(140px);
+    z-index: 1;
+  }
+}
+@keyframes loginClose {
+  0% {
+    -webkit-transform: translateX(140px);
+            transform: translateX(140px);
+    z-index: -1;
+  }
+  50% {
+    -webkit-transform: translateX(-145px);
+            transform: translateX(-145px);
+  }
+  100% {
+    -webkit-transform: translateX(140px);
+            transform: translateX(140px);
+    z-index: 1;
+  }
+}
+@-webkit-keyframes registerClose {
+  0% {
+    -webkit-transform: translateX(-140px);
+            transform: translateX(-140px);
+  }
+  50% {
+    -webkit-transform: translateX(145px);
+            transform: translateX(145px);
+  }
+  100% {
+    -webkit-transform: translateX(-140px);
+            transform: translateX(-140px);
+  }
+}
+@keyframes registerClose {
+  0% {
+    -webkit-transform: translateX(-140px);
+            transform: translateX(-140px);
+  }
+  50% {
+    -webkit-transform: translateX(145px);
+            transform: translateX(145px);
+  }
+  100% {
+    -webkit-transform: translateX(-140px);
+            transform: translateX(-140px);
+  }
+}
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+input {
+  outline: none;
+}
+
+body {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 100vh;
+  font-family: "Lato", sans-serif;
+  color: #aaabb0;
+}
+
+.bg {
+  width: 100%;
+  height: 50vh;
+  background: #f1f1f1;
+  position: absolute;
+  top: -80px;
+  left: 0;
+  padding-bottom: 80px;
+  -webkit-box-sizing: initial;
+          box-sizing: initial;
+  z-index: -1;
+  -webkit-transform: skewY(5deg);
+          transform: skewY(5deg);
+}
+
+.panel {
+  width: 640px;
+  height: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.panel .login {
+  width: 300px;
+  height: 380px;
+  background: #292c3b;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-transform: translateX(140px);
+          transform: translateX(140px);
+  position: relative;
+  z-index: 1;
+  -webkit-transition: -webkit-filter .5s;
+  transition: -webkit-filter .5s;
+  transition: filter .5s;
+  transition: filter .5s, -webkit-filter .5s;
+}
+.panel .login input[type="submit"] {
+  border: #f25d59 solid 1px;
+  color: #f25d59;
+}
+.panel .register {
+  -webkit-transform: translateX(-140px);
+          transform: translateX(-140px);
+  position: relative;
+}
+.panel .register .button-open, .panel .register .button-close {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  top: 15px;
+  right: 15px;
+  cursor: pointer;
+  -webkit-transition: -webkit-transform .4s;
+  transition: -webkit-transform .4s;
+  transition: transform .4s;
+  transition: transform .4s, -webkit-transform .4s;
+  z-index: 9;
+}
+.panel .register .button-open::before, .panel .register .button-close::before {
+  content: '';
+  position: absolute;
+  width: 2px;
+  height: 100%;
+  background: #ffffff;
+  left: 10px;
+}
+.panel .register .button-open::after, .panel .register .button-close::after {
+  content: '';
+  position: absolute;
+  width: 2px;
+  height: 100%;
+  background: #ffffff;
+  left: 10px;
+  -webkit-transform: rotate(90deg);
+          transform: rotate(90deg);
+}
+.panel .register .inner {
+  -webkit-filter: blur(5px);
+          filter: blur(5px);
+  background: #f25d59;
+  -webkit-box-shadow: 5px 14px 20px 0 #f68b88;
+          box-shadow: 5px 14px 20px 0 #f68b88;
+  width: 100%;
+  width: 340px;
+  height: 440px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-transition: -webkit-filter .5s;
+  transition: -webkit-filter .5s;
+  transition: filter .5s;
+  transition: filter .5s, -webkit-filter .5s;
+}
+.panel .register input[type="submit"] {
+  border: #ffffff solid 1px;
+  color: #ffffff;
+}
+
+.register h1 {
+  text-align: center;
+  font-weight: 100;
+  letter-spacing: 2px;
+  margin-top: 0;
+  color: #ffffff;
+}
+
+.register .group {
+  width: 100%;
+  position: relative;
+}
+.register .group i {
+  color: #ffffff;
+  position: absolute;
+  top: 36px;
+  left: 15px;
+  z-index: 3;
+  font-size: 13px;
+  opacity: .8;
+}
+.register .group label {
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 45px;
+  z-index: 1;
+  background: #f69492;
+  top: 19px;
+}
+.register .group label::before {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 100%;
+  background: #f04641;
+  -webkit-transition: width .5s;
+  transition: width .5s;
+}
+
+.login h1 {
+  text-align: center;
+  font-weight: 100;
+  letter-spacing: 2px;
+  margin-top: 0;
+}
+
+.login .group {
+  position: relative;
+  width: 100%;
+}
+.login .group i {
+  color: #f25d59;
+  position: absolute;
+  top: 36px;
+  left: 15px;
+  z-index: 3;
+  font-size: 13px;
+  opacity: .8;
+}
+.login .group label {
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 45px;
+  z-index: 1;
+  background: #42475f;
+  top: 19px;
+}
+.login .group label::before {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 100%;
+  background: #f25d59;
+  -webkit-transition: width .5s;
+  transition: width .5s;
+}
+
+.button-close {
+  visibility: hidden;
+}
+
+input[id="switch-open"]:checked ~ .login {
+  -webkit-filter: blur(5px);
+          filter: blur(5px);
+  -webkit-animation: loginOpen forwards .8s;
+          animation: loginOpen forwards .8s;
+}
+input[id="switch-open"]:checked ~ .register {
+  -webkit-animation: registerOpen forwards .8s;
+          animation: registerOpen forwards .8s;
+}
+input[id="switch-open"]:checked ~ .register > .inner {
+  -webkit-filter: blur(0);
+          filter: blur(0);
+}
+input[id="switch-open"]:checked ~ .register .button-open {
+  visibility: hidden;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+}
+input[id="switch-open"]:checked ~ .register .button-close {
+  visibility: visible;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+}
+
+input[id="switch-close"]:checked ~ .login {
+  -webkit-animation: loginClose forwards .8s;
+          animation: loginClose forwards .8s;
+}
+input[id="switch-close"]:checked ~ .register {
+  -webkit-animation: registerClose forwards .8s;
+          animation: registerClose forwards .8s;
+}
+input[id="switch-close"]:checked ~ .register > .inner {
+  -webkit-filter: blur(5px);
+          filter: blur(5px);
+}
+
+input[type="radio"] {
+  display: none;
+}
