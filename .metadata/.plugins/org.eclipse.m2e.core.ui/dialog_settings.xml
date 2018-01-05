@@ -2,16 +2,20 @@
 <section name="Workbench">
 	<section name="MavenProjectWizardArtifactPage">
 		<list key="groupId">
+			<item value="com.soap"/>
 			<item value="bank2"/>
 			<item value="banking"/>
 			<item value="aopdemo"/>
 		</list>
 		<list key="name">
+			<item value="soapService"/>
 			<item value="bank2"/>
 			<item value="banking"/>
 			<item value="aopdemo"/>
 		</list>
 		<list key="artifactId">
+			<item value="Soap1"/>
+			<item value="Soap"/>
 			<item value="bank2"/>
 			<item value="banking"/>
 			<item value="aopdemo"/>
@@ -86,6 +90,8 @@
 	</section>
 	<section name="MavenProjectWizardLocationPage">
 		<list key="location">
+			<item value="C:\Users\Bruce Wayne\my_git_repos\1711Nov13USF\Soap1\src\main\webapp\WEB-INF\beans.xml"/>
+			<item value="C:\Users\Bruce Wayne\Desktop\Spring\springboot\src\main\java\com\springboot\service\BankServiceImpl.java"/>
 			<item value="C:\Users\Bruce Wayne\Desktop\Spring\springboot\src\test\java"/>
 			<item value="C:\Users\Bruce Wayne\Desktop\mvc--data\src\main\java\com\ex\controllers\FlashCardRestController.java"/>
 			<item value="C:\Users\Bruce Wayne\my_git_repos\1711Nov13USF\hib"/>
@@ -99,7 +105,6 @@
 			<item value="C:\Users\Bruce Wayne\my_git_repos\1711Nov13USF\jdbcexamples"/>
 			<item value="C:\Users\Bruce Wayne\my_git_repos\1711Nov13USF\my_first_java_project"/>
 			<item value="C:\Users\Bruce Wayne\my_git_repos\1711Nov13USF\BankSQL\src\main\java\com\rev\dao\FileDao.java"/>
-			<item value="C:\Users\Bruce Wayne\my_git_repos\1711Nov13USF\Banking_application\project1\Dao.java"/>
 		</list>
 		<list key="projectNameTemplate">
 			<item value="[artifactId]"/>

@@ -1,0 +1,50 @@
+<button (click)="getData()">here</button>
+<div style="margin: auto; max-width: 1000px; margin-top:50px">
+    <data-table id="films-grid"    
+        headerTitle="Users"
+        [items]="data"
+        [itemCount]="filmCount"
+        (reload)="reloadFilms($event)"
+        [limit]="8"
+        [sortBy]="'username'"
+        [sortAsc]="true"
+        [selectColumn]="true"
+        [multiSelect]="false"
+        [substituteRows]="false"
+        [expandableRows]="true"
+        [translations]="translations"
+        [indexColumnHeader]="'#'"
+        [selectOnRowClick]="true"
+        >
+        <ng-template #dataTableExpand let-item="item">
+            <div [textContent]="item.username" style="padding: 5px; color: gray"></div>
+        </ng-template>
+<!-- here in the property-->
+        <data-table-column
+            [property]="'last'"
+            [header]="'LastName'"
+            [sortable]="true">
+        </data-table-column>
+        <data-table-column
+            [property]="'first'"
+            [header]="'FirstName'"
+            [sortable]="true">
+        </data-table-column>
+        <data-table-column
+            [property]="'username'"
+            [header]="'Username'"
+            [sortable]="true"
+            [cellColors]="cellColor">
+        </data-table-column>
+        <data-table-column
+            [property]="'pass'"
+            [header]="'Password'">
+        </data-table-column>
+    </data-table>
+    <div style="margin-top: 10px">
+        <b>Selected:</b>
+        <span *ngIf="filmsTable.selectedRow == null"><i>None</i></span>
+        <span *ngIf="filmsTable.selectedRow != null" [textContent]="filmsTable.selectedRow && filmsTable.selectedRow.item.last" ></span>
+        <button (click)="testing(filmsTable.selectedRow.item.username)">test</button> <!-- here-->
+    </div>
+</div>

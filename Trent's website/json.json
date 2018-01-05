@@ -1,0 +1,76 @@
+{ 
+  "users": 
+  [
+    {
+        "id": 7,
+        "username": "clark",
+        "pass": "kent",
+        "first": "clark",
+        "last": "kent",
+        "balance": 10
+    },
+    {
+        "id": 2,
+        "username": "a",
+        "pass": "a",
+        "first": "well",
+        "last": "done",
+        "balance": 10
+    },
+    {
+        "id": 3,
+        "username": "b",
+        "pass": "b",
+        "first": "trent",
+        "last": "smith",
+        "balance": 1000
+    },
+    {
+        "id": 4,
+        "username": "c",
+        "pass": "c",
+        "first": "c",
+        "last": "c",
+        "balance": 50
+    },
+    {
+        "id": 5,
+        "username": "d",
+        "pass": "d",
+        "first": "d",
+        "last": "d",
+        "balance": 100
+    },
+    {
+        "id": 6,
+        "username": "son",
+        "pass": "goku",
+        "first": "goku",
+        "last": "beast",
+        "balance": 10
+    },
+    {
+        "id": 8,
+        "username": "Bruce",
+        "pass": "Wayne",
+        "first": "Bruce",
+        "last": "Wayne",
+        "balance": 1000
+    },
+    {
+        "id": 9,
+        "username": "Bruce",
+        "pass": "Wayne",
+        "first": "Bruce",
+        "last": "Wayne",
+        "balance": 1000
+    },
+    {
+        "id": 10,
+        "username": "Bruce1",
+        "pass": "Wayne1",
+        "first": "Bruce1",
+        "last": "Wayne1",
+        "balance": 1000
+    }]
+} 
