@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Display homework.js</title>
+
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
+	integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb"
+	crossorigin="anonymous">
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+	integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+	crossorigin="anonymous"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"
+	integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh"
+	crossorigin="anonymous"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"
+	integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
+	crossorigin="anonymous"></script>
+	
+</head>
+<body>
+	<h1>JS Function Viewer</h1>
+	<br>
+	<h3>1. fib(n)</h1>
+	<br>
+	<input type="number" id="fib" class="form-control" placeholder="Enter n"/>
+	<button id="doFib" class="btn btn-primary">Fibonacc'ed!</button>
+	<b><p id="fibDisplay"></p></b>
+	
+	<br><br>
+	<h3>2. bubbleSort(numArray)</h3>
+	<br>
+
+	<form class="form-inline">
+		<h4>[</h4>
+		<div class="form-group">
+			<input type="number" id="one" class="form-control" placeholder="#"/>
+		</div>
+		
+		<h4> ,</h4>
+		<div class="form-group">
+			<input type="number" id="two" class="form-control" placeholder="#"/>
+		</div>
+		
+		<h4> ,</h4>
+		<div class="form-group">
+			<input type="number" id="three" class="form-control" placeholder="#"/>
+		</div>
+			
+		<h4> ,</h4>
+		<div class="form-group">
+			<input type="number" id="four" class="form-control" placeholder="#"/>
+		</div>
+		
+		<h4> ,</h4>
+		<div class="form-group">
+			<input type="number" id="five" class="form-control" placeholder="#"/>
+		</div>
+		<h4>]</h4>
+		
+	</form>
+	
+	<button id="doBub" class="btn btn-primary">Bubble Sort!</button>
+	<b><p id="bubDisplay"></p></b>
+
+	<br><br>
+	<h3>3. reverseString(someStr)</h3>
+	<br>
+	<input type="text" id="rev" class="form-control" placeholder="Enter some text"/>
+	<button id="doRev" class="btn btn-primary">Reverse!</button>
+	<b><p id="revDisplay"></p></b>	
+	
+	<br><br>
+	<h3>4. factorial(someNum)</h3>
+	<br>
+	<input type="number" id="fac" class="form-control" placeholder="Enter a number"/>
+	<button id="doFac" class="btn btn-primary">Factorial!</button>
+	<b><p id="facDisplay"></p></b>
+	
+	<br><br>
+	<h3>5. substring(someStr, length, offset)</h3>
+	<br>
+	<input type="text" id="someStr" class="form-control" placeholder="Enter some text"/>
+	<input type="number" id="length" class="form-control" placeholder="Enter a valid length"/>
+	<input type="number" id="offset" class="form-control" placeholder="Enter a valid offset"/>
+	<button id="doSub" class="btn btn-primary">Substring!</button>
+	<b><p id="subDisplay"></p></b>
+	
+	<br><br>
+	<h3>6. isEven(someNum)</h3>
+	<br>
+	<input type="number" id="even" class="form-control" placeholder="Enter a number"/>
+	<button id="doEven" class="btn btn-primary">Factorial!</button>
+	<b><p id="evenDisplay"></p></b>
+
+<script src="js/homework.js"></script>
+</body>
+</html>

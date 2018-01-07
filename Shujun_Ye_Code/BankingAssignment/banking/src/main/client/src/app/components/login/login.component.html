@@ -1,0 +1,29 @@
+<div class="card text-center">
+    <div class="card-block">
+      <h3 class="card-title">Login</h3>
+      <div class="card-text">
+        <div class="form-group row">
+          <div class="col">
+            <input #username (keyup)="updateUsername(username.value)" type="text" class="form-control" placeholder="Username" autofocus="autofocus">
+          </div>
+        </div>
+        <div class="form-group row">
+          <div class="col">
+            <input #password (keyup)="updatePassword(password.value)" type="password" class="form-control" placeholder="Password">
+          </div>
+        </div>
+        <div class="row text-center">
+            <p class="col text-danger">{{message}}</p>
+          </div>
+        <div class="form-group row">
+          <div class="col">
+            <button id="loginButton" class="btn btn-primary" (click)="login()">Login</button>
+          </div>
+        </div>
+        <div class="form-group row">
+            <div class="col">
+              <button id="registerButton" class="btn btn-primary" (click)="register()">Register</button>
+            </div>
+        </div>
+    </div>
+</div>

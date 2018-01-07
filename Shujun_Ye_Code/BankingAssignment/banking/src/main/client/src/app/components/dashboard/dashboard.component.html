@@ -1,0 +1,28 @@
+<div>
+  <div class="container">
+    <br>
+    <h4>Welcome, {{user.firstname}}!</h4>
+    <br><br>
+    <table class="table table-striped">
+      <thead>
+        <th>User ID</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Balance</th>
+      </thead>
+      <tbody>
+        <tr>
+          <td>{{user.userId}}</td>
+          <td>{{user.firstname}}</td>
+          <td>{{user.lastname}}</td>
+          <td>{{user.balance}}</td>
+        </tr>
+      </tbody>
+    </table>
+    
+    <button class="btn btn-primary" (click)="updateUser()">Update</button>
+    <br><br>
+    <button class="btn btn-danger" (click)="logout()">Log Out</button>
+  </div>
+</div>
+

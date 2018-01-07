@@ -1,0 +1,15 @@
+package com.revature.hw.q4;
+
+// A program computes N factorial.
+public class Factorial {
+
+	public static void main(String[] args) {
+		System.out.println("The factorial of 8 is " + factorial(8) + ".");
+
+	}
+	
+	public static int factorial(int num) {
+		if (num == 0) return 1;
+		return num*factorial(num - 1);
+	}
+}

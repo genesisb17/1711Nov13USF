@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Threads</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <style>
+    /* Remove the navbar's default margin-bottom and rounded borders */ 
+    .navbar {
+      margin-bottom: 0;
+      border-radius: 0;
+    }
+    
+    /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
+    .row.content {height: 1850px}
+    
+    /* Set gray background color and 100% height */
+    .sidenav {
+      padding-top: 20px;
+      background-color: #f1f1f1;
+      height: 100%;
+    }
+    
+    /* On small screens, set height to 'auto' for sidenav and grid */
+    @media screen and (max-width: 767px) {
+      .sidenav {
+        height: auto;
+        padding: 15px;
+      }
+      .row.content {height:auto;} 
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">
+          <span class="glyphicon glyphicon-education"></span>
+        </a>
+      </div>
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#">Home</a></li>
+        <li><a href="#">About</a></li>
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Topics
+            <span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Java</a></li>
+            <li><a href="#">SQL</a></li>
+            <li><a href="#">HTML</a></li>
+          </ul>
+        </li>
+        <li><a href="mailto:shujunye94@gmail.com">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="container-fluid text-center">    
+    <div class="row content">
+      <div class="col-sm-2 sidenav">
+        <p><a href="#intro">Introduction</a></p>
+        <p><a href="#cycle">Life Cycle of a Thread</a></p>
+        <p><a href="#creation">Create a Thread</a></p>
+        <p><a href="#faq">FAQ</a></p>
+      </div>
+      <div class="col-sm-8 text-left"> 
+        <h1>Java Threads</h1>
+        <hr>
+        <h3><a name="intro">Introduction</a></h3>
+        <p>All nontrivial Java applications are multithreaded. A JVM supports multiple thread execution. Multiple threads can be supported by an underlying system by using multiple hardware processors, by time-slicing a single processor, or by time-slicing multiple processors. A thread is an independent path of execution within a program. Many threads can run concurrently within a program.</p>
+        <p>Threads are lightweight processes that share certain areas of the memory, unlike regular processes. This makes threads very efficient, but it also introduces additional complexities regarding memory management. You can protect your shared data by making it accessible (for reading and writing) to only one thread at a point of time.
+        </p>
+        <hr>
+        <h3><a name="cycle">Life Cycle of a Thread</a></h3>
+        <p>
+          <div class="text-center">
+            <img src="https://3.bp.blogspot.com/-Dp9HPZpLaas/WD2WBV29nLI/AAAAAAAAOCA/PwXaCU_44ZEgsr1lwGiIMj77xyiA1JmEwCLcB/s1600/Java%2BTutorial%2B-%2BJava%2BThreads%2B%2528Life%2Bcycle%2Bof%2Ba%2BThread%2Bin%2BJava%2B-%2BJava%2Bthread%2Blife%2Bcycle_V6%2529.jpg" class="img-responsive" alt="...">
+          </div>
+          <br>
+          The life cycle of the thread in Java is controlled by JVM. The Java thread states are as follows:
+          <br>
+          <ol>
+            <li><b>NEW</b> - A thread that has been created but hasn't yet started is in this state.</li>
+            <li><b>RUNNABLE</b> - Thread state for a runnable thread. A thread in this state is executing in the JVM but it may be waiting for other resources from the OS, such as a processor.</li>
+            <li><b>BLOCKED</b> - A thread that’s blocked waiting for a monitor lock is in this state.</li>
+            <li><b>WAITING</b> - A thread that’s waiting indefinitely for another thread to perform a particular action is in this state.</li>
+            <li><b>TIMED_WAITING</b> - A thread that’s waiting for another thread to perform an action for up to a specified waiting time is in this state.</li>
+            <li><b>TERMINATED</b> - A thread whose run() method has finished is in this state (still a thread object but not a thread of execution).</li>
+          </ol>
+        </p>
+        <hr>
+        <h3><a name="creation">Create a Thread</a></h3>
+        <p>
+          There are two ways to create thread in Java:
+          <ul>
+            <li>By extending the Thread class</li>
+            <ul>
+              <li>Extend class Thread</li>
+              <li>Override its method run()</li>
+            </ul>
+            <li>Implement the Runnable interface </li>
+            <ul>
+              <li>Implement the Runnable interface</li>
+              <li>Implement its method run()</li>
+            </ul>
+          </ul>
+
+        </p>
+        <hr>
+        <h3><a name="faq">FAQ</a></h3>
+        <ol>
+          <li><b>What is multithreading?</b></li>
+          <p>Multithreading is a process of executing multiple threads simultaneously.</p>
+          <li><b>What is thread?</b></li>
+          <p>A thread is a lightweight subprocess. It is a separate path of execution. It is called separate path of execution because each thread runs in a separate stack frame.</p>
+          <li><b>What does join() method?</b></li>
+          <p>The join() method waits for a thread to die. In other words, it causes the currently running threads to stop executing until the thread it joins with completes its task.</p>
+          <li><b>What is difference between start() and run() method?</b></li>
+          <p>Main difference is that when program calls start() method, a new Thread is created and code inside run() method is executed in new Thread. If you call run() method directly no new Thread is created and code inside run() will execute on current Thread. You can not call start() method twice on thread object. once started, second call of start() will throw IllegalStateException in Java while you can call run() method twice.</p>
+          <li><b>What about the daemon threads?</b></li>
+          <p>The daemon threads are basically the low priority threads that provides the background support to the user threads. It provides services to the user threads.</p>
+          <li><b>What is synchronization?</b></li>
+          <p>Synchronization is the capabilility of control the access of multiple threads to any shared resource. It is used to prevent thread interference and consistency problem.</p>
+          <li><b>What is deadlock?</b></li>
+          <p>Deadlock is a situation when two threads are waiting on each other to release a resource. Each thread waiting for a resource which is held by the other waiting thread.</p>
+        </ol>
+        <hr>
+      </div>
+      <div class="row content">
+        <div class="col-sm-2 sidenav">
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

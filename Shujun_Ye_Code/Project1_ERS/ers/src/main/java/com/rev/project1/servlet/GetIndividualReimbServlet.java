@@ -34,7 +34,6 @@ public class GetIndividualReimbServlet extends HttpServlet {
 			json = "[]";
 			
 		} else {
-			System.out.println("get individual reimb");
 			int index = 0;
 			while(index < reimbs.size()) {
 				json += format.userView(reimbs.get(index)) + ",";

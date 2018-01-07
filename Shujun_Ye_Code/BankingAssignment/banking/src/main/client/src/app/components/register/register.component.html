@@ -1,0 +1,70 @@
+<div class="card">
+    <div class="card-block">
+      <h3 class="card-title text-center">Register</h3><br>
+      <div class="card-text">
+        <div class="form-group row">
+          <div class="col">
+            <div class="row">
+              <label for="username" class="col-3 col-form-label text-right">Username</label>
+              <div class="col-8">
+                <input type="text" #username (keyup)="updateUsername(username.value)" (blur)="usernameBlur()" class="form-control" placeholder="Username">
+              </div>
+            </div>
+            <div class="row text-center">
+              <p class="col text-danger">{{usernameWarning}}</p>
+            </div>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="password" class="col-3 col-form-label text-right">Password</label>
+          <div class="col-8">
+            <input type="password" #password (keyup)="updatePassword(password.value)" class="form-control" placeholder="Password">
+          </div>
+        </div>
+        <div class="row text-center">
+            <p></p>
+        </div>
+        <div class="form-group row">
+          <label for="email" class="col-3 col-form-label text-right">Email</label>
+          <div class="col-8">
+            <input type="text" #email (keyup)="updateEmail(email.value)" (blur)="emailBlur()" class="form-control" placeholder="Email">
+          </div>
+        </div>
+        <div class="row text-center">
+            <p class="col text-danger">{{emailWarning}}</p>
+          </div>
+        <div class="form-group row">
+          <label for="fname" class="col-3 col-form-label text-right">First Name</label>
+          <div class="col-8">
+            <input type="text" #fname (keyup)="updateFirstname(fname.value)" class="form-control" placeholder="First Name">
+          </div>
+        </div>
+        <div class="row text-center">
+            <p></p>
+        </div>
+        <div class="form-group row">
+          <label for="lname" class="col-3 col-form-label text-right">Last Name</label>
+          <div class="col-8">
+            <input type="text" #lname (keyup)="updateLastname(lname.value)" class="form-control" placeholder="Last Name">
+          </div>
+        </div>
+        <div class="row text-center">
+                <p></p>
+        </div>
+        <div class="form-group row">
+                <label for="balance" class="col-3 col-form-label text-right">Balance</label>
+                <div class="col-8">
+                  <input type="number" #balance (keyup)="updateBalance(balance.value)" (blur)="balanceBlur()" class="form-control" placeholder="Balance">
+                </div>
+        </div>
+        <div class="row text-center">
+                <p class="col text-danger">{{balanceWarning}}</p>
+              </div>
+        <div class="form-group-row">
+            <button id="RegButton" class="btn btn-primary offset-5" (click)="submit()">Submit</button>
+            <p></p>
+            <button id="cancelRegButton" class="btn btn-secondary offset-5" (click)="cancel()">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>

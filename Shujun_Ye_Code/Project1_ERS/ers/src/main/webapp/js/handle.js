@@ -476,7 +476,6 @@ function approvalModal(ticket){
 			$('#approvalMessage').html("Please select an approval status!");
 		} else{
 			var toSendApproval = [ticket.id, userId, reimbStatus];
-			console.log(toSendApproval);
 			var json = JSON.stringify(toSendApproval);
 			var xhr = new XMLHttpRequest();
 			xhr.onreadystatechange = function(){
@@ -485,8 +484,7 @@ function approvalModal(ticket){
 					$('body').removeClass('modal-open');
 					$('.modal-backdrop').remove();
 					alert(xhr.responseText);
-//					loadReimb();	
-					loadManTable();
+					loadReimb();	
 				}
 			}
 			xhr.open("POST","submitApproval", true);
