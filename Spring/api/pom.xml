@@ -56,6 +56,7 @@
 			<artifactId>ojdbc7</artifactId>
 			<version>11.2.0</version>
 		</dependency> -->
+		
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-entitymanager</artifactId>
