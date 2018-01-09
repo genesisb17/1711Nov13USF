@@ -1,0 +1,44 @@
+{
+  "user": [
+    {
+      "id": 1,
+      "username": "username",
+      "password": "password",
+      "Wt": 0,
+      "w": 0,
+      "rw": 0,
+      "IHM(Ht)": 0,
+      "relationuser": "username1",
+      "relationpass": "password1"
+    },
+    {
+      "id": 2,
+      "username": "username1",
+      "password": "password1",
+      "Wt": 0,
+      "w": 0,
+      "rw": 0,
+      "IHM": 0,
+      "relationuser": "username",
+      "relationpass": "password"
+    },
+    {
+      "id": 10,
+      "username": "username2",
+      "password": "password2"
+    }
+  ],
+  "data": [
+    {
+      "Wt": 0,
+      "w": 0,
+      "rw": 0,
+      "IHM(Ht)": 0,
+      "Wt+1": 0,
+      "successrate": 0.48,
+      "total": 0,
+      "totalsuccess": 0,
+      "totalfailed": 0
+    }
+  ]
+}

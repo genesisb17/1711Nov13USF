@@ -1,4 +1,31 @@
-<input type="text" ng-model="string" [name]="username">
+<input type="text" class = "form-control"(keyup)="onNameKeyUp($event)"><br>
 <br>
-<input type ="text" ng-model="string" [name]="password">
+<input type ="text" ng-model="string" (keyup)="onPasswordKeyUp($event)" [name]="password">
 <br>
+<button (click)="getUserbyUsername()">Submit</button>
+<br>
+{{username}}
+<div *ngIf="showInfo">
+    <br>
+        {{value}}
+    <br>
+        {{spouse}}
+    <br>
+    <button (click)="changeValue(4)">+4</button>
+    <br>
+    <button (click)="changeValue(3)">+3</button>
+    <br>
+    <button (click)="changeValue(2)">+2</button>
+    <br>
+    <button (click)="changeValue(1)">+1</button>
+    <br>
+    <button>+0</button>
+    <br>
+    <button (click)="changeValue(-1)">-1</button>
+    <br>
+    <button (click)="changeValue(-2)">-2</button>
+    <br>
+    <button (click)="changeValue(-3)">-3</button>
+    <br>
+    <button (click)="changeValue(-4)">-4</button>
+</div>
