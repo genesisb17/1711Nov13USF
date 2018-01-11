@@ -15,6 +15,9 @@ zuul:
     account: 
       path: /accounts/**
       serviceId: account-service #needs to match the name of the service you're looking for
+    customer:
+      path: /customers/**
+      serviceId: customer-service
       
 eureka:
   client:
