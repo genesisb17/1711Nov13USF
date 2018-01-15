@@ -31,6 +31,7 @@ public class register extends HttpServlet {
 	static Service service = new Service();
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("Please register servlet");
 		BufferedReader br = 
 				new BufferedReader(new InputStreamReader(request.getInputStream()));
 		String json = "";

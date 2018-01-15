@@ -34,7 +34,8 @@ public class validator extends HttpServlet {
 		String username = userInfo[0]; 
 		User temp = service.findUser(username);
 		if(temp.getId() == 0){ // if invalid user, obj = null
-			}
+			System.out.println("temp is null");	
+		}
 		else{// valid credentials
 			HttpSession session = req.getSession();
 			session.setAttribute("User", temp);//persist this user to the session to be accessed throughout servlets

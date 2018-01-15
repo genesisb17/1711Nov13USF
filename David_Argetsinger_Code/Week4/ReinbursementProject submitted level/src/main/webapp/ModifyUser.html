@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Modify Administrator Account</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" 
+integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+
+<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" 
+integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" 
+integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" 
+integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+</head>
+<body>
+<nav class="navbar navbar-toggleable-md navbar-light bg-faded">
+  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <a class="navbar-brand" href="#">Administrator Reimbursement Suite</a>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+    <li class="nav-item active">
+        <a class="nav-link" href="admin.html">View Tickets<span class="sr-only"></span></a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="ModifyUser.html">(Edit User) <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="Login.html" id="logout">LogOut</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+<br>
+	<br><br>
+	<br>
+<div class="container" style="border: 5px solid black;border-radius: 50px">
+
+	<br>
+	<br>
+<h1 >Update Credentials</h1>
+	<input type="text"  class="form-control"id="fn" placeholder="First Name"> <br>
+	<input type="text"  class="form-control" id="ln" placeholder="Last Name"> <br>
+	<input type="password"   class="form-control" id="pass" placeholder="password"><br>
+	<input type="text"   class="form-control" id="emai2l" placeholder="email" style="clear:right;float:left"> <div class="alert alert-danger" id="emailmessage" style="float:right" >Any fields left blank will not change</div>
+	<br>
+	<br>
+	<button id="update" style="float:left">Update!</button>
+	<br>
+	<br>
+	<br>
+	</div>
+	<script src="js/updateUser.js"></script>
+</body>
+</html>
