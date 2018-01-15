@@ -1,0 +1,169 @@
+<div [ngStyle]="{'background' : 'url(../assets/images/signin-header.gif)'}">
+  <app-navbar></app-navbar>
+
+  <div class="container">
+
+    <div class="row">
+      <div class="text-center">
+        <h1>Job Postings</h1>
+      </div>
+    </div>
+
+    <div class="simploy-tableData simploy-shadow">
+      <table datatable class="row-border hover">
+        <thead>
+          <tr>
+            <th>Company</th>
+            <th>Job Title</th>
+            <th>Location</th>
+            <th>Skills</th>
+            <th>Post Date</th>
+            <th>Details</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let jobdata of tableData">
+            <td>
+              {{jobdata["company"]}}
+            </td>
+            <td>
+              {{jobdata["title"]}}
+            </td>
+            <td>
+              {{jobdata["location"]}}
+            </td>
+            <td>
+              {{jobdata["skills"]}}
+            </td>
+            <td>
+              {{jobdata["postDate"]}}
+            </td>
+            <td>
+              <button class="btn btn-success" (click)='getJobData(jobdata["company"],jobdata["title"],
+              jobdata["location"],jobdata["description"],jobdata["postDate"],jobdata["skills"],jobdata["user"])'>
+                View Details
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <br />
+    <br />
+    <br />
+    
+    <div *ngIf="viewJob">
+      <div class="jumbotron detail-outer-box">
+        <h2 class="text-center">Job Information:</h2>
+        <br>
+        <br>
+        <div Class="detail-inner-box">
+          <table style="font-size: 20px">
+            <br>
+            <tbody>
+              <tr>
+                <td>
+                  <strong>Title:</strong>
+                </td>
+                <td>
+                    {{title}}
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <strong>Company:</strong>
+                </td>
+                <td>
+                    {{company}}
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <strong>Location:</strong>  
+                </td>
+                <td>
+                    {{location}}
+                </td>
+              </tr>
+              <tr>
+                  <td>
+                    <strong>Description:&emsp;</strong>  
+                  </td>
+                  <td>
+                      {{description}}
+                  </td>
+                </tr>
+
+            </tbody>
+          </table>
+
+          <div *ngIf="skillDatab">
+          <strong style="font-size: 18px">Skills</strong>
+          <ul>
+            <li *ngFor="let skillData of skills">
+              {{skillData}}
+            </li>
+          </ul>
+        </div>
+        
+          <hr>
+          <footer>
+            <h4><strong>Contact Information:</strong></h4>
+            <table>
+              <tbody>
+                <tr>
+                  <td>
+                      <strong>Name:</strong>&emsp;
+                  </td>
+                  <td>
+                      {{user.firstName}} {{user.lastName}}
+                  </td>
+                </tr>
+                <tr>
+                    <td>
+                        <strong>Email:</strong>
+                    </td>
+                    <td>
+                        {{user.email}}
+                    </td>
+                  </tr>
+                  <tr>
+                      <td>
+                         <strong> Phone:</strong>
+                      </td>
+                      <td>
+                          {{user.pnumber}}
+                      </td>
+                    </tr>
+              </tbody>
+            </table>
+          </footer>
+          <br />
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <br />
+  <br />
+  <br />
+
+</div>
+
+<!-- <div class="container" *ngIf="viewJobs">
+  <div class="jumbotron">
+    <h1>Resume</h1>
+    <br>
+    <div class="jumbotron" style="background-color:rgb(104, 104, 221)">""
+      <h2>{{firstname|uppercase}} {{lastname|uppercase}}</h2>
+      <h2>{{Email}}</h2>
+      <ul>
+        <li *ngFor="let skillData of skill">
+          <h3>{{skillData}}</h3>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div> -->

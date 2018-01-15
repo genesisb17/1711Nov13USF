@@ -1,0 +1,131 @@
+<div [ngStyle]="{'background' : 'url(../assets/images/signin-header.gif)'}">
+  <app-navbar></app-navbar>
+  <br>
+
+  <div class="container">
+
+    <div class="row">
+      <div class="text-center">
+        <h1>Your Job Postings</h1>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 simploy-outer-box">
+        <div style="width: 80%;">
+
+          <h4><strong>Add New Job</strong></h4>
+          <br>
+
+          <form *ngIf="toAddJob" (submit)="submitJob($event)" #jobF="ngForm">
+            <label for name="company">Company</label>
+            <input 
+            class="form-control"  
+            type="company"
+            name="company" 
+            [(ngModel)]="company"
+            ngModel 
+            required
+            #companyField="ngModel">
+            <span 
+              class="help-block invalidInput" 
+              *ngIf="!companyField.valid && jobF.submitted">
+              Please enter a valid company
+            </span>
+          <br>
+          <label for name="description">Description</label>
+          <input 
+            class="form-control"  
+            type="description"
+            name="description" 
+            [(ngModel)]="description"
+            ngModel 
+            required
+            #descField="ngModel">
+            <span 
+              class="help-block invalidInput" 
+              *ngIf="!descField.valid && jobF.submitted">
+              Please enter a valid description
+            </span>
+          <br>
+          <label for name="location">Location</label>
+          <input 
+            class="form-control"  
+            type="location"
+            name="location" 
+            [(ngModel)]="location"
+            ngModel 
+            required
+            #locField="ngModel">
+            <span 
+              class="help-block invalidInput" 
+              *ngIf="!locField.valid && jobF.submitted">
+              Please enter a valid location
+            </span>
+          <br>
+          <label for name="title">Title</label>
+          <input 
+            class="form-control"  
+            type="title"
+            name="title" 
+            [(ngModel)]="title"
+            ngModel 
+            required
+            #titleField="ngModel">
+            <span 
+              class="help-block invalidInput" 
+              *ngIf="!titleField.valid && jobF.submitted">
+              Please enter a valid title
+            </span>
+          <br>
+          <label for name="website">Website</label>
+          <input 
+            class="form-control"  
+            type="website"
+            name="website" 
+            [(ngModel)]="website"
+            ngModel 
+            required
+            #webField="ngModel">
+            <span 
+              class="help-block invalidInput" 
+              *ngIf="!webField.valid && jobF.submitted">
+              Please enter a valid Website
+            </span>
+          <br>
+          <button class="btn btn-success" type="submit" style="width:125px">Add Job</button>&emsp;
+          <button class="btn btn-danger" (click)="backToProfile()" type="button" style="width:125px;">Cancel</button>
+          <br>
+          <br>
+        </form>
+
+          <form *ngIf="toAddSkills" (ngSubmit)="addSkill()" #addSkillF="ngForm">
+            <label>Skills</label>
+            <p>{{yourskills}}</p>
+            <br>
+
+            <label>Add New Skill to Job</label>
+
+            <div class="radio" *ngFor="let skill of skills">
+              <label>
+                <input type="radio" id="newskill" name="newskill" [ngModel]="skills[0]" [value]="skill"> {{skill}}
+              </label>
+            </div>
+            <br>
+            <button class="btn btn-success" type="submit" style="width: 125px">Add SKill</button>&emsp;
+            <button (click)="backToProfile()" class="btn btn-warning" style="width: 125px">Done</button>
+          </form>
+
+          <br>
+          <br>
+
+        </div>
+      </div>
+
+    </div>
+
+    <br>
+    <br>
+    <br>
+
+  </div>

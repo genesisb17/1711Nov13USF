@@ -1,0 +1,131 @@
+<div [ngStyle]="{'background' : 'url(../assets/images/signin-header.gif)'}">
+<app-navbar></app-navbar>
+
+  <div class="container">
+    
+    <div class="row">
+      <div class="text-center">
+        <h1>Profile</h1>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-3 simploy-outer-box">
+        
+        <div style="width: 80%">
+          <strong>Account Information:</strong>
+          <br><br>
+          <table style="border: none">
+            <tr>
+              <td><strong>Email:</strong></td>
+              <td>{{user.email}}</td>
+            </tr>
+            <tr>
+              <td><strong>First Name:&emsp;</strong></td>
+              <td>{{user.firstName}}</td>
+            </tr>
+            <tr>
+              <td><strong>Last Name:</strong></td>
+              <td>{{user.lastName}}</td>
+            </tr>
+            <tr>
+              <td><strong>Password:</strong></td>
+              <td>**********</td>
+            </tr>
+            <tr>
+              <td><strong>Phone:</strong></td>
+              <td>{{user.pnumber}}</td>
+            </tr>
+          </table>
+        <br>
+        <form (submit)="updateUser($event)" #profileF="ngForm">
+          <label for name="email">Email</label>
+          <input 
+          class="form-control"  
+          type="email"
+          name="email" 
+          [(ngModel)]="email"
+          ngModel 
+          required
+          email 
+          #emailField="ngModel">
+          <span 
+            class="help-block invalidInput" 
+            *ngIf="!emailField.valid && profileF.submitted">
+            Please enter a valid email address
+          </span>
+          <br>
+          <label>First Name</label>
+          <input 
+            class="form-control" 
+            type="text"
+            name="firstname"
+            [(ngModel)]="firstname"
+            ngModel
+            required
+            #firstnameField="ngModel">
+            <span 
+                class="help-block invalidInput" 
+                *ngIf="!firstnameField.valid && profileF.submitted">
+                Please enter your first name
+            </span>
+          <br>
+          <label>Last Name</label>
+          <input 
+            class="form-control" 
+            type="text"
+            name="lastname"
+            [(ngModel)]="lastname"
+            ngModel
+            required
+            #lastnameField="ngModel">
+            <span 
+                class="help-block invalidInput" 
+                *ngIf="!lastnameField.valid && profileF.submitted">
+                Please enter your first name
+            </span>
+          <br>
+          <label>Password</label>
+          <input 
+            class="form-control"  
+            type="password"
+            name="password"
+            [(ngModel)]="password"
+            ngModel
+            required
+            #passwordField="ngModel">
+            <span 
+                class="help-block invalidInput" 
+                *ngIf="!passwordField.valid && profileF.submitted">
+                Please enter a valid password
+            </span>
+          <br>
+          <label for name="phonenumber">Phone Number</label>
+          <input 
+              class="form-control"
+              type="number"
+              name="phonenumber"
+              [(ngModel)]="phonenumber"
+              ngModel 
+              required
+              #phoneField="ngModel">
+              <span 
+                  class="help-block invalidInput" 
+                  *ngIf="!phoneField.valid && profileF.submitted">
+                  Please enter a valid phonenumber
+              </span>
+          <br>
+
+          <button class="btn btn-success" type="submit">Update</button>
+
+        </form>
+        </div>
+      </div>
+    </div>
+
+    <br>
+    <br>
+    <br>
+
+  </div>
+</div>

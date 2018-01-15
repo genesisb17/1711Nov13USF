@@ -1,0 +1,36 @@
+<form (ngSubmit)="login()" #loginF="ngForm">
+<label for name="email">Email</label>
+<input 
+    class="form-control"  
+    type="email"
+    name="email" 
+    [(ngModel)]="email"
+    ngModel 
+    required
+    email 
+    #emailField="ngModel">
+    <span 
+        class="help-block invalidInput" 
+        *ngIf="!emailField.valid && loginF.submitted">
+        Please enter a valid email address
+    </span>
+<br />
+<label for name="password">Password</label>
+<input 
+    class="form-control"  
+    type="password"
+    name="password"
+    [(ngModel)]="password" 
+    ng-model
+    required
+    #passwordField="ngModel">
+    <span 
+        class="help-block invalidInput" 
+        *ngIf="!passwordField.valid && loginF.submitted">
+        Please enter a valid password
+    </span>
+
+    <span class="help-block invalidInput text-center" *ngIf="!validInput">You have entered invalid information</span>
+<br />
+<button type="submit" class="btn simploy-bgcolor">Login</button>
+</form>

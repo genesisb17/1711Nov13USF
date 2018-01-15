@@ -1,0 +1,68 @@
+{
+    "users":
+    [
+      {
+          "id": 1,
+          "first": "Ihsan",
+          "last": "Taha",
+          "email": "ihsan_taha@yahoo.com",
+          "phone": "415-265-1234",
+          "role": 1,
+          "skills": "Hibernate Java Spring"
+      },
+      {
+          "id": 2,
+          "first": "Trent",
+          "last": "Smith",
+          "email": "trent_smith@gmail.com",
+          "phone": "415-265-5678",
+          "role": 0,
+          "skills": "Java Spring"
+      },
+      {
+          "id": 3,
+          "first": "Marshall",
+          "last": "Cargle",
+          "email": "marshall@hotmail.com",
+          "phone": "510-139-1234",
+          "role": 0,
+          "skills": "Spring"
+      },
+      {
+          "id": 4,
+          "first": "Morgan",
+          "last": "Worthington",
+          "email": "morgan_worth@gmail.com",
+          "phone": "510-200-0246",
+          "role": 1,
+          "skills": "Spring"
+      },
+      {
+          "id": 5,
+          "first": "David",
+          "last": "Argetsinger",
+          "email": "david_sadboy@gmail.com",
+          "phone": "219-235-1221",
+          "role": 0,
+          "skills": "Spring"
+      },
+      {
+          "id": 6,
+          "first": "Genesis",
+          "last": "Bonds",
+          "email": "genesis_bonds@gmail.com",
+          "phone": "415-551-5310",
+          "role": 1,
+          "skills": "Java"
+      },
+      {
+          "id": 7,
+          "first": "Min",
+          "last": "Yao",
+          "email": "min_yao@yahoo.com",
+          "phone": "415-265-1234",
+          "role": 1,
+          "skills": "Spring"
+      }
+     ]
+    }

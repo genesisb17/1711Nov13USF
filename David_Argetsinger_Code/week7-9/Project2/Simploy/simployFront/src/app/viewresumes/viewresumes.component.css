@@ -1,0 +1,41 @@
+.simploy-color {
+    color: rgb(50, 150, 125);
+}
+
+.simploy-tableData 
+{
+    background-color: rgb(50, 150, 125);
+    border: solid 1px black;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.detail-outer-box 
+{
+    background-color: rgb(50, 150, 125);
+    border: solid 1px black;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.detail-inner-box {
+    background-color: white;
+    border-radius: 5px;
+    padding: 5px 5px 5px 15px;
+}
+
+.simploy-tab {
+    border-radius: 5px 5px 0px 0px;
+    width: 75px;
+}
+
+.simploy-shadow {
+    box-shadow: 3px 3px rgba(0,0,0,.25);
+}
+
+.simploy-box {
+    background-color: rgb(225, 245, 235);
+    border: solid 1px rgb(205, 225, 215);
+    border-radius: 5px;
+    padding: 10px;
+}

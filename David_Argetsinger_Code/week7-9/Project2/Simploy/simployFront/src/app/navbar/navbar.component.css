@@ -1,0 +1,14 @@
+a {
+    color: rgb(200, 225, 215) !important;
+}
+
+a:hover {
+    color: white !important;
+}
+
+.navbar-bgcolor {
+    background-color: rgb(50, 150, 125);
+    color: rgb(255, 255, 255);
+    border-radius: 2px;
+    padding: 5px;
+}

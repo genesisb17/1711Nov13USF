@@ -1,0 +1,112 @@
+<form (ngSubmit)="register()" #registerF="ngForm">
+<label for name="firstname">First Name</label>
+<input 
+    class="form-control" 
+    type="text"
+    name="firstname"
+    [(ngModel)]="firstname"
+    ngModel
+    required
+    #firstnameField="ngModel">
+    <span 
+        class="help-block invalidInput" 
+        *ngIf="!firstnameField.valid && registerF.submitted">
+        Please enter your first name
+    </span>
+<br />
+<label for name="lastname">Last Name</label>
+<input 
+    class="form-control" 
+    type="text"
+    name="lastname"
+    [(ngModel)]="lastname"
+    ng-model
+    required
+    #lastnameField="ngModel">
+    <span 
+        class="help-block invalidInput" 
+        *ngIf="!lastnameField.valid && registerF.submitted">
+        Please enter your last name
+    </span>
+<br />
+<label for name="email">Email</label>
+<input 
+    class="form-control" 
+    type="email"
+    name="email"
+    [(ngModel)]="email"
+    ngModel 
+    required
+    email
+    #emailField="ngModel">
+    <span 
+        class="help-block invalidInput" 
+        *ngIf="!emailField.valid && registerF.submitted">
+        Please enter a valid email address
+    </span>
+<br />
+<label for name="phonenumber">Phone Number</label>
+<input 
+    class="form-control"
+    type="NUMBER"
+    name="phonenumber"
+    [(ngModel)]="phonenumber"
+    ngModel 
+    required
+    #phoneField="ngModel">
+    <span 
+        class="help-block invalidInput" 
+        *ngIf="registerF.submitted && !validNumber">
+        Please enter a valid phonenumber
+    </span>
+<br />
+<label for name="password">Password</label>
+<input 
+    class="form-control"  
+    type="password"
+    name="password"
+    [(ngModel)]="password"
+    ngModel
+    required
+    #passwordField="ngModel">
+    <span 
+        class="help-block invalidInput" 
+        *ngIf="!passwordField.valid && registerF.submitted">
+        Please enter a valid password
+    </span>
+<br />
+<label for name="confirmpass">Confirm Password</label>
+<input 
+    class="form-control"
+    type="password"
+    name="confirmpass"
+    [(ngModel)]="confirmpassword"
+    ngModel 
+    required
+    #confirmpassField="ngModel">
+    <span 
+        class="help-block invalidInput" 
+        *ngIf="!confirmpassField.valid && registerF.submitted">
+        Please enter a valid password
+    </span>
+    <span 
+        class="help-block invalidInput" 
+        *ngIf="confirmpassField.touched && passwordField.touched &&
+               confirmpassField.value != passwordField.value">
+        Please confirm passwords match
+    </span>
+<br />
+<label  for name="role">Role</label>
+<div class="radio" *ngFor="let role of roles">
+    <label>
+        <input
+            type="radio"
+            name="role"
+            [ngModel]="roles[0]"
+            [value]="role">
+            {{role}}
+    </label>
+</div>
+<br />
+<button class="btn simploy-bgcolor" type="submit">Register</button>
+</form>

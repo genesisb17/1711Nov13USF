@@ -1,0 +1,7 @@
+.simploy-outer-box {
+    background-color: rgb(50, 150, 125);
+    color: rgb(200, 225, 215);
+    border: solid 1px black;
+    border-radius: 5px;
+    padding: 10px;
+}

@@ -1,0 +1,59 @@
+<div [ngStyle]="{'background' : 'url(../assets/images/signin-header.gif)'}">
+  <app-navbar></app-navbar>
+
+  <div class="container">
+
+    <div class="row">
+      <div class="text-center">
+        <h1>Submitted Postings</h1>
+      </div>
+    </div>
+
+    <div class="simploy-tableData simploy-shadow" style="padding: 10px">
+      <div style="background-color: white; border: solid 1px black; border-radius: 5px; padding: 5px">
+      <table class="row-border hover">
+        <thead>
+          <tr>
+            <th>Company</th>
+            <th>Job Title</th>
+            <th>Location</th>
+            <th>Skills</th>
+            <th>Post Date</th>
+            <th>Delete</th>
+          </tr>
+        </thead>
+        <br>
+          <tbody>
+            <tr *ngFor="let jobdata of tableHold; let w = index" style="border-bottom: solid 1px black; border-top: solid 1px black; width: 100%">
+              <td>
+                {{jobdata["company"]}}&emsp;
+              </td>
+              <td>
+                {{jobdata["title"]}}&emsp;
+              </td>
+              <td>
+                {{jobdata["location"]}}&emsp;
+              </td>
+              <td>
+                {{jobdata["skills"]}}&emsp;
+              </td>
+              <td>
+                {{jobdata["postDate"]}}&emsp;
+              </td>
+              <td>
+                <button class="btn btn-danger" (click)='delete(w)' style="margin-top: 10px">
+                  Delete
+                </button>
+                <br>
+                <br>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <br />
+    <br />
+    <br />
+</div>

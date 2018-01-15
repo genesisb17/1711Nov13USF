@@ -1,0 +1,26 @@
+<form (submit)="updateJob($event)">
+  <div class="input">
+      <label>Company</label>
+      <input type="text">
+  </div>
+  <div class="input">
+      <label>Description</label>
+      <input type="text">
+  </div>
+  <div class="input">
+    <label>Location</label>
+    <input type="text">
+  </div>
+  <div class="input">
+    <label>Title</label>
+    <input type="password">
+  </div>
+  <div class="input">
+    <label>Website</label>
+    <input type="number">
+  </div>
+  <div class="input">
+    <input type="submit" value="Update">
+    <input (click)="backToViewSingleJob()" type="button" value="Cancel">
+  </div>
+</form>

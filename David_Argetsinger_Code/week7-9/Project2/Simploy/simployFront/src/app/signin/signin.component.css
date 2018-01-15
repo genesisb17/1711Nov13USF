@@ -1,0 +1,40 @@
+.jumbotron {
+    background: linear-gradient(to bottom, rgb(50, 150, 125), rgb(125, 225, 200), rgb(50, 150, 125));
+    color: rgb(255, 255, 255);
+    margin-bottom: -10px;
+}
+
+.lead {
+    color: rgb(225, 255, 245);
+}
+
+.my-3 {
+    width: 75%;
+}
+
+.simploy-color {
+    color: rgb(50, 150, 125);
+}
+
+.simploy-bgcolor {
+    background-color: rgb(50, 150, 125);
+    color: rgb(255, 255, 255);
+    border-radius: 2px;
+    padding: 5px;
+}
+
+.simploy-tab {
+    border-radius: 5px 5px 0px 0px;
+    width: 75px;
+}
+
+.simploy-shadow {
+    box-shadow: 3px 3px rgb(125 , 165, 155);
+}
+
+.simploy-box {
+    background-color: rgb(225, 245, 235);
+    border: solid 1px rgb(205, 225, 215);
+    border-radius: 5px;
+    padding: 10px;
+}
