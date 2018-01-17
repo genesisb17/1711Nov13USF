@@ -14,4 +14,5 @@ public interface AccountService {
 	public Account withdraw(int id, double amount);
 //	public Account findAccountByUsernameAndPassword(String username, String password);
 //	public boolean updateAccountBalance(Account account, Double amount);
+	public Account update(int id, String firstname, String lastname, String email, String username, String password);
 }

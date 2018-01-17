@@ -51,4 +51,10 @@ public class AccountController {
 	public Account withdraw(@RequestBody String[] data) {
 		return service.withdraw(Integer.parseInt(data[0]), Double.parseDouble(data[1]));
 	}
+	
+	@CrossOrigin
+	@RequestMapping(value="/update", method=RequestMethod.POST, consumes=MediaType.APPLICATION_JSON_VALUE)
+	public Account update(@RequestBody String[] data) {
+		return service.update(Integer.parseInt(data[0]), data[1], data[2], data[3], data[4], data[5]);
+	}
 }

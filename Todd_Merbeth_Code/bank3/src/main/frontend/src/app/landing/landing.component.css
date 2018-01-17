@@ -5,6 +5,14 @@
 }
 
 input{
+    width: 200px;
+    height: 30px;
+    margin: auto;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+#d, #w{
     margin: auto;
     margin-top: 10px;
     width: 100px;
@@ -22,4 +30,5 @@ input{
     display: block;
     margin:auto;
     margin-top: 50px;
+    width: 150px;
 }

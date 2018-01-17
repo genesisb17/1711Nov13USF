@@ -14,11 +14,18 @@ export class LandingComponent implements OnInit {
   public account: Account;
   deposit: number = 0.00;
   withdraw: number = 0.00;
+
+  firstname: string = "";
+  lastname: string = "";
+  email: string = "";
+  username: string = "";
+  password: string = "";
   
   constructor(private loginService: LoginService, private update:UpdateAccountService, private router: Router) { }
 
   ngOnInit() {
     this.account = this.loginService.loginSubject.getValue();
+    this.updateValues();
   }
   
   makeDeposit(){
@@ -41,6 +48,23 @@ export class LandingComponent implements OnInit {
     });
     this.update.withdraw(this.account, this.withdraw);
     this.withdraw = 0.00;
+  }
+
+  makeUpdate(){
+    this.update.updateSubject.subscribe(acc => {
+      if (acc != null) {
+        this.account = acc;
+      }
+    });
+    this.update.update(this.account.id, this.firstname, this.lastname, this.email, this.username, this.password);
+  }
+
+  updateValues(){
+    this.firstname = this.account.firstname;
+    this.lastname = this.account.lastname;
+    this.email = this.account.email;
+    this.username = this.account.username;
+    this.password = this.account.password;
   }
 
   doLogout(){

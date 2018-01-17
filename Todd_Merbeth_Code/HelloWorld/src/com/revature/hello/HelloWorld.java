@@ -37,7 +37,6 @@ public class HelloWorld {
 		var[0][2] = 5;
 		var[1][1] = 10;
 		
-		
 	}
 
 }

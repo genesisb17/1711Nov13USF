@@ -16,12 +16,35 @@ public class AboutStrings {
 //		System.out.println(a.equalsIgnoreCase(b)); //true
 //		System.out.println(c==e); // false, e goes to the first string in the pool that matches
 //		System.out.println(a==e); // true
-		test(a);
+//		test(a);
 //		a=test(a);
-		System.out.println(a);
+//		System.out.println(a);
+		
+		System.out.println(multi(123));
+		
 	}
 	static String test(String x) {
 		return x.substring(2);
+	}
+	
+	static String RevString(String str) {
+		int leng = str.length();
+		String temp = "";
+		for(int i = 0; i<leng; i++) {
+			temp = temp+str.charAt(leng-1-i);
+		}
+		return temp;
+	}
+	
+	public static Integer multi(Integer x) {
+		String s = x.toString();
+		Integer total = 1;
+		for(int i = 0; i < s.length(); i++) {
+			String str = "";
+			Integer n = Integer.parseInt(str + s.charAt(i));
+			total = total * n;
+		}
+		return total;
 	}
 
 }

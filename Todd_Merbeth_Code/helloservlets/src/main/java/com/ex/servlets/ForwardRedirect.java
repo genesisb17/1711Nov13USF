@@ -20,6 +20,7 @@ public class ForwardRedirect extends HttpServlet{
 		System.out.println("In init");
 		super.init();
 	}
+	
 	public void destroy() {
 		System.out.println("In destroy");
 		super.destroy();

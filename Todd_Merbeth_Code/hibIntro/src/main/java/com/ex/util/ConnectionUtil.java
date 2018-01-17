@@ -18,7 +18,7 @@ public class ConnectionUtil {
 	
 	private static SessionFactory sessionFactoryCreator() {
 		try {
-			URL r1 = ConnectionUtil.class.getResource("/hibernate,cfg,xml");
+			URL r1 = ConnectionUtil.class.getResource("/hibernate.cfg.xml");
 			Configuration configuration = new Configuration();
 			configuration.configure(r1);
 			serviceRegistry = new ServiceRegistryBuilder().applySettings(configuration.getProperties()).buildServiceRegistry();

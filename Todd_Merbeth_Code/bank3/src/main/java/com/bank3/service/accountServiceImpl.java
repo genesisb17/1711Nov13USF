@@ -53,6 +53,18 @@ public class accountServiceImpl implements AccountService {
 		return acc;
 	}
 
+	@Override
+	public Account update(int id, String firstname, String lastname, String email, String username, String password) {
+		Account acc = accRepo.findOne(id);
+		acc.setFirstname(firstname);
+		acc.setLastname(lastname);
+		acc.setEmail(email);
+		acc.setUsername(username);
+		acc.setPassword(password);
+		accRepo.save(acc);
+		return acc;
+	}
+
 
 
 	// @Override

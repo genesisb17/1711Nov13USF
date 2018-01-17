@@ -41,4 +41,16 @@ export class UpdateAccountService{
     });
   }
 
+  update(id: number, firstname: string, lastname: string, email: string, username: string, password: string, ){
+    this.http.post<Account>(environment.apiUrl + "/update", [id, firstname, lastname, email, username, password]).subscribe(acc => {
+      if (acc){ 
+        console.log("account returned in update arrow");
+        this.updateSubject.next(acc);
+      }
+      else {
+        console.log("null response in update arrow");
+      }
+    });
+  }
+
 }
