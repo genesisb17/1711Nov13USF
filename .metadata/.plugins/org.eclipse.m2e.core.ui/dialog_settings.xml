@@ -2,6 +2,7 @@
 <section name="Workbench">
 	<section name="MavenProjectWizardArtifactPage">
 		<list key="groupId">
+			<item value="com.revature"/>
 			<item value="com.soap"/>
 			<item value="bank2"/>
 			<item value="banking"/>
@@ -14,6 +15,10 @@
 			<item value="aopdemo"/>
 		</list>
 		<list key="artifactId">
+			<item value="customer-service"/>
+			<item value="gateway-service"/>
+			<item value="discovery-service"/>
+			<item value="account-service"/>
 			<item value="Soap1"/>
 			<item value="Soap"/>
 			<item value="bank2"/>
@@ -52,6 +57,8 @@
 	</section>
 	<section name="MavenProjectImportWizardPage">
 		<list key="rootDirectory">
+			<item value="C:\Users\Bruce Wayne\Desktop\gs-actuator-service-master"/>
+			<item value="C:\Users\Bruce Wayne\my_git_repos\1711Nov13USF\spring-boot-config-server-example-master"/>
 			<item value="C:\Users\Bruce Wayne\Desktop\halfwaythere"/>
 			<item value="C:\Users\Bruce Wayne\Desktop\Bank"/>
 			<item value="C:\Users\Bruce Wayne\Desktop\Spring\mvc-orm"/>
@@ -65,8 +72,6 @@
 			<item value="C:\Users\Bruce Wayne\Desktop\spring2"/>
 			<item value="C:\Users\Bruce Wayne\Desktop\springdemo2"/>
 			<item value="C:\Users\Bruce Wayne\my_git_repos\1711Nov13USF\springdemo"/>
-			<item value="C:\Users\Bruce Wayne\Desktop\spring-in-5-steps"/>
-			<item value="C:\Users\Bruce Wayne\Downloads\spring-in-5-steps"/>
 		</list>
 		<list key="projectNameTemplate">
 			<item value="[artifactId]"/>
@@ -90,6 +95,8 @@
 	</section>
 	<section name="MavenProjectWizardLocationPage">
 		<list key="location">
+			<item value="C:\Users\Bruce Wayne\my_git_repos\1711Nov13USF\account-service"/>
+			<item value="C:\Users\Bruce Wayne\my_git_repos\1711Nov13USF\account-service\src\main\java\com\revature\controllers\AccountController.java"/>
 			<item value="C:\Users\Bruce Wayne\my_git_repos\1711Nov13USF\Soap1\src\main\webapp\WEB-INF\beans.xml"/>
 			<item value="C:\Users\Bruce Wayne\Desktop\Spring\springboot\src\main\java\com\springboot\service\BankServiceImpl.java"/>
 			<item value="C:\Users\Bruce Wayne\Desktop\Spring\springboot\src\test\java"/>
@@ -103,8 +110,6 @@
 			<item value="C:\Users\Bruce Wayne\my_git_repos\1711Nov13USF\HelloWeb\WebContent\WEB-INF\JS\questions.js"/>
 			<item value="C:\Users\Bruce Wayne\my_git_repos\1711Nov13USF\TrentsWebsite"/>
 			<item value="C:\Users\Bruce Wayne\my_git_repos\1711Nov13USF\jdbcexamples"/>
-			<item value="C:\Users\Bruce Wayne\my_git_repos\1711Nov13USF\my_first_java_project"/>
-			<item value="C:\Users\Bruce Wayne\my_git_repos\1711Nov13USF\BankSQL\src\main\java\com\rev\dao\FileDao.java"/>
 		</list>
 		<list key="projectNameTemplate">
 			<item value="[artifactId]"/>
@@ -117,13 +122,10 @@
 	</section>
 	<section name="Maven2ProjectWizardArchifactPage">
 		<list key="package">
-			<item value="com.api.test"/>
 		</list>
 		<list key="groupId">
-			<item value="com.api"/>
 		</list>
 		<list key="artifactId">
-			<item value="test"/>
 		</list>
 		<list key="projectNameTemplate">
 			<item value="[artifactId]"/>

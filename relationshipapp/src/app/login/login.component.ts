@@ -16,7 +16,7 @@ export class LoginComponent implements OnInit
 
   ngOnInit() 
   {
-      this.postData("http://localhost:3000/user");
+      //this.postData("http://localhost:3000/user");
       this.getData("http://localhost:3000/user");
       this.value=0;
   }
@@ -30,6 +30,17 @@ export class LoginComponent implements OnInit
           console.log(this.data[0].username);
       }
     ) 
+  }
+  updateData(url:string)
+  {
+    let json = 
+    {
+      id:10,
+      username:"username2",
+      password:"password2"
+    };
+    //this.http.put(url,).subscribe()
+      
   }
   postData(url:string)
   {
