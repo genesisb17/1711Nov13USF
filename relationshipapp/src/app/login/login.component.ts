@@ -8,6 +8,7 @@ import { HttpClient } from '@angular/common/http';
 export class LoginComponent implements OnInit 
 {
   data:any[];
+  relations:any[];
   value:number;
   username:string;
   password:string;
@@ -18,6 +19,7 @@ export class LoginComponent implements OnInit
   {
       //this.postData("http://localhost:3000/user");
       this.getData("http://localhost:3000/user");
+      this.getRData("http://localhost:3000/relations");
       this.value=0;
   }
   getData(url:string)
@@ -28,6 +30,17 @@ export class LoginComponent implements OnInit
       {
           this.data=data;
           console.log(this.data[0].username);
+      }
+    ) 
+  }
+  getRData(url:string)
+  {
+    this.http.get(url)
+    .subscribe(
+      (data:any[])=>
+      {
+          this.relations=data;
+          console.log(this.relations);
       }
     ) 
   }
@@ -81,11 +94,14 @@ export class LoginComponent implements OnInit
       {
         if(this.data[i].password==this.password)
         {
-        
-        this.username=this.name;
-        this.spouse=this.data[i].relationuser;
-        this.showInfo=true;
-        console.log(this.username);
+          this.username=this.name;
+          this.spouse=this.data[i].relationuser;
+          this.showInfo=true;
+          if(this.data[i].id==this.relations[0].u_id1)
+          {
+            console.log(this.relations[0].u_id2);
+          }
+          console.log(this.username);
         }
       }
     }

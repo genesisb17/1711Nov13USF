@@ -7,9 +7,7 @@
       "Wt": 0,
       "w": 0,
       "rw": 0,
-      "IHM(Ht)": 0,
-      "relationuser": "username1",
-      "relationpass": "password1"
+      "IHM(Ht)": 0
     },
     {
       "id": 2,
@@ -18,15 +16,20 @@
       "Wt": 0,
       "w": 0,
       "rw": 0,
-      "IHM": 0,
-      "relationuser": "username",
-      "relationpass": "password"
+      "IHM": 0
     },
     {
       "id": 10,
       "username": "username2",
       "password": "password2"
     }
+  ],
+  "relations":[
+{
+  "rid":1,
+  "u_id1":1,
+  "u_id2":2
+}
   ],
   "data": [
     {
