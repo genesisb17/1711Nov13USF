@@ -8,9 +8,9 @@
 </div>
 </div>
 <br>
-<button>Home</button>
-{{username}}
-<div *ngIf="showInfo">
+<div class="jumbotron"*ngIf="showInfo">
+    <div class="container"*ngIf="showInfo">
+
     <br>
         {{value}}
     <br>
@@ -25,7 +25,7 @@
     <button (click)="changeValue(1)" class="form-control">content</button>
     <br>
     
-    <button>+0</button>
+    <button class="form-control">+0</button>
     <br>
     <button (click)="changeValue(-1)" class="form-control">annoyed</button>
     <br>
@@ -35,3 +35,5 @@
     <br>
     <button (click)="changeValue(-4)" class="form-control">super angry</button>
 </div>
+</div>
+

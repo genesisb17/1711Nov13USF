@@ -55,14 +55,8 @@ export class LoginComponent implements OnInit
     //this.http.put(url,).subscribe()
       
   }
-  postData(url:string)
+  postData(url:string,json:any)
   {
-    let json = 
-    {
-      id:10,
-      username:"username2",
-      password:"password2"
-    };
     this.http.post(url, json).subscribe(
       (data: any[]) => 
       {
@@ -97,10 +91,10 @@ export class LoginComponent implements OnInit
           this.username=this.name;
           this.spouse=this.data[i].relationuser;
           this.showInfo=true;
-          if(this.data[i].id==this.relations[0].u_id1)
+         /* if(this.data[i].id==this.relations[0].u_id1)
           {
             console.log(this.relations[0].u_id2);
-          }
+          }*/
           console.log(this.username);
         }
       }
