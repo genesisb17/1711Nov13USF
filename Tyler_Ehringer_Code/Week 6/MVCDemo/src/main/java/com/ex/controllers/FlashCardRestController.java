@@ -24,7 +24,6 @@ public class FlashCardRestController {
 	public FlashCard getById(@PathVariable int id) {
 		System.out.println("in method");
 		return service.getById(id);
-
 	}
 
 	@RequestMapping(method = RequestMethod.GET)

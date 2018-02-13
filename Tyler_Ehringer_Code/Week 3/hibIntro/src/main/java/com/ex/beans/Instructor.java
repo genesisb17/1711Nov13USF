@@ -19,6 +19,7 @@ public class Instructor {
 	private int id;
 	
 	@Column(name="NAME", nullable=false)
+	
 	private String name;
 
 	public Instructor(int id, String name) {

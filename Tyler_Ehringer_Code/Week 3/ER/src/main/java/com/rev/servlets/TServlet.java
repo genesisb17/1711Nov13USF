@@ -28,7 +28,7 @@ public class TServlet extends DefaultServlet{
 	/*
 	 *  post /er/login/login              --login, ([username: string, password: string])
 	 *  get  /er/login/logout             --logout, ()
-	 *  post  /er/login/update            --update user info, (u: User)
+	 *  post /er/login/update            --update user info, (u: User)
 	 *  
 	 *  get  /er/reimbursements/all       --get all reimbursements (manager), ()
 	 *  get  /er/reimbursements/user      --get user's reimbursements (employee), ()

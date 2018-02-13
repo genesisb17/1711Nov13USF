@@ -60,7 +60,9 @@ const appRoutes: Routes = [
     ReimbursementService,
     AuthenticationService
   ],
-  bootstrap: [AppComponent],
+  bootstrap: [
+    AppComponent
+  ],
   entryComponents: [
     LoginComponent,
     CreateReimbursementComponent,

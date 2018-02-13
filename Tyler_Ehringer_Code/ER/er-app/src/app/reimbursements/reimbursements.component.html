@@ -6,21 +6,21 @@
       <div class="row">
         <div class="col">Filter:
           <div class="btn-group col-3" data-toggle="buttons">
-            <label class="btn-primary" ngbButtonLabel (click)="togglePending()">
+            <label class="btn-info" ngbButtonLabel (click)="togglePending()">
               <input type="checkbox" ngbButton> Pending
             </label>
-            <label class="btn-primary" ngbButtonLabel (click)="toggleApproved()">
+            <label class="btn-info" ngbButtonLabel (click)="toggleApproved()">
               <input type="checkbox" ngbButton> Approved
             </label>
-            <label class="btn-primary" ngbButtonLabel (click)="toggleDenied()">
+            <label class="btn-info" ngbButtonLabel (click)="toggleDenied()">
               <input type="checkbox" ngbButton> Denied
             </label>
           </div>
         </div>
         <div class="col">Order:
-          <button class="btn btn-primary" (click)="sort('submitted')">Submitted</button>
-          <button class="btn btn-primary" (click)="sort('amount')">Amount</button>
-          <button class="btn btn-primary" (click)="sort('authorName')">Author</button>
+          <button class="btn btn-info" (click)="sort('submitted')">Submitted</button>
+          <button class="btn btn-info" (click)="sort('amount')">Amount</button>
+          <button class="btn btn-info" (click)="sort('authorName')">Author</button>
         </div>
       </div>
       <div class="row">

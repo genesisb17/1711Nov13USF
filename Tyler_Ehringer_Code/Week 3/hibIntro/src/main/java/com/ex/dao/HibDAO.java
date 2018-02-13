@@ -8,6 +8,7 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
 
+import com.ex.beans.Product;
 import com.ex.beans.Student;
 import com.ex.beans.Transcript;
 import com.ex.util.ConnectionUtil;
@@ -58,6 +59,18 @@ public class HibDAO {
 		List<Student> students = q.list();
 		ses.close();
 		return students;
+	}
+	
+	public void addPrduct(Product p) {
+		Session sess = ConnectionUtil.getSession();
+		try {
+			Transaction tx = sess.beginTransaction();
+			sess.save(p);
+			tx.commit();
+		}finally {
+			sess.close();
+		}
+		
 	}
 	
 

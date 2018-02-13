@@ -5,7 +5,6 @@ import { HttpParams } from '@angular/common/http';
 import { BoolResult } from '../types/boolresult.type';
 import * as $ from 'jquery';
 import { User } from '../types/user.type';
-import { last } from '@angular/router/src/utils/collection';
 
 @Component({
   selector: 'app-register',
@@ -77,7 +76,7 @@ export class RegisterComponent implements OnInit {
   }
 
   passwordBlur() {
-    var passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,})/
+    var passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,})/;
     if (passwordRegex.test(this.password1)) {
       if (this.password1 == this.password2) {
         this.passwordWarning = "";
@@ -106,7 +105,8 @@ export class RegisterComponent implements OnInit {
   }
 
   submit() {
-    if (!(this.passwordWarning || this.emailWarning || this.usernameWarning) && this.username) {
+    if (!(this.passwordWarning || this.emailWarning || this.usernameWarning)
+      && this.username && this.firstName && this.lastName && this.password1 && this.email) {
       var user = new User();
       user.id = 0;
       user.email = this.email;

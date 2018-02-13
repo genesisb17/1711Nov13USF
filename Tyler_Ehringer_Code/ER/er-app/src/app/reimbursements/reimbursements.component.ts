@@ -84,7 +84,7 @@ export class ReimbursementsComponent implements OnInit {
         return true;
       });
       res.sort((a, b) => {
-        if (a[this.sortBy] < b[this.sortBy]) return -1;
+        if (a[this.sortBy] < b[this.sortBy]) return -1; 
         return 1;
       });
       if (this.reverseSort) res = res.reverse();

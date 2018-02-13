@@ -29,8 +29,10 @@ export class NavbarComponent implements OnInit {
   }
 
   onLogin = (success: boolean, user: User) => {
-    this.loginMessage = "Welcome " + user.fname;
-    this.isLoggedIn = true;
+    if (success) {
+      this.loginMessage = "Welcome " + user.fname;
+      this.isLoggedIn = true;
+    }
   }
 
   onLogout = () => {
