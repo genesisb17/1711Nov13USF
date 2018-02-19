@@ -67,7 +67,7 @@ public class DAOImpl implements DAO{
 					+ "(firstname, lastname, email, password) "
 					+ "values(?, ?, ?, ? )";
 			String [] key = new String[1];
-			key[0] = "userid";
+			key[0] = "u_id";
 			PreparedStatement ps = conn.prepareStatement(sql, key);
 			ps.setString(1, fn);
 			ps.setString(2, ln);

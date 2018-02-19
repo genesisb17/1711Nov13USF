@@ -21,7 +21,7 @@ import com.ex.service.DemoService;
 import com.ex.service.Service;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-@WebServlet("/login")
+@WebServlet("/demo/login")
 public class LoginServlet extends HttpServlet{
 	static Service service = new Service();
 

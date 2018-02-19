@@ -16,11 +16,11 @@ export class LoginService {
   constructor(private http: HttpClient, private userService: UserService) { }
 
 
-  validate(username: string, password: string) {
+  validate(email: string, password: string) {
 
     this.userService.getUsers().subscribe(users => {
       let filteredUsers = users.filter(user => {
-        if (user.username.toLowerCase() == username.toLowerCase() && user.password == password) return user;
+        if (user.email.toLowerCase() == email.toLowerCase() && user.password == password) return user;
       })
       if (filteredUsers.length > 0) {
         this.currentUser = filteredUsers[0];
@@ -32,5 +32,21 @@ export class LoginService {
 
   subscribeToLogin(f: Function) {
     this.subscribers.push(f);
+  }
+
+  login(email:string, password:string){
+    console.log("in login");
+    this.userService.getUser(email).subscribe(
+      user=>{
+        if(user==null) {
+          console.log(user);
+          return null;
+        }
+        else{ 
+          return user;
+        }
+      }
+
+    )
   }
 }

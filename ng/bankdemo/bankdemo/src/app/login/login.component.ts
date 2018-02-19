@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
 
   pass: string;
-  username: string;
+  email: string;
 
   constructor(private lgService: LoginService, private router: Router) { }
 
@@ -22,7 +22,8 @@ export class LoginComponent implements OnInit {
   }
 
   login(){
-    this.lgService.validate(this.username, this.pass);
+  console.log("in login method" + this.email);
+    this.lgService.validate(this.email, this.pass);
   }
 
   register(){

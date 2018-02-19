@@ -1,4 +1,7 @@
-<input type="text" [(ngModel)]="username" placeholder="Username">
-<input type="password" [(ngModel)]="pass" placeholder="Password">
-<button (click)="register()">Register</button>
+<input type="text" [(ngModel)]="firstname" placeholder="First name">
+<input type="text" [(ngModel)]="lastname" placeholder="Last name">
+<input type="text" [(ngModel)]="email" (change)="validateEmail()" placeholder="Email address">
+<input type="password" [(ngModel)]="password" placeholder="Password">
+<button (click)="register()" [disabled] = 'valid' *ngIf="registered==false">Register</button>
+<button (click)="toLogin()" *ngIf="registered==true">Log In</button>
 {{message}}

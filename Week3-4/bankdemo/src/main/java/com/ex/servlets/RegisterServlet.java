@@ -14,7 +14,7 @@ import com.ex.pojos.User;
 import com.ex.service.Service;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-@WebServlet("/register")
+@WebServlet("/demo/register")
 public class RegisterServlet extends HttpServlet {
 	static{
 		System.out.println("in register servlet");
@@ -45,8 +45,8 @@ public class RegisterServlet extends HttpServlet {
 		ObjectMapper mapper = new ObjectMapper();
 		
 		User u = mapper.readValue(json, User.class);
+		System.out.println(u.toString());
 		u = service.addUser(u);
-		
 		// redirect to login page? display successful login page then request login page? 
 		
 	}

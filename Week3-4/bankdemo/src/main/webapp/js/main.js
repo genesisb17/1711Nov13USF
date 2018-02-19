@@ -88,6 +88,7 @@ function loadApp(){
 
 //function onblur that notifies the user of whether or not their email address is already in use 
 function validateEmail(){
+	console.log("IN VALIDATE EMAIL");
 	$('#register').attr("disabled",false);
 	$('#message').hide();
 	var username = $('#username').val();
