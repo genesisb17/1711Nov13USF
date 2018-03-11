@@ -1,20 +1,21 @@
 <div class="jumbotron">
+        <div class="jumbotron">
 <div class="container">
 <input type="text" class = "form-control"(keyup)="onNameKeyUp($event)"><br>
 <br>
 <input type ="text" class="form-control" ng-model="string" (keyup)="onPasswordKeyUp($event)" [name]="password">
 <br>
 <button (click)="getUserbyUsername()" class="form-control">Submit</button>
+<button class="form-control" (click)="register()">Register</button>
 </div>
 </div>
-<br>
+
+</div><br>
 <div class="jumbotron"*ngIf="showInfo">
     <div class="container"*ngIf="showInfo">
 
     <br>
         {{value}}
-    <br>
-        {{spouse}}
     <br>
     <button (click)="changeValue(4)" class="form-control">Estatic</button>
     <br>
@@ -36,4 +37,8 @@
     <button (click)="changeValue(-4)" class="form-control">super angry</button>
 </div>
 </div>
-
+<div class="jumbotron"*ngIf="showReg">
+    <div class="container"*ngIf="showReg">
+        test
+</div>
+</div>

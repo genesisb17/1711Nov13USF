@@ -17,9 +17,8 @@ export class LoginComponent implements OnInit
 
   ngOnInit() 
   {
-      //this.postData("http://localhost:3000/user");
-      this.getData("http://localhost:3000/user");
-      this.getRData("http://localhost:3000/relations");
+    let json = {username:"username3",password:"password3"};
+      this.getData("localhost:8097/api/PeopleKnower/all");
       this.value=0;
   }
   getData(url:string)
@@ -29,31 +28,28 @@ export class LoginComponent implements OnInit
       (data:any[])=>
       {
           this.data=data;
-          console.log(this.data[0].username);
+          console.log(this.data);
       }
     ) 
   }
-  getRData(url:string)
+  showReg:boolean=false;
+  register()
   {
-    this.http.get(url)
-    .subscribe(
-      (data:any[])=>
-      {
-          this.relations=data;
-          console.log(this.relations);
-      }
-    ) 
+    this.showReg=!this.showReg;
   }
   updateData(url:string)
   {
     let json = 
     {
-      id:10,
+      id:100,
       username:"username2",
       password:"password2"
     };
-    //this.http.put(url,).subscribe()
-      
+    this.http.put(url,json).subscribe(
+      (data:any[])=>
+      {
+      }
+    );
   }
   postData(url:string,json:any)
   {
@@ -77,7 +73,7 @@ export class LoginComponent implements OnInit
   {
     this.password =event.target.value;
   }
-  showInfo:boolean=false;
+  showInfo1:boolean=false;
 
   getUserbyUsername()
   {
@@ -89,12 +85,7 @@ export class LoginComponent implements OnInit
         if(this.data[i].password==this.password)
         {
           this.username=this.name;
-          this.spouse=this.data[i].relationuser;
-          this.showInfo=true;
-         /* if(this.data[i].id==this.relations[0].u_id1)
-          {
-            console.log(this.relations[0].u_id2);
-          }*/
+          this.showInfo1=!this.showInfo1;
           console.log(this.username);
         }
       }

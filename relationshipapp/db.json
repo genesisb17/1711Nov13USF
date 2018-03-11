@@ -22,14 +22,12 @@
       "id": 10,
       "username": "username2",
       "password": "password2"
+    },
+    {
+      "username": "username3",
+      "password": "password3",
+      "id": 11
     }
-  ],
-  "relations":[
-{
-  "rid":1,
-  "u_id1":1,
-  "u_id2":2
-}
   ],
   "data": [
     {

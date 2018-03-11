@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import {GetDataService} from './get-data.service';
 import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -11,11 +11,12 @@ import { LoginComponent } from './login/login.component';
     AppComponent,
     LoginComponent
   ],
-  imports: [
+  imports: 
+  [
     HttpClientModule,
     BrowserModule
   ],
-  providers: [],
+  providers: [GetDataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
