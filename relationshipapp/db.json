@@ -3,20 +3,12 @@
     {
       "id": 1,
       "username": "username",
-      "password": "password",
-      "Wt": 0,
-      "w": 0,
-      "rw": 0,
-      "IHM(Ht)": 0
+      "password": "password"
     },
     {
       "id": 2,
       "username": "username1",
-      "password": "password1",
-      "Wt": 0,
-      "w": 0,
-      "rw": 0,
-      "IHM": 0
+      "password": "password1"
     },
     {
       "id": 10,
@@ -40,6 +32,13 @@
       "total": 0,
       "totalsuccess": 0,
       "totalfailed": 0
+    }
+  ],
+  "relations":[
+    {
+      "r_id":1,
+      "u_id1":2,
+      "u_id2":10
     }
   ]
 }

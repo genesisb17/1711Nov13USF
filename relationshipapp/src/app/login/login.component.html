@@ -11,8 +11,8 @@
 </div>
 
 </div><br>
-<div class="jumbotron"*ngIf="showInfo">
-    <div class="container"*ngIf="showInfo">
+<div class="jumbotron"*ngIf="showInfo1">
+    <div class="container"*ngIf="showInfo1">
 
     <br>
         {{value}}
@@ -35,10 +35,26 @@
     <button (click)="changeValue(-3)" class="form-control">angry</button>
     <br>
     <button (click)="changeValue(-4)" class="form-control">super angry</button>
+<div>
+    <br>
+    <input type ="text" class="form-control" ng-model="string" (keyup)="onrelationKeyUp($event)">
+    <br>    
+    <button (click)=  "addUserrelation()" class="form-control">add a user to track</button>
+    <br>
+</div>
+<div *ngFor="let t of test">
+{{t}}
+</div>
 </div>
 </div>
 <div class="jumbotron"*ngIf="showReg">
     <div class="container"*ngIf="showReg">
-        test
+        <br>
+        <input type ="text" class="form-control" ng-model="string">
+        <br>    
+        <input type ="text" class="form-control" ng-model="string">
+        <br>
+    <button  class="form-control">Register</button>
+
 </div>
 </div>

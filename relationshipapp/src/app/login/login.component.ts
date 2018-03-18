@@ -14,11 +14,20 @@ export class LoginComponent implements OnInit
   password:string;
   spouse:string;
   constructor(private http:HttpClient) { }
-
+  UserRelation:any[];
+  r:any;
+  onrelationKeyUp(event:any)
+  {
+    this.r = event.target.value;
+  }
+  addUserrelation()
+  {
+    //this.test.push(this.r);
+  }
   ngOnInit() 
   {
-    let json = {username:"username3",password:"password3"};
-      this.getData("localhost:8097/api/PeopleKnower/all");
+      this.getData("http://localhost:3000/user");
+      this.getRData("http://localhost:3000/relations");
       this.value=0;
   }
   getData(url:string)
@@ -32,27 +41,33 @@ export class LoginComponent implements OnInit
       }
     ) 
   }
+  getRData(url:string)
+  {
+    this.http.get(url)
+    .subscribe(
+      (data:any[])=>
+      {
+          this.relations=data;
+          console.log(this.relations);
+      }
+    ) 
+   /*let i;
+    for(i=0;i<this.relations.length;i++)
+    {
+      if(this.relations[i].u_id1==this.u_id)
+      {
+        this.UserRelation.push(this.relations[i].u_id2);
+      }
+    }*/
+  }
   showReg:boolean=false;
   register()
   {
     this.showReg=!this.showReg;
   }
-  updateData(url:string)
+  postData(url:string)
   {
-    let json = 
-    {
-      id:100,
-      username:"username2",
-      password:"password2"
-    };
-    this.http.put(url,json).subscribe(
-      (data:any[])=>
-      {
-      }
-    );
-  }
-  postData(url:string,json:any)
-  {
+    var json={username:"test",password:"test"};
     this.http.post(url, json).subscribe(
       (data: any[]) => 
       {
@@ -74,7 +89,7 @@ export class LoginComponent implements OnInit
     this.password =event.target.value;
   }
   showInfo1:boolean=false;
-
+  u_id:any;
   getUserbyUsername()
   {
     var i =0;
@@ -84,6 +99,7 @@ export class LoginComponent implements OnInit
       {
         if(this.data[i].password==this.password)
         {
+         // this.u_id=this.data[i].
           this.username=this.name;
           this.showInfo1=!this.showInfo1;
           console.log(this.username);
