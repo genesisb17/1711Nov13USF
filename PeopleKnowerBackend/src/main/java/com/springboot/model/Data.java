@@ -42,6 +42,9 @@ public class Data
 	private Double totalsuccess;
 	@Column(name="totalfailed")
 	private Double totalfailed;
+	
+	
+	
 	public Integer getData_id() {
 		return data_id;
 	}

@@ -51,14 +51,6 @@ export class LoginComponent implements OnInit
           console.log(this.relations);
       }
     ) 
-   /*let i;
-    for(i=0;i<this.relations.length;i++)
-    {
-      if(this.relations[i].u_id1==this.u_id)
-      {
-        this.UserRelation.push(this.relations[i].u_id2);
-      }
-    }*/
   }
   showReg:boolean=false;
   register()
