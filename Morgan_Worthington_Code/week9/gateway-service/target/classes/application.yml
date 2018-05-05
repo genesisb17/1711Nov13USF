@@ -1,0 +1,25 @@
+spring:
+  application:
+    name: gateway-server
+    
+server:
+  port: 8765
+info:
+  component: Edge Server
+  
+zuul:
+  prefix: /api
+  routes:
+    account: 
+      path: /accounts/**
+      serviceId: account-service
+      
+    customer:
+      path: /customers/**
+      serviceId: customer-service
+      
+eureka:
+  client: 
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+    register-with-eureka: true
