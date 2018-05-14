@@ -57,6 +57,12 @@ export class LoginComponent implements OnInit
   {
     this.showReg=!this.showReg;
   }
+  putData(url:string)
+  {var json={
+    username:this.username,password:this.password
+  };
+    this.http.put(url,json).subscribe();
+  }
   postData(url:string)
   {
     var json={username:"test",password:"test"};
